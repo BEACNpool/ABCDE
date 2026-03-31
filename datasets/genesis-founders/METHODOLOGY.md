@@ -245,3 +245,51 @@ Runtime varies based on db-sync hardware and query optimization.
 For questions about methodology or reproducibility:
 - Open issue at: https://github.com/BEACNpool/ABCDE/issues
 - Include: block height, query, expected vs actual result
+
+
+## Exchange / Dormancy Classification Layer
+
+A secondary classification pass was run against the combined current frontier from:
+- IOG
+- EMURGO
+- CF
+
+### Classification workflow
+
+1. Consolidate per-seed `current_unspent.csv` frontier rows into one combined relation.
+2. Compute lifetime address activity metrics from db-sync:
+   - distinct receive transactions
+   - distinct send transactions
+   - first seen / last seen timestamps
+3. Apply heuristic exchange likelihood labels:
+   - `VERY_LIKELY_EXCHANGE`
+   - `LIKELY_EXCHANGE`
+   - `POSSIBLE_EXCHANGE`
+   - `NOT_EXCHANGE`
+4. Map final categories:
+   - `EXCHANGE`
+   - `ACTIVE_ECOSYSTEM`
+   - `DORMANT_STAKED`
+   - `BYRON_DORMANT`
+5. Rejoin the results back to the frontier using `dest_tx_out_id` for categorized export generation.
+
+### Validation
+
+Validated run totals:
+- frontier rows: `127,135`
+- classified rows: `127,135`
+- ADA total match: `54,352,889,291.73`
+- NULL categories: `0`
+
+### Export correction note
+
+During the initial execution, a non-unique export join (`address + seed + ada`) produced duplicated categorized rows.
+The final published exports were regenerated using `dest_tx_out_id`, which is the correct unique frontier key.
+
+### Published outputs
+
+See [`exchange-analysis/`](./exchange-analysis/) for:
+- `summary_aggregate.csv`
+- `summary_by_seed.csv`
+- categorized frontier CSVs
+- pipeline status / run notes
