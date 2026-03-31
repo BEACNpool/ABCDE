@@ -45,6 +45,13 @@
 
 ## File Descriptions
 
+### Cross-Seed Analysis
+
+**exchange-analysis/**
+- Combined classification layer across the current frontier UTxOs from IOG, EMURGO, and CF
+- Includes aggregate summaries and categorized `current_unspent` exports
+- Files: `summary_aggregate.csv`, `summary_by_seed.csv`, categorized frontier CSVs, pipeline status log
+
 ### Per-Seed Files
 
 **trace_summary.json**
@@ -108,6 +115,8 @@ All transaction hashes and stake addresses in this dataset can be independently 
 | drep_delegation | 1,994 | 1,089 | 1,089 | 511 |
 | deoverlap_analysis | N/A | N/A | 6,216 | N/A |
 
+**Cross-seed publication note:** `exchange-analysis/` is a combined frontier layer for **IOG + EMURGO + CF**. `EMURGO_2` is not yet included in that directory.
+
 ---
 
 ## Data Integrity
@@ -119,3 +128,15 @@ All files:
 - Report values in lovelace (1 ADA = 1,000,000 lovelace)
 
 No interpretation, analysis, or claims are made in the data files themselves.
+
+## Exchange Analysis Layer
+
+A combined classification layer is published at [`exchange-analysis/`](./exchange-analysis/).
+
+This layer currently classifies the frontier UTxOs from **IOG + EMURGO + CF** into:
+- `EXCHANGE`
+- `ACTIVE_ECOSYSTEM`
+- `DORMANT_STAKED`
+- `BYRON_DORMANT`
+
+`EMURGO_2` is not yet included in that combined classification directory.
