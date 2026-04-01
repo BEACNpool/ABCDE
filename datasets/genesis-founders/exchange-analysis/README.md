@@ -19,6 +19,7 @@ Categories assigned:
 - `BYRON_DORMANT`
 
 These outputs are derived from db-sync state plus deterministic classification rules applied to the frontier snapshot.
+The `EXCHANGE` bucket is a **heuristic classification**, not direct proof of realized sale execution, ownership, or intent.
 
 ---
 
@@ -69,3 +70,13 @@ This layer currently covers the combined frontier run built from:
 - CF
 
 `EMURGO_2` is not yet included in this classification directory.
+
+## Interpretation Guardrails
+
+Do not collapse these into one claim:
+- genesis allocation
+- current traced frontier value
+- exchange-classified frontier value
+- provable sold amount
+
+This directory publishes the third item above: **exchange-classified frontier value** within the current traced frontier snapshot.
