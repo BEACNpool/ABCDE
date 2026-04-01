@@ -119,6 +119,21 @@ All transaction hashes and stake addresses in this dataset can be independently 
 
 ---
 
+## Interpretation Guardrails
+
+When reading this dataset, keep these quantities separate:
+- **Genesis allocation** — original ADA assigned at genesis
+- **Current traced frontier value** — descendant-state value in currently traced frontier outputs
+- **Exchange-classified frontier value** — frontier value falling into the published exchange heuristic bucket
+- **Provable sold amount** — realized sale volume directly proven from on-chain evidence
+
+These values are **not interchangeable**.
+
+Claim-strength note:
+- frontier totals and row counts are published as direct receipts / deterministic transforms
+- exchange buckets are heuristic classifications
+- ownership, sale execution, intent, and coordination claims require additional evidence beyond the frontier tables alone
+
 ## Data Integrity
 
 All files:

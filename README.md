@@ -61,6 +61,14 @@ CC0 1.0 Universal — Public Domain
 
 See [LICENSE](./LICENSE) for details.
 
+## Claim Strength
+
+Use this repo with the following claim-strength distinctions in mind:
+- **Direct on-chain fact** — directly queryable from db-sync
+- **Deterministic transform** — reproducible calculation from published data
+- **Heuristic classification** — rule-based label, not direct proof of ownership, sale, or intent
+- **Interpretive assessment** — hypothesis or inference based on observed patterns
+
 ## On-Chain Observations
 * [IOG Genesis Allocation: Output Generation & Routing (Epochs 245-252)](./observations/iog_epoch_245_252_output_routing.md)
 * [Genesis Fee Extraction Report](./observations/genesis_fee_extraction_report.md)
