@@ -64,6 +64,7 @@ See [LICENSE](./LICENSE) for details.
 ## On-Chain Observations
 * [IOG Genesis Allocation: Output Generation & Routing (Epochs 245-252)](./observations/iog_epoch_245_252_output_routing.md)
 * [Genesis Fee Extraction Report](./observations/genesis_fee_extraction_report.md)
+* [Genesis Allocation: Liquidation to Exchange Heuristics](./observations/genesis_exchange_liquidation_report.md)
 
 ---
 **Disclaimer:** *This repository provides raw on-chain data traces mapping the chain of custody for Cardano genesis allocations. We do not provide commentary, assign intent, or draw conclusions on entity behavior. The data is provided as-is for community verification.*
