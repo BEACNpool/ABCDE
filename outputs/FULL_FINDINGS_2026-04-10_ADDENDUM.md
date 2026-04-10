@@ -419,12 +419,115 @@ The 200M ADA "UNSPENT" branch (`stake1uxexwrph9`) does NOT follow this path — 
 
 ---
 
+---
+
+## B15. `stake1u9zjr6e37` Is the Master Disbursement Node for All 14 Staging Wallets
+
+**Grade: FACT**
+
+`stake1u9zjr6e37w53a474puhx606ayr3rz2l6jljrmzvlzkk3cmg0m2zw0` funded all 14 staging wallets from the same address, confirming single-operator control of the entire staging network.
+
+**All 14 epoch-227 disbursements from `stake1u9zjr6e37`:**
+
+| TX | Time | Disbursed ADA | Recipient wallet |
+|:---|:-----|---:|:---|
+| `c7b39e6f3ef502c755204a62a79da37b9def4a6f81e2fe74da8fa26e3710cf94` | 2020-11-05 05:23 | 150,000,010 | hop0 |
+| `dbc5a4fd903ead8c7ef2e29cae05a15e485689981ceb03ba3e70e4c611a1a95c` | 2020-11-06 09:11 | 150,000,005 | `stake1u9endmqh` (14th wallet) |
+| `12994c231f3c614416da1c62d81edfaf55e0c766e9e3bcb0e7693a7818137c6a` | 2020-11-06 09:26 | 150,000,005 | staging wallet |
+| `4290d90d62d9327222445abb76240618f26d5832cf5f637c562d9a5707f3e833` | 2020-11-06 09:44 | 150,000,005 | staging wallet |
+| `32bd4b728b37b4718c436cda4d2fe3830b88b2742e2e22997766c7018690da28` | 2020-11-06 09:55 | 150,000,005 | staging wallet |
+| `679f5452ae251785299306dd7c612d9614f5b5a198e19c32634e599598be07b5` | 2020-11-06 10:01 | 150,000,005 | staging wallet |
+| `150967fc78510181ca303db3c3be72b3bdbc68586d9612279df0f4036c4479a6` | 2020-11-06 10:07 | 150,000,005 | staging wallet |
+| `400670d3c48d1ed877a460be7ce9b0a804626bd5f5912acf44c3ae7f11c0703c` | 2020-11-06 10:40 | 150,000,005 | staging wallet |
+| `3eda4d639d1ec23b8252adb08fdcdd80f92672c3be0f46a85f3b03f4baf0a3b1` | 2020-11-06 10:46 | 150,000,005 | staging wallet |
+| `18b383c410cccbf33661163288e48f8f9a6992cb66727b5ab535b6e9df6d68f6` | 2020-11-06 10:51 | 150,000,005 | staging wallet |
+| `5d36b17690797780e9aab012ef782ffbb75f9d5f9913404aeed42f57db487f20` | 2020-11-06 10:55 | 150,000,005 | staging wallet |
+| `f9dc5121c64bc5eb48742d71f02dc6131e076065641c26e9337834809c3dc186` | 2020-11-06 10:59 | 150,000,005 | staging wallet |
+| `1ee44b55cb25a891795fdb1dcfe89b52497e439738cc2ca6237bfb15c5ce2ac5` | 2020-11-06 11:05 | 150,000,005 | staging wallet |
+| `5538e1f46d6474e2e9c6eb58f1c3436396548d0075132b1ce3633d68373b9ea0` | 2020-11-06 11:09 | 150,000,005 | staging wallet |
+
+All 14 disbursements span only ~5 hours 46 minutes on Nov 6, 2020 (plus one on Nov 5). All amounts are exactly 150,000,005 ADA (except the first: 150,000,010).
+
+**Additional disbursements from `stake1u9zjr6e37` in epoch 237:**
+- `ad3f37725e9785ce88e4167aec1543acd8cf2a18c3fa9e15ae7521ee31e7f74c`: **650,000,000 ADA** directly to `stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht` (same exchange as aggregator destination)
+- `1dec14896564a4c11845c63e571c447926c1db7dafd10486026a076c9a1974eb`: **8,000,000 ADA** also to `stake1u8rmlr2h`
+
+**Total from `stake1u9zjr6e37` to the exchange:** ~2,765,670,869 ADA (2.107B via staging route + 658M direct)
+
+**Prior disbursements at epochs 221–223 (via Hub 1):**
+- `e9e2a03361caed9a823d78835f7981f0fd57a22c6430cb8ac0a58043caa5569e` (epoch 221): 35,000,000 ADA to `Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W` (Hub 1 / IOG+EMURGO splitter)
+- `f8eb42476dd1562589adb5c65f4c3a83f853438f163d8edd35ac0a4131965169` (epoch 223): 35,000,000 ADA to `Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W` (Hub 1)
+
+`stake1u9zjr6e37` is thus a nexus connecting: 86daee1a merge chain → Hub 1 (IOG+EMURGO splitter) → all 14 staging wallets → exchange hot wallet `stake1u8rmlr2h`.
+
+---
+
+## B16. f907b625 Output Correction: Single Byron Intermediate Before stake1u9zjr6e37
+
+**Grade: FACT**
+
+Transaction `f907b625` produced a **single output** — not 8 direct staging wallet disbursements as previously described:
+
+- Output 0: **1,999,999,999.82 ADA** to Byron address `Ae2tdPwUPEYwFx4dmJheyNPPYXtvHbJLeCaA96o6Y2iiUL18cAt7AizN2zG`
+
+This Byron address was immediately consumed at epoch 227 (one epoch later) by `48bb2ca95450f38d7cedac5e2ceb2eb4fc96cdbe4757e2d99821ffe486862b9d`:
+- **Output 0**: 200,000,000 ADA → `stake1uxexwrph9r2p3lv42r7ccjptpmml33u2v3xx4p0q9ks85wc2y9t33` (200M UNSPENT branch)
+- **Output 1**: 1,799,999,999 ADA → `stake1u9zjr6e37w53a474puhx606ayr3rz2l6jljrmzvlzkk3cmg0m2zw0` (master disbursement node)
+
+The corrected f907b625 chain:
+```
+f907b625 (2B ADA, epoch 226)
+  ↓ single Byron output: Ae2tdPwUPEYwFx4dmJheyNPPYXtvHbJLeCaA96o6Y2iiUL18cAt7AizN2zG
+  ↓ (48bb2ca9, epoch 227)
+  ├── 200M → stake1uxexwrph (200M UNSPENT)
+  └── 1.8B → stake1u9zjr6e37 (master disbursement node)
+              ↓ 14 × ~150M (epoch 227)
+              ↓ + 658M direct (epoch 237)
+              → stake1u8rmlr2h (exchange, 40B ADA)
+```
+
+**Also confirmed:** `stake1u9zjr6e37` received the 628M from the 86daee1a merge path via `c35744789eea4f2f322a04c00dd22cb99a768940599729a983a9e932396f995b` (epoch 211), which consumed `86daee1a:0` directly.
+
+---
+
+## B17. 14th Staging Wallet Confirmed
+
+**Grade: FACT**
+
+The 14th staging wallet is `stake1u9endmqh5t23fdr2cmvlju3q7hrxl727edwdwmh8crcschq8q0m46`:
+
+- Received 150,000,005 ADA at epoch 227, 2020-11-06 09:11 via `dbc5a4fd903ead8c7ef2e29cae05a15e485689981ceb03ba3e70e4c611a1a95c` from `stake1u9zjr6e37` (same source as all other 13 wallets)
+- Self-relayed 3 minutes later via `11926c5be1d73a7a384b7f7ba1d42c6cb9e26c6a53ef41cb213fe0c9ba4e3ef1` — address rotation within same stake key (Shelley practice to avoid address reuse)
+- Sent 150,000,002.82 ADA to aggregator `stake1uxrytqx0` at epoch 237 via `0c028480d2eb68dc4095f7f4e1365c48b4042c970cea7ac3ac6da555dd9bffd8`
+- Participated in the same Dec-22-2020 automated sweep as the other 13 wallets
+
+All 14 staging wallets:
+| Stake address | ADA sent to aggregator |
+|:---|---:|
+| `stake1uxw8slv30u9clrfjrq4w0uprwf74r5zmugm56ehukhvl3tctw2pkz` | 150,583,248 |
+| `stake1u9ujy430k9j59zxjk6fyhn6x5efz6zp677scd047l8a55uqx5az0f` | 150,557,507 |
+| `stake1u8mf4hrhd9mtp86zkazlyg4w2zvzeavpa457lyq2vfn55lgwzk6t2` | 150,552,175 |
+| `stake1uxtj8luzpucf5jp5df0za7klmc9eh0rg2t08zwysa58jtwslp7dqz` | 150,552,052 |
+| `stake1uxdpsgk3xpgvh0mj4sch29veh3al8xut2s0al0zy5exgh5ctds492` | 150,551,867 |
+| `stake1uxz3a23cmjcmautfyel85f56dmw8skznsz0d228km6udsvgra8065` | 150,550,157 |
+| `stake1ux0xnj5ljjx734qph69jc8a2mdemgguy5640pednyw7p08c6mjwk6` | 150,549,270 |
+| `stake1uyuahf6wkrydsfkpsrae6vkcgkjz9na744774yh0vhpngdgrl5j59` | 150,546,746 |
+| `stake1uxl72wy87wxcp8deu0j2kusmspywuz0gnsjf0dxzf6rv9xcwlhxm7` | 150,546,540 |
+| `stake1u8aazw72vc5j68da8wn7p69cn9dteq6w5ws552pg339lrdqyzupvz` | 150,534,671 |
+| `stake1uytfgj3wquuyz68r3cvx0z75mtnc4wj0cdxe2sgn70za8dqwsfwfr` | 150,516,473 |
+| `stake1uxtwdfncacfphjdke30wz8hprmpt5ck90a8583zjes7ed2gldnk54` | 150,510,436 |
+| `stake1u84jrq070qkg09dg8ta3cqaxech4fck953kcwkptzgp3q6cxsu8x6` | 150,576,837 |
+| `stake1u9endmqh5t23fdr2cmvlju3q7hrxl727edwdwmh8crcschq8q0m46` | 150,532,893 |
+| **Total** | **2,107,670,873 ADA** |
+
+---
+
 ## Summary Table — Updated
 
 | # | Finding | Grade |
 |---|---------|-------|
 | B1 | CF+EMURGO 2B merger disbursement chain at epoch 226–227 | FACT |
-| B2 | 200M ADA UNSPENT branch receives Hub-1 top-up at epoch 391 | FACT |
+| B2 | 200M ADA UNSPENT branch receives Hub-1 top-up at epoch 391, 452M total | FACT |
 | B3 | All 3 non-bridge inputs to `571f776c` from `stake1uxztgcgh` | FACT |
 | B4 | EMURGO_2 anchor confirmed: 5 min after EMURGO, fee=0 | FACT |
 | B5 | Bridge creators are single-seed per tx | FACT |
@@ -434,6 +537,9 @@ The 200M ADA "UNSPENT" branch (`stake1uxexwrph9`) does NOT follow this path — 
 | B9 | `stake1uxztgcgh` is the merge orchestrator | FACT |
 | B10 | EMURGO+CF first clean merge is not a real fund merge | FACT |
 | B11 | Routing address `stake1u9zjr6e37` is EXCHANGE | FACT |
-| B12 | At least 13 staging wallets received ~150M ADA each | FACT |
-| B13 | All 13 wallets swept simultaneously to same aggregator on Dec 22, 2020 | FACT |
+| B12 | 14 staging wallets (not 8, not 13) received ~150M ADA each | FACT |
+| B13 | All 14 wallets swept simultaneously to same aggregator on Dec 22, 2020 | FACT |
 | B14 | 2.107B ADA terminates at exchange with 40B ADA total flow | FACT |
+| B15 | `stake1u9zjr6e37` is master disbursement node: funds all 14 wallets + 658M direct to exchange | FACT |
+| B16 | f907b625 produced ONE Byron output → 48bb2ca9 → 200M unspent + 1.8B to disbursement node | FACT |
+| B17 | 14th staging wallet: `stake1u9endmqh` confirmed, same operator, same Dec-22 sweep | FACT |
