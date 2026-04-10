@@ -368,7 +368,12 @@ Transaction `52a780353a0ee7734da49d1fe8af47c2a3a6365d32d91219a7658b2c117ebb8a` (
 | Classification | Exchange hot wallet — 40B ADA flow exceeds any plausible non-exchange explanation |
 | Delegation to | Pool ticker **BNP** ("Binance Staking - 43") |
 
-The Binance-staking delegation plus 40B ADA cycling volume strongly indicates this is Binance infrastructure.
+**CONFIRMED BINANCE** — on-chain delegation at epoch 237:
+- Delegated pool: `pool1yxkhe2zp9rccyc3a79lxev5u585r3z0qqyl3qpx0t04hxhmlqgp` (Binance Staking - 43)
+- Pool hash: `21ad7ca84128f182623df17e6cb29ca1e83889e0013f1004cf5beb73`
+- Delegation occurred at the **same epoch** the 2.107B ADA arrived from the staging aggregator
+
+The Binance-staking delegation plus 40B ADA cycling volume confirms this is Binance infrastructure.
 
 **Corrected complete chain (CF+EMURGO genesis → exchange):**
 
@@ -588,6 +593,7 @@ This is the largest single stake in the cross-entity overlap set. It is not shar
 | B15 | `stake1u9zjr6e37` is master disbursement node: all 14 wallets + 658M direct to exchange | FACT |
 | B16 | f907b625 produced ONE Byron output → 48bb2ca9 split to 200M unspent + 1.8B to disburser | FACT |
 | B17 | 14th staging wallet `stake1u9endmqh` confirmed with full trace to `stake1u9zjr6e37` | FACT |
+| B18 | `stake1u8rmlr2h` confirmed Binance: on-chain delegation to pool1yxkhe2 (Binance Staking - 43) at epoch 237 | FACT |
 | B14 | 2.107B ADA terminates at exchange with 40B ADA total flow ("Binance Staking - 43") | FACT |
 
 ---

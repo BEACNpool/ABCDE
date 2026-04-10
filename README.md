@@ -107,7 +107,7 @@ Hub 1 (`Ae2tdPwUPEYwFx4d...`) still active June 2025 with 116M ADA — confirmed
 | Exchange hub 1 | `Ae2tdPwUPEYwFx4dqL3vXrfAqFN8CpehCJjMqVqRHnFHPP8v24jJTaQKd1J` | Binance-linked, 116M ADA active Jun 2025 |
 | CF+EMURGO 2B merge | `f907b62584ca76c533f410867bf964c527b2a8251849d93c2b48a5b69e641816` | TX hash, epoch 226 |
 | Staging aggregator | `stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56` | Received 2.557B ADA epoch 237 |
-| Final exchange dest | `stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht` | 40B ADA flow, "Binance Staking - 43" |
+| Final exchange dest | `stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht` | 40B ADA flow, **confirmed Binance** (delegated to pool1yxkhe2 = Binance Staking - 43 at epoch 237) |
 | Orchestrator | `stake1uxztgcgh49sld46q94xtjy7zf8j2tnntd6rswl9dypa9ffqqxrz2a` | CF trace + both 3-way merges |
 | Mystery sweep addr | `addr1q9ukkxqf7cwdfgjxqcupxkjlgthz4sgx7hf8e0nqkuqjvfxeqmq3s` | 558B ADA, 4-min sweeps, likely exchange |
 
