@@ -370,24 +370,35 @@ Transaction `52a780353a0ee7734da49d1fe8af47c2a3a6365d32d91219a7658b2c117ebb8a` (
 
 The Binance-staking delegation plus 40B ADA cycling volume strongly indicates this is Binance infrastructure.
 
-**Complete chain (CF+EMURGO genesis → exchange):**
+**Corrected complete chain (CF+EMURGO genesis → exchange):**
 
 ```
 f907b625 (epoch 226, 2020-10-29)
-  └─ 2,000,000,000 ADA — CF+EMURGO clean merge
+  └─ 1,999,999,999 ADA — single output to Byron address
+       Ae2tdPwUPEYwFx4dmJheyNPPYXtvHbJLeCaA96o6Y2iiUL18cAt7AizN2zG
        │
-       ├─ 200,000,000 ADA → stake1uxexwrph9r2p3lv42r7ccjptpmml33u2v3xx4p0q9ks85wc2y9t33
-       │   (UNSPENT at snapshot; later receives 252M ADA additional from Hub 1 at epoch 391)
-       │
-       └─ ~1,957,000,000 ADA → 13 staging wallets (epoch 227, 2020-11-05)
+       └─ 48bb2ca9 (epoch 227, 2020-11-04)
+            ├─ 200,000,000 ADA → stake1uxexwrph9r2p3lv42r7ccjptpmml33u2v3xx4p0q9ks85wc2y9t33
+            │   (UNSPENT; receives +252M from Hub 1 at epoch 391 → 452M total still unspent)
             │
-            └─ All 13 sweep simultaneously (epoch 237, 2020-12-22)
-                 └─ stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56
-                      └─ 52a780353a... (17-input consolidation)
-                           └─ 2,107,670,869 ADA
-                                └─ stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht
-                                     (40,048,202,390 ADA total flow; "Binance Staking - 43")
+            └─ 1,799,999,999 ADA → stake1u9zjr6e37 (master disbursement node)
+                 │ (also received 628M from 86daee1a merge chain at epoch 211)
+                 │
+                 ├─ 70M → Hub 1 (Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W)
+                 │   at epochs 221 and 223 (35M × 2)
+                 │
+                 ├─ 14 × ~150M → staging wallets (epoch 227, 2020-11-05/06)
+                 │   All 14 sweep simultaneously (epoch 237, 2020-12-22)
+                 │   └─ stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56 (aggregator)
+                 │        └─ 52a780353a... (17-input consolidation)
+                 │             └─ 2,107,670,869 ADA
+                 │                  └─ stake1u8rmlr2h (exchange, 40B ADA total flow)
+                 │
+                 └─ 658M directly → stake1u8rmlr2h (epoch 237, same day as staging sweep)
+                      (650M via ad3f3772 + 8M via 1dec1489)
 ```
+
+**Total from this chain to `stake1u8rmlr2h`:** 2,107,670,869 + 658,000,000 = **~2,765,670,869 ADA**
 
 ---
 
@@ -572,8 +583,11 @@ This is the largest single stake in the cross-entity overlap set. It is not shar
 | B9 | `stake1uxztgcgh...` is the merge orchestrator for both 3-way merges | FACT |
 | B10 | EMURGO+CF dust merge (11c0765f) is symbolic, not a real fund merge | FACT |
 | B11 | `stake1u9zjr6e37...` is EXCHANGE in local corpus + EMURGO trace hop 13 | FACT |
-| B12 | At least 13 staging wallets received ~150M ADA each from `f907b625...` | FACT |
-| B13 | All 13 staging wallets swept simultaneously to one aggregator (Dec 22, 2020) | FACT |
+| B12 | 14 staging wallets (not 13) received ~150M ADA each — all from `stake1u9zjr6e37` | FACT |
+| B13 | All 14 staging wallets swept simultaneously to one aggregator (Dec 22, 2020) | FACT |
+| B15 | `stake1u9zjr6e37` is master disbursement node: all 14 wallets + 658M direct to exchange | FACT |
+| B16 | f907b625 produced ONE Byron output → 48bb2ca9 split to 200M unspent + 1.8B to disburser | FACT |
+| B17 | 14th staging wallet `stake1u9endmqh` confirmed with full trace to `stake1u9zjr6e37` | FACT |
 | B14 | 2.107B ADA terminates at exchange with 40B ADA total flow ("Binance Staking - 43") | FACT |
 
 ---
