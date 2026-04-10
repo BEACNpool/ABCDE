@@ -1,0 +1,20 @@
+metric,value,grade,notes
+splitter_address,Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W,FACT,Direct db-sync query on tx_out.address
+total_spend_transactions,40876,FACT,Count of tx where this address appears in tx_in inputs
+first_active_epoch,202,FACT,MIN(block.epoch_no) for spend txs
+last_active_epoch,299,FACT,MAX(block.epoch_no) for spend txs
+txs_with_exactly_58_outputs,1170,FACT,COUNT where tx_out count = 58
+txs_with_50plus_outputs,1561,FACT,COUNT where tx_out count >= 50
+max_outputs_single_tx,58,FACT,MAX outputs in any single spend tx
+cumulative_out_volume_ada,190864745500,FACT,Sum of out_sum across all spend txs divided by 1e6
+appears_in_iog_trace_edges,YES,FACT,Present in ABCDE iog_trace_edges_part1/2.csv at hops 10-11 epochs 249-250
+appears_in_emurgo_trace_edges,YES,FACT,Present in ABCDE emurgo_trace_edges_part1/2.csv at hop 13 epoch 249
+same_address_both_entity_traces,YES,FACT,Identical Byron address controls funds from both IOG and EMURGO genesis anchors
+iog_fan_out_epoch,249-250,FACT,IOG trace edges at this address: epochs 249-250 hops 10-11
+emurgo_fan_out_epoch,249,FACT,EMURGO trace edges at this address: epoch 249 hop 13
+iog_top_fanout_ada,1836403.29,FACT,Largest single IOG fan-out from this address (58 outputs epoch 249)
+emurgo_top_fanout_ada,880085.41,FACT,Largest single EMURGO fan-out from this address (58 outputs epoch 249)
+self_recycling_pattern,YES,FACT,Address appears as both input source and output recipient within same epoch windows
+sample_58output_tx_ep248,b4e2114645eb655ce5536311399f1714afa16cec9108838b68a97c786819a898,FACT,Cardanoscan-verifiable: epoch 248 58-output tx
+sample_58output_tx_ep248_2,cbf1cd35ff81be6bba6ad80fec75a0bbc33c7e0b85c10969f3d760d138fe723f,FACT,Cardanoscan-verifiable: epoch 248 58-output tx
+sample_58output_tx_ep248_3,64a2d660a802a98340f425378ed77d971692a92a5dd2b076cb35c2feac7e0b0e,FACT,Cardanoscan-verifiable: epoch 248 58-output tx

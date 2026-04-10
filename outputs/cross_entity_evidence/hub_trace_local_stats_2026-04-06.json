@@ -1,0 +1,710 @@
+{
+  "addresses": {
+    "hub_sink": {
+      "address": "DdzFFzCqrhstmqBkaU98vdHu6PdqjqotmgudToWYEeRmQKDrn4cAgGv9EZKtu1DevLrMA1pdVazufUCK4zhFkUcQZ5Gm88mVHnrwmXvT",
+      "as_source_rows": 5320,
+      "as_source_seeds": [
+        "CF",
+        "EMURGO",
+        "IOG"
+      ],
+      "as_source_unique_source_tx_out_ids": 391,
+      "as_source_unique_dest_txs": 379,
+      "as_source_total_dest_lovelace": 4063720878378035,
+      "as_source_first_time": "2018-12-07 07:12:11+00",
+      "as_source_last_time": "2020-07-02 14:46:51+00",
+      "as_dest_rows": 1992,
+      "as_dest_seeds": [
+        "CF",
+        "EMURGO",
+        "IOG"
+      ],
+      "as_dest_unique_dest_tx_out_ids": 1104,
+      "as_dest_unique_source_txs": 1143,
+      "as_dest_total_received_lovelace": 4094715633706414,
+      "as_dest_first_time": "2018-12-06 06:21:11+00",
+      "as_dest_last_time": "2020-07-03 06:50:31+00",
+      "spend_txs_with_58_outputs_in_trace": 0,
+      "spend_txs_with_72_outputs_in_trace": 0,
+      "spend_txs_with_ge_50_outputs_in_trace": 0,
+      "max_outputs_in_trace_spend_tx": 40
+    },
+    "splitter_yrx": {
+      "address": "Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W",
+      "as_source_rows": 6172,
+      "as_source_seeds": [
+        "CF",
+        "EMURGO",
+        "IOG"
+      ],
+      "as_source_unique_source_tx_out_ids": 326,
+      "as_source_unique_dest_txs": 323,
+      "as_source_total_dest_lovelace": 2420755805345790,
+      "as_source_first_time": "2020-07-04 16:15:31+00",
+      "as_source_last_time": "2021-10-22 08:58:47+00",
+      "as_dest_rows": 2192,
+      "as_dest_seeds": [
+        "CF",
+        "EMURGO",
+        "IOG"
+      ],
+      "as_dest_unique_dest_tx_out_ids": 1576,
+      "as_dest_unique_source_txs": 1207,
+      "as_dest_total_received_lovelace": 1105463028823549,
+      "as_dest_first_time": "2020-07-03 10:32:51+00",
+      "as_dest_last_time": "2021-10-21 00:04:55+00",
+      "spend_txs_with_58_outputs_in_trace": 18,
+      "spend_txs_with_72_outputs_in_trace": 0,
+      "spend_txs_with_ge_50_outputs_in_trace": 31,
+      "max_outputs_in_trace_spend_tx": 58
+    },
+    "agg_hixix": {
+      "address": "Ae2tdPwUPEZHiXixpj6Xdju5jti25cY7QhjHZ3WiZypCsfEJoJx5fGujAKn",
+      "as_source_rows": 115,
+      "as_source_seeds": [
+        "CF",
+        "EMURGO",
+        "IOG"
+      ],
+      "as_source_unique_source_tx_out_ids": 41,
+      "as_source_unique_dest_txs": 31,
+      "as_source_total_dest_lovelace": 746126800560363,
+      "as_source_first_time": "2020-07-05 10:18:31+00",
+      "as_source_last_time": "2021-02-25 12:58:28+00",
+      "as_dest_rows": 189,
+      "as_dest_seeds": [
+        "CF",
+        "EMURGO",
+        "IOG"
+      ],
+      "as_dest_unique_dest_tx_out_ids": 125,
+      "as_dest_unique_source_txs": 133,
+      "as_dest_total_received_lovelace": 22315912271836,
+      "as_dest_first_time": "2020-06-02 09:26:11+00",
+      "as_dest_last_time": "2021-02-21 15:00:56+00",
+      "spend_txs_with_58_outputs_in_trace": 0,
+      "spend_txs_with_72_outputs_in_trace": 0,
+      "spend_txs_with_ge_50_outputs_in_trace": 0,
+      "max_outputs_in_trace_spend_tx": 3
+    }
+  },
+  "top_feeders": {
+    "hub_sink": [
+      {
+        "address": "DdzFFzCqrhsnmmCCdnVxdzVTtk784mk2X8ynRLeAPupzPU9XrFFhGZCxsjYs4hx4eUkmHAd8fFA5L9krCEc7emFxJMGdsN6a1aanGpMF",
+        "rows": 5,
+        "lovelace": 2230766430000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhstvzwqL1Xmee3B8i1uYRKv8RBTu5ok6qMUiw6mVtvLfaLqehkfdKVsR5Li8C8qFpH5J2ca5XoJMgr8VXpx7oi1Qzoayx5y",
+        "rows": 6,
+        "lovelace": 270059090000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 3,
+        "dest_tx_out_ids": 2
+      },
+      {
+        "address": "Ae2tdPwUPEYzMC5oxgTjyBBwQnAmxogW9p16JtUAK9ymgz9vZR4d8RJUTQ9",
+        "rows": 4,
+        "lovelace": 194003552000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 2
+      },
+      {
+        "address": "DdzFFzCqrht2vNtET8nRvEB2tpzToYx4rjUy1xQ6hc5A8wE3at12APief2YWkvseqhEYN6q4E2wDiWFBXk7mz3UtVTynf4cWe36Xh4Af",
+        "rows": 2,
+        "lovelace": 127507318000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsuR51cFvsMDWBri22vXP64SgXjNeeXDQRV6ETJkUsR8YstjWVk37sgkVCKgxRb5bS5pzD2UrdeNqxRTgSfVmRfYex4Sx9n",
+        "rows": 5,
+        "lovelace": 70819597000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 3,
+        "dest_tx_out_ids": 2
+      },
+      {
+        "address": "DdzFFzCqrht3iCp7LhKhU7T4JFj9D7AuJod2VPm4rytnVRuFEXme8msqZLRBQAgEYHxbo2bdFn9LwdD2Vapdyi97bb7V62789SA6tcbZ",
+        "rows": 15,
+        "lovelace": 70639618032542,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 12,
+        "dest_tx_out_ids": 12
+      },
+      {
+        "address": "DdzFFzCqrhtBb2SSAkuZmjmhnqfpDbx8EK4QoP7uQqVvTzNuwo5BP8r3V5E6GR2mVwYMTS2AyM3REtPw1Kr8vj1mFxbtVSJWzoisdUvr",
+        "rows": 6,
+        "lovelace": 37805613534224,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 5,
+        "dest_tx_out_ids": 5
+      },
+      {
+        "address": "DdzFFzCqrhspXPbfy8JA6Pb4P2VoCGhvNstfgJJVXgpdiY1ku5j5F6wYabXwZYbFRBeXzRWq2xZ41HKFh84KcaQezfCD6d7VzoGrZHCx",
+        "rows": 5,
+        "lovelace": 34801383000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 2
+      },
+      {
+        "address": "DdzFFzCqrhshss2RLqXJT86pDjacxvYLPEejpGSGmMwyPedRZc8ZM6CL6QZ9GbJiuJVbKTEcjyEnAbggGFzQPPLkpbWVqinAWF3StPG1",
+        "rows": 5,
+        "lovelace": 34732126000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 2
+      },
+      {
+        "address": "DdzFFzCqrhsgLmKQ38rU3wLEG4ycNdnuE3VEtvF45QQXGw1G2XcrFcymAkD49ZZhX6nz7WrFxCrQtRvPYYGoAuiY4pNU5mii9Mkz2gew",
+        "rows": 3,
+        "lovelace": 34591194000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      }
+    ],
+    "splitter_yrx": [
+      {
+        "address": "Ae2tdPwUPEYwFx4dmJheyNPPYXtvHbJLeCaA96o6Y2iiUL18cAt7AizN2zG",
+        "rows": 1,
+        "lovelace": 43000000000000,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsyAJRYPEvGm5sRKtqkTv355EVkTjqwtppRQypJn75cSW3EELNyhctGdgFcpx4m1e5XEfeTg8yfRAHdmQ9PMJyKFCtTgBN4",
+        "rows": 6,
+        "lovelace": 16123944000000,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsfkheQTAXEGtYoC9kCkwVFaQxmVMDPtuafWmcwKse7YgMjkbVZdNHHftG4WbGftofcndZAMiqVrs4fRNPqf8GuhkPBGLZj",
+        "rows": 9,
+        "lovelace": 15062128034647,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 9,
+        "dest_tx_out_ids": 6
+      },
+      {
+        "address": "DdzFFzCqrhsgZQNqE77UuvKEJ4RoDHSBuHs7P4qBmHyQwhFyncDKxXpQQnp2N81Ke3XRVYGoQD7JZ2vKmGQLDbxYu5t6VfNfo7B2usxT",
+        "rows": 31,
+        "lovelace": 13219263401154,
+        "seeds": [
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 24,
+        "dest_tx_out_ids": 22
+      },
+      {
+        "address": "DdzFFzCqrhsf2XjSwpfDGJWLFAdp9Gwenv1XCiR37AtJStutWWXhunB8gHn1jPJVSruQooGFhi8AsdZ7e4zBh1bbrzkJrmSvQ6ePqC74",
+        "rows": 7,
+        "lovelace": 12616415041835,
+        "seeds": [
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 5,
+        "dest_tx_out_ids": 5
+      },
+      {
+        "address": "DdzFFzCqrhsfYMGiyi4jFQB3CTarnt7EuGEHk4twdedopEaviU6AwM2qR5NE9yRxqfeaoijKkUVaGoRkLapN7NMtcg421pw2hZ7nHzwv",
+        "rows": 2,
+        "lovelace": 12587720594454,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrht2sweSppruZLAe6FBqu41by9pyWeo5KoDcnGYX3Cg6fpQnNg4w4Far61EaGF2k2a5DbSRLaGuPUU67A5CbsSQCuAciWTTL",
+        "rows": 9,
+        "lovelace": 12521116142109,
+        "seeds": [
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 5,
+        "dest_tx_out_ids": 5
+      },
+      {
+        "address": "DdzFFzCqrhsqKhoiZ3Xz2LoKpj8idvnxp4yn5kGheJKnNV3vRyuTasNubsR23oCcV5ZGQRU58FYqpPVSEvj2ierUBYNUifG8WLfebgnA",
+        "rows": 1,
+        "lovelace": 12032658472220,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsfTmrSU8YKwhCBCXYcPb3NC2ti6gy17CzP93CsKSWH7FgG8ePyK86ewW7UbAQD9QWwqZXDqcnHQ29yPraMkExyvM5L6qb9",
+        "rows": 7,
+        "lovelace": 9765750193843,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 3,
+        "dest_tx_out_ids": 3
+      },
+      {
+        "address": "DdzFFzCqrhtBsViJ86rgAUpARSt5zNADTewbuj1MtNsSgsrb5xRmvyVdQSTbHCyCG1A7dfpZgfApjwRBKAKbinZUyLm61pu2FdJdoVzx",
+        "rows": 2,
+        "lovelace": 9592004000000,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      }
+    ],
+    "agg_hixix": [
+      {
+        "address": "Ae2tdPwUPEZ82y6DKqYAV4GJr9haRDyy23Ti5GCePbqsYgZyMhwgzec4Gkf",
+        "rows": 4,
+        "lovelace": 2331337416146,
+        "seeds": [
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 2
+      },
+      {
+        "address": "Ae2tdPwUPEZ7ZGWGiwQPUtSsPp5wgmub5EphEDJa6EvHhsJthcaDvHJN9ts",
+        "rows": 2,
+        "lovelace": 1122907041388,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZ8VFUHLKjQEwRsJaCAAzMSWvWKqzgmMGWXG5knD6uvPrcFP3s",
+        "rows": 2,
+        "lovelace": 994027480124,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZGp8PAMqcfSbXs62PU1gGqNYvRVRVqVyfRPCLkB3dvu5aQhZf",
+        "rows": 2,
+        "lovelace": 994027480124,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZNHVSYxgg7wBZgAjMpGmJ414SicNW5vUBPgUBVGdfCvbutvFy",
+        "rows": 2,
+        "lovelace": 963833627328,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZ3Ly12kSpahp6vupTPP1Aa9uhDUEbjgpMiHiVomfpgRznpA42",
+        "rows": 2,
+        "lovelace": 949270293070,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZJHCLtSxVqdysXFwkYT8mz3XzLNcqnsVNDZpZHYXToZmsKAKL",
+        "rows": 2,
+        "lovelace": 949270293070,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZEy27maQe18TRKr8sb5zVPkEw1W6eB2pURouUkRyfFzoNHpD6",
+        "rows": 1,
+        "lovelace": 718543235464,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZN2d4bzgmj63PKSW3oURHstccojG7JJBc8XWKNNq7ovv6qVcS",
+        "rows": 1,
+        "lovelace": 708430338573,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZJCGuAQyPGCMUXS4XH9DZdH5sfPPruHi6WRtmKAw79bH25nF6",
+        "rows": 1,
+        "lovelace": 653973545263,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      }
+    ]
+  },
+  "top_outputs": {
+    "hub_sink": [
+      {
+        "address": "DdzFFzCqrhtCvjSsj2jZcwWpb5a6xvEWXAjpr7CMuhKqY1SwsdD6G8iuYPAkv3yUiYYaww1MEexQL7fq2SYxXhYu41SeqDLC5sepW2zi",
+        "rows": 2,
+        "lovelace": 809177891837274,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrht2DFzw8fxUMBz8Mei6UZBWsBZEN5iJPXgWM1qnhHXw4NTPBd2wLT36prPx49UVobNbCtzwd5Rd7D7jriTPtgBrEnvgdGgD",
+        "rows": 2,
+        "lovelace": 127506711574552,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsv6pRif4491ic8W524AGE7zTF95qqYmbn555TxDrUsjXHjBQLEc8UM9voZ54JEfRGijxg1ugtKhA9HZNuYn9JhhJYmxHV5",
+        "rows": 1,
+        "lovelace": 106293614603433,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhshS94K39GqpfAutWSA53eZgDscF4sv4dCeyPSvcrBWaYWxSoR7ybLwoJSuCdx1ssmH1n7zgY4oVRtonpaSxUxL72Vcrezx",
+        "rows": 1,
+        "lovelace": 106097923305407,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrht7YcSGyREe57XrhvM4rxDc65m7WiWQZfGq7MTazT3EcoXRAssWrq1KebdMoZfpo6YFz8sAvxDnmAZwsrkoM2SaPjwDfeon",
+        "rows": 1,
+        "lovelace": 106092618639950,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEYzMC5oxgTjyBBwQnAmxogW9p16JtUAK9ymgz9vZR4d8RJUTQ9",
+        "rows": 4,
+        "lovelace": 93128679823134,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 3,
+        "dest_tx_out_ids": 3
+      },
+      {
+        "address": "DdzFFzCqrhsqR9As326quR1ipxvdSAW3b79P3XSVx6nL9kSDpiT6NLXqEJo3gdAnT6rF3S38sqRV3AfR5NHCZ5vgSa73VAPKjmqxGafZ",
+        "rows": 1,
+        "lovelace": 88273590994170,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsnwp1EC56py26mu1M6jzzTT4RVh7Nh95jS5yTqxrVdPTPes1UzQLfBJmLc1TdXaCiU5dvNrQSB6MyS7W4MKsBBde6jihqT",
+        "rows": 1,
+        "lovelace": 73998459149679,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsmgW1UAabCX5wShPBsg1SSUzDRBtrJJCVPuf2CaYjYWvKZtKXarPfyo1WKnxP8FiEKMN7qUcr8Qf5kJLKs2V7XhPXvFLZe",
+        "rows": 1,
+        "lovelace": 54014746636461,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhstWFUQxknsUb5V6vKDhfgBbxYnJCjAkJ5kZqhbdyE86y3ZFHgcmErEv6xWs4jtYNDeN76doEbBKoxrfAKEXCM6r2QvAbvq",
+        "rows": 1,
+        "lovelace": 45059170633392,
+        "seeds": [
+          "IOG"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      }
+    ],
+    "splitter_yrx": [
+      {
+        "address": "Ae2tdPwUPEZ73eqx5Gitgv699p2fZgyvVtffS9yanjQq1QCCnLx9YrG2K5T",
+        "rows": 3,
+        "lovelace": 80896621498239,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZEFDsrBfZQAgiRJzFMrSDhC1QfCEaGTE4Ado4yjUHvrZTxJnk",
+        "rows": 3,
+        "lovelace": 77582476056846,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZLgznMqPcP1ndr8EmD5Z26dj8Vn8HFsyXLQZ775qxwYfnww2b",
+        "rows": 3,
+        "lovelace": 69430513071852,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZ6LhkTdVZzdW3V9D4bTKdxoY4pcsnbAMPtZ8uYUSW6QKHpwrP",
+        "rows": 5,
+        "lovelace": 49443697651355,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZMcHMeMvAX7wBTshfwRLtWwenKdmbbRSSsnuuvnJ1aXVviUaZ",
+        "rows": 1,
+        "lovelace": 39662991495571,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZHGDJP418zFbKR8cc1cgeS7yKtTGzVVUCByJuMeo8C3xzi65j",
+        "rows": 2,
+        "lovelace": 32790522383632,
+        "seeds": [
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZ9mktSwCmL8A14QrTPxgJKR7Pqpw9yYLCot1ggpvDS1cNWXaY",
+        "rows": 2,
+        "lovelace": 30155443741552,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhsw89EXSuaY1AHkyaU11LNnxYrYfZjTVY46BHV2ARxH29BGBT4gX28YGpVKvKYAiUt3KLhzANNztWN5gbQ8NpAkaHkJm6s2",
+        "rows": 3,
+        "lovelace": 27000000000000,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEYxh4qHHTHNNspAqER4Mn8gMkz6z2xr9EhhBj1TB82R3q9274T",
+        "rows": 1,
+        "lovelace": 26885726171184,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZ9Ym5N3HNASbNGAvzVidA8e117b3W2QCdMTeYyTfYaafo1MWU",
+        "rows": 3,
+        "lovelace": 26522207828979,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 1
+      }
+    ],
+    "agg_hixix": [
+      {
+        "address": "addr1qxtrqdumg8dleqcra3myptlq6n43m8s0mver0pwgqrr8awvkkcdaz26hglgm4qvc6fdy0rr4ck6q5q249drqc4fzyrgq68vuva",
+        "rows": 18,
+        "lovelace": 590000000000000,
+        "seeds": [
+          "CF",
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 14,
+        "dest_tx_out_ids": 8
+      },
+      {
+        "address": "Ae2tdPwUPEYwNguM7TB3dMnZMfZxn1pjGHyGdjaF4mFqZF9L3bj6cdhiH8t",
+        "rows": 28,
+        "lovelace": 117100000000000,
+        "seeds": [
+          "CF",
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 25,
+        "dest_tx_out_ids": 21
+      },
+      {
+        "address": "addr1q84qw26450qz5raerf6yvupnr8crk3z8cjrhvkmvfw6u95yyk3s302tp7mt5qt2vhyfuyj0y5h8xkm58qa726gr62jjqn9uju3",
+        "rows": 44,
+        "lovelace": 27466616180623,
+        "seeds": [
+          "CF",
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 37,
+        "dest_tx_out_ids": 28
+      },
+      {
+        "address": "addr1q8t7e60qcz0q2ydxmscuphkky0gvna0lfa9t94tcpgtvj6p5zfjdj5adhqjf5vzpuk4wq2teet4n7ky5nppkaje8h6uqt7dsdy",
+        "rows": 1,
+        "lovelace": 10000000000000,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "DdzFFzCqrhspmgzCR8EX949TdA1XyPMHANNkQdbLcYZjHBELpGyQZ5BA2Qyk1pmzHWFQ6Fy3AdH3PGm27eNLFz7pshERNTNLuuMPAVy1",
+        "rows": 1,
+        "lovelace": 1000000000000,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZ5gQJMGsXopE3BzBcuPvJHXmztk3KX8QzberoJYYPEbCo32C9",
+        "rows": 1,
+        "lovelace": 530789309571,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZBboZsbUAV7N6soNwvpXBBtdX6MQaLJboHDdUtyVVwRZTQ7Vq",
+        "rows": 1,
+        "lovelace": 17200401757,
+        "seeds": [
+          "CF"
+        ],
+        "source_tx_out_ids": 1,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "Ae2tdPwUPEZLj2f1YRhtY35XXcZRfVHfQFHAs6GucfyTKuHf9XFCmwktaNQ",
+        "rows": 2,
+        "lovelace": 11434668412,
+        "seeds": [
+          "CF",
+          "EMURGO"
+        ],
+        "source_tx_out_ids": 2,
+        "dest_tx_out_ids": 1
+      },
+      {
+        "address": "addr1qxfxlatvpnl7wywyz6g4vqyfgmf9mdyjsh3hnec0yuvrhk8jh8axm6pzha46j5e7j3a2mjdvnpufphgjawhyh0tg9r3sk85ls4",
+        "rows": 19,
+        "lovelace": 760000000,
+        "seeds": [
+          "CF",
+          "EMURGO",
+          "IOG"
+        ],
+        "source_tx_out_ids": 15,
+        "dest_tx_out_ids": 9
+      }
+    ]
+  }
+}
