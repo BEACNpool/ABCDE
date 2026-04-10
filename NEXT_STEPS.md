@@ -1,6 +1,6 @@
 # Investigation Next Steps
-**Last updated:** 2026-04-08  
-**Status:** Active — DB access restored; `781M` sale-ticket classification, bridge accumulator, and 2B CF+EMURGO peel chain confirmed
+**Last updated:** 2026-04-10  
+**Status:** Active — DB blocked (client IP changed to ${DB_HOST}; fix pg_hba.conf); new findings documented in `FULL_FINDINGS_2026-04-10_ADDENDUM.md`
 
 ---
 
@@ -26,6 +26,19 @@ Implication: the live attribution question is narrower, but not closed. The `781
 
 ---
 
+## Completed 2026-04-10
+
+- [x] **All 6 db-sync query scripts run successfully** — bridge creator step 1, steps 3–6, EMURGO_2 analysis
+- [x] **Bridge creator tagging complete** — 24 IOG, 3 CF, 3 EMURGO creator txs all single-seed; 3,616/3,675 feeders untagged (bridge recirculations)
+- [x] **Top-50 cross-seed txs by value ranked** — `cb32d36c` (2.176B, CF+EMURGO clean, epoch 212) is the largest; `f907b625` (2.000B exactly, CF+EMURGO clean, epoch 226, 53→1)
+- [x] **2B ADA peel chain traced** — 8 × 150M disbursements to external stake addresses (none in founder traces), 200M UNSPENT, residual to splitter
+- [x] **EMURGO_2 anchor confirmed by db-sync** — epoch 0, slot 19513, 2017-09-28 10:09:11 (exactly 5 min after EMURGO)
+- [x] **All 3 non-bridge inputs to `571f776c` identified** — all from `stake1uxztgcgh` (the secondary beneficiary and CF-input provider simultaneously)
+- [x] **First pairwise clean merge dossiers** — IOG+CF: 1.8M ADA; EMURGO+CF: only 998 ADA (35 inputs, 1 address — symbolic/test tx)
+- [x] **New client IP documented** — ${DB_HOST}; pg_hba.conf update required on db server
+
+---
+
 ## Completed 2026-04-08
 
 - [x] **EMURGO_2 == EMURGO confirmed** — identical 49,089-UTxO frontier, 100% deoverlap overlap, 0 exclusive entries either side
@@ -33,7 +46,7 @@ Implication: the live attribution question is narrower, but not closed. The `781
 - [x] **30 clean IOG+EMURGO merges at epoch 250** — coordinated batch coinciding with clean three-way merge
 - [x] **22 three-way stake credentials fully characterized** — all also in EMURGO_2; `stake1uxttvx739...` is the primary beneficiary (directly receives 50M ADA from both three-way merges)
 - [x] **1.376B ADA UTxO (id=6310510)** confirmed shared across EMURGO+CF+EMURGO_2 at epoch 212
-- [x] **205 clean IOG+EMURGO merges run to epoch 390** (April 2022) — sustained pattern confirmed
+- [x] **205 clean IOG+EMURGO merges run to epoch 390** (January 27, 2023) — sustained pattern confirmed (4-year span, Jan 2019–Jan 2023)
 - [x] **381-UTxO bridge accumulator behind `571f776c...` characterized** — 30 directly founder-tagged creator txs, all single-seed
 - [x] **Single-feeder residual bridge bucket triaged locally** — `210` creators, `209` unique feeder addresses, and `0` local exchange-corpus hits
 - [x] **12 late residual bridge batch creators classified** — standardized `80`-input-style consolidation batches with weak cross-creator feeder reuse, not a dominant hidden wallet cluster
@@ -110,7 +123,7 @@ Hub 1 address `Ae2tdPwUPEYwFx4dmJheyNPPYXtvHbJLeCaA96o6Y2iiUL18cAt7AizN2zG` has 
 
 ---
 
-### 4. Full Backtrace of Every Clean Pairwise Merge
+### 4. Full Backtrace of Every Clean Pairwise Merge (Updated 2026-04-10)
 For the 205 clean IOG+EMURGO, 48 clean IOG+CF, and 54 clean EMURGO+CF merges: trace each direct input one hop back. Classify each merge point as:
 - `FOUNDER_CONTROLLED` — address matches known founder infrastructure
 - `EXCHANGE` — matches exchange roster
@@ -124,8 +137,23 @@ Priority sub-branches now identified:
 
 - [ ] Do one-hop db-sync enrichment for the **12** late residual bridge batch creators when the replica is responsive again: source-output age, source-tx fanout, and any missed exchange/custody signatures upstream
 - [ ] Do one-hop db-sync enrichment for the top **single-feeder** residual creators, starting with `860fbcc1...` (`999,504.833984 ADA`) and `82ae9465...` (`279,302.521853 ADA`), since the local exchange corpus provides **0** attribution hits for that bucket
-- [ ] Trace the `f907b625...` peel recipients and carry stake credentials against historical trace-edge data, not just current frontiers
-- [ ] Determine whether the 200M unspent branch from `48bb2ca...` has any **independent** exchange/custody labeling beyond the now-confirmed Hub-1 paired funding
+- [x] Trace the `f907b625...` peel recipients — **COMPLETED 2026-04-10**: 13+ staging wallets (not 8); all swept Dec 22, 2020 to aggregator stake1uxrytqx0; 2.107B ADA terminal to exchange (40B ADA flow); see B12–B14
+- [ ] Determine whether the 200M unspent branch (`stake1uxexwrph9`) has independent exchange/custody labeling beyond Hub-1 paired funding
+- [x] Run `queries/stake1uxztgcgh_dossier.sql` — **COMPLETED 2026-04-10**: no delegations; 72.5M ADA lifetime; 2,514 ADA current
+- [x] Run `queries/disbursement_recipients_attribution.sql` — **COMPLETED 2026-04-10**: all 8 labeled hops now 2.1 ADA; routing address 1.93B; 200M UNSPENT 452M ADA
+- [ ] Identify 14th staging wallet — trace `0c028480d2eb68dc...` to its source stake address (it reached aggregator via ab9f763a→66db994d chain)
+- [ ] Get dossier on `stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht` — identify exchange from OSINT or blockchain analytics (40B ADA flow, epochs 237–414)
+
+**Pending DB fix** (client IP ${DB_HOST} must be added to pg_hba.conf):
+```bash
+export PGPASSWORD=REDACTED_DB_PASSWORD
+psql -h ${DB_HOST} -p 5432 -U codex_audit -d cexplorer_replica \
+  --no-psqlrc -A -F',' --pset=footer=off \
+  -f queries/stake1uxztgcgh_dossier.sql > outputs/cross_entity_evidence/stake1uxztgcgh_dossier_2026-04-10.csv
+psql -h ${DB_HOST} -p 5432 -U codex_audit -d cexplorer_replica \
+  --no-psqlrc -A -F',' --pset=footer=off \
+  -f queries/disbursement_recipients_attribution.sql > outputs/cross_entity_evidence/disbursement_recipients_attribution_2026-04-10.csv
+```
 
 ---
 
