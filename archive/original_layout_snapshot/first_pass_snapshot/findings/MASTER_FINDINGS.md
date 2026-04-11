@@ -1,5 +1,8 @@
 # Cardano Genesis ADA — Master Forensic Findings
 
+Canonical location: `docs/findings/MASTER_FINDINGS.md`
+
+
 **Investigation:** Cardano Genesis ADA Distribution Forensics  
 **Investigator:** ABCDE / BEACNpool (Ticker: BEACN)  
 **Database source:** `cexplorer_replica` at block 13,215,210+ (synced 2026-03-28)  
