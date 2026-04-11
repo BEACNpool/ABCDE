@@ -1,28 +1,27 @@
 # Executive Summary
 
 ## Scope
-Cardano genesis ADA forensic repository documenting on-chain UTxO flow analysis derived from db-sync and exported artifacts already present in the repository.
+Data-only forensic repository documenting on-chain UTxO flow analysis derived from db-sync and related exported artifacts.
 
 ## Data Source
-Cardano db-sync PostgreSQL replica `cexplorer_replica`, synced past block `13,215,210` as documented in archived findings.
+- `cexplorer_replica` db-sync derived data
+- Historical exported CSV / JSON / markdown artifacts preserved in-repo
 
 ## Evidence Standard
-Claims retain repository claim grades and are tied to evidence artifacts and reproducibility paths.
+Claims are graded by evidence strength and tied to supporting artifacts and reproducibility paths.
 
 ## Summary of Canonical Findings
-- EMURGO_2 operational convergence, see `../findings/F01_emurgo2_operational_convergence.md`
-- Founder redemption timeline, see `../findings/F02_founder_redemption_timeline.md`
-- Cross-seed consuming transactions, see `../findings/F03_cross_seed_consuming_transactions.md`
-- Clean three-way merge, see `../findings/F04_clean_three_way_merge.md`
-- Shared 58-output splitter, see `../findings/F05_shared_58_output_splitter.md`
-- Synchronized delegation swarm, see `../findings/F06_synchronized_delegation_swarm.md`
-- Exchange liquidation, see `../findings/F07_exchange_liquidation.md`
+- Founder allocation and redemption baseline: `../findings/F01_named_founder_allocations.md`
+- EMURGO_2 operational convergence: `../findings/F02_emurgo2_operational_convergence.md`
+- Cross-seed consuming transactions: `../findings/F03_cross_seed_consuming_transactions.md`
+- Clean three-way merge and bridge path: `../findings/F04_clean_three_way_merge.md`, `../findings/A09_bridge_accumulator_before_three_way_merge.md`
+- Shared infrastructure and routing behavior: `../findings/F05_shared_58_output_splitter.md`, `../findings/F06_synchronized_delegation_swarm.md`
+- CF + EMURGO disbursement chain: `../findings/B01_f907b625_2b_disbursement_chain.md` through `../findings/B18_binance_on_chain_delegation_confirmation.md`
+- Exchange liquidation and concentration: `../findings/F07_exchange_liquidation.md`, `../findings/F08_558b_mystery_exchange_address.md`, `../findings/F09_genesis_concentration.md`
 
 ## Where the Detailed Evidence Lives
-- `../evidence/`
-- `../queries/`
-- `../scripts/`
-- `../investigation/archived_findings/`
+- Evidence artifacts: `../evidence/`
+- Historical source docs: `../investigation/archived_findings/`, `../investigation/archived_notes/`
 
 ## Reproducibility Pointer
 See `04_REPRODUCIBILITY.md`.
