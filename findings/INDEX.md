@@ -1,0 +1,42 @@
+# Canonical Findings
+
+Canonical finding pages assembled from existing repository content only.
+
+- `F01_named_founder_allocations.md`
+- `F02_emurgo2_operational_convergence.md`
+- `F03_cross_seed_consuming_transactions.md`
+- `F04_clean_three_way_merge.md`
+- `F05_shared_58_output_splitter.md`
+- `F06_synchronized_delegation_swarm.md`
+- `F07_exchange_liquidation.md`
+- `F08_558b_mystery_exchange_address.md`
+- `F09_genesis_concentration.md`
+- `A01_emurgo2_frontier_identity.md`
+- `A02_emurgo2_direct_merge_epoch4.md`
+- `A03_convergence_transaction_c8596b9c.md`
+- `A04_epoch250_iog_emurgo_merge_batch.md`
+- `A05_twenty_two_three_way_stake_credentials.md`
+- `A06_primary_beneficiary_stake1uxttvx739.md`
+- `A07_shared_1376b_utxo.md`
+- `A08_iog_emurgo_merge_span.md`
+- `A09_bridge_accumulator_before_three_way_merge.md`
+- `A10_f907b625_structured_peel_chain.md`
+- `A11_corrected_named_pool_overlap.md`
+- `B01_f907b625_2b_disbursement_chain.md`
+- `B02_200m_unspent_branch.md`
+- `B03_non_bridge_inputs_to_571f776c.md`
+- `B04_emurgo2_anchor_confirmation.md`
+- `B05_bridge_creator_single_seed_pattern.md`
+- `B06_first_clean_pairwise_merge_details.md`
+- `B07_2b_residual_to_known_splitter.md`
+- `B08_emurgo_pool_ticker_confirmation.md`
+- `B09_stake1uxztgcgh_merge_orchestrator.md`
+- `B10_emurgo_cf_first_clean_merge_is_dust.md`
+- `B11_stake1u9zjr6e37_exchange_routing.md`
+- `B12_staging_wallet_count_correction.md`
+- `B13_simultaneous_epoch237_sweep.md`
+- `B14_terminal_exchange_hot_wallet.md`
+- `B15_master_disbursement_node.md`
+- `B16_f907b625_output_correction.md`
+- `B17_fourteenth_staging_wallet.md`
+- `B18_binance_on_chain_delegation_confirmation.md`

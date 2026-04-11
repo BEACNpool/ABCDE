@@ -1,35 +1,32 @@
-# B14 — Terminal exchange hot wallet
+# B14 — Terminal Exchange Hot Wallet
 
 ## Claim
-Claim preserved from existing repository finding documents only.
+Assembled from existing repository content only. See Source Lineage.
 
 ## Grade
 FACT
 
 ## Data Basis
-Data basis preserved from archived findings, evidence artifacts, and reproducibility material already present in the repository.
+Listed in the linked historical findings and supporting artifacts already present in the repository.
 
 ## Core Evidence
-See archived findings and primary evidence artifact linked below.
+- `evidence/dossiers/disbursement_recipients_attribution_2026-04-10.csv`
 
 ## Key Transactions / Addresses / Stake Credentials
-Only items already present in archived findings and evidence artifacts are in scope for this canonical file.
+Use the linked evidence files and historical findings for the exact documented items.
 
 ## Supporting Evidence Files
 - `evidence/dossiers/disbursement_recipients_attribution_2026-04-10.csv`
 
 ## Reproduction
 - `queries/validation/disbursement_recipients_attribution.sql`
-- `docs/04_REPRODUCIBILITY.md`
 
 ## Limitations
-Only limitations already present in repository source material apply.
+See `../docs/05_LIMITATIONS_AND_NON_ATTRIBUTION.md`.
 
 ## Non-Attribution / Scope Note
-Use repository non-attribution and scope limitations without expansion.
+No new assumptions, grades, or interpretive context were introduced in this canonical page.
 
 ## Source Lineage
 - `investigation/archived_findings/MASTER_FINDINGS.md`
-- `investigation/archived_findings/FULL_FINDINGS_2026-04-06.md`
-- `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md`
 - `investigation/archived_findings/FULL_FINDINGS_2026-04-10_ADDENDUM.md`

@@ -1,35 +1,36 @@
-# F06 — Synchronized delegation swarm
+# F06 — Synchronized Delegation Swarm
 
 ## Claim
-Claim preserved from existing repository finding documents only.
+Assembled from existing repository content only. See Source Lineage.
 
 ## Grade
 FACT
 
 ## Data Basis
-Data basis preserved from archived findings, evidence artifacts, and reproducibility material already present in the repository.
+Listed in the linked historical findings and supporting artifacts already present in the repository.
 
 ## Core Evidence
-See archived findings and primary evidence artifact linked below.
+- `investigation/archived_notes/genesis_fee_extraction_report.md`
+- `investigation/archived_notes/iog_epoch_245_252_output_routing.md`
+- `data/raw/cross_entity_epoch_245_251_analysis.md`
 
 ## Key Transactions / Addresses / Stake Credentials
-Only items already present in archived findings and evidence artifacts are in scope for this canonical file.
+Use the linked evidence files and historical findings for the exact documented items.
 
 ## Supporting Evidence Files
-- `evidence/reports/cross_entity_summary_amended_2026-04-06.md`
+- `investigation/archived_notes/genesis_fee_extraction_report.md`
+- `investigation/archived_notes/iog_epoch_245_252_output_routing.md`
+- `data/raw/cross_entity_epoch_245_251_analysis.md`
 
 ## Reproduction
 - `queries/core/iog_epoch_245_252_routing.sql`
-- `docs/04_REPRODUCIBILITY.md`
 
 ## Limitations
-Only limitations already present in repository source material apply.
+See `../docs/05_LIMITATIONS_AND_NON_ATTRIBUTION.md`.
 
 ## Non-Attribution / Scope Note
-Use repository non-attribution and scope limitations without expansion.
+No new assumptions, grades, or interpretive context were introduced in this canonical page.
 
 ## Source Lineage
 - `investigation/archived_findings/MASTER_FINDINGS.md`
 - `investigation/archived_findings/FULL_FINDINGS_2026-04-06.md`
-- `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md`
-- `investigation/archived_findings/FULL_FINDINGS_2026-04-10_ADDENDUM.md`

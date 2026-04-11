@@ -1,35 +1,38 @@
-# A10 — f907b625 structured peel chain
+# A10 — f907b625 Structured Peel Chain
 
 ## Claim
-Claim preserved from existing repository finding documents only.
+Assembled from existing repository content only. See Source Lineage.
 
 ## Grade
 FACT
 
 ## Data Basis
-Data basis preserved from archived findings, evidence artifacts, and reproducibility material already present in the repository.
+Listed in the linked historical findings and supporting artifacts already present in the repository.
 
 ## Core Evidence
-See archived findings and primary evidence artifact linked below.
+- `evidence/csv/trace_150m_correct_2026-04-10.csv`
+- `evidence/csv/trace_150m_agg_2026-04-10.csv`
+- `evidence/csv/trace_150m_disbursements_2026-04-10.csv`
 
 ## Key Transactions / Addresses / Stake Credentials
-Only items already present in archived findings and evidence artifacts are in scope for this canonical file.
+Use the linked evidence files and historical findings for the exact documented items.
 
 ## Supporting Evidence Files
-- `investigation/archived_notes/f907b625_cf_emurgo_peel_chain_2026-04-08.md`
+- `evidence/csv/trace_150m_correct_2026-04-10.csv`
+- `evidence/csv/trace_150m_agg_2026-04-10.csv`
+- `evidence/csv/trace_150m_disbursements_2026-04-10.csv`
 
 ## Reproduction
-- `queries/validation/f907b625_peel_chain_checks.sql`
-- `docs/04_REPRODUCIBILITY.md`
+- `queries/core/trace_150m_correct_joins.sql`
+- `queries/core/trace_150m_disbursements.sql`
+- `queries/core/trace_150m_disbursements_agg.sql`
 
 ## Limitations
-Only limitations already present in repository source material apply.
+See `../docs/05_LIMITATIONS_AND_NON_ATTRIBUTION.md`.
 
 ## Non-Attribution / Scope Note
-Use repository non-attribution and scope limitations without expansion.
+No new assumptions, grades, or interpretive context were introduced in this canonical page.
 
 ## Source Lineage
-- `investigation/archived_findings/MASTER_FINDINGS.md`
-- `investigation/archived_findings/FULL_FINDINGS_2026-04-06.md`
 - `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md`
 - `investigation/archived_findings/FULL_FINDINGS_2026-04-10_ADDENDUM.md`

@@ -1,4 +1,4 @@
-# F05 — Shared 58 Output Splitter
+# F02 — EMURGO_2 Operational Convergence
 
 ## Claim
 Assembled from existing repository content only. See Source Lineage.
@@ -10,20 +10,23 @@ FACT
 Listed in the linked historical findings and supporting artifacts already present in the repository.
 
 ## Core Evidence
-- `evidence/csv/byron_splitter_evidence.csv`
-- `evidence/csv/sink_to_splitter_transactions_2026-04-06.csv`
-- `evidence/csv/splitter_to_bridge_forward_trace_2026-04-06.csv`
+- `evidence/markdown/emurgo2_convergence_evidence_2026-04-08.md`
+- `evidence/csv/emurgo2_first_spend_2026-04-08.csv`
+- `evidence/overlaps/emurgo2_frontier_overlap_2026-04-08.csv`
+- `evidence/overlaps/emurgo2_vs_emurgo_anchor_comparison_2026-04-08.csv`
 
 ## Key Transactions / Addresses / Stake Credentials
 Use the linked evidence files and historical findings for the exact documented items.
 
 ## Supporting Evidence Files
-- `evidence/csv/byron_splitter_evidence.csv`
-- `evidence/csv/sink_to_splitter_transactions_2026-04-06.csv`
-- `evidence/csv/splitter_to_bridge_forward_trace_2026-04-06.csv`
+- `evidence/markdown/emurgo2_convergence_evidence_2026-04-08.md`
+- `evidence/csv/emurgo2_first_spend_2026-04-08.csv`
+- `evidence/overlaps/emurgo2_frontier_overlap_2026-04-08.csv`
+- `evidence/overlaps/emurgo2_vs_emurgo_anchor_comparison_2026-04-08.csv`
 
 ## Reproduction
-- `docs/04_REPRODUCIBILITY.md`
+- `queries/validation/emurgo2_classification_checks.sql`
+- `queries/validation/emurgo2_direct_merge_checks.sql`
 
 ## Limitations
 See `../docs/05_LIMITATIONS_AND_NON_ATTRIBUTION.md`.
@@ -34,3 +37,4 @@ No new assumptions, grades, or interpretive context were introduced in this cano
 ## Source Lineage
 - `investigation/archived_findings/MASTER_FINDINGS.md`
 - `investigation/archived_findings/FULL_FINDINGS_2026-04-06.md`
+- `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md`
