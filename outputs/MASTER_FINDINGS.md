@@ -302,9 +302,9 @@ Dominant input: UTxO 6310510 = **1,375,877,556 ADA** created by `cb32d36c9ad2d8d
 
 The 2B ADA output of `f907b625...` was first split (at epoch 227, 2020-11-05) into:
 - **200,000,000 ADA** → `stake1uxexwrph9r2p3lv42r7ccjptpmml33u2v3xx4p0q9ks85wc2y9t33` (UNSPENT at db-sync snapshot)
-- **~1.8B ADA** → 13+ staging wallets (~150M ADA each) + residual to splitter
+- **~1.8B ADA** → 14 staging wallets (~150M ADA each) + residual to splitter
 
-All 13 staging wallets received funds at epoch 227 and delegated to anonymous (no off-chain metadata) staking pools:
+All 14 staging wallets received funds at epoch 227 and delegated to anonymous (no off-chain metadata) staking pools:
 
 | Label | Stake Address | ~ADA Received |
 |:--|:---|---:|
@@ -332,7 +332,7 @@ None of these addresses appear in the IOG, EMURGO, CF, or EMURGO_2 current front
 
 **Date: December 22, 2020 (epoch 237)**
 
-All 13 staging wallets simultaneously forwarded their entire 150M+ ADA balances — including staking rewards accumulated over ~10 epochs — to one aggregator:
+All 14 staging wallets simultaneously forwarded their entire 150M+ ADA balances — including staking rewards accumulated over ~10 epochs — to one aggregator:
 
 **Aggregator:** `stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56`
 
@@ -545,11 +545,27 @@ This is the largest single stake in the cross-entity overlap set. It is not shar
 
 ## PART VIII — WHAT THIS DOES NOT PROVE
 
+**Non-attribution notice:** This document maps on-chain UTxO flows only. No finding constitutes proof of intent, legal ownership, misconduct, or contractual breach by any named entity. Exchange-identity claims are heuristic unless explicitly marked FACT with on-chain evidence.
+
 - That founder entities maintained personal control after funds entered exchange/custody infrastructure
-- That the 781,381,495 ADA entry was an undisclosed founder allocation (vs. a large-buyer sale ticket later entering the same custody stack)
-- The identity of Hub 1, Hub 2, or Hub 3 operators (Binance inference is strong but not cryptographically proven)
-- That the synchronized delegation reflects insider coordination vs. shared automated portfolio management software
+- That the 781,381,495 ADA entry was an undisclosed founder allocation (vs. a large-buyer sale ticket later entering the same custody stack) — beneficial ownership at genesis is unresolved
+- That Hub 1 / Hub 2 / Hub 3 operators are definitively identified (Binance inference for Hub 1 is strong; on-chain delegation proof exists for `stake1u8rmlr2h` only)
+- That synchronized delegation reflects insider coordination vs. shared automated portfolio management software
 - That any entity committed fraud or violated any law — the on-chain evidence shows co-mingling and exchange routing, not intent
+
+---
+
+## Known Limitations
+
+| Claim | Dependency | Residual uncertainty | Potential confounder |
+|-------|-----------|---------------------|---------------------|
+| EMURGO_2 same operator as EMURGO | 100% Shelley stake overlap (6,216/6,216) | Single shared custody provider could explain overlap without shared beneficial owner | Shared custodian / shared key management firm |
+| Exchange liquidation % (EMURGO 41.4%, CF 32%, IOG 8.5%) | EMURGO_2 excluded from exchange-analysis layer; heuristic address classifier | EMURGO_2 % unknown; classifier has false-positive rate | Exchange pooling, custodial commingling |
+| Binance identity for `stake1u8rmlr2h` | On-chain delegation to pool1yxkhe2 (Binance Staking - 43) | Pool owner ≠ hot wallet owner; pool could be operated by third party | White-label pool operation |
+| Orchestrator `stake1uxztgcgh` controls all three founder streams | Trace co-appearance in both 3-way merges | Other wallets with identical trace footprint possible but not observed | Shared infrastructure software |
+| 14 staging wallets = same operator | Same funding source + simultaneous sweep | Shared custodian / programmatic distribution could be third party | Exchange OTC desk acting as intermediary |
+| Synchronized delegation (epochs 245-251) | 49/64 pools received all-three delegations simultaneously | Automated portfolio rebalancer could explain without coordination | Third-party delegation service |
+| EMURGO_2 beneficial ownership at genesis | None — purely on-chain | Genesis sale records not public | Pre-sale buyer whose funds entered EMURGO custody |
 
 ---
 

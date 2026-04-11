@@ -6,20 +6,26 @@
 
 This repository documents a forensic investigation into the on-chain movements of Cardano's genesis ADA allocations. All findings are derived from direct SQL queries against a db-sync replica. All claims are graded by evidence strength. All transaction hashes and addresses are given in full.
 
+> **Non-attribution notice:** This repository maps on-chain UTxO flows only. No finding constitutes proof of intent, legal ownership, misconduct, or contractual breach by any named entity. Exchange-identity claims are heuristic classifications unless explicitly marked FACT with on-chain delegation evidence. See the [Claim Strength Legend](#claim-strength-legend) before drawing conclusions.
+
+> **Exchange identity certainty:** Claims vary by tier. "Confirmed Binance" in this document means *on-chain delegation to a publicly labeled Binance pool* — a FACT-grade deterministic finding. Other exchange attributions are heuristic. See individual finding grades.
+
 ---
 
 ## Primary Document
 
-> **[outputs/MASTER_FINDINGS.md](./outputs/MASTER_FINDINGS.md)** — Full consolidated findings (F01–B14), all addresses untruncated, claim strength for every assertion.
+> **[outputs/MASTER_FINDINGS.md](./outputs/MASTER_FINDINGS.md)** — Full consolidated findings (F01–B18), all addresses untruncated, claim strength for every assertion.
 
 ---
 
 ## Top-Level Findings
 
-### 1. Undisclosed EMURGO_2 Allocation — 781,381,495 ADA
-**Grade: FACT**
+### 1. EMURGO_2 Genesis Entry — 781,381,495 ADA, Operationally Convergent with EMURGO
+**Grade: FACT (convergence) / HYPOTHESIS (beneficial ownership)**
 
-A fourth genesis redemption (`5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef`) occurred 5 minutes after the main EMURGO anchor (`242608fc...`). It was redeemed to a distinct address set but immediately co-spent with EMURGO-controlled funds in epoch 4. The 100% Shelley stake address overlap (6,216/6,216) confirms single-operator control. Total on-chain Emurgo: **2,855,547,138 ADA** vs the publicly stated 2,074,165,643 ADA.
+A fourth genesis redemption (`5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef`) occurred 5 minutes after the main EMURGO anchor (`242608fc...`). It was redeemed to a distinct address set but immediately co-spent with EMURGO-controlled funds in epoch 4. The 100% Shelley stake address overlap (6,216/6,216) confirms single-operator control of both allocations from epoch 4 onward.
+
+> **Wording note:** Whether this entry was an undisclosed founder allocation, a large-buyer sale ticket that entered EMURGO custody, or another arrangement is **unresolved** by on-chain evidence alone. The on-chain fact is operational convergence — the same operator controlled both. Total operationally-EMURGO-controlled genesis ADA: **2,855,547,138 ADA** vs the publicly stated 2,074,165,643 ADA.
 
 - IOG allocation: `fa2d2a70c0b5fd45cb6c3989f02813061f9d27f15f30ecddd38780c59f413c62` — 2,463,071,701 ADA
 - CF allocation: `208c7d54c1c24059c9314ddbe866edc80adcb8894539b27b6a1430d5c078b998` — 648,176,763 ADA
@@ -53,8 +59,8 @@ TX `571f776c0698c576ddecae145f97e7f284b82ebea70fbc924fa4e2a4a6258020` (384 input
 
 Full chain:
 1. **Epoch 226:** `f907b62584ca76c533f410867bf964c527b2a8251849d93c2b48a5b69e641816` — 53 inputs → 2,000,000,000 ADA exact output
-2. **Epoch 227:** Disbursed to 13 staging wallets of ~150M ADA each
-3. **Epoch 237 (Dec 22, 2020):** All 13 staging wallets swept sub-minute to aggregator `stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56`
+2. **Epoch 227:** Disbursed to 14 staging wallets (via stake1u9zjr6e37 master disbursement node) of ~150M ADA each
+3. **Epoch 237 (Dec 22, 2020):** All 14 staging wallets swept sub-minute to aggregator `stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56`
 4. **TX:** `52a780353a0ee7734da49d1fe8af47c2a3a6365d32d91219a7658b2c117ebb8a` — 17 inputs → 2,107,670,869 ADA → exchange hot wallet
 5. **Exchange destination:** `stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht` — 40,048,202,390 ADA total flow epochs 237–414
 
@@ -76,11 +82,13 @@ This stake credential:
 ### 6. Exchange Liquidation Scale
 **Grade: HEURISTIC**
 
-| Entity | % Traced Frontier Reaching Exchange Heuristic |
-|--------|-----------------------------------------------|
-| EMURGO | 41.4% |
-| CF | 32.0% |
-| IOG | 8.5% |
+> **Scope caveat:** These percentages cover the named trace runs only. EMURGO_2 (781M genesis entry) is **excluded** from the exchange-analysis layer — its exchange routing % is out-of-scope for this version and should not be inferred from the EMURGO figure.
+
+| Entity | % Traced Frontier Reaching Exchange Heuristic | EMURGO_2 included? |
+|--------|-----------------------------------------------|-------------------|
+| EMURGO | 41.4% | No — separate run, not yet analyzed |
+| CF | 32.0% | N/A |
+| IOG | 8.5% | N/A |
 
 Hub 1 (`Ae2tdPwUPEYwFx4d...`) still active June 2025 with 116M ADA — confirmed Binance-linked.
 
@@ -121,7 +129,7 @@ ABCDE/
 │   ├── MASTER_FINDINGS.md                   ← Primary document (all findings, full addresses)
 │   ├── FULL_FINDINGS_2026-04-06.md           ← F-series findings (F01–F09)
 │   ├── FULL_FINDINGS_2026-04-08_ADDENDUM.md  ← A-series findings (A1–A11)
-│   ├── FULL_FINDINGS_2026-04-10_ADDENDUM.md  ← B-series findings (B1–B14)
+│   ├── FULL_FINDINGS_2026-04-10_ADDENDUM.md  ← B-series findings (B1–B18)
 │   └── cross_entity_evidence/               ← CSV evidence files
 │       ├── cross_seed_consuming_txs_*.csv
 │       ├── trace_150m_correct_*.csv
@@ -165,11 +173,65 @@ WHERE txi.tx_in_id IS NULL
 
 ---
 
+## How to Verify Key Claims in ~30 Minutes
+
+Connect to any Cardano db-sync PostgreSQL instance (synced past block 13,215,210) and run:
+
+**1. EMURGO_2 5-minute offset from EMURGO:**
+```sql
+SELECT encode(tx.hash,'hex'), b.time FROM tx
+JOIN block b ON b.id = tx.block_id
+WHERE encode(tx.hash,'hex') IN (
+  '242608fc18552a4ac83adabcef7155f3b909e83d469ce89735db8f11d3637e38',
+  '5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef'
+);
+-- Expected: 10:04:11 and 10:09:11 UTC on 2017-09-28
+```
+
+**2. EMURGO_2 co-spend with EMURGO at first hop:**
+```sql
+SELECT COUNT(*) FROM tx_in txi
+JOIN tx_out txo1 ON txo1.tx_id = txi.tx_out_id AND txo1.index = txi.tx_out_index
+WHERE txi.tx_in_id = (SELECT id FROM tx WHERE encode(hash,'hex') =
+  'c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76');
+-- Expected: 2 inputs from distinct genesis allocations
+```
+
+**3. 58-output shared splitter:**
+```sql
+SELECT COUNT(*) FROM tx
+WHERE (SELECT COUNT(*) FROM tx_out WHERE tx_id = tx.id) = 58
+  AND id IN (SELECT tx_id FROM tx_out WHERE address =
+    'Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W');
+-- Expected: 1,170+
+```
+
+**4. Clean three-way merge inputs:**
+```sql
+SELECT COUNT(*) FROM tx_in WHERE tx_in_id = (SELECT id FROM tx WHERE
+  encode(hash,'hex') = '571f776c0698c576ddecae145f97e7f284b82ebea70fbc924fa4e2a4a6258020');
+-- Expected: 384
+```
+
+**5. Binance delegation for exchange hot wallet:**
+```sql
+SELECT ph.view FROM delegation d
+JOIN stake_address sa ON sa.id = d.addr_id
+  AND sa.view = 'stake1u8rmlr2h99gnvdaagycv97p96mclctn2y6sknryy37m0wtspfnsht'
+JOIN tx ON tx.id = d.tx_id JOIN block b ON b.id = tx.block_id
+JOIN pool_hash ph ON ph.id = d.pool_hash_id;
+-- Expected: pool1yxkhe2zp9rccyc3a79lxev5u585r3z0qqyl3qpx0t04hxhmlqgp (Binance Staking - 43)
+```
+
+> **Common pitfall:** `tx_in.tx_out_id` references `tx.id` (the producing transaction), **not** `tx_out.id`. See [Data Provenance](#data-provenance) for the correct join pattern.
+
+---
+
 ## What This Does Not Prove
 
 - That any individual acted with improper intent
 - That any funds were misappropriated (genesis entries were pre-announced, amounts publicly visible at chain launch)
-- That EMURGO_2 was *concealed* rather than simply never publicly labeled
+- That EMURGO_2 was *concealed* rather than simply never publicly labeled — beneficial ownership at genesis is unresolved
 - That any cross-entity merge involved coordination between separate legal entities
 
 On-chain patterns are consistent with shared infrastructure, shared keys, or coordinated operation between entities that were closely related at genesis. They do not resolve the legal or organizational relationships.
