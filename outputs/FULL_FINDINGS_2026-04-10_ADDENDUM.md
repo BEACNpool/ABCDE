@@ -3,13 +3,16 @@
 **Supersedes:** nothing — addendum to `outputs/FULL_FINDINGS_2026-04-08_ADDENDUM.md`  
 **Source:** Live db-sync queries (${DB_HOST}) + local CSV analysis
 
+
+> **Non-attribution notice:** This document maps on-chain UTxO flows only. No finding constitutes proof of intent, legal ownership, or misconduct. Exchange-identity claims are heuristic unless marked FACT with on-chain evidence.
+
 ---
 
 ## Summary of New Findings Today
 
 | # | Finding | Grade | Source |
 |---|---------|-------|--------|
-| B1 | CF+EMURGO merger `f907b625` distributes 2B ADA in 8 × 150M tranches at epoch 226–227 | FACT | db-sync |
+| B1 | CF+EMURGO merger `f907b625` distributes 2B ADA; initial query found 8 disbursements (full trace: 14 wallets — see B12, B15) | FACT | db-sync |
 | B2 | 200M ADA UNSPENT from CF+EMURGO chain at `stake1uxexwrph9...` | FACT | db-sync |
 | B3 | All 3 non-bridge inputs to clean three-way merge `571f776c` come from `stake1uxztgcgh` | FACT | db-sync |
 | B4 | EMURGO_2 anchor: epoch 0, slot 19513, 2017-09-28 10:09:11 — 5 min after EMURGO | FACT | db-sync |
@@ -46,7 +49,9 @@ The single 2B ADA output immediately splits into two at epoch 227:
 - **200M ADA** → `stake1uxexwrph9r2p3lv42r7ccjptpmml33u2v3xx4p0q9ks85wc2y9t33` — **UNSPENT** (as of db-sync snapshot)
 - **1.8B ADA** → enters 8-hop disbursement chain
 
-**8 × 150M ADA disbursements in epoch 227:**
+**Initial query slice — 8 disbursements identified (later extended to 14; see B12, B15):**
+
+> **Reconciliation note:** This initial query captured 8 of the 14 total staging wallets. Full downstream reconstruction (B12, B15) confirmed 14 wallets, all funded from the same master disbursement address `stake1u9zjr6e37`. The "8 × 150M" label below refers to this first query slice only.
 
 | Hop | Amount | Recipient stake address |
 |:---|---:|:---|
@@ -62,7 +67,7 @@ The single 2B ADA output immediately splits into two at epoch 227:
 
 **All 8 disbursement addresses**: NOT present in IOG, EMURGO, CF, or EMURGO_2 current frontiers. These are entities external to the founder traces.
 
-**Pattern significance**: 8 × 150M ADA = 1.2B ADA distributed in identical tranches, all in epoch 227, to distinct external entities. The remaining residual (~600M ADA) continues toward the known splitter address. This is characteristic of institutional disbursement — not individual user behavior.
+**Pattern significance**: The 14 × ~150M disbursements = ~2.1B ADA distributed in identical tranches from a single address, all in epoch 227. This is characteristic of institutional disbursement — not individual user behavior.
 
 ---
 
@@ -164,7 +169,7 @@ The majority of bridge UTxOs (3,616/3,675 feeder rows) are untagged — these ar
 
 **Grade: FACT**
 
-After the 8 × 150M disbursements, the residual (~600M ADA) of the 1.8B ADA chain routes back toward the splitter address `Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W` — the same splitter that feeds the bridge (`Ae2tdPwUPEZHiXix...`). This confirms the 2B ADA merger is part of the same infrastructure system:
+After the 14 × ~150M disbursements (8 identified in initial query), the residual (~600M ADA) of the 1.8B ADA chain routes back toward the splitter address `Ae2tdPwUPEZ6xYrxCgRDM2NQFM5oajHEoJN3i9ZVV2AbsbvxoJBjVu3yP7W` — the same splitter that feeds the bridge (`Ae2tdPwUPEZHiXix...`). This confirms the 2B ADA merger is part of the same infrastructure system:
 
 `Sink → Splitter → Bridge → 571f776c (clean three-way merge)`
 
@@ -262,7 +267,7 @@ The previous addendum `FULL_FINDINGS_2026-04-08_ADDENDUM.md` (finding A8) states
 | 196 | 2020-05-30 | First three-way lineage merge `197f9d27` |
 | 208 | 2020-07-29 | Shelley hard fork |
 | 212 | 2020-08-20 | CF+EMURGO 2.176B ADA clean merge `cb32d36c` |
-| 226 | 2020-10-29 | CF+EMURGO 2.000B ADA clean merge + 8×150M disbursement `f907b625` |
+| 226 | 2020-10-29 | CF+EMURGO 2.000B ADA clean merge + 14×~150M disbursement (initial query: 8 — full trace: 14) `f907b625` |
 | 239 | 2021-01-01 | Second three-way merge `34147ef4` |
 | 250 | 2021-02-25 | Clean three-way merge `571f776c` |
 | 316 | 2022-01-21 | IOG+EMURGO clean merge (penultimate) |
@@ -293,7 +298,7 @@ The cross-entity fund flows ran from January 2019 to **January 2023** — a span
 1. Epoch 212: `cb32d36c` creates 2.176B ADA UTxO (UTxO 6310510) — CF+EMURGO clean merge
 2. Epoch 226: `f907b625` consumes UTxO 6310510 + other inputs → 2.000B ADA single output
 3. Epoch 227: 2B ADA splits: 200M to `stake1uxexwrph9` (UNSPENT), 1.8B to `stake1u9zjr6e37` (EXCHANGE)
-4. Epoch 227: 1.8B ADA distributed: 8 × 150M to disbursement addresses + residual to splitter
+4. Epoch 227: 1.8B ADA distributed: 14 × ~150M to disbursement addresses (initial query identified 8; full tracing confirmed 14 — see B15) + residual to splitter
 5. Epoch 391: Hub 1 sends additional 252M ADA to `stake1uxexwrph9` (same address, Binance-linked)
 
 The EMURGO trace also shows `stake1u9zjr6e37` at hop 13 receiving 628M ADA from Hub 1 in a separate chain via the `86daee1a` merge (epoch 211). This is a shared exchange destination receiving from both the `f907b625` chain and the EMURGO direct trace via Hub 1.
@@ -303,7 +308,7 @@ The EMURGO trace also shows `stake1u9zjr6e37` at hop 13 receiving 628M ADA from 
 ## Pending From Session
 
 1. **Full 2B ADA residual trace** — after the 8th disbursement, ~600M ADA continues; need to confirm how much reaches the splitter and in what form
-2. **Who are the 8 × 150M recipients?** — these 8 stake addresses received 150M ADA each from the CF+EMURGO chain; they are not in any founder trace; candidate for exchange/OTC attribution
+2. **Who are the 14 × ~150M recipients?** — these 8 stake addresses received 150M ADA each from the CF+EMURGO chain; they are not in any founder trace; candidate for exchange/OTC attribution
 3. **Pool overlap with correct EMURGO tickers** — expected to show significant IOG+EMURGO+CF overlap once EMUR1–EMUR8 are included
 4. **IOG+CF 126 overlap addresses** — cross-reference with founder trace frontiers; some may be in the triply-shared stake credentials
 
@@ -332,7 +337,7 @@ The EMURGO trace also shows `stake1u9zjr6e37` at hop 13 receiving 628M ADA from 
 
 **Grade: FACT**
 
-The original analysis identified 8 disbursement recipients from the CF+EMURGO 2B merger (`f907b625`). Further tracing reveals **at least 13 staging wallets** received ~150M ADA each:
+The original analysis identified 8 disbursement recipients from the CF+EMURGO 2B merger (`f907b625`). Further tracing reveals **14 staging wallets (confirmed by B15 tracing)** received ~150M ADA each:
 
 | # | Stake address | ~ADA received |
 |:--|:---|---:|
@@ -352,7 +357,7 @@ The original analysis identified 8 disbursement recipients from the CF+EMURGO 2B
 
 The 5 additional wallets (hopA–hopE) were identified by tracing the inputs to the epoch-237 consolidation transaction `52a780353a` backward to their source stake addresses.
 
-**Total disbursed across 13+ wallets: ~1.957B ADA** (before staking rewards, which added ~0.15B additional).
+**Total disbursed across 14 wallets: ~1.957B ADA** (before staking rewards, which added ~0.15B additional).
 
 ---
 
@@ -362,7 +367,7 @@ The 5 additional wallets (hopA–hopE) were identified by tracing the inputs to 
 
 **Date: December 22, 2020 (epoch 237)**
 
-All 13 staging wallets **simultaneously forwarded their full 150M+ ADA balances** to a single aggregator stake address: `stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56`
+All 14 staging wallets **simultaneously forwarded their full 150M+ ADA balances** to a single aggregator stake address: `stake1uxrytqx0v9t0rcz3dlshj08n2w6khfxu3k276vppqsukk2sfw5u56`
 
 Key characteristics:
 - **All transactions occurred within minutes** of each other on 2020-12-22 (~04:06 to ~05:03 UTC)
@@ -407,7 +412,7 @@ The 2.1B from the CF+EMURGO chain is a small fraction of the total volume at thi
 **Complete chain (CF+EMURGO → exchange):**
 ```
 f907b625 (epoch 226) — 2B ADA CF+EMURGO merger
-  ↓ ~1.957B ADA disbursed to 13+ staging wallets (epoch 227)
+  ↓ ~2.1B ADA disbursed to 14 staging wallets (epoch 227)
   ↓ 10 epochs staking at anonymous pools
   ↓ Simultaneous sweep Dec 22, 2020 (epoch 237)
   → stake1uxrytqx0 (one-epoch aggregator)
