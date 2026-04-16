@@ -67,6 +67,19 @@ The cluster's wallets now hold dust balances, while aggregate withdrawals total 
 
 This pattern is far more consistent with managed drip behavior than with a one-shot exchange unload.
 
+### Current live MIR-origin holding
+
+One traced destination remains especially important as a current resting place:
+
+- `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa`
+  - current holding: about `10.04M ADA`
+  - UTxO count: `17`
+  - spent UTxOs from current holding set: `0`
+  - delegation history rows: `0`
+  - reward history rows: `0`
+
+That means this stake currently appears to be a live resting place for MIR-origin funds rather than an actively drained onward-spend frontier. The absence of delegation and reward history is itself notable for a roughly `10M ADA` holding and is consistent with a concealment-oriented parking pattern rather than normal staking visibility.
+
 ## Trace findings
 
 ### Large boundary exits at 49k ADA threshold
@@ -107,6 +120,7 @@ That is not just an inconvenience of tooling. It is a substantive finding. The e
 | Recipient cluster delegates to WavePool pools | TRUE | On-chain delegation and pool metadata domain receipts |
 | WavePool DRep committee governs two MIR stakes | TRUE | db-sync DRep state plus Koios metadata resolution |
 | Withdrawal pattern is managed drip, not simple cashout | TRUE | wallet dust end-state plus `469` withdrawal events and lane behavior |
+| A MIR-origin destination stake holds about `10.04M ADA` with no delegation or reward history | TRUE | current UTxO/reward/delegation diagnostics for `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` |
 | Dominant large-value exit flow is circular back to cluster | TRUE | depth-2 lane receipts |
 | Non-circular exits land in parked holdings or fragment through enterprise relays | TRUE | depth-2 and continuation diagnostics |
 | Enterprise relay layer is structured below standard thresholds | TRUE | single-hop frontier diagnostics and spent-UTxO distribution checks |
