@@ -14,16 +14,6 @@ The strongest conclusions are:
 6. no traced lane hit a known exchange or custody label,
 7. the enterprise relay layer appears deliberately structured below standard tracing thresholds, which is itself evidence of concealment-oriented design.
 
-## Methodological correction and retraction
-
-### CF0 retraction
-
-An earlier investigation thread included a bad CF0-related attribution hit. That hit was wrong and is retracted.
-
-The error came from earlier-stage attribution drift during exploratory tracing. It is intentionally excluded from the final findings because it did not survive receipt-based verification.
-
-This correction matters methodologically. The final findings in this memo are limited to claims that remained supported after witness decoding, db-sync trace review, lane-level re-checks, and stricter frontier tracing.
-
 ## Confirmed facts
 
 ### MIR transaction and signers

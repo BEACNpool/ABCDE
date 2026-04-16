@@ -15,12 +15,6 @@ This folder contains the working evidence set and trace outputs for the epoch 29
 - Zero exchange/custody label hits were observed in the traced paths.
 - The enterprise relay layer appears deliberately structured to defeat threshold-based tracing. That evasion pattern is itself a material finding.
 
-## Methodological corrections
-
-### CF0 retraction
-
-An earlier investigation thread included a CF0-related attribution hit that did not survive receipt-based verification. It is retracted and intentionally excluded from the final findings set.
-
 ## Findings headline grading
 
 - `TRUE`: MIR reserve distribution, full genesis-delegate witness set, WavePool pool alignment, WavePool DRep alignment on two stakes, managed-drip withdrawal behavior, dominant circular return behavior, enterprise fragmentation below standard tracing floors.
