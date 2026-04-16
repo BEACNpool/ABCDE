@@ -1,0 +1,29 @@
+{
+  "seed_stake_addresses": [
+    "stake1u80y77jjfcdymt38amg3na9w4p4d89ffw66xqsspdwsa2sqt8epdn",
+    "stake1u8kgcfdpefrnf5570v47manyyg85jshlrg4p2hrsx3wdspccdda8v",
+    "stake1uy86sf5xrzcpg2ncddkzz6z2ca2m59qsnu4qxar08g9rvkgwkpjjv",
+    "stake1uykws5pmwjxktdhlkz0pac3cu2guw6fjys2zaanmdew6xrs5lgv4n",
+    "stake1u887jrylddch0vh4d2kx72h2ax8t7aeq49zvmry4g9wcj4g3gty8j",
+    "stake1u9mymn640v59n3mwyfdsg5t6yu34ut9ufvynavsn0ey40ugqdj6lh"
+  ],
+  "host": "abcde@192.168.86.118",
+  "db": "cexplorer_replica",
+  "min_ada": 100,
+  "depth": 1,
+  "rows": 0,
+  "unique_exit_stake_addresses": 0,
+  "unique_labeled_destinations": 0,
+  "tracked_destination_ada": 0.0,
+  "truncated_steps": [],
+  "assessment_summary": [],
+  "top_current_pools": [],
+  "top_current_dreps": [],
+  "top_labels": [],
+  "notes": [
+    "This is a stake-cluster / enterprise-address boundary tracer, not a mathematically perfect reserve-to-final-owner proof engine.",
+    "It is designed to keep tracing large exits even when funds are split across fresh stake credentials or enterprise addresses.",
+    "Exact attribution weakens when funds merge with unrelated inputs in later transactions, especially after withdrawals/rewards mix into the same wallet activity.",
+    "Use the highest-confidence rows first: large exits, labeled CEX/custody destinations, and fresh stake exits with current pool/DRep state resolved."
+  ]
+}
