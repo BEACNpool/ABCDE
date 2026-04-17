@@ -63,22 +63,24 @@ This chain combines on-chain facts and public-record attribution. Those source t
 
 ### Withdrawal behavior
 
-The cluster's wallets now hold dust balances, while aggregate withdrawals total roughly `344.85M ADA` across `469` withdrawal events including principal and rewards.
+The cluster's original 6 MIR recipient stakes now hold only dust balances, about `22.627934 ADA` total across all six.
 
-This pattern is far more consistent with managed drip behavior than with a one-shot exchange unload.
+Reward-account withdrawals recorded on those 6 stakes total roughly `344.85M ADA` across `469` withdrawal transactions from epochs `298` through `544`. That figure reflects reward-account withdrawals, not the full principal/UTxO outflow by itself, so it should not be treated as a complete measure of downstream fund movement.
 
-### Current live MIR-origin holding
+This pattern is more consistent with managed, repeated distribution behavior than with a one-shot exchange unload.
 
-One traced destination remains especially important as a current resting place:
+### Current MIR-origin resting places
 
-- `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa`
-  - current holding: about `10.04M ADA`
-  - UTxO count: `17`
-  - spent UTxOs from current holding set: `0`
-  - delegation history rows: `0`
-  - reward history rows: `0`
+No traced destination in the current reviewed set should be described as a confirmed live resting place without re-verification under corrected spend logic.
 
-That means this stake currently appears to be a live resting place for MIR-origin funds rather than an actively drained onward-spend frontier. The absence of delegation and reward history is itself notable for a roughly `10M ADA` holding and is consistent with a concealment-oriented parking pattern rather than normal staking visibility.
+Current ABCDE db-sync check for `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` shows:
+
+- current holding: `0 ADA`
+- UTxO count: `0`
+- delegation history rows: `0`
+- reward history rows: `1`
+
+The original 6 MIR recipient stakes are dusted out, and the ultimate downstream resting places remain unresolved pending renewed tracing with corrected spend logic.
 
 ## Trace findings
 
@@ -119,8 +121,8 @@ That is not just an inconvenience of tooling. It is a substantive finding. The e
 | Full Shelley genesis delegate set signed the MIR | TRUE | Witness decode, `7/7` genesis delegate matches plus one fee-paying escrow key |
 | Recipient cluster delegates to WavePool pools | TRUE | On-chain delegation and pool metadata domain receipts |
 | WavePool DRep committee governs two MIR stakes | TRUE | db-sync DRep state plus Koios metadata resolution |
-| Withdrawal pattern is managed drip, not simple cashout | TRUE | wallet dust end-state plus `469` withdrawal events and lane behavior |
-| A MIR-origin destination stake holds about `10.04M ADA` with no delegation or reward history | TRUE | current UTxO/reward/delegation diagnostics for `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` |
+| Withdrawal pattern is managed and repeated, not simple cashout | TRUE | dust end-state on original MIR stakes plus `469` withdrawal transactions and lane behavior |
+| `stake1uy4pax...` is a confirmed current MIR-origin resting place | FALSE | corrected unspent-output join shows `0 ADA` and `0` live UTxOs |
 | Dominant large-value exit flow is circular back to cluster | TRUE | depth-2 lane receipts |
 | Non-circular exits land in parked holdings or fragment through enterprise relays | TRUE | depth-2 and continuation diagnostics |
 | Enterprise relay layer is structured below standard thresholds | TRUE | single-hop frontier diagnostics and spent-UTxO distribution checks |
@@ -135,9 +137,9 @@ That is not just an inconvenience of tooling. It is a substantive finding. The e
 
 ## Interpretation
 
-The evidence supports a governance-aligned, operationally managed reserve-distribution cluster tied to WavePool-associated infrastructure, with downstream movement characterized by controlled withdrawals, strong recirculation, and relay-layer fragmentation that reduces naive outward traceability.
+The evidence supports a governance-aligned, operationally managed reserve-distribution cluster tied to WavePool-associated infrastructure, with downstream movement characterized by repeated withdrawals, strong recirculation, and relay-layer fragmentation that reduces naive outward traceability.
 
-The absence of exchange hits does not prove funds never reached off-chain custody somewhere later. It does mean that, within the traced horizons and available labels, the observable pattern is dominated by cluster reuse, parked holdings, and enterprise relays rather than obvious liquidation endpoints.
+The absence of exchange hits does not prove funds never reached off-chain custody somewhere later. It does mean that, within the traced horizons and available labels, the observable pattern is dominated by cluster reuse and enterprise relay behavior rather than obvious liquidation endpoints. Ultimate resting-place claims remain provisional until re-verified with corrected spend logic.
 
 ## Best supporting artifacts
 
