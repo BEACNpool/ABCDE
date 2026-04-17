@@ -78,6 +78,14 @@ Plus one non-genesis key (`d80fe69d...`) for fee payment via escrow address `add
 
 These 7 keys were nominally distributed among IOG, EMURGO, and Cardano Foundation as Shelley genesis delegates. Their simultaneous use raises the question: did all three founding entities independently approve this distribution, or were the keys already consolidated under fewer parties?
 
+<!-- REVIEW DRAFT: 7/7 quorum framing
+For mainnet MIR governance at the time, the operational threshold was 5 of 7 genesis delegate signatures. This transaction carried all 7. That is consistent either with unanimous approval or with sufficiently consolidated control to assemble every required witness. The on-chain witness set alone cannot distinguish between those possibilities.
+-->
+
+<!-- REVIEW DRAFT: genesis key mapping limitation
+Shelley genesis materials publish the delegate key set, and the witness set on this transaction can be matched to that published key set. What is not cryptographically proven on-chain is the entity mapping of any specific key to IOG, EMURGO, or the Cardano Foundation at the time of signing. Those entity attributions depend on historical documentation and ecosystem understanding, not a direct on-chain identity primitive.
+-->
+
 ---
 
 ## The "Pre-Sale Escrow" Claim Is Not Supported by On-Chain Evidence
@@ -121,6 +129,10 @@ This enterprise address (no staking component) was:
 - The UTxO consumed by the main MIR (`3d24e825...#0`) was created by the test MIR itself
 
 This establishes that the same payment credential (`d80fe69d...`) paid fees for both the legitimate 2020 redemption pipeline and the 2021 MIR transactions. That is consistent with the same operational infrastructure being reused, though on-chain evidence alone cannot distinguish same-operator reuse from later key transfer or shared custody.
+
+<!-- REVIEW DRAFT: payment-credential framing
+The current evidentiary posture is stronger than simple fee-address reuse alone. The same payment credential `d80fe69d...` paid fees for the 2020 redemption pipeline and the 2021 MIR sequence, and that reuse sits alongside a pre-positioned setup of fresh stake credentials plus short-lived pools registered just before the MIR. That combination is consistent with operational continuity across the two episodes. Still, do not overclaim: on-chain evidence does not by itself prove the same human, legal entity, or custody arrangement controlled the credential at both times.
+-->
 
 ---
 
@@ -187,6 +199,10 @@ The epoch 298->299 reserve drop of **340.1M ADA** includes:
 
 This was the **largest single-epoch reserve drawdown observable in the post-epoch-209 `ada_pots` series available in this replica**. Full `ada_pots` query confirms the next largest epoch-to-epoch reserve drop in that series was 24.4M ADA (epoch 247), making the epoch 299 drop about **14x larger** than any other observed there. Separately, the `reserve` table records 593.5M ADA of epoch-208 reserve MIR entries, but that Byron-to-Shelley transition event predates the starting point of the local `ada_pots` series and cannot be compared on the same basis as later epoch-to-epoch reserve deltas. The 318.2M MIR was also **2.4x larger than the largest single epoch 208 MIR transaction** (134.5M ADA to 200 recipients in tx `a75def37...`).
 
+<!-- REVIEW DRAFT: reserve-drop qualification
+Clarify, if promoted to prose later, that the epoch 298->299 reserve drop is the largest observable drawdown in the post-epoch-209 `ada_pots` series available in this local replica. The larger epoch-208 reserve MIR totals come from the `reserve` table and predate the local `ada_pots` series, so they are not directly comparable on the same epoch-to-epoch reserve-delta basis.
+-->
+
 ---
 
 ## All Reserve MIR Distributions Ever
@@ -222,6 +238,10 @@ The 6 MIR stakes have received a cumulative total of ~12.5 billion ADA across 1,
 The large cumulative received figures are dominated by circular churn: the largest deposits (~68M each, epoch 342-350) trace back to the same stakes as their source. This pattern inflated volume metrics and complicated forensic tracing, but the end state on the original 6 stakes is near-zero dust, meaning the funds moved onward from those initial recipient credentials.
 
 ### Withdrawal pattern
+
+<!-- REVIEW DRAFT: MIR mechanics explainer
+Mechanically, MIR credits are booked at the epoch boundary rather than becoming spendable inside the same epoch in which the MIR certificate is included. Here, the main MIR landed in epoch 298 and first became withdrawable in epoch 299. The epoch-299 withdrawal total exceeds the MIR principal because two of the recipient stakes also received 500-ADA `reward.type='refund'` credits from short-lived pool deposit refunds.
+-->
 
 - **469 withdrawal transactions** across epochs 298-544
 - Epoch 299: **318,200,980 ADA** (main MIR principal plus two 500-ADA pool-deposit refunds; the 600 ADA test MIR was already withdrawn in epoch 298)
@@ -297,6 +317,10 @@ The enterprise relay layer, circular churn, unregistered dark stakes, and sub-th
 
 ## Open Questions
 
+<!-- REVIEW DRAFT: disclosure-search
+If this report is expanded beyond on-chain analysis, a targeted public-record search is worth doing across Essential Cardano, IOG blog/archive material, EMURGO communications, Cardano Foundation communications, and Shelley-era forums or community posts. Absence of a disclosure in those sources would not prove concealment. It would, however, strengthen a narrower claim that no prominent public disclosure has yet been located.
+-->
+
 1. **Who held the 7 genesis delegate keys at the time?** Were any transferred, shared, or consolidated before this MIR?
 2. **Was there any governance vote or public disclosure** before the 318M reserve extraction?
 3. **What is the relationship between the 6 MIR stakes and the escrow address operator?** The escrow address ran the 2020 redemptions -- same operator, different recipients.
@@ -305,6 +329,10 @@ The enterprise relay layer, circular churn, unregistered dark stakes, and sub-th
 6. **What was the purpose of the circular churn** (~68M self-referential deposits in epochs 342-350)? This inflated cumulative flow metrics but the funds ultimately left the cluster entirely.
 
 ---
+
+<!-- REVIEW DRAFT: limitations framing
+State the evidentiary boundaries plainly. This investigation proves flows, witnesses, pool registrations, refunds, and delegation state from on-chain records. It does not by itself prove intent. Payment-credential reuse is strong evidence of continuity, not perfect identity proof. Mapping genesis delegate keys to specific founding entities is not cryptographically settled on-chain. Circular churn is a structural flow finding, not evidence that balances remained parked. Any current-state claim is snapshot-bound to the replica and query time used for the investigation.
+-->
 
 ## Appendix: Query verification
 
