@@ -12,7 +12,7 @@ On October 23, 2021, all 7 Shelley genesis delegate keys co-signed a MIR (Move I
 
 The transaction metadata labeled this as "Moved from reserves to ada pre-sale redemption escrow." This investigation finds that label to be **materially misleading**: the 6 recipient stakes received zero epoch 208 voucher redemptions and have no on-chain connection to actual pre-sale voucher holders.
 
-Addresses carrying these 6 stake credentials currently hold approximately **5.95 billion ADA in unspent UTxOs** (verified via `tx_out LEFT JOIN tx_in WHERE ti.id IS NULL`). However, active delegated stake as measured by `epoch_stake` is near zero: 4 of the 6 delegation target pools have since retired, and the remaining 2 stakes show only ~2.6 ADA each in epoch 622. The UTxO value is real but is not earning staking rewards or contributing active delegation weight under the current pool assignments. Historically these addresses have received over **12.5 billion ADA** in cumulative UTxO value, dominated by circular churn. Non-circular exits remain within the WavePool pool ecosystem, and large holdings sit at unregistered stakes with no delegation or reward history.
+Addresses carrying these 6 stake credentials currently hold approximately **5.95 billion ADA in unspent UTxOs** (verified via `tx_out LEFT JOIN tx_in WHERE ti.id IS NULL`). However, active delegated stake as measured by `epoch_stake` is near zero: all four a-pools have since retired, and the remaining 2 stakes show only ~2.6 ADA each in epoch 622. The UTxOs are present on-chain and currently unspent, but the funds are not earning staking rewards or contributing active delegation weight under the current pool assignments. Historically these addresses have received over **12.5 billion ADA** in cumulative UTxO value, dominated by circular churn. Non-circular exits remain within the WavePool pool ecosystem, and large holdings sit at unregistered stakes with no delegation or reward history.
 
 ---
 
@@ -24,10 +24,10 @@ Addresses carrying these 6 stake credentials currently hold approximately **5.95
 | 2021-10-16 | 296 | 6 fresh stake credentials registered. None received any epoch 208 redemptions. |
 | 2021-10-19 | 297 | Test MIR: 100 ADA each to same 6 stakes (tx `3d24e825...`). Metadata: "presale-escrow". |
 | 2021-10-23 | 298 | **Main MIR: 318,199,980 ADA** from reserves to 6 stakes (tx `03b02cff...`). 7/7 genesis delegate signatures. |
-| 2021-10-23 | 298 | All 6 stakes delegated to WavePool pools (a1-a4, s3/s4). 4 of these pools have since retired. |
+| 2021-10-23 | 298 | All 6 stakes delegated to WavePool pools (a1-a4, s3/s4). All four a-pools have since retired. |
 | 2021-10-23 | 298 | First reward withdrawal: 600 ADA (test MIR amount). |
 | ~2021-11 | 299 | Full principal withdrawn: 318,200,980 ADA. |
-| 2021-12 to 2024 | 304-544 | Managed drip: 87 withdrawals totaling ~344.85M ADA (principal + rewards). |
+| 2021-12 to 2024 | 304-544 | 87 withdrawals totaling ~344.85M ADA (principal + rewards), pattern consistent with managed distribution. |
 | 2022-06 to 2022-07 | 342-350 | Massive circular deposits begin: ~68M ADA per tx, self-referential churn. |
 | 2025-02-27 | 542 | WavePool DRep registered (`drep1r497...`). Two MIR stakes delegate voting to it. |
 
@@ -56,7 +56,7 @@ Addresses carrying these 6 stake credentials currently hold approximately **5.95
 | `stake1u887jrylddch0vh4d2kx72h2ax8t7aeq49zvmry4g9wcj4g3gty8j` | 27,099,990 | 210,695,099 | s4 (2% margin) | active (~2.6 ADA epoch_stake) |
 | **Total** | **318,199,980** | **~5,948,804,357** | | |
 
-**Important measurement note**: The "current unspent UTxO value" column reflects the sum of all unspent transaction outputs at addresses carrying these stake credentials (`tx_out LEFT JOIN tx_in WHERE ti.id IS NULL`). This is NOT the same as active delegated stake. In `epoch_stake` for epoch 622, only 2 of these 6 stakes appear with ~2.6 ADA each, because the other 4 delegation target pools are retired. The UTxO value is real and on-chain, but the funds are not currently earning staking rewards or contributing protocol-level delegation weight.
+**Important measurement note**: The "current unspent UTxO value" column reflects the sum of all unspent transaction outputs at addresses carrying these stake credentials (`tx_out LEFT JOIN tx_in WHERE ti.id IS NULL`). This is NOT the same as active delegated stake. In `epoch_stake` for epoch 622, only 2 of these 6 stakes appear with ~2.6 ADA each, because the other 4 delegation target pools are retired. The UTxOs are present on-chain and currently unspent, but the funds are not earning staking rewards or contributing protocol-level delegation weight.
 
 ### Witness analysis
 
@@ -101,7 +101,7 @@ The transaction metadata states: *"Moved from reserves to ada pre-sale redemptio
 | Range per recipient | 0.0002 to 15.5M ADA | 27.1M to 66M ADA |
 | Recipient pre-existence | Pre-existing voucher holders | Created 7 days before |
 | Transactions | 115 batched txs | 1 tx (+ 1 test) |
-| Subsequent behavior | Normal staking/spending | WavePool delegation, managed drip, circular churn |
+| Subsequent behavior | Normal staking/spending | WavePool delegation, regular periodic withdrawals, circular churn |
 
 ---
 
@@ -263,11 +263,11 @@ The MIR required 7/7 genesis delegate signatures. These keys were distributed ac
 - All three entities independently approved the distribution (no public record of this), or
 - Fewer than three parties had effective control of all 7 keys
 
-### 3. Self-enrichment loop (while pools were active)
-Reserves -> MIR -> WavePool stakes -> WavePool pools (100% margin) -> Wave Financial -> cFund -> IOG. While the a-pools were active (epochs 298-466/514/534/599), the funds never left the IOG-adjacent ecosystem and staking rewards flowed to the pool operator. Since pool retirement, the ~5.95B in UTxOs sits effectively inert -- not earning rewards, not contributing delegation weight.
+### 3. Operator reward-capture loop (while pools were active)
+While the a-pools were active (epochs 298-466/514/534/599), the on-chain path was: reserves -> MIR -> WavePool stakes -> WavePool pools (100% margin) -> pool operator. The off-chain attribution chain (pool operator -> Wave Financial -> cFund -> IOG) is sourced from public corporate disclosures, not on-chain proof. During this period, staking rewards from the delegated MIR-origin funds flowed to the pool operator. Since pool retirement, the ~5.95B in unspent UTxOs sits effectively inert -- not earning rewards, not contributing delegation weight.
 
 ### 4. Governance implications
-Two MIR stakes delegate voting power to the WavePool DRep. However, because their delegation target pools are retired, the effective governance weight of these stakes in epoch_stake terms is currently negligible (~2.6 ADA each). If these stakes were re-delegated to active pools, the UTxO value would re-enter the active stake distribution. The DRep is currently inactive but registered through epoch 580.
+Two MIR stakes delegate voting power to the WavePool DRep via `delegation_vote`. Note that DRep voting-power accounting and stake-pool delegation accounting (`epoch_stake`) are separate protocol mechanisms and should not be conflated. The `epoch_stake` values (~2.6 ADA each) reflect pool delegation weight, not necessarily DRep voting weight. The actual governance weight these stakes carry under the Conway-era DRep accounting rules has not been independently verified in this investigation and should be checked against the governance ledger state before making claims about voting influence. The DRep is currently inactive but registered through epoch 580.
 
 ### 5. Structural patterns consistent with anti-forensic design
 The enterprise relay layer, circular churn, unregistered dark stakes, and sub-threshold fragmentation are all **consistent with** anti-forensic design rather than normal wallet behavior. This is an inference from structural evidence -- the transaction patterns match what deliberate obfuscation would look like, but the on-chain data alone cannot prove intent.
@@ -283,12 +283,12 @@ The enterprise relay layer, circular churn, unregistered dark stakes, and sub-th
 | "Pre-sale redemption escrow" metadata is supported by on-chain recipient history | **NOT SUPPORTED** | Recipients are fresh stakes (epoch 296) with zero epoch 208 voucher history |
 | Epoch 297 was a test run for the same operation | **TRUE** | Same 6 recipients, same metadata, 600 ADA |
 | All recipients delegated to WavePool pools after MIR | **TRUE** | On-chain delegation records, pools a1-a4, s3, s4 |
-| 4 of 6 delegation target pools have since retired | **TRUE** | `pool_retire` table: epochs 466, 514, 534, 599 |
+| All four a-pools have since retired | **TRUE** | `pool_retire` table: a3 epoch 466, a4 epoch 514, a1 epoch 534, a2 epoch 599 |
 | Non-circular exits also route to WavePool | **TRUE** | Pools w1, w7 confirmed WavePool |
 | Addresses carry ~5.95B in unspent UTxO value | **TRUE** | `tx_out LEFT JOIN tx_in` verified |
 | Active delegated stake is near zero (epoch 622) | **TRUE** | `epoch_stake`: only 2 stakes, ~2.6 ADA each |
 | Large non-circular holdings sit at unregistered stakes | **TRUE** | 727.5M ADA with no pool/DRep/registration |
-| Withdrawal pattern is managed drip | **TRUE** | 87 events, clockwork cadence |
+| Withdrawal pattern consistent with managed distribution | **TRUE** | 87 events, regular periodic cadence |
 | Exchange/custody destinations observed | **FALSE** | Zero exchange hits at any trace depth |
 | Operation appears pre-planned | **TRUE** | 7-day registration-to-MIR sequence with test tx |
 | Enterprise relay layer consistent with anti-forensic design | **INFERENCE** | Sub-threshold fragmentation defeats trace continuity; intent cannot be proven from structure alone |
@@ -311,12 +311,16 @@ The enterprise relay layer, circular churn, unregistered dark stakes, and sub-th
 
 All findings in this report were verified against `cexplorer_replica` (db-sync) at `192.168.86.118:5432` on 2026-04-16. Key tables queried: `reserve`, `tx`, `tx_out`, `tx_in`, `stake_address`, `delegation`, `withdrawal`, `reward`, `stake_registration`, `stake_deregistration`, `pool_hash`, `pool_update`, `pool_retire`, `pool_metadata_ref`, `drep_hash`, `drep_registration`, `delegation_vote`, `ada_pots`, `tx_metadata`, `block`, `epoch_stake`.
 
+### Measurement disclaimer
+
+Current unspent UTxO value and active delegated stake (`epoch_stake`) are different measurements and should not be compared as if they were equivalent balances. UTxO value reflects on-chain outputs that have not been consumed as transaction inputs. Active delegated stake reflects the protocol's snapshot of value credited to a stake credential at an epoch boundary, contingent on the credential being registered and delegated to a non-retired pool. Throughout this report, "current unspent UTxO value" always means the former. All presentation queries use `encode(t.hash, 'hex')` for standard Cardano tx-hash formatting.
+
 ### Key verification queries
 
 **Largest reserve drawdown claim**: Full `ada_pots` historical query confirmed epoch 298->299 drop of 340.1M ADA is the largest ever. Next largest: 24.4M (epoch 247). Query: `WITH pots AS (SELECT epoch_no, reserves, lag(reserves) OVER (ORDER BY epoch_no) AS prev_reserves FROM ada_pots) SELECT epoch_no, (prev_reserves - reserves) / 1000000.0 AS reserve_drop_ada FROM pots ORDER BY (prev_reserves - reserves) DESC LIMIT 10;`
 
 **Zero voucher overlap claim**: `SELECT ... FROM reserve r JOIN ... WHERE b.epoch_no = 208` against the 6 MIR stakes returned 0 rows.
 
-**Pool retirement claim**: `pool_retire` table confirms retirement epochs for a1 (534), a2 (599), a3 (466), a4 (514).
+**Pool retirement claim**: `pool_retire` table confirms retirement epochs for all four a-pools: a3 (466), a4 (514), a1 (534), a2 (599). Pools s3 and s4 remain active.
 
 **Epoch_stake vs UTxO discrepancy**: `epoch_stake` for epoch 622 shows only `stake1u887jry...` (2.6 ADA at s4) and `stake1u9mymn6...` (2.6 ADA at s3). All other stakes absent due to retired delegation pools. UTxO query (`tx_out LEFT JOIN tx_in WHERE ti.id IS NULL`) confirms 5.95B unspent across 722 UTxOs.
