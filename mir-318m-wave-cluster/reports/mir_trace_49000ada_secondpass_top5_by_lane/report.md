@@ -9,7 +9,7 @@
 - `stake` `stake1u80fnwl4jf822fvqn9p3cum5ncl6lxph0wtdrgc08mw078ct3ysht` -> **58,219,660.616038 ADA** across 6 rows (4 stake, 2 enterprise)
 - `enterprise` `addr1wxxaleu8a0feusutn3ntnqfg3a55hp0t5l2hqjeau0wg7cc4262zv` -> **36,569,107.763792 ADA** across 1 rows (1 stake, 0 enterprise)
 - `enterprise` `addr1v98pnns6yw8zja9uxzufddpm8tsk5swxf7vv5j4vqjlswgczd4d2t` -> **15,918,634.275277 ADA** across 4 rows (4 stake, 0 enterprise)
-- `stake` `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` -> **9,567,534.707649 ADA** across 8 rows (8 stake, 0 enterprise)
+- `stake` `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` -> **9,567,534.707649 ADA** across 8 rows (8 stake, 0 enterprise), current live balance `0 ADA`
 - `enterprise` `addr1wxtwkls63ae00apdncn4hlxt6jala8367weqam9srlmul5g78wtm4` -> **278,716.275347 ADA** across 1 rows (1 stake, 0 enterprise)
 
 ## Top second-hop stake destinations

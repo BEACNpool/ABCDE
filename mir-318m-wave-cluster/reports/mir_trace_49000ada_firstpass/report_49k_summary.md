@@ -9,7 +9,7 @@
 
 - `stake1uxaertz49825tjhczzy3heghk3nq6jugcvdxtqzn2avgeaqr64xk3` -> **15,620,679.042540 ADA** across 2 exits, current pool `pool1ksz6vfc4xqdxyhp06h4n7kckh60370cy2t6m3wfgdxtug7ph4x0`, current DRep `(none)`
 - `stake1u80fnwl4jf822fvqn9p3cum5ncl6lxph0wtdrgc08mw078ct3ysht` -> **15,361,881.000000 ADA** across 1 exits, current pool `pool1fmcv9p7vv754rwc0p6ud2mgm76vnn0gq0gngrk7rq400vsvhsvs`, current DRep `drep1lhkqu7uhq9532xr5558q7gh5rl54m4ezav8p5yfkgz27yrx735a`
-- `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` -> **5,234,245.619770 ADA** across 8 exits, current pool `(none)`, current DRep `(none)`
+- `stake1uy4paxdaxtnnnv48fzc4r8zvwqq25x7mnl9xf7pxhar4ehqnaycxa` -> **5,234,245.619770 ADA** across 8 exits, current pool `(none)`, current DRep `(none)`, current live balance `0 ADA`
 - `stake1u9jasamtphty6907hl43t7tfecyqe2ju5lqaw3zfgad33kcvwmlue` -> **5,018,022.000000 ADA** across 1 exits, current pool `(none)`, current DRep `(none)`
 - `stake1uy6tdplul92rfp8ewuc6vmncuq7h5rgdwdlfx7hga7faf5qruws4u` -> **4,641,036.000000 ADA** across 1 exits, current pool `(none)`, current DRep `(none)`
 - `stake1u909pyegwxe8lwxya5283jctzg6ryttfy42mefyp7639ukggy2hfz` -> **4,545,444.000000 ADA** across 1 exits, current pool `(none)`, current DRep `(none)`
