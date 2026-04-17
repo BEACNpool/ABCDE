@@ -14,6 +14,8 @@ The transaction metadata labeled this as "Moved from reserves to ada pre-sale re
 
 The 6 MIR recipient stakes are now reduced to dust, about ~22.6 ADA total across all 6. The original MIR principal has moved onward, and the associated reward accounts recorded 469 withdrawal transactions totaling ~344.85M ADA. All four initial "a-series" delegation pools have since retired, while two of the six stakes were later re-delegated to s3/s4 with only dust balances remaining. The dominant outflow pattern observed during tracing was circular churn (funds leaving and returning to the same cluster), with non-circular exits routing to WavePool-affiliated pools or through destinations that require renewed downstream tracing under corrected spend logic.
 
+One accounting nuance matters here. The epoch-299 withdrawal total exceeds the main MIR principal by **1,000 ADA** because the two smaller MIR stakes each received a **500-ADA `reward.type='refund'` credit**. Direct db-sync queries tie those refunds to two **short-lived 100%-margin, 66M-pledge pools** that were registered in epoch 296, announced for retirement in epoch 298, and retired in epoch 299: `pool1mntgymmmct8209tk7r47lu5tel5tf8aj40qgxpxmm0eqywgpgh4` (reward account and owner stake `stake1u887...`) and `pool1r2htvwxah6t3w83465ecmyan5s87ehezajnq6yftkktyz0fnhrx` (reward account and owner stake `stake1u9mym...`). Those refunds are therefore **pool-deposit refunds**, not additional MIR activity.
+
 ---
 
 ## Timeline of Events
@@ -22,14 +24,16 @@ The 6 MIR recipient stakes are now reduced to dust, about ~22.6 ADA total across
 |------|-------|-------|
 | 2020-07-30 | 208 | Legitimate voucher redemption: 593.5M ADA to 22,674 unique stakes across 115 txs. Escrow address `addr1v8vq...` first funded. |
 | 2021-10-16 | 296 | 6 fresh stake credentials registered. None received any epoch 208 redemptions. |
+| 2021-10-16 | 296 | Two short-lived 100%-margin, 66M-pledge pools were also registered with the two smaller MIR stakes as both reward accounts and owner stakes: `pool1mntgymmmct8209tk7r47lu5tel5tf8aj40qgxpxmm0eqywgpgh4` and `pool1r2htvwxah6t3w83465ecmyan5s87ehezajnq6yftkktyz0fnhrx`. |
 | 2021-10-19 | 297 | Test MIR: 100 ADA each to same 6 stakes (tx `3d24e825...`). Metadata: "presale-escrow". |
 | 2021-10-23 | 298 | **Main MIR: 318,199,980 ADA** from reserves to 6 stakes (tx `03b02cff...`). 7/7 genesis delegate signatures. |
+| 2021-10-23 | 298 | The two short-lived 66M-pledge pools were announced for retirement (retiring epoch 299), setting up the later 500-ADA pool-deposit refunds. |
 | 2021-10-23 | 298 | All 6 stakes delegated to WavePool pools (a1-a4, s3/s4). All four a-pools have since retired. |
 | 2021-10-23 | 298 | First reward withdrawal: 600 ADA (test MIR amount). |
-| ~2021-11 | 299 | Full principal withdrawn: 318,200,980 ADA. |
-| 2021-12 to 2024 | 304-544 | 469 reward-account withdrawal transactions totaling ~344.85M ADA, pattern consistent with managed distribution. |
+| ~2021-11 | 299 | Main MIR principal plus two 500-ADA pool-deposit refunds withdrawn: 318,200,980 ADA total. |
+| 2021-10 to 2024 | 298-544 | 469 reward-account withdrawal transactions totaling ~344.85M ADA, pattern consistent with managed distribution. |
 | 2022-06 to 2022-07 | 342-350 | Large circular deposits observed: ~68M ADA per tx, self-referential (source and destination are the same stake). |
-| 2025-02-27 | 542 | WavePool DRep registered (`drep1r497...`). Two MIR stakes delegate voting to it. |
+| 2025-02-27 | 542 | WavePool DRep registered (`drep1r497...`). Two MIR stakes later show `delegation_vote` rows to it by epoch 544. |
 
 ---
 
@@ -116,7 +120,7 @@ This enterprise address (no staking component) was:
 - Reused 15 months later to pay the fee on the epoch 297 test MIR and the epoch 298 main MIR
 - The UTxO consumed by the main MIR (`3d24e825...#0`) was created by the test MIR itself
 
-This establishes that the same operational infrastructure that ran the legitimate 2020 voucher redemptions was repurposed for the 2021 MIR to entirely different recipients.
+This establishes that the same payment credential (`d80fe69d...`) paid fees for both the legitimate 2020 redemption pipeline and the 2021 MIR transactions. That is consistent with the same operational infrastructure being reused, though on-chain evidence alone cannot distinguish same-operator reuse from later key transfer or shared custody.
 
 ---
 
@@ -124,17 +128,17 @@ This establishes that the same operational infrastructure that ran the legitimat
 
 ### Pool fleet
 
-22 WavePool pools identified via `meta.wavepool.digital` metadata URLs:
+22 WavePool pools identified via `meta.wavepool.digital` metadata URLs. In addition, two short-lived pools tied directly to the two smaller MIR stakes appear in db-sync as pre-positioned infrastructure for the MIR sequence: `pool1mntgymmmct8209tk7r47lu5tel5tf8aj40qgxpxmm0eqywgpgh4` and `pool1r2htvwxah6t3w83465ecmyan5s87ehezajnq6yftkktyz0fnhrx`. Both were registered in epoch 296 with **66M ADA pledge**, **100% margin**, reward-account/owner overlap with the two small MIR stakes, literal metadata URL string "https://" (length 8, with a metadata hash still present), retirement announced in epoch 298, and pool-deposit refunds paid in epoch 299. That 66M declared pledge is itself a receipt worth noting: it does **not** match the actual MIR amount later received by those owner/reward stakes (27,099,990 ADA each), which means the pledge declaration overstated the stake those two pools would actually control on-chain.
 
 | Series | Count | Pledge range | Margin | Role |
 |---|---|---|---|---|
-| a1-a4 | 4 | 5-10 ADA | 1-2% to 100% | MIR recipient delegation targets |
-| s1-s4 | 4 | 5-10 ADA | 1-2.2% | Smaller MIR stakes delegate here |
+| a1-a4 | 4 | 5-10 ADA | 2% or 100% | MIR recipient delegation targets |
+| s1-s4 | 4 | 5-10 ADA | 1-2.2% | Fleet members; the two smaller MIR stakes later delegate to s3/s4 |
 | w1-w14 | 10+ | 5 to 69.3M ADA | 1-100% | Mixed operational/retired |
 | j1-j5 | 5 | 5 to 50M ADA | 4% | Public-facing pools |
 | g1-g2 | 2 | 20-35M ADA | 4% | Growth pools |
 
-**Total current delegation across WavePool**: ~631.5M ADA (epoch 622, 14 active pools)
+**Total current delegation across WavePool**: ~631.5M ADA (latest epoch_stake snapshot available at investigation time, epoch 622, 14 active pools)
 
 ### 100% margin pools
 
@@ -181,7 +185,7 @@ The epoch 298->299 reserve drop of **340.1M ADA** includes:
 - The 318.2M MIR
 - Normal per-epoch reserve outflows (~21M for staking rewards)
 
-This was the **largest single-epoch reserve drawdown** in Cardano history. Full `ada_pots` query confirms: the next largest epoch-to-epoch reserve drop was 24.4M ADA (epoch 247), making the epoch 299 drop **14x larger** than any other. The 318.2M MIR was also **2.4x larger than the largest single epoch 208 MIR transaction** (134.5M ADA to 200 recipients in tx `a75def37...`).
+This was the **largest single-epoch reserve drawdown observable in the post-epoch-209 `ada_pots` series available in this replica**. Full `ada_pots` query confirms the next largest epoch-to-epoch reserve drop in that series was 24.4M ADA (epoch 247), making the epoch 299 drop about **14x larger** than any other observed there. Separately, the `reserve` table records 593.5M ADA of epoch-208 reserve MIR entries, but that Byron-to-Shelley transition event predates the starting point of the local `ada_pots` series and cannot be compared on the same basis as later epoch-to-epoch reserve deltas. The 318.2M MIR was also **2.4x larger than the largest single epoch 208 MIR transaction** (134.5M ADA to 200 recipients in tx `a75def37...`).
 
 ---
 
@@ -220,9 +224,9 @@ The large cumulative received figures are dominated by circular churn: the large
 ### Withdrawal pattern
 
 - **469 withdrawal transactions** across epochs 298-544
-- Epoch 299: **318,200,980 ADA** (full principal + test)
+- Epoch 299: **318,200,980 ADA** (main MIR principal plus two 500-ADA pool-deposit refunds; the 600 ADA test MIR was already withdrawn in epoch 298)
 - Epochs 304-354: ~200K-230K ADA per epoch (clockwork staking rewards)
-- Epochs 356-544: Decreasing frequency, increasing per-event amounts
+- Epochs 356-544: Decreasing withdrawal frequency, with larger per-event amounts reflecting reward-balance accumulation between withdrawals rather than new MIR inflows
 - Final withdrawal (epoch 544): 3.9 ADA (dust)
 - **Total rewards earned**: ~26.6M ADA across all 6 stakes
 
@@ -232,10 +236,10 @@ The largest non-circular outflow destinations:
 
 | Stake | Balance at time of trace | Corrected current balance (ADA) | Pool | DRep | Registered |
 |---|---|---|---|---|---|
-| `stake1uxumg...` | 489,019,868 (trace-time) | 4.36 | pool1axzm (WavePool w1) | none | epoch 255 |
+| `stake1uxumg...` | 489,019,868 (trace-time) | 4.36 | `pool1axzm26vduyuxgw0x9ddh4vkvn7q5hyd558l0t9c08p556lf2zaj` (WavePool w1) | none | epoch 255 |
 | `stake1u9jjw...` | 389,854,425 (trace-time) | 9.03 | **none** | **none** | **unregistered** |
 | `stake1uxt2g...` | 295,971,396 (trace-time) | 1,199,949 | **none** | **none** | **unregistered** |
-| `stake1u8uyv...` | 91,451,795 (trace-time) | 27.94 | pool1u99x (WavePool w7) | WavePool DRep | epoch 276 |
+| `stake1u8uyv...` | 91,451,795 (trace-time) | 27.94 | `pool1u99x2rr6trfznwakv0959llmxmtgc2nvanc067uugl3ejuvvnc8` (WavePool w7) | WavePool DRep | epoch 276 |
 | `stake1uykx3...` | 31,649,999 (trace-time) | 0 | **none** | **none** | **unregistered** |
 | `stake1uy4pa...` | 10,039,568 (trace-time) | 0 | **none** | **none** | **unregistered** |
 
@@ -251,7 +255,7 @@ Key observations:
 ## Structural Findings
 
 ### 1. Pre-planned operation
-The sequence -- register stakes (epoch 296), test MIR (297), main MIR (298), delegate (298), withdraw principal (299) -- shows pre-planned execution, not an ad-hoc response to unclaimed vouchers.
+The sequence -- register stakes (epoch 296), register two short-lived 66M-pledge/100%-margin pools using the two smaller MIR stakes as both reward accounts and owners (epoch 296), test MIR (297), main MIR (298), announce retirement of the two short-lived pools (298), delegate (298), withdraw principal plus pool-deposit refunds (299) -- shows pre-planned execution, not an ad-hoc response to unclaimed vouchers.
 
 ### 2. Genesis key consolidation question
 The MIR required 7/7 genesis delegate signatures. These keys were distributed across IOG, EMURGO, and Cardano Foundation. Either:
@@ -259,10 +263,10 @@ The MIR required 7/7 genesis delegate signatures. These keys were distributed ac
 - Fewer than three parties had effective control of all 7 keys
 
 ### 3. Operator reward-capture loop (while pools were active)
-While the a-pools were active (epochs 298-466/514/534/599), the on-chain path was: reserves -> MIR -> WavePool stakes -> WavePool pools (100% margin) -> pool operator. The off-chain attribution chain (pool operator -> Wave Financial -> cFund -> IOG) is sourced from public corporate disclosures, not on-chain proof. During this period, staking rewards from the delegated MIR-origin funds flowed to the pool operator. The original MIR stakes now hold only dust, all four a-pools are retired, and two of the stakes were later re-delegated to s3/s4 with dust balances.
+While the a-pools were active (epochs 298-466/514/534/599), the on-chain path was: reserves -> MIR -> WavePool stakes -> WavePool pools -> pool operator. The strongest reward-capture pattern was concentrated in **three of the four a-pools (a2, a3, a4)**, which operated at 100% margin; `a1` operated at 2% margin, and the two smaller MIR stakes later sat on s3/s4, also at low margin, with only dust balances remaining by the time of current-state review. The off-chain attribution chain (pool operator -> Wave Financial -> cFund -> IOG) is sourced from public corporate disclosures, not on-chain proof. During the period when the 100%-margin a-pools were active, staking rewards from delegated MIR-origin funds flowed to the pool operator. The original MIR stakes now hold only dust, all four a-pools are retired, and two of the stakes were later re-delegated to s3/s4 with dust balances.
 
 ### 4. Governance implications
-Two MIR stakes delegate voting power to the WavePool DRep via `delegation_vote`. However, both stakes currently hold only dust (~2.5 ADA each), so their practical governance weight is negligible regardless of the accounting mechanism. The DRep is currently inactive but registered through epoch 580.
+Two MIR stakes delegate voting power to the WavePool DRep via `delegation_vote`. However, both stakes currently hold only dust (~2.5 ADA each), so their practical governance weight is negligible regardless of the accounting mechanism. The latest db-sync evidence in this investigation shows those delegations at epoch 544. The DRep has no fixed registration expiry; under Conway, continued inactivity would eventually cross the `drepActivity` threshold and mark it inactive, but registration itself persists until explicit deregistration.
 
 ### 5. Structural patterns consistent with anti-forensic design
 The enterprise relay layer, circular churn, unregistered dark stakes, and sub-threshold fragmentation are all **consistent with** anti-forensic design rather than normal wallet behavior. This is an inference from structural evidence -- the transaction patterns match what deliberate obfuscation would look like, but the on-chain data alone cannot prove intent.
@@ -284,6 +288,7 @@ The enterprise relay layer, circular churn, unregistered dark stakes, and sub-th
 | Corrected spend logic removes the earlier inflated unspent-balance claims | **TRUE** | valid unspent test requires `tx_in.tx_out_id = tx_out.tx_id` and `tx_in.tx_out_index = tx_out.index` |
 | Most listed non-circular destinations are now dust or empty | **TRUE** | only `stake1uxt2g...` remains material at roughly ~1.2M ADA in the reviewed set |
 | Withdrawal pattern consistent with managed distribution | **TRUE** | 469 withdrawal transactions, large epoch-299 withdrawal, and repeated cadence thereafter |
+| The 1,000 ADA epoch-299 excess over the main MIR principal is explained by pool-deposit refunds, not additional MIR activity | **TRUE** | `reward` rows (`type='refund'`, 500 ADA each), plus `pool_update`/`pool_retire` linkage for `pool1mnt...` and `pool1r2ht...` |
 | Exchange/custody destinations observed | **FALSE** | Zero exchange hits at any trace depth |
 | Operation appears pre-planned | **TRUE** | 7-day registration-to-MIR sequence with test tx |
 | Enterprise relay layer consistent with anti-forensic design | **INFERENCE** | Sub-threshold fragmentation defeats trace continuity; intent cannot be proven from structure alone |
@@ -328,10 +333,12 @@ All presentation queries use `encode(t.hash, 'hex')` for standard Cardano tx-has
 
 ### Key verification queries
 
-**Largest reserve drawdown claim**: Full `ada_pots` historical query confirmed epoch 298->299 drop of 340.1M ADA is the largest ever. Next largest: 24.4M (epoch 247). Query: `WITH pots AS (SELECT epoch_no, reserves, lag(reserves) OVER (ORDER BY epoch_no) AS prev_reserves FROM ada_pots) SELECT epoch_no, (prev_reserves - reserves) / 1000000.0 AS reserve_drop_ada FROM pots ORDER BY (prev_reserves - reserves) DESC LIMIT 10;`
+**Largest reserve drawdown claim**: Full `ada_pots` historical query confirmed epoch 298->299 drop of 340.1M ADA is the largest observed in the post-epoch-209 `ada_pots` series available in this replica. Next largest in that series: 24.4M (epoch 247). Query: `WITH pots AS (SELECT epoch_no, reserves, lag(reserves) OVER (ORDER BY epoch_no) AS prev_reserves FROM ada_pots) SELECT epoch_no, (prev_reserves - reserves) / 1000000.0 AS reserve_drop_ada FROM pots ORDER BY (prev_reserves - reserves) DESC LIMIT 10;`
 
 **Zero voucher overlap claim**: `SELECT ... FROM reserve r JOIN ... WHERE b.epoch_no = 208` against the 6 MIR stakes returned 0 rows.
 
 **Pool retirement claim**: `pool_retire` table confirms retirement epochs for all four a-pools: a3 (466), a4 (514), a1 (534), a2 (599). Pools s3 and s4 remain active.
 
-**Corrected balance verification**: Using the corrected unspent query (`tx_in.tx_out_id = tx_out.tx_id AND tx_in.tx_out_index = tx_out.index`), all 6 MIR stakes show dust balances (2.5-6.5 ADA each, ~22.6 ADA total). This is consistent with pool.pm. For `epoch_stake` at epoch 622, only `stake1u887jry...` and `stake1u9mymn6...` appear at about 2.6 ADA each because the other four last delegated to retired pools.
+**Epoch-299 refund source**: `reward` table shows two `type='refund'` rows of 500 ADA each, spendable in epoch 299, on the two smaller MIR stakes. `pool_update` and `pool_retire` tie those refunds to two short-lived pools registered in epoch 296 and retired in epoch 299: `pool1mntgymmmct8209tk7r47lu5tel5tf8aj40qgxpxmm0eqywgpgh4` and `pool1r2htvwxah6t3w83465ecmyan5s87ehezajnq6yftkktyz0fnhrx`. Both pools used the same stake as reward account and owner, had 66M ADA pledge, 100% margin, and literal metadata URL string "https://".
+
+**Corrected balance verification**: Using the corrected unspent query (`tx_in.tx_out_id = tx_out.tx_id AND tx_in.tx_out_index = tx_out.index`), all 6 MIR stakes show dust balances (2.5-6.5 ADA each, ~22.6 ADA total). This is consistent with pool.pm. For the latest `epoch_stake` snapshot available at investigation time (epoch 622), only `stake1u887jry...` and `stake1u9mymn6...` appear at about 2.6 ADA each because the other four last delegated to retired pools.
