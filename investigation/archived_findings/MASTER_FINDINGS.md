@@ -66,12 +66,20 @@ Named founders combined: **5,185,414,107 ADA** (16.67% of genesis supply).
 
 **Grade: FACT**
 
-The genesis entry redeemed by `5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef` is operationally indistinguishable from the main EMURGO allocation. Key evidence:
+> The genesis entry redeemed by `5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef` is operationally indistinguishable from the main EMURGO allocation.
+>
+> --- CORRECTION 2026-04-20 ---
+> This claim overstates the evidence. Byron-era shared infrastructure cannot distinguish co-ownership from custodial administration. Downgraded to: "administered via infrastructure shared with EMURGO from epoch 4." See HYPOTHESES.md (H-001, H-002) and Limitations section of README.md.
+>
+> Key evidence:
 
 **Redemption timing:**
 - EMURGO redemption (`242608fc...`): 2017-09-28 10:04:11 UTC
 - EMURGO_2 redemption (`5ec95a53...`): 2017-09-28 10:09:11 UTC
-- Gap: **5 minutes, same operator sequential execution**
+> - Gap: **5 minutes, same operator sequential execution**
+>
+> --- CORRECTION 2026-04-20 ---
+> This claim overstates the evidence. Byron-era shared infrastructure cannot distinguish co-ownership from custodial administration. Downgraded to: "administered via infrastructure shared with EMURGO from epoch 4." See HYPOTHESES.md (H-001, H-002) and Limitations section of README.md.
 
 **EMURGO_2 redeemed to:** `DdzFFzCqrhspiThx6UaeJASmHTbwbXp2FtdCkF9AU9QXPF9D8sUC7Fqrv9bmYkxradBbqMrSxukTTsqCPNPwRh5PHazdiwWTuJYVMMaf`
 
@@ -91,7 +99,12 @@ This is simultaneously EMURGO_2 hop 1 and EMURGO hop 3. The merge happens **at t
 | EMURGO_2 = EMURGO | **True** |
 | Shared stake credentials | 6,216 / 6,216 (100%) |
 
-The two traces are functionally identical from hop 1 onward. The 781M entry's original beneficial ownership at genesis is unresolved (sale ticket vs. undisclosed founder allocation), but the operator executing downstream is the same as EMURGO.
+The two traces are functionally identical from hop 1 onward.
+
+> The 781M entry's original beneficial ownership at genesis is unresolved (sale ticket vs. undisclosed founder allocation), but the operator executing downstream is the same as EMURGO.
+>
+> --- CORRECTION 2026-04-20 ---
+> This claim overstates the evidence. Byron-era shared infrastructure cannot distinguish co-ownership from custodial administration. Downgraded to: "administered via infrastructure shared with EMURGO from epoch 4." See HYPOTHESES.md (H-001, H-002) and Limitations section of README.md.
 
 ---
 
