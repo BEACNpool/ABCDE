@@ -22,7 +22,7 @@
 - Sampled follow-on large txs on the other 150M side branches are mostly **same-stake self-churn**, making the 200M branch the unusual later-funded side branch
 - Corrected named-pool overlap baseline is **137 IOG+EMURGO**, **126 IOG+CF**, **65 EMURGO+CF**, **2 all-three** after fixing EMURGO pool matching
 
-Implication: the live attribution question is narrower, but not closed. The `781M` source still looks like a single-ticket company-side sale entry that merged directly into EMURGO operations, while EMURGO's own public chronology remains inconsistent enough that the original-holder story cannot yet be reduced to a simple yes/no on corporate existence.
+Implication: the live attribution question is narrower, but not closed. The `781M` source is consistent with a sale-ticket-sized entry administered via infrastructure shared with EMURGO from epoch 4, while EMURGO's own public chronology remains inconsistent enough that the original-holder story cannot yet be reduced to a simple yes/no on corporate existence.
 
 ---
 
@@ -72,7 +72,7 @@ Public-source review is now complete enough to narrow the question. The exact `7
 - [x] Confirm the first `781M` downstream spend directly co-spends with an EMURGO-derived UTxO
 - [x] Confirm that official EMURGO public materials conflict on founding/registration chronology
 - [x] Recover the old official public audit summary page (`/en/ada-distribution-audit/`)
-- [ ] Determine whether the entry was a sale-ticket holder, EMURGO affiliate, or unrelated buyer later entering common custody
+- [ ] Determine whether the entry reflects co-ownership with EMURGO, separate beneficial ownership under shared administration, or an unrelated buyer later entering common custody
 - [ ] Reconcile EMURGO chronology (`2015` vs `June 2017`) using archived company materials or registry records
 - [ ] Recover the underlying tranche audit reports or any standalone summary attachment beyond the recovered public audit page
 - [ ] Prove the exact historical target of the rebuilt `Further information on the sale` sentence, if possible

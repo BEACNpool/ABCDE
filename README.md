@@ -19,6 +19,9 @@ Claims are graded by evidence strength and tied to supporting artifacts and repr
 ## Canonical Findings
 See `findings/`
 
+## Limitations
+Byron-era shared infrastructure is a confounder, not a differentiator. Early co-spend, shared splitter behavior, and shared downstream routing for the 781,381,495 ADA fourth entry support the narrower claim that it was administered via infrastructure shared with EMURGO from epoch 4, but they do not distinguish beneficial ownership from custodial administration on current evidence. The stronger signal retained in this repository is the later Shelley-era delegation pattern, especially the 12 cross-delegating stake addresses spanning all three founding pool families.
+
 ## Historical Investigation Record
 See:
 - `investigation/archived_findings/`
