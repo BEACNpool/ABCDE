@@ -59,7 +59,7 @@ This file tracks unresolved explanatory hypotheses for the 781,381,495 ADA fourt
 ---
 
 ## H-003. Shelley 12-stake-address cross-delegation indicates coordinated founding-entity operation
-- **Status**: STRONG INFERENCE
+- **Status**: OPEN
 - **Grade**: STRONG INFERENCE
 
 ### Evidence for

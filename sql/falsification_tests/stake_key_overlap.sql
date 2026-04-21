@@ -3,6 +3,8 @@
 -- Interpretation: This is a targeted falsification screen. Absence of overlap does not disprove shared administration.
 -- Notes:
 --   Read-only, SELECT-only. Prefers explorer.* derived schemas when available.
+-- REQUIRES:
+--   explorer.trace_edges and explorer.credential_address_map populated before execution.
 
 WITH fourth_seed AS (
   SELECT tx.id AS anchor_tx_id
@@ -18,6 +20,9 @@ fourth_descendant_stakes AS (
   WHERE ca.stake_address IS NOT NULL
 ),
 cross_delegating_12 AS (
+  -- TODO: replace with canonical set from governance.cross_delegating_founding_set once populated.
+  -- Until then, this inline list mirrors findings/F06_synchronized_delegation_swarm.md as of 2026-04-20.
+  -- If that file is edited, this query MUST be updated in the same commit.
   SELECT stake_address
   FROM (VALUES
     ('stake1u8stds2advjjwuxypcl7qkeg33ru9muvdlgzt296sg06zjclkd7vt'),

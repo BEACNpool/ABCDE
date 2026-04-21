@@ -5,6 +5,8 @@
 --   :window_blocks  integer block window for co-spend proximity (default 100)
 -- Notes:
 --   Read-only, SELECT-only. Targets replicated public.* plus local explorer.* overlays when available.
+-- REQUIRES:
+--   explorer.trace_edges populated for EMURGO and 4th-entry root traces before execution.
 
 WITH params AS (
   SELECT COALESCE(NULLIF(:'window_blocks', '')::integer, 100) AS window_blocks

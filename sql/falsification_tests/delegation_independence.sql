@@ -3,6 +3,8 @@
 -- Interpretation: Pool overlap alone does not prove common ownership. Non-overlap is more diagnostic than overlap here.
 -- Notes:
 --   Read-only, SELECT-only. Uses explorer.* / governance.* derived schemas where available and falls back to replicated public.* delegation history.
+-- REQUIRES:
+--   explorer.trace_edges and explorer.credential_address_map populated before execution.
 
 WITH fourth_seed AS (
   SELECT tx.id AS anchor_tx_id
