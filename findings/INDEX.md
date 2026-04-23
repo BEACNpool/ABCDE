@@ -11,6 +11,7 @@ Canonical finding pages assembled from existing repository content only.
 - `F07_exchange_liquidation.md`
 - `F08_558b_mystery_exchange_address.md`
 - `F09_genesis_concentration.md`
+- `F10_781m_sale_ticket_origin_signal.md`
 - `A01_emurgo2_frontier_identity.md`
 - `A02_emurgo2_direct_merge_epoch4.md`
 - `A03_convergence_transaction_c8596b9c.md`

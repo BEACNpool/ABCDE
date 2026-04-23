@@ -11,6 +11,7 @@
 | F07 | FACT | `findings/F07_exchange_liquidation.md` | `investigation/archived_findings/MASTER_FINDINGS.md` |
 | F08 | STRONG INFERENCE | `findings/F08_558b_mystery_exchange_address.md` | `investigation/archived_findings/MASTER_FINDINGS.md` |
 | F09 | FACT | `findings/F09_genesis_concentration.md` | `investigation/archived_findings/MASTER_FINDINGS.md` |
+| F10 | STRONG INFERENCE | `findings/F10_781m_sale_ticket_origin_signal.md` | `investigation/archived_notes/emurgo2_classification_2026-04-08.md`, `investigation/archived_notes/emurgo2_disclosure_search_2026-04-08.md` |
 | A01 | FACT | `findings/A01_emurgo2_frontier_identity.md` | `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md` |
 | A02 | FACT | `findings/A02_emurgo2_direct_merge_epoch4.md` | `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md` |
 | A03 | FACT | `findings/A03_convergence_transaction_c8596b9c.md` | `investigation/archived_findings/FULL_FINDINGS_2026-04-08_ADDENDUM.md` |

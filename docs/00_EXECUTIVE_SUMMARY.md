@@ -12,7 +12,9 @@ Claims are graded by evidence strength and tied to supporting artifacts and repr
 
 ## Summary of Canonical Findings
 - Founder allocation and redemption baseline: `../findings/F01_named_founder_allocations.md`
-- EMURGO_2 operational convergence: `../findings/F02_emurgo2_operational_convergence.md`
+- 781,381,495 ADA fourth-entry operational convergence with EMURGO (FACT) — beneficial ownership unresolved: `../findings/F02_emurgo2_operational_convergence.md`
+- 781,381,495 ADA fourth-entry sale-ticket origin signal (STRONG INFERENCE): `../findings/F10_781m_sale_ticket_origin_signal.md`
+- Unresolved attribution hypotheses for the fourth entry: `../HYPOTHESES.md` (H-001 co-ownership vs. H-002 administered-for-separate-owner)
 - Cross-seed consuming transactions: `../findings/F03_cross_seed_consuming_transactions.md`
 - Clean three-way merge and bridge path: `../findings/F04_clean_three_way_merge.md`, `../findings/A09_bridge_accumulator_before_three_way_merge.md`
 - Shared infrastructure and routing behavior: `../findings/F05_shared_58_output_splitter.md`, `../findings/F06_synchronized_delegation_swarm.md`
