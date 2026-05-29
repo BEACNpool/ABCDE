@@ -1,0 +1,10 @@
+# Normalize line endings for code/text so a plain clone is consistent.
+* text=auto eol=lf
+
+# Large binary data goes to Git LFS.
+*.parquet filter=lfs diff=lfs merge=lfs -text
+data/large/** filter=lfs diff=lfs merge=lfs -text
+
+# The compact clone-and-ask database is a NORMAL git object (not LFS) so a
+# plain `git clone` without git-lfs still gets instant, query-ready data.
+data/abcde_genesis.duckdb -text -filter -diff -merge

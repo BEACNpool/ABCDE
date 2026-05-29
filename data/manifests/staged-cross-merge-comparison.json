@@ -1,0 +1,698 @@
+{
+  "schema_version": 1,
+  "legacy_source": "legacy/2026-05-20-pre-v2-import/evidence/csv/cross_seed_consuming_transactions_2026-04-06.csv",
+  "legacy_sha256": "f785652f49a2970fc031278a31705b94258314d73fea1e2d36fe40ba4eceb91b",
+  "comparisons": [
+    {
+      "staged_path": "data/release/staged_cross_entity_merges_founders_depth12.csv",
+      "staged_sha256": "c2bdd61a16f84d9dc6bb0c13412f72a019cb5074dc8129366ccf119aab330673",
+      "staged_rows": 223,
+      "staged_distinct_txs": 223,
+      "legacy_rows": 521,
+      "legacy_distinct_txs": 521,
+      "overlap_txs": 44,
+      "legacy_missing_txs": 477,
+      "staged_extra_txs": 179,
+      "overlap_by_legacy_combo": {
+        "CF+EMURGO": 3,
+        "EMURGO+IOG": 41
+      },
+      "missing_by_legacy_combo": {
+        "CF+EMURGO": 250,
+        "CF+EMURGO+IOG": 3,
+        "CF+IOG": 49,
+        "EMURGO+IOG": 175
+      },
+      "extra_by_staged_combo": {
+        "cf+iog": 1,
+        "emurgo+iog": 178
+      },
+      "first_missing_legacy": [
+        {
+          "epoch_no": "95",
+          "dest_tx_hash": "a71578ec01f6cf39dbcf31351631159e3dd6fb99dd475783effbc65b90b8f0f9",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "125",
+          "dest_tx_hash": "c72f9384bf92ed69f1f8ead364c709b61921455b79664968ca975c16ae7edcd3",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "125",
+          "dest_tx_hash": "fb46644ed1575c8620f0e1228a7fcf1f8530a23affdcae8b8b8179dd8476a984",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "132",
+          "dest_tx_hash": "36dcf3e08498b0ae22bb8e6c217597e9c01791f1940065fc95f72efa60d8a7a2",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "153",
+          "dest_tx_hash": "f2de36dd4e2c5e79657dd3a042e3e24db678844e8be47dfe0eb72fda456737a6",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "175",
+          "dest_tx_hash": "d038e876bda137467439acef281435d7aa2273ebfe57308be39969719e030c8d",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "175",
+          "dest_tx_hash": "fd94e97cef3264546fc3c2af276dbbaea937249424484322e525baee4dc0711c",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "180",
+          "dest_tx_hash": "850b042f0e52d890a2b2d8dfbd291cc0f4a01cc8f4210b2e63bedfd1444bec58",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "188",
+          "dest_tx_hash": "8c0c03829b6b4f19c8cfb05f6fb34f7aae353b0ef9c6360e638a30176ead85b2",
+          "seed_combo": "EMURGO+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "be819904bc8ccc30c1808c0b6e751cb3b5c515c391f5bebe85cf0093d81bef41",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "e47999f4ae716b2b6240fed97a7700ab532f3a7a7316c7e532634b092f177880",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "eace74e1f4c71fcd41e240b251bfaa07e0f7324884c5f8c06688d6ec165c4f5d",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "f9951db326893e5c6cd94407e3d75be4928442aaf5809e435ca3e82c1983949d",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "11c0765f430ecfffbdd1fb400d34bcd61d13af4c2e9332ce215f33de7e48d394",
+          "seed_combo": "CF+EMURGO"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "1f7a5e619d6abbe6f52a5fc55a9acb5833be5ee9518fec9fe87272f7b6d5c154",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "2b3d9c5034328e73e3a4beb6d3b0377e7f3955513f77a7e7f6ef687572def690",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "391d8f6bd1b91db3caa3c63c8f0c3a52a6338f7cb98c783297f6c8b37af6d77f",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "55d747e5aa93fbdf790db8190d8f61d323b855aaaf5af0100447e3eabed8a3ad",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "680388b47af60cb5896fb8161da8e0a028b0ca7183dba8bd6bfeb4a93f01b9c3",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "8ca8807569939b32e4f38ce5edee05ba457c06ef4bff0a4d00a8a9bde686bc68",
+          "seed_combo": "CF+IOG"
+        }
+      ],
+      "first_extra_staged": [
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "2bede584f43fd884dbd5434f8f81c49a231727aacc27ddbff8491f71cd0de956",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "3f4d8f9cd56edb62c4f4b6d30916eab934426cd6cc6564bc0c61a0673ea5f6d9",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "979f97935a5adda2157d6cf7935763c8309164d7df0d0af7a41801a8310daa21",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "94",
+          "merge_tx_hash": "6bf1ff9c3bb9c64a15344ab59b238b5950af46b2ec9761af37e0079491b78c74",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "3698271293d317a549d97591cdf7caa85cbe480b91b283622706f70d7d89f096",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "6e3014d603e45abe53726d41db76b22642e73016d7cfa4a68da89bfd471c93b2",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "73380b13d319dbf7a2b2216babecfaba702e667ea9cf180cfdd78d59289bcf4d",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "7b7d35735fa3d8df23f8b1a6946006ac097404c842265cb52ffed54674ca116d",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "96e0c32de880bf0fbbf1c6acc23175589f3e5e693424d55a0ad525819eb273e2",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "a87e4441ee7612acbc12be7afbdd93b218f9696cb9e80ae7fbf3e1bb4b30d40a",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "ea12c642a74c8fbaedc1cecc3227303eebf7180e73dd116c9a965e928f840836",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "107",
+          "merge_tx_hash": "51e194f1b3aaed600373b0796e87977d78c1499225f9214a5f1e070bf9487711",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "107",
+          "merge_tx_hash": "701077db1654d1853eb2bd276cdb8ac8e72205799f9ac63c65cf8ccc1f096a47",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "107",
+          "merge_tx_hash": "a3fd2c53ea587ef4f91ca5619728a3b49cdbe5ea9fe9ce210df2c1fb06f0f6fa",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "107",
+          "merge_tx_hash": "f2f2e06fa94ed088b283ffa99329b04d14bd4e816ea071fcc950f9d9e7a7a225",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "108",
+          "merge_tx_hash": "c1992d277c8eafeb527b552f2e5c824af4501a249d9766ce6ecdf89d318d8ce7",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "110",
+          "merge_tx_hash": "e1d65c77c9e5dd8f34713a254a07025e43684e4c8416e79406e834895574cedb",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "154",
+          "merge_tx_hash": "72e285400dd6f204e707fcee07d40db72b46bb74ca552cacddb2fa1041c52238",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "155",
+          "merge_tx_hash": "44f62df66de99eb0060ef58c0c13ac1fba88a988571b66dcfe35d23c1cf4d8d1",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "166",
+          "merge_tx_hash": "ee320bac9da17cd719936deb1c0961372ac2fc158a856284519705ef6de0f7e8",
+          "root_combo": "emurgo+iog"
+        }
+      ]
+    },
+    {
+      "staged_path": "data/release/staged_cross_entity_merges_founders_depth13.csv",
+      "staged_sha256": "5292eca1c0d5e31940514d626f4bba16da4e302d53469e20b7f201de129dd5d6",
+      "staged_rows": 2863,
+      "staged_distinct_txs": 2863,
+      "legacy_rows": 521,
+      "legacy_distinct_txs": 521,
+      "overlap_txs": 320,
+      "legacy_missing_txs": 201,
+      "staged_extra_txs": 2543,
+      "overlap_by_legacy_combo": {
+        "CF+EMURGO": 99,
+        "CF+EMURGO+IOG": 3,
+        "CF+IOG": 2,
+        "EMURGO+IOG": 216
+      },
+      "missing_by_legacy_combo": {
+        "CF+EMURGO": 154,
+        "CF+IOG": 47
+      },
+      "extra_by_staged_combo": {
+        "cf+emurgo": 1,
+        "cf+iog": 38,
+        "emurgo+iog": 2504
+      },
+      "first_missing_legacy": [
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "be819904bc8ccc30c1808c0b6e751cb3b5c515c391f5bebe85cf0093d81bef41",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "e47999f4ae716b2b6240fed97a7700ab532f3a7a7316c7e532634b092f177880",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "eace74e1f4c71fcd41e240b251bfaa07e0f7324884c5f8c06688d6ec165c4f5d",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "f9951db326893e5c6cd94407e3d75be4928442aaf5809e435ca3e82c1983949d",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "1f7a5e619d6abbe6f52a5fc55a9acb5833be5ee9518fec9fe87272f7b6d5c154",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "2b3d9c5034328e73e3a4beb6d3b0377e7f3955513f77a7e7f6ef687572def690",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "391d8f6bd1b91db3caa3c63c8f0c3a52a6338f7cb98c783297f6c8b37af6d77f",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "55d747e5aa93fbdf790db8190d8f61d323b855aaaf5af0100447e3eabed8a3ad",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "680388b47af60cb5896fb8161da8e0a028b0ca7183dba8bd6bfeb4a93f01b9c3",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "8ca8807569939b32e4f38ce5edee05ba457c06ef4bff0a4d00a8a9bde686bc68",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "94f01739a3ccf88af552e7440b060b1fd95edf639e759c94a46d077a194622b2",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "b0c7892c5d2e99e759550c48b45239fdd87863b930b60e7b587be390dc4a4555",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "c0c1f764db984e7fd79d7fc07d18ca2f8ba4f888cdf227315397a8bad91796fc",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "de4058c11a94520ec0a5b57997d8fc8165c7045e54b132ad6ad9d3977bb745c4",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "e4af8b62b2a3c81c086527f43479a14ee9805bf7a09da64e9f1dcb59c8ed35f2",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "f23d88f921163470e43d1d9bd59d4a671d47819ec3da4198d398428f970d6b4f",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "00dd311ce4c120d83821083af5cecc2925ffceae71a6e7a2957a95c5620cf2c0",
+          "seed_combo": "CF+EMURGO"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "065d120fdebc6038ac53778407d8885ff0e627d834f4981fc8d5d36638349f7a",
+          "seed_combo": "CF+EMURGO"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "088cc0d09043f26f323f530cca6910128c38e11d47e290bc0228c0903019c874",
+          "seed_combo": "CF+EMURGO"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "0b650a349e1d4478b35a0529dae83f429f717ccda208b340a26cd94a0f7a3cf5",
+          "seed_combo": "CF+EMURGO"
+        }
+      ],
+      "first_extra_staged": [
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "2bede584f43fd884dbd5434f8f81c49a231727aacc27ddbff8491f71cd0de956",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "6eec4c715ebcd49af4f03bb02a140e91f139dc09ae644f533f6cd2140b248906",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "727b6905d3da81aab9ae5ddd5c15a07e431fa5aee956d50fe1d210a43e06af69",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "3f4d8f9cd56edb62c4f4b6d30916eab934426cd6cc6564bc0c61a0673ea5f6d9",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "6c7bcb3862bc24073fee068c0ae07c9ae7304644698f63cef4a32a4d3de671de",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "78",
+          "merge_tx_hash": "a6506621cec37b5980603a5c68a5b891c7db27968574b593d505f8d15aff6017",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "0fa60c424a71c817724dc7409282cdd3cd680beb81c9dbcace2ca9a783b8621f",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "979f97935a5adda2157d6cf7935763c8309164d7df0d0af7a41801a8310daa21",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "fecd74f7d420c22db8167559eb00df88204dba3ab7bfb518defd3bb3fe16558f",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "87",
+          "merge_tx_hash": "0a364635c7849651165c0b6095161bc658d910e97a140b71dc7f56383d7e5cd5",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "94",
+          "merge_tx_hash": "6bf1ff9c3bb9c64a15344ab59b238b5950af46b2ec9761af37e0079491b78c74",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "96",
+          "merge_tx_hash": "d976fb5d22581aef6b383abcd45ff7151d413e4f1e4920d331b8ec801a59aed4",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "104",
+          "merge_tx_hash": "c974abc3429d30d279e416f7e35e73075da72ac7a52f8dd2d04ec6076521167c",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "105",
+          "merge_tx_hash": "1adec87255c872797d695eca078e8c994fde893e41a4871eedca18aeeeeb5a55",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "105",
+          "merge_tx_hash": "22be3204b90fc1e388defba1a650a88357ad57b5f07dbabd0373a6bc5c6b80c1",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "105",
+          "merge_tx_hash": "959b16d97549f61abb892c627ae75141a02bb432c708fc773e3a27b243923b33",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "054818ee7b1460a347955bde6db94698439fa5fed291c5ac48ca5e278b670f96",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "0645df21bafbc7485ffe4fab7dfe33e9be16ee7904ef8f8f5e55b074d4513914",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "084c1a34e084eaa66a1d9241e0dc06b2832fe311b18dfaf3fd58c847f83900c9",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "106",
+          "merge_tx_hash": "0e1824d2e9868dbc117fa93df4dfa1ec75a400c93101e0fe88a1af875c191464",
+          "root_combo": "emurgo+iog"
+        }
+      ]
+    },
+    {
+      "staged_path": "data/release/staged_cross_entity_merges_founders_depth14.csv",
+      "staged_sha256": "49775842846a2fc0b1dddbffb8fd0399ea99c152585408593ca1899e3683d77f",
+      "staged_rows": 22825,
+      "staged_distinct_txs": 22825,
+      "legacy_rows": 521,
+      "legacy_distinct_txs": 521,
+      "overlap_txs": 454,
+      "legacy_missing_txs": 67,
+      "staged_extra_txs": 22371,
+      "overlap_by_legacy_combo": {
+        "CF+EMURGO": 221,
+        "CF+EMURGO+IOG": 3,
+        "CF+IOG": 14,
+        "EMURGO+IOG": 216
+      },
+      "missing_by_legacy_combo": {
+        "CF+EMURGO": 32,
+        "CF+IOG": 35
+      },
+      "extra_by_staged_combo": {
+        "cf+emurgo": 53,
+        "cf+emurgo+iog": 55,
+        "cf+iog": 403,
+        "emurgo+iog": 21860
+      },
+      "first_missing_legacy": [
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "be819904bc8ccc30c1808c0b6e751cb3b5c515c391f5bebe85cf0093d81bef41",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "eace74e1f4c71fcd41e240b251bfaa07e0f7324884c5f8c06688d6ec165c4f5d",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "193",
+          "dest_tx_hash": "f9951db326893e5c6cd94407e3d75be4928442aaf5809e435ca3e82c1983949d",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "1f7a5e619d6abbe6f52a5fc55a9acb5833be5ee9518fec9fe87272f7b6d5c154",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "2b3d9c5034328e73e3a4beb6d3b0377e7f3955513f77a7e7f6ef687572def690",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "391d8f6bd1b91db3caa3c63c8f0c3a52a6338f7cb98c783297f6c8b37af6d77f",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "55d747e5aa93fbdf790db8190d8f61d323b855aaaf5af0100447e3eabed8a3ad",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "680388b47af60cb5896fb8161da8e0a028b0ca7183dba8bd6bfeb4a93f01b9c3",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "8ca8807569939b32e4f38ce5edee05ba457c06ef4bff0a4d00a8a9bde686bc68",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "94f01739a3ccf88af552e7440b060b1fd95edf639e759c94a46d077a194622b2",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "b0c7892c5d2e99e759550c48b45239fdd87863b930b60e7b587be390dc4a4555",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "c0c1f764db984e7fd79d7fc07d18ca2f8ba4f888cdf227315397a8bad91796fc",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "de4058c11a94520ec0a5b57997d8fc8165c7045e54b132ad6ad9d3977bb745c4",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "195",
+          "dest_tx_hash": "e4af8b62b2a3c81c086527f43479a14ee9805bf7a09da64e9f1dcb59c8ed35f2",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "00dd311ce4c120d83821083af5cecc2925ffceae71a6e7a2957a95c5620cf2c0",
+          "seed_combo": "CF+EMURGO"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "80f10d08c8451958fd82e422e49350f69ebf7b2ab15844f6f780f09504105fbe",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "85186bfdafbd589dc948f304ebe2d0096fd20dab8723bbbfb4e56c377cfe5e68",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "ae8cdfc238a0b28ca72f006252d2a76ca80595c064250675f62c1be76efb033a",
+          "seed_combo": "CF+IOG"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "c178d0b16180e99e6ac818275cb83546468e9b7ec0be79f988deeecc23f6ed62",
+          "seed_combo": "CF+EMURGO"
+        },
+        {
+          "epoch_no": "196",
+          "dest_tx_hash": "eb8d1c63f3388547bcdd600764e114bd0f6b7f8da8ea29600d703ee9dfa6db44",
+          "seed_combo": "CF+EMURGO"
+        }
+      ],
+      "first_extra_staged": [
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "211b85bb07d48830c28481985c6e2e4656ca8910a894998b13ccf6fb677af4e5",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "2bede584f43fd884dbd5434f8f81c49a231727aacc27ddbff8491f71cd0de956",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "3e467a30929cfaf360990c4cb06200588059af6dedc18af0136520375cbe1268",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "4fe84876e12ca0a87245cd4efe25591a48b5e17a6ab9931c71a49708c3e9da58",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "6eec4c715ebcd49af4f03bb02a140e91f139dc09ae644f533f6cd2140b248906",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "727b6905d3da81aab9ae5ddd5c15a07e431fa5aee956d50fe1d210a43e06af69",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "9c0158eefff102e46cd598d67b8429db80bbfecacb719aefeb8fa818dc3b2493",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "55",
+          "merge_tx_hash": "b3d88ef81cca6802d074b2d13b3cb9dfbdae9b21fa499792f23618b6528fe317",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "3f4d8f9cd56edb62c4f4b6d30916eab934426cd6cc6564bc0c61a0673ea5f6d9",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "6c7bcb3862bc24073fee068c0ae07c9ae7304644698f63cef4a32a4d3de671de",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "984ca9073ee007dfa15267fe7288ccfe45eb09b10e072375ef193758184bd88c",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "dd80c8207f1987696c23cc85c004da8bee6bdc3ab5b898cf32e2e0dfb4b2cf34",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "67",
+          "merge_tx_hash": "f168dbfca0577f8e4d430240238087155ef33c39284047776a0d137e3dc0c410",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "72",
+          "merge_tx_hash": "79d9da4feb9043099373c76c6a493c7d09ac8db6bc4d1c16bff33e6c4297c8f7",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "78",
+          "merge_tx_hash": "08427f03f2dbea5fdd9e77e04300c89d4b549f7505bdc3d7c8e8ce67a0350808",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "78",
+          "merge_tx_hash": "a6506621cec37b5980603a5c68a5b891c7db27968574b593d505f8d15aff6017",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "78",
+          "merge_tx_hash": "c562f232ebbc79e972a2e799658216f9e3bd3ee04786d398e38a3a0925d24873",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "0fa60c424a71c817724dc7409282cdd3cd680beb81c9dbcace2ca9a783b8621f",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "8a7ec47bb9d29759fa228615bbb0d2a9a083b107a14dd2f01824482753b4f63d",
+          "root_combo": "emurgo+iog"
+        },
+        {
+          "epoch_no": "82",
+          "merge_tx_hash": "979f97935a5adda2157d6cf7935763c8309164d7df0d0af7a41801a8310daa21",
+          "root_combo": "emurgo+iog"
+        }
+      ]
+    }
+  ],
+  "notes": "Overlap compares staged merge transaction hashes to the legacy 521-row named-founder cross-seed baseline. Staged extras are candidates, not claims."
+}

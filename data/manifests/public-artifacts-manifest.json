@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "file_count": 79,
+  "files": [
+    {
+      "path": "data/small/bounded_trace_depth3_db.csv",
+      "bytes": 24651,
+      "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a"
+    },
+    {
+      "path": "data/small/bounded_trace_growth_probe.csv",
+      "bytes": 90,
+      "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26"
+    },
+    {
+      "path": "data/small/cross_merge_depth10_probe.csv",
+      "bytes": 322,
+      "sha256": "e50e3468490493fbccd0d1ad30cb10b4328a1692e533452d2721d7cc2f262bf9"
+    },
+    {
+      "path": "data/small/fourth_entry_direct_cospend_db.csv",
+      "bytes": 656,
+      "sha256": "065fecdb3557605516c60dae36d283789c913f4c343b8b7335ec202608d8b9cc"
+    },
+    {
+      "path": "data/small/fourth_entry_sale_ticket_signal.csv",
+      "bytes": 1861,
+      "sha256": "da587f9aa80de67ef5ef2e6c81f1cf7feb2031dbdd99180ea8fedfe10b166694"
+    },
+    {
+      "path": "data/small/governance_drep_delegation_targets.csv",
+      "bytes": 71963,
+      "sha256": "e5d9c1e9e1d7408969a1c55a162206e108668f778592545e5bd7500b191d6bc0"
+    },
+    {
+      "path": "data/small/governance_drep_latest_targets.csv",
+      "bytes": 38977,
+      "sha256": "05a2331c2a97067b3d04cd2b01d2b736056b12edb5aa72169d44414d5f630212"
+    },
+    {
+      "path": "data/small/governance_drep_latest_value_targets.csv",
+      "bytes": 30942,
+      "sha256": "964f4e988e217aad811035a12ed36afce8d5f092f190851570a43d635c8118ee"
+    },
+    {
+      "path": "data/small/governance_drep_metadata.csv",
+      "bytes": 50268,
+      "sha256": "3d6d69045fe6a48f0da24ab05f6ab5b8586c0c9341c72633ec08bbe4ffbc9f34"
+    },
+    {
+      "path": "data/small/governance_pool_metadata.csv",
+      "bytes": 503514,
+      "sha256": "f2e4e02c37a561358d2a5891ad9d2c28c289785c9c9b4c9733e41ba010867849"
+    },
+    {
+      "path": "data/small/governance_spo_delegation_targets.csv",
+      "bytes": 974667,
+      "sha256": "94fbf2443c613189a2aa95eab4d14778689045bdd32ae267ef06a5c5b97e12f9"
+    },
+    {
+      "path": "data/small/governance_spo_latest_targets.csv",
+      "bytes": 334039,
+      "sha256": "ca35db8de2996884045051f0cfcc47dc35c7db3ec0f7dd90c1cec872166d6ec7"
+    },
+    {
+      "path": "data/small/governance_spo_latest_value_targets.csv",
+      "bytes": 264946,
+      "sha256": "08c42cf8fabf7ca3e140ae0f9e468e54b03c19ba4ad447a6074ea672e64cccd0"
+    },
+    {
+      "path": "data/small/governance_top_drep_delegation_age_buckets.csv",
+      "bytes": 9077,
+      "sha256": "676a9ede573d994c6d8425086386fe33a48c078c1450202fbf91dd2094254c78"
+    },
+    {
+      "path": "data/small/governance_top_drep_genesis_trace_exposure.csv",
+      "bytes": 2871,
+      "sha256": "03f6b71597a3529b69fadf2c5275ee5cfe0c9dd1935bc1cb746d54c874f89d2b"
+    },
+    {
+      "path": "data/small/governance_top_drep_genesis_trace_exposure_by_root.csv",
+      "bytes": 5526,
+      "sha256": "15adad8b02d40ecc1977d8b7f32c381821882b6c636b43a7f7dd79b33dd64857"
+    },
+    {
+      "path": "data/small/governance_top_drep_genesis_trace_stickiness.csv",
+      "bytes": 7214,
+      "sha256": "b2a2657c38dfe771e60fbe9a14d6f058fe3a29a0ca9a388044aa491900956d5f"
+    },
+    {
+      "path": "data/small/governance_top_drep_koios_crosscheck.csv",
+      "bytes": 5555,
+      "sha256": "4b0b05df9d44344c238fe483cd3aa2b08d4d0f47d718e26d6314285886c45b38"
+    },
+    {
+      "path": "data/small/governance_top_drep_pool_affiliations.csv",
+      "bytes": 22983,
+      "sha256": "c63af4da8ad37d438f89999bdd2905bfed150eb4ae58fa8aacc32e485a88e090"
+    },
+    {
+      "path": "data/small/governance_top_drep_profiles_current.csv",
+      "bytes": 5313,
+      "sha256": "78abaa0baced310945128767279125cc39f144ab17c36da8c42de04b9ff67fd6"
+    },
+    {
+      "path": "data/small/governance_top_drep_stake_buckets.csv",
+      "bytes": 10217,
+      "sha256": "d259cfbfba7baab4a7c9fd8ad1db9e725a79367129479af41126e78aeb5a55ec"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_by_depth.csv",
+      "bytes": 310,
+      "sha256": "af472c572d0a7eb39c64c778d645751a07950e6bfff73a10550495e407f0a7a6"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_cluster_classification_top200.csv",
+      "bytes": 40849,
+      "sha256": "8a91d4dde20fcfcca6d62d61afbc8827f3e8705ec2bd59873c7fa9bec7540832"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_cluster_profile_top200.csv",
+      "bytes": 28200,
+      "sha256": "a1b345c5eb8cea4d34ed143dd5a173cf8eb45d88c8c89b900d6fd3ceb92dfb0e"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_confidence_bands.csv",
+      "bytes": 1060,
+      "sha256": "82c584f4cad4bfc9a45cd21291f6632efbd5fa87fc041829cba8d669e991fb85"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_coordinated_abstain_e329_clusters.csv",
+      "bytes": 4175,
+      "sha256": "9c951f43212e7f1a512dc7202de9b0dfd498cfe6837b9d7c0341227a7f845039"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_heuristic_class_summary.csv",
+      "bytes": 387,
+      "sha256": "dcc6ef1668bdece61f9d609bf65797ae5544acaefd110167dabb2cf8cde41155"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_summary.csv",
+      "bytes": 221,
+      "sha256": "bcaa26140deea25c01506e99c5af77887b5fe7744b72dd857668eff9abb2fdc7"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_top_stake.csv",
+      "bytes": 4510,
+      "sha256": "1dc7a30e33d2cf15d05796528f06c3f96a050029299ca9184d58faf8aefdb132"
+    },
+    {
+      "path": "data/small/iog_pool_state_validation.csv",
+      "bytes": 658,
+      "sha256": "5b4011c18606470633e2171aa214a667188e2f88dc693bd643b1b60e1ff2ea56"
+    },
+    {
+      "path": "data/small/legacy_cross_merge_baseline_counts.csv",
+      "bytes": 298,
+      "sha256": "1dc127e8c8e7fe6571f9862bc9ea809805a1d257a4dbfc36b103eedc404ef381"
+    },
+    {
+      "path": "data/small/seed_anchor_db_verification.csv",
+      "bytes": 419,
+      "sha256": "160b03c8d5f21684c14965cb813b34a9e7ab14b346cd9b52af2ba95af121000e"
+    },
+    {
+      "path": "data/small/seed_first_spend_inputs_db.csv",
+      "bytes": 1930,
+      "sha256": "abfa042a814ab0e282365aca2c5325a7892e8d197bfaeeea143f1a1d5abd4500"
+    },
+    {
+      "path": "data/small/seed_first_spends_db.csv",
+      "bytes": 1357,
+      "sha256": "8b280dccec0338a7fc8cfb86bf71351a96619ad2e78bb1180b82e7e365e9d3aa"
+    },
+    {
+      "path": "data/small/seed_outputs_db.csv",
+      "bytes": 1098,
+      "sha256": "4df31ff9b69e84912cfe7a40eb8898a6ce28abbe6cc62c635f0f6231226578da"
+    },
+    {
+      "path": "data/small/seed_registry.csv",
+      "bytes": 718,
+      "sha256": "ae44893280116416029fd63e5f3186f1634903425bb844011c6198863346768f"
+    },
+    {
+      "path": "data/small/staged_cross_entity_merges_depth10.csv",
+      "bytes": 57244,
+      "sha256": "e6de4c3506e1ee61c2eebcd0868e1d94f5f92ee833316310c99c9ea0baab80e8"
+    },
+    {
+      "path": "data/small/staged_cross_entity_merges_founders_depth10.csv",
+      "bytes": 272,
+      "sha256": "fce98a7469ef7c599388da2b3875015e3c8bdf061b086f3b1ac70e554f66d81b"
+    },
+    {
+      "path": "data/small/staged_cross_merge_comparison.csv",
+      "bytes": 343,
+      "sha256": "8f5ae8e58b26d60dc292fb3402f6ba09e5d00daf82aac3b7b45cc8027f07713e"
+    },
+    {
+      "path": "data/small/staged_trace_depth10_summary.csv",
+      "bytes": 315,
+      "sha256": "7083694a3da880f952d379179cf66a77446febc9b3ceb67fa51cd5efbf9fef8a"
+    },
+    {
+      "path": "data/small/staged_trace_depth3_summary.csv",
+      "bytes": 134,
+      "sha256": "1a00c7680e86905a86ca69d71e3e67938cfcf1e52ef8187ad6649f1dcf58ccf7"
+    },
+    {
+      "path": "data/small/staged_trace_founders_depth10_summary.csv",
+      "bytes": 247,
+      "sha256": "f370704706e1ae8664cdaacd0a2c7bd4241a0a8c10d09d7ff5f1342e402193f7"
+    },
+    {
+      "path": "data/small/staged_trace_founders_depth12_summary.csv",
+      "bytes": 353,
+      "sha256": "b64a9d1d9c80171a99b3c84b29e91cf6c38b34342a5b9268d319a1da97c701b4"
+    },
+    {
+      "path": "data/small/staged_trace_founders_depth13_summary.csv",
+      "bytes": 414,
+      "sha256": "714bfb7bbda8ce5f13667aed9e2f056a587263c05f81f78843167976eb0ceacd"
+    },
+    {
+      "path": "data/small/staged_trace_founders_depth14_summary.csv",
+      "bytes": 441,
+      "sha256": "c04cf09e816668b0aff6dbffba3f04e348a210f27dfd94432bb3d7fe9b023a59"
+    },
+    {
+      "path": "data/small/trace_stake_credentials_db.csv",
+      "bytes": 3739,
+      "sha256": "47a80d5ec9360e0fefdf0ed6c67c7aa343609c6e8fdb2a40aeab938ad7e27435"
+    },
+    {
+      "path": "reports/genesis_forensics_community_summary.md",
+      "bytes": 16218,
+      "sha256": "05f987b4d396b141c264526ce4c0572b1eb3afa7e771629d3ff51b8fb814811b"
+    },
+    {
+      "path": "reports/top_drep_profiles.md",
+      "bytes": 6379,
+      "sha256": "38f898e0f519619a7c6dbc74d1cecc13677c146929465a693a3a9001ab3b9a55"
+    },
+    {
+      "path": "findings/F01_named_founder_allocations.md",
+      "bytes": 563,
+      "sha256": "abf0d78f8669c05b09c2a3d7ef853b3da881f2321af54576cd5a16ffdf016ea4"
+    },
+    {
+      "path": "findings/F02_fourth_entry_first_spend_convergence.md",
+      "bytes": 1264,
+      "sha256": "48838379ed20423a52418d113976824ae148de5529eabc939e23c0ec93a1e550"
+    },
+    {
+      "path": "findings/F02b_fourth_entry_direct_cospend.md",
+      "bytes": 1010,
+      "sha256": "8211edd6b05b38d85c8e78c7312e6d90f34e4b93b51f376b1e5135d8d857041a"
+    },
+    {
+      "path": "findings/F03_fourth_entry_sale_ticket_origin_signal.md",
+      "bytes": 1406,
+      "sha256": "f8c28af021364ccea748690e0eb126e8a9d8ce713e31f4d26a2011166afcd5c2"
+    },
+    {
+      "path": "findings/F04_bounded_trace_overlap_pilot.md",
+      "bytes": 1118,
+      "sha256": "602e17ef601c5d1b365596c6bef1648dc406325cda7b027f1b2f793a8369cbdd"
+    },
+    {
+      "path": "findings/F05_bounded_trace_merge_inventory_pilot.md",
+      "bytes": 1130,
+      "sha256": "a357510ce1f08166b37e2f5539179d015fd87117c0e56795e77eea3471432ebd"
+    },
+    {
+      "path": "findings/F06_governance_delegation_targets.md",
+      "bytes": 1998,
+      "sha256": "bc721982f2533ebafafe764b02b4fd9282cb54b3fb72c329594011386545607f"
+    },
+    {
+      "path": "findings/F07_staged_trace_extraction.md",
+      "bytes": 3429,
+      "sha256": "25d1ccc92d281fe4b488a720d2e6f905b98ba854fb2659968a6f3a116b88b860"
+    },
+    {
+      "path": "findings/F08_iog_current_bag_audit_cut.md",
+      "bytes": 3944,
+      "sha256": "ebeca98698a6380e42e8f58135561557f4e34743a1a5e65d3f76d51ca44e8387"
+    },
+    {
+      "path": "findings/INDEX.md",
+      "bytes": 1661,
+      "sha256": "7616ca05ae9fbeecb43ffcd6161f1c05abe2fab78718b426d8dc4ba5aed3eb23"
+    },
+    {
+      "path": "docs/00_START_HERE.md",
+      "bytes": 2061,
+      "sha256": "b09a3829af443677ff8d0caf71f96a2eed402f10ed9927ea518e9c177d9ef986"
+    },
+    {
+      "path": "docs/01_METHOD.md",
+      "bytes": 720,
+      "sha256": "08f7642a5c6527213fc0b459764f087776e3413b255f09eb9f9cbdd4f640e7c1"
+    },
+    {
+      "path": "docs/02_GRADING.md",
+      "bytes": 2280,
+      "sha256": "966d42987f24b3e51235b20d614690e3f9fb3d0c6d2f2c36e858a4b791fdbb78"
+    },
+    {
+      "path": "docs/03_DATA_DICTIONARY.md",
+      "bytes": 13190,
+      "sha256": "87c0a8b9f9b73adfba82157983935664e88c418524518b02e04b283a9c1339b4"
+    },
+    {
+      "path": "docs/04_REPRODUCING_LOCALLY.md",
+      "bytes": 1146,
+      "sha256": "a23a82af7f6aeee085de0fb801ab2b5aa07c0d2f459c92169dc71c457f50a02f"
+    },
+    {
+      "path": "docs/05_REBUILDING_FROM_DBSYNC.md",
+      "bytes": 505,
+      "sha256": "74a7544cc9c1d6e9566c425b0d033e400b8ce2a620957dd53e2cc39044a5d87b"
+    },
+    {
+      "path": "docs/06_LIMITATIONS.md",
+      "bytes": 435,
+      "sha256": "379eec0d7c44597ea421105d032dfe2caba8a2327d8ffed4d158b7f6bb5ed7c7"
+    },
+    {
+      "path": "docs/07_MIGRATION_PLAN.md",
+      "bytes": 1355,
+      "sha256": "bd5df2ac10218033f02a8f8638c85f966391b513aeb1fec06836df210d194b7f"
+    },
+    {
+      "path": "docs/08_ANALYTICS_ROADMAP.md",
+      "bytes": 728,
+      "sha256": "52f3404cc252131b3b904ccb2697af0d3fa03e3e1705d6f1fd6bc211b30a5715"
+    },
+    {
+      "path": "docs/09_LEGACY_MIGRATION_MAP.md",
+      "bytes": 2620,
+      "sha256": "77f25828bdab1264de42bc04fc1175fb69faea83669ec0f9f5fda657233eddd5"
+    },
+    {
+      "path": "docs/10_MAINTAINER_QUICKSTART.md",
+      "bytes": 2012,
+      "sha256": "ba44e9e908cde26605bf13ff830eaaeee58c467efea2bd08a18d4b418eabe6c7"
+    },
+    {
+      "path": "docs/11_REVIEW_CHECKLIST.md",
+      "bytes": 1156,
+      "sha256": "4a9a0cd47a1bd8556da7c068b1dbba5a92ff1ac1806b3bb0cca85ce46bcd1a68"
+    },
+    {
+      "path": "docs/12_BRANCH_STATUS.md",
+      "bytes": 5406,
+      "sha256": "362abfe6fde4aa9fd02468cffa628564c893e17b242eb003ab18e8707ef75802"
+    },
+    {
+      "path": "docs/13_CROSS_MERGE_MILESTONE.md",
+      "bytes": 2649,
+      "sha256": "08ad7fcbba1e94cd34fde76a91b4a0d7394ed272430e949bea548297b3a73174"
+    },
+    {
+      "path": "docs/14_TRACE_EXPANSION_PROBE.md",
+      "bytes": 1562,
+      "sha256": "c6885be5b05c48999a505f514971f415ad209d6901911a8d61694d309c5b273e"
+    },
+    {
+      "path": "docs/15_FORENSIC_DATABASE_PRODUCT_PLAN.md",
+      "bytes": 2961,
+      "sha256": "ac6f2ed9c072c4b174af2fd3396240fe57500a964d570a8c8d786e0dd6abdce0"
+    },
+    {
+      "path": "docs/16_GOVERNANCE_DELEGATION_SURFACE.md",
+      "bytes": 4957,
+      "sha256": "96b2b5168887527ce2a929146407a9b88e0b805213b818d2283b0012ca5a54e5"
+    },
+    {
+      "path": "docs/17_STAGED_TRACE_EXTRACTION.md",
+      "bytes": 3759,
+      "sha256": "f009637908221975fecf681cfb465dd71c9ef8885a35e462faa2c30e8adc4d67"
+    },
+    {
+      "path": "docs/18_DREP_PROFILE_PACK.md",
+      "bytes": 4614,
+      "sha256": "2eceeadb4a69255a216230c17fe6bae0c40fa27f42f37171f1b1952957567a54"
+    },
+    {
+      "path": "docs/19_QUERY_COOKBOOK.md",
+      "bytes": 5565,
+      "sha256": "65c29a50857ddac5de9dc5ab6a1bab27391617f12f942d6b3553a5c1eb79e609"
+    },
+    {
+      "path": "profiles/dreps/README.md",
+      "bytes": 2345,
+      "sha256": "33036e64bde14ba523e7f5e183d474db906e5f4ee9c12a01d4fbca5dfd40d980"
+    }
+  ]
+}
