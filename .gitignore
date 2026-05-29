@@ -1,0 +1,21 @@
+.env
+.venv/
+/.venv/
+/dist/
+dist/
+__pycache__/
+*.py[cod]
+*.tmp
+tmp_*.html
+
+# DuckDB working files are ignored...
+/data/*.duckdb
+/data/*.duckdb.wal
+/data/parquet/
+# ...except the compact, committed clone-and-ask database.
+!/data/abcde_genesis.duckdb
+
+# Full dataset pulled from GitHub Releases, plus local scratch output.
+/data/release/
+/outputs/
+/queries/

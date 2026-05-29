@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements/base.txt
+
+      - name: Build the genesis database
+        run: python scripts/build_genesis_db.py
+
+      - name: Smoke-test read-only query (seeds must exist and be non-empty)
+        run: |
+          python - <<'PY'
+          from mcp_server.readonly import run_select, assert_read_only, UnsafeSQLError
+          r = run_select("SELECT count(*) AS n FROM seeds")
+          n = r["rows"][0][0]
+          assert n > 0, f"seeds table is empty (n={n})"
+          print(f"seeds rows: {n}")
+          # read-only guard must reject writes / multi-statements
+          for bad in ["DROP TABLE seeds", "UPDATE seeds SET label='x'", "SELECT 1; SELECT 2"]:
+              try:
+                  assert_read_only(bad)
+                  raise SystemExit(f"guard failed to block: {bad}")
+              except UnsafeSQLError:
+                  pass
+          print("read-only guard OK")
+          PY
+
+      - name: Assert MCP server module imports
+        run: python -c "import mcp_server.server as s; assert s.mcp.name == 'abcde-genesis'; print('MCP server import OK')"
+
+      - name: Structure verifier
+        run: python scripts/verify.py --structure-only

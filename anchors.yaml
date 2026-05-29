@@ -1,0 +1,29 @@
+# Canonical seed manifest for Genesis ADA forensic extraction.
+# Amounts are in ADA for readability; loaders should convert to lovelace where needed.
+version: 1
+seeds:
+  - seed_id: iog
+    label: IOG
+    tx_hash: fa2d2a70c0b5fd45cb6c3989f02813061f9d27f15f30ecddd38780c59f413c62
+    amount_ada: 2463071701
+    source_type: NAMED_FOUNDER
+    evidence_grade: FACT
+  - seed_id: cf
+    label: Cardano Foundation
+    tx_hash: 208c7d54c1c24059c9314ddbe866edc80adcb8894539b27b6a1430d5c078b998
+    amount_ada: 648176763
+    source_type: NAMED_FOUNDER
+    evidence_grade: FACT
+  - seed_id: emurgo
+    label: EMURGO
+    tx_hash: 242608fc18552a4ac83adabcef7155f3b909e83d469ce89735db8f11d3637e38
+    amount_ada: 2074165643
+    source_type: NAMED_FOUNDER
+    evidence_grade: FACT
+  - seed_id: fourth_entry_781m
+    label: 781,381,495 ADA fourth entry
+    tx_hash: 5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef
+    amount_ada: 781381495
+    source_type: SALE_TICKET_SIGNAL
+    evidence_grade: STRONG_INFERENCE
+    notes: Internal legacy label was EMURGO_2; this is not an ownership attribution.

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "query_timestamp_utc": "2026-05-21 20:17:02.929505",
+  "dbsync_tip_utc": "2026-05-21 20:16:53",
+  "dbsync_tip_epoch": "632",
+  "drep_distribution_epoch": "632",
+  "epoch_stake_epoch": "633",
+  "top_drep_count": 10,
+  "inputs": [
+    "sql/20_profiles/top_drep_profiles_current.sql",
+    "sql/20_profiles/top_drep_stake_buckets.sql",
+    "sql/20_profiles/top_drep_delegation_age_buckets.sql",
+    "sql/20_profiles/top_drep_pool_affiliations.sql",
+    "legacy/2026-05-20-pre-v2-import/data/raw/*/drep_delegation.csv",
+    "legacy/2026-05-20-pre-v2-import/data/raw/*/current_unspent.csv"
+  ],
+  "outputs": {
+    "data/small/governance_top_drep_profiles_current.csv": {
+      "bytes": 5313,
+      "sha256": "78abaa0baced310945128767279125cc39f144ab17c36da8c42de04b9ff67fd6"
+    },
+    "data/small/governance_top_drep_stake_buckets.csv": {
+      "bytes": 10217,
+      "sha256": "d259cfbfba7baab4a7c9fd8ad1db9e725a79367129479af41126e78aeb5a55ec"
+    },
+    "data/small/governance_top_drep_delegation_age_buckets.csv": {
+      "bytes": 9077,
+      "sha256": "676a9ede573d994c6d8425086386fe33a48c078c1450202fbf91dd2094254c78"
+    },
+    "data/small/governance_top_drep_pool_affiliations.csv": {
+      "bytes": 22983,
+      "sha256": "c63af4da8ad37d438f89999bdd2905bfed150eb4ae58fa8aacc32e485a88e090"
+    },
+    "data/small/governance_top_drep_koios_crosscheck.csv": {
+      "bytes": 5555,
+      "sha256": "4b0b05df9d44344c238fe483cd3aa2b08d4d0f47d718e26d6314285886c45b38"
+    },
+    "data/small/governance_top_drep_genesis_trace_exposure.csv": {
+      "bytes": 2871,
+      "sha256": "03f6b71597a3529b69fadf2c5275ee5cfe0c9dd1935bc1cb746d54c874f89d2b"
+    },
+    "data/small/governance_top_drep_genesis_trace_exposure_by_root.csv": {
+      "bytes": 5526,
+      "sha256": "15adad8b02d40ecc1977d8b7f32c381821882b6c636b43a7f7dd79b33dd64857"
+    },
+    "data/small/governance_top_drep_genesis_trace_stickiness.csv": {
+      "bytes": 7214,
+      "sha256": "b2a2657c38dfe771e60fbe9a14d6f058fe3a29a0ca9a388044aa491900956d5f"
+    },
+    "reports/top_drep_profiles.md": {
+      "bytes": 6379,
+      "sha256": "38f898e0f519619a7c6dbc74d1cecc13677c146929465a693a3a9001ab3b9a55"
+    }
+  },
+  "notes": [
+    "DRep delegation is voting power, not custody or beneficial ownership.",
+    "Genesis trace exposure is deduped by dest_tx_out_id across overlapping ABCDE trace roots.",
+    "Profiles are generated for the top DReps as a set to avoid selective one-off framing."
+  ]
+}

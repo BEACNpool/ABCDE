@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "inputs": [
+    "legacy/2026-05-20-pre-v2-import/data/raw/cf",
+    "legacy/2026-05-20-pre-v2-import/data/raw/emurgo",
+    "legacy/2026-05-20-pre-v2-import/data/raw/emurgo2",
+    "legacy/2026-05-20-pre-v2-import/data/raw/iog"
+  ],
+  "outputs": {
+    "data/small/governance_spo_delegation_targets.csv": {
+      "rows": 5175,
+      "sha256": "94fbf2443c613189a2aa95eab4d14778689045bdd32ae267ef06a5c5b97e12f9"
+    },
+    "data/small/governance_drep_delegation_targets.csv": {
+      "rows": 390,
+      "sha256": "e5d9c1e9e1d7408969a1c55a162206e108668f778592545e5bd7500b191d6bc0"
+    },
+    "data/small/governance_spo_latest_targets.csv": {
+      "rows": 2868,
+      "sha256": "ca35db8de2996884045051f0cfcc47dc35c7db3ec0f7dd90c1cec872166d6ec7"
+    },
+    "data/small/governance_drep_latest_targets.csv": {
+      "rows": 337,
+      "sha256": "05a2331c2a97067b3d04cd2b01d2b736056b12edb5aa72169d44414d5f630212"
+    }
+  },
+  "notes": "Rollups derived from preserved legacy trace delegation receipts; root_seed_id emurgo2 is normalized to fourth_entry_781m."
+}
