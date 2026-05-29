@@ -43,5 +43,8 @@ jobs:
       - name: Assert MCP server module imports
         run: python -c "import mcp_server.server as s; assert s.mcp.name == 'abcde-genesis'; print('MCP server import OK')"
 
+      - name: Self-test (DB + read-only guard + MCP server + CLI imports)
+        run: python scripts/selftest.py
+
       - name: Structure verifier
         run: python scripts/verify.py --structure-only

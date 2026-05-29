@@ -27,20 +27,22 @@ Then query it one of two ways.
 
 ## Two query paths
 
-### 1. MCP server (primary)
+### 1. MCP server (primary, no API key)
 
-A read-only [MCP](https://modelcontextprotocol.io) server (`abcde-genesis`)
-that drops into Claude Desktop or Claude Code:
+A read-only [MCP](https://modelcontextprotocol.io) server (`abcde-genesis`) that
+drops into **Claude Code**, **OpenAI Codex**, or **Claude Desktop**. If you have
+a subscription to any of those, there is **no API key to set** — queries run
+through your existing login:
 
 ```bash
 claude mcp add abcde-genesis -- python -m mcp_server.server   # Claude Code
 ```
 
 Tools: `list_tables()`, `describe_table(name)`, `run_sql(sql, max_rows=200)`,
-`starter_questions()`. Full setup (Claude Desktop config JSON, Windows path
-notes) is in [`docs/AI_QUERY_GUIDE.md`](docs/AI_QUERY_GUIDE.md).
+`starter_questions()`. Full setup (Codex `config.toml`, Claude Desktop config
+JSON, Windows path notes) is in [`docs/AI_QUERY_GUIDE.md`](docs/AI_QUERY_GUIDE.md).
 
-### 2. `ask.py` CLI (fallback)
+### 2. `ask.py` CLI (API-key fallback)
 
 A text-to-SQL loop using the Anthropic SDK:
 

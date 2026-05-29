@@ -31,11 +31,15 @@ from committed sources (`scripts/build_genesis_db.py`).
 > Windows note: a bare `python`/`pip` may hit the Windows Store alias. Use
 > `py -3` and `py -3 -m pip` instead.
 
-## 2. MCP server (primary)
+## 2. MCP server (primary, no API key)
 
 The server is `mcp_server/server.py` (server name `abcde-genesis`). It exposes
 `list_tables`, `describe_table`, `run_sql`, and `starter_questions`, all
 read-only.
+
+If you already use **Claude Code** or **OpenAI Codex** with a subscription, this
+is the entire setup — **no API key required**. Queries run through your existing
+login. (The `ask.py` CLI in section 3 is only for people who prefer a raw API key.)
 
 ### Claude Desktop
 
@@ -85,9 +89,29 @@ claude mcp add abcde-genesis -- py -3 -m mcp_server.server
 ```
 
 Run the command from the repo root (or pass the working directory) so `cwd`
-resolves to the clone.
+resolves to the clone. Then ask, e.g. *"Using abcde-genesis, where did EMURGO's
+genesis ADA end up, and which DReps hold the most genesis-traced stake?"*
 
-## 3. `ask.py` CLI (fallback)
+### OpenAI Codex (uses your Codex subscription)
+
+Add to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.abcde-genesis]
+command = "python"
+args = ["-m", "mcp_server.server"]
+cwd = "/absolute/path/to/ABCDE"
+# Windows:
+# command = "py"
+# args = ["-3", "-m", "mcp_server.server"]
+# cwd = "C:\\Users\\you\\ABCDE"
+```
+
+The server also works when launched directly by file path
+(`.../mcp_server/server.py`) — it adds its own repo root to `sys.path`, so the
+`cwd` form above and the file-path form are both fine.
+
+## 3. `ask.py` CLI (API-key fallback)
 
 A text-to-SQL loop using the Anthropic SDK. It hands Claude a read-only
 `run_sql` tool and prints a plain-English answer.
