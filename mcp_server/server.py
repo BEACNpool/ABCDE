@@ -16,6 +16,14 @@ Run:  python -m mcp_server.server      (stdio transport)
 """
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Make `import mcp_server...` resolve whether this file is launched as a module
+# (`python -m mcp_server.server`) or by absolute path (how Claude Code / Codex /
+# Claude Desktop typically start an MCP server).
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from mcp.server.fastmcp import FastMCP
 
 from mcp_server.readonly import (
