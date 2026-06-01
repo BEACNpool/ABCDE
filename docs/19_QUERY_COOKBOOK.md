@@ -212,12 +212,44 @@ ORDER BY e.dedup_current_ada DESC;
 PY
 ```
 
+## Trace hops with epoch/block context
+
+Hop depth and chain time are different dimensions. Use this when checking
+whether traced hops cluster by epoch or block:
+
+```bash
+python3 scripts/query_duckdb.py sql/30_query_recipes/trace_hops_with_epoch_block.duckdb.sql
+```
+
+For cross-entity merge candidates with exact chain position:
+
+```bash
+python3 scripts/query_duckdb.py sql/30_query_recipes/cross_entity_merges_epoch_block.duckdb.sql
+```
+
+For DRep exposure timing windows by root seed:
+
+```bash
+python3 scripts/query_duckdb.py sql/30_query_recipes/drep_exposure_epoch_windows.duckdb.sql
+```
+
+For the current IOG depth-14 bag, use the temporal limits recipe. It shows which
+timing fields are missing from the public rollup and should not be invented:
+
+```bash
+python3 scripts/query_duckdb.py sql/30_query_recipes/iog_current_bag_depth_temporal_limits.duckdb.sql
+```
+
+See `docs/20_TEMPORAL_QUERY_GUIDE.md` for the full map of which tables carry
+exact `epoch_no`, `block_no`, and `block_time_utc` fields.
+
 ## Useful questions to ask next
 
 - Which DReps have high current voting power but low historical retention?
 - Which DReps have support concentrated in large stake buckets?
 - Which DReps have strong support from older delegation cohorts?
 - Which DReps show large genesis-trace exposure under the latest observed DRep target?
+- Which trace or cross-merge events cluster in the same epoch/block window?
 - Which pool communities overlap most with each DRep's current delegators?
 - Are any Koios and db-sync metadata fields out of agreement?
 

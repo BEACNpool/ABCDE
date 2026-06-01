@@ -90,6 +90,7 @@ def starter_questions() -> dict:
             "How much IOG-descended ADA is still unspent, and what are the confidence bands?",
             "Which stake pools (SPOs) received the most genesis-descended delegation?",
             "What is the evidence grade attached to the fourth genesis entry?",
+            "Which trace or cross-entity merge events cluster by epoch and block, not just hop depth?",
         ],
         "tip": "Call list_tables() then describe_table(name) to ground your SQL before run_sql().",
     }
