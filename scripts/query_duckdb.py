@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run a SQL file against the local ABCDE seed DuckDB artifact."""
+"""Run a SQL file against the local ABCDE DuckDB artifact."""
 from __future__ import annotations
 
 import argparse
@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('sql_file')
-    parser.add_argument('--db', default='data/abcde_genesis_seed_registry.duckdb')
+    parser.add_argument('--db', default='data/abcde_genesis.duckdb')
     args = parser.parse_args()
 
     import duckdb  # type: ignore
@@ -30,3 +30,7 @@ def main() -> None:
             print(','.join('' if v is None else str(v) for v in row))
     finally:
         con.close()
+
+
+if __name__ == "__main__":
+    main()

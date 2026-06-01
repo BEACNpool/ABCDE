@@ -57,6 +57,13 @@ Model defaults to `claude-sonnet-4-6` (override with `ABCDE_MODEL`).
 See [`docs/STARTER_QUESTIONS.md`](docs/STARTER_QUESTIONS.md) for grounded
 example questions.
 
+For a stricter reviewer workflow, start with the prompt pack in
+[`prompts/`](prompts/):
+
+```text
+Use prompts/audit_every_figure.md and verify the ABCDE repo from local data.
+```
+
 ## What is in the database
 
 Built by `scripts/build_genesis_db.py` from `anchors.yaml` (→ the `seeds` table)
@@ -94,13 +101,19 @@ on-chain data shows. AI assistants are bound by the same rule — see
 ## Reproduce / verify
 
 ```bash
+just bootstrap                         # install dependencies, if you use just
+just test                              # self-test + public claim receipts
 python scripts/build_genesis_db.py          # rebuild DB + schema catalog from sources
 python scripts/verify.py --structure-only   # validate repo structure + anchors
+python scripts/verify_claim_receipts.py     # verify headline claim SQL receipts
 ```
 
 CI (`.github/workflows/ci.yml`) builds the DB, smoke-tests a read-only query,
 checks the read-only guard rejects writes, asserts the MCP server imports, and
 runs the structure verifier on every push/PR to `main`.
+
+Public claim receipts live in [`claims/`](claims/). Each receipt includes SQL,
+expected row count, output hash, and an evidence grade.
 
 ## Big data / release assets
 
@@ -122,6 +135,14 @@ compact DuckDB plus `data/small/*.csv` receipts remain the reproducible public
 cut. Large in-repo binaries (`*.parquet`, `data/large/**`) are tracked with Git
 LFS; the compact DuckDB is kept as a normal git object so a plain clone without
 git-lfs still works.
+
+Maintainers can build the release bundle locally with:
+
+```bash
+just release-bundle
+```
+
+Tags matching `v*` publish the same bundle through `.github/workflows/release.yml`.
 
 ## Refresh cadence
 

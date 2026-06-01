@@ -46,5 +46,11 @@ jobs:
       - name: Self-test (DB + read-only guard + MCP server + CLI imports)
         run: python scripts/selftest.py
 
+      - name: Verify public claim receipts
+        run: python scripts/verify_claim_receipts.py
+
+      - name: Build release bundle
+        run: python scripts/build_release_bundle.py
+
       - name: Structure verifier
         run: python scripts/verify.py --structure-only
