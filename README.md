@@ -81,7 +81,7 @@ covering:
 - seed **first-spend** and first-spend-input receipts
 - bounded and staged **trace** extracts and cross-entity merge candidate sets
 - **IOG current-bag** depth-14 audit cut with confidence bands and cluster
-  classifications
+  classifications, plus per-current-UTXO epoch/block/time drilldown
 - **governance** rollups: SPO and DRep delegation targets (count- and
   value-weighted), pool/DRep metadata, and a top-DRep profile pack with
   genesis-trace exposure

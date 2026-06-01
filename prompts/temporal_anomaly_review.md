@@ -19,9 +19,11 @@ Steps:
    Which DReps have multi-root genesis-trace exposure and overlapping first/last
    delegation observation windows?
 5. Run `sql/30_query_recipes/iog_current_bag_depth_temporal_limits.duckdb.sql`.
-   State plainly what timing evidence is missing for the depth-14 current-bag
-   bands.
-6. Produce two sections:
+   State the IOG current-bag temporal coverage: earliest/latest UTxO epochs,
+   block range, row count, and how many rows have latest SPO/DRep context.
+6. Run `sql/30_query_recipes/iog_current_bag_current_utxos_epoch_block.duckdb.sql`.
+   Identify the largest current UTxOs and their exact creation epoch/block/time.
+7. Produce two sections:
    - Reproducible From This Clone
    - Needs Deeper db-sync Extraction
 

@@ -20,6 +20,7 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 ## IOG current bag
 
 - How much IOG-descended ADA is still unspent, and what are the confidence bands?
+- Which IOG depth-14 current UTxOs are largest, and what are their exact creation epochs/blocks/times?
 - What are the top stake holders in the IOG depth-14 current bag, and how are they classified?
 - Is there a coordinated-abstain cluster in the IOG current bag around epoch 329?
 

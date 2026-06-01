@@ -18,6 +18,7 @@ python scripts/query_duckdb.py sql/30_query_recipes/trace_hops_with_epoch_block.
 python scripts/query_duckdb.py sql/30_query_recipes/cross_entity_merges_epoch_block.duckdb.sql
 python scripts/query_duckdb.py sql/30_query_recipes/drep_exposure_epoch_windows.duckdb.sql
 python scripts/query_duckdb.py sql/30_query_recipes/iog_current_bag_depth_temporal_limits.duckdb.sql
+python scripts/query_duckdb.py sql/30_query_recipes/iog_current_bag_current_utxos_epoch_block.duckdb.sql
 ```
 
 ## Exact Chain Position Available
@@ -35,6 +36,9 @@ These public tables include exact transaction chain position:
   `block_time_utc`
 - `staged_cross_entity_merges_founders_depth10`: `epoch_no`, `block_no`,
   `block_time_utc`
+- `iog_current_bag_depth14_current_utxos`: `epoch_no`, `block_no`,
+  `block_time_utc`, plus current value and latest observed SPO/DRep delegation
+  context
 
 Use these when checking whether repeated merges, splits, or cross-root events
 cluster by epoch/block.
@@ -58,27 +62,31 @@ windows:
 Use these to find timing commonalities, then drill into db-sync for exact
 certificate transaction receipts if needed.
 
-## Known Gap
+## IOG Current-Bag Drilldown
 
-The IOG depth-14 current-bag tables are value/depth/classification rollups.
-They do not currently publish per-UTXO `epoch_no`, `block_no`, or
-`block_time_utc`. That is fine for confidence bands, but not enough for a
-temporal anomaly claim.
+The IOG depth-14 current-bag cut now includes
+`iog_current_bag_depth14_current_utxos`, one row per currently unspent
+IOG-descended UTxO in the public cut.
 
-For a professional audit, the next extraction should add a per-current-UTXO
-artifact with at least:
+Columns include:
 
 - `root_seed_id`
 - `stake_address`
 - `tx_hash`
 - `tx_out_index`
 - `current_lovelace`
+- `current_ada`
 - `min_depth`
-- `max_depth`
 - `epoch_no`
 - `block_no`
 - `block_time_utc`
-- latest SPO/DRep target fields, where applicable
+- latest observed SPO fields, where applicable
+- latest observed DRep fields, where applicable
+- latest active-stake epoch/value fields, where applicable
 
-Until that exists, say: "depth-14 current-bag timing requires deeper db-sync
-extraction."
+This closes the public timing gap for IOG current-bag anomaly review. Confidence
+bands are still interpretive rollups; exact temporal claims should cite
+`iog_current_bag_depth14_current_utxos`.
+
+Remaining professional-audit work is classification and provenance review, not
+basic epoch/block availability.

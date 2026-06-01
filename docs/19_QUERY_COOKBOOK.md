@@ -234,10 +234,11 @@ python3 scripts/query_duckdb.py sql/30_query_recipes/drep_exposure_epoch_windows
 ```
 
 For the current IOG depth-14 bag, use the temporal limits recipe. It shows which
-timing fields are missing from the public rollup and should not be invented:
+timing fields are present in the per-current-UTXO drilldown:
 
 ```bash
 python3 scripts/query_duckdb.py sql/30_query_recipes/iog_current_bag_depth_temporal_limits.duckdb.sql
+python3 scripts/query_duckdb.py sql/30_query_recipes/iog_current_bag_current_utxos_epoch_block.duckdb.sql
 ```
 
 See `docs/20_TEMPORAL_QUERY_GUIDE.md` for the full map of which tables carry
