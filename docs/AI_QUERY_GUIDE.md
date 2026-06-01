@@ -155,6 +155,8 @@ receipts. Requires the GitHub CLI (`gh`) authenticated.
 - Use `prompts/audit_every_figure.md` for a structured AI review and
   `python scripts/verify_claim_receipts.py` for machine-checkable headline
   claim receipts.
+- Use `prompts/temporal_anomaly_review.md` when you want the AI to include
+  epoch/block timing and to say which rollups need deeper db-sync extraction.
 - Never assert off-chain ownership, intent, or wallet control beyond what the
   on-chain flows and delegations show (see `CLAUDE.md`).
 - See `docs/STARTER_QUESTIONS.md` for grounded example questions.
