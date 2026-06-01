@@ -8,6 +8,10 @@ _default:
 check:
     python3 scripts/verify.py --structure-only
 
+# Install the public query dependencies
+bootstrap:
+    python3 -m pip install -r requirements/base.txt
+
 # Build the compact, query-ready genesis DuckDB + schema catalog
 build-db:
     python3 scripts/build_genesis_db.py
@@ -23,6 +27,23 @@ ask Q:
 # Download + checksum-verify the full dataset from the latest GitHub Release
 fetch-db:
     python3 scripts/fetch_db.py
+
+# Alias for public instructions
+fetch-full:
+    python3 scripts/fetch_db.py
+
+# Verify the clone-and-query public data path
+test:
+    python3 scripts/selftest.py
+    python3 scripts/verify_claim_receipts.py
+
+# Verify headline claim SQL receipts
+verify-claims:
+    python3 scripts/verify_claim_receipts.py
+
+# Build GitHub Release assets locally under dist/release/
+release-bundle:
+    python3 scripts/build_release_bundle.py
 
 # Placeholder: extract from db-sync/ABCDE warehouse
 extract:

@@ -1,0 +1,42 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  public-data-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements/base.txt
+
+      - name: Verify committed data
+        run: |
+          python scripts/selftest.py
+          python scripts/verify_claim_receipts.py
+
+      - name: Build release bundle
+        run: python scripts/build_release_bundle.py
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ABCDE public data ${{ github.ref_name }}
+          body_path: dist/release/REPRODUCIBILITY.md
+          files: |
+            dist/release/abcde_genesis.duckdb
+            dist/release/abcde_public_receipts.tar.gz
+            dist/release/MANIFEST.json
+            dist/release/REPRODUCIBILITY.md
+            dist/release/artifacts.sha256

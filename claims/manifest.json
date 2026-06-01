@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "database": "data/abcde_genesis.duckdb",
+  "claims": [
+    {
+      "id": "seed_allocations",
+      "claim": "The committed database contains the named genesis seed allocations and evidence grades.",
+      "evidence_grade": "FACT",
+      "sql": "claims/sql/seed_allocations.sql",
+      "expected_rows": 4,
+      "output_sha256": "f962eb8c7a5c55446dcb1d5ffa04de3adfa65e2e71201fc0434ac09e7fc17244"
+    },
+    {
+      "id": "iog_retained_bag_bands",
+      "claim": "The IOG current-bag audit cut exposes confidence-banded retained-like surfaces and the live IOG pool stake sanity check.",
+      "evidence_grade": "STRONG_INFERENCE",
+      "sql": "claims/sql/iog_retained_bag_bands.sql",
+      "expected_rows": 6,
+      "output_sha256": "ce662d6f067caf503f5db1f5f0f0758db1b8875356e479350033162aeaecfb5e"
+    },
+    {
+      "id": "top_drep_genesis_exposure",
+      "claim": "The committed top-DRep profile pack includes DRep-level genesis-trace exposure by latest observed DRep target.",
+      "evidence_grade": "FACT",
+      "sql": "claims/sql/top_drep_genesis_exposure.sql",
+      "expected_rows": 10,
+      "output_sha256": "cd27b4294cd88ae8c5fa54d4863ae544cb57df17579705cf2415e2e68bec4f15"
+    },
+    {
+      "id": "top_registered_dreps",
+      "claim": "The committed top-DRep profile pack includes registered DRep voting-power profiles and metadata anchors.",
+      "evidence_grade": "FACT",
+      "sql": "claims/sql/top_registered_dreps.sql",
+      "expected_rows": 8,
+      "output_sha256": "cba3f8d8f1e4c1e735112d203f84424888ea25ca5e6b5a5de083bfd18130cba5"
+    },
+    {
+      "id": "staged_trace_founder_summary",
+      "claim": "The committed staged trace depth-14 summary reports founder cross-entity merge buckets.",
+      "evidence_grade": "FACT",
+      "sql": "claims/sql/staged_trace_founder_summary.sql",
+      "expected_rows": 19,
+      "output_sha256": "71fc8712e18f95d369ecccae9f671eb15334ad11f22ccfac888e8c53737a6267"
+    }
+  ]
+}

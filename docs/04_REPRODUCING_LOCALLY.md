@@ -2,41 +2,52 @@
 
 Public users should not need db-sync.
 
-Planned flow:
+Public clone-and-query flow:
 
 ```bash
-just download-data
-just verify
+just bootstrap
+just test
 
 duckdb data/abcde_genesis.duckdb <<'SQL'
-SELECT * FROM seed_registry ORDER BY label;
+SELECT * FROM seeds ORDER BY amount_ada DESC;
 SQL
 ```
 
-Each finding in `findings/` should contain a query that runs against the published DuckDB file.
+Public claim receipts are in `claims/`:
 
+```bash
+python scripts/verify_claim_receipts.py
+```
 
-## Current v2 seed-registry cut
+Each receipt has SQL, expected row count, output hash, and an evidence grade.
 
-Until the full Genesis subgraph is published, the repo ships a tiny seed-registry cut:
+## Current public cut
+
+The repo ships a compact DuckDB built from `anchors.yaml` and every
+`data/small/*.csv` file:
 
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements/base.txt
-python3 scripts/build_seed_artifacts.py
-python3 scripts/verify_seed_artifacts.py
+python3 scripts/build_genesis_db.py
+python3 scripts/selftest.py
+python3 scripts/verify_claim_receipts.py
 ```
 
 Artifacts:
 
-- `data/small/seed_registry.csv`
-- `data/small/seed_anchor_db_verification.csv`
-- `data/small/seed_outputs_db.csv`
-- `data/small/seed_first_spends_db.csv`
-- `data/small/seed_first_spend_inputs_db.csv`
-- `data/small/fourth_entry_direct_cospend_db.csv`
-- generated locally: `data/abcde_genesis_seed_registry.duckdb`
+- `data/abcde_genesis.duckdb`
+- `data/small/*.csv`
+- `data/schema_catalog.json`
+- `docs/SCHEMA.md`
+- `claims/manifest.json`
+
+Large/full cuts, when published, are fetched into `data/release/`:
+
+```bash
+python scripts/fetch_db.py
+```
 
 
 ## Run a finding query without the DuckDB CLI

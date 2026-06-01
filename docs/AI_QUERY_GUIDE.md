@@ -152,6 +152,9 @@ receipts. Requires the GitHub CLI (`gh`) authenticated.
   `SELECT`/`WITH`/`PRAGMA`/`EXPLAIN`/`SHOW`/`DESCRIBE` is allowed. Writes,
   multi-statements, and `ATTACH`/`COPY`/`INSTALL`/`LOAD`/etc. are rejected.
 - Treat every answer under the evidence grading standard in `docs/02_GRADING.md`.
+- Use `prompts/audit_every_figure.md` for a structured AI review and
+  `python scripts/verify_claim_receipts.py` for machine-checkable headline
+  claim receipts.
 - Never assert off-chain ownership, intent, or wallet control beyond what the
   on-chain flows and delegations show (see `CLAUDE.md`).
 - See `docs/STARTER_QUESTIONS.md` for grounded example questions.
