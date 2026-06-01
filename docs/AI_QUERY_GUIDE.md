@@ -132,17 +132,19 @@ py -3 ask.py "which DReps hold the most genesis-traced stake?"
 
 ## 4. Full / large dataset
 
-The compact in-repo DB is for instant clone-and-ask. The full dataset is
-published via GitHub Releases:
+The compact in-repo DB is for instant clone-and-ask and is the supported public
+dataset in a plain clone. Large/full extraction cuts are published via GitHub
+Releases when a release is available:
 
 ```bash
-python scripts/fetch_db.py              # latest release
+python scripts/fetch_db.py              # latest release, if one exists
 python scripts/fetch_db.py --tag v2.0.0 # a specific tag
 ```
 
 It downloads into `data/release/` (gitignored) and verifies every asset against
-the `artifacts.sha256` manifest shipped in the release. Requires the GitHub CLI
-(`gh`) authenticated.
+the `artifacts.sha256` manifest shipped in the release. If no release exists
+yet, use the committed `data/abcde_genesis.duckdb` and `data/small/*.csv`
+receipts. Requires the GitHub CLI (`gh`) authenticated.
 
 ## 5. Safety notes
 

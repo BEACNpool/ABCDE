@@ -102,21 +102,26 @@ CI (`.github/workflows/ci.yml`) builds the DB, smoke-tests a read-only query,
 checks the read-only guard rejects writes, asserts the MCP server imports, and
 runs the structure verifier on every push/PR to `main`.
 
-## Big data (Git LFS + GitHub Releases)
+## Big data / release assets
 
 There are no size caps on the underlying data. The compact in-repo DB is for
-instant clone-and-ask; the **full dataset** is published via
-[GitHub Releases](https://github.com/BEACNpool/ABCDE/releases):
+instant clone-and-ask and is the supported public dataset in a plain clone.
+
+Large/full extraction cuts are published via
+[GitHub Releases](https://github.com/BEACNpool/ABCDE/releases) when a release is
+available:
 
 ```bash
-python scripts/fetch_db.py              # latest release into data/release/ (gitignored)
+python scripts/fetch_db.py              # latest release into data/release/ (if one exists)
 python scripts/fetch_db.py --tag v2.0.0 # a specific tag
 ```
 
-It checksum-verifies every asset against the release's `artifacts.sha256`
-manifest. Large in-repo binaries (`*.parquet`, `data/large/**`) are tracked with
-Git LFS; the compact DuckDB is kept as a normal git object so a plain clone
-without git-lfs still works.
+`fetch_db.py` checksum-verifies every release asset against the release's
+`artifacts.sha256` manifest. If no release has been published yet, the committed
+compact DuckDB plus `data/small/*.csv` receipts remain the reproducible public
+cut. Large in-repo binaries (`*.parquet`, `data/large/**`) are tracked with Git
+LFS; the compact DuckDB is kept as a normal git object so a plain clone without
+git-lfs still works.
 
 ## Refresh cadence
 
