@@ -1,39 +1,21 @@
--- IOG current-bag depth cut: what timing is and is not in the public artifact.
+-- IOG current-bag temporal coverage summary.
 --
--- The current depth-14 bag exports are value/depth/classification rollups.
--- They do not contain per-UTXO epoch_no/block_no/block_time_utc. Use this query
--- to keep AI answers honest, then run a deeper db-sync extraction if a specific
--- anomaly needs exact chain-position receipts.
+-- The current public cut now includes a per-current-UTXO table with exact
+-- creation epoch/block/time. Confidence bands remain interpretation rollups;
+-- temporal anomaly claims should cite the per-UTXO table below.
 SELECT
-  'summary' AS artifact,
-  CAST(min_depth AS VARCHAR) AS depth_or_band,
-  current_utxo_rows AS rows_or_utxos,
-  current_ada,
-  NULL::BIGINT AS epoch_no,
-  NULL::BIGINT AS block_no,
-  NULL::TIMESTAMP AS block_time_utc,
-  'depth/value summary only; no per-UTXO chain position in this public table' AS timing_status
-FROM iog_current_bag_depth14_summary
-UNION ALL
-SELECT
-  'by_depth' AS artifact,
-  CAST(min_depth AS VARCHAR) AS depth_or_band,
-  current_utxos AS rows_or_utxos,
-  current_ada,
-  NULL::BIGINT AS epoch_no,
-  NULL::BIGINT AS block_no,
-  NULL::TIMESTAMP AS block_time_utc,
-  'depth/value summary only; no per-UTXO chain position in this public table' AS timing_status
-FROM iog_current_bag_depth14_by_depth
-UNION ALL
-SELECT
-  'confidence_band' AS artifact,
-  band AS depth_or_band,
-  NULL::BIGINT AS rows_or_utxos,
-  ada AS current_ada,
-  NULL::BIGINT AS epoch_no,
-  NULL::BIGINT AS block_no,
-  NULL::TIMESTAMP AS block_time_utc,
-  'confidence/value summary only; exact epoch/block requires db-sync drilldown' AS timing_status
-FROM iog_current_bag_depth14_confidence_bands
-ORDER BY artifact, depth_or_band;
+  count(*) AS current_utxos,
+  count(DISTINCT stake_address) FILTER (WHERE stake_address IS NOT NULL) AS stake_addresses,
+  sum(current_lovelace) / 1000000.0 AS current_ada,
+  min(min_depth) AS min_depth,
+  max(min_depth) AS max_depth,
+  min(epoch_no) AS earliest_utxo_epoch,
+  max(epoch_no) AS latest_utxo_epoch,
+  min(block_no) AS earliest_utxo_block,
+  max(block_no) AS latest_utxo_block,
+  min(block_time_utc) AS earliest_utxo_time_utc,
+  max(block_time_utc) AS latest_utxo_time_utc,
+  count(*) FILTER (WHERE latest_pool_id_bech32 IS NOT NULL) AS rows_with_latest_pool,
+  count(*) FILTER (WHERE latest_drep_id_bech32 IS NOT NULL) AS rows_with_latest_drep,
+  count(*) FILTER (WHERE active_stake_lovelace IS NOT NULL) AS rows_with_active_stake
+FROM iog_current_bag_depth14_current_utxos;

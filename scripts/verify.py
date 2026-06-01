@@ -6,7 +6,8 @@ import sys
 REQUIRED = [
     'README.md', 'anchors.yaml', 'AUDIT_BACKLOG.md', 'Justfile', '.env.example',
     'claims/manifest.json', 'claims/README.md', 'prompts/README.md',
-    'scripts/verify_claim_receipts.py', 'scripts/build_release_bundle.py',
+    'scripts/verify_claim_receipts.py', 'scripts/verify_public_artifacts.py',
+    'scripts/build_release_bundle.py',
     '.github/workflows/release.yml',
     'profiles/dreps/README.md', 'docs/18_DREP_PROFILE_PACK.md', 'docs/19_QUERY_COOKBOOK.md',
     'docs/01_METHOD.md', 'docs/02_GRADING.md', 'docs/04_REPRODUCING_LOCALLY.md',

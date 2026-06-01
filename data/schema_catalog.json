@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-29T14:22:26+00:00",
+  "generated_utc": "2026-06-01T23:00:51+00:00",
   "database": "data/abcde_genesis.duckdb",
   "tables": {
     "bounded_trace_depth3_db": {
@@ -1983,7 +1983,7 @@
     },
     "iog_current_bag_depth14_confidence_bands": {
       "source": "data/small/iog_current_bag_depth14_confidence_bands.csv",
-      "row_count": 6,
+      "row_count": 5,
       "columns": [
         {
           "name": "band",
@@ -2005,7 +2005,7 @@
       "sample_rows": [
         {
           "band": "live_iog_pool_stake_sanity_check",
-          "ada": 10027028.166516,
+          "ada": 10041920.418743,
           "confidence": "HIGH for pool state only",
           "interpretation": "IOG1 live active stake; IOG2 retired; not an IOG bag estimate"
         },
@@ -2013,13 +2013,13 @@
           "band": "high_confidence_coordinated_retained_like_core",
           "ada": 247261951.770785,
           "confidence": "MEDIUM-HIGH",
-          "interpretation": "IOG-descended current UTxOs in synchronized drep_always_abstain / epoch-329 pool-delegation cluster >=100k ADA"
+          "interpretation": "IOG-descended current UTxOs in synchronized drep_always_abstain / epoch-329 pool-delegation clusters >=100k ADA"
         },
         {
           "band": "probable_retained_like_abstain_surface",
-          "ada": 278747238.425299,
+          "ada": 282012126.139902,
           "confidence": "MEDIUM",
-          "interpretation": "Coordinated core plus other IOG-descended current UTxOs whose latest DRep is always-abstain"
+          "interpretation": "IOG-descended current UTxOs whose latest observed DRep is always-abstain"
         }
       ]
     },
@@ -2097,6 +2097,195 @@
           "drep_id": "drep_always_abstain",
           "drep_epoch": 539,
           "owners": "stake1u9ma3qrl6fqgk3haeg86gr5rpq88x0k5zv9yw69r2khy53qmnykaz"
+        }
+      ]
+    },
+    "iog_current_bag_depth14_current_utxos": {
+      "source": "data/small/iog_current_bag_depth14_current_utxos.csv",
+      "row_count": 75812,
+      "columns": [
+        {
+          "name": "root_seed_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_out_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "min_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_active_epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_pool_delegation_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_delegation_epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_pool_delegation_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_pool_delegation_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "latest_drep_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_delegation_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_delegation_epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_drep_delegation_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_drep_delegation_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "active_stake_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "active_stake_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "active_stake_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "root_seed_id": "iog",
+          "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
+          "tx_hash": "d2069b118ba76abbda8565b3394adca2eb563f23fbb430d5fa363ec2ffd74410",
+          "tx_out_index": 0,
+          "current_lovelace": 29102460000000,
+          "current_ada": 29102460.0,
+          "min_depth": 14,
+          "epoch_no": 532,
+          "block_no": 11320906,
+          "block_time_utc": "2025-01-07 13:51:25",
+          "address": "addr1qy5q5v0hqu4y8wjxhkjcx0dprxuqv0j3u4ysrcycgma6hernmsp6xq38ycpv85av20trkz82tyvw9ncy3td2kzk2z7wsq24f9j",
+          "latest_pool_id_bech32": null,
+          "latest_pool_active_epoch_no": null,
+          "latest_pool_delegation_tx_hash": null,
+          "latest_pool_delegation_epoch_no": null,
+          "latest_pool_delegation_block_no": null,
+          "latest_pool_delegation_time_utc": null,
+          "latest_drep_id_bech32": null,
+          "latest_drep_delegation_tx_hash": null,
+          "latest_drep_delegation_epoch_no": null,
+          "latest_drep_delegation_block_no": null,
+          "latest_drep_delegation_time_utc": null,
+          "active_stake_epoch": 635,
+          "active_stake_lovelace": null,
+          "active_stake_ada": null
+        },
+        {
+          "root_seed_id": "iog",
+          "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
+          "tx_hash": "65c2d8bc4c065dd193e67d2e405024c0d2ea47483684271b389e27a7621212ee",
+          "tx_out_index": 2,
+          "current_lovelace": 27060927736221,
+          "current_ada": 27060927.736221,
+          "min_depth": 14,
+          "epoch_no": 598,
+          "block_no": 12725801,
+          "block_time_utc": "2025-12-02 20:54:55",
+          "address": "addr1qy5q5v0hqu4y8wjxhkjcx0dprxuqv0j3u4ysrcycgma6hernmsp6xq38ycpv85av20trkz82tyvw9ncy3td2kzk2z7wsq24f9j",
+          "latest_pool_id_bech32": null,
+          "latest_pool_active_epoch_no": null,
+          "latest_pool_delegation_tx_hash": null,
+          "latest_pool_delegation_epoch_no": null,
+          "latest_pool_delegation_block_no": null,
+          "latest_pool_delegation_time_utc": null,
+          "latest_drep_id_bech32": null,
+          "latest_drep_delegation_tx_hash": null,
+          "latest_drep_delegation_epoch_no": null,
+          "latest_drep_delegation_block_no": null,
+          "latest_drep_delegation_time_utc": null,
+          "active_stake_epoch": 635,
+          "active_stake_lovelace": null,
+          "active_stake_ada": null
+        },
+        {
+          "root_seed_id": "iog",
+          "stake_address": "stake1u84u9k7yjnujla4stf25q23r0tcxyj0stmzadwam4k98g3s0euwyc",
+          "tx_hash": "b310dff6ef0264217caf5382ac431784b79eea8ea53b7b762b22a37f20e45c66",
+          "tx_out_index": 0,
+          "current_lovelace": 16999996800000,
+          "current_ada": 16999996.8,
+          "min_depth": 14,
+          "epoch_no": 317,
+          "block_no": 6808473,
+          "block_time_utc": "2022-01-27 15:40:53",
+          "address": "addr1qxtexag8umjh0d2avr6mvpgqw8kur9cdg3rydgatafsfx8htctduf98e9lmtqkj4gq4zx7hsvfylqhk966amhtv2w3rq0kxpf7",
+          "latest_pool_id_bech32": "pool1vcwsfldh4gkzga4mc6p86y0vytkqfm9e2dy44hs00v34yeqnfaf",
+          "latest_pool_active_epoch_no": 329,
+          "latest_pool_delegation_tx_hash": "3272a925ad6f91b220d2bc093b68d5379adcf4765290df47704bcbca3d8dd0be",
+          "latest_pool_delegation_epoch_no": 327,
+          "latest_pool_delegation_block_no": 7024901,
+          "latest_pool_delegation_time_utc": "2022-03-21 17:07:58",
+          "latest_drep_id_bech32": "drep_always_abstain",
+          "latest_drep_delegation_tx_hash": "aa6ad4ea3773d13ee55e85f3c6356f2705ed9e1faf43aa5d7b9b41f52ec76a0c",
+          "latest_drep_delegation_epoch_no": 539,
+          "latest_drep_delegation_block_no": 11463063,
+          "latest_drep_delegation_time_utc": "2025-02-09 19:57:02",
+          "active_stake_epoch": 635,
+          "active_stake_lovelace": 35009567500195,
+          "active_stake_ada": 35009567.500195
         }
       ]
     },
@@ -2181,14 +2370,14 @@
       ],
       "sample_rows": [
         {
-          "current_utxo_rows": 75989,
-          "current_ada": 506900169.148536,
+          "current_utxo_rows": 75812,
+          "current_ada": 504872796.959289,
           "min_depth": 4,
           "max_depth": 14,
-          "distinct_stake_addresses": 48581,
-          "byron_or_no_stake_utxos": 3198,
-          "byron_or_no_stake_ada": 7581394.383501,
-          "shelley_staked_ada": 499318774.765035
+          "distinct_stake_addresses": 48502,
+          "byron_or_no_stake_utxos": 3196,
+          "byron_or_no_stake_ada": 7580280.011407,
+          "shelley_staked_ada": 497292516.947882
         }
       ]
     },
@@ -2314,9 +2503,9 @@
         {
           "label": "IOG1",
           "pool_view": "pool1mxqjlrfskhd5kql9kak06fpdh8xjwc76gec76p3taqy2qmfzs5z",
-          "tip_epoch": 632,
-          "tip_block": 13446903,
-          "tip_time_utc": "2026-05-21 13:31:48",
+          "tip_epoch": 634,
+          "tip_block": 13495419,
+          "tip_time_utc": "2026-06-01 22:57:36",
           "latest_update_active_epoch": 457,
           "ticker_name": "IOG1",
           "metadata_url": "https://iog1.cardano.iog.io/metadata.json",
@@ -2325,16 +2514,16 @@
           "retiring_epoch": null,
           "retire_announced_time": null,
           "is_retired_at_tip": false,
-          "latest_epoch_stake_epoch": 633,
-          "latest_epoch_active_stake_ada": 10027028.166516,
+          "latest_epoch_stake_epoch": 635,
+          "latest_epoch_active_stake_ada": 10041920.418743,
           "latest_epoch_stake_credentials": 1057
         },
         {
           "label": "IOG2",
           "pool_view": "pool10dwjth7esfw5gc036vu6l6csnvn6elqax0d3kh8t65rxyewk2g3",
-          "tip_epoch": 632,
-          "tip_block": 13446903,
-          "tip_time_utc": "2026-05-21 13:31:48",
+          "tip_epoch": 634,
+          "tip_block": 13495419,
+          "tip_time_utc": "2026-06-01 22:57:36",
           "latest_update_active_epoch": 210,
           "ticker_name": "IOG2",
           "metadata_url": "https://pools.iohk.io/IOG2.json",

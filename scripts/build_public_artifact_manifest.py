@@ -5,7 +5,16 @@ import hashlib, json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/manifests/public-artifacts-manifest.json'
-INCLUDE_DIRS=[ROOT/'data/small', ROOT/'reports', ROOT/'findings', ROOT/'docs', ROOT/'profiles']
+INCLUDE_DIRS=[
+    ROOT/'claims',
+    ROOT/'data/small',
+    ROOT/'docs',
+    ROOT/'findings',
+    ROOT/'profiles',
+    ROOT/'prompts',
+    ROOT/'reports',
+    ROOT/'sql',
+]
 
 def sha256_file(p:Path)->str:
     h=hashlib.sha256()

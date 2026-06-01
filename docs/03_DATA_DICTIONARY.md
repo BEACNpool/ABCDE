@@ -276,6 +276,24 @@ This is a depth-14 audit cut of currently unspent IOG-descended UTxOs. It is tra
 | `byron_or_no_stake_utxos`, `byron_or_no_stake_ada` | Current rows/value with no stake credential |
 | `shelley_staked_ada` | Current rows/value with a stake credential |
 
+## `iog_current_bag_depth14_current_utxos`
+
+Source: staged server-side IOG trace in ABCDE/db-sync → `data/small/iog_current_bag_depth14_current_utxos.csv`.
+
+One row per currently unspent IOG-descended UTxO in the depth-14 public cut. This is the drilldown table for temporal anomaly review.
+
+| column | meaning |
+| --- | --- |
+| `root_seed_id` | Root seed, currently `iog` for this table |
+| `stake_address` | Stake credential for the UTxO address, when present |
+| `tx_hash`, `tx_out_index` | Current UTxO identifier |
+| `current_lovelace`, `current_ada` | Current unspent value |
+| `min_depth` | Minimum observed trace depth from the IOG seed |
+| `epoch_no`, `block_no`, `block_time_utc` | Chain position of the current UTxO's creating transaction |
+| `latest_pool_*` | Latest observed SPO delegation context for the stake credential, when present |
+| `latest_drep_*` | Latest observed DRep delegation context for the stake credential, when present |
+| `active_stake_epoch`, `active_stake_lovelace`, `active_stake_ada` | Latest active-stake snapshot for the stake credential, when present |
+
 ## `iog_pool_state_validation`
 
 Source: ABCDE/db-sync pool registration/retirement/epoch stake tables → `data/small/iog_pool_state_validation.csv`.

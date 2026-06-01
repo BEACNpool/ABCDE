@@ -1,7 +1,67 @@
 {
   "schema_version": 1,
-  "file_count": 79,
+  "file_count": 134,
   "files": [
+    {
+      "path": "claims/README.md",
+      "bytes": 496,
+      "sha256": "ac193b1ecd01a98ab18dcde2b703d91f269e354bbdb00e46bb313ed483f5ac18"
+    },
+    {
+      "path": "claims/manifest.json",
+      "bytes": 1971,
+      "sha256": "3c1299306573d2186a74565a46c624edaf171beca89100cee6fae40250ea55bd"
+    },
+    {
+      "path": "claims/outputs/iog_retained_bag_bands.tsv",
+      "bytes": 878,
+      "sha256": "bb2144fb3e81a7f57823a7ff7d099083b871eda0d4bc1189547fee6dd72b41d1"
+    },
+    {
+      "path": "claims/outputs/seed_allocations.tsv",
+      "bytes": 278,
+      "sha256": "f962eb8c7a5c55446dcb1d5ffa04de3adfa65e2e71201fc0434ac09e7fc17244"
+    },
+    {
+      "path": "claims/outputs/staged_trace_founder_summary.tsv",
+      "bytes": 441,
+      "sha256": "71fc8712e18f95d369ecccae9f671eb15334ad11f22ccfac888e8c53737a6267"
+    },
+    {
+      "path": "claims/outputs/top_drep_genesis_exposure.tsv",
+      "bytes": 2294,
+      "sha256": "cd27b4294cd88ae8c5fa54d4863ae544cb57df17579705cf2415e2e68bec4f15"
+    },
+    {
+      "path": "claims/outputs/top_registered_dreps.tsv",
+      "bytes": 1533,
+      "sha256": "cba3f8d8f1e4c1e735112d203f84424888ea25ca5e6b5a5de083bfd18130cba5"
+    },
+    {
+      "path": "claims/sql/iog_retained_bag_bands.sql",
+      "bytes": 433,
+      "sha256": "66b4b3690ac23952ece5d1390e427f04669c99c88076b238e9730c78e6eeb694"
+    },
+    {
+      "path": "claims/sql/seed_allocations.sql",
+      "bytes": 119,
+      "sha256": "854531af038d295a4c12ec207b0d553ae8323ea313cea95266322d310c037367"
+    },
+    {
+      "path": "claims/sql/staged_trace_founder_summary.sql",
+      "bytes": 106,
+      "sha256": "8c9535e41e0992b9cc084811ec182a8219e16634f57a05aeeb7c42326987ffe6"
+    },
+    {
+      "path": "claims/sql/top_drep_genesis_exposure.sql",
+      "bytes": 272,
+      "sha256": "997879f3bce2c3d401fcb2e128d29624c7a2597f735e3e143ac477ed41fc554b"
+    },
+    {
+      "path": "claims/sql/top_registered_dreps.sql",
+      "bytes": 315,
+      "sha256": "146dbc363b0cc12dfb5fb98e6e61d4867594c98e6aba761ebcb934a0b8359bde"
+    },
     {
       "path": "data/small/bounded_trace_depth3_db.csv",
       "bytes": 24651,
@@ -110,7 +170,7 @@
     {
       "path": "data/small/iog_current_bag_depth14_by_depth.csv",
       "bytes": 310,
-      "sha256": "af472c572d0a7eb39c64c778d645751a07950e6bfff73a10550495e407f0a7a6"
+      "sha256": "06ebb0fa8c321250602591cdaea5c99020feea7928d0e8cb0335853e72326161"
     },
     {
       "path": "data/small/iog_current_bag_depth14_cluster_classification_top200.csv",
@@ -124,13 +184,18 @@
     },
     {
       "path": "data/small/iog_current_bag_depth14_confidence_bands.csv",
-      "bytes": 1060,
-      "sha256": "82c584f4cad4bfc9a45cd21291f6632efbd5fa87fc041829cba8d669e991fb85"
+      "bytes": 880,
+      "sha256": "6721dd171f06fa62b8c70edf2f7e1075869a28d3dcbf959b88ee105f3b8a081b"
     },
     {
       "path": "data/small/iog_current_bag_depth14_coordinated_abstain_e329_clusters.csv",
       "bytes": 4175,
       "sha256": "9c951f43212e7f1a512dc7202de9b0dfd498cfe6837b9d7c0341227a7f845039"
+    },
+    {
+      "path": "data/small/iog_current_bag_depth14_current_utxos.csv",
+      "bytes": 32934998,
+      "sha256": "1dd474efc63ca44ff5c8576ab2f6bdcb625831de6f8fb39316144b989e48be3a"
     },
     {
       "path": "data/small/iog_current_bag_depth14_heuristic_class_summary.csv",
@@ -140,17 +205,17 @@
     {
       "path": "data/small/iog_current_bag_depth14_summary.csv",
       "bytes": 221,
-      "sha256": "bcaa26140deea25c01506e99c5af77887b5fe7744b72dd857668eff9abb2fdc7"
+      "sha256": "6d26ae3a724ae0f761a9c06a6d0b4e4efb51901cca6e1788fbf9be9ef7391d47"
     },
     {
       "path": "data/small/iog_current_bag_depth14_top_stake.csv",
       "bytes": 4510,
-      "sha256": "1dc7a30e33d2cf15d05796528f06c3f96a050029299ca9184d58faf8aefdb132"
+      "sha256": "45cee6c84ceb16ade7cac5c518736c40e7fb149bf5aa0de31edb236a8ec1c768"
     },
     {
       "path": "data/small/iog_pool_state_validation.csv",
       "bytes": 658,
-      "sha256": "5b4011c18606470633e2171aa214a667188e2f88dc693bd643b1b60e1ff2ea56"
+      "sha256": "73c83d48e67ed0bf9d1eaf413f4f2ee378805d4de2da21b7b5a2b4dfd88215ca"
     },
     {
       "path": "data/small/legacy_cross_merge_baseline_counts.csv",
@@ -233,66 +298,6 @@
       "sha256": "47a80d5ec9360e0fefdf0ed6c67c7aa343609c6e8fdb2a40aeab938ad7e27435"
     },
     {
-      "path": "reports/genesis_forensics_community_summary.md",
-      "bytes": 16218,
-      "sha256": "05f987b4d396b141c264526ce4c0572b1eb3afa7e771629d3ff51b8fb814811b"
-    },
-    {
-      "path": "reports/top_drep_profiles.md",
-      "bytes": 6379,
-      "sha256": "38f898e0f519619a7c6dbc74d1cecc13677c146929465a693a3a9001ab3b9a55"
-    },
-    {
-      "path": "findings/F01_named_founder_allocations.md",
-      "bytes": 563,
-      "sha256": "abf0d78f8669c05b09c2a3d7ef853b3da881f2321af54576cd5a16ffdf016ea4"
-    },
-    {
-      "path": "findings/F02_fourth_entry_first_spend_convergence.md",
-      "bytes": 1264,
-      "sha256": "48838379ed20423a52418d113976824ae148de5529eabc939e23c0ec93a1e550"
-    },
-    {
-      "path": "findings/F02b_fourth_entry_direct_cospend.md",
-      "bytes": 1010,
-      "sha256": "8211edd6b05b38d85c8e78c7312e6d90f34e4b93b51f376b1e5135d8d857041a"
-    },
-    {
-      "path": "findings/F03_fourth_entry_sale_ticket_origin_signal.md",
-      "bytes": 1406,
-      "sha256": "f8c28af021364ccea748690e0eb126e8a9d8ce713e31f4d26a2011166afcd5c2"
-    },
-    {
-      "path": "findings/F04_bounded_trace_overlap_pilot.md",
-      "bytes": 1118,
-      "sha256": "602e17ef601c5d1b365596c6bef1648dc406325cda7b027f1b2f793a8369cbdd"
-    },
-    {
-      "path": "findings/F05_bounded_trace_merge_inventory_pilot.md",
-      "bytes": 1130,
-      "sha256": "a357510ce1f08166b37e2f5539179d015fd87117c0e56795e77eea3471432ebd"
-    },
-    {
-      "path": "findings/F06_governance_delegation_targets.md",
-      "bytes": 1998,
-      "sha256": "bc721982f2533ebafafe764b02b4fd9282cb54b3fb72c329594011386545607f"
-    },
-    {
-      "path": "findings/F07_staged_trace_extraction.md",
-      "bytes": 3429,
-      "sha256": "25d1ccc92d281fe4b488a720d2e6f905b98ba854fb2659968a6f3a116b88b860"
-    },
-    {
-      "path": "findings/F08_iog_current_bag_audit_cut.md",
-      "bytes": 3944,
-      "sha256": "ebeca98698a6380e42e8f58135561557f4e34743a1a5e65d3f76d51ca44e8387"
-    },
-    {
-      "path": "findings/INDEX.md",
-      "bytes": 1661,
-      "sha256": "7616ca05ae9fbeecb43ffcd6161f1c05abe2fab78718b426d8dc4ba5aed3eb23"
-    },
-    {
       "path": "docs/00_START_HERE.md",
       "bytes": 2061,
       "sha256": "b09a3829af443677ff8d0caf71f96a2eed402f10ed9927ea518e9c177d9ef986"
@@ -309,13 +314,13 @@
     },
     {
       "path": "docs/03_DATA_DICTIONARY.md",
-      "bytes": 13190,
-      "sha256": "87c0a8b9f9b73adfba82157983935664e88c418524518b02e04b283a9c1339b4"
+      "bytes": 14286,
+      "sha256": "ca6d7c1e6488b6f62fc7eae2e43b1c9ea0d6daf541fccf1d6dcaaf39e576066a"
     },
     {
       "path": "docs/04_REPRODUCING_LOCALLY.md",
-      "bytes": 1146,
-      "sha256": "a23a82af7f6aeee085de0fb801ab2b5aa07c0d2f459c92169dc71c457f50a02f"
+      "bytes": 1170,
+      "sha256": "c9d53db7c2a74b8a98d4c885a6731b878279caab1de65477dd9bf3673addeac0"
     },
     {
       "path": "docs/05_REBUILDING_FROM_DBSYNC.md",
@@ -389,13 +394,283 @@
     },
     {
       "path": "docs/19_QUERY_COOKBOOK.md",
-      "bytes": 5565,
-      "sha256": "65c29a50857ddac5de9dc5ab6a1bab27391617f12f942d6b3553a5c1eb79e609"
+      "bytes": 6733,
+      "sha256": "9419c7706d56f2c7623ff4aa625c48f241b5b102fba3478d826089abbbe7bd53"
+    },
+    {
+      "path": "docs/20_TEMPORAL_QUERY_GUIDE.md",
+      "bytes": 3511,
+      "sha256": "7f424d556eeb3bbc05492f0c90c729ca08ecff87e3ee6e19712f884e53a912f7"
+    },
+    {
+      "path": "docs/AI_QUERY_GUIDE.md",
+      "bytes": 5101,
+      "sha256": "c813afd3de0df5ab43c76139b2ebd316f0326c5a5736b941eb68a786c338c92b"
+    },
+    {
+      "path": "docs/SCHEMA.md",
+      "bytes": 20478,
+      "sha256": "c3628d095bcef0a895938219bdb6142cd8d1c75008cf8345c3893bc11cf1b4b1"
+    },
+    {
+      "path": "docs/STARTER_QUESTIONS.md",
+      "bytes": 2034,
+      "sha256": "4bbaa6f840beabe52f1a965053ca88dab4972c4c447a797874ec1ba39b04400e"
+    },
+    {
+      "path": "findings/F01_named_founder_allocations.md",
+      "bytes": 563,
+      "sha256": "abf0d78f8669c05b09c2a3d7ef853b3da881f2321af54576cd5a16ffdf016ea4"
+    },
+    {
+      "path": "findings/F02_fourth_entry_first_spend_convergence.md",
+      "bytes": 1264,
+      "sha256": "48838379ed20423a52418d113976824ae148de5529eabc939e23c0ec93a1e550"
+    },
+    {
+      "path": "findings/F02b_fourth_entry_direct_cospend.md",
+      "bytes": 1010,
+      "sha256": "8211edd6b05b38d85c8e78c7312e6d90f34e4b93b51f376b1e5135d8d857041a"
+    },
+    {
+      "path": "findings/F03_fourth_entry_sale_ticket_origin_signal.md",
+      "bytes": 1406,
+      "sha256": "f8c28af021364ccea748690e0eb126e8a9d8ce713e31f4d26a2011166afcd5c2"
+    },
+    {
+      "path": "findings/F04_bounded_trace_overlap_pilot.md",
+      "bytes": 1118,
+      "sha256": "602e17ef601c5d1b365596c6bef1648dc406325cda7b027f1b2f793a8369cbdd"
+    },
+    {
+      "path": "findings/F05_bounded_trace_merge_inventory_pilot.md",
+      "bytes": 1130,
+      "sha256": "a357510ce1f08166b37e2f5539179d015fd87117c0e56795e77eea3471432ebd"
+    },
+    {
+      "path": "findings/F06_governance_delegation_targets.md",
+      "bytes": 1998,
+      "sha256": "bc721982f2533ebafafe764b02b4fd9282cb54b3fb72c329594011386545607f"
+    },
+    {
+      "path": "findings/F07_staged_trace_extraction.md",
+      "bytes": 3429,
+      "sha256": "25d1ccc92d281fe4b488a720d2e6f905b98ba854fb2659968a6f3a116b88b860"
+    },
+    {
+      "path": "findings/F08_iog_current_bag_audit_cut.md",
+      "bytes": 3944,
+      "sha256": "ebeca98698a6380e42e8f58135561557f4e34743a1a5e65d3f76d51ca44e8387"
+    },
+    {
+      "path": "findings/INDEX.md",
+      "bytes": 1661,
+      "sha256": "7616ca05ae9fbeecb43ffcd6161f1c05abe2fab78718b426d8dc4ba5aed3eb23"
     },
     {
       "path": "profiles/dreps/README.md",
       "bytes": 2345,
       "sha256": "33036e64bde14ba523e7f5e183d474db906e5f4ee9c12a01d4fbca5dfd40d980"
+    },
+    {
+      "path": "prompts/README.md",
+      "bytes": 583,
+      "sha256": "a005ffe2b05416f892e74763594dc2454a89dd951198b57faeb05fd8d427b449"
+    },
+    {
+      "path": "prompts/audit_every_figure.md",
+      "bytes": 898,
+      "sha256": "4120c7bda56357899f3b3fb05196216f38bea37036c25eb4ef33479e473cfd16"
+    },
+    {
+      "path": "prompts/drep_exposure_review.md",
+      "bytes": 545,
+      "sha256": "f7117a0544b5ad4d9ee56da125460aed930ccb2cdec3b6919f52fb0c8b38c386"
+    },
+    {
+      "path": "prompts/falsify_the_claims.md",
+      "bytes": 696,
+      "sha256": "3782f68c0764726b2cb5f1ec8fb51bc2c85d3c7d8bd49855a50c50b43841840a"
+    },
+    {
+      "path": "prompts/temporal_anomaly_review.md",
+      "bytes": 1594,
+      "sha256": "013797c336c6280d5d89d5f2734138d5f1edb867616d68233423b5dfa1255814"
+    },
+    {
+      "path": "prompts/where_did_iog_go.md",
+      "bytes": 661,
+      "sha256": "2b31113ebe6f4d60f7bd8e2cf06ec097f0ec8ca84d1cd6d80b8ac62eec42b128"
+    },
+    {
+      "path": "reports/genesis_forensics_community_summary.md",
+      "bytes": 16057,
+      "sha256": "c6085be193e3910acacf7a1f8f74cdc08adf6eed39293c86cc41a9b18618e8a3"
+    },
+    {
+      "path": "reports/top_drep_profiles.md",
+      "bytes": 6379,
+      "sha256": "38f898e0f519619a7c6dbc74d1cecc13677c146929465a693a3a9001ab3b9a55"
+    },
+    {
+      "path": "sql/01_extract/001_seed_registry.sql",
+      "bytes": 451,
+      "sha256": "2a885e96d67117568db130db86385600dbad8ddcdaab12cafea519b8172611d3"
+    },
+    {
+      "path": "sql/01_extract/010_verify_seed_anchors.sql",
+      "bytes": 645,
+      "sha256": "eead9b47b7a1d5952b0bb13b1f6a59b1a64a2ee00b2077f522e8fad53804fa96"
+    },
+    {
+      "path": "sql/01_extract/020_trace_edges_skeleton.sql",
+      "bytes": 818,
+      "sha256": "179e1b959631161b400e95fe6b97cbfa8abbf00df7aaa0f9096b7396598784f7"
+    },
+    {
+      "path": "sql/02_enrich/010_cross_entity_merges.sql",
+      "bytes": 537,
+      "sha256": "464e8411f4b3d4ff72e687dd3617c713f9e2c82fcab3d870ce899abd42bf0b53"
+    },
+    {
+      "path": "sql/03_publish/010_export_manifest.sql",
+      "bytes": 346,
+      "sha256": "6d5094f21cff979314e217155594478a165f2d02df2352fce3e6b9b278ed129f"
+    },
+    {
+      "path": "sql/03_publish/020_public_duckdb_schema.sql",
+      "bytes": 925,
+      "sha256": "e7f1bb24a9a8771d5142bedf516e9f1a5c515437a7bd4233c074dd3d7e8643b7"
+    },
+    {
+      "path": "sql/10_findings/F01_named_founder_allocations.duckdb.sql",
+      "bytes": 173,
+      "sha256": "e9ac7c05528637c6517ca785fc1a1a593b554ee6c0338a9c66ab0a7045444b69"
+    },
+    {
+      "path": "sql/10_findings/F02_fourth_entry_first_spend_convergence.duckdb.sql",
+      "bytes": 400,
+      "sha256": "e630daecd04e581e2a17236200b6d0e82968c954b32aeedba355c09383762756"
+    },
+    {
+      "path": "sql/10_findings/F02b_fourth_entry_direct_cospend.duckdb.sql",
+      "bytes": 272,
+      "sha256": "51b296fe110122171e93c158fddcea2309f0408cc6b22df04e335279dad37d71"
+    },
+    {
+      "path": "sql/10_findings/F03_fourth_entry_sale_ticket_signal.duckdb.sql",
+      "bytes": 342,
+      "sha256": "2a4dbbb77d6086fd14f39ecb530427479933ebde0c5b5ffb9a33f4fc36364c55"
+    },
+    {
+      "path": "sql/10_findings/bounded_trace_depth3_merge_inventory.duckdb.sql",
+      "bytes": 2183,
+      "sha256": "7cf002c72b953a843138ba5898afbdddc9fdd4ad8c0558680611db12476ea7cd"
+    },
+    {
+      "path": "sql/10_findings/bounded_trace_depth3_overlaps.duckdb.sql",
+      "bytes": 515,
+      "sha256": "b25ce0d58a2495516b8ff90c8df79d41472790b3955a91e0168ea3ac70259eff"
+    },
+    {
+      "path": "sql/10_findings/bounded_trace_depth3_summary.duckdb.sql",
+      "bytes": 224,
+      "sha256": "a30c350073ec0bef066704ab75a21b36e591477d1e6e8bb261df55b8793794cb"
+    },
+    {
+      "path": "sql/10_findings/governance_drep_delegation_targets_summary.duckdb.sql",
+      "bytes": 346,
+      "sha256": "769f567a111cbabd6253f87050bb8b4412a06de16e0fba1b2d9c7815fac694cc"
+    },
+    {
+      "path": "sql/10_findings/governance_latest_drep_targets_enriched.duckdb.sql",
+      "bytes": 378,
+      "sha256": "7ddd5ab2c5fc798175fc4d71b838e06ba013187e32ff600dac0d5bfc43fe1c81"
+    },
+    {
+      "path": "sql/10_findings/governance_latest_drep_value_targets_enriched.duckdb.sql",
+      "bytes": 371,
+      "sha256": "08ac02bd79be057d21afe4e3ab90288e41bf0cad5d663430c2e092d463d22bc0"
+    },
+    {
+      "path": "sql/10_findings/governance_latest_spo_targets_enriched.duckdb.sql",
+      "bytes": 400,
+      "sha256": "817ee79bbca27367defcfacd853a123721727c6aa51918289dc9c886c2347163"
+    },
+    {
+      "path": "sql/10_findings/governance_latest_spo_value_targets_enriched.duckdb.sql",
+      "bytes": 379,
+      "sha256": "ba2c727a94fbb26d852ad825380e533bcf1f185d8c3d799e30f88714bbae8228"
+    },
+    {
+      "path": "sql/10_findings/governance_spo_delegation_targets_summary.duckdb.sql",
+      "bytes": 373,
+      "sha256": "f7ab347e23dc0775754b7c18bb2881a40886d8f3726339f25a3119c611039ee8"
+    },
+    {
+      "path": "sql/10_findings/governance_top_drep_targets.duckdb.sql",
+      "bytes": 310,
+      "sha256": "1989e9848718b5c9df9caaf31d4d1dc82334cb3031662ec85272274b13b2a760"
+    },
+    {
+      "path": "sql/10_findings/governance_top_drep_targets_enriched.duckdb.sql",
+      "bytes": 446,
+      "sha256": "f30026d3fd4ebfff930e446cc4a985772f801f525d4bdc1a9834d126cd796d1c"
+    },
+    {
+      "path": "sql/10_findings/governance_top_spo_targets.duckdb.sql",
+      "bytes": 323,
+      "sha256": "b4b56846fe0f59169a2704d6dac313798e8fa3eadf5c12973dccf4b5c5e9ac38"
+    },
+    {
+      "path": "sql/10_findings/governance_top_spo_targets_enriched.duckdb.sql",
+      "bytes": 449,
+      "sha256": "b8bd5435a15cb9338543755a2b758da4249cd8bc5191a56553b28d5d132f2e40"
+    },
+    {
+      "path": "sql/20_profiles/top_drep_delegation_age_buckets.sql",
+      "bytes": 3022,
+      "sha256": "222812312c287883baa96f63aeaa6cd1869470ba1af428e5c6bded0a46a3df3f"
+    },
+    {
+      "path": "sql/20_profiles/top_drep_pool_affiliations.sql",
+      "bytes": 3243,
+      "sha256": "dcd87ffd06951272174eb4ac2cb4a72eda7fbaffc3c55aaed685dbd6768e029f"
+    },
+    {
+      "path": "sql/20_profiles/top_drep_profiles_current.sql",
+      "bytes": 4835,
+      "sha256": "ccb1555462915881063374f337d1e85722aed5b94ef51c0447a3b32f5ca9b6f9"
+    },
+    {
+      "path": "sql/20_profiles/top_drep_stake_buckets.sql",
+      "bytes": 3182,
+      "sha256": "5bb6c753d6c41af47a39fbe75850dbdada4cc859be1bd8615160bbdf29695934"
+    },
+    {
+      "path": "sql/30_query_recipes/cross_entity_merges_epoch_block.duckdb.sql",
+      "bytes": 827,
+      "sha256": "2c65be24b163687fd01a02b0455099a1349489f2083230025e015271a3b72fc8"
+    },
+    {
+      "path": "sql/30_query_recipes/drep_exposure_epoch_windows.duckdb.sql",
+      "bytes": 973,
+      "sha256": "053c191c539c91bb118e5855c2ddb5ff8e7a350f6a1accd4edb4e604ede05d2b"
+    },
+    {
+      "path": "sql/30_query_recipes/iog_current_bag_current_utxos_epoch_block.duckdb.sql",
+      "bytes": 933,
+      "sha256": "5b91a90d4a83166ae919151ec7e10c2f8b232ffab4ce7cfd52d545d81c586085"
+    },
+    {
+      "path": "sql/30_query_recipes/iog_current_bag_depth_temporal_limits.duckdb.sql",
+      "bytes": 1064,
+      "sha256": "43d2e66d5fd084a800512708d238b9e54351afeea773e9d05495c8602a407e45"
+    },
+    {
+      "path": "sql/30_query_recipes/trace_hops_with_epoch_block.duckdb.sql",
+      "bytes": 437,
+      "sha256": "c8cb401dd886dbc2ed5a72102f19b5038675e65aeb52437296827b0ee617a1ae"
     }
   ]
 }

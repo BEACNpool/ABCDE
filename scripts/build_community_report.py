@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DB = ROOT / 'data/abcde_genesis_seed_registry.duckdb'
+DB = ROOT / 'data/abcde_genesis.duckdb'
 OUT = ROOT / 'reports/genesis_forensics_community_summary.md'
 
 
@@ -33,11 +33,11 @@ def main() -> None:
         """).fetchall()
         first_spends = con.execute("""
             SELECT seed_id, first_spend_tx_hash, round(dormant_hours, 3), spend_input_count
-            FROM seed_first_spends ORDER BY seed_id
+            FROM seed_first_spends_db ORDER BY seed_id
         """).fetchall()
         cospend = con.execute("""
             SELECT input_source_tx_hash, input_value_lovelace, descendant_of_seed_id, emurgo_trace_depth
-            FROM fourth_entry_direct_cospend ORDER BY input_value_lovelace DESC
+            FROM fourth_entry_direct_cospend_db ORDER BY input_value_lovelace DESC
         """).fetchall()
         spo_summary = con.execute("""
             SELECT root_seed_id, count(*) AS pool_targets

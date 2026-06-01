@@ -47,6 +47,7 @@ STAGED_CROSS_MERGES_FOUNDERS_DEPTH10_CSV = ROOT / 'data/small/staged_cross_entit
 IOG_CURRENT_BAG_SUMMARY_CSV = ROOT / 'data/small/iog_current_bag_depth14_summary.csv'
 IOG_CURRENT_BAG_BY_DEPTH_CSV = ROOT / 'data/small/iog_current_bag_depth14_by_depth.csv'
 IOG_CURRENT_BAG_TOP_STAKE_CSV = ROOT / 'data/small/iog_current_bag_depth14_top_stake.csv'
+IOG_CURRENT_BAG_CURRENT_UTXOS_CSV = ROOT / 'data/small/iog_current_bag_depth14_current_utxos.csv'
 IOG_POOL_STATE_VALIDATION_CSV = ROOT / 'data/small/iog_pool_state_validation.csv'
 IOG_CLUSTER_PROFILE_TOP200_CSV = ROOT / 'data/small/iog_current_bag_depth14_cluster_profile_top200.csv'
 IOG_CLUSTER_CLASSIFICATION_TOP200_CSV = ROOT / 'data/small/iog_current_bag_depth14_cluster_classification_top200.csv'
@@ -127,6 +128,7 @@ def write_duckdb(db_path: Path, csv_path: Path) -> bool:
             (IOG_CURRENT_BAG_SUMMARY_CSV, 'iog_current_bag_depth14_summary'),
             (IOG_CURRENT_BAG_BY_DEPTH_CSV, 'iog_current_bag_depth14_by_depth'),
             (IOG_CURRENT_BAG_TOP_STAKE_CSV, 'iog_current_bag_depth14_top_stake'),
+            (IOG_CURRENT_BAG_CURRENT_UTXOS_CSV, 'iog_current_bag_depth14_current_utxos'),
             (IOG_POOL_STATE_VALIDATION_CSV, 'iog_pool_state_validation'),
             (IOG_CLUSTER_PROFILE_TOP200_CSV, 'iog_current_bag_depth14_cluster_profile_top200'),
             (IOG_CLUSTER_CLASSIFICATION_TOP200_CSV, 'iog_current_bag_depth14_cluster_classification_top200'),
@@ -225,6 +227,7 @@ def update_manifest(csv_path: Path, db_path: Path | None) -> None:
         'iog_current_bag_depth14_summary_csv': IOG_CURRENT_BAG_SUMMARY_CSV,
         'iog_current_bag_depth14_by_depth_csv': IOG_CURRENT_BAG_BY_DEPTH_CSV,
         'iog_current_bag_depth14_top_stake_csv': IOG_CURRENT_BAG_TOP_STAKE_CSV,
+        'iog_current_bag_depth14_current_utxos_csv': IOG_CURRENT_BAG_CURRENT_UTXOS_CSV,
         'iog_pool_state_validation_csv': IOG_POOL_STATE_VALIDATION_CSV,
         'iog_current_bag_depth14_cluster_profile_top200_csv': IOG_CLUSTER_PROFILE_TOP200_CSV,
         'iog_current_bag_depth14_cluster_classification_top200_csv': IOG_CLUSTER_CLASSIFICATION_TOP200_CSV,

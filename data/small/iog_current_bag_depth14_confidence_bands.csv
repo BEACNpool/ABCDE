@@ -1,7 +1,6 @@
 band,ada,confidence,interpretation
-live_iog_pool_stake_sanity_check,10027028.166516,HIGH for pool state only,IOG1 live active stake; IOG2 retired; not an IOG bag estimate
-high_confidence_coordinated_retained_like_core,247261951.77078500,MEDIUM-HIGH,IOG-descended current UTxOs in synchronized drep_always_abstain / epoch-329 pool-delegation cluster >=100k ADA
-probable_retained_like_abstain_surface,278747238.425299000000,MEDIUM,Coordinated core plus other IOG-descended current UTxOs whose latest DRep is always-abstain
-trace_membership_current_upper_bound,506900169.14853600,"MEDIUM-HIGH for trace/unspent, LOW for beneficial ownership",All depth-14 IOG-descended live-unspent UTxOs before custodian/unknown classification
-known_service_or_custodian_like_subset,13610854.635725000000,MEDIUM,Subset delegated to recognizable service/custodian pools; should not be counted as retained without more evidence
-unclassified_or_no_latest_pool_subset,214346954.711814000000,UNKNOWN,Current IOG-descended value requiring classification before retained-bag use
+live_iog_pool_stake_sanity_check,10041920.418743,HIGH for pool state only,IOG1 live active stake; IOG2 retired; not an IOG bag estimate
+high_confidence_coordinated_retained_like_core,247261951.770785,MEDIUM-HIGH,IOG-descended current UTxOs in synchronized drep_always_abstain / epoch-329 pool-delegation clusters >=100k ADA
+probable_retained_like_abstain_surface,282012126.139902,MEDIUM,IOG-descended current UTxOs whose latest observed DRep is always-abstain
+trace_membership_current_upper_bound,504872796.959289,"MEDIUM-HIGH for trace/unspent, LOW for beneficial ownership",All depth-14 IOG-descended live-unspent UTxOs before custodian/unknown classification
+no_latest_drep_surface,207041377.104194,UNKNOWN,Current IOG-descended value with no latest observed DRep delegation in db-sync; requires deeper classification before retained-bag use

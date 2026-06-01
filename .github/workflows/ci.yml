@@ -49,6 +49,9 @@ jobs:
       - name: Verify public claim receipts
         run: python scripts/verify_claim_receipts.py
 
+      - name: Verify public artifact manifest
+        run: python scripts/verify_public_artifacts.py
+
       - name: Build release bundle
         run: python scripts/build_release_bundle.py
 
