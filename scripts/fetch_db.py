@@ -5,6 +5,9 @@ Downloads every asset of the latest release (or ``--tag <tag>``) of
 BEACNpool/ABCDE into ``data/release/`` (gitignored), then verifies each asset
 against the ``artifacts.sha256`` manifest that ships in the same release.
 
+If the repository has no releases yet, use the committed compact dataset:
+``data/abcde_genesis.duckdb`` plus the receipts in ``data/small/``.
+
 Requires the GitHub CLI (`gh`) to be installed and authenticated.
 
 Usage:
@@ -27,6 +30,24 @@ MANIFEST_NAME = "artifacts.sha256"
 
 def gh_download(tag: str | None) -> None:
     DEST.mkdir(parents=True, exist_ok=True)
+    view_cmd = ["gh", "release", "view"]
+    if tag:
+        view_cmd.append(tag)
+    view_cmd += ["--repo", SLUG]
+    try:
+        subprocess.run(view_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+    except FileNotFoundError:
+        sys.exit("ERROR: GitHub CLI `gh` is not installed. Install/authenticate gh, or use the committed compact dataset.")
+    except subprocess.CalledProcessError as exc:
+        detail = (exc.stderr or "").strip()
+        if tag:
+            sys.exit(f"ERROR: release tag {tag!r} was not found for {SLUG}.\n{detail}")
+        sys.exit(
+            f"ERROR: no GitHub release is available for {SLUG} yet.\n"
+            "Use the committed compact dataset at data/abcde_genesis.duckdb and data/small/*.csv.\n"
+            f"{detail}"
+        )
+
     cmd = ["gh", "release", "download"]
     if tag:
         cmd.append(tag)
