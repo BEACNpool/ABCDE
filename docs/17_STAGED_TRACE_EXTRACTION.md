@@ -97,3 +97,23 @@ Founder-only staged runs were extended past the initial depth-10 review cut.
 The full depth-14 merge export is intentionally kept under `data/release/` and ignored by git. Its hash is recorded in `data/manifests/staged-cross-merge-comparison.json`.
 
 Decision: depth 14 is a useful release-artifact cut, but not a clean replacement for the old 521-row baseline. It recovers most legacy transactions while surfacing many more merge candidates under the newer staged membership rule. The next work is classification/filtering, especially explaining the 67 missing legacy rows and separating true new candidates from inherited/overbroad merges.
+
+## All-roots depth-16 cut (2026-06-11)
+
+A full four-root staged run (`abcde_forensics_stage_depth16`, all seeds including the fourth entry) extended the public trace surface to depth 16 against the stalled epoch-635 snapshot (block `13520244`):
+
+| depth | new trace_utxos |
+| ---: | ---: |
+| 14 | 1,895,554 |
+| 15 | 3,461,416 |
+| 16 | 6,185,259 |
+
+Totals: **12,769,597** traced UTxO rows across all depths; the fourth entry is now traced to depth 16 (previously depth 10). Cross-entity merge candidates explode at this depth (**527,680** rows, dominated by `emurgo+fourth_entry_781m+iog` at 423,971) — this is expected overbroad-taint behavior through exchanges and shared infrastructure, and the set is strictly an `AUDIT_CANDIDATE_SET`.
+
+Artifacts:
+
+- `data/small/staged_trace_depth16_summary.csv` — run summary (committed)
+- `data/small/staged_trace_depth16_profile.csv` — per-root depth/dilution profile with live-unspent cuts (committed)
+- `data/release/staged_cross_entity_merges_depth16.csv` — full candidate set (release asset, 74 MB)
+
+Interpretation rule: nothing at depth >14 should be quoted as genesis-attributable value without classification; use the live-unspent columns and the behavior-surface confidence classes.

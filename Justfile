@@ -132,6 +132,14 @@ genesis-drep-behavior-remote:
 genesis-drep-behavior-rollups:
     python3 scripts/build_genesis_drep_behavior_rollups.py
 
+# Build Genesis-to-SPO surface, pool operator links, gov actions catalog
+genesis-spo-surface-remote:
+    bash scripts/build_genesis_spo_surface_remote.sh
+
+# Rebuild local Genesis-to-SPO rollups from data/release exports
+genesis-spo-rollups:
+    python3 scripts/build_genesis_spo_rollups.py
+
 # Build SHA-256 manifest for public docs/findings/reports/data/small artifacts
 public-artifact-manifest:
     python3 scripts/build_public_artifact_manifest.py

@@ -88,6 +88,12 @@ covering:
 - **Genesis-to-DRep behavior** rollups: confidence-banded stake-credential
   clusters, DRep exposure by behavior class, root x DRep cuts, and
   proposal-vote exposure surfaces
+- **Genesis-to-SPO delegation**: traced current value by latest pool target
+  (with pool metadata), a pool x DRep delegation cross-tab, and a
+  pool-operator linkage table (pools whose owner/reward credentials are
+  themselves trace-reached)
+- a **governance actions catalog**: every Conway governance action with
+  lifecycle epochs, deposit, type, and anchor
 
 Ground your queries on the schema catalog:
 [`docs/SCHEMA.md`](docs/SCHEMA.md) (human-readable) and

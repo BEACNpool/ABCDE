@@ -341,6 +341,82 @@ The committed top cut contains only clusters with `behavior_score >= 5`; rows be
 
 Important: these are governance exposure surfaces. They are not custody, ownership, identity, or intent claims. See `docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md` and `docs/06_LIMITATIONS.md`.
 
+## `governance_genesis_spo_by_pool`
+
+Source: Genesis-to-SPO surface export → `data/small/governance_genesis_spo_by_pool.csv`.
+
+Build command (maintainer-only; requires `ABCDE_SSH`):
+
+```bash
+TRACE_STAGE_SCHEMA=abcde_forensics_stage_founders_depth14 bash scripts/build_genesis_spo_surface_remote.sh
+```
+
+The full per-UTxO surface is exported to `data/release/genesis_current_spo_surface.csv` (release asset, not committed). This committed rollup answers: where is traced current value staked, per root combination and latest observed pool target?
+
+| column | meaning |
+| --- | --- |
+| `snapshot_utc`, `trace_schema` | Build timestamp and staged trace schema |
+| `root_combo` | `+`-joined root seeds whose traces reach the UTxOs |
+| `latest_pool_id_bech32` | Latest observed SPO delegation target, or `NOT_DELEGATED_OR_NO_STAKE` |
+| `ticker_name`, `pool_name` | Off-chain pool metadata when available |
+| `dedup_current_utxos`, `distinct_stake_addresses` | Current live traced UTxO and credential counts, deduped by UTxO |
+| `dedup_current_lovelace`, `dedup_current_ada` | Current traced value under this pool target |
+| `min_trace_depth` | Minimum trace depth among the rolled-up UTxOs |
+| `latest_pool_active_epoch` | Latest delegation active epoch observed |
+
+## `governance_genesis_pool_drep_matrix`
+
+Source: same surface → `data/small/governance_genesis_pool_drep_matrix.csv`.
+
+Pool x DRep cross-tab of traced current value (top 500 rows by value): for each latest pool target, where is the same stake credential's vote delegation pointed? `NO_DREP_DELEGATION` marks credentials with no observed vote delegation.
+
+## `governance_genesis_pool_operator_links`
+
+Source: ABCDE/db-sync pool registration certificates joined against all-time staged trace membership → `data/small/governance_genesis_pool_operator_links.csv`.
+
+One row per (pool, link role, linked stake address) where the pool's latest registration lists an **owner** or **reward address** stake credential that is itself reached by a Genesis trace. This is registration-certificate linkage — stronger than delegation alone, but still not custody, beneficial-ownership, identity, or intent evidence.
+
+| column | meaning |
+| --- | --- |
+| `pool_id_bech32` | Pool whose latest registration certificate contains the link |
+| `link_role` | `owner` or `reward_address` |
+| `linked_stake_address` | Trace-reached stake credential in the certificate |
+| `min_trace_depth` | Minimum depth at which any trace reached this credential — filter on this; deep links are diluted |
+| `root_combo` | Root seeds whose traces reach the credential |
+| `pool_active_epoch_no`, `pledge_lovelace`, `registration_tx_hash` | Registration context |
+
+## `staged_trace_depth16_profile`
+
+Source: all-roots depth-16 staged trace (`abcde_forensics_stage_depth16`) → `data/small/staged_trace_depth16_profile.csv`, built by `sql/30_behavior/staged_trace_depth_profile.sql`.
+
+Per (root seed, depth): traced UTxO rows, distinct stake credentials, live-unspent rows, and live-unspent value. This is the dilution receipt for the deepest public trace cut (12.77M rows; fourth entry now traced to depth 16, beyond its previous depth-10 coverage).
+
+**Read `total_lovelace` carefully:** at depth d, *every output* of a transaction that consumed a traced UTxO joins the trace, so summed output value at deep depths vastly exceeds the seed allocation (overbroad taint through exchanges and shared infrastructure). Use `live_unspent_lovelace` and behavior/confidence classification for any current-value statement; never quote deep-depth `total_lovelace` as genesis-attributable value.
+
+The matching whole-run summary is `data/small/staged_trace_depth16_summary.csv` (rows per depth, cross-entity merge candidates per root combo). The full ~528K-row depth-16 cross-entity merge candidate set is a release asset (`data/release/staged_cross_entity_merges_depth16.csv`, `AUDIT_CANDIDATE_SET` — requires classification before any claim).
+
+## `governance_genesis_delegation_timeline`
+
+Source: ABCDE/db-sync delegation + vote-delegation certificates joined against all-time staged trace membership → `data/small/governance_genesis_delegation_timeline.csv`.
+
+Per (cert type, root combo, epoch): how many delegation certificates traced credentials submitted, how many distinct credentials moved, and toward how many distinct targets. The per-certificate detail (573,716 SPO + 45,478 DRep certs for 359,128 traced credentials at depth 14) is exported to `data/release/genesis_delegation_history.csv` (release asset, not committed).
+
+| column | meaning |
+| --- | --- |
+| `snapshot_utc`, `trace_schema` | Build timestamp and staged trace schema |
+| `cert_type` | `spo_delegation` or `drep_vote_delegation` |
+| `root_combo` | Root seeds whose traces reach the credential |
+| `epoch_no` | Epoch of the certificate's block |
+| `cert_count` | Certificates observed |
+| `distinct_stake_addresses` | Distinct credentials submitting certificates |
+| `distinct_targets` | Distinct pools/DReps targeted |
+
+## `governance_actions_catalog`
+
+Source: ABCDE/db-sync `gov_action_proposal` → `data/small/governance_actions_catalog.csv`.
+
+Reference catalog of every on-chain Conway governance action with lifecycle epochs (`proposed/ratified/enacted/dropped/expired`), deposit, type, and anchor URL/hash. Join `gov_action_proposal_id` or `proposal_tx_hash` against `governance_genesis_behavior_by_proposal` to put proposal-level exposure rollups in context.
+
 ## `db_tip_receipt` / `build_info`
 
 Source: warehouse tip query at build time → `data/small/db_tip_receipt.csv`, loaded into the DuckDB as `build_info`.
