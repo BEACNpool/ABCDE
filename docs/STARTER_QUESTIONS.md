@@ -40,6 +40,14 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 - Which proposal-vote rows have the largest genesis-traced exposure by vote choice?
 - How much of each root seed's traced current value is delegated to each DRep behavior class?
 
+## Genesis-to-SPO delegation surface
+
+- Which stake pools receive the most founder-traced current value, and what are their tickers?
+- How much traced current value is not delegated to any pool at all?
+- Which pool/DRep combinations hold the most traced value (`governance_genesis_pool_drep_matrix`)?
+- Which pools have an owner or reward address that is itself trace-reached, and at what minimum depth (`governance_genesis_pool_operator_links`)?
+- Which governance actions were enacted, and which proposal types appear most (`governance_actions_catalog`)?
+
 ## Tips
 
 - Call `list_tables()` first, then `describe_table(name)` on anything relevant,

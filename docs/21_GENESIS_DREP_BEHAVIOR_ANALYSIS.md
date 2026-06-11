@@ -49,6 +49,14 @@ The first executable pass now exists.
 - Full confidence signal output: `data/release/governance_genesis_behavior_signals_full.csv`
 - Freshness receipt: `data/small/db_tip_receipt.csv`
 
+The SPO-side companion surface shares the same staged trace membership:
+
+- SPO surface export: `sql/30_behavior/genesis_current_spo_surface.sql` → `data/release/genesis_current_spo_surface.csv`
+- Pool operator linkage: `sql/30_behavior/genesis_pool_operator_links.sql` → `data/small/governance_genesis_pool_operator_links.csv`
+- Delegation cert history: `sql/30_behavior/genesis_delegation_history.sql` → `data/release/genesis_delegation_history.csv`, with the committed epoch rollup `data/small/governance_genesis_delegation_timeline.csv`
+- Governance actions catalog: `sql/30_behavior/governance_actions_catalog.sql` → `data/small/governance_actions_catalog.csv`
+- Runner: `scripts/build_genesis_spo_surface_remote.sh`; local rollups: `scripts/build_genesis_spo_rollups.py` → `data/small/governance_genesis_spo_by_pool.csv`, `data/small/governance_genesis_pool_drep_matrix.csv`
+
 Default run target:
 
 ```bash

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ABCDE_SSH="${ABCDE_SSH:-abcde@192.168.86.118}"
+if [[ -z "${ABCDE_SSH:-}" ]]; then
+  echo "Set ABCDE_SSH to the SSH target for the db-sync warehouse host." >&2
+  exit 2
+fi
 DB_NAME="${DB_NAME:-cexplorer_replica}"
 POOL_OUT="$REPO_ROOT/data/small/governance_pool_metadata.csv"
 DREP_OUT="$REPO_ROOT/data/small/governance_drep_metadata.csv"
