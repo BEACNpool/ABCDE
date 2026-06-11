@@ -8,17 +8,21 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 
 1. Read the generated community summary:
    - `reports/genesis_forensics_community_summary.md`
-2. Inspect the DRep profile pack:
+2. Review the confidence analysis:
+   - `reports/genesis_ada_confidence_analysis.md`
+3. Inspect the DRep profile pack:
    - `profiles/dreps/README.md`
    - `reports/top_drep_profiles.md`
    - `docs/18_DREP_PROFILE_PACK.md`
-3. Run copy/paste examples from the query cookbook:
+4. Run copy/paste examples from the query cookbook:
    - `docs/19_QUERY_COOKBOOK.md`
-4. Open the findings index:
+5. Review the Genesis-to-DRep behavior analysis:
+   - `docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md`
+6. Open the findings index:
    - `findings/INDEX.md`
-5. Use the data dictionary to understand CSV/table columns:
+7. Use the data dictionary to understand CSV/table columns:
    - `docs/03_DATA_DICTIONARY.md`
-6. Check limitations before making claims:
+8. Check limitations before making claims:
    - `docs/06_LIMITATIONS.md`
 
 ## Maintainer path
@@ -55,4 +59,5 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 
 - Explain the remaining 67 preserved-baseline cross-merge rows not recovered by depth-14 staged extraction.
 - Classify depth-14 staged extras into audited categories before making claims.
-- Promote large staged trace outputs as release artifacts only after manifesting and review.
+- Build the shared Genesis-to-DRep behavior surface from staged deep traces before using trace exposure in proposal-specific analysis (see `AUDIT_BACKLOG.md` B-004).
+- Promote large staged trace outputs (full behavior surface, signals table, depth-12/13/14 candidate sets) as release artifacts only after manifesting and review.

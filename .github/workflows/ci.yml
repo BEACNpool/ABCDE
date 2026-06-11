@@ -57,3 +57,9 @@ jobs:
 
       - name: Structure verifier
         run: python scripts/verify.py --structure-only
+
+      - name: Verify findings.json is current
+        run: python scripts/build_findings_json.py --check
+
+      - name: File-size policy guard
+        run: python scripts/check_file_sizes.py

@@ -135,6 +135,56 @@
         }
       ]
     },
+    "build_info": {
+      "source": "data/small/db_tip_receipt.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "generated_by",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "git_commit",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_generated_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "db_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "db_tip_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "db_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "staleness_note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "generated_by": "scripts/build_genesis_db.py",
+          "git_commit": "7c53b71953b3",
+          "source_generated_utc": "2026-06-10 22:21:08-05:00",
+          "db_tip_block": 13520244,
+          "db_tip_time": "2026-06-07 18:44:37",
+          "db_tip_epoch": 635,
+          "source": "abcde:cexplorer_replica",
+          "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+        }
+      ]
+    },
     "cross_merge_depth10_probe": {
       "source": "data/small/cross_merge_depth10_probe.csv",
       "row_count": 3,
@@ -181,6 +231,46 @@
           "seed_combo": "emurgo+fourth_entry_781m+iog",
           "merge_txs": 8,
           "note": "depth-10 recursive probe from ABCDE db-sync"
+        }
+      ]
+    },
+    "db_tip_receipt": {
+      "source": "data/small/db_tip_receipt.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "generated_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "db_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "db_tip_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "db_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "staleness_note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "generated_utc": "2026-06-10 22:21:08-05:00",
+          "db_tip_block": 13520244,
+          "db_tip_time": "2026-06-07 18:44:37",
+          "db_tip_epoch": 635,
+          "source": "abcde:cexplorer_replica",
+          "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
         }
       ]
     },
@@ -571,6 +661,860 @@
           "registration_tx_hash": "2a8a4f4cc67845b6ee0dfe09393c0b996dbcd48a1b126b7da2cc590aeb4390aa",
           "epoch_no": 534,
           "block_time_utc": "2025-01-18 04:38:43"
+        }
+      ]
+    },
+    "governance_genesis_behavior_by_drep": {
+      "source": "data/small/governance_genesis_behavior_by_drep.csv",
+      "row_count": 262,
+      "columns": [
+        {
+          "name": "snapshot_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "trace_schema",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_distribution_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_voting_power_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_voting_power_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "behavior_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dedup_current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "dedup_current_stake_credentials",
+          "type": "BIGINT"
+        },
+        {
+          "name": "dedup_current_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "dedup_current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "trace_value_to_drep_power_ratio",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "min_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "root_overlap_summary",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "latest_drep_id_bech32": null,
+          "latest_drep_hash_id": null,
+          "drep_distribution_epoch": null,
+          "drep_voting_power_lovelace": null,
+          "drep_voting_power_ada": null,
+          "behavior_class": "trace_only",
+          "dedup_current_utxos": 31361,
+          "dedup_current_stake_credentials": 31361,
+          "dedup_current_lovelace": 290648263407427,
+          "dedup_current_ada": 290648263.407427,
+          "trace_value_to_drep_power_ratio": null,
+          "min_depth": 7,
+          "max_depth": 14,
+          "root_overlap_summary": "cf; emurgo; iog"
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "latest_drep_id_bech32": "drep_always_abstain",
+          "latest_drep_hash_id": 14,
+          "drep_distribution_epoch": 632,
+          "drep_voting_power_lovelace": 9006786518573400,
+          "drep_voting_power_ada": 9006786518.5734,
+          "behavior_class": "coordinated_like",
+          "dedup_current_utxos": 1430,
+          "dedup_current_stake_credentials": 1430,
+          "dedup_current_lovelace": 167878892284982,
+          "dedup_current_ada": 167878892.284982,
+          "trace_value_to_drep_power_ratio": 0.01863916,
+          "min_depth": 8,
+          "max_depth": 14,
+          "root_overlap_summary": "emurgo; emurgo+iog; iog"
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "latest_drep_id_bech32": "drep_always_abstain",
+          "latest_drep_hash_id": 14,
+          "drep_distribution_epoch": 632,
+          "drep_voting_power_lovelace": 9006786518573400,
+          "drep_voting_power_ada": 9006786518.5734,
+          "behavior_class": "weak_behavior_signal",
+          "dedup_current_utxos": 1959,
+          "dedup_current_stake_credentials": 1959,
+          "dedup_current_lovelace": 110977429249747,
+          "dedup_current_ada": 110977429.249747,
+          "trace_value_to_drep_power_ratio": 0.01232153,
+          "min_depth": 10,
+          "max_depth": 14,
+          "root_overlap_summary": "emurgo; iog"
+        }
+      ]
+    },
+    "governance_genesis_behavior_by_proposal": {
+      "source": "data/small/governance_genesis_behavior_by_proposal.csv",
+      "row_count": 15183,
+      "columns": [
+        {
+          "name": "snapshot_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "trace_schema",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "gov_action_proposal_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "proposal_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "proposal_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "proposal_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "proposal_expiration_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_drep_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "vote",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "vote_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "vote_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "vote_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "behavior_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dedup_current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "dedup_current_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "dedup_current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "root_overlap_summary",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "gov_action_proposal_id": 105,
+          "proposal_tx_hash": "73e171a4c0730b4b59ecae271ab89f12a9d56360b02920e1f95107dbdc1d6762",
+          "proposal_index": 7,
+          "proposal_type": "TreasuryWithdrawals",
+          "proposal_expiration_epoch": 633,
+          "latest_drep_id_bech32": "drep158mfwdv7lvqzg0yrdxwhsmkq5406nmvw4yvjyyfcawlwus2eylt",
+          "vote": "Abstain",
+          "vote_epoch": 632,
+          "vote_time_utc": "2026-05-22 18:45:45",
+          "vote_tx_hash": "de11255a0e36c6e20ccd4b8d35cf2360a29f45cd503326f6676a3c9fa74e90c7",
+          "behavior_class": "weak_behavior_signal",
+          "dedup_current_utxos": 40,
+          "dedup_current_lovelace": 188145348329,
+          "dedup_current_ada": 188145.348329,
+          "root_overlap_summary": "iog"
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "gov_action_proposal_id": 105,
+          "proposal_tx_hash": "73e171a4c0730b4b59ecae271ab89f12a9d56360b02920e1f95107dbdc1d6762",
+          "proposal_index": 7,
+          "proposal_type": "TreasuryWithdrawals",
+          "proposal_expiration_epoch": 633,
+          "latest_drep_id_bech32": "drep158mfwdv7lvqzg0yrdxwhsmkq5406nmvw4yvjyyfcawlwus2eylt",
+          "vote": "Abstain",
+          "vote_epoch": 632,
+          "vote_time_utc": "2026-05-22 18:45:45",
+          "vote_tx_hash": "de11255a0e36c6e20ccd4b8d35cf2360a29f45cd503326f6676a3c9fa74e90c7",
+          "behavior_class": "coordinated_like",
+          "dedup_current_utxos": 9,
+          "dedup_current_lovelace": 55203157107,
+          "dedup_current_ada": 55203.157107,
+          "root_overlap_summary": "iog"
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "gov_action_proposal_id": 102,
+          "proposal_tx_hash": "73e171a4c0730b4b59ecae271ab89f12a9d56360b02920e1f95107dbdc1d6762",
+          "proposal_index": 4,
+          "proposal_type": "TreasuryWithdrawals",
+          "proposal_expiration_epoch": 633,
+          "latest_drep_id_bech32": "drep18c6dw0e6z9lx65f22zrzgl0z49j48k39ttxqk4q6h953utzepy5",
+          "vote": "Abstain",
+          "vote_epoch": 632,
+          "vote_time_utc": "2026-05-22 18:38:39",
+          "vote_tx_hash": "634888548b46a9fd9a25ba1d1fe06c7ca76e3fe102119de8102a6e14da373c2a",
+          "behavior_class": "coordinated_like",
+          "dedup_current_utxos": 3,
+          "dedup_current_lovelace": 99159549514,
+          "dedup_current_ada": 99159.549514,
+          "root_overlap_summary": "iog"
+        }
+      ]
+    },
+    "governance_genesis_behavior_by_root_drep": {
+      "source": "data/small/governance_genesis_behavior_by_root_drep.csv",
+      "row_count": 333,
+      "columns": [
+        {
+          "name": "snapshot_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "trace_schema",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "root_seed_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_distribution_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_voting_power_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_voting_power_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "behavior_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "current_trace_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_stake_credentials",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "min_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_depth",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "root_seed_id": "emurgo",
+          "latest_drep_id_bech32": null,
+          "latest_drep_hash_id": null,
+          "drep_distribution_epoch": null,
+          "drep_voting_power_lovelace": null,
+          "drep_voting_power_ada": null,
+          "behavior_class": "trace_only",
+          "current_trace_rows": 473,
+          "current_utxos": 473,
+          "current_stake_credentials": 317,
+          "current_lovelace": 209027394142419,
+          "current_ada": 209027394.142419,
+          "min_depth": 11,
+          "max_depth": 14
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "root_seed_id": "iog",
+          "latest_drep_id_bech32": "drep_always_abstain",
+          "latest_drep_hash_id": 14,
+          "drep_distribution_epoch": 632,
+          "drep_voting_power_lovelace": 9006786518573400,
+          "drep_voting_power_ada": 9006786518.5734,
+          "behavior_class": "coordinated_like",
+          "current_trace_rows": 1384,
+          "current_utxos": 1384,
+          "current_stake_credentials": 599,
+          "current_lovelace": 167374423532031,
+          "current_ada": 167374423.532031,
+          "min_depth": 8,
+          "max_depth": 14
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "root_seed_id": "iog",
+          "latest_drep_id_bech32": "drep_always_abstain",
+          "latest_drep_hash_id": 14,
+          "drep_distribution_epoch": 632,
+          "drep_voting_power_lovelace": 9006786518573400,
+          "drep_voting_power_ada": 9006786518.5734,
+          "behavior_class": "weak_behavior_signal",
+          "current_trace_rows": 1927,
+          "current_utxos": 1927,
+          "current_stake_credentials": 1192,
+          "current_lovelace": 110164692214028,
+          "current_ada": 110164692.214028,
+          "min_depth": 10,
+          "max_depth": 14
+        }
+      ]
+    },
+    "governance_genesis_behavior_clusters": {
+      "source": "data/small/governance_genesis_behavior_clusters.csv",
+      "row_count": 1000,
+      "columns": [
+        {
+          "name": "snapshot_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "trace_schema",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_vote_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "behavior_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "behavior_score",
+          "type": "BIGINT"
+        },
+        {
+          "name": "behavior_flags",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "root_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "root_combo",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "min_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "output_block_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "same_block_event_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_same_block_stake_peers",
+          "type": "BIGINT"
+        },
+        {
+          "name": "same_epoch_drep_event_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_same_epoch_drep_stake_peers",
+          "type": "BIGINT"
+        },
+        {
+          "name": "voted_proposal_count",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 3975,
+          "stake_address": "stake1ux787gxmnktj4pjk45qq233hej8h6ullnlgllhd9dtjuqzg75w7xh",
+          "latest_drep_id_bech32": "drep127pc58jyky40fvess0c4tjxkrnkf8ta3sfltvm4ptypqc5fgav3",
+          "latest_drep_hash_id": 42,
+          "latest_vote_epoch": 524,
+          "behavior_class": "high_confidence_retained_like",
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 70,
+          "current_lovelace": 127381480940,
+          "current_ada": 127381.48094,
+          "min_depth": 12,
+          "max_depth": 14,
+          "output_block_count": 68,
+          "same_block_event_count": 28,
+          "max_same_block_stake_peers": 5,
+          "same_epoch_drep_event_count": 15,
+          "max_same_epoch_drep_stake_peers": 5,
+          "voted_proposal_count": 78
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 501639,
+          "stake_address": "stake1u8eraktrnu7kymwnuwcakeeugt93v4n5ms0w0enr9ltq9esewqyce",
+          "latest_drep_id_bech32": "drep1h95f0wrxasn0fwfajwe8jtjfdw5nd880d073wh2llvxk54rvnus",
+          "latest_drep_hash_id": 40411,
+          "latest_vote_epoch": 606,
+          "behavior_class": "high_confidence_retained_like",
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 6,
+          "current_lovelace": 46641965863,
+          "current_ada": 46641.965863,
+          "min_depth": 12,
+          "max_depth": 14,
+          "output_block_count": 6,
+          "same_block_event_count": 4,
+          "max_same_block_stake_peers": 4,
+          "same_epoch_drep_event_count": 3,
+          "max_same_epoch_drep_stake_peers": 2,
+          "voted_proposal_count": 50
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 350088,
+          "stake_address": "stake1u9jv5dfh22g23s3w69n9rjagwrn6yvr0cftsvtpj7rppjucup69a4",
+          "latest_drep_id_bech32": "drep1kyppjlhz4lawh4g0ewx2d8a5l20t4yclfnppnuvdkmt7vccg836",
+          "latest_drep_hash_id": 11,
+          "latest_vote_epoch": 522,
+          "behavior_class": "high_confidence_retained_like",
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 8,
+          "current_lovelace": 35775169846,
+          "current_ada": 35775.169846,
+          "min_depth": 12,
+          "max_depth": 14,
+          "output_block_count": 8,
+          "same_block_event_count": 6,
+          "max_same_block_stake_peers": 5,
+          "same_epoch_drep_event_count": 3,
+          "max_same_epoch_drep_stake_peers": 4,
+          "voted_proposal_count": 74
+        }
+      ]
+    },
+    "governance_genesis_behavior_signals_top": {
+      "source": "data/small/governance_genesis_behavior_signals_top.csv",
+      "row_count": 3161,
+      "columns": [
+        {
+          "name": "snapshot_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "trace_schema",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_vote_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "root_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "root_combo",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "min_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "output_block_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_output_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "latest_output_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_output_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "latest_output_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "same_block_event_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_same_block_stake_peers",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_same_block_trace_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "same_epoch_drep_event_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "max_same_epoch_drep_stake_peers",
+          "type": "BIGINT"
+        },
+        {
+          "name": "voted_proposal_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_vote_row_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "same_block_points",
+          "type": "BIGINT"
+        },
+        {
+          "name": "delegation_sync_points",
+          "type": "BIGINT"
+        },
+        {
+          "name": "cross_root_points",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_drep_points",
+          "type": "BIGINT"
+        },
+        {
+          "name": "governance_activity_points",
+          "type": "BIGINT"
+        },
+        {
+          "name": "service_like_penalty",
+          "type": "BIGINT"
+        },
+        {
+          "name": "fragmentation_penalty",
+          "type": "BIGINT"
+        },
+        {
+          "name": "positive_signal_score",
+          "type": "BIGINT"
+        },
+        {
+          "name": "negative_signal_score",
+          "type": "BIGINT"
+        },
+        {
+          "name": "behavior_score",
+          "type": "BIGINT"
+        },
+        {
+          "name": "behavior_flags",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "confidence_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "confidence_rank",
+          "type": "BIGINT"
+        },
+        {
+          "name": "scoring_model",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 3975,
+          "stake_address": "stake1ux787gxmnktj4pjk45qq233hej8h6ullnlgllhd9dtjuqzg75w7xh",
+          "latest_drep_id_bech32": "drep127pc58jyky40fvess0c4tjxkrnkf8ta3sfltvm4ptypqc5fgav3",
+          "latest_drep_hash_id": 42,
+          "latest_vote_epoch": 524,
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 70,
+          "current_lovelace": 127381480940,
+          "current_ada": 127381.48094,
+          "min_depth": 12,
+          "max_depth": 14,
+          "output_block_count": 68,
+          "first_output_block_no": 4491489,
+          "latest_output_block_no": 7025856,
+          "first_output_time_utc": "2020-07-30 03:11:11",
+          "latest_output_time_utc": "2022-03-21 23:08:52",
+          "same_block_event_count": 28,
+          "max_same_block_stake_peers": 5,
+          "max_same_block_trace_rows": 6,
+          "same_epoch_drep_event_count": 15,
+          "max_same_epoch_drep_stake_peers": 5,
+          "voted_proposal_count": 78,
+          "drep_vote_row_count": 87,
+          "same_block_points": 3,
+          "delegation_sync_points": 2,
+          "cross_root_points": 4,
+          "current_drep_points": 1,
+          "governance_activity_points": 1,
+          "service_like_penalty": 0,
+          "fragmentation_penalty": 0,
+          "positive_signal_score": 11,
+          "negative_signal_score": 0,
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "confidence_class": "high_confidence_retained_like",
+          "confidence_rank": 80,
+          "scoring_model": "heuristic_v1_public_signals"
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 501639,
+          "stake_address": "stake1u8eraktrnu7kymwnuwcakeeugt93v4n5ms0w0enr9ltq9esewqyce",
+          "latest_drep_id_bech32": "drep1h95f0wrxasn0fwfajwe8jtjfdw5nd880d073wh2llvxk54rvnus",
+          "latest_drep_hash_id": 40411,
+          "latest_vote_epoch": 606,
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 6,
+          "current_lovelace": 46641965863,
+          "current_ada": 46641.965863,
+          "min_depth": 12,
+          "max_depth": 14,
+          "output_block_count": 6,
+          "first_output_block_no": 5403593,
+          "latest_output_block_no": 5424375,
+          "first_output_time_utc": "2021-03-01 03:54:20",
+          "latest_output_time_utc": "2021-03-06 00:43:03",
+          "same_block_event_count": 4,
+          "max_same_block_stake_peers": 4,
+          "max_same_block_trace_rows": 4,
+          "same_epoch_drep_event_count": 3,
+          "max_same_epoch_drep_stake_peers": 2,
+          "voted_proposal_count": 50,
+          "drep_vote_row_count": 51,
+          "same_block_points": 3,
+          "delegation_sync_points": 2,
+          "cross_root_points": 4,
+          "current_drep_points": 1,
+          "governance_activity_points": 1,
+          "service_like_penalty": 0,
+          "fragmentation_penalty": 0,
+          "positive_signal_score": 11,
+          "negative_signal_score": 0,
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "confidence_class": "high_confidence_retained_like",
+          "confidence_rank": 80,
+          "scoring_model": "heuristic_v1_public_signals"
+        },
+        {
+          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 350088,
+          "stake_address": "stake1u9jv5dfh22g23s3w69n9rjagwrn6yvr0cftsvtpj7rppjucup69a4",
+          "latest_drep_id_bech32": "drep1kyppjlhz4lawh4g0ewx2d8a5l20t4yclfnppnuvdkmt7vccg836",
+          "latest_drep_hash_id": 11,
+          "latest_vote_epoch": 522,
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 8,
+          "current_lovelace": 35775169846,
+          "current_ada": 35775.169846,
+          "min_depth": 12,
+          "max_depth": 14,
+          "output_block_count": 8,
+          "first_output_block_no": 5404187,
+          "latest_output_block_no": 5514660,
+          "first_output_time_utc": "2021-03-01 07:21:44",
+          "latest_output_time_utc": "2021-03-27 12:32:46",
+          "same_block_event_count": 6,
+          "max_same_block_stake_peers": 5,
+          "max_same_block_trace_rows": 5,
+          "same_epoch_drep_event_count": 3,
+          "max_same_epoch_drep_stake_peers": 4,
+          "voted_proposal_count": 74,
+          "drep_vote_row_count": 74,
+          "same_block_points": 3,
+          "delegation_sync_points": 2,
+          "cross_root_points": 4,
+          "current_drep_points": 1,
+          "governance_activity_points": 1,
+          "service_like_penalty": 0,
+          "fragmentation_penalty": 0,
+          "positive_signal_score": 11,
+          "negative_signal_score": 0,
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "confidence_class": "high_confidence_retained_like",
+          "confidence_rank": 80,
+          "scoring_model": "heuristic_v1_public_signals"
         }
       ]
     },

@@ -124,6 +124,22 @@ governance-value-rollups:
     python3 scripts/build_governance_value_rollups.py
     python3 scripts/verify_governance_value_rollups.py
 
+# Build Genesis-to-DRep behavior surface from ABCDE/db-sync
+genesis-drep-behavior-remote:
+    bash scripts/build_genesis_drep_behavior_surface_remote.sh
+
+# Rebuild local Genesis-to-DRep behavior rollups from data/release exports
+genesis-drep-behavior-rollups:
+    python3 scripts/build_genesis_drep_behavior_rollups.py
+
 # Build SHA-256 manifest for public docs/findings/reports/data/small artifacts
 public-artifact-manifest:
     python3 scripts/build_public_artifact_manifest.py
+
+# Regenerate machine-readable findings/findings.json claim map
+findings-json:
+    python3 scripts/build_findings_json.py
+
+# Enforce committed file-size policy (warn 10 MiB, fail 50 MiB)
+check-sizes:
+    python3 scripts/check_file_sizes.py

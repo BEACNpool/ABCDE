@@ -294,6 +294,66 @@ One row per currently unspent IOG-descended UTxO in the depth-14 public cut. Thi
 | `latest_drep_*` | Latest observed DRep delegation context for the stake credential, when present |
 | `active_stake_epoch`, `active_stake_lovelace`, `active_stake_ada` | Latest active-stake snapshot for the stake credential, when present |
 
+## `governance_genesis_behavior_*`
+
+Source: staged server-side founder depth-14 trace in ABCDE/db-sync plus latest DRep delegation, current DRep distribution, and DRep proposal votes.
+
+Build command (maintainer-only; requires `ABCDE_SSH`):
+
+```bash
+TRACE_STAGE_SCHEMA=abcde_forensics_stage_founders_depth14 bash scripts/build_genesis_drep_behavior_surface_remote.sh
+```
+
+The full row-level surface is exported to `data/release/genesis_current_governance_surface.csv` and the full signal table to `data/release/governance_genesis_behavior_signals_full.csv`; neither is committed to git (release assets). Public committed cuts are:
+
+- `data/small/governance_genesis_behavior_signals_top.csv` (clusters with `behavior_score >= 5`)
+- `data/small/governance_genesis_behavior_by_drep.csv`
+- `data/small/governance_genesis_behavior_by_root_drep.csv`
+- `data/small/governance_genesis_behavior_clusters.csv`
+- `data/small/governance_genesis_behavior_by_proposal.csv`
+
+These files classify current traced value by latest DRep delegation target, public behavior signals, and proposal vote behavior.
+
+| column | meaning |
+| --- | --- |
+| `snapshot_utc`, `trace_schema` | Build timestamp and staged trace schema |
+| `latest_drep_id_bech32`, `latest_drep_hash_id` | Latest observed DRep delegation target for traced stake credentials |
+| `output_epoch_no`, `output_block_no`, `output_block_time_utc` | Chain position where the current live-unspent traced output was created |
+| `drep_distribution_epoch`, `drep_voting_power_*` | Current DRep distribution snapshot and voting power |
+| `behavior_class` | Conservative confidence class or `no_stake_or_byron` |
+| `dedup_current_utxos`, `dedup_current_lovelace`, `dedup_current_ada` | Current traced value deduped by UTxO where applicable |
+| `trace_value_to_drep_power_ratio` | Deduped traced current value divided by current DRep voting power |
+| `root_seed_id`, `root_overlap_summary`, `root_combo` | Genesis root provenance and overlap summary |
+| `gov_action_proposal_id`, `proposal_tx_hash`, `proposal_index`, `proposal_type`, `vote` | Proposal/vote fields in proposal rollups |
+
+`governance_genesis_behavior_signals_top.csv` is keyed by stake credential and includes the scoring components:
+
+| column | meaning |
+| --- | --- |
+| `same_block_event_count`, `max_same_block_stake_peers` | Synchronized output-creation signals by depth/block |
+| `same_epoch_drep_event_count`, `max_same_epoch_drep_stake_peers` | Same-epoch DRep cohort signals |
+| `voted_proposal_count`, `drep_vote_row_count` | Proposal voting activity for the delegated DRep |
+| `same_block_points`, `delegation_sync_points`, `cross_root_points`, `current_drep_points`, `governance_activity_points` | Positive scoring components |
+| `service_like_penalty`, `fragmentation_penalty` | Negative scoring components |
+| `behavior_score`, `behavior_flags`, `confidence_class`, `confidence_rank`, `scoring_model` | Final deterministic confidence output |
+
+The committed top cut contains only clusters with `behavior_score >= 5`; rows below that threshold exist in the release-asset full table. Scoring weights and class thresholds are recorded in `data/manifests/genesis-drep-behavior-manifest.json`.
+
+Important: these are governance exposure surfaces. They are not custody, ownership, identity, or intent claims. See `docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md` and `docs/06_LIMITATIONS.md`.
+
+## `db_tip_receipt` / `build_info`
+
+Source: warehouse tip query at build time → `data/small/db_tip_receipt.csv`, loaded into the DuckDB as `build_info`.
+
+| column | meaning |
+| --- | --- |
+| `generated_utc` | UTC timestamp when the receipt was written |
+| `db_tip_block`, `db_tip_time`, `db_tip_epoch` | Maximum block number, block time, and epoch in the source warehouse at build time |
+| `source` | Source host and database, e.g. `abcde:cexplorer_replica` |
+| `staleness_note` | Free-text staleness warning; empty when the warehouse is at chain tip |
+
+Query `build_info` before answering any current-state question; the committed cut is a snapshot at this tip, not a live chain view.
+
 ## `iog_pool_state_validation`
 
 Source: ABCDE/db-sync pool registration/retirement/epoch stake tables → `data/small/iog_pool_state_validation.csv`.
