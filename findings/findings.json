@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "generated_by": "scripts/build_findings_json.py",
+  "grading_reference": "docs/02_GRADING.md",
+  "finding_count": 9,
+  "findings": [
+    {
+      "id": "F01",
+      "file": "findings/F01_named_founder_allocations.md",
+      "title": "Named Founder Allocations",
+      "claim": "The canonical named-founder and fourth-entry seed transactions are listed in `anchors.yaml` and can be verified against db-sync or the published DuckDB cut.",
+      "grade": "FACT for named-founder anchor transactions. STRONG_INFERENCE for the fourth-entry sale-ticket classification.",
+      "evidence": [],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT"
+    },
+    {
+      "id": "F02",
+      "file": "findings/F02_fourth_entry_first_spend_convergence.md",
+      "title": "Fourth-Entry First-Spend Operational Convergence",
+      "claim": "The fourth-entry seed output and the named EMURGO seed output both activated after roughly `475.1` hours of dormancy. The fourth-entry first spend used a two-input transaction, making it an immediate convergence point rather than a later frontier-only overlap.",
+      "grade": "FACT for timing, transaction hashes, and input counts. Interpretation remains bounded: this is operational convergence / shared administration signal, not proof of beneficial ownership.",
+      "evidence": [
+        {
+          "path": "data/abcde_genesis_seed_registry.duckdb",
+          "sha256": null
+        },
+        {
+          "path": "data/small/seed_first_spends_db.csv",
+          "sha256": "8b280dccec0338a7fc8cfb86bf71351a96619ad2e78bb1180b82e7e365e9d3aa"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F02b",
+      "file": "findings/F02b_fourth_entry_direct_cospend.md",
+      "title": "Fourth-Entry First Spend Directly Co-Spends EMURGO-Descended UTxO",
+      "claim": "The fourth-entry first spend transaction `c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76` consumed two inputs:\n\n1. the fourth-entry seed output, and\n2. an EMURGO-descended UTxO at trace depth 2.\n\nThis establishes direct first-spend operational convergence. It does **not** prove beneficial ownership.",
+      "grade": "FACT for the co-spend and EMURGO-descended input path.",
+      "evidence": [
+        {
+          "path": "data/abcde_genesis_seed_registry.duckdb",
+          "sha256": null
+        },
+        {
+          "path": "data/small/fourth_entry_direct_cospend_db.csv",
+          "sha256": "065fecdb3557605516c60dae36d283789c913f4c343b8b7335ec202608d8b9cc"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT"
+    },
+    {
+      "id": "F03",
+      "file": "findings/F03_fourth_entry_sale_ticket_origin_signal.md",
+      "title": "Fourth-Entry Sale-Ticket Origin Signal",
+      "claim": "The fourth-entry amount `781,381,495 ADA` exactly matches the preserved legacy finding's reported `adamax` value across six Cardano pre-launch ada-sale statistic slices:\n\n- Tickets / Tranche 4\n- Tickets / Region / Japan\n- Tickets / User type / Company\n- Tickets / Currency / BTC\n- Tickets / All / All\n- Buyers / User type / Company / All\n\nThis is a strong origin signal for a large sale-ticket entry, not a proof of buyer identity.",
+      "grade": "STRONG_INFERENCE.\n\nThe on-chain amount is FACT. The sale-statistic match is now directly re-derived from archived `main2.json` in `cardano-foundation/cardano-org`.",
+      "evidence": [
+        {
+          "path": "data/small/fourth_entry_sale_ticket_signal.csv",
+          "sha256": "da587f9aa80de67ef5ef2e6c81f1cf7feb2031dbdd99180ea8fedfe10b166694"
+        },
+        {
+          "path": "data/sources/adasale_main2.json",
+          "sha256": null
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F04",
+      "file": "findings/F04_bounded_trace_overlap_pilot.md",
+      "title": "Bounded Depth-3 Trace Overlap Review Cut",
+      "claim": "The v2 bounded depth-3 review-cut trace finds UTxOs reachable from both the EMURGO seed and the fourth-entry seed, confirming that the review-cut extractor can surface the known convergence pattern from generic trace output.",
+      "grade": "",
+      "evidence": [
+        {
+          "path": "data/abcde_genesis_seed_registry.duckdb",
+          "sha256": null
+        },
+        {
+          "path": "data/small/bounded_trace_depth3_db.csv",
+          "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "REVIEW_CUT, FACT within bounded scope"
+    },
+    {
+      "id": "F05",
+      "file": "findings/F05_bounded_trace_merge_inventory_pilot.md",
+      "title": "Bounded Depth-3 Merge Inventory Review Cut",
+      "claim": "The v2 merge-classification logic can derive a cross-seed consuming transaction from trace membership. On the current bounded depth-3 artifact, it identifies the known EMURGO/fourth-entry convergence transaction.",
+      "grade": "",
+      "evidence": [
+        {
+          "path": "data/abcde_genesis_seed_registry.duckdb",
+          "sha256": null
+        },
+        {
+          "path": "data/small/bounded_trace_depth3_db.csv",
+          "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a"
+        },
+        {
+          "path": "data/small/seed_first_spend_inputs_db.csv",
+          "sha256": "abfa042a814ab0e282365aca2c5325a7892e8d197bfaeeea143f1a1d5abd4500"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "REVIEW_CUT, FACT within bounded scope"
+    },
+    {
+      "id": "F06",
+      "file": "findings/F06_governance_delegation_targets.md",
+      "title": "SPO and DRep Delegation Targets for Trace-Derived Stake Credentials",
+      "claim": "Preserved trace receipts include Shelley-era pool delegation and Conway-era DRep delegation histories for stake credentials reached by the Genesis traces. v2 now publishes rollups of every observed SPO pool target and DRep target by root seed.",
+      "grade": "FACT for rows derived from preserved trace delegation receipts. Labels/names for pools or DReps are not yet enriched; current outputs identify targets by bech32 id.",
+      "evidence": [
+        {
+          "path": "data/abcde_genesis_seed_registry.duckdb",
+          "sha256": null
+        },
+        {
+          "path": "data/manifests/governance-rollups-manifest.json",
+          "sha256": null
+        },
+        {
+          "path": "data/small/governance_drep_delegation_targets.csv",
+          "sha256": "e5d9c1e9e1d7408969a1c55a162206e108668f778592545e5bd7500b191d6bc0"
+        },
+        {
+          "path": "data/small/governance_spo_delegation_targets.csv",
+          "sha256": "94fbf2443c613189a2aa95eab4d14778689045bdd32ae267ef06a5c5b97e12f9"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT"
+    },
+    {
+      "id": "F07",
+      "file": "findings/F07_staged_trace_extraction.md",
+      "title": "Staged Trace Extraction and Founder Merge Candidate Set",
+      "claim": "ABCDE v2 now has a scalable server-side trace extraction path that can materialize founder-descended UTxO membership by frontier depth, dedupe by minimum depth, and derive cross-entity merge candidates from staged tables.",
+      "grade": "",
+      "evidence": [],
+      "has_reproduce_sql": false,
+      "index_label": "CANDIDATE_SET, requires classification before stronger claims"
+    },
+    {
+      "id": "F08",
+      "file": "findings/F08_iog_current_bag_audit_cut.md",
+      "title": "IOG Current Bag Audit Cut",
+      "claim": "A depth-14 staged trace from the IOG genesis root currently resolves to approximately **506.9M ADA** in unspent IOG-descended UTxOs at ABCDE/db-sync tip time.\n\nThis is an **audit cut**, not a proof of current legal ownership by IOG, IOHK, or Charles Hoskinson.",
+      "grade": "",
+      "evidence": [],
+      "has_reproduce_sql": false,
+      "index_label": "REVIEW_CUT, FACT within depth-14 trace scope"
+    }
+  ]
+}

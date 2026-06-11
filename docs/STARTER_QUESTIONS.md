@@ -32,11 +32,21 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 - How do the top DReps' delegations break down by stake age bucket?
 - Do the top-DRep numbers cross-check against Koios?
 
+## Genesis-to-DRep behavior surface
+
+- What does `build_info` say about the db tip and freshness of this snapshot?
+- Which DReps receive the most depth-14 founder-traced voting power by behavior class?
+- Which stake-credential clusters have the strongest public behavior signals?
+- Which proposal-vote rows have the largest genesis-traced exposure by vote choice?
+- How much of each root seed's traced current value is delegated to each DRep behavior class?
+
 ## Tips
 
 - Call `list_tables()` first, then `describe_table(name)` on anything relevant,
   before writing SQL.
 - Value-weighted rollups live in `governance_*_latest_value_targets`; count-based
   rollups live in `governance_*_delegation_targets`.
+- Behavior-score rollups live in `governance_genesis_behavior_*`; the committed
+  signal table is a top cut, with the full table intended for release assets.
 - The fourth seed's internal legacy label was "EMURGO_2" — this is **not** an
   ownership attribution; treat it as a STRONG_INFERENCE sale-ticket signal.
