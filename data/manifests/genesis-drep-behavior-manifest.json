@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "surface": "data/release/genesis_current_governance_surface.csv",
+  "proposal_votes": "data/release/governance_drep_votes.csv",
+  "scoring_model": {
+    "name": "heuristic_v1_public_signals",
+    "unit": "stake credential cluster",
+    "positive_points": {
+      "same_block_hop_once": 2,
+      "same_block_hop_repeated": 3,
+      "same_epoch_drep_cohort": 2,
+      "cross_root_current_cluster": 4,
+      "current_drep_delegation": 1,
+      "drep_has_proposal_votes": 1
+    },
+    "negative_points": {
+      "service_like_batch_penalty": -5,
+      "fragmentation_penalty": -3
+    },
+    "confidence_classes": {
+      "trace_only": "trace membership with no behavior score",
+      "weak_behavior_signal": "behavior_score >= 2",
+      "coordinated_like": "behavior_score >= 5",
+      "probable_retained_like": "behavior_score >= 8 and cross-root current cluster",
+      "high_confidence_retained_like": "behavior_score >= 10 plus cross-root and same-block signals",
+      "custodian_or_service_like": "service-like batching penalty triggered"
+    }
+  },
+  "rollups": [
+    "data/small/governance_genesis_behavior_signals_top.csv",
+    "data/small/governance_genesis_behavior_by_drep.csv",
+    "data/small/governance_genesis_behavior_by_root_drep.csv",
+    "data/small/governance_genesis_behavior_clusters.csv",
+    "data/small/governance_genesis_behavior_by_proposal.csv"
+  ],
+  "release_artifacts": [
+    "data/release/governance_genesis_behavior_signals_full.csv"
+  ],
+  "classification_default": "trace_only unless positive/negative public behavior signals are present; no-stake rows remain no_stake_or_byron",
+  "ownership_boundary": "DRep delegation is voting power, not custody or beneficial ownership."
+}

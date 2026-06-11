@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 from pathlib import Path
 
 import duckdb
@@ -29,6 +30,7 @@ REPO = Path(__file__).resolve().parents[1]
 DB_PATH = REPO / "data" / "abcde_genesis.duckdb"
 SMALL_DIR = REPO / "data" / "small"
 ANCHORS = REPO / "anchors.yaml"
+DB_TIP_RECEIPT = REPO / "data" / "small" / "db_tip_receipt.csv"
 CATALOG_JSON = REPO / "data" / "schema_catalog.json"
 SCHEMA_MD = REPO / "docs" / "SCHEMA.md"
 
@@ -93,8 +95,39 @@ def load_csvs(con: duckdb.DuckDBPyConnection) -> dict[str, str]:
     return mapping
 
 
+def load_build_info(con: duckdb.DuckDBPyConnection) -> None:
+    """Expose snapshot provenance to agents querying the DuckDB."""
+    try:
+        git_commit = subprocess.check_output(
+            ["git", "-C", str(REPO), "rev-parse", "--short=12", "HEAD"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except Exception:
+        git_commit = "unknown"
+
+    con.execute("DROP TABLE IF EXISTS build_info")
+    con.execute(
+        """
+        CREATE TABLE build_info AS
+        SELECT
+          'scripts/build_genesis_db.py' AS generated_by,
+          ? AS git_commit,
+          generated_utc AS source_generated_utc,
+          db_tip_block,
+          db_tip_time,
+          db_tip_epoch,
+          source,
+          staleness_note
+        FROM read_csv_auto(?, header=true)
+        LIMIT 1
+        """,
+        [git_commit, str(DB_TIP_RECEIPT)],
+    )
+
+
 def build_catalog(con: duckdb.DuckDBPyConnection, sources: dict[str, str]) -> dict:
-    sources = {"seeds": "anchors.yaml", **sources}
+    sources = {"seeds": "anchors.yaml", "build_info": "data/small/db_tip_receipt.csv", **sources}
     tables = [r[0] for r in con.execute("SHOW TABLES").fetchall()]
     catalog = {
         "generated_utc": "deterministic-from-committed-sources",
@@ -165,6 +198,7 @@ def main() -> None:
     try:
         load_seeds(con)
         sources = load_csvs(con)
+        load_build_info(con)
         catalog = build_catalog(con, sources)
     finally:
         con.close()

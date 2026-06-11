@@ -72,3 +72,25 @@ Labels follow `docs/02_GRADING.md`.
   - unknown/moved-forward outputs
   - excluded/overbroad taint
 - Publish estimate as confidence bands, not as legal ownership proof.
+
+## B-004 — Genesis-to-DRep behavior surface
+
+- **Status:** IN PROGRESS
+- **Claim grade:** UNKNOWN until the shared surface is classified
+- **Artifact class:** AUDIT_BACKLOG
+
+### Current facts
+
+- The top-DRep profile pack already publishes Genesis-trace exposure and stickiness for current top DReps.
+- Current exposure rows are useful audit signals, but they are derived from preserved trace receipts and do not yet use a shared staged deep-trace classification surface.
+- The staged trace extractor can produce deeper server-side trace membership suitable for a fresher shared query surface.
+- The first shared founder depth-14 surface now exports current traced UTxOs, latest DRep delegation, DRep distribution, proposal vote joins, and small public rollups.
+- The first confidence signal table now scores stake-credential clusters using same-block hop, same-epoch DRep cohort, cross-root, current DRep, governance activity, service-like, and fragmentation signals.
+
+### Required audit work
+
+- Review and harden `genesis_current_governance_surface` from staged trace membership, live-unspent status, latest DRep delegation, and current DRep distribution.
+- Review/tune behavior classes with explicit confidence and provenance.
+- Regenerate top-DRep exposure from the shared surface.
+- Interpret proposal-specific joins only after freshness, hashes, and classification rules are published.
+- Keep all public language clear that DRep delegation is voting power, not custody or ownership.
