@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 146,
+  "file_count": 159,
   "files": [
     {
       "path": "claims/README.md",
@@ -237,6 +237,19 @@
       }
     },
     {
+      "path": "data/small/governance_actions_catalog.csv",
+      "bytes": 33548,
+      "sha256": "4af4a301a35a3fc628dd53563d0927c2a52eac69b243cb338a9be05eac18a730",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "data/small/governance_drep_delegation_targets.csv",
       "bytes": 71963,
       "sha256": "e5d9c1e9e1d7408969a1c55a162206e108668f778592545e5bd7500b191d6bc0",
@@ -344,6 +357,58 @@
       "path": "data/small/governance_genesis_behavior_signals_top.csv",
       "bytes": 1208046,
       "sha256": "7db37023913e110317a98eb0431954a0f3d7c2fc3cedfc4fa918ebcbaa4a3d81",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/governance_genesis_delegation_timeline.csv",
+      "bytes": 221071,
+      "sha256": "8ba6cb006d7b37f1f0b2ebf01932ad47835ae598268973dec89ee2ec1d892f59",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/governance_genesis_pool_drep_matrix.csv",
+      "bytes": 89301,
+      "sha256": "ae50d63cdd8277009dccfe04ed3e810e41dd3c1f0c2e023ccb2ea6185e97ca90",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/governance_genesis_pool_operator_links.csv",
+      "bytes": 439247,
+      "sha256": "1f042d0c5be4456fd6ec024e96866a4493adf16413baa7331e01f60c4d507325",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/governance_genesis_spo_by_pool.csv",
+      "bytes": 327140,
+      "sha256": "a8d48040d6f64e77dea902e58ef67f2e7eea13cf2a1ba885bfeee8c723b263df",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -770,6 +835,32 @@
       }
     },
     {
+      "path": "data/small/staged_trace_depth16_profile.csv",
+      "bytes": 6774,
+      "sha256": "1319c57f70d5347e89a1c9a055609b7e5eb4d029e1b1a28681b1ce9c7cbb60aa",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/staged_trace_depth16_summary.csv",
+      "bytes": 597,
+      "sha256": "b718fa880bb1d4b73523728809f51c64d9b14465dd23059a62ad38b3989e31a8",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "data/small/staged_trace_depth3_summary.csv",
       "bytes": 134,
       "sha256": "1a00c7680e86905a86ca69d71e3e67938cfcf1e52ef8187ad6649f1dcf58ccf7",
@@ -888,8 +979,8 @@
     },
     {
       "path": "docs/03_DATA_DICTIONARY.md",
-      "bytes": 18366,
-      "sha256": "1f75e6c403f08c1a5e9c4e7389696d10a6c58cfd96ee0ab2b8acf944bd61b077",
+      "bytes": 23835,
+      "sha256": "93aff61962f50c96b56d97ad206a7602c3bc5c58a0543889945a711a92378faa",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1070,8 +1161,8 @@
     },
     {
       "path": "docs/17_STAGED_TRACE_EXTRACTION.md",
-      "bytes": 3759,
-      "sha256": "f009637908221975fecf681cfb465dd71c9ef8885a35e462faa2c30e8adc4d67",
+      "bytes": 4999,
+      "sha256": "2107da9ae71f4d1b2727698cb57fd1fbafbcc85ada964bac6b35f9076aa1b530",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1122,8 +1213,8 @@
     },
     {
       "path": "docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md",
-      "bytes": 9801,
-      "sha256": "7803889e6ea4f6cbe1c4a2e8bf5c4dfaf5c81b443fca47ba52243d1638e58c0f",
+      "bytes": 10692,
+      "sha256": "098bf2cfc4e3e6be2b80067a80725772240206c3b0af88f6efd4384637710fc5",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1148,8 +1239,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 25665,
-      "sha256": "79e5a575178e36edf420e85bbe3c5f45b701755e70e3dd9e90723d279fd0d1dc",
+      "bytes": 28799,
+      "sha256": "7f2a38dad3f04a186568b393947b22d410334ceec539c358bc35c5a35cea2781",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1161,8 +1252,8 @@
     },
     {
       "path": "docs/STARTER_QUESTIONS.md",
-      "bytes": 2651,
-      "sha256": "fbde9b75b781cae5aa42885e900f85cb36ff13634fdaa41e97c41de23cad9ee7",
+      "bytes": 3209,
+      "sha256": "d503c30b389fd0fb4bdbc6418ea7f097f59703ff7a0b257fc7ceb831ecc759cb",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1826,6 +1917,84 @@
       "path": "sql/30_behavior/genesis_current_governance_surface.sql",
       "bytes": 289,
       "sha256": "5b0927bda352ede0ef3ee43969ad8c0f4fbaef8981f47fa56272833b8654c9da",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "sql/30_behavior/genesis_current_spo_surface.sql",
+      "bytes": 1932,
+      "sha256": "b8434e43ed8b680b7241c3385153bc17d9578aac6dfdb6b2baf7e2db0bf3d141",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "sql/30_behavior/genesis_delegation_history.sql",
+      "bytes": 2136,
+      "sha256": "ff055edee329a341b9f54616370fe5fb6e90a6a9df7db1e86db124dcaf806205",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "sql/30_behavior/genesis_delegation_timeline.sql",
+      "bytes": 1672,
+      "sha256": "df643ab62d0aeebc58a5a368674bbf9e1948a36b48eff45e8b131ce1922187ec",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "sql/30_behavior/genesis_pool_operator_links.sql",
+      "bytes": 2404,
+      "sha256": "3d877987b72117668c9926d318b88925828fbf75fe4d44ae2cfe42a9319a35ae",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "sql/30_behavior/governance_actions_catalog.sql",
+      "bytes": 979,
+      "sha256": "b093e461f855974bdf7465a105696e0a6e1ab610a5228cbc4aa210d68e951e4d",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "sql/30_behavior/staged_trace_depth_profile.sql",
+      "bytes": 1290,
+      "sha256": "f94f5041982aa32dd7d8313e144ea4f82379d8a696f9c7e99360c2c6410a790b",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
