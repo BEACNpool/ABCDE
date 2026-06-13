@@ -50,6 +50,7 @@ The public repo is intentionally small enough to review in git. Heavy extraction
    - `docs/10_MAINTAINER_QUICKSTART.md`
    - `docs/12_BRANCH_STATUS.md`
    - `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`
+   - `docs/23_WAREHOUSE_RESEARCH_PROGRAM.md`
    - `data/manifests/public-artifacts-manifest.json`
 
 ## Core promises
@@ -67,3 +68,4 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 - Classify depth-14 staged extras into audited categories before making claims.
 - Build the shared Genesis-to-DRep behavior surface from staged deep traces before using trace exposure in proposal-specific analysis (see `AUDIT_BACKLOG.md` B-004).
 - Promote large staged trace outputs (full behavior surface, signals table, depth-12/13/14 candidate sets) as release artifacts only after manifesting and review.
+- Follow `docs/23_WAREHOUSE_RESEARCH_PROGRAM.md` for warehouse-backed question intake, priorities, receipts, and publication gates.

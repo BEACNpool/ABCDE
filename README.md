@@ -112,6 +112,8 @@ Query `build_info` first when answering freshness-sensitive questions.
 See [`docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`](docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md)
 for the verified artifact inventory, the distinction between compact, release,
 and warehouse data, and the current snapshot boundary.
+Maintainer warehouse-backed research priorities and evidence gates are in
+[`docs/23_WAREHOUSE_RESEARCH_PROGRAM.md`](docs/23_WAREHOUSE_RESEARCH_PROGRAM.md).
 
 ## Evidence standard
 
