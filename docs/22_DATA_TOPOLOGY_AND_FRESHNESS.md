@@ -13,12 +13,12 @@ Verified on 2026-06-12:
 
 | Property | Value |
 |---|---:|
-| DuckDB size | 37,498,880 bytes (35.76 MiB) |
-| Tables | 62 |
-| Aggregate rows across all tables | 117,709 |
-| Committed source CSVs | 60 |
-| Source CSV size | 43,649,014 bytes (41.63 MiB) |
-| SHA-256 | `8b6dc9869adcad80d7a22e06c113838491075cca598f4a3cbc01f39fac0a4ec5` |
+| DuckDB size | 41,955,328 bytes (40.01 MiB) |
+| Tables | 71 |
+| Aggregate rows across all tables | 118,706 |
+| Committed source CSVs | 69 |
+| Source CSV size | 43,909,619 bytes (41.88 MiB) |
+| SHA-256 | `da51eff0e243507f67ceb27dde856c7f34346b60c62f551fd6547f1599ab11c9` |
 
 The aggregate row count is a dataset inventory number, not a count of unique
 transactions, addresses, people, or entities. Several tables are rollups or

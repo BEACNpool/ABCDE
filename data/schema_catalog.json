@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "01b0ee9c7fd3",
+          "git_commit": "5c9dfbc7fbfd",
           "source_generated_utc": "2026-06-10 22:21:08-05:00",
           "db_tip_block": 13520244,
           "db_tip_time": "2026-06-07 18:44:37",
@@ -3923,6 +3923,311 @@
         }
       ]
     },
+    "iog_voucher_dominant_traces": {
+      "source": "data/small/iog_voucher_dominant_traces.csv",
+      "row_count": 144,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "seed_label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "seed_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "hop_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "hop_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "dominant_input_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dominant_source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "method_note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "seed_label": "cluster_dust",
+          "seed_tx_hash": "bd36b8bf58e7d1d6e3bdbec87ba4cf7ca6ed8ee17e9b53bc5509a653e6947ffb",
+          "depth": 0,
+          "hop_tx_hash": "bd36b8bf58e7d1d6e3bdbec87ba4cf7ca6ed8ee17e9b53bc5509a653e6947ffb",
+          "hop_time_utc": "2021-02-04 04:06:31",
+          "dominant_input_lovelace": null,
+          "source_type": "address",
+          "dominant_source": null,
+          "source_label": null,
+          "method_note": "largest-input path; not exclusive provenance"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "seed_label": "cluster_dust",
+          "seed_tx_hash": "bd36b8bf58e7d1d6e3bdbec87ba4cf7ca6ed8ee17e9b53bc5509a653e6947ffb",
+          "depth": 1,
+          "hop_tx_hash": "a7ff54ef7eee5ccd2cc314b70808857f783b429d57f572c50b52d2808ce36c72",
+          "hop_time_utc": "2021-02-04 03:46:25",
+          "dominant_input_lovelace": 328589356000,
+          "source_type": "stake_address",
+          "dominant_source": "stake1u98tv34cduv0dapxv6z0xlau7sp8ceg8glwy2fu2kzlcersf0nuh3",
+          "source_label": null,
+          "method_note": "largest-input path; not exclusive provenance"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "seed_label": "cluster_dust",
+          "seed_tx_hash": "bd36b8bf58e7d1d6e3bdbec87ba4cf7ca6ed8ee17e9b53bc5509a653e6947ffb",
+          "depth": 2,
+          "hop_tx_hash": "58a1500576537e01f9eeb40df86d95e8c6ec4d50c171097a1d39d8dd97d956b9",
+          "hop_time_utc": "2021-02-04 03:26:05",
+          "dominant_input_lovelace": 328589536000,
+          "source_type": "stake_address",
+          "dominant_source": "stake1u8nqyy9kt5djkx5qw7vj9lxtgqs32tnnc5yamuk2kt8r3qs0vusmw",
+          "source_label": null,
+          "method_note": "largest-input path; not exclusive provenance"
+        }
+      ]
+    },
+    "iogp_pool_epoch_stake": {
+      "source": "data/small/iogp_pool_epoch_stake.csv",
+      "row_count": 16,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_role",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "active_stake_lovelace",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "epoch_no": 250,
+          "stake_address": "stake1uxnwfdn9samwjqj6n3sfgtflxmca47l4dns8snkz0tp9v6c5nnhs3",
+          "stake_role": "reward_account",
+          "active_stake_lovelace": 66360281121632
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "epoch_no": 250,
+          "stake_address": "stake1u8j97tdpg2m69dl9augnj9zqrh95t3dd6cuxuner6eypzpctfdkkx",
+          "stake_role": "registered_owner",
+          "active_stake_lovelace": 1000002806122
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "epoch_no": 255,
+          "stake_address": "stake1uxnwfdn9samwjqj6n3sfgtflxmca47l4dns8snkz0tp9v6c5nnhs3",
+          "stake_role": "reward_account",
+          "active_stake_lovelace": 64363477004344
+        }
+      ]
+    },
+    "iogp_pool_registration": {
+      "source": "data/small/iogp_pool_registration.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "pool_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "declared_pledge_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "registration_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "registration_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "reward_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "owner_stake_address",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "pool_id_bech32": "pool1x5ge78ks6jc0j8nsfwyqqhk2ukxlkvz7zxlm9utgk6405hh490n",
+          "ticker_name": "IOGP",
+          "declared_pledge_lovelace": 1000000000000,
+          "registration_tx_hash": "17765cd5600e70becc1356b48f370e8623f9a3b89e247b94e77b141a54254ac9",
+          "registration_time_utc": "2021-02-04 18:53:24",
+          "reward_stake_address": "stake1uxnwfdn9samwjqj6n3sfgtflxmca47l4dns8snkz0tp9v6c5nnhs3",
+          "owner_stake_address": "stake1u8j97tdpg2m69dl9augnj9zqrh95t3dd6cuxuner6eypzpctfdkkx"
+        }
+      ]
+    },
+    "iogp_reward_wallet_destinations": {
+      "source": "data/small/iogp_reward_wallet_destinations.csv",
+      "row_count": 20,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "destination_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "destination",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "transaction_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "output_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_output_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_output_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "destination_type": "stake_address",
+          "destination": "stake1uxnwfdn9samwjqj6n3sfgtflxmca47l4dns8snkz0tp9v6c5nnhs3",
+          "transaction_count": 81,
+          "output_lovelace": 1900926998312612,
+          "first_output_utc": "2021-02-04 18:56:23",
+          "last_output_utc": "2023-02-27 17:47:44"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "destination_type": "stake_address",
+          "destination": "stake1uycla9q3glrugp48cq2r7awemjxepvj4lxs4emw5qmpsclc4tpe52",
+          "transaction_count": 32,
+          "output_lovelace": 925000100000000,
+          "first_output_utc": "2021-02-11 20:27:00",
+          "last_output_utc": "2021-03-19 16:45:44"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "destination_type": "address",
+          "destination": "addr1vx9lp37m3xk7qhdw6uwp8crduqcwlm56wtf56yume76pwwqvtdsdu",
+          "transaction_count": 2,
+          "output_lovelace": 182000000000000,
+          "first_output_utc": "2021-03-31 22:36:05",
+          "last_output_utc": "2021-03-31 22:44:27"
+        }
+      ]
+    },
     "legacy_cross_merge_baseline_counts": {
       "source": "data/small/legacy_cross_merge_baseline_counts.csv",
       "row_count": 10,
@@ -5044,6 +5349,378 @@
           "address": "DdzFFzCqrhsfeFUGoiMC3EBXYhY9ZaG9DxaFfJoR9DpD4R2bYZ4hDTDZUEHfqbyWkdpFS7kgKioAZBjuSb3wM9g5C6uDjT4CQqyrUuUe",
           "stake_address_id": null,
           "stake_address": null
+        }
+      ]
+    },
+    "voucher_funder_delegations": {
+      "source": "data/small/voucher_funder_delegations.csv",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "pool_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "certificate_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "certificate_time_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "stake_address": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "pool_id_bech32": "pool1mxqjlrfskhd5kql9kak06fpdh8xjwc76gec76p3taqy2qmfzs5z",
+          "ticker_name": "IOG1",
+          "certificate_tx_hash": "3ea76170b02d492eb65f140bd35d155011a6a1183515fcae4811b6c72232b88f",
+          "certificate_time_utc": "2023-03-31 14:08:43"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "stake_address": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "pool_id_bech32": "pool15cy4p3axu0m6sfrmxsp46z5cevx3ruksfwjl48730cgx24j4ydz",
+          "ticker_name": "TECH",
+          "certificate_tx_hash": "87e58c66cfb376ba9fd4c6039eda0a0e8ffab8ba1212567fb7a3f09bc6c467e8",
+          "certificate_time_utc": "2023-07-04 23:32:53"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "stake_address": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "pool_id_bech32": "pool1mxqjlrfskhd5kql9kak06fpdh8xjwc76gec76p3taqy2qmfzs5z",
+          "ticker_name": "IOG1",
+          "certificate_tx_hash": "53e61787fea78dad4cf2318eb00d27e62434cb04bf28278ff5a191f62fef8a5d",
+          "certificate_time_utc": "2023-10-05 22:25:15"
+        }
+      ]
+    },
+    "voucher_funder_source_summary": {
+      "source": "data/small/voucher_funder_source_summary.csv",
+      "row_count": 108,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "funder_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "transaction_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "associated_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_event_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_event_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "attribution_note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "funder_stake_address": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "source_type": "stake_address",
+          "source": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "transaction_count": 208,
+          "associated_lovelace": 249475929870407,
+          "first_event_utc": "2023-03-29 19:22:39",
+          "last_event_utc": "2026-05-19 12:42:05",
+          "attribution_note": "full target deposit associated with each distinct input identifier"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "funder_stake_address": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "source_type": "stake_address",
+          "source": "stake1uyrhmczh5m2va3le4qmf8gt888f39saqew69434ks6s7svg9mhcer",
+          "transaction_count": 9,
+          "associated_lovelace": 32273099590000,
+          "first_event_utc": "2024-04-08 13:02:09",
+          "last_event_utc": "2025-12-15 19:08:52",
+          "attribution_note": "full target deposit associated with each distinct input identifier"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "funder_stake_address": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "source_type": "stake_address",
+          "source": "stake1u9c07x9z7w35zmm5tumm5lpltdjpma8gx95y9vw7e35j67gz7r8a7",
+          "transaction_count": 9,
+          "associated_lovelace": 17200147283182,
+          "first_event_utc": "2023-04-28 16:35:30",
+          "last_event_utc": "2024-12-31 20:32:40",
+          "attribution_note": "full target deposit associated with each distinct input identifier"
+        }
+      ]
+    },
+    "voucher_wallet_counterparty_summary": {
+      "source": "data/small/voucher_wallet_counterparty_summary.csv",
+      "row_count": 699,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "direction",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "counterparty_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "counterparty",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "transaction_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "associated_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_event_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_event_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "attribution_note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "direction": "inbound",
+          "counterparty_type": "stake_address",
+          "counterparty": "stake1u8nynuagsfkjfsjfhm57dnyzfae8e5szh4rfdxjk2drt53qwhz039",
+          "transaction_count": 39,
+          "associated_lovelace": 1830250627379120,
+          "first_event_utc": "2023-04-05 19:27:16",
+          "last_event_utc": "2025-11-28 14:16:05",
+          "attribution_note": "full target deposit associated with each distinct input identifier"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "direction": "inbound",
+          "counterparty_type": "stake_address",
+          "counterparty": "stake1u9c07x9z7w35zmm5tumm5lpltdjpma8gx95y9vw7e35j67gz7r8a7",
+          "transaction_count": 247,
+          "associated_lovelace": 147231557588869,
+          "first_event_utc": "2023-04-05 19:51:12",
+          "last_event_utc": "2026-02-27 20:21:26",
+          "attribution_note": "full target deposit associated with each distinct input identifier"
+        },
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "direction": "inbound",
+          "counterparty_type": "stake_address",
+          "counterparty": "stake1uy6yzwsxxc28lfms0qmpxvyz9a7y770rtcqx9y96m42cttqwvp4m5",
+          "transaction_count": 1,
+          "associated_lovelace": 52196773895086,
+          "first_event_utc": "2023-10-05 20:48:21",
+          "last_event_utc": "2023-10-05 20:48:21",
+          "attribution_note": "full target deposit associated with each distinct input identifier"
+        }
+      ]
+    },
+    "voucher_wallet_delegations": {
+      "source": "data/small/voucher_wallet_delegations.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "pool_id_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "certificate_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "certificate_time_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "stake_address": "stake1u9c07x9z7w35zmm5tumm5lpltdjpma8gx95y9vw7e35j67gz7r8a7",
+          "pool_id_bech32": "pool1mxqjlrfskhd5kql9kak06fpdh8xjwc76gec76p3taqy2qmfzs5z",
+          "ticker_name": "IOG1",
+          "certificate_tx_hash": "816507d47b5b6ca9b414fcab11e730e719b59e8b24f941f631353fa97d8a5eee",
+          "certificate_time_utc": "2023-04-05 19:51:12"
+        }
+      ]
+    },
+    "voucher_wallet_profile": {
+      "source": "data/small/voucher_wallet_profile.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "source_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "source_tip_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "address_received_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_address_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_received_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_seen_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_seen_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_tip_block": 13520244,
+          "source_tip_epoch": 635,
+          "source_tip_time_utc": "2026-06-07 18:44:37",
+          "address": "addr1qy2qmzemzpx4w3sz0z8fp0x2xwnttksn655uc5sxml2yaznsluv29uarg9hhghehhf7r7kmyrh6wsvtgg2caanrf94us0j0w0n",
+          "stake_address": "stake1u9c07x9z7w35zmm5tumm5lpltdjpma8gx95y9vw7e35j67gz7r8a7",
+          "address_utxos": 519,
+          "address_received_lovelace": 176252311282813,
+          "stake_address_count": 6,
+          "stake_utxos": 524,
+          "stake_received_lovelace": 176449088336762,
+          "first_seen_utc": "2023-04-05 19:27:16",
+          "last_seen_utc": "2026-02-27 20:21:26"
         }
       ]
     }

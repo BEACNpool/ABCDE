@@ -74,7 +74,7 @@ Use prompts/temporal_anomaly_review.md and separate hop depth from epoch/block t
 
 Built by `scripts/build_genesis_db.py` from `anchors.yaml` (→ the `seeds` table)
 and every `data/small/*.csv` (one table per file). The current committed cut is
-35.76 MiB and holds exactly 62 tables covering:
+40.01 MiB and holds exactly 71 tables covering:
 
 - the genesis **seed registry** (named founders + the fourth entry) and db-sync
   verification receipts
@@ -94,6 +94,12 @@ and every `data/small/*.csv` (one table per file). The current committed cut is
   themselves trace-reached)
 - a **governance actions catalog**: every Conway governance action with
   lifecycle epochs, deposit, type, and anchor
+- **IOGP/voucher follow-up receipts**: exact pledge and epoch-stake records,
+  voucher-address flow counterparties, full deterministic dominant-input paths,
+  direct-funder histories, and IOGP reward-credential destinations
+
+See [`reports/iogp_voucher_followup.md`](reports/iogp_voucher_followup.md) and
+[`findings/F09_iogp_voucher_followup.md`](findings/F09_iogp_voucher_followup.md).
 
 Ground your queries on the schema catalog:
 [`docs/SCHEMA.md`](docs/SCHEMA.md) (human-readable) and

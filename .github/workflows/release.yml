@@ -25,6 +25,7 @@ jobs:
         run: |
           python scripts/selftest.py
           python scripts/verify_claim_receipts.py
+          python scripts/verify_iogp_voucher_followup.py
 
       - name: Build release bundle
         run: python scripts/build_release_bundle.py

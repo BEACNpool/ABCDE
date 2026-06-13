@@ -41,6 +41,14 @@
       "sql": "claims/sql/staged_trace_founder_summary.sql",
       "expected_rows": 19,
       "output_sha256": "71fc8712e18f95d369ecccae9f671eb15334ad11f22ccfac888e8c53737a6267"
+    },
+    {
+      "id": "iogp_voucher_followup",
+      "claim": "The committed receipts expose exact IOGP pledge, epoch-stake, voucher-flow, and burst-destination values without adopting off-chain identity claims.",
+      "evidence_grade": "FACT",
+      "sql": "claims/sql/iogp_voucher_followup.sql",
+      "expected_rows": 6,
+      "output_sha256": "a2176ee72332409e703dd4c2a113e8136ed14ca3fe9a8ce9c5ce2aefb388bd29"
     }
   ]
 }

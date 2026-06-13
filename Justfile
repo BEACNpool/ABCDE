@@ -36,6 +36,7 @@ fetch-full:
 test:
     python3 scripts/selftest.py
     python3 scripts/verify_claim_receipts.py
+    python3 scripts/verify_iogp_voucher_followup.py
     python3 scripts/verify_public_artifacts.py
 
 # Verify headline claim SQL receipts
@@ -45,6 +46,10 @@ verify-claims:
 # Verify public artifact manifest hashes
 verify-public-artifacts:
     python3 scripts/verify_public_artifacts.py
+
+# Verify IOGP pledge and voucher-address follow-up receipts
+verify-iogp-voucher:
+    python3 scripts/verify_iogp_voucher_followup.py
 
 # Build GitHub Release assets locally under dist/release/
 release-bundle:

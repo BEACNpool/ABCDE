@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 9,
+  "finding_count": 10,
   "findings": [
     {
       "id": "F01",
@@ -159,6 +159,65 @@
       "evidence": [],
       "has_reproduce_sql": false,
       "index_label": "REVIEW_CUT, FACT within depth-14 trace scope"
+    },
+    {
+      "id": "F09",
+      "file": "findings/F09_iogp_voucher_followup.md",
+      "title": "IOGP Pledge and Voucher-Address Follow-up",
+      "claim": "The IOGP-ticker pool declared a `1,000,000 ADA` pledge, while its reward\ncredential carried approximately `66.36M ADA` of active stake at epoch 250 and\n`64.36M ADA` at epoch 255.\n\nA separately cited voucher-program address:\n\n- uses a stake credential that delegated to the IOG1-ticker pool;\n- received `52,196,773.895086 ADA` on `2023-10-05 20:48:21 UTC` in a\n  transaction whose inputs included the cited funding stake credential;\n- sent `60,000,003.141590 ADA` to a previously identified forward endpoint in\n  two transactions about an hour later;\n- exchanged approximately `13.28M ADA` in each direction with the registered\n  owner/reward credential of the WAV10-ticker pool; and\n- has three selected funding transactions whose deterministic largest-input\n  paths terminate at the `2,463,071,701 ADA` IOG genesis transaction.\n\nThe IOGP reward credential also sent `925,000,100 ADA` in 32 transactions to\nthe previously identified burst credential.",
+      "grade": "- **FACT** for pool registration, pledge, epoch stake, delegation, transaction\n  flows, and deterministic path existence.\n- **STRONG_INFERENCE** that the voucher-address flows intersect the broader\n  IOG-ticker/WAV/payer operational cluster.\n- **UNKNOWN** for legal ownership, beneficial control, intent, or the external\n  report's attribution of the address to any organization.\n\nDominant-input tracing follows one deterministic largest-input path. It is not\nexclusive provenance, and hop counts can change when equal-valued inputs use a\ndifferent tie-break.",
+      "evidence": [
+        {
+          "path": "data/small/iog_voucher_dominant_traces.csv",
+          "sha256": "e3366c2c87d5e364cad498657c45dd0408af3f63624a0781a26245f99c72fe88"
+        },
+        {
+          "path": "data/small/iogp_pool_epoch_stake.csv",
+          "sha256": "11d9308f87eab6afe5a5e7fef87d7d0489365573418bc39a585472b66c59b3de"
+        },
+        {
+          "path": "data/small/iogp_pool_registration.csv",
+          "sha256": "6940d0bdfde2838dd26fd65c07fc32e0f6f161cb39b84cb97469d57cfe5ad293"
+        },
+        {
+          "path": "data/small/iogp_reward_wallet_destinations.csv",
+          "sha256": "f87b5ff30dc64b301b55ccca7926f0330bec5c603280e20fbc648fdece938304"
+        },
+        {
+          "path": "data/small/voucher_funder_delegations.csv",
+          "sha256": "bd7c127cda6cf892b340b733e10cc3e11daa788f003522bf44a842e03a8395d5"
+        },
+        {
+          "path": "data/small/voucher_funder_source_summary.csv",
+          "sha256": "43c2efd6082dd24d6356f9f20ffb82f3fb24c782bdff409452f9a2635f68108e"
+        },
+        {
+          "path": "data/small/voucher_wallet_counterparty_summary.csv",
+          "sha256": "818189e249570a2f90ed3530e6978e9168a7b96c7fa9009ef349b6b482853b62"
+        },
+        {
+          "path": "data/small/voucher_wallet_delegations.csv",
+          "sha256": "5488aaf2089cbc5d9f8291ca0770e4a8c2ab23a2c0a8317843466cc1747ac49a"
+        },
+        {
+          "path": "data/small/voucher_wallet_profile.csv",
+          "sha256": "68ec14ab238feda112b4a2d74813d959c5058a751c31283a9036354953ed4022"
+        },
+        {
+          "path": "reports/iogp_voucher_followup.md",
+          "sha256": "65097f25a10f8f97ab17718f58a13fc7dc60dff33b82afd534dadf8d50286c5a"
+        },
+        {
+          "path": "scripts/build_iogp_voucher_followup_remote.sh",
+          "sha256": null
+        },
+        {
+          "path": "scripts/verify_iogp_voucher_followup.py",
+          "sha256": null
+        }
+      ],
+      "has_reproduce_sql": false,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
     }
   ]
 }
