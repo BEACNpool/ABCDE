@@ -49,6 +49,14 @@
       "sql": "claims/sql/iogp_voucher_followup.sql",
       "expected_rows": 6,
       "output_sha256": "a2176ee72332409e703dd4c2a113e8136ed14ca3fe9a8ce9c5ce2aefb388bd29"
+    },
+    {
+      "id": "genesis_trail_monthly_stream",
+      "claim": "The committed receipts expose the recurring recipient series, consolidation-hub flow, IOGP/burst bridge, and deterministic genesis terminals without adopting off-chain identity claims.",
+      "evidence_grade": "FACT",
+      "sql": "claims/sql/genesis_trail_monthly_stream.sql",
+      "expected_rows": 7,
+      "output_sha256": "6ecf6f2cec8a8d367667db86f800183f4bc8e6921650c75aced285999ae65818"
     }
   ]
 }

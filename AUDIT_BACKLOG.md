@@ -94,3 +94,29 @@ Labels follow `docs/02_GRADING.md`.
 - Regenerate top-DRep exposure from the shared surface.
 - Interpret proposal-specific joins only after freshness, hashes, and classification rules are published.
 - Keep all public language clear that DRep delegation is voting power, not custody or ownership.
+
+## B-005 — Consolidation-hub depositor and downstream classification
+
+- **Status:** BACKLOG
+- **Claim grade:** UNKNOWN until independently classified
+- **Artifact class:** AUDIT_BACKLOG
+
+### Current facts
+
+- F10 verifies 807 outputs totaling approximately 9.849B ADA into one
+  consolidation address.
+- The F10 monthly recipient and F09 IOGP-to-burst stream independently converge
+  at that address.
+- Two additional same-hub streams are committed as receipt-backed query leads.
+
+### Required audit work
+
+- Enumerate all direct hub depositors and independently reproduce any proposed
+  genesis-origin grouping.
+- Compare deterministic largest-input paths with broader multi-input ancestry
+  so a single-path method is not mistaken for exclusive provenance.
+- Classify service, exchange, custody, operational, and unknown patterns using
+  explicit evidence gates.
+- Trace downstream endpoints and current-unspent descendants from the hub.
+- Do not adopt external depositor counts, identities, or ownership claims until
+  they are reproduced from committed receipts.

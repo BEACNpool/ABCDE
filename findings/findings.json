@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 10,
+  "finding_count": 11,
   "findings": [
     {
       "id": "F01",
@@ -213,6 +213,53 @@
         },
         {
           "path": "scripts/verify_iogp_voucher_followup.py",
+          "sha256": null
+        }
+      ],
+      "has_reproduce_sql": false,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F10",
+      "file": "findings/F10_genesis_trail_monthly_stream.md",
+      "title": "Genesis Trail Monthly Stream and Consolidation Hub",
+      "claim": "A recipient address received nine payment-sized outputs between April and\nNovember 2021, totaling `184,580,695.400465 ADA`. Across all 11 outputs, the\naddress received `184,837,022.651928 ADA`, then forwarded\n`184,837,020.994894 ADA` to one consolidation hub.\n\nThat hub received `9,849,508,503.491169 ADA` in 807 outputs. It also received\n`925,000,294.515631 ADA` from the burst credential that F09 independently\nconnected to `925,000,100 ADA` of IOGP reward-credential outflows.\n\nDeterministic largest-input paths from all nine payment transactions terminate\nat the same `2,463,071,701 ADA` IOG genesis transaction.",
+      "grade": "- **FACT** for the transaction outputs, payer credentials, forwarding flows,\n  hub totals, stream bridges, and deterministic path existence.\n- **STRONG_INFERENCE** that the monthly stream belongs to the broader\n  IOGP/burst/consolidation operational flow because the independently verified\n  streams converge at the same hub and genesis terminal.\n- **UNKNOWN** for recipient identity, beneficial ownership, custody, sale\n  terms, purpose, or intent.\n\nDominant-input tracing follows one deterministic largest-input path. It does\nnot establish exclusive provenance.",
+      "evidence": [
+        {
+          "path": "data/small/genesis_trail_hub_summary.csv",
+          "sha256": "ca205c919930ef49028646f622c2b24c6318ddfdca052c8634338b08b8767e1b"
+        },
+        {
+          "path": "data/small/genesis_trail_payment_dominant_traces.csv",
+          "sha256": "fe82e6361fcf9ccb891191d3ca060ba51c3ba77395aa70afee451bd21d57210d"
+        },
+        {
+          "path": "data/small/genesis_trail_payment_inputs.csv",
+          "sha256": "ebd5422fce46bca687410030ed44eb1c4631c3fa8fe5232743be32a6de95fca9"
+        },
+        {
+          "path": "data/small/genesis_trail_recipient_forwarding.csv",
+          "sha256": "4a8106bf566291066d64826963026b90b5c20627ab4df36bb95600bda2347136"
+        },
+        {
+          "path": "data/small/genesis_trail_recipient_outputs.csv",
+          "sha256": "1309844ff4375bcc146b031f143eca9911c6eb28fd1178df56b30ffdc37cafd4"
+        },
+        {
+          "path": "data/small/genesis_trail_stream_bridges.csv",
+          "sha256": "efe8c9cb56a78a8c5b189baa6753c04e721c638653d1cf83016d066d7332362c"
+        },
+        {
+          "path": "reports/genesis_trail_case.md",
+          "sha256": "e4cd1d8b0ce81559b626bb38add2a79fb90e1639b316c5d16f71d627b81ee851"
+        },
+        {
+          "path": "scripts/build_genesis_trail_case_remote.sh",
+          "sha256": null
+        },
+        {
+          "path": "scripts/verify_genesis_trail_case.py",
           "sha256": null
         }
       ],

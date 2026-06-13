@@ -37,6 +37,7 @@ test:
     python3 scripts/selftest.py
     python3 scripts/verify_claim_receipts.py
     python3 scripts/verify_iogp_voucher_followup.py
+    python3 scripts/verify_genesis_trail_case.py
     python3 scripts/verify_public_artifacts.py
 
 # Verify headline claim SQL receipts
@@ -50,6 +51,10 @@ verify-public-artifacts:
 # Verify IOGP pledge and voucher-address follow-up receipts
 verify-iogp-voucher:
     python3 scripts/verify_iogp_voucher_followup.py
+
+# Verify Genesis Trail monthly-stream and consolidation-hub receipts
+verify-genesis-trail:
+    python3 scripts/verify_genesis_trail_case.py
 
 # Build GitHub Release assets locally under dist/release/
 release-bundle:

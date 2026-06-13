@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 173,
+  "file_count": 184,
   "files": [
     {
       "path": "claims/README.md",
@@ -17,8 +17,21 @@
     },
     {
       "path": "claims/manifest.json",
-      "bytes": 2389,
-      "sha256": "8e4dc2f0cee95900174d92c710a43bf9e5cfcee6d2f087907e40a5ec6d38af7d",
+      "bytes": 2857,
+      "sha256": "e9e13c92d024179f98fcdc631df4db25c3592d0dd5e4b784fd20d62862b02aaf",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "claims/outputs/genesis_trail_monthly_stream.tsv",
+      "bytes": 387,
+      "sha256": "6ecf6f2cec8a8d367667db86f800183f4bc8e6921650c75aced285999ae65818",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -97,6 +110,19 @@
       "path": "claims/outputs/top_registered_dreps.tsv",
       "bytes": 1533,
       "sha256": "cba3f8d8f1e4c1e735112d203f84424888ea25ca5e6b5a5de083bfd18130cba5",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "claims/sql/genesis_trail_monthly_stream.sql",
+      "bytes": 1439,
+      "sha256": "c094107c69187a19804ef5c7ac5a031305010a69f9bf844c6023328f34fa65bb",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -253,6 +279,84 @@
       "path": "data/small/fourth_entry_sale_ticket_signal.csv",
       "bytes": 1861,
       "sha256": "da587f9aa80de67ef5ef2e6c81f1cf7feb2031dbdd99180ea8fedfe10b166694",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/genesis_trail_hub_summary.csv",
+      "bytes": 438,
+      "sha256": "ca205c919930ef49028646f622c2b24c6318ddfdca052c8634338b08b8767e1b",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/genesis_trail_payment_dominant_traces.csv",
+      "bytes": 98052,
+      "sha256": "fe82e6361fcf9ccb891191d3ca060ba51c3ba77395aa70afee451bd21d57210d",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/genesis_trail_payment_inputs.csv",
+      "bytes": 1982,
+      "sha256": "ebd5422fce46bca687410030ed44eb1c4631c3fa8fe5232743be32a6de95fca9",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/genesis_trail_recipient_forwarding.csv",
+      "bytes": 4210,
+      "sha256": "4a8106bf566291066d64826963026b90b5c20627ab4df36bb95600bda2347136",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/genesis_trail_recipient_outputs.csv",
+      "bytes": 3463,
+      "sha256": "1309844ff4375bcc146b031f143eca9911c6eb28fd1178df56b30ffdc37cafd4",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/genesis_trail_stream_bridges.csv",
+      "bytes": 1569,
+      "sha256": "efe8c9cb56a78a8c5b189baa6753c04e721c638653d1cf83016d066d7332362c",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1083,8 +1187,8 @@
     },
     {
       "path": "docs/00_START_HERE.md",
-      "bytes": 2770,
-      "sha256": "657a1ed3025027105b183c3035202a6421b8ea4173e8d188d91c6eb1672a742b",
+      "bytes": 3113,
+      "sha256": "6ed525d33c5d50baacca5cadac72d3f2667be5ba34920c9f68994284ed60aacd",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1381,6 +1485,19 @@
       }
     },
     {
+      "path": "docs/23_WAREHOUSE_RESEARCH_PROGRAM.md",
+      "bytes": 5574,
+      "sha256": "f47a9edfc674b1fce6cc407692081634634cb6c53c18f5dfac792ef1a6a08c6d",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "docs/AI_QUERY_GUIDE.md",
       "bytes": 5101,
       "sha256": "c813afd3de0df5ab43c76139b2ebd316f0326c5a5736b941eb68a786c338c92b",
@@ -1395,8 +1512,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 32880,
-      "sha256": "3884b27c5f61d40653a6d18ddf63c44ec729b9efe57de9dad95660a66ee0aadf",
+      "bytes": 35707,
+      "sha256": "64fb3af59448ab1bc722efde5c9f45070495d5cc53fdb189dfabdefcad3b7bc3",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1550,9 +1667,22 @@
       }
     },
     {
+      "path": "findings/F10_genesis_trail_monthly_stream.md",
+      "bytes": 2179,
+      "sha256": "2a4defffad3282f6202038fef6d01089cfbfbeacd14dfffec214adbcb42b100a",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 1789,
-      "sha256": "c601a7dc60d5cfa5d6e9e3e6a3dd05672ca7f1931ef768c24d656a878b5dc47a",
+      "bytes": 1933,
+      "sha256": "e8d16f3b78d0b7da0e6a4c4f15e30646c2fa04478c2f1e6d28b26cb89afb0221",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1564,8 +1694,8 @@
     },
     {
       "path": "findings/findings.json",
-      "bytes": 11893,
-      "sha256": "0bc82a2b9ae0e3a5ab8513f843045a952f435d9af90015886e184e7941a7612c",
+      "bytes": 14837,
+      "sha256": "8d90fe77d48de05e6457f8d2af139c8601381a0bbd42b4d875f5b3d439313a16",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1683,6 +1813,19 @@
       "path": "reports/genesis_forensics_community_summary.md",
       "bytes": 16057,
       "sha256": "c6085be193e3910acacf7a1f8f74cdc08adf6eed39293c86cc41a9b18618e8a3",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "reports/genesis_trail_case.md",
+      "bytes": 5332,
+      "sha256": "e4cd1d8b0ce81559b626bb38add2a79fb90e1639b316c5d16f71d627b81ee851",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",

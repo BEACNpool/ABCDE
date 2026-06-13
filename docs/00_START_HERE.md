@@ -29,6 +29,9 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 10. Review the IOGP pledge and voucher-address follow-up:
    - `reports/iogp_voucher_followup.md`
    - `findings/F09_iogp_voucher_followup.md`
+11. Review the Genesis Trail monthly-stream and consolidation-hub follow-up:
+   - `reports/genesis_trail_case.md`
+   - `findings/F10_genesis_trail_monthly_stream.md`
 
 ## Maintainer path
 
