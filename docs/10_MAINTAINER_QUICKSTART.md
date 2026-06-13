@@ -8,6 +8,10 @@ This is the current end-to-end v2 seed-cut rebuild path.
 - Remote ability to run read-only `psql` via `sudo -n -u postgres`.
 - Python 3.12+.
 
+Before extracting, read `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md` and verify the
+warehouse tip. A healthy subscription state does not prove that the upstream
+source is current.
+
 ## Setup
 
 ```bash
@@ -61,8 +65,13 @@ Community DRep entrypoints:
 - `docs/19_QUERY_COOKBOOK.md`
 - `reports/top_drep_profiles.md`
 
-Generated local DuckDB cut (ignored by git; future large cuts should be release artifacts):
+Generated compact DuckDB cut (committed so a plain clone is query-ready):
 
-- generated locally: `data/abcde_genesis_seed_registry.duckdb`
+- `data/abcde_genesis.duckdb`
+- `data/schema_catalog.json`
+- `docs/SCHEMA.md`
 
-This is intentionally small; the full Genesis subgraph should later move to release storage with SHA-256 receipts.
+Large extraction cuts belong in gitignored `data/release/` while under review
+and in GitHub Releases with SHA-256 receipts when published. They must not be
+described as available to public users merely because they exist on a
+maintainer workstation.

@@ -24,6 +24,8 @@ The public repo is intentionally small enough to review in git. Heavy extraction
    - `docs/03_DATA_DICTIONARY.md`
 8. Check limitations before making claims:
    - `docs/06_LIMITATIONS.md`
+9. Check the data tiers and current snapshot boundary:
+   - `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`
 
 ## Maintainer path
 
@@ -44,6 +46,7 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 3. Review:
    - `docs/10_MAINTAINER_QUICKSTART.md`
    - `docs/12_BRANCH_STATUS.md`
+   - `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`
    - `data/manifests/public-artifacts-manifest.json`
 
 ## Core promises
