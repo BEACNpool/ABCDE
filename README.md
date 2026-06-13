@@ -4,6 +4,9 @@ ABCDE is a turnkey, AI-queryable **Cardano genesis ADA database**. Clone it,
 point an AI at it, and ask where the genesis ADA went and which stake pools
 (SPOs) and DReps it ended up in.
 
+For a public, investor-focused introduction, read
+**[What Every ADA Investor Should Know About Genesis ADA](reports/what_ada_investors_should_know_about_genesis_ada.md)**.
+
 The compact, query-ready database (`data/abcde_genesis.duckdb`) is committed to
 the repo, so a plain `git clone` gives you instant, queryable data — no node, no
 relay, no db-sync, no Git LFS required.

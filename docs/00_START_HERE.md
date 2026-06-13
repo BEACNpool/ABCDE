@@ -6,30 +6,32 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 
 ## Reader path
 
-1. Read the generated community summary:
+1. Read the public investor-awareness brief:
+   - `reports/what_ada_investors_should_know_about_genesis_ada.md`
+2. Read the generated community summary:
    - `reports/genesis_forensics_community_summary.md`
-2. Review the confidence analysis:
+3. Review the confidence analysis:
    - `reports/genesis_ada_confidence_analysis.md`
-3. Inspect the DRep profile pack:
+4. Inspect the DRep profile pack:
    - `profiles/dreps/README.md`
    - `reports/top_drep_profiles.md`
    - `docs/18_DREP_PROFILE_PACK.md`
-4. Run copy/paste examples from the query cookbook:
+5. Run copy/paste examples from the query cookbook:
    - `docs/19_QUERY_COOKBOOK.md`
-5. Review the Genesis-to-DRep behavior analysis:
+6. Review the Genesis-to-DRep behavior analysis:
    - `docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md`
-6. Open the findings index:
+7. Open the findings index:
    - `findings/INDEX.md`
-7. Use the data dictionary to understand CSV/table columns:
+8. Use the data dictionary to understand CSV/table columns:
    - `docs/03_DATA_DICTIONARY.md`
-8. Check limitations before making claims:
+9. Check limitations before making claims:
    - `docs/06_LIMITATIONS.md`
-9. Check the data tiers and current snapshot boundary:
+10. Check the data tiers and current snapshot boundary:
    - `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`
-10. Review the IOGP pledge and voucher-address follow-up:
+11. Review the IOGP pledge and voucher-address follow-up:
    - `reports/iogp_voucher_followup.md`
    - `findings/F09_iogp_voucher_followup.md`
-11. Review the Genesis Trail monthly-stream and consolidation-hub follow-up:
+12. Review the Genesis Trail monthly-stream and consolidation-hub follow-up:
    - `reports/genesis_trail_case.md`
    - `findings/F10_genesis_trail_monthly_stream.md`
 

@@ -11,6 +11,7 @@ REQUIRED = [
     'scripts/build_genesis_trail_case_remote.sh',
     'scripts/verify_genesis_trail_case.py',
     'reports/genesis_trail_case.md',
+    'reports/what_ada_investors_should_know_about_genesis_ada.md',
     'findings/F10_genesis_trail_monthly_stream.md',
     'claims/sql/genesis_trail_monthly_stream.sql',
     '.github/workflows/release.yml',
