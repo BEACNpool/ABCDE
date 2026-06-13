@@ -73,8 +73,8 @@ Use prompts/temporal_anomaly_review.md and separate hop depth from epoch/block t
 ## What is in the database
 
 Built by `scripts/build_genesis_db.py` from `anchors.yaml` (→ the `seeds` table)
-and every `data/small/*.csv` (one table per file). It currently holds 54+ tables
-covering:
+and every `data/small/*.csv` (one table per file). The current committed cut is
+35.76 MiB and holds exactly 62 tables covering:
 
 - the genesis **seed registry** (named founders + the fourth entry) and db-sync
   verification receipts
@@ -103,6 +103,9 @@ Temporal query recipes are in `sql/30_query_recipes/`; see
 Genesis-to-DRep behavior methodology is in
 [`docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md`](docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md).
 Query `build_info` first when answering freshness-sensitive questions.
+See [`docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`](docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md)
+for the verified artifact inventory, the distinction between compact, release,
+and warehouse data, and the current snapshot boundary.
 
 ## Evidence standard
 
@@ -136,10 +139,11 @@ Public claim receipts live in [`claims/`](claims/). Each receipt includes SQL,
 expected row count, output hash, and an evidence grade.
 
 Current freshness note: `data/small/db_tip_receipt.csv` records the warehouse tip
-used for this cut. As of the latest receipt, the abcde replica is stalled at
-block `13520244` / epoch `635` / `2026-06-07 18:44:37` pending relay recovery.
-Treat DRep distribution, live-unspent, and proposal-vote surfaces as that
-snapshot, not live chain state.
+used for this cut. The committed DuckDB and warehouse currently agree on block
+`13520244` / epoch `635` / `2026-06-07 18:44:37 UTC`. The warehouse subscription
+is enabled and all 75 replicated relations are ready, but the source is stalled
+pending relay recovery. Treat DRep distribution, live-unspent, governance
+lifecycle, and proposal-vote surfaces as that snapshot, not live chain state.
 
 ## Big data / release assets
 
@@ -172,6 +176,7 @@ Tags matching `v*` publish the same bundle through `.github/workflows/release.ym
 
 ## Refresh cadence
 
-This repo is periodically refreshed and the URL re-posted. Each refresh rebuilds
-the database from the latest source CSVs and anchors, so the answer to "where
-did the genesis ADA go?" stays current.
+This repo is refreshed from an explicit warehouse snapshot. Each refresh must
+record the source tip, rebuild the database and schema catalog, and rerun the
+verifiers before publication. Until those artifacts change, the recorded
+snapshot boundary remains authoritative.

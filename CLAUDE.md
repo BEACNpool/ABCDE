@@ -15,6 +15,9 @@ clone it and ask an AI where the Cardano genesis ADA went and which stake pools
 - **Freshness:** query the `build_info` table or read
   `data/small/db_tip_receipt.csv` before answering any current-state question.
   The current cut is a snapshot at the recorded db tip, not a live chain view.
+- **Data tiers:** read `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md` before mixing
+  compact tables, release assets, or maintainer warehouse results. Their
+  availability and provenance are different.
 - **Full / large dataset:** published via GitHub Releases when available; pull
   it with `python scripts/fetch_db.py` (lands in `data/release/`, gitignored).
   If no release exists, the committed DuckDB and `data/small/*.csv` receipts are
