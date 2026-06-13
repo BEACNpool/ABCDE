@@ -24,6 +24,12 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 - What are the top stake holders in the IOG depth-14 current bag, and how are they classified?
 - Is there a coordinated-abstain cluster in the IOG current bag around epoch 329?
 
+## IOGP and voucher-address follow-up
+
+- Was the IOGP pool's registered pledge 64M ADA, or was that its reward credential's active stake?
+- Which on-chain flows connect the cited voucher-program address to previously identified endpoints?
+- What do the deterministic dominant-input paths establish, and what provenance claims remain unsupported?
+
 ## Governance: DReps and SPOs
 
 - Which DReps hold the most genesis-traced stake?
@@ -58,3 +64,6 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
   signal table is a top cut, with the full table intended for release assets.
 - The fourth seed's internal legacy label was "EMURGO_2" — this is **not** an
   ownership attribution; treat it as a STRONG_INFERENCE sale-ticket signal.
+- For the IOGP/voucher follow-up, start with `iogp_pool_registration`,
+  `iogp_pool_epoch_stake`, `voucher_wallet_profile`, and
+  `voucher_wallet_counterparty_summary`; use the report for method limits.

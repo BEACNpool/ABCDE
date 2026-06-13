@@ -49,6 +49,9 @@ jobs:
       - name: Verify public claim receipts
         run: python scripts/verify_claim_receipts.py
 
+      - name: Verify IOGP/voucher follow-up receipts
+        run: python scripts/verify_iogp_voucher_followup.py
+
       - name: Verify public artifact manifest
         run: python scripts/verify_public_artifacts.py
 

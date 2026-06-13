@@ -26,6 +26,9 @@ The public repo is intentionally small enough to review in git. Heavy extraction
    - `docs/06_LIMITATIONS.md`
 9. Check the data tiers and current snapshot boundary:
    - `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`
+10. Review the IOGP pledge and voucher-address follow-up:
+   - `reports/iogp_voucher_followup.md`
+   - `findings/F09_iogp_voucher_followup.md`
 
 ## Maintainer path
 

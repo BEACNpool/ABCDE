@@ -38,6 +38,11 @@ tables whose names begin with `governance_genesis_behavior_`. Treat behavior
 classes and scores as audit-prioritization signals unless a finding explicitly
 grades a stronger claim.
 
+For IOGP pledge or voucher-address questions, inspect tables beginning with
+`iogp_`, `iog_voucher_`, and `voucher_`, then read
+`reports/iogp_voucher_followup.md`. The dominant-input trace proves a selected
+path exists; it does not prove exclusive provenance or real-world control.
+
 ## Read-only rule (hard constraint)
 
 The database is opened `read_only=True` and every statement is statically

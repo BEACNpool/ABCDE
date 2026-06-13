@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 160,
+  "file_count": 173,
   "files": [
     {
       "path": "claims/README.md",
@@ -17,8 +17,8 @@
     },
     {
       "path": "claims/manifest.json",
-      "bytes": 1971,
-      "sha256": "3c1299306573d2186a74565a46c624edaf171beca89100cee6fae40250ea55bd",
+      "bytes": 2389,
+      "sha256": "8e4dc2f0cee95900174d92c710a43bf9e5cfcee6d2f087907e40a5ec6d38af7d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -32,6 +32,19 @@
       "path": "claims/outputs/iog_retained_bag_bands.tsv",
       "bytes": 878,
       "sha256": "bb2144fb3e81a7f57823a7ff7d099083b871eda0d4bc1189547fee6dd72b41d1",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "claims/outputs/iogp_voucher_followup.tsv",
+      "bytes": 429,
+      "sha256": "a2176ee72332409e703dd4c2a113e8136ed14ca3fe9a8ce9c5ce2aefb388bd29",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -97,6 +110,19 @@
       "path": "claims/sql/iog_retained_bag_bands.sql",
       "bytes": 433,
       "sha256": "66b4b3690ac23952ece5d1390e427f04669c99c88076b238e9730c78e6eeb694",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "claims/sql/iogp_voucher_followup.sql",
+      "bytes": 1344,
+      "sha256": "fec6c3e8e1953a881201e60fe7e0972194b525af63a6a7e2d5dccdb83a621ab0",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -705,6 +731,58 @@
       }
     },
     {
+      "path": "data/small/iog_voucher_dominant_traces.csv",
+      "bytes": 51381,
+      "sha256": "e3366c2c87d5e364cad498657c45dd0408af3f63624a0781a26245f99c72fe88",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/iogp_pool_epoch_stake.csv",
+      "bytes": 2067,
+      "sha256": "11d9308f87eab6afe5a5e7fef87d7d0489365573418bc39a585472b66c59b3de",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/iogp_pool_registration.csv",
+      "bytes": 504,
+      "sha256": "6940d0bdfde2838dd26fd65c07fc32e0f6f161cb39b84cb97469d57cfe5ad293",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/iogp_reward_wallet_destinations.csv",
+      "bytes": 3519,
+      "sha256": "f87b5ff30dc64b301b55ccca7926f0330bec5c603280e20fbc648fdece938304",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "data/small/legacy_cross_merge_baseline_counts.csv",
       "bytes": 298,
       "sha256": "1dc127e8c8e7fe6571f9862bc9ea809805a1d257a4dbfc36b103eedc404ef381",
@@ -939,9 +1017,74 @@
       }
     },
     {
+      "path": "data/small/voucher_funder_delegations.csv",
+      "bytes": 1816,
+      "sha256": "bd7c127cda6cf892b340b733e10cc3e11daa788f003522bf44a842e03a8395d5",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/voucher_funder_source_summary.csv",
+      "bytes": 31194,
+      "sha256": "43c2efd6082dd24d6356f9f20ffb82f3fb24c782bdff409452f9a2635f68108e",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/voucher_wallet_counterparty_summary.csv",
+      "bytes": 169268,
+      "sha256": "818189e249570a2f90ed3530e6978e9168a7b96c7fa9009ef349b6b482853b62",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/voucher_wallet_delegations.csv",
+      "bytes": 376,
+      "sha256": "5488aaf2089cbc5d9f8291ca0770e4a8c2ab23a2c0a8317843466cc1747ac49a",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "data/small/voucher_wallet_profile.csv",
+      "bytes": 480,
+      "sha256": "68ec14ab238feda112b4a2d74813d959c5058a751c31283a9036354953ed4022",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "docs/00_START_HERE.md",
-      "bytes": 2627,
-      "sha256": "7da01a1f3c010cec20423fbcd5ba3207cc58ff73db2f6758a61bbb4caf83acb9",
+      "bytes": 2770,
+      "sha256": "657a1ed3025027105b183c3035202a6421b8ea4173e8d188d91c6eb1672a742b",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1227,7 +1370,7 @@
     {
       "path": "docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md",
       "bytes": 3534,
-      "sha256": "e7f64c3748393fbfb68669914dfcad9478b4d7c37985a32034972459c639bc74",
+      "sha256": "e3fc90640bedff924dd990e3a1525fd2dd1bca4106cb6f8972e6e2db2daacea8",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1252,8 +1395,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 28799,
-      "sha256": "7f2a38dad3f04a186568b393947b22d410334ceec539c358bc35c5a35cea2781",
+      "bytes": 32880,
+      "sha256": "3884b27c5f61d40653a6d18ddf63c44ec729b9efe57de9dad95660a66ee0aadf",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1265,8 +1408,8 @@
     },
     {
       "path": "docs/STARTER_QUESTIONS.md",
-      "bytes": 3209,
-      "sha256": "d503c30b389fd0fb4bdbc6418ea7f097f59703ff7a0b257fc7ceb831ecc759cb",
+      "bytes": 3759,
+      "sha256": "2ab254135b7a00d21798939929b1b37287e9eaa652b81b5a929b3c52b5030595",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1394,9 +1537,22 @@
       }
     },
     {
+      "path": "findings/F09_iogp_voucher_followup.md",
+      "bytes": 2627,
+      "sha256": "4972a269e65e0f5f88dd78f234e897f56d25ad07eb6654c1d1e214ce500c1d75",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 1661,
-      "sha256": "7616ca05ae9fbeecb43ffcd6161f1c05abe2fab78718b426d8dc4ba5aed3eb23",
+      "bytes": 1789,
+      "sha256": "c601a7dc60d5cfa5d6e9e3e6a3dd05672ca7f1931ef768c24d656a878b5dc47a",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1408,8 +1564,8 @@
     },
     {
       "path": "findings/findings.json",
-      "bytes": 8127,
-      "sha256": "4a63ed896d2fb113ea56592795b0b5f88e0ca353e3dd62065dc13434a42500b4",
+      "bytes": 11893,
+      "sha256": "0bc82a2b9ae0e3a5ab8513f843045a952f435d9af90015886e184e7941a7612c",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",
@@ -1527,6 +1683,19 @@
       "path": "reports/genesis_forensics_community_summary.md",
       "bytes": 16057,
       "sha256": "c6085be193e3910acacf7a1f8f74cdc08adf6eed39293c86cc41a9b18618e8a3",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13520244",
+        "db_tip_time": "2026-06-07 18:44:37",
+        "db_tip_epoch": "635",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+      }
+    },
+    {
+      "path": "reports/iogp_voucher_followup.md",
+      "bytes": 7322,
+      "sha256": "65097f25a10f8f97ab17718f58a13fc7dc60dff33b82afd534dadf8d50286c5a",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13520244",

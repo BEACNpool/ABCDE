@@ -11,13 +11,14 @@ Labels are defined in `docs/02_GRADING.md`.
 3. [F02b — Fourth-entry direct co-spend](F02b_fourth_entry_direct_cospend.md) — `VERIFIED`, `FACT`
 4. [F03 — Fourth-entry sale-ticket origin signal](F03_fourth_entry_sale_ticket_origin_signal.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 5. [F06 — SPO and DRep delegation targets](F06_governance_delegation_targets.md) — `VERIFIED`, `FACT`
+6. [F09 — IOGP pledge and voucher-address follow-up](F09_iogp_voucher_followup.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 
 ## Review cuts / candidate sets
 
-6. [F04 — Bounded depth-3 trace overlap review cut](F04_bounded_trace_overlap_pilot.md) — `REVIEW_CUT`, `FACT within bounded scope`
-7. [F05 — Bounded depth-3 merge inventory review cut](F05_bounded_trace_merge_inventory_pilot.md) — `REVIEW_CUT`, `FACT within bounded scope`
-8. [F07 — Staged trace extraction and founder merge candidate set](F07_staged_trace_extraction.md) — `CANDIDATE_SET`, requires classification before stronger claims
-9. [F08 — IOG current bag audit cut](F08_iog_current_bag_audit_cut.md) — `REVIEW_CUT`, `FACT within depth-14 trace scope`
+7. [F04 — Bounded depth-3 trace overlap review cut](F04_bounded_trace_overlap_pilot.md) — `REVIEW_CUT`, `FACT within bounded scope`
+8. [F05 — Bounded depth-3 merge inventory review cut](F05_bounded_trace_merge_inventory_pilot.md) — `REVIEW_CUT`, `FACT within bounded scope`
+9. [F07 — Staged trace extraction and founder merge candidate set](F07_staged_trace_extraction.md) — `CANDIDATE_SET`, requires classification before stronger claims
+10. [F08 — IOG current bag audit cut](F08_iog_current_bag_audit_cut.md) — `REVIEW_CUT`, `FACT within depth-14 trace scope`
 
 ## Audit backlog
 
