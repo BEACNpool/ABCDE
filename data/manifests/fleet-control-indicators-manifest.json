@@ -1,0 +1,25 @@
+{
+  "generated_utc": "2026-07-03T18:02:03.018363+00:00",
+  "db_tip_block": "13630777",
+  "db_tip_time": "2026-07-03 17:02:37",
+  "thresholds": {
+    "holding_min_ada": 1000.0,
+    "drained_max_ada": 1.0,
+    "dormant_years": 2.0,
+    "recent_cert_years": 2.0,
+    "recent_spend_days": 180,
+    "passivity_min_rewards_ada": 1000.0,
+    "batch_min_members": 3
+  },
+  "inputs": {
+    "fleet_control_indicators_raw.csv": "22bbfd3959dfb8399a9cfcff86c4c8fd918b2e1e3ef75061da5b67a88ef3212f",
+    "fleet_control_cert_cohorts.csv": "475867250fe915506bc5ca29fbf9c4c635498c7df19d2ca52426e93ef21d1f18",
+    "governance_genesis_behavior_clusters.csv": "887196ae58f8ef15d0cef4f4347e60a5e60866ef4b96e26bbd584468e4c4f1f1",
+    "db_tip_receipt.csv": "bf617e6dfc447148ca42af0ef6baa6f1a44a7fe08b68b4c3ba0d8fc1e06ce273"
+  },
+  "outputs": {
+    "fleet_control_indicators.csv": "889e706d04f0a74a7abd4c9627372f8fb2016135bd2d7b3a199d5c10b9077121",
+    "fleet_control_summary.csv": "d74483a2f86885330a2b0e2dac185e70fbf3e1a806b0e51a4a7386808eec16d1"
+  },
+  "grading_note": "Indicator columns are FACT at the recorded tip; fe_control_consistency is a WORKING_HYPOTHESIS classification of custody-pattern consistency, not an ownership or identity claim."
+}

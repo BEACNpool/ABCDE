@@ -13,6 +13,10 @@ reveals three things:
    key B in one transaction requires holding both keys' credentials at that
    moment — FACT-grade shared control at signing time. The eight-key cohort is
    the tip of an operation servicing at least 89 stake keys.
+   [F14](F14_fleet_is_same_35m_parcel_structure.md) classifies these 81 keys and
+   finds 34 hold the same exact 35M parcels under the same always-abstain /
+   static-cert signature — the fleet is the same custody structure, not just
+   shared plumbing.
 
 2. **The plumbing funnels into exchange-scale hot addresses.** The first
    external hop routes overwhelmingly (96.5% of the top-200 hop-1 destinations
@@ -107,12 +111,17 @@ the hub current balances are snapshot-sensitive.
 From a clone (DuckDB):
 
 ```sql
--- the genesis→Kraken-claimed bridge, cross-validated across two datasets
+-- the genesis→Kraken-claimed bridge, cross-validated across two datasets.
+-- tracer_address_summary has one row per payment address, so aggregate to the
+-- stake key to get one row per hop.
 SELECT d.hop, d.destination, d.total_ada,
-       s.distinct_tracers_ever, s.distinct_tracers_now
+       SUM(s.distinct_tracers_ever) AS tracer_nfts_ever,
+       COUNT(*)                     AS tracer_addresses
 FROM f11_downstream_hop_destinations d
 JOIN tracer_address_summary s ON s.stake_address = d.destination
-WHERE d.destination LIKE 'stake1u833p40y%';
+WHERE d.destination LIKE 'stake1u833p40y%'
+GROUP BY d.hop, d.destination, d.total_ada
+ORDER BY d.hop;
 
 SELECT DISTINCT metadata_json
 FROM tracer_deposit_claims

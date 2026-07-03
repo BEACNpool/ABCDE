@@ -16,6 +16,7 @@ Labels are defined in `docs/02_GRADING.md`.
 8. [F11 — Eight-key 35M-ADA custody cohort](F11_eight_key_35m_custody_cohort.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 9. [F12 — High-throughput unstaked 213.8M-ADA bag](F12_high_throughput_unstaked_bag.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 10. [F13 — Reward-plumbing fleet, exchange-scale hubs, and genesis→tracer-mapped-exchange bridge](F13_reward_plumbing_downstream_and_tracer_bridge.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
+11. [F14 — Fleet is the same 35M-parcel institutional custody structure (~50 keys, ~1.69B ADA)](F14_fleet_is_same_35m_parcel_structure.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 
 ## Review cuts / candidate sets
 

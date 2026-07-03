@@ -28,8 +28,23 @@ TOP_STAKE = ROOT / "data/small/iog_current_bag_depth14_top_stake.csv"
 
 
 def root_set() -> list[str]:
+    # Default root set = genesis-descended behavior clusters + IOG top-stake.
+    # Override with ABCDE_CONTROL_ROOTS=<csv>[:<column>][,<csv>[:<column>]...]
+    # to classify a different key set through the same SQL (e.g. the F13 fleet).
+    import os
+    override = os.environ.get("ABCDE_CONTROL_ROOTS")
+    if override:
+        sources = []
+        for spec in override.split(","):
+            spec = spec.strip()
+            if not spec:
+                continue
+            path, _, col = spec.partition(":")
+            sources.append((ROOT / path, col or "stake_address"))
+    else:
+        sources = [(CLUSTERS, "stake_address"), (TOP_STAKE, "stake_address")]
     keys: set[str] = set()
-    for path, col in ((CLUSTERS, "stake_address"), (TOP_STAKE, "stake_address")):
+    for path, col in sources:
         with path.open() as f:
             for row in csv.DictReader(f):
                 v = (row.get(col) or "").strip()

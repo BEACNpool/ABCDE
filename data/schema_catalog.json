@@ -175,10 +175,10 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "3386b2e5c90e",
-          "source_generated_utc": "2026-07-03 12:02:59-05:00",
-          "db_tip_block": 13630777,
-          "db_tip_time": "2026-07-03 17:02:37",
+          "git_commit": "60c4be2a4a5f",
+          "source_generated_utc": "2026-07-03 13:03:58-05:00",
+          "db_tip_block": 13630951,
+          "db_tip_time": "2026-07-03 18:03:41",
           "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -236,7 +236,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 100,
+      "row_count": 104,
       "columns": [
         {
           "name": "table_name",
@@ -328,9 +328,9 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-07-03 12:02:59-05:00",
-          "db_tip_block": 13630777,
-          "db_tip_time": "2026-07-03 17:02:37",
+          "generated_utc": "2026-07-03 13:03:58-05:00",
+          "db_tip_block": 13630951,
+          "db_tip_time": "2026-07-03 18:03:41",
           "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -870,6 +870,492 @@
           "lifetime_outputs": 1129009,
           "gross_received_ada": 121701773631,
           "classification": "recirculating_hot_address_gross_exceeds_total_supply"
+        }
+      ]
+    },
+    "fleet_control_cert_cohorts": {
+      "source": "data/small/fleet_control_cert_cohorts.csv",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "cert_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_time",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "set_member_count",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "set_members",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": []
+    },
+    "fleet_control_indicators": {
+      "source": "data/small/fleet_control_indicators.csv",
+      "row_count": 81,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "total_output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "first_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_outgoing_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "stake_key_registered",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "pool_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "latest_pool_active_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_drep",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_earned_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_reward_spendable_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "withdrawal_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rewards_withdrawn_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_withdrawal_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_unclaimed_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "behavior_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "root_combo",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dormant_years",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "never_spent",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "principal_static",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "keys_alive_recent_cert",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "recently_active",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "rewards_never_withdrawn",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "institutional_passivity",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "batch_operated",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "currently_holding",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "custody_pattern",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "fe_control_consistency",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u839gnp9kvyd8hhw3nskp08wt868y0fnjdncp0psyyykdusjh7s5j",
+          "total_output_rows": 130,
+          "current_utxos": 110,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2021-12-09 23:58:03",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2025-02-18 20:10:06",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 4,
+          "current_pool_bech32": "pool1qc05c76autq4235sq20zu4vjwtl5m0xn4mxq9kg6e66uwz95kd4",
+          "latest_pool_cert_time": "2022-03-22 22:23:13",
+          "latest_pool_active_epoch": 330,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 22:21:38",
+          "rewards_earned_ada": 3873977.891404,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 310,
+          "rewards_withdrawn_ada": 3865004.779571,
+          "last_withdrawal_time": "2026-06-29 01:03:24",
+          "rewards_unclaimed_ada": 8973.111833,
+          "behavior_class": null,
+          "root_combo": null,
+          "dormant_years": 1.37,
+          "never_spent": false,
+          "principal_static": false,
+          "keys_alive_recent_cert": true,
+          "recently_active": false,
+          "rewards_never_withdrawn": false,
+          "institutional_passivity": false,
+          "batch_operated": false,
+          "currently_holding": true,
+          "custody_pattern": "MIXED",
+          "fe_control_consistency": "MEDIUM"
+        },
+        {
+          "stake_address": "stake1u8n0pwlvha3rnhfdqvpwe00jktkh2lf6a0dg09tthrqrwpslghaq6",
+          "total_output_rows": 34,
+          "current_utxos": 23,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2022-10-07 12:00:59",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2023-06-13 00:40:13",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool104z3yr7faqhck6wcsczhmqrrpdeparcr8juw8unxy8tm6xp447d",
+          "latest_pool_cert_time": "2022-07-27 00:16:32",
+          "latest_pool_active_epoch": 355,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 21:18:21",
+          "rewards_earned_ada": 3280931.708379,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 268,
+          "rewards_withdrawn_ada": 3269672.754512,
+          "last_withdrawal_time": "2026-06-29 00:17:11",
+          "rewards_unclaimed_ada": 11258.953867,
+          "behavior_class": null,
+          "root_combo": null,
+          "dormant_years": 3.06,
+          "never_spent": false,
+          "principal_static": true,
+          "keys_alive_recent_cert": true,
+          "recently_active": false,
+          "rewards_never_withdrawn": false,
+          "institutional_passivity": false,
+          "batch_operated": false,
+          "currently_holding": true,
+          "custody_pattern": "CERT_ACTIVE_PRINCIPAL_STATIC",
+          "fe_control_consistency": "MEDIUM"
+        },
+        {
+          "stake_address": "stake1u8n88jdmchazhgd23mwc3cezsf6mmmk4f3k69pekg8yd4acpnzxyd",
+          "total_output_rows": 21,
+          "current_utxos": 16,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2022-01-27 15:40:53",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2023-02-07 21:30:24",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
+          "latest_pool_cert_time": "2022-03-21 17:29:02",
+          "latest_pool_active_epoch": 329,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 21:16:52",
+          "rewards_earned_ada": 4082361.447526,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 308,
+          "rewards_withdrawn_ada": 4072673.39446,
+          "last_withdrawal_time": "2026-06-29 00:07:08",
+          "rewards_unclaimed_ada": 9688.053066,
+          "behavior_class": null,
+          "root_combo": null,
+          "dormant_years": 3.4,
+          "never_spent": false,
+          "principal_static": true,
+          "keys_alive_recent_cert": true,
+          "recently_active": false,
+          "rewards_never_withdrawn": false,
+          "institutional_passivity": false,
+          "batch_operated": false,
+          "currently_holding": true,
+          "custody_pattern": "CERT_ACTIVE_PRINCIPAL_STATIC",
+          "fe_control_consistency": "MEDIUM"
+        }
+      ]
+    },
+    "fleet_control_indicators_raw": {
+      "source": "data/small/fleet_control_indicators_raw.csv",
+      "row_count": 81,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "total_output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "first_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_outgoing_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "stake_key_registered",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "pool_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "latest_pool_active_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_drep",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_earned_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_reward_spendable_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "withdrawal_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rewards_withdrawn_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_withdrawal_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_unclaimed_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u839gnp9kvyd8hhw3nskp08wt868y0fnjdncp0psyyykdusjh7s5j",
+          "total_output_rows": 130,
+          "current_utxos": 110,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2021-12-09 23:58:03",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2025-02-18 20:10:06",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 4,
+          "current_pool_bech32": "pool1qc05c76autq4235sq20zu4vjwtl5m0xn4mxq9kg6e66uwz95kd4",
+          "latest_pool_cert_time": "2022-03-22 22:23:13",
+          "latest_pool_active_epoch": 330,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 22:21:38",
+          "rewards_earned_ada": 3873977.891404,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 310,
+          "rewards_withdrawn_ada": 3865004.779571,
+          "last_withdrawal_time": "2026-06-29 01:03:24",
+          "rewards_unclaimed_ada": 8973.111833
+        },
+        {
+          "stake_address": "stake1u8n0pwlvha3rnhfdqvpwe00jktkh2lf6a0dg09tthrqrwpslghaq6",
+          "total_output_rows": 34,
+          "current_utxos": 23,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2022-10-07 12:00:59",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2023-06-13 00:40:13",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool104z3yr7faqhck6wcsczhmqrrpdeparcr8juw8unxy8tm6xp447d",
+          "latest_pool_cert_time": "2022-07-27 00:16:32",
+          "latest_pool_active_epoch": 355,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 21:18:21",
+          "rewards_earned_ada": 3280931.708379,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 268,
+          "rewards_withdrawn_ada": 3269672.754512,
+          "last_withdrawal_time": "2026-06-29 00:17:11",
+          "rewards_unclaimed_ada": 11258.953867
+        },
+        {
+          "stake_address": "stake1u8n88jdmchazhgd23mwc3cezsf6mmmk4f3k69pekg8yd4acpnzxyd",
+          "total_output_rows": 21,
+          "current_utxos": 16,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2022-01-27 15:40:53",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2023-02-07 21:30:24",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
+          "latest_pool_cert_time": "2022-03-21 17:29:02",
+          "latest_pool_active_epoch": 329,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 21:16:52",
+          "rewards_earned_ada": 4082361.447526,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 308,
+          "rewards_withdrawn_ada": 4072673.39446,
+          "last_withdrawal_time": "2026-06-29 00:07:08",
+          "rewards_unclaimed_ada": 9688.053066
+        }
+      ]
+    },
+    "fleet_control_summary": {
+      "source": "data/small/fleet_control_summary.csv",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "fe_control_consistency",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "custody_pattern",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_addresses",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "fe_control_consistency": "MEDIUM",
+          "custody_pattern": "CERT_ACTIVE_PRINCIPAL_STATIC",
+          "stake_addresses": 20,
+          "current_ada": 700000009.58544
+        },
+        {
+          "fe_control_consistency": "MEDIUM",
+          "custody_pattern": "MIXED",
+          "stake_addresses": 9,
+          "current_ada": 315000004.79272
+        },
+        {
+          "fe_control_consistency": "MEDIUM",
+          "custody_pattern": "ACTIVE_MANAGED",
+          "stake_addresses": 10,
+          "current_ada": 293922191.51048
         }
       ]
     },

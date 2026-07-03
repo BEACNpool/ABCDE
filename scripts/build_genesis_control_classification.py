@@ -31,15 +31,22 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+import os
+
 ROOT = Path(__file__).resolve().parents[1]
 SMALL = ROOT / "data/small"
-RAW = SMALL / "genesis_control_indicators_raw.csv"
-COHORTS = SMALL / "genesis_control_cert_cohorts.csv"
+# Output/input prefix. Default = genesis_control; set ABCDE_CONTROL_PREFIX to
+# classify a different key set through the same logic (e.g. fleet_control for
+# the F13 operator fleet), producing <prefix>_indicators/_summary and a
+# matching manifest without touching the genesis set.
+PREFIX = os.environ.get("ABCDE_CONTROL_PREFIX", "genesis_control")
+RAW = SMALL / f"{PREFIX}_indicators_raw.csv"
+COHORTS = SMALL / f"{PREFIX}_cert_cohorts.csv"
 CLUSTERS = SMALL / "governance_genesis_behavior_clusters.csv"
 TIP = SMALL / "db_tip_receipt.csv"
-OUT = SMALL / "genesis_control_indicators.csv"
-OUT_SUMMARY = SMALL / "genesis_control_summary.csv"
-MANIFEST = ROOT / "data/manifests/genesis-control-indicators-manifest.json"
+OUT = SMALL / f"{PREFIX}_indicators.csv"
+OUT_SUMMARY = SMALL / f"{PREFIX}_summary.csv"
+MANIFEST = ROOT / f"data/manifests/{PREFIX.replace('_', '-')}-indicators-manifest.json"
 
 # Fixed classification thresholds (change = new data_version).
 HOLDING_MIN_ADA = 1_000.0          # "currently holding" floor
