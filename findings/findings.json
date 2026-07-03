@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 11,
+  "finding_count": 13,
   "findings": [
     {
       "id": "F01",
@@ -264,6 +264,80 @@
         }
       ],
       "has_reproduce_sql": false,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F11",
+      "file": "findings/F11_eight_key_35m_custody_cohort.md",
+      "title": "Eight-key 35M-ADA custody cohort with synchronized certificates and enterprise-funded reward sweeps",
+      "claim": "Eight stake addresses, each holding **exactly 35,000,000 ADA** at tip block\n`13,630,389` (2026-07-03), form one operational cohort:\n\n- All eight were first funded within a four-day window (2022-01-27 to\n  2022-01-31), each from single-use **enterprise** (`addr1v…`, no stake part)\n  input addresses.\n- All eight registered and delegated in synchronized bursts: three stake\n  registrations on 2022-01-24 within 2.5 hours; the remaining registrations\n  and **all eight pool delegations on 2022-03-21 within a 3-hour window**\n  (16:52–19:49 UTC) — each key to a **different** pool (two share\n  `pool1fqas6y…`), one certificate transaction per key, minutes apart.\n- None re-delegated since; then **all eight delegated to\n  `drep_always_abstain` on 2025-02-09/10 within 7.5 hours**, again one tx per\n  key.\n- Each key's rewards are swept by ~307–309 withdrawal transactions\n  (2,459 total — near one per epoch for 4+ years; ~3.9–4.1M ADA earned per\n  key; unclaimed residue only 9–12k ADA). **Every withdrawal transaction is\n  fee-funded exclusively by enterprise addresses** (zero self-funded inputs,\n  zero staked external funders across all 2,459 txs) and **every output of\n  those transactions pays enterprise addresses** (2,459/2,459; total tx output\n  volume 2,223,505,114 ADA), keeping the reward flow invisible to stake-key\n  tracking.\n- All eight stake addresses are reached by the IOG depth-14 staged trace at\n  depths 12–14, with trace-reached current value between 12.7M and 31.8M ADA\n  per key at the trace's snapshot boundary.\n- Despite intermittent spends (latest 2022-10 to 2023-09), each key's balance\n  stands at exactly 35,000,000 ADA — consistent with internal reorganization\n  rather than exit.\n\nThe pattern — identical round parcels, synchronized certificate bursts one tx\nper key, deliberate pool dispersion, epoch-cadence reward extraction through\nenterprise-only plumbing — is the shape of one professional custodian\noperating all eight keys with automated tooling.",
+      "grade": "- **FACT**: all figures above — balances, funding txs and their enterprise\n  inputs, certificate txs and timestamps, withdrawal counts, the\n  enterprise-only funding/destination property of all 2,459 withdrawal txs,\n  and depth-12–14 IOG-trace reach — are directly queryable from the committed\n  receipts and the warehouse.\n- **STRONG_INFERENCE**: the eight keys are operated by a single\n  custodian/toolchain. Independent owners do not buy identical 35M parcels in\n  the same 4-day window, certify in the same minutes-apart bursts three years\n  running, and share an enterprise-only fee-funding pipeline.\n- **WORKING_HYPOTHESIS**: the custodian is the founding-entity lineage the\n  depth-14 IOG trace descends from (`fe_control_consistency = MEDIUM`,\n  `custody_pattern = CERT_ACTIVE_PRINCIPAL_STATIC` for all eight). The trace\n  reaches the keys; it does not identify the operator.\n- **UNKNOWN**: legal ownership, beneficial ownership, the operator's\n  identity, and intent.\n\n### Counterexamples and alternatives considered\n\n- **Pure cold storage** (compare the 96 `NEVER_SPENT_COLD` keys in\n  `genesis_control_indicators`): those show no certificate or withdrawal\n  activity at all. This cohort is the opposite — continuously serviced.\n- **Exchange hot wallet** (compare F12): exchange-pattern keys show irregular\n  high-frequency third-party flows and typically no staking certificates.\n  This cohort's flows are metronomic and internal.\n- **Third-party staking custodian serving eight unrelated clients**: not\n  eliminated. The identical parcel sizes, same-window funding, and shared\n  fee-funding pipeline argue for one principal, but a custody service with\n  pooled tooling could produce similar signatures. This is why single-operator\n  stays STRONG_INFERENCE and FE-linkage stays WORKING_HYPOTHESIS.\n- The always-abstain vote delegation (2025-02-09/10) is consistent with an\n  institution avoiding governance exposure ahead of the post-Chang deadline\n  for large stake, but many actors did the same; timing alone carries no\n  attribution weight.\n\n### Snapshot-boundary notes\n\n- Custody indicators and balances: live tip `13,630,389` (2026-07-03).\n- IOG depth-14 trace membership and trace-reached values: staged trace rerun\n  at the live boundary on 2026-07-03 (snapshot 15:12 UTC); values are\n  unchanged from the 2026-06-07 cut — the traced parcels have not moved.\n  Per-key traced value covers 36–91% of each 35M balance, so \"IOG-descended\"\n  applies to the traced portion, not automatically to every lovelace.\n- These eight keys are absent from `governance_genesis_behavior_clusters`\n  (that surface samples the top-1000 behavior clusters at its own snapshot);\n  they enter the root set via `iog_current_bag_depth14_top_stake`.",
+      "evidence": [
+        {
+          "path": "data/manifests/genesis-control-indicators-manifest.json",
+          "sha256": null
+        },
+        {
+          "path": "data/small/f11_cohort_cert_timeline.csv",
+          "sha256": "0ea942a34f4469dc6863dfc9aa41b0295872c68f4e16b745efbff6d16ac1de71"
+        },
+        {
+          "path": "data/small/f11_cohort_external_funders.csv",
+          "sha256": "6e42262b1b4e0e1e26b2a674421e36f96ecc32c98d390e2ba93c7e039be138a1"
+        },
+        {
+          "path": "data/small/f11_cohort_funding_origin.csv",
+          "sha256": "4b3f9a875ce6b8ebd490b6be511091e1b60c89d68670e86aa31bc172efc94cda"
+        },
+        {
+          "path": "data/small/f11_cohort_reward_destinations.csv",
+          "sha256": "59eec912c4cfd70995714460451bbb311bf63dc905b3d4f5f832f5f62e07f4a1"
+        },
+        {
+          "path": "data/small/f11_cohort_withdrawal_funding.csv",
+          "sha256": "62970b09bdb364f6a042682a187dfbcba4e1afbbe485ad30797730017beb2571"
+        },
+        {
+          "path": "data/small/genesis_control_indicators.csv",
+          "sha256": "f4ce74c44bb5f3e6370fdc90cc9668d67067c70011e0f1f667fbb5b199b2c5e4"
+        },
+        {
+          "path": "data/small/iog_current_bag_depth14_top_stake.csv",
+          "sha256": "45cee6c84ceb16ade7cac5c518736c40e7fb149bf5aa0de31edb236a8ec1c768"
+        },
+        {
+          "path": "sql/10_findings/f11_cohort_*.sql",
+          "sha256": null
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F12",
+      "file": "findings/F12_high_throughput_unstaked_bag.md",
+      "title": "High-throughput unstaked 213.8M-ADA bag reached by the IOG depth-14 trace",
+      "claim": "Stake address\n`stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc` held\n**213,852,164 ADA across 1,492 UTxOs** at tip block `13,630,389` (2026-07-03)\nand is operationally the opposite of the F11 cohort:\n\n- First funded 2024-10-14; 4,944 lifetime output rows in under 21 months.\n- **Actively moving on extraction day**: last outgoing 02:01 UTC, last\n  incoming 12:11 UTC on 2026-07-03 (three new UTxOs and ~20k ADA arrived\n  between two same-day extractions).\n- **Never registered for staking, no delegation or governance certificate of\n  any kind, zero rewards ever earned** — at this balance, roughly 5–6M ADA of\n  staking rewards per year are being deliberately forfeited.\n- The IOG depth-14 staged trace (rerun at the live boundary 2026-07-03)\n  reaches **4 of its UTxOs, 56,165,056 ADA, at depth 14** — about 26% of the\n  current balance; the traced parcels are unchanged since the 2026-06-07 cut\n  while the rest of the bag churns around them.\n- No overlap with the exchange-tracer dataset: none of the 70 tracer-touched\n  addresses share this stake key (checked against `tracer_address_summary` at\n  the same tip).\n\nHigh UTxO count, high churn, no staking, no certificates, and round-the-clock\nmovement is the operating shape of a custodial/settlement wallet (exchange,\nOTC desk, or payment processor). Forfeiting millions in staking rewards is\nstrong behavioral evidence of an operator that prioritizes liquidity and\nstake-key invisibility over yield.",
+      "grade": "- **FACT**: balance, UTxO count, activity timestamps, absence of any\n  registration/delegation/withdrawal certificate, the depth-14 trace reach of\n  the 56.16M traced subset, and the zero tracer overlap.\n- **STRONG_INFERENCE**: single-operator high-throughput custody. The flow\n  volume and UTxO management cadence are not retail behavior.\n- **WORKING_HYPOTHESIS**: the wallet is an exchange-adjacent\n  custodial/settlement operation, and the 56.16M traced subset represents\n  IOG-descended value parked inside it. If correct, that traced parcel is an\n  **exit-to-market signal** for genesis-descended value — but the trace shows\n  those specific UTxOs have not moved since at least 2026-06-07.\n- **UNKNOWN**: the operator's identity, whether the untraced ~158M shares\n  provenance with the traced 56M, and whether the traced parcels belong to a\n  customer or to the operator.\n\n### Why this is not bundled into F11\n\nThe F11 cohort and this key both score as genesis-linked custody, but they are\ndifferent phenomena: F11 is static principal with synchronized certificates\nand metronomic reward extraction (institutional treasury shape); F12 is\nunstaked, certificate-free, high-churn liquidity (settlement shape). Merging\nthem would blur both signals — `custody_pattern` separates them as\n`CERT_ACTIVE_PRINCIPAL_STATIC` vs `ACTIVE_MANAGED`, and\n`fe_control_consistency` is `MEDIUM` for F11 keys but `LOW` here (activity\nthis recent and this liquid is weak evidence of *original-custodian*\nretention; it is better evidence of third-party custody).\n\n### Refutation tests (open)\n\n- A tracer NFT landing at any address of this stake key would let the\n  crowd-label layer test the exchange hypothesis directly.\n- Convergence between this key's counterparty addresses and\n  `tracer_deposit_claims` custody clusters would upgrade or kill the\n  exchange reading.\n- Movement of the four traced UTxOs (watch `iog_current_bag_depth14_*` on\n  future refreshes) would convert the parked-parcel observation into a flow\n  to follow.\n\n### Snapshot-boundary notes\n\nAll figures at live tip `13,630,389` (2026-07-03); depth-14 trace values from\nthe same-day staged rerun (15:12 UTC). At the previous 2026-06-07 boundary the\ntraced subset was identical (4 UTxOs, 56.16M), while total-balance history\nbetween boundaries is not part of the committed cut — no growth-rate claim is\nmade.",
+      "evidence": [
+        {
+          "path": "data/manifests/genesis-control-indicators-manifest.json",
+          "sha256": null
+        },
+        {
+          "path": "data/small/genesis_control_indicators.csv",
+          "sha256": "f4ce74c44bb5f3e6370fdc90cc9668d67067c70011e0f1f667fbb5b199b2c5e4"
+        },
+        {
+          "path": "data/small/iog_current_bag_depth14_top_stake.csv",
+          "sha256": "45cee6c84ceb16ade7cac5c518736c40e7fb149bf5aa0de31edb236a8ec1c768"
+        },
+        {
+          "path": "data/small/tracer_address_summary.csv",
+          "sha256": "382aa08f4d4d0a86d85da50765c6cc68efae631909142d71d75bd99373d94a04"
+        }
+      ],
+      "has_reproduce_sql": true,
       "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
     }
   ]

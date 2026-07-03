@@ -13,11 +13,11 @@ Verified on 2026-07-03:
 
 | Property | Value |
 |---|---:|
-| DuckDB size | 48,246,784 bytes (46.01 MiB) |
-| Tables | 94 |
-| Aggregate rows across all tables | 128,721 |
-| Committed source CSVs | 92 |
-| Source CSV size | 47,801,609 bytes (45.59 MiB) |
+| DuckDB size | 47,722,496 bytes (45.51 MiB) |
+| Tables | 99 |
+| Aggregate rows across all tables | 131,764 |
+| Committed source CSVs | 97 |
+| Source CSV size | 48,798,264 bytes (46.54 MiB) |
 
 The aggregate row count is a dataset inventory number, not a count of unique
 transactions, addresses, people, or entities. Several tables are rollups or
@@ -88,12 +88,12 @@ The warehouse recovered to live mainnet replication on 2026-06-23 (the earlier
 
 **Tables are not all refreshed at once.** Per-table freshness is quantified in
 `data/small/data_freshness_catalog.csv` (row counts, hashes, last commit time,
-age, snapshot sensitivity). Tables refreshed in the 2026-07-03 cut include the
-seed-cut receipts, governance metadata, top-DRep current profiles, control
-indicators, and tracers; the depth-14 IOG current-bag tables and the
-genesis-behavior surface remain snapshots at their recorded earlier boundary
-(2026-06-07 tip / 2026-05-22 staged snapshot) until their heavy traces are
-rerun.
+age, snapshot sensitivity). The 2026-07-03 cut refreshed all major surfaces at
+the live boundary: seed-cut receipts, governance metadata and rollups,
+top-DRep profiles, the founders depth-14 staged trace, the genesis-behavior
+surface, the IOG current-bag audit, control indicators, and tracers. The
+delegation-history rollups (`governance_*_delegation_targets`) derive from the
+frozen pre-v2 legacy import and carry their own recorded boundary.
 
 Therefore:
 

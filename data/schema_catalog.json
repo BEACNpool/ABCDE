@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "bc8d2c32fdde",
+          "git_commit": "5ecfc807a9e4",
           "source_generated_utc": "2026-07-03 09:54:48-05:00",
           "db_tip_block": 13630389,
           "db_tip_time": "2026-07-03 14:54:47",
@@ -236,7 +236,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 91,
+      "row_count": 96,
       "columns": [
         {
           "name": "table_name",
@@ -439,6 +439,234 @@
           "utxo_ada": null,
           "deposits_stake_ada": null,
           "pots_fees_ada": null
+        }
+      ]
+    },
+    "f11_cohort_cert_timeline": {
+      "source": "data/small/f11_cohort_cert_timeline.csv",
+      "row_count": 24,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cert_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "target",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1uylhqtxx5ng4tawhcs9n7jgls0mm3q7ely5r565mdz2upqqw8f05q",
+          "cert_type": "stake_registration",
+          "target": null,
+          "tx_hash": "ebb85e42e44bbaca11a8f23c58750ff02462aaac69849ad0b15be72cf02e2e34",
+          "block_no": 6793963,
+          "block_time": "2022-01-24 01:45:27"
+        },
+        {
+          "stake_address": "stake1u9j7tecyajslj3lk9pmnrd9456fpfdsnqufpd6vmnwqzg2qkzjl27",
+          "cert_type": "stake_registration",
+          "target": null,
+          "tx_hash": "b700d76e2da28f547bdeb727ee49a3e62cb5bfd43dd0f6ac618f10ff6ba32951",
+          "block_no": 6794060,
+          "block_time": "2022-01-24 02:17:11"
+        },
+        {
+          "stake_address": "stake1ux47d7aa3l8vk2pf0v6jlj39t00y7lagf68pewgw2cxkcasfmqr5h",
+          "cert_type": "stake_registration",
+          "target": null,
+          "tx_hash": "cc58bd5f2122f23720eebf5d0631b9486da6a00a934c62f81836899104979005",
+          "block_no": 6794361,
+          "block_time": "2022-01-24 04:12:41"
+        }
+      ]
+    },
+    "f11_cohort_external_funders": {
+      "source": "data/small/f11_cohort_external_funders.csv",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "funding_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cohort_keys_served",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "funded_withdrawal_txs",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "first_tx_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "last_tx_id",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": []
+    },
+    "f11_cohort_funding_origin": {
+      "source": "data/small/f11_cohort_funding_origin.csv",
+      "row_count": 16,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "funding_tx_rank",
+          "type": "BIGINT"
+        },
+        {
+          "name": "funding_tx",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "input_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "input_stake_address",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u84u9k7yjnujla4stf25q23r0tcxyj0stmzadwam4k98g3s0euwyc",
+          "funding_tx_rank": 1,
+          "funding_tx": "b310dff6ef0264217caf5382ac431784b79eea8ea53b7b762b22a37f20e45c66",
+          "block_no": 6808473,
+          "block_time": "2022-01-27 15:40:53",
+          "input_address": "addr1vytp5z04f5czljcuacl9s8285yc8ydxpdlu0ynxrcnlf3mcqpxmcm",
+          "input_stake_address": null
+        },
+        {
+          "stake_address": "stake1u84u9k7yjnujla4stf25q23r0tcxyj0stmzadwam4k98g3s0euwyc",
+          "funding_tx_rank": 2,
+          "funding_tx": "6793b703ba0b92a386853df0ab1ac50bd282a34315741479b7de2158c6c0a6b3",
+          "block_no": 6808476,
+          "block_time": "2022-01-27 15:41:18",
+          "input_address": "addr1vxpknkgxmg7y8e73fvrszme04zgjngdjve7rwvh5n95yteq32dnu6",
+          "input_stake_address": null
+        },
+        {
+          "stake_address": "stake1u9j7tecyajslj3lk9pmnrd9456fpfdsnqufpd6vmnwqzg2qkzjl27",
+          "funding_tx_rank": 1,
+          "funding_tx": "937cee04be896de6ad419a2eee8997bdf2265c2f6446aed50c4e44d6a79d05e3",
+          "block_no": 6812826,
+          "block_time": "2022-01-28 17:23:12",
+          "input_address": "addr1vyfdfla3288dc4gx0q732rg7fml0xjk7dvsng8hcgdc8xnccw92mm",
+          "input_stake_address": null
+        }
+      ]
+    },
+    "f11_cohort_reward_destinations": {
+      "source": "data/small/f11_cohort_reward_destinations.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "destination_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "outputs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "total_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "first_tx_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "last_tx_id",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "destination_stake_address": "ENTERPRISE_NO_STAKE",
+          "txs": 2459,
+          "outputs": 2459,
+          "total_ada": 2223505114.210806,
+          "first_tx_id": 36772418,
+          "last_tx_id": 122192447
+        }
+      ]
+    },
+    "f11_cohort_withdrawal_funding": {
+      "source": "data/small/f11_cohort_withdrawal_funding.csv",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "withdrawal_txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "txs_with_self_funded_input",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_external_funding_stakes",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u84u9k7yjnujla4stf25q23r0tcxyj0stmzadwam4k98g3s0euwyc",
+          "withdrawal_txs": 307,
+          "txs_with_self_funded_input": 0,
+          "distinct_external_funding_stakes": 0
+        },
+        {
+          "stake_address": "stake1u9j7tecyajslj3lk9pmnrd9456fpfdsnqufpd6vmnwqzg2qkzjl27",
+          "withdrawal_txs": 308,
+          "txs_with_self_funded_input": 0,
+          "distinct_external_funding_stakes": 0
+        },
+        {
+          "stake_address": "stake1u9ku4ja8eeens3hxmq26f53v6ujlymz6apyyfhm9g5rpvvqtur40t",
+          "withdrawal_txs": 307,
+          "txs_with_self_funded_input": 0,
+          "distinct_external_funding_stakes": 0
         }
       ]
     },
@@ -755,11 +983,11 @@
       "sample_rows": [
         {
           "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
-          "total_output_rows": 4941,
-          "current_utxos": 1489,
-          "current_ada": 213831763.014482,
+          "total_output_rows": 4944,
+          "current_utxos": 1492,
+          "current_ada": 213852164.891786,
           "first_received_time": "2024-10-14 02:20:56",
-          "last_received_time": "2026-07-03 04:02:10",
+          "last_received_time": "2026-07-03 12:11:16",
           "last_outgoing_time": "2026-07-03 02:01:00",
           "stake_key_registered": false,
           "pool_delegation_certs": 0,
@@ -955,11 +1183,11 @@
       "sample_rows": [
         {
           "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
-          "total_output_rows": 4941,
-          "current_utxos": 1489,
-          "current_ada": 213831763.014482,
+          "total_output_rows": 4944,
+          "current_utxos": 1492,
+          "current_ada": 213852164.891786,
           "first_received_time": "2024-10-14 02:20:56",
-          "last_received_time": "2026-07-03 04:02:10",
+          "last_received_time": "2026-07-03 12:11:16",
           "last_outgoing_time": "2026-07-03 02:01:00",
           "stake_key_registered": false,
           "pool_delegation_certs": 0,
@@ -1026,7 +1254,7 @@
     },
     "genesis_control_summary": {
       "source": "data/small/genesis_control_summary.csv",
-      "row_count": 14,
+      "row_count": 13,
       "columns": [
         {
           "name": "fe_control_consistency",
@@ -1056,13 +1284,13 @@
           "fe_control_consistency": "LOW",
           "custody_pattern": "ACTIVE_MANAGED",
           "stake_addresses": 8,
-          "current_ada": 239624152.483877
+          "current_ada": 266631689.327185
         },
         {
           "fe_control_consistency": "MEDIUM",
           "custody_pattern": "MIXED",
-          "stake_addresses": 207,
-          "current_ada": 183345300.503344
+          "stake_addresses": 211,
+          "current_ada": 183419636.633222
         }
       ]
     },
@@ -1926,7 +2154,7 @@
     },
     "governance_genesis_behavior_by_drep": {
       "source": "data/small/governance_genesis_behavior_by_drep.csv",
-      "row_count": 262,
+      "row_count": 270,
       "columns": [
         {
           "name": "snapshot_utc",
@@ -1995,7 +2223,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "latest_drep_id_bech32": null,
           "latest_drep_hash_id": null,
@@ -2003,47 +2231,47 @@
           "drep_voting_power_lovelace": null,
           "drep_voting_power_ada": null,
           "behavior_class": "trace_only",
-          "dedup_current_utxos": 31361,
-          "dedup_current_stake_credentials": 31361,
-          "dedup_current_lovelace": 290648263407427,
-          "dedup_current_ada": 290648263.407427,
+          "dedup_current_utxos": 31120,
+          "dedup_current_stake_credentials": 31120,
+          "dedup_current_lovelace": 287837915117467,
+          "dedup_current_ada": 287837915.117467,
           "trace_value_to_drep_power_ratio": null,
           "min_depth": 7,
           "max_depth": 14,
           "root_overlap_summary": "cf; emurgo; iog"
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "latest_drep_id_bech32": "drep_always_abstain",
           "latest_drep_hash_id": 14,
-          "drep_distribution_epoch": 632,
-          "drep_voting_power_lovelace": 9006786518573400,
-          "drep_voting_power_ada": 9006786518.5734,
+          "drep_distribution_epoch": 640,
+          "drep_voting_power_lovelace": 9222311038820501,
+          "drep_voting_power_ada": 9222311038.8205,
           "behavior_class": "coordinated_like",
-          "dedup_current_utxos": 1430,
-          "dedup_current_stake_credentials": 1430,
-          "dedup_current_lovelace": 167878892284982,
-          "dedup_current_ada": 167878892.284982,
-          "trace_value_to_drep_power_ratio": 0.01863916,
+          "dedup_current_utxos": 1381,
+          "dedup_current_stake_credentials": 1381,
+          "dedup_current_lovelace": 162427472957379,
+          "dedup_current_ada": 162427472.957379,
+          "trace_value_to_drep_power_ratio": 0.01761245,
           "min_depth": 8,
           "max_depth": 14,
           "root_overlap_summary": "emurgo; emurgo+iog; iog"
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "latest_drep_id_bech32": "drep_always_abstain",
           "latest_drep_hash_id": 14,
-          "drep_distribution_epoch": 632,
-          "drep_voting_power_lovelace": 9006786518573400,
-          "drep_voting_power_ada": 9006786518.5734,
+          "drep_distribution_epoch": 640,
+          "drep_voting_power_lovelace": 9222311038820501,
+          "drep_voting_power_ada": 9222311038.8205,
           "behavior_class": "weak_behavior_signal",
-          "dedup_current_utxos": 1959,
-          "dedup_current_stake_credentials": 1959,
-          "dedup_current_lovelace": 110977429249747,
-          "dedup_current_ada": 110977429.249747,
-          "trace_value_to_drep_power_ratio": 0.01232153,
+          "dedup_current_utxos": 1956,
+          "dedup_current_stake_credentials": 1956,
+          "dedup_current_lovelace": 108681151151749,
+          "dedup_current_ada": 108681151.151749,
+          "trace_value_to_drep_power_ratio": 0.01178459,
           "min_depth": 10,
           "max_depth": 14,
           "root_overlap_summary": "emurgo; iog"
@@ -2052,7 +2280,7 @@
     },
     "governance_genesis_behavior_by_proposal": {
       "source": "data/small/governance_genesis_behavior_by_proposal.csv",
-      "row_count": 15183,
+      "row_count": 18824,
       "columns": [
         {
           "name": "snapshot_utc",
@@ -2125,67 +2353,67 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
-          "gov_action_proposal_id": 105,
-          "proposal_tx_hash": "73e171a4c0730b4b59ecae271ab89f12a9d56360b02920e1f95107dbdc1d6762",
-          "proposal_index": 7,
+          "gov_action_proposal_id": 135,
+          "proposal_tx_hash": "b3d452bff7769d7f557ec6b8974760ee6c5e496c276652b654032966621e0ccf",
+          "proposal_index": 5,
           "proposal_type": "TreasuryWithdrawals",
-          "proposal_expiration_epoch": 633,
-          "latest_drep_id_bech32": "drep158mfwdv7lvqzg0yrdxwhsmkq5406nmvw4yvjyyfcawlwus2eylt",
+          "proposal_expiration_epoch": 645,
+          "latest_drep_id_bech32": "drep1gdgxcfaf24rur87f6rjkayn5slf7k0kspmq30nsfff6w23q8qgc",
           "vote": "Abstain",
-          "vote_epoch": 632,
-          "vote_time_utc": "2026-05-22 18:45:45",
-          "vote_tx_hash": "de11255a0e36c6e20ccd4b8d35cf2360a29f45cd503326f6676a3c9fa74e90c7",
-          "behavior_class": "weak_behavior_signal",
-          "dedup_current_utxos": 40,
-          "dedup_current_lovelace": 188145348329,
-          "dedup_current_ada": 188145.348329,
-          "root_overlap_summary": "iog"
-        },
-        {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
-          "trace_schema": "abcde_forensics_stage_founders_depth14",
-          "gov_action_proposal_id": 105,
-          "proposal_tx_hash": "73e171a4c0730b4b59ecae271ab89f12a9d56360b02920e1f95107dbdc1d6762",
-          "proposal_index": 7,
-          "proposal_type": "TreasuryWithdrawals",
-          "proposal_expiration_epoch": 633,
-          "latest_drep_id_bech32": "drep158mfwdv7lvqzg0yrdxwhsmkq5406nmvw4yvjyyfcawlwus2eylt",
-          "vote": "Abstain",
-          "vote_epoch": 632,
-          "vote_time_utc": "2026-05-22 18:45:45",
-          "vote_tx_hash": "de11255a0e36c6e20ccd4b8d35cf2360a29f45cd503326f6676a3c9fa74e90c7",
+          "vote_epoch": 640,
+          "vote_time_utc": "2026-07-03 15:03:20",
+          "vote_tx_hash": "5468824b9f654161b5f7055d8ee34112b6d043d0b5f7ba76fe0f5a3e3a386877",
           "behavior_class": "coordinated_like",
-          "dedup_current_utxos": 9,
-          "dedup_current_lovelace": 55203157107,
-          "dedup_current_ada": 55203.157107,
+          "dedup_current_utxos": 2,
+          "dedup_current_lovelace": 23317212500,
+          "dedup_current_ada": 23317.2125,
           "root_overlap_summary": "iog"
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
-          "gov_action_proposal_id": 102,
-          "proposal_tx_hash": "73e171a4c0730b4b59ecae271ab89f12a9d56360b02920e1f95107dbdc1d6762",
+          "gov_action_proposal_id": 135,
+          "proposal_tx_hash": "b3d452bff7769d7f557ec6b8974760ee6c5e496c276652b654032966621e0ccf",
+          "proposal_index": 5,
+          "proposal_type": "TreasuryWithdrawals",
+          "proposal_expiration_epoch": 645,
+          "latest_drep_id_bech32": "drep1gdgxcfaf24rur87f6rjkayn5slf7k0kspmq30nsfff6w23q8qgc",
+          "vote": "Abstain",
+          "vote_epoch": 640,
+          "vote_time_utc": "2026-07-03 15:03:20",
+          "vote_tx_hash": "5468824b9f654161b5f7055d8ee34112b6d043d0b5f7ba76fe0f5a3e3a386877",
+          "behavior_class": "weak_behavior_signal",
+          "dedup_current_utxos": 2,
+          "dedup_current_lovelace": 1002193517,
+          "dedup_current_ada": 1002.193517,
+          "root_overlap_summary": "iog"
+        },
+        {
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "gov_action_proposal_id": 134,
+          "proposal_tx_hash": "b3d452bff7769d7f557ec6b8974760ee6c5e496c276652b654032966621e0ccf",
           "proposal_index": 4,
           "proposal_type": "TreasuryWithdrawals",
-          "proposal_expiration_epoch": 633,
-          "latest_drep_id_bech32": "drep18c6dw0e6z9lx65f22zrzgl0z49j48k39ttxqk4q6h953utzepy5",
+          "proposal_expiration_epoch": 645,
+          "latest_drep_id_bech32": "drep1gdgxcfaf24rur87f6rjkayn5slf7k0kspmq30nsfff6w23q8qgc",
           "vote": "Abstain",
-          "vote_epoch": 632,
-          "vote_time_utc": "2026-05-22 18:38:39",
-          "vote_tx_hash": "634888548b46a9fd9a25ba1d1fe06c7ca76e3fe102119de8102a6e14da373c2a",
+          "vote_epoch": 640,
+          "vote_time_utc": "2026-07-03 14:56:56",
+          "vote_tx_hash": "cc632f39b5efed4f8ac0a2d9f7e49cc4307b52e30e88b425bf3b0bdf589dc46c",
           "behavior_class": "coordinated_like",
-          "dedup_current_utxos": 3,
-          "dedup_current_lovelace": 99159549514,
-          "dedup_current_ada": 99159.549514,
+          "dedup_current_utxos": 2,
+          "dedup_current_lovelace": 23317212500,
+          "dedup_current_ada": 23317.2125,
           "root_overlap_summary": "iog"
         }
       ]
     },
     "governance_genesis_behavior_by_root_drep": {
       "source": "data/small/governance_genesis_behavior_by_root_drep.csv",
-      "row_count": 333,
+      "row_count": 343,
       "columns": [
         {
           "name": "snapshot_utc",
@@ -2254,7 +2482,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "root_seed_id": "emurgo",
           "latest_drep_id_bech32": null,
@@ -2263,47 +2491,47 @@
           "drep_voting_power_lovelace": null,
           "drep_voting_power_ada": null,
           "behavior_class": "trace_only",
-          "current_trace_rows": 473,
-          "current_utxos": 473,
-          "current_stake_credentials": 317,
-          "current_lovelace": 209027394142419,
-          "current_ada": 209027394.142419,
+          "current_trace_rows": 467,
+          "current_utxos": 467,
+          "current_stake_credentials": 315,
+          "current_lovelace": 208729939592394,
+          "current_ada": 208729939.592394,
           "min_depth": 11,
           "max_depth": 14
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "root_seed_id": "iog",
           "latest_drep_id_bech32": "drep_always_abstain",
           "latest_drep_hash_id": 14,
-          "drep_distribution_epoch": 632,
-          "drep_voting_power_lovelace": 9006786518573400,
-          "drep_voting_power_ada": 9006786518.5734,
+          "drep_distribution_epoch": 640,
+          "drep_voting_power_lovelace": 9222311038820501,
+          "drep_voting_power_ada": 9222311038.8205,
           "behavior_class": "coordinated_like",
-          "current_trace_rows": 1384,
-          "current_utxos": 1384,
-          "current_stake_credentials": 599,
-          "current_lovelace": 167374423532031,
-          "current_ada": 167374423.532031,
+          "current_trace_rows": 1329,
+          "current_utxos": 1329,
+          "current_stake_credentials": 579,
+          "current_lovelace": 162037794402007,
+          "current_ada": 162037794.402007,
           "min_depth": 8,
           "max_depth": 14
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "root_seed_id": "iog",
           "latest_drep_id_bech32": "drep_always_abstain",
           "latest_drep_hash_id": 14,
-          "drep_distribution_epoch": 632,
-          "drep_voting_power_lovelace": 9006786518573400,
-          "drep_voting_power_ada": 9006786518.5734,
+          "drep_distribution_epoch": 640,
+          "drep_voting_power_lovelace": 9222311038820501,
+          "drep_voting_power_ada": 9222311038.8205,
           "behavior_class": "weak_behavior_signal",
-          "current_trace_rows": 1927,
-          "current_utxos": 1927,
-          "current_stake_credentials": 1192,
-          "current_lovelace": 110164692214028,
-          "current_ada": 110164692.214028,
+          "current_trace_rows": 1931,
+          "current_utxos": 1931,
+          "current_stake_credentials": 1213,
+          "current_lovelace": 107876527556633,
+          "current_ada": 107876527.556633,
           "min_depth": 10,
           "max_depth": 14
         }
@@ -2408,32 +2636,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
-          "trace_schema": "abcde_forensics_stage_founders_depth14",
-          "stake_address_id": 3975,
-          "stake_address": "stake1ux787gxmnktj4pjk45qq233hej8h6ullnlgllhd9dtjuqzg75w7xh",
-          "latest_drep_id_bech32": "drep127pc58jyky40fvess0c4tjxkrnkf8ta3sfltvm4ptypqc5fgav3",
-          "latest_drep_hash_id": 42,
-          "latest_vote_epoch": 524,
-          "behavior_class": "high_confidence_retained_like",
-          "behavior_score": 11,
-          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
-          "root_count": 2,
-          "root_combo": "emurgo+iog",
-          "current_utxos": 70,
-          "current_lovelace": 127381480940,
-          "current_ada": 127381.48094,
-          "min_depth": 12,
-          "max_depth": 14,
-          "output_block_count": 68,
-          "same_block_event_count": 28,
-          "max_same_block_stake_peers": 5,
-          "same_epoch_drep_event_count": 15,
-          "max_same_epoch_drep_stake_peers": 5,
-          "voted_proposal_count": 78
-        },
-        {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "stake_address_id": 501639,
           "stake_address": "stake1u8eraktrnu7kymwnuwcakeeugt93v4n5ms0w0enr9ltq9esewqyce",
@@ -2452,13 +2655,13 @@
           "max_depth": 14,
           "output_block_count": 6,
           "same_block_event_count": 4,
-          "max_same_block_stake_peers": 4,
+          "max_same_block_stake_peers": 3,
           "same_epoch_drep_event_count": 3,
           "max_same_epoch_drep_stake_peers": 2,
-          "voted_proposal_count": 50
+          "voted_proposal_count": 75
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "stake_address_id": 350088,
           "stake_address": "stake1u9jv5dfh22g23s3w69n9rjagwrn6yvr0cftsvtpj7rppjucup69a4",
@@ -2478,15 +2681,40 @@
           "output_block_count": 8,
           "same_block_event_count": 6,
           "max_same_block_stake_peers": 5,
-          "same_epoch_drep_event_count": 3,
+          "same_epoch_drep_event_count": 2,
           "max_same_epoch_drep_stake_peers": 4,
-          "voted_proposal_count": 74
+          "voted_proposal_count": 82
+        },
+        {
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 294374,
+          "stake_address": "stake1u9m0mlt5z7nm0jzx3h2va0ppa36fl4wppnah0nnad6a6t6cran537",
+          "latest_drep_id_bech32": "drep1xa90kae89lneyj6ktjrl3mwyvvkq7pxegtjw5rpy50kvclrsl4f",
+          "latest_drep_hash_id": 32246,
+          "latest_vote_epoch": 531,
+          "behavior_class": "high_confidence_retained_like",
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 9,
+          "current_lovelace": 19593143544,
+          "current_ada": 19593.143544,
+          "min_depth": 11,
+          "max_depth": 14,
+          "output_block_count": 9,
+          "same_block_event_count": 2,
+          "max_same_block_stake_peers": 2,
+          "same_epoch_drep_event_count": 1,
+          "max_same_epoch_drep_stake_peers": 2,
+          "voted_proposal_count": 7
         }
       ]
     },
     "governance_genesis_behavior_signals_top": {
       "source": "data/small/governance_genesis_behavior_signals_top.csv",
-      "row_count": 3161,
+      "row_count": 3101,
       "columns": [
         {
           "name": "snapshot_utc",
@@ -2651,49 +2879,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
-          "trace_schema": "abcde_forensics_stage_founders_depth14",
-          "stake_address_id": 3975,
-          "stake_address": "stake1ux787gxmnktj4pjk45qq233hej8h6ullnlgllhd9dtjuqzg75w7xh",
-          "latest_drep_id_bech32": "drep127pc58jyky40fvess0c4tjxkrnkf8ta3sfltvm4ptypqc5fgav3",
-          "latest_drep_hash_id": 42,
-          "latest_vote_epoch": 524,
-          "root_count": 2,
-          "root_combo": "emurgo+iog",
-          "current_utxos": 70,
-          "current_lovelace": 127381480940,
-          "current_ada": 127381.48094,
-          "min_depth": 12,
-          "max_depth": 14,
-          "output_block_count": 68,
-          "first_output_block_no": 4491489,
-          "latest_output_block_no": 7025856,
-          "first_output_time_utc": "2020-07-30 03:11:11",
-          "latest_output_time_utc": "2022-03-21 23:08:52",
-          "same_block_event_count": 28,
-          "max_same_block_stake_peers": 5,
-          "max_same_block_trace_rows": 6,
-          "same_epoch_drep_event_count": 15,
-          "max_same_epoch_drep_stake_peers": 5,
-          "voted_proposal_count": 78,
-          "drep_vote_row_count": 87,
-          "same_block_points": 3,
-          "delegation_sync_points": 2,
-          "cross_root_points": 4,
-          "current_drep_points": 1,
-          "governance_activity_points": 1,
-          "service_like_penalty": 0,
-          "fragmentation_penalty": 0,
-          "positive_signal_score": 11,
-          "negative_signal_score": 0,
-          "behavior_score": 11,
-          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
-          "confidence_class": "high_confidence_retained_like",
-          "confidence_rank": 80,
-          "scoring_model": "heuristic_v1_public_signals"
-        },
-        {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "stake_address_id": 501639,
           "stake_address": "stake1u8eraktrnu7kymwnuwcakeeugt93v4n5ms0w0enr9ltq9esewqyce",
@@ -2713,12 +2899,12 @@
           "first_output_time_utc": "2021-03-01 03:54:20",
           "latest_output_time_utc": "2021-03-06 00:43:03",
           "same_block_event_count": 4,
-          "max_same_block_stake_peers": 4,
-          "max_same_block_trace_rows": 4,
+          "max_same_block_stake_peers": 3,
+          "max_same_block_trace_rows": 3,
           "same_epoch_drep_event_count": 3,
           "max_same_epoch_drep_stake_peers": 2,
-          "voted_proposal_count": 50,
-          "drep_vote_row_count": 51,
+          "voted_proposal_count": 75,
+          "drep_vote_row_count": 78,
           "same_block_points": 3,
           "delegation_sync_points": 2,
           "cross_root_points": 4,
@@ -2735,7 +2921,7 @@
           "scoring_model": "heuristic_v1_public_signals"
         },
         {
-          "snapshot_utc": "2026-05-22 19:55:36.459413",
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "stake_address_id": 350088,
           "stake_address": "stake1u9jv5dfh22g23s3w69n9rjagwrn6yvr0cftsvtpj7rppjucup69a4",
@@ -2757,10 +2943,52 @@
           "same_block_event_count": 6,
           "max_same_block_stake_peers": 5,
           "max_same_block_trace_rows": 5,
-          "same_epoch_drep_event_count": 3,
+          "same_epoch_drep_event_count": 2,
           "max_same_epoch_drep_stake_peers": 4,
-          "voted_proposal_count": 74,
-          "drep_vote_row_count": 74,
+          "voted_proposal_count": 82,
+          "drep_vote_row_count": 83,
+          "same_block_points": 3,
+          "delegation_sync_points": 2,
+          "cross_root_points": 4,
+          "current_drep_points": 1,
+          "governance_activity_points": 1,
+          "service_like_penalty": 0,
+          "fragmentation_penalty": 0,
+          "positive_signal_score": 11,
+          "negative_signal_score": 0,
+          "behavior_score": 11,
+          "behavior_flags": "same_block_hop;same_epoch_drep_cohort;cross_root_current_cluster;current_drep_delegation;drep_has_proposal_votes",
+          "confidence_class": "high_confidence_retained_like",
+          "confidence_rank": 80,
+          "scoring_model": "heuristic_v1_public_signals"
+        },
+        {
+          "snapshot_utc": "2026-07-03 15:12:42.348269",
+          "trace_schema": "abcde_forensics_stage_founders_depth14",
+          "stake_address_id": 294374,
+          "stake_address": "stake1u9m0mlt5z7nm0jzx3h2va0ppa36fl4wppnah0nnad6a6t6cran537",
+          "latest_drep_id_bech32": "drep1xa90kae89lneyj6ktjrl3mwyvvkq7pxegtjw5rpy50kvclrsl4f",
+          "latest_drep_hash_id": 32246,
+          "latest_vote_epoch": 531,
+          "root_count": 2,
+          "root_combo": "emurgo+iog",
+          "current_utxos": 9,
+          "current_lovelace": 19593143544,
+          "current_ada": 19593.143544,
+          "min_depth": 11,
+          "max_depth": 14,
+          "output_block_count": 9,
+          "first_output_block_no": 5282310,
+          "latest_output_block_no": 11293478,
+          "first_output_time_utc": "2021-01-31 18:30:41",
+          "latest_output_time_utc": "2025-01-01 04:04:14",
+          "same_block_event_count": 2,
+          "max_same_block_stake_peers": 2,
+          "max_same_block_trace_rows": 2,
+          "same_epoch_drep_event_count": 1,
+          "max_same_epoch_drep_stake_peers": 2,
+          "voted_proposal_count": 7,
+          "drep_vote_row_count": 7,
           "same_block_points": 3,
           "delegation_sync_points": 2,
           "cross_root_points": 4,
@@ -4635,7 +4863,7 @@
     },
     "iog_current_bag_depth14_current_utxos": {
       "source": "data/small/iog_current_bag_depth14_current_utxos.csv",
-      "row_count": 75812,
+      "row_count": 75203,
       "columns": [
         {
           "name": "root_seed_id",
@@ -4762,7 +4990,7 @@
           "latest_drep_delegation_epoch_no": null,
           "latest_drep_delegation_block_no": null,
           "latest_drep_delegation_time_utc": null,
-          "active_stake_epoch": 635,
+          "active_stake_epoch": 641,
           "active_stake_lovelace": null,
           "active_stake_ada": null
         },
@@ -4789,7 +5017,7 @@
           "latest_drep_delegation_epoch_no": null,
           "latest_drep_delegation_block_no": null,
           "latest_drep_delegation_time_utc": null,
-          "active_stake_epoch": 635,
+          "active_stake_epoch": 641,
           "active_stake_lovelace": null,
           "active_stake_ada": null
         },
@@ -4816,9 +5044,9 @@
           "latest_drep_delegation_epoch_no": 539,
           "latest_drep_delegation_block_no": 11463063,
           "latest_drep_delegation_time_utc": "2025-02-09 19:57:02",
-          "active_stake_epoch": 635,
-          "active_stake_lovelace": 35009567500195,
-          "active_stake_ada": 35009567.500195
+          "active_stake_epoch": 641,
+          "active_stake_lovelace": 35009543596038,
+          "active_stake_ada": 35009543.596038
         }
       ]
     },
@@ -4903,14 +5131,14 @@
       ],
       "sample_rows": [
         {
-          "current_utxo_rows": 75812,
-          "current_ada": 504872796.959289,
+          "current_utxo_rows": 75203,
+          "current_ada": 494065565.081596,
           "min_depth": 4,
           "max_depth": 14,
-          "distinct_stake_addresses": 48502,
-          "byron_or_no_stake_utxos": 3196,
-          "byron_or_no_stake_ada": 7580280.011407,
-          "shelley_staked_ada": 497292516.947882
+          "distinct_stake_addresses": 48259,
+          "byron_or_no_stake_utxos": 3197,
+          "byron_or_no_stake_ada": 7567246.930308,
+          "shelley_staked_ada": 486498318.151288
         }
       ]
     },
@@ -5036,9 +5264,9 @@
         {
           "label": "IOG1",
           "pool_view": "pool1mxqjlrfskhd5kql9kak06fpdh8xjwc76gec76p3taqy2qmfzs5z",
-          "tip_epoch": 634,
-          "tip_block": 13495419,
-          "tip_time_utc": "2026-06-01 22:57:36",
+          "tip_epoch": 640,
+          "tip_block": 13630454,
+          "tip_time_utc": "2026-07-03 15:13:01",
           "latest_update_active_epoch": 457,
           "ticker_name": "IOG1",
           "metadata_url": "https://iog1.cardano.iog.io/metadata.json",
@@ -5047,16 +5275,16 @@
           "retiring_epoch": null,
           "retire_announced_time": null,
           "is_retired_at_tip": false,
-          "latest_epoch_stake_epoch": 635,
-          "latest_epoch_active_stake_ada": 10041920.418743,
-          "latest_epoch_stake_credentials": 1057
+          "latest_epoch_stake_epoch": 641,
+          "latest_epoch_active_stake_ada": 10271913.966294,
+          "latest_epoch_stake_credentials": 1060
         },
         {
           "label": "IOG2",
           "pool_view": "pool10dwjth7esfw5gc036vu6l6csnvn6elqax0d3kh8t65rxyewk2g3",
-          "tip_epoch": 634,
-          "tip_block": 13495419,
-          "tip_time_utc": "2026-06-01 22:57:36",
+          "tip_epoch": 640,
+          "tip_block": 13630454,
+          "tip_time_utc": "2026-07-03 15:13:01",
           "latest_update_active_epoch": 210,
           "ticker_name": "IOG2",
           "metadata_url": "https://pools.iohk.io/IOG2.json",

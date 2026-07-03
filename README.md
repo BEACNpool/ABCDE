@@ -77,7 +77,7 @@ Use prompts/temporal_anomaly_review.md and separate hop depth from epoch/block t
 
 Built by `scripts/build_genesis_db.py` from `anchors.yaml` (→ the `seeds` table)
 and every `data/small/*.csv` (one table per file). The current committed cut is
-46.01 MiB and holds exactly 94 tables covering:
+45.51 MiB and holds exactly 99 tables covering:
 
 - the genesis **seed registry** (named founders + the fourth entry) and db-sync
   verification receipts

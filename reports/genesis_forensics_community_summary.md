@@ -209,7 +209,7 @@ Depth-14 staged trace membership, filtered to live-unspent UTxOs at ABCDE/db-syn
 
 | current_utxos | current_ada | min_depth | max_depth | stake_addresses | byron_or_no_stake_ada | shelley_staked_ada |
 | --- | --- | --- | --- | --- | --- | --- |
-| 75812 | 504872796.959289 | 4 | 14 | 48502 | 7580280.011407 | 497292516.947882 |
+| 75203 | 494065565.081596 | 4 | 14 | 48259 | 7567246.930308 | 486498318.151288 |
 
 ### IOG confidence bands
 
@@ -239,7 +239,7 @@ This corrects the old shortcut: trace-derived latest-delegation rollups are not 
 
 | label | ticker | retired_at_tip | retiring_epoch | stake_epoch | active_stake_ada |
 | --- | --- | --- | --- | --- | --- |
-| IOG1 | IOG1 | False |  | 635 | 10041920.418743 |
+| IOG1 | IOG1 | False |  | 641 | 10271913.966294 |
 | IOG2 | IOG2 | True | 237 |  |  |
 
 ## Reproduce

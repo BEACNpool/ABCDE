@@ -13,6 +13,8 @@ Labels are defined in `docs/02_GRADING.md`.
 5. [F06 — SPO and DRep delegation targets](F06_governance_delegation_targets.md) — `VERIFIED`, `FACT`
 6. [F09 — IOGP pledge and voucher-address follow-up](F09_iogp_voucher_followup.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 7. [F10 — Genesis Trail monthly stream and consolidation hub](F10_genesis_trail_monthly_stream.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
+8. [F11 — Eight-key 35M-ADA custody cohort](F11_eight_key_35m_custody_cohort.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
+9. [F12 — High-throughput unstaked 213.8M-ADA bag](F12_high_throughput_unstaked_bag.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 
 ## Review cuts / candidate sets
 

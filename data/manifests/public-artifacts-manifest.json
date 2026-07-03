@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 203,
+  "file_count": 215,
   "files": [
     {
       "path": "claims/README.md",
@@ -18,7 +18,7 @@
     {
       "path": "claims/manifest.json",
       "bytes": 2857,
-      "sha256": "6791f075d9b6ffbb3ecd7a5fee447f0765d514fd9998dcfa1243e5afc41bd236",
+      "sha256": "4d15b4da62f08b39c04bf522b995f2ebe7a48fb0b1749bc6f59c0116e0ffa845",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -83,7 +83,7 @@
     {
       "path": "claims/outputs/staged_trace_founder_summary.tsv",
       "bytes": 441,
-      "sha256": "71fc8712e18f95d369ecccae9f671eb15334ad11f22ccfac888e8c53737a6267",
+      "sha256": "adb05f0a7b36952c6e329157d3627a0ce269bc05c39e654b3bbad3101d7f0740",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -251,8 +251,8 @@
     },
     {
       "path": "data/small/data_freshness_catalog.csv",
-      "bytes": 12682,
-      "sha256": "cd2524dcb100705fb52893be9287ab29f2e64a38c66251de78b0cee91a3d2711",
+      "bytes": 13497,
+      "sha256": "90a90302bc6594c1237ba5c3987f6251aa7ef3b6c131258006350ab442c5b9e5",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -279,6 +279,71 @@
       "path": "data/small/epoch_context.csv",
       "bytes": 81682,
       "sha256": "e3d6273436b546ee35e7a8c11064922db1d2028e6eb312158494f978e02d5447",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/f11_cohort_cert_timeline.csv",
+      "bytes": 4771,
+      "sha256": "0ea942a34f4469dc6863dfc9aa41b0295872c68f4e16b745efbff6d16ac1de71",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/f11_cohort_external_funders.csv",
+      "bytes": 86,
+      "sha256": "6e42262b1b4e0e1e26b2a674421e36f96ecc32c98d390e2ba93c7e039be138a1",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/f11_cohort_funding_origin.csv",
+      "bytes": 3535,
+      "sha256": "4b3f9a875ce6b8ebd490b6be511091e1b60c89d68670e86aa31bc172efc94cda",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/f11_cohort_reward_destinations.csv",
+      "bytes": 138,
+      "sha256": "59eec912c4cfd70995714460451bbb311bf63dc905b3d4f5f832f5f62e07f4a1",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/f11_cohort_withdrawal_funding.csv",
+      "bytes": 633,
+      "sha256": "62970b09bdb364f6a042682a187dfbcba4e1afbbe485ad30797730017beb2571",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -329,8 +394,8 @@
     },
     {
       "path": "data/small/genesis_control_indicators.csv",
-      "bytes": 384050,
-      "sha256": "f4ce74c44bb5f3e6370fdc90cc9668d67067c70011e0f1f667fbb5b199b2c5e4",
+      "bytes": 382934,
+      "sha256": "de3ebe21e739d334e323c3cb1b7bb426acf4d5694c1bc5232d0e10a55d59e8ec",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -342,8 +407,8 @@
     },
     {
       "path": "data/small/genesis_control_indicators_raw.csv",
-      "bytes": 278185,
-      "sha256": "c52e992a56c8783145dd3649ddbf0fcf7dd197eb880ad4b0a03bd665a5ee0a71",
+      "bytes": 277237,
+      "sha256": "f63cd832379149ac0da7a55535bfd2b5fb1987e8d13db743a1cc26cbda96a629",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -355,8 +420,8 @@
     },
     {
       "path": "data/small/genesis_control_summary.csv",
-      "bytes": 655,
-      "sha256": "b000a89d7ebb3f62778ab2c92826145bcb00e1a208804b52608ebc456474ef02",
+      "bytes": 614,
+      "sha256": "e5c8d9378f4fa0befb6310601e48a5ce4e2252fd7a2d96436e69992feb81d619",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -511,8 +576,8 @@
     },
     {
       "path": "data/small/governance_genesis_behavior_by_drep.csv",
-      "bytes": 59840,
-      "sha256": "23f4eed4fb63fe00fcddc970c882f79b44f1fb5d07dcfd98568a8f2dbee862b7",
+      "bytes": 61527,
+      "sha256": "97dc711cade9616823e1c393dc97ae38cb667785dd9f05214ffb4a7cdbd971ed",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -524,8 +589,8 @@
     },
     {
       "path": "data/small/governance_genesis_behavior_by_proposal.csv",
-      "bytes": 5462360,
-      "sha256": "8acebe39aa3278bb6c9879dab017f785b900a3c9a89285a0635c09f3b68701e2",
+      "bytes": 6781988,
+      "sha256": "42fb27cc49112819ac2bd2c37900e21cdacb6d50b2c6bc979e9d15130f8ed6cb",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -537,8 +602,8 @@
     },
     {
       "path": "data/small/governance_genesis_behavior_by_root_drep.csv",
-      "bytes": 71907,
-      "sha256": "2ea3f7df0aac058c73cade0f6a0f5f9104ab469fe234d648d669be4dd382af99",
+      "bytes": 73966,
+      "sha256": "122572c71f7cf8f3fd8db3fcb78cf379181785c803dc4ff4b8304774bb81bef8",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -550,8 +615,8 @@
     },
     {
       "path": "data/small/governance_genesis_behavior_clusters.csv",
-      "bytes": 278826,
-      "sha256": "0638de852348e6c6e956b77675ae22d8136a57b967faf8a61fae58bd28d20f54",
+      "bytes": 278653,
+      "sha256": "887196ae58f8ef15d0cef4f4347e60a5e60866ef4b96e26bbd584468e4c4f1f1",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -563,8 +628,8 @@
     },
     {
       "path": "data/small/governance_genesis_behavior_signals_top.csv",
-      "bytes": 1208046,
-      "sha256": "7db37023913e110317a98eb0431954a0f3d7c2fc3cedfc4fa918ebcbaa4a3d81",
+      "bytes": 1184777,
+      "sha256": "f3b52afa72d0e9d511aa6a365700c1194e2b64ce1ba4eb814d081abf4f6caa2f",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -785,7 +850,7 @@
     {
       "path": "data/small/iog_current_bag_depth14_by_depth.csv",
       "bytes": 310,
-      "sha256": "06ebb0fa8c321250602591cdaea5c99020feea7928d0e8cb0335853e72326161",
+      "sha256": "db420c9f3e53e7a8221c0636d8807db49ad445b0abe24d64d063a4e2bef2e548",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -849,8 +914,8 @@
     },
     {
       "path": "data/small/iog_current_bag_depth14_current_utxos.csv",
-      "bytes": 32934998,
-      "sha256": "1dd474efc63ca44ff5c8576ab2f6bdcb625831de6f8fb39316144b989e48be3a",
+      "bytes": 32623850,
+      "sha256": "91ecb3e37745b0f34c6d21ebf4f5095fcac32c4ec93352066531df8989a25f0e",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -876,7 +941,7 @@
     {
       "path": "data/small/iog_current_bag_depth14_summary.csv",
       "bytes": 221,
-      "sha256": "6d26ae3a724ae0f761a9c06a6d0b4e4efb51901cca6e1788fbf9be9ef7391d47",
+      "sha256": "fec7046d5db35190b0fed9b42dbfc8d73f2a7b2ab96dd3af64e63585fa1519d2",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -888,8 +953,8 @@
     },
     {
       "path": "data/small/iog_current_bag_depth14_top_stake.csv",
-      "bytes": 4510,
-      "sha256": "45cee6c84ceb16ade7cac5c518736c40e7fb149bf5aa0de31edb236a8ec1c768",
+      "bytes": 4508,
+      "sha256": "e544fabb68bed63ecbae3b036c1484eaa77c2a73c8421055cdc747aa8152934e",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -902,7 +967,7 @@
     {
       "path": "data/small/iog_pool_state_validation.csv",
       "bytes": 658,
-      "sha256": "73c83d48e67ed0bf9d1eaf413f4f2ee378805d4de2da21b7b5a2b4dfd88215ca",
+      "sha256": "1f68d6122a5c7a513ac2beabbc917d19f02e04cc6bce3d687c016b916d9a56ae",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -1175,7 +1240,7 @@
     {
       "path": "data/small/staged_trace_founders_depth14_summary.csv",
       "bytes": 441,
-      "sha256": "c04cf09e816668b0aff6dbffba3f04e348a210f27dfd94432bb3d7fe9b023a59",
+      "sha256": "1af304eb18739b72ce8373344950bfd4aa68e90627706423546efa994ced2d1d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -1746,8 +1811,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 43205,
-      "sha256": "b86f9f09e1a6491b055821c18e3e0b58c81c1799fe842e66ba6b0597d61d28c9",
+      "bytes": 44703,
+      "sha256": "1625926e006c566cba31baa27b0258193a4d336b75ac365602650552436c04fe",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -1914,9 +1979,35 @@
       }
     },
     {
+      "path": "findings/F11_eight_key_35m_custody_cohort.md",
+      "bytes": 6263,
+      "sha256": "0c48bb25500755eb622b1ed572b494057841340b64d46c088c9669a7240621b0",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "findings/F12_high_throughput_unstaked_bag.md",
+      "bytes": 4711,
+      "sha256": "2420b618a710e6d9614b80b1943b58ac876e86b99a14a3f825b9619284960cab",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 1933,
-      "sha256": "e8d16f3b78d0b7da0e6a4c4f15e30646c2fa04478c2f1e6d28b26cb89afb0221",
+      "bytes": 2190,
+      "sha256": "dfa4305e5d5d5fbecaf8c5b3b16f62afd2bc60a5cd3e2d203f35b4d41d69ebce",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -1928,8 +2019,8 @@
     },
     {
       "path": "findings/findings.json",
-      "bytes": 14837,
-      "sha256": "8d90fe77d48de05e6457f8d2af139c8601381a0bbd42b4d875f5b3d439313a16",
+      "bytes": 26364,
+      "sha256": "703569c917135f1a6ecfab690a615e3063211aaeb4c394188e0ec14018ecd7e2",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -2046,7 +2137,7 @@
     {
       "path": "reports/genesis_forensics_community_summary.md",
       "bytes": 15991,
-      "sha256": "6fd9b7aac4b0cadb3cee43d55a6932ba78e79e21b5716ee1f55b45203b6a30a9",
+      "sha256": "fbeb0e2a6a080a18481cbc6e6b5f30ab466458443bda7bff1b5100bd57e0555b",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
@@ -2268,6 +2359,71 @@
       "path": "sql/10_findings/bounded_trace_depth3_summary.duckdb.sql",
       "bytes": 224,
       "sha256": "a30c350073ec0bef066704ab75a21b36e591477d1e6e8bb261df55b8793794cb",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/f11_cohort_cert_timeline.sql",
+      "bytes": 1625,
+      "sha256": "c64f39547ff692e1379e33deaa268aae67365db68c3342cd05ddc2afe0dd981a",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/f11_cohort_external_funders.sql",
+      "bytes": 1561,
+      "sha256": "bc1a531c61e2b22a48716ad8a3540beb9950ea88f1bbc3f0baf4a339242145ef",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/f11_cohort_funding_origin.sql",
+      "bytes": 1787,
+      "sha256": "856147c959a74b4bc6bdfded4c4beae682bc5354d229619ddea2ef5447d2a8f6",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/f11_cohort_reward_destinations.sql",
+      "bytes": 1363,
+      "sha256": "3df16e083f7dedcb0b30fbae617cfdc0571d1fd2bac8792c2cf0ba8cbcf55fcb",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13630389",
+        "db_tip_time": "2026-07-03 14:54:47",
+        "db_tip_epoch": "640",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/f11_cohort_withdrawal_funding.sql",
+      "bytes": 1776,
+      "sha256": "398c5a4cabbe581afd8a88b676ce6186f58a7d4d98c37a6e64fee523a0d388c5",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13630389",
