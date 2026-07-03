@@ -1,17 +1,58 @@
-# ABCDE — Clone this repo and ask an AI where the genesis ADA went
+<div align="center">
 
-ABCDE is a turnkey, AI-queryable **Cardano genesis ADA database**. Clone it,
-point an AI at it, and ask where the genesis ADA went and which stake pools
-(SPOs) and DReps it ended up in.
+# ⬡ ABCDE
 
-For a public, investor-focused introduction, read
-**[What Every ADA Investor Should Know About Genesis ADA](reports/what_ada_investors_should_know_about_genesis_ada.md)**.
+### A BEACN Cardano Data Explorer
 
-The compact, query-ready database (`data/abcde_genesis.duckdb`) is committed to
-the repo, so a plain `git clone` gives you instant, queryable data — no node, no
-relay, no db-sync, no Git LFS required.
+**Clone the repo. Point your AI at it. Ask where the genesis ADA went.**
 
-## Quickstart
+A grass-roots, open-source, AI-queryable snapshot of Cardano's on-chain history —
+built to track and audit **genesis ADA**: where the founder coins moved, who they
+were delegated to, and how they behave in governance today.
+
+No node. No relay. No db-sync. No API key. Just `git clone` and ask.
+
+<br>
+
+![Cardano](https://img.shields.io/badge/Cardano-genesis%20ADA-0033AD?style=for-the-badge)
+![Query](https://img.shields.io/badge/query-DuckDB%20%2B%20AI-000000?style=for-the-badge)
+![No dbsync](https://img.shields.io/badge/no%20node%20·%20no%20db--sync-required-2ea44f?style=for-the-badge)
+![Evidence](https://img.shields.io/badge/every%20claim-graded-8A2BE2?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
+
+**`112` query-ready tables · `16` audited findings · every figure hash-receipted · snapshot @ epoch `640`**
+
+</div>
+
+---
+
+## Why this exists
+
+Cardano's founder ("genesis") ADA is public on-chain, but **answering real
+questions about it normally means running a full node, a relay, and a db-sync
+Postgres warehouse** — hundreds of gigabytes and days of sync before you can run
+a single query.
+
+ABCDE flips that. The whole compact dataset is **committed to this repo as one
+small DuckDB file**. Clone it and you have an instant, local, read-only database
+of genesis-ADA flows, delegation history, governance behavior, and exchange
+tracing — ready for an AI to query in plain English, **without touching the
+chain and without a single shared server anyone could break.** Everyone who
+clones gets the exact same integrity-checked dataset.
+
+```
+   the old way                              ABCDE
+┌────────────────────┐            ┌────────────────────────┐
+│ full node (100s GB)│            │  git clone  (~36 MiB)  │
+│ + relay            │            │                        │
+│ + db-sync Postgres │   ──────►  │  ask your AI, locally  │
+│ + days of sync     │            │  read-only, reproducible│
+└────────────────────┘            └────────────────────────┘
+```
+
+---
+
+## ⚡ 30-second quickstart
 
 ```bash
 git clone https://github.com/BEACNpool/ABCDE.git
@@ -19,193 +60,161 @@ cd ABCDE
 python -m pip install -r requirements/base.txt
 ```
 
-```powershell
-# Windows
-git clone https://github.com/BEACNpool/ABCDE.git
-cd ABCDE
-py -3 -m pip install -r requirements/base.txt
-```
-
-Then query it one of two ways.
-
-## Two query paths
-
-### 1. MCP server (primary, no API key)
-
-A read-only [MCP](https://modelcontextprotocol.io) server (`abcde-genesis`) that
-drops into **Claude Code**, **OpenAI Codex**, or **Claude Desktop**. If you have
-a subscription to any of those, there is **no API key to set** — queries run
-through your existing login:
+Then wire it into the AI you already use — **no API key if you have Claude Code,
+Claude Desktop, or Codex:**
 
 ```bash
-claude mcp add abcde-genesis -- python -m mcp_server.server   # Claude Code
+claude mcp add abcde-genesis -- python -m mcp_server.server
 ```
 
-Tools: `list_tables()`, `describe_table(name)`, `run_sql(sql, max_rows=200)`,
-`starter_questions()`. Full setup (Codex `config.toml`, Claude Desktop config
-JSON, Windows path notes) is in [`docs/AI_QUERY_GUIDE.md`](docs/AI_QUERY_GUIDE.md).
+…and just ask:
 
-### 2. `ask.py` CLI (API-key fallback)
+> **"Where did EMURGO's genesis ADA end up — which pools and DReps does the trace reach?"**
+>
+> **"How much genesis-descended ADA is still unspent, and how confident is the trace?"**
+>
+> **"Which exchanges are named in the on-chain tracer deposit claims?"**
 
-A text-to-SQL loop using the Anthropic SDK:
+The read-only MCP server exposes four tools — `list_tables()`,
+`describe_table(name)`, `run_sql(sql)`, `starter_questions()` — and **rejects any
+statement that isn't a single read-only `SELECT`**, so the AI can explore freely
+without ever mutating the data.
+
+<details>
+<summary><b>No subscription? Use the API-key CLI instead</b></summary>
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
-python ask.py "where did EMURGO's genesis ADA end up?"   # one-shot
-python ask.py                                            # interactive
+python ask.py "where did IOG's genesis ADA flow, by trace depth?"   # one-shot
+python ask.py                                                        # interactive
 ```
 
-Model defaults to `claude-sonnet-4-6` (override with `ABCDE_MODEL`).
+Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
+[`docs/AI_QUERY_GUIDE.md`](docs/AI_QUERY_GUIDE.md).
 
-See [`docs/STARTER_QUESTIONS.md`](docs/STARTER_QUESTIONS.md) for grounded
-example questions.
+</details>
 
-For a stricter reviewer workflow, start with the prompt pack in
-[`prompts/`](prompts/):
+---
 
-```text
-Use prompts/audit_every_figure.md and verify the ABCDE repo from local data.
-```
+## What's inside `112` tables
 
-For anomaly hunting, use the temporal prompt and SQL recipes:
+| Area | What you can ask |
+|---|---|
+| 🌱 **Genesis seeds** | The four founder allocations — IOG `2.46B`, EMURGO `2.07B`, the `781M` fourth entry, Cardano Foundation `648M` — each with db-sync verification receipts. |
+| 🔀 **Traces** | Bounded and depth-14 staged traces of where each seed's ADA flowed, plus cross-entity merge candidate sets. |
+| 💰 **IOG current bag** | How much IOG-descended ADA is still unspent (`~494M`), with confidence bands, cluster classifications, and per-UTxO drilldown. |
+| 🗳️ **Governance** | Genesis-descended stake by SPO and by DRep, pool/DRep metadata, a top-DRep profile pack, and every Conway governance action. |
+| 🧭 **Control indicators** | Live custody signals per genesis stake key — dormancy, unclaimed rewards, certificate liveness, batch-operation cohorts — with a graded `fe_control_consistency` score. |
+| 📡 **Exchange tracers** | The community's 505-NFT tracer campaign: current locations, transfer edges, and on-chain "Deposited to: `<Exchange>`" claims naming six exchanges. |
+| 🧾 **Freshness catalog** | Row count, hash, age, and snapshot-sensitivity of *every* table, so any answer can state exactly how fresh its evidence is. |
 
-```text
-Use prompts/temporal_anomaly_review.md and separate hop depth from epoch/block timing.
-```
+Ground your queries on the generated schema — [`docs/SCHEMA.md`](docs/SCHEMA.md)
+(human) and `data/schema_catalog.json` (machine). Start with
+[`docs/STARTER_QUESTIONS.md`](docs/STARTER_QUESTIONS.md).
 
-## What is in the database
+---
 
-Built by `scripts/build_genesis_db.py` from `anchors.yaml` (→ the `seeds` table)
-and every `data/small/*.csv` (one table per file). The current committed cut is
-45.51 MiB and holds exactly 99 tables covering:
+## 🔍 Showcase: following one thread to the end
 
-- the genesis **seed registry** (named founders + the fourth entry) and db-sync
-  verification receipts
-- seed **first-spend** and first-spend-input receipts
-- bounded and staged **trace** extracts and cross-entity merge candidate sets
-- **IOG current-bag** depth-14 audit cut with confidence bands and cluster
-  classifications, plus per-current-UTXO epoch/block/time drilldown
-- **governance** rollups: SPO and DRep delegation targets (count- and
-  value-weighted), pool/DRep metadata, and a top-DRep profile pack with
-  genesis-trace exposure
-- **Genesis-to-DRep behavior** rollups: confidence-banded stake-credential
-  clusters, DRep exposure by behavior class, root x DRep cuts, and
-  proposal-vote exposure surfaces
-- **Genesis-to-SPO delegation**: traced current value by latest pool target
-  (with pool metadata), a pool x DRep delegation cross-tab, and a
-  pool-operator linkage table (pools whose owner/reward credentials are
-  themselves trace-reached)
-- a **governance actions catalog**: every Conway governance action with
-  lifecycle epochs, deposit, type, and anchor
-- **IOGP/voucher follow-up receipts**: exact pledge and epoch-stake records,
-  voucher-address flow counterparties, full deterministic dominant-input paths,
-  direct-funder histories, and IOGP reward-credential destinations
-- **Genesis Trail follow-up receipts**: a recurring 2021 recipient series,
-  payer credentials, consolidation-hub flows, same-hub stream bridges, and
-  nine deterministic payment-to-genesis paths
-- **Genesis control indicators**: live-tip custody signals for ~1,000
-  genesis-descended stake addresses (dormancy, unclaimed rewards, certificate
-  liveness, batch-operation cohorts) with a graded `fe_control_consistency`
-  classification — see
-  [`docs/24_CONTROL_INDICATORS_AND_TRACERS.md`](docs/24_CONTROL_INDICATORS_AND_TRACERS.md)
-- **Exchange tracers** (`tracer_*`): the community's 505-NFT exchange-tracer
-  campaign — current locations, transfer edges, and on-chain
-  "Deposited to: \<Exchange\>" claims naming six exchanges (full receipts in
-  [`tracers/`](tracers/README.md))
-- a **freshness catalog** (`data_freshness_catalog`) quantifying every table's
-  row count, hash, age, and snapshot sensitivity, so answers can state exactly
-  how fresh their evidence is
+A worked example of what the dataset makes possible — the full receipt chain
+lives in [`findings/`](findings/INDEX.md), every number reproducible from a plain
+clone:
 
-See [`reports/iogp_voucher_followup.md`](reports/iogp_voucher_followup.md) and
-[`findings/F09_iogp_voucher_followup.md`](findings/F09_iogp_voucher_followup.md).
-The related site-derived lead and independent warehouse verification are in
-[`reports/genesis_trail_case.md`](reports/genesis_trail_case.md) and
-[`findings/F10_genesis_trail_monthly_stream.md`](findings/F10_genesis_trail_monthly_stream.md).
+> Starting from **8 stake keys that each hold exactly 35,000,000 ADA**
+> ([F11](findings/F11_eight_key_35m_custody_cohort.md)), we followed their
+> reward-sweep plumbing downstream
+> ([F13](findings/F13_reward_plumbing_downstream_and_tracer_bridge.md)),
+> classified the wallets it touched
+> ([F14](findings/F14_fleet_is_same_35m_parcel_structure.md)), and iterated the
+> linkage to its fixpoint
+> ([F15](findings/F15_plumbing_component_is_closed_floor.md)).
+>
+> The result: a **closed 115-key component holding `1,693,922,205` ADA** in
+> uniform 35M parcels, all delegated to the same always-abstain DRep — and a
+> hop where genesis-descended value reaches a deposit cluster the community
+> tracer campaign independently flagged as an exchange.
 
-Ground your queries on the schema catalog:
-[`docs/SCHEMA.md`](docs/SCHEMA.md) (human-readable) and
-`data/schema_catalog.json` (machine-readable), both regenerated by the build.
-Temporal query recipes are in `sql/30_query_recipes/`; see
-[`docs/20_TEMPORAL_QUERY_GUIDE.md`](docs/20_TEMPORAL_QUERY_GUIDE.md).
-Genesis-to-DRep behavior methodology is in
-[`docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md`](docs/21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md).
-Query `build_info` first when answering freshness-sensitive questions.
-See [`docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`](docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md)
-for the verified artifact inventory, the distinction between compact, release,
-and warehouse data, and the current snapshot boundary.
-Maintainer warehouse-backed research priorities and evidence gates are in
-[`docs/23_WAREHOUSE_RESEARCH_PROGRAM.md`](docs/23_WAREHOUSE_RESEARCH_PROGRAM.md).
+Every step is graded, and the grading is the point: on-chain linkage is stated as
+on-chain linkage, never as real-world ownership.
 
-## Evidence standard
+---
 
-Every claim is graded (see [`docs/02_GRADING.md`](docs/02_GRADING.md)):
+## 🎓 Every claim is graded
 
-- **FACT** — directly queryable / deterministic from committed or released artifacts
-- **STRONG_INFERENCE** — strongly supported but not uniquely proven
-- **WORKING_HYPOTHESIS** — plausible, actively tested; not a conclusion
-- **UNKNOWN** — not established
+This is an **audit tool**, not a rumor mill. Each finding carries an explicit
+evidence grade ([`docs/02_GRADING.md`](docs/02_GRADING.md)):
 
-**This repo maps on-chain flows and delegation behavior.** It never asserts
-off-chain legal ownership, intent, misconduct, or wallet control beyond what the
-on-chain data shows. AI assistants are bound by the same rule — see
-[`CLAUDE.md`](CLAUDE.md).
+| Grade | Meaning |
+|---|---|
+| **FACT** | Directly queryable / deterministic from committed artifacts. |
+| **STRONG_INFERENCE** | Strongly supported by facts, not uniquely proven. |
+| **WORKING_HYPOTHESIS** | Plausible model, actively tested — not a conclusion. |
+| **UNKNOWN** | Not established from current evidence. |
 
-## Reproduce / verify
+> **The hard rule:** ABCDE maps on-chain flows and delegation behavior. It
+> **never** asserts off-chain legal ownership, identity, intent, or wallet
+> control beyond what the chain shows. The AI is bound by the same rule — see
+> [`CLAUDE.md`](CLAUDE.md).
+
+---
+
+## ✅ Integrity you can verify yourself
+
+Everyone clones the **same** dataset, and you can prove it hasn't drifted:
 
 ```bash
-just bootstrap                         # install dependencies, if you use just
 just test                              # self-test + public claim receipts
-python scripts/build_genesis_db.py          # rebuild DB + schema catalog from sources
-python scripts/verify.py --structure-only   # validate repo structure + anchors
-python scripts/verify_claim_receipts.py     # verify headline claim SQL receipts
+python scripts/verify_claim_receipts.py   # re-run headline SQL, check row counts + hashes
+python scripts/build_genesis_db.py        # rebuild the DuckDB from source CSVs, deterministically
 ```
 
-CI (`.github/workflows/ci.yml`) builds the DB, smoke-tests a read-only query,
-checks the read-only guard rejects writes, asserts the MCP server imports, and
-runs the structure verifier on every push/PR to `main`.
+- **Claim receipts** ([`claims/`](claims/)) pin each headline figure to SQL, an
+  expected row count, and a SHA-256 of the result. If the data changed, the hash
+  fails.
+- **CI** rebuilds the DB, smoke-tests a read-only query, proves the write-guard
+  rejects mutations, and runs the structure verifier on every push.
+- **Freshness is explicit.** `build_info` and `data/small/db_tip_receipt.csv`
+  record the exact chain tip this cut was taken at (**block `13,630,993`, epoch
+  `640`, 2026-07-03**). Current-state answers are snapshots at that tip, not live
+  chain state — and the freshness catalog tells you which tables are
+  snapshot-sensitive.
 
-Public claim receipts live in [`claims/`](claims/). Each receipt includes SQL,
-expected row count, output hash, and an evidence grade.
+---
 
-Current freshness note: `data/small/db_tip_receipt.csv` records the warehouse tip
-used for this cut. The committed DuckDB and warehouse currently agree on block
-`13520244` / epoch `635` / `2026-06-07 18:44:37 UTC`. The warehouse subscription
-is enabled and all 75 replicated relations are ready, but the source is stalled
-pending relay recovery. Treat DRep distribution, live-unspent, governance
-lifecycle, and proposal-vote surfaces as that snapshot, not live chain state.
+## 📦 Big data, kept clonable
 
-## Big data / release assets
-
-There are no size caps on the underlying data. The compact in-repo DB is for
-instant clone-and-ask and is the supported public dataset in a plain clone.
-
-Large/full extraction cuts are published via
-[GitHub Releases](https://github.com/BEACNpool/ABCDE/releases) when a release is
-available:
+The compact in-repo DuckDB is deliberately small so a plain `git clone` stays
+instant. When a table is too large to commit in full (e.g. the per-UTxO
+drilldown), the clone keeps a **value-ranked top-cut** — retaining ~98% of the
+ADA — and the full table ships as a release-tier artifact:
 
 ```bash
-python scripts/fetch_db.py              # latest release into data/release/ (if one exists)
-python scripts/fetch_db.py --tag v2.0.0 # a specific tag
+python scripts/fetch_db.py             # pull full cuts from the latest GitHub Release (if published)
 ```
 
-`fetch_db.py` checksum-verifies every release asset against the release's
-`artifacts.sha256` manifest. If no release has been published yet, the committed
-compact DuckDB plus `data/small/*.csv` receipts remain the reproducible public
-cut. Large in-repo binaries (`*.parquet`, `data/large/**`) are tracked with Git
-LFS; the compact DuckDB is kept as a normal git object so a plain clone without
-git-lfs still works.
+See [`docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`](docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md)
+for the compact / release / warehouse tiers and how they differ.
 
-Maintainers can build the release bundle locally with:
+---
 
-```bash
-just release-bundle
-```
+## 🗺️ Where to go next
 
-Tags matching `v*` publish the same bundle through `.github/workflows/release.yml`.
+- **New here?** → [`docs/00_START_HERE.md`](docs/00_START_HERE.md) and the
+  investor-focused [What Every ADA Investor Should Know About Genesis ADA](reports/what_ada_investors_should_know_about_genesis_ada.md)
+- **Want to query?** → [`docs/STARTER_QUESTIONS.md`](docs/STARTER_QUESTIONS.md) ·
+  [`docs/AI_QUERY_GUIDE.md`](docs/AI_QUERY_GUIDE.md) ·
+  [`docs/19_QUERY_COOKBOOK.md`](docs/19_QUERY_COOKBOOK.md)
+- **Want the findings?** → [`findings/INDEX.md`](findings/INDEX.md)
+- **Want to audit us?** → [`prompts/audit_every_figure.md`](prompts/) ·
+  [`docs/02_GRADING.md`](docs/02_GRADING.md) · [`claims/`](claims/)
+- **Method & limits** → [`docs/01_METHOD.md`](docs/01_METHOD.md) ·
+  [`docs/06_LIMITATIONS.md`](docs/06_LIMITATIONS.md)
 
-## Refresh cadence
+<div align="center">
+<br>
 
-This repo is refreshed from an explicit warehouse snapshot. Each refresh must
-record the source tip, rebuild the database and schema catalog, and rerun the
-verifiers before publication. Until those artifacts change, the recorded
-snapshot boundary remains authoritative.
+**Built by [BEACNpool](https://github.com/BEACNpool) · MIT licensed · on-chain truth, grass-roots tools**
+
+*If ABCDE helped you understand where the genesis ADA went, ⭐ the repo and clone it forward.*
+
+</div>
