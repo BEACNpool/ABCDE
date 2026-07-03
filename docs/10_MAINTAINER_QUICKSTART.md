@@ -75,3 +75,24 @@ Large extraction cuts belong in gitignored `data/release/` while under review
 and in GitHub Releases with SHA-256 receipts when published. They must not be
 described as available to public users merely because they exist on a
 maintainer workstation.
+
+## Finalizing any cut (required before commit)
+
+After ALL data and documentation edits are complete, run:
+
+```bash
+chmod +x scripts/finalize_cut.sh   # first time
+ABCDE_SSH=<host> bash scripts/finalize_cut.sh
+```
+
+It regenerates the derived artifacts in dependency order — freshness catalog,
+DuckDB + schema catalog, community report, then the hash indexes
+(`public-artifacts-manifest.json`, `findings/findings.json`) **last**, because
+they fingerprint everything else — and then runs the verifiers. Editing any
+fingerprinted file after this step and committing produces stale hash indexes;
+if you touch anything, run it again.
+
+If a refresh changed a table that a claim receipt pins (top-DRep pack, staged
+trace summaries), re-pin: `python scripts/verify_claim_receipts.py
+--write-outputs`, update the changed `output_sha256`/`expected_rows` entries in
+`claims/manifest.json`, and re-run the verifier.

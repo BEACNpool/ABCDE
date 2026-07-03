@@ -175,10 +175,10 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "5ecfc807a9e4",
-          "source_generated_utc": "2026-07-03 09:54:48-05:00",
-          "db_tip_block": 13630389,
-          "db_tip_time": "2026-07-03 14:54:47",
+          "git_commit": "741c189e7fac",
+          "source_generated_utc": "2026-07-03 11:02:04-05:00",
+          "db_tip_block": 13630592,
+          "db_tip_time": "2026-07-03 16:01:12",
           "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -256,7 +256,7 @@
         },
         {
           "name": "last_commit_utc",
-          "type": "VARCHAR"
+          "type": "TIMESTAMP WITH TIME ZONE"
         },
         {
           "name": "age_days_at_refresh",
@@ -273,7 +273,7 @@
           "data_rows": 53,
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -282,7 +282,7 @@
           "data_rows": 10,
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -291,7 +291,7 @@
           "data_rows": 3,
           "bytes": 322,
           "sha256": "e50e3468490493fbccd0d1ad30cb10b4328a1692e533452d2721d7cc2f262bf9",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         }
@@ -328,9 +328,9 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-07-03 09:54:48-05:00",
-          "db_tip_block": 13630389,
-          "db_tip_time": "2026-07-03 14:54:47",
+          "generated_utc": "2026-07-03 11:02:04-05:00",
+          "db_tip_block": 13630592,
+          "db_tip_time": "2026-07-03 16:01:12",
           "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
