@@ -102,6 +102,15 @@ operating all eight keys with automated tooling.
 - SQL: `sql/10_findings/f11_cohort_*.sql`;
   manifest: `data/manifests/genesis-control-indicators-manifest.json`
 
+## Downstream
+
+The reward plumbing is traced downstream in
+[F13](F13_reward_plumbing_downstream_and_tracer_bridge.md): the same withdrawal
+transactions co-sign rewards for 81 other stake keys (one operation, not eight
+keys), the outflow funnels into four exchange-scale hot addresses, and one hop-1
+destination is a stake cluster the community tracer campaign independently
+flagged as Kraken.
+
 ## Reproduce
 
 From a clone (DuckDB):

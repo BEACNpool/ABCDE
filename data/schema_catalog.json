@@ -175,10 +175,10 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "741c189e7fac",
-          "source_generated_utc": "2026-07-03 11:02:04-05:00",
-          "db_tip_block": 13630592,
-          "db_tip_time": "2026-07-03 16:01:12",
+          "git_commit": "3386b2e5c90e",
+          "source_generated_utc": "2026-07-03 12:02:59-05:00",
+          "db_tip_block": 13630777,
+          "db_tip_time": "2026-07-03 17:02:37",
           "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -236,7 +236,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 96,
+      "row_count": 100,
       "columns": [
         {
           "name": "table_name",
@@ -256,7 +256,7 @@
         },
         {
           "name": "last_commit_utc",
-          "type": "TIMESTAMP WITH TIME ZONE"
+          "type": "VARCHAR"
         },
         {
           "name": "age_days_at_refresh",
@@ -273,7 +273,7 @@
           "data_rows": 53,
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
-          "last_commit_utc": "2026-05-29 09:26:39-05:00",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -282,7 +282,7 @@
           "data_rows": 10,
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
-          "last_commit_utc": "2026-05-29 09:26:39-05:00",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -291,7 +291,7 @@
           "data_rows": 3,
           "bytes": 322,
           "sha256": "e50e3468490493fbccd0d1ad30cb10b4328a1692e533452d2721d7cc2f262bf9",
-          "last_commit_utc": "2026-05-29 09:26:39-05:00",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         }
@@ -328,9 +328,9 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-07-03 11:02:04-05:00",
-          "db_tip_block": 13630592,
-          "db_tip_time": "2026-07-03 16:01:12",
+          "generated_utc": "2026-07-03 12:02:59-05:00",
+          "db_tip_block": 13630777,
+          "db_tip_time": "2026-07-03 17:02:37",
           "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -667,6 +667,209 @@
           "withdrawal_txs": 307,
           "txs_with_self_funded_input": 0,
           "distinct_external_funding_stakes": 0
+        }
+      ]
+    },
+    "f11_downstream_fleet": {
+      "source": "data/small/f11_downstream_fleet.csv",
+      "row_count": 81,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "shared_withdrawal_txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rewards_withdrawn_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "first_shared_tx_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_shared_tx_time",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1uxwu054js5dmp3kma74kxmzejmy7mfg3wvtx8jpuh299ufg34uk4s",
+          "shared_withdrawal_txs": 42,
+          "rewards_withdrawn_ada": 531533.166637,
+          "first_shared_tx_time": "2022-06-25 00:15:15",
+          "last_shared_tx_time": "2026-06-29 00:03:27"
+        },
+        {
+          "stake_address": "stake1u839gnp9kvyd8hhw3nskp08wt868y0fnjdncp0psyyykdusjh7s5j",
+          "shared_withdrawal_txs": 38,
+          "rewards_withdrawn_ada": 477788.007843,
+          "first_shared_tx_time": "2022-05-26 00:15:49",
+          "last_shared_tx_time": "2026-06-24 00:53:33"
+        },
+        {
+          "stake_address": "stake1u88zeazj5xy8uamz47rqswpjvn9zmsyg78ahklfmku2k35g2qlaaj",
+          "shared_withdrawal_txs": 38,
+          "rewards_withdrawn_ada": 473466.255995,
+          "first_shared_tx_time": "2022-04-05 23:06:03",
+          "last_shared_tx_time": "2026-06-19 20:51:27"
+        }
+      ]
+    },
+    "f11_downstream_hop_destinations": {
+      "source": "data/small/f11_downstream_hop_destinations.csv",
+      "row_count": 600,
+      "columns": [
+        {
+          "name": "hop",
+          "type": "BIGINT"
+        },
+        {
+          "name": "destination",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "enterprise_only",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "total_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "hop": 1,
+          "destination": "addr1v95sf69jcfhnmknvffwmfvlvnccatqwfjcyh0nlfc6gh5scta2yzg",
+          "enterprise_only": true,
+          "txs": 626,
+          "total_ada": 1101916778.441875
+        },
+        {
+          "hop": 1,
+          "destination": "addr1v9u7va2sktlnz8dp3qadpnxxlv4m03672jy6elmntlxxs7q9nnwl9",
+          "enterprise_only": true,
+          "txs": 1416,
+          "total_ada": 792034119.565017
+        },
+        {
+          "hop": 1,
+          "destination": "addr1vypr00ss7hkqejmvh53xkyf0p9q0a4z2uprxmx6njc463vgst3pe4",
+          "enterprise_only": true,
+          "txs": 58,
+          "total_ada": 27265013.110101
+        }
+      ]
+    },
+    "f11_downstream_hop_summary": {
+      "source": "data/small/f11_downstream_hop_summary.csv",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "hop",
+          "type": "BIGINT"
+        },
+        {
+          "name": "txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "outputs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_destinations",
+          "type": "BIGINT"
+        },
+        {
+          "name": "enterprise_outputs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "total_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "hop": 1,
+          "txs": 2158,
+          "outputs": 2830,
+          "distinct_destinations": 349,
+          "enterprise_outputs": 2572,
+          "total_ada": 2079163390.815776
+        },
+        {
+          "hop": 2,
+          "txs": 2533,
+          "outputs": 3964,
+          "distinct_destinations": 1067,
+          "enterprise_outputs": 2973,
+          "total_ada": 3411447951.349602
+        },
+        {
+          "hop": 3,
+          "txs": 3354,
+          "outputs": 6452,
+          "distinct_destinations": 2350,
+          "enterprise_outputs": 3994,
+          "total_ada": 5362919805.233436
+        }
+      ]
+    },
+    "f11_hub_classification": {
+      "source": "data/small/f11_hub_classification.csv",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "payment_cred_hex",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "lifetime_outputs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "gross_received_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "classification",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "address": "addr1v8v3auqmw0eszza3ww29ea2pwftuqrqqyu26zvzjq9dt2ncydzvs5",
+          "payment_cred_hex": "d91ef01b73f3010bb173945cf5417257c00c002715a13052015ab54f",
+          "lifetime_outputs": 1535386,
+          "gross_received_ada": 172260183865,
+          "classification": "recirculating_hot_address_gross_exceeds_total_supply"
+        },
+        {
+          "address": "addr1v95sf69jcfhnmknvffwmfvlvnccatqwfjcyh0nlfc6gh5scta2yzg",
+          "payment_cred_hex": "6904e8b2c26f3dda6c4a5db4b3ec9e31d581c9960977cfe9c6917a43",
+          "lifetime_outputs": 1152637,
+          "gross_received_ada": 134369895492,
+          "classification": "recirculating_hot_address_gross_exceeds_total_supply"
+        },
+        {
+          "address": "addr1vypr00ss7hkqejmvh53xkyf0p9q0a4z2uprxmx6njc463vgst3pe4",
+          "payment_cred_hex": "0237be10f5ec0ccb6cbd226b112f0940fed44ae0466d9b53962ba8b1",
+          "lifetime_outputs": 1129009,
+          "gross_received_ada": 121701773631,
+          "classification": "recirculating_hot_address_gross_exceeds_total_supply"
         }
       ]
     },
