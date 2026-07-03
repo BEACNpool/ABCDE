@@ -243,6 +243,31 @@ order by day
 ) to stdout with csv header;
 SQL
 
+# 10. On-chain deposit claims: tx metadata (674 msg / 1985) attached to txs
+#     that moved tracer assets — includes the senders' own
+#     "Deposited to: <Exchange>" labels. Self-reported claims, not proof.
+run_copy "$OUT_DIR/deposit_claims.csv" <<SQL
+copy (
+$TRACER_OUTPUTS_CTE
+select
+  encode(tx.hash, 'hex') as tx_hash,
+  b.block_no,
+  b.time as block_time,
+  tm.key as metadata_key,
+  tm.json::text as metadata_json,
+  count(distinct o.asset_name) as tracer_assets_in_tx,
+  array_to_string(array_agg(distinct o.asset_name order by o.asset_name), ';') as assets,
+  array_to_string(array_agg(distinct o.address order by o.address), ';') as tracer_output_addresses
+from tracer_outputs o
+join public.tx tx on tx.id = o.tx_id
+join public.block b on b.id = tx.block_id
+join public.tx_metadata tm on tm.tx_id = o.tx_id
+where tm.key in (674, 1985)
+group by tx.hash, b.block_no, b.time, tm.key, tm.json::text
+order by b.time, tx_hash
+) to stdout with csv header;
+SQL
+
 ( cd "$OUT_DIR" && sha256sum *.csv >SHA256SUMS )
 echo "---"
 wc -l "$OUT_DIR"/*.csv

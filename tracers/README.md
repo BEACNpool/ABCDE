@@ -50,6 +50,7 @@ holding, 2,829 historical output rows, 505 live tracer UTxOs, 0 burned.
 | `data/mint_events.csv` | per asset mint | mint tx + full on-chain CIP-25 metadata |
 | `data/mint_funding_inputs.csv` | per (mint tx, input address) | which addresses funded each mint (tracer operator's on-chain linkage) |
 | `data/movement_timeline.csv` | per day | daily activity: rows, assets, addresses, txs |
+| `data/deposit_claims.csv` | per (tx, metadata key) | on-chain tx messages attached to tracer moves, incl. senders' "Deposited to: \<Exchange\>" claims |
 | `labels/exchange_labels.csv` | per labeled address | attribution layer — **starts empty by design** |
 | `sql/exchange_tracer_policy.sql` | — | standalone psql report query (any db-sync instance) |
 | `scripts/export_tracers_from_abcde.sh` | — | maintainer refresh script (regenerates `data/` + `SHA256SUMS`) |
@@ -68,6 +69,21 @@ holding, 2,829 historical output rows, 505 live tracer UTxOs, 0 burned.
   computed with `tx_in` anti-joins. Do **not** use
   `tx_out.consumed_by_tx_id` there — it is not reliably populated on the
   replica.
+
+## On-chain exchange claims (`data/deposit_claims.csv`)
+
+Many deposit transactions carry a CIP-20 (key `674`) message written by the
+sender, e.g. `"Deposited to:", "Coinbase", "The Red (or Blue) Pill Study",
+"tracer.adagenesistransparency.com"`; one tx uses a custom key `1985`
+(`{"exchange": "Kraken"}`). Six exchanges are named this way: **Coinbase,
+Kraken, Binance, KuCoin, Bybit, Gate.io**.
+
+Grade these as **self-reported claims** (WORKING_HYPOTHESIS →
+STRONG_INFERENCE once corroborated): the message is on-chain (FACT that it
+was written), but it is the *sender asserting* which exchange the destination
+address belongs to, not the exchange. Corroboration comes from independent
+submitters naming the same entity for the same custody cluster, or from
+sweep-pattern analysis in `transfer_edges.csv`.
 
 ## Attribution labels (`labels/exchange_labels.csv`)
 
