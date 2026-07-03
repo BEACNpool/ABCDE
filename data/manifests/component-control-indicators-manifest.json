@@ -1,0 +1,25 @@
+{
+  "generated_utc": "2026-07-03T18:12:45.411371+00:00",
+  "db_tip_block": "13630951",
+  "db_tip_time": "2026-07-03 18:03:41",
+  "thresholds": {
+    "holding_min_ada": 1000.0,
+    "drained_max_ada": 1.0,
+    "dormant_years": 2.0,
+    "recent_cert_years": 2.0,
+    "recent_spend_days": 180,
+    "passivity_min_rewards_ada": 1000.0,
+    "batch_min_members": 3
+  },
+  "inputs": {
+    "component_control_indicators_raw.csv": "d843befc89334551f1049e2508598382a5616cec75d18757482b2d0834ae6108",
+    "component_control_cert_cohorts.csv": "475867250fe915506bc5ca29fbf9c4c635498c7df19d2ca52426e93ef21d1f18",
+    "governance_genesis_behavior_clusters.csv": "887196ae58f8ef15d0cef4f4347e60a5e60866ef4b96e26bbd584468e4c4f1f1",
+    "db_tip_receipt.csv": "e3cd7a8dd19f2b7b02f2da7be57abd604db75e7a142cef59e714d04b2bce0231"
+  },
+  "outputs": {
+    "component_control_indicators.csv": "ba18d73704fae8488fd41633bb63012a21d71bc3076ef544f8f9fd81a92eb1a5",
+    "component_control_summary.csv": "f1ad2261166e06c9ad060932ead307bc77f0f2ad4f1d88956a8b7410f19175b7"
+  },
+  "grading_note": "Indicator columns are FACT at the recorded tip; fe_control_consistency is a WORKING_HYPOTHESIS classification of custody-pattern consistency, not an ownership or identity claim."
+}

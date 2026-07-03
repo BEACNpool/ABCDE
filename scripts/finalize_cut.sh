@@ -11,6 +11,7 @@ cd "$REPO_ROOT"
 PY="$REPO_ROOT/.venv/bin/python3"
 [[ -x "$PY" ]] || PY=python3
 
+"$PY" scripts/topcut_large_csvs.py                # enforce compact-cut size policy (full -> release tier)
 "$PY" scripts/build_freshness_catalog.py          # per-table freshness (tip refresh only if ABCDE_SSH set)
 "$PY" scripts/build_genesis_db.py                 # DuckDB + schema catalog + docs/SCHEMA.md
 "$PY" scripts/build_community_report.py           # reports/ (fingerprinted below)

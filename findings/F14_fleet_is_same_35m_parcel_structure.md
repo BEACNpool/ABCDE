@@ -11,7 +11,9 @@ same structure** the F11 cohort sampled:
   drained/dust reward-routing keys (near-zero balance).
 - **34 of those 42 hold exactly 35,000,000 ADA** (within 2 ADA) — the same
   round parcel size as all eight F11 cohort keys — totaling **1,190,000,000
-  ADA**; 40 of 42 are within one 35M multiple.
+  ADA**. (A looser "within one 35M multiple" band catches 40 of 42, but that
+  depends on a dust tolerance; the hard, defensible number is the 34 exact
+  35M holders.)
 - **All 42 holders delegate to `drep_always_abstain`** — identical governance
   posture to the F11 cohort.
 - The 20 fleet holders in the `CERT_ACTIVE_PRINCIPAL_STATIC` pattern are spread
@@ -59,9 +61,11 @@ sweeps.
   81-key figure is the shared-withdrawal fleet; the ~42 holders are the custody
   parcels.
 - **Parcel count is a floor**: this classifies only the 81 keys discovered via
-  one hop of shared withdrawals from the eight seed keys. A wider withdrawal
-  sweep would likely find more; ~50 keys / ~1.69B ADA is a lower bound, not the
-  operation's full extent.
+  one hop of shared withdrawals from the eight seed keys.
+  [F15](F15_plumbing_component_is_closed_floor.md) iterates that sweep to
+  fixpoint (115 keys, closed at round 3) and confirms the ~1.694B / 42-parcel
+  surface is complete within reward-plumbing linkage — the wider sweep added 26
+  keys but zero new parcels.
 
 ### Snapshot-boundary notes
 

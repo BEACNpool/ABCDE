@@ -56,6 +56,22 @@ Use these artifacts when a question needs detail intentionally excluded from
 the compact database. Cite the release tag, asset name, and checksum in any
 result derived from them.
 
+### Committed top-cuts
+
+Some tables are too large to commit in full without pushing the DuckDB past the
+size gate. For those, the compact clone holds a **value-ranked top-cut** and the
+full table is a release-tier artifact. `scripts/topcut_large_csvs.py` (run by
+`finalize_cut.sh`) enforces this and writes a `<table>.coverage.json` sidecar
+recording full row count, kept rows, and % of value retained.
+
+Currently cut: `iog_current_bag_depth14_current_utxos` — the compact clone keeps
+the **top 15,000 UTxOs by value (~98.1% of the depth-14 bag's ADA)**; the full
+75k-row table is `data/release/iog_current_bag_depth14_current_utxos_full.csv`
+(regenerate with `scripts/build_iog_current_bag_audit_remote.sh`). Aggregate
+depth-14 tables (`_summary`, `_by_depth`, `_top_stake`, `_confidence_bands`,
+cluster classifications) remain committed in full, so bag totals and
+distributions are exact; only the per-UTxO long tail of dust is release-tier.
+
 ## 3. Maintainer warehouse
 
 The full ABCDE PostgreSQL warehouse is the maintainer extraction source. It is

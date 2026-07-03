@@ -17,6 +17,7 @@ Labels are defined in `docs/02_GRADING.md`.
 9. [F12 — High-throughput unstaked 213.8M-ADA bag](F12_high_throughput_unstaked_bag.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 10. [F13 — Reward-plumbing fleet, exchange-scale hubs, and genesis→tracer-mapped-exchange bridge](F13_reward_plumbing_downstream_and_tracer_bridge.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 11. [F14 — Fleet is the same 35M-parcel institutional custody structure (~50 keys, ~1.69B ADA)](F14_fleet_is_same_35m_parcel_structure.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
+12. [F15 — Reward-plumbing operation is a closed 115-key component; ~1.694B ADA floor](F15_plumbing_component_is_closed_floor.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 
 ## Review cuts / candidate sets
 
