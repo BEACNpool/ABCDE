@@ -43,6 +43,18 @@ For IOGP pledge or voucher-address questions, inspect tables beginning with
 `reports/iogp_voucher_followup.md`. The dominant-input trace proves a selected
 path exists; it does not prove exclusive provenance or real-world control.
 
+For "is this genesis wallet still under original control?" questions, use
+`genesis_control_indicators` + `genesis_control_cert_cohorts` and read
+`docs/24_CONTROL_INDICATORS_AND_TRACERS.md`. `fe_control_consistency` is a
+WORKING_HYPOTHESIS custody-pattern label, never an ownership claim.
+
+For exchange-custody questions, use the `tracer_*` tables. Exchange names in
+`tracer_deposit_claims` are the senders' self-reported on-chain claims —
+the message is FACT, the attribution is not.
+
+To quantify how fresh/accurate any table is, join it against
+`data_freshness_catalog` and cite `db_tip_receipt`.
+
 ## Read-only rule (hard constraint)
 
 The database is opened `read_only=True` and every statement is statically

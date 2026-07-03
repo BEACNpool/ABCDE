@@ -175,13 +175,13 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "3f71388eea74",
-          "source_generated_utc": "2026-06-10 22:21:08-05:00",
-          "db_tip_block": 13520244,
-          "db_tip_time": "2026-06-07 18:44:37",
-          "db_tip_epoch": 635,
+          "git_commit": "bc8d2c32fdde",
+          "source_generated_utc": "2026-07-03 09:54:48-05:00",
+          "db_tip_block": 13630389,
+          "db_tip_time": "2026-07-03 14:54:47",
+          "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
-          "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+          "staleness_note": "live_replication_current_at_refresh"
         }
       ]
     },
@@ -234,6 +234,69 @@
         }
       ]
     },
+    "data_freshness_catalog": {
+      "source": "data/small/data_freshness_catalog.csv",
+      "row_count": 91,
+      "columns": [
+        {
+          "name": "table_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "data_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "bytes",
+          "type": "BIGINT"
+        },
+        {
+          "name": "sha256",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "last_commit_utc",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "age_days_at_refresh",
+          "type": "BIGINT"
+        },
+        {
+          "name": "snapshot_sensitive",
+          "type": "BOOLEAN"
+        }
+      ],
+      "sample_rows": [
+        {
+          "table_name": "bounded_trace_depth3_db",
+          "data_rows": 53,
+          "bytes": 24651,
+          "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "age_days_at_refresh": 35,
+          "snapshot_sensitive": false
+        },
+        {
+          "table_name": "bounded_trace_growth_probe",
+          "data_rows": 10,
+          "bytes": 90,
+          "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "age_days_at_refresh": 35,
+          "snapshot_sensitive": false
+        },
+        {
+          "table_name": "cross_merge_depth10_probe",
+          "data_rows": 3,
+          "bytes": 322,
+          "sha256": "e50e3468490493fbccd0d1ad30cb10b4328a1692e533452d2721d7cc2f262bf9",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "age_days_at_refresh": 35,
+          "snapshot_sensitive": false
+        }
+      ]
+    },
     "db_tip_receipt": {
       "source": "data/small/db_tip_receipt.csv",
       "row_count": 1,
@@ -265,12 +328,117 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-06-10 22:21:08-05:00",
-          "db_tip_block": 13520244,
-          "db_tip_time": "2026-06-07 18:44:37",
-          "db_tip_epoch": 635,
+          "generated_utc": "2026-07-03 09:54:48-05:00",
+          "db_tip_block": 13630389,
+          "db_tip_time": "2026-07-03 14:54:47",
+          "db_tip_epoch": 640,
           "source": "abcde:cexplorer_replica",
-          "staleness_note": "stalled_at_2026-06-07_until_relay_recovery"
+          "staleness_note": "live_replication_current_at_refresh"
+        }
+      ]
+    },
+    "epoch_context": {
+      "source": "data/small/epoch_context.csv",
+      "row_count": 641,
+      "columns": [
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "start_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "end_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "blk_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tx_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "out_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "fees_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "treasury_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "reserves_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rewards_pot_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "utxo_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "deposits_stake_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pots_fees_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "epoch_no": 0,
+          "start_time": "2017-09-23 21:44:51",
+          "end_time": "2017-09-28 21:44:31",
+          "blk_count": 21587,
+          "tx_count": 33,
+          "out_ada": 10378568796,
+          "fees_ada": 3.458053,
+          "treasury_ada": null,
+          "reserves_ada": null,
+          "rewards_pot_ada": null,
+          "utxo_ada": null,
+          "deposits_stake_ada": null,
+          "pots_fees_ada": null
+        },
+        {
+          "epoch_no": 1,
+          "start_time": "2017-09-28 21:44:51",
+          "end_time": "2017-10-03 21:44:31",
+          "blk_count": 21590,
+          "tx_count": 12870,
+          "out_ada": 101402912214,
+          "fees_ada": 1033.002678,
+          "treasury_ada": null,
+          "reserves_ada": null,
+          "rewards_pot_ada": null,
+          "utxo_ada": null,
+          "deposits_stake_ada": null,
+          "pots_fees_ada": null
+        },
+        {
+          "epoch_no": 2,
+          "start_time": "2017-10-03 21:44:51",
+          "end_time": "2017-10-08 21:44:31",
+          "blk_count": 21599,
+          "tx_count": 4292,
+          "out_ada": 63479608908,
+          "fees_ada": 503.075439,
+          "treasury_ada": null,
+          "reserves_ada": null,
+          "rewards_pot_ada": null,
+          "utxo_ada": null,
+          "deposits_stake_ada": null,
+          "pots_fees_ada": null
         }
       ]
     },
@@ -409,6 +577,492 @@
           "source_url": "https://raw.githubusercontent.com/cardano-foundation/cardano-org/master/static/archive/static.iohk.io/adasale/js/stats/main2.json",
           "source_sha256": "5037df90ced9983c463840fb408b38112124888141a4de2a193951f006491aa5",
           "source_updated": "2017-08-28 10:23:53.138000-05:00"
+        }
+      ]
+    },
+    "genesis_control_cert_cohorts": {
+      "source": "data/small/genesis_control_cert_cohorts.csv",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "cert_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_time",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "set_member_count",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "set_members",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": []
+    },
+    "genesis_control_indicators": {
+      "source": "data/small/genesis_control_indicators.csv",
+      "row_count": 1048,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "total_output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "first_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_outgoing_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "stake_key_registered",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "pool_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "latest_pool_active_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_drep",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_earned_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_reward_spendable_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "withdrawal_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rewards_withdrawn_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_withdrawal_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_unclaimed_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "behavior_class",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "root_combo",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dormant_years",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "never_spent",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "principal_static",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "keys_alive_recent_cert",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "recently_active",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "rewards_never_withdrawn",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "institutional_passivity",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "batch_operated",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "currently_holding",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "custody_pattern",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "fe_control_consistency",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
+          "total_output_rows": 4941,
+          "current_utxos": 1489,
+          "current_ada": 213831763.014482,
+          "first_received_time": "2024-10-14 02:20:56",
+          "last_received_time": "2026-07-03 04:02:10",
+          "last_outgoing_time": "2026-07-03 02:01:00",
+          "stake_key_registered": false,
+          "pool_delegation_certs": 0,
+          "current_pool_bech32": null,
+          "latest_pool_cert_time": null,
+          "latest_pool_active_epoch": null,
+          "drep_delegation_certs": 0,
+          "current_drep": null,
+          "latest_drep_cert_time": null,
+          "rewards_earned_ada": 0.0,
+          "last_reward_spendable_epoch": null,
+          "withdrawal_count": 0,
+          "rewards_withdrawn_ada": 0.0,
+          "last_withdrawal_time": null,
+          "rewards_unclaimed_ada": 0.0,
+          "behavior_class": null,
+          "root_combo": null,
+          "dormant_years": 0.0,
+          "never_spent": false,
+          "principal_static": false,
+          "keys_alive_recent_cert": false,
+          "recently_active": true,
+          "rewards_never_withdrawn": false,
+          "institutional_passivity": false,
+          "batch_operated": false,
+          "currently_holding": true,
+          "custody_pattern": "ACTIVE_MANAGED",
+          "fe_control_consistency": "LOW"
+        },
+        {
+          "stake_address": "stake1u9s7k7smn9g9jd76z2gyt07q9zyqamly2m2vazxe08gqc0g5q8tak",
+          "total_output_rows": 1146,
+          "current_utxos": 579,
+          "current_ada": 52073018.876732,
+          "first_received_time": "2023-08-31 05:33:53",
+          "last_received_time": "2026-07-03 02:01:00",
+          "last_outgoing_time": "2026-06-30 03:01:10",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool10d6mmw3mn9ku3r7uqqye672dz3sv76lh5kvh5rdpr9l5ug5yknr",
+          "latest_pool_cert_time": "2023-09-04 22:24:16",
+          "latest_pool_active_epoch": 436,
+          "drep_delegation_certs": 2,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-04 01:55:54",
+          "rewards_earned_ada": 2761977.55097,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 132,
+          "rewards_withdrawn_ada": 2746300.333056,
+          "last_withdrawal_time": "2026-06-30 03:01:10",
+          "rewards_unclaimed_ada": 15677.217914,
+          "behavior_class": null,
+          "root_combo": null,
+          "dormant_years": 0.01,
+          "never_spent": false,
+          "principal_static": false,
+          "keys_alive_recent_cert": true,
+          "recently_active": true,
+          "rewards_never_withdrawn": false,
+          "institutional_passivity": false,
+          "batch_operated": false,
+          "currently_holding": true,
+          "custody_pattern": "ACTIVE_MANAGED",
+          "fe_control_consistency": "MEDIUM"
+        },
+        {
+          "stake_address": "stake1uyv7u4rpvcv5vpv03ugf6rr8ydt3qyjy682xfkzs4snyqss7zayjf",
+          "total_output_rows": 54,
+          "current_utxos": 35,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2022-01-27 15:40:33",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2025-03-19 00:10:21",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
+          "latest_pool_cert_time": "2022-03-21 17:30:06",
+          "latest_pool_active_epoch": 329,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 18:54:09",
+          "rewards_earned_ada": 4080476.399307,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 307,
+          "rewards_withdrawn_ada": 4070788.346241,
+          "last_withdrawal_time": "2026-06-29 00:24:05",
+          "rewards_unclaimed_ada": 9688.053066,
+          "behavior_class": null,
+          "root_combo": null,
+          "dormant_years": 1.29,
+          "never_spent": false,
+          "principal_static": false,
+          "keys_alive_recent_cert": true,
+          "recently_active": false,
+          "rewards_never_withdrawn": false,
+          "institutional_passivity": false,
+          "batch_operated": false,
+          "currently_holding": true,
+          "custody_pattern": "MIXED",
+          "fe_control_consistency": "MEDIUM"
+        }
+      ]
+    },
+    "genesis_control_indicators_raw": {
+      "source": "data/small/genesis_control_indicators_raw.csv",
+      "row_count": 1048,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "total_output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "first_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_received_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_outgoing_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "stake_key_registered",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "pool_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_pool_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "latest_pool_active_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_delegation_certs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_drep",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "latest_drep_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_earned_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_reward_spendable_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "withdrawal_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "rewards_withdrawn_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "last_withdrawal_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "rewards_unclaimed_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
+          "total_output_rows": 4941,
+          "current_utxos": 1489,
+          "current_ada": 213831763.014482,
+          "first_received_time": "2024-10-14 02:20:56",
+          "last_received_time": "2026-07-03 04:02:10",
+          "last_outgoing_time": "2026-07-03 02:01:00",
+          "stake_key_registered": false,
+          "pool_delegation_certs": 0,
+          "current_pool_bech32": null,
+          "latest_pool_cert_time": null,
+          "latest_pool_active_epoch": null,
+          "drep_delegation_certs": 0,
+          "current_drep": null,
+          "latest_drep_cert_time": null,
+          "rewards_earned_ada": 0.0,
+          "last_reward_spendable_epoch": null,
+          "withdrawal_count": 0,
+          "rewards_withdrawn_ada": 0.0,
+          "last_withdrawal_time": null,
+          "rewards_unclaimed_ada": 0.0
+        },
+        {
+          "stake_address": "stake1u9s7k7smn9g9jd76z2gyt07q9zyqamly2m2vazxe08gqc0g5q8tak",
+          "total_output_rows": 1146,
+          "current_utxos": 579,
+          "current_ada": 52073018.876732,
+          "first_received_time": "2023-08-31 05:33:53",
+          "last_received_time": "2026-07-03 02:01:00",
+          "last_outgoing_time": "2026-06-30 03:01:10",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool10d6mmw3mn9ku3r7uqqye672dz3sv76lh5kvh5rdpr9l5ug5yknr",
+          "latest_pool_cert_time": "2023-09-04 22:24:16",
+          "latest_pool_active_epoch": 436,
+          "drep_delegation_certs": 2,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-04 01:55:54",
+          "rewards_earned_ada": 2761977.55097,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 132,
+          "rewards_withdrawn_ada": 2746300.333056,
+          "last_withdrawal_time": "2026-06-30 03:01:10",
+          "rewards_unclaimed_ada": 15677.217914
+        },
+        {
+          "stake_address": "stake1uyv7u4rpvcv5vpv03ugf6rr8ydt3qyjy682xfkzs4snyqss7zayjf",
+          "total_output_rows": 54,
+          "current_utxos": 35,
+          "current_ada": 35000002.39636,
+          "first_received_time": "2022-01-27 15:40:33",
+          "last_received_time": "2025-04-07 13:11:16",
+          "last_outgoing_time": "2025-03-19 00:10:21",
+          "stake_key_registered": true,
+          "pool_delegation_certs": 1,
+          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
+          "latest_pool_cert_time": "2022-03-21 17:30:06",
+          "latest_pool_active_epoch": 329,
+          "drep_delegation_certs": 1,
+          "current_drep": "drep_always_abstain",
+          "latest_drep_cert_time": "2025-02-09 18:54:09",
+          "rewards_earned_ada": 4080476.399307,
+          "last_reward_spendable_epoch": 641,
+          "withdrawal_count": 307,
+          "rewards_withdrawn_ada": 4070788.346241,
+          "last_withdrawal_time": "2026-06-29 00:24:05",
+          "rewards_unclaimed_ada": 9688.053066
+        }
+      ]
+    },
+    "genesis_control_summary": {
+      "source": "data/small/genesis_control_summary.csv",
+      "row_count": 14,
+      "columns": [
+        {
+          "name": "fe_control_consistency",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "custody_pattern",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_addresses",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "fe_control_consistency": "MEDIUM",
+          "custody_pattern": "CERT_ACTIVE_PRINCIPAL_STATIC",
+          "stake_addresses": 8,
+          "current_ada": 280000000.0
+        },
+        {
+          "fe_control_consistency": "LOW",
+          "custody_pattern": "ACTIVE_MANAGED",
+          "stake_addresses": 8,
+          "current_ada": 239624152.483877
+        },
+        {
+          "fe_control_consistency": "MEDIUM",
+          "custody_pattern": "MIXED",
+          "stake_addresses": 207,
+          "current_ada": 183345300.503344
         }
       ]
     },
@@ -908,7 +1562,7 @@
     },
     "governance_actions_catalog": {
       "source": "data/small/governance_actions_catalog.csv",
-      "row_count": 122,
+      "row_count": 147,
       "columns": [
         {
           "name": "snapshot_utc",
@@ -969,7 +1623,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-06-11 08:49:11-05:00",
+          "snapshot_utc": "2026-07-03 00:56:50-05:00",
           "gov_action_proposal_id": 1,
           "proposal_tx_hash": "15f82a365bdee483a4b03873a40d3829cc88c048ff3703e11bd01dd9e035c916",
           "proposal_index": 0,
@@ -985,7 +1639,7 @@
           "anchor_data_hash_hex": "2f98f57c4149fdfed2b73cbd821226fe417ef5ed49d8f836a37b31edf14dea47"
         },
         {
-          "snapshot_utc": "2026-06-11 08:49:11-05:00",
+          "snapshot_utc": "2026-07-03 00:56:50-05:00",
           "gov_action_proposal_id": 2,
           "proposal_tx_hash": "59fd353253eb177e2104e8f23ea4c63e3d32ef95c7865d03e90d3884424dc1db",
           "proposal_index": 0,
@@ -1001,7 +1655,7 @@
           "anchor_data_hash_hex": "d4efa9e0c3d80f5be35def08551eaf5aef17eae832fdb835e5f4b208d98f3dff"
         },
         {
-          "snapshot_utc": "2026-06-11 08:49:11-05:00",
+          "snapshot_utc": "2026-07-03 00:56:50-05:00",
           "gov_action_proposal_id": 3,
           "proposal_tx_hash": "7fd6429add8f2611ad8d48c0cc49101463093aec285faea402e8cfde78ea58d7",
           "proposal_index": 0,
@@ -2763,43 +3417,43 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:10.967666",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:22.338277",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "age_bucket_order": 1,
           "latest_vote_epoch_bucket": "<=520",
-          "current_delegator_count": 10696,
-          "active_stake_lovelace": 210320191735606,
-          "active_stake_ada": 210320191.735606
+          "current_delegator_count": 10640,
+          "active_stake_lovelace": 176722923236189,
+          "active_stake_ada": 176722923.236189
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:10.967666",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:22.338277",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "age_bucket_order": 2,
           "latest_vote_epoch_bucket": "521-540",
-          "current_delegator_count": 70644,
-          "active_stake_lovelace": 3403057896237328,
-          "active_stake_ada": 3403057896.237328
+          "current_delegator_count": 70440,
+          "active_stake_lovelace": 2870828512970052,
+          "active_stake_ada": 2870828512.970052
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:10.967666",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:22.338277",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "age_bucket_order": 3,
           "latest_vote_epoch_bucket": "541-560",
-          "current_delegator_count": 40252,
-          "active_stake_lovelace": 1275883733321839,
-          "active_stake_ada": 1275883733.321839
+          "current_delegator_count": 40132,
+          "active_stake_lovelace": 927260263146227,
+          "active_stake_ada": 927260263.146227
         }
       ]
     },
@@ -2850,8 +3504,8 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
@@ -2862,8 +3516,8 @@
           "root_overlap_summary": "cf:381 utxos/19131001.952350 ADA; cf+emurgo+fourth_entry_781m:3 utxos/1537588.835990 ADA; cf+iog:10 utxos/46498.076664 ADA; emurgo+fourth_entry_781m:962 utxos/26283240.700071 ADA; emurgo+fourth_entry_781m+iog:37 utxos/1206624.852535 ADA; iog:1589 utxos/666989600.069693 ADA"
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 2,
           "profile_class": "registered",
           "drep_id_bech32": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
@@ -2874,8 +3528,8 @@
           "root_overlap_summary": "cf:67 utxos/1507271.441254 ADA; emurgo+fourth_entry_781m:147 utxos/3052018.242094 ADA; emurgo+fourth_entry_781m+iog:4 utxos/13821.948606 ADA; iog:196 utxos/3757653.723214 ADA"
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 3,
           "profile_class": "registered",
           "drep_id_bech32": "drep1jnmmkfwpta0yuwjchw0gu6csh75vy62088egy9n67d0zc7sn83m",
@@ -2934,8 +3588,8 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
@@ -2946,8 +3600,8 @@
           "current_ada": 20715088.865004
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 2,
           "profile_class": "registered",
           "drep_id_bech32": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
@@ -2958,8 +3612,8 @@
           "current_ada": 1507271.441254
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 3,
           "profile_class": "registered",
           "drep_id_bech32": "drep1jnmmkfwpta0yuwjchw0gu6csh75vy62088egy9n67d0zc7sn83m",
@@ -3038,8 +3692,8 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
@@ -3055,8 +3709,8 @@
           "current_ada_moved_away": 11674066.895627
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 2,
           "profile_class": "registered",
           "drep_id_bech32": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
@@ -3072,8 +3726,8 @@
           "current_ada_moved_away": 37688.604273
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "drep_distribution_epoch": 632,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "drep_distribution_epoch": 640,
           "rank_overall": 3,
           "profile_class": "registered",
           "drep_id_bech32": "drep1jnmmkfwpta0yuwjchw0gu6csh75vy62088egy9n67d0zc7sn83m",
@@ -3173,8 +3827,8 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:18.943340",
-          "profile_query_timestamp_utc": "2026-05-21 20:17:02.929505",
+          "query_timestamp_utc": "2026-07-03 05:48:30.469780",
+          "profile_query_timestamp_utc": "2026-07-03 05:48:09.787139",
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
@@ -3183,7 +3837,7 @@
           "koios_drep_id": null,
           "koios_active": null,
           "koios_expires_epoch_no": null,
-          "dbsync_voting_power_lovelace": 9006786518573400,
+          "dbsync_voting_power_lovelace": 9222311038820501,
           "koios_amount_lovelace": null,
           "amount_matches_dbsync": null,
           "dbsync_voting_anchor_url": null,
@@ -3194,8 +3848,8 @@
           "meta_hash_matches_dbsync": null
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:18.943340",
-          "profile_query_timestamp_utc": "2026-05-21 20:17:02.929505",
+          "query_timestamp_utc": "2026-07-03 05:48:30.469780",
+          "profile_query_timestamp_utc": "2026-07-03 05:48:09.787139",
           "rank_overall": 2,
           "profile_class": "registered",
           "drep_id_bech32": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
@@ -3203,9 +3857,9 @@
           "koios_status": "registered",
           "koios_drep_id": "drep1ygr9tuapcanc3kpeyy4dc3vmrz9cfe5q7v9wj3x9j0ap3tswtre9j",
           "koios_active": true,
-          "koios_expires_epoch_no": 652,
-          "dbsync_voting_power_lovelace": 692941715496004,
-          "koios_amount_lovelace": 692941715496004,
+          "koios_expires_epoch_no": 660,
+          "dbsync_voting_power_lovelace": 595013768459950,
+          "koios_amount_lovelace": 595013768459950,
           "amount_matches_dbsync": true,
           "dbsync_voting_anchor_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/11af02e3b66daa7106941a1b3000d9721862bc3c/YOROI.jsonld",
           "koios_meta_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/11af02e3b66daa7106941a1b3000d9721862bc3c/YOROI.jsonld",
@@ -3215,8 +3869,8 @@
           "meta_hash_matches_dbsync": true
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:18.943340",
-          "profile_query_timestamp_utc": "2026-05-21 20:17:02.929505",
+          "query_timestamp_utc": "2026-07-03 05:48:30.469780",
+          "profile_query_timestamp_utc": "2026-07-03 05:48:09.787139",
           "rank_overall": 3,
           "profile_class": "registered",
           "drep_id_bech32": "drep1jnmmkfwpta0yuwjchw0gu6csh75vy62088egy9n67d0zc7sn83m",
@@ -3224,9 +3878,9 @@
           "koios_status": "registered",
           "koios_drep_id": "drep1y2200we9c904un36tzaearntzzl63snffuul9qsk0te4utqfkke0w",
           "koios_active": true,
-          "koios_expires_epoch_no": 652,
-          "dbsync_voting_power_lovelace": 486215056246760,
-          "koios_amount_lovelace": 486215056246760,
+          "koios_expires_epoch_no": 660,
+          "dbsync_voting_power_lovelace": 432487134870637,
+          "koios_amount_lovelace": 432487134870637,
           "amount_matches_dbsync": true,
           "dbsync_voting_anchor_url": "https://raw.githubusercontent.com/cardanoz/drep/refs/heads/main/YUTA.jsonld",
           "koios_meta_url": "https://raw.githubusercontent.com/cardanoz/drep/refs/heads/main/YUTA.jsonld",
@@ -3300,52 +3954,52 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:14.273179",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:25.757798",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "pool_rank_for_drep": 1,
-          "pool_id_bech32": "pool10d6mmw3mn9ku3r7uqqye672dz3sv76lh5kvh5rdpr9l5ug5yknr",
-          "ticker_name": "KILN4",
-          "pool_name": "kiln",
-          "homepage": "https://kiln.fi",
-          "current_delegator_count": 15,
-          "active_stake_lovelace": 77194869305588,
-          "active_stake_ada": 77194869.305588
-        },
-        {
-          "query_timestamp_utc": "2026-05-21 20:17:14.273179",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
-          "rank_overall": 1,
-          "profile_class": "system",
-          "drep_id_bech32": "drep_always_abstain",
-          "pool_rank_for_drep": 2,
           "pool_id_bech32": "pool1lu2luhmkyayq9njh848kfknn6evwzmn3gzsxar7z3sttg7grxcm",
           "ticker_name": null,
           "pool_name": null,
           "homepage": null,
-          "current_delegator_count": 4425,
-          "active_stake_lovelace": 77149769467481,
-          "active_stake_ada": 77149769.467481
+          "current_delegator_count": 4889,
+          "active_stake_lovelace": 85483724155429,
+          "active_stake_ada": 85483724.155429
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:14.273179",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:25.757798",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
+          "rank_overall": 1,
+          "profile_class": "system",
+          "drep_id_bech32": "drep_always_abstain",
+          "pool_rank_for_drep": 2,
+          "pool_id_bech32": "pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v",
+          "ticker_name": "gjp7a",
+          "pool_name": "Figment 2",
+          "homepage": "https://figment.io",
+          "current_delegator_count": 61,
+          "active_stake_lovelace": 80601924728758,
+          "active_stake_ada": 80601924.728758
+        },
+        {
+          "query_timestamp_utc": "2026-07-03 05:48:25.757798",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "pool_rank_for_drep": 3,
-          "pool_id_bech32": "pool1uy07qyf0gzzua2glqspyvyevwpe8tamajnqj6c7mjzy4v3m4kne",
-          "ticker_name": null,
-          "pool_name": null,
-          "homepage": null,
-          "current_delegator_count": 1,
-          "active_stake_lovelace": 76327691322845,
-          "active_stake_ada": 76327691.322845
+          "pool_id_bech32": "pool197na7w0h8hjc8wdvwys7nsalhtpctefa3m23udeqxpfk6nzq8l9",
+          "ticker_name": "N/A",
+          "pool_name": "n/a",
+          "homepage": "n/a",
+          "current_delegator_count": 2,
+          "active_stake_lovelace": 78402681333754,
+          "active_stake_ada": 78402681.333754
         }
       ]
     },
@@ -3468,29 +4122,29 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "dbsync_tip_utc": "2026-05-21 20:16:53",
-          "dbsync_tip_epoch": 632,
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "dbsync_tip_utc": "2026-07-03 05:47:52",
+          "dbsync_tip_epoch": 640,
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "rank_registered": null,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "drep_hash_hex": null,
           "has_script": false,
-          "voting_power_lovelace": 9006786518573400,
-          "voting_power_ada": 9006786518.5734,
+          "voting_power_lovelace": 9222311038820501,
+          "voting_power_ada": 9222311038.820501,
           "active_until": null,
-          "current_delegator_count": 224878,
-          "historical_delegator_count": 236934,
-          "historical_vote_cert_count": 263859,
-          "latest_retention_ratio": 0.949117,
-          "current_active_stake_credentials": 179196,
-          "current_active_stake_lovelace": 8945555086392734,
-          "current_active_stake_ada": 8945555086.392735,
+          "current_delegator_count": 233449,
+          "historical_delegator_count": 246080,
+          "historical_vote_cert_count": 274052,
+          "latest_retention_ratio": 0.948671,
+          "current_active_stake_credentials": 183383,
+          "current_active_stake_lovelace": 9100145461867563,
+          "current_active_stake_ada": 9100145461.867563,
           "earliest_current_vote_epoch": 507,
-          "latest_current_vote_epoch": 632,
+          "latest_current_vote_epoch": 640,
           "voting_anchor_url": null,
           "voting_anchor_data_hash_hex": null,
           "registration_tx_hash": null,
@@ -3498,29 +4152,29 @@
           "registration_time_utc": null
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "dbsync_tip_utc": "2026-05-21 20:16:53",
-          "dbsync_tip_epoch": 632,
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "dbsync_tip_utc": "2026-07-03 05:47:52",
+          "dbsync_tip_epoch": 640,
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 2,
           "rank_registered": 1,
           "profile_class": "registered",
           "drep_id_bech32": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
           "drep_hash_hex": "0655f3a1c76788d839212adc459b188b84e680f30ae944c593fa18ae",
           "has_script": false,
-          "voting_power_lovelace": 692941715496004,
-          "voting_power_ada": 692941715.496004,
-          "active_until": 649,
-          "current_delegator_count": 25304,
-          "historical_delegator_count": 26245,
-          "historical_vote_cert_count": 28056,
-          "latest_retention_ratio": 0.964146,
-          "current_active_stake_credentials": 19892,
-          "current_active_stake_lovelace": 708642122533421,
-          "current_active_stake_ada": 708642122.533421,
+          "voting_power_lovelace": 595013768459950,
+          "voting_power_ada": 595013768.45995,
+          "active_until": 659,
+          "current_delegator_count": 25625,
+          "historical_delegator_count": 26735,
+          "historical_vote_cert_count": 28615,
+          "latest_retention_ratio": 0.958481,
+          "current_active_stake_credentials": 19441,
+          "current_active_stake_lovelace": 608275298905538,
+          "current_active_stake_ada": 608275298.905538,
           "earliest_current_vote_epoch": 544,
-          "latest_current_vote_epoch": 632,
+          "latest_current_vote_epoch": 640,
           "voting_anchor_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/11af02e3b66daa7106941a1b3000d9721862bc3c/YOROI.jsonld",
           "voting_anchor_data_hash_hex": "b9223775db23f025dcfb767c6e7d6d31b7a042af70785828e3835921fc54c3f0",
           "registration_tx_hash": "92e41c419f4863160a7e369acc68f166cb6056b8a9d937c59223cc6c3fe9e0ea",
@@ -3528,29 +4182,29 @@
           "registration_time_utc": "2025-03-25 09:44:10"
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:02.929505",
-          "dbsync_tip_utc": "2026-05-21 20:16:53",
-          "dbsync_tip_epoch": 632,
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:09.787139",
+          "dbsync_tip_utc": "2026-07-03 05:47:52",
+          "dbsync_tip_epoch": 640,
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 3,
           "rank_registered": 2,
           "profile_class": "registered",
           "drep_id_bech32": "drep1jnmmkfwpta0yuwjchw0gu6csh75vy62088egy9n67d0zc7sn83m",
           "drep_hash_hex": "94f7bb25c15f5e4e3a58bb9e8e6b10bfa8c2694f39f282167af35e2c",
           "has_script": false,
-          "voting_power_lovelace": 486215056246760,
-          "voting_power_ada": 486215056.24676,
-          "active_until": 651,
-          "current_delegator_count": 1665,
-          "historical_delegator_count": 1904,
-          "historical_vote_cert_count": 2041,
-          "latest_retention_ratio": 0.874475,
-          "current_active_stake_credentials": 1471,
-          "current_active_stake_lovelace": 488544292835161,
-          "current_active_stake_ada": 488544292.835161,
+          "voting_power_lovelace": 432487134870637,
+          "voting_power_ada": 432487134.870637,
+          "active_until": 658,
+          "current_delegator_count": 1808,
+          "historical_delegator_count": 2094,
+          "historical_vote_cert_count": 2235,
+          "latest_retention_ratio": 0.863419,
+          "current_active_stake_credentials": 1556,
+          "current_active_stake_lovelace": 435336114312198,
+          "current_active_stake_ada": 435336114.312198,
           "earliest_current_vote_epoch": 508,
-          "latest_current_vote_epoch": 632,
+          "latest_current_vote_epoch": 640,
           "voting_anchor_url": "https://raw.githubusercontent.com/cardanoz/drep/refs/heads/main/YUTA.jsonld",
           "voting_anchor_data_hash_hex": "11d74e121eeab90ae721458160023860f6e243f3bdf53278f86a578b84e824d8",
           "registration_tx_hash": "85e35569d30793e6fc9d55e2237ed290e4797388723d0b0368ef57ac3e530b09",
@@ -3610,43 +4264,43 @@
       ],
       "sample_rows": [
         {
-          "query_timestamp_utc": "2026-05-21 20:17:07.345255",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:18.614465",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "bucket_order": 1,
           "active_stake_bucket": ">=50M",
-          "current_delegator_count": 28,
-          "active_stake_lovelace": 1901530138812947,
-          "active_stake_ada": 1901530138.812947
+          "current_delegator_count": 29,
+          "active_stake_lovelace": 1980138884361982,
+          "active_stake_ada": 1980138884.361982
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:07.345255",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:18.614465",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "bucket_order": 2,
           "active_stake_bucket": "10M-50M",
-          "current_delegator_count": 144,
-          "active_stake_lovelace": 3921085272186404,
-          "active_stake_ada": 3921085272.186404
+          "current_delegator_count": 147,
+          "active_stake_lovelace": 4075525214674874,
+          "active_stake_ada": 4075525214.674874
         },
         {
-          "query_timestamp_utc": "2026-05-21 20:17:07.345255",
-          "drep_distribution_epoch": 632,
-          "epoch_stake_epoch": 633,
+          "query_timestamp_utc": "2026-07-03 05:48:18.614465",
+          "drep_distribution_epoch": 640,
+          "epoch_stake_epoch": 641,
           "rank_overall": 1,
           "profile_class": "system",
           "drep_id_bech32": "drep_always_abstain",
           "bucket_order": 3,
           "active_stake_bucket": "1M-10M",
-          "current_delegator_count": 507,
-          "active_stake_lovelace": 1226736043470252,
-          "active_stake_ada": 1226736043.470252
+          "current_delegator_count": 489,
+          "active_stake_lovelace": 1159420945035749,
+          "active_stake_ada": 1159420945.035749
         }
       ]
     },
@@ -5843,6 +6497,778 @@
           "address": "DdzFFzCqrhsfeFUGoiMC3EBXYhY9ZaG9DxaFfJoR9DpD4R2bYZ4hDTDZUEHfqbyWkdpFS7kgKioAZBjuSb3wM9g5C6uDjT4CQqyrUuUe",
           "stake_address_id": null,
           "stake_address": null
+        }
+      ]
+    },
+    "tracer_address_summary": {
+      "source": "data/small/tracer_address_summary.csv",
+      "row_count": 70,
+      "columns": [
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address_has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "distinct_tracers_ever",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_tracers_now",
+          "type": "BIGINT"
+        },
+        {
+          "name": "output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_seen",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_seen",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "current_assets",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
+          "stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "address_has_script": false,
+          "distinct_tracers_ever": 100,
+          "distinct_tracers_now": 100,
+          "output_rows": 100,
+          "first_seen": "2026-06-24 07:44:06",
+          "last_seen": "2026-06-24 07:44:06",
+          "current_assets": "TRACER05718F936A0FFCC100;TRACER05718F936A0FFCC101;TRACER05718F936A0FFCC102;TRACER05718F936A0FFCC103;TRACER05718F936A0FFCC104;TRACER05718F936A0FFCC105;TRACER05718F936A0FFCC106;TRACER05718F936A0FFCC107;TRACER05718F936A0FFCC108;TRACER05718F936A0FFCC109;TRACER05718F936A0FFCC10A;TRACER05718F936A0FFCC10B;TRACER05718F936A0FFCC10C;TRACER05718F936A0FFCC10D;TRACER05718F936A0FFCC10E;TRACER05718F936A0FFCC10F;TRACER05718F936A0FFCC110;TRACER05718F936A0FFCC111;TRACER05718F936A0FFCC112;TRACER05718F936A0FFCC113;TRACER05718F936A0FFCC114;TRACER05718F936A0FFCC115;TRACER05718F936A0FFCC116;TRACER05718F936A0FFCC117;TRACER05718F936A0FFCC118;TRACER05718F936A0FFCC119;TRACER05718F936A0FFCC11A;TRACER05718F936A0FFCC11B;TRACER05718F936A0FFCC11C;TRACER05718F936A0FFCC11D;TRACER05718F936A0FFCC11E;TRACER05718F936A0FFCC11F;TRACER05718F936A0FFCC120;TRACER05718F936A0FFCC121;TRACER05718F936A0FFCC122;TRACER05718F936A0FFCC123;TRACER05718F936A0FFCC124;TRACER05718F936A0FFCC125;TRACER05718F936A0FFCC126;TRACER05718F936A0FFCC127;TRACER05718F936A0FFCC128;TRACER05718F936A0FFCC129;TRACER05718F936A0FFCC12A;TRACER05718F936A0FFCC12B;TRACER05718F936A0FFCC12C;TRACER05718F936A0FFCC12D;TRACER05718F936A0FFCC12E;TRACER05718F936A0FFCC12F;TRACER05718F936A0FFCC130;TRACER05718F936A0FFCC131;TRACERCFEE989784A584B600;TRACERCFEE989784A584B601;TRACERCFEE989784A584B602;TRACERCFEE989784A584B603;TRACERCFEE989784A584B604;TRACERCFEE989784A584B605;TRACERCFEE989784A584B606;TRACERCFEE989784A584B607;TRACERCFEE989784A584B608;TRACERCFEE989784A584B609;TRACERCFEE989784A584B60A;TRACERCFEE989784A584B60B;TRACERCFEE989784A584B60C;TRACERCFEE989784A584B60D;TRACERCFEE989784A584B60E;TRACERCFEE989784A584B60F;TRACERCFEE989784A584B610;TRACERCFEE989784A584B611;TRACERCFEE989784A584B612;TRACERCFEE989784A584B613;TRACERCFEE989784A584B614;TRACERCFEE989784A584B615;TRACERCFEE989784A584B616;TRACERCFEE989784A584B617;TRACERCFEE989784A584B618;TRACERCFEE989784A584B619;TRACERCFEE989784A584B61A;TRACERCFEE989784A584B61B;TRACERCFEE989784A584B61C;TRACERCFEE989784A584B61D;TRACERCFEE989784A584B61E;TRACERCFEE989784A584B61F;TRACERCFEE989784A584B620;TRACERCFEE989784A584B621;TRACERCFEE989784A584B622;TRACERCFEE989784A584B623;TRACERCFEE989784A584B624;TRACERCFEE989784A584B625;TRACERCFEE989784A584B626;TRACERCFEE989784A584B627;TRACERCFEE989784A584B628;TRACERCFEE989784A584B629;TRACERCFEE989784A584B62A;TRACERCFEE989784A584B62B;TRACERCFEE989784A584B62C;TRACERCFEE989784A584B62D;TRACERCFEE989784A584B62E;TRACERCFEE989784A584B62F;TRACERCFEE989784A584B630;TRACERCFEE989784A584B631"
+        },
+        {
+          "address": "addr1q8d82sgwpxx7fkv0473dlq0jptggye7dmqlwghy9wfph28elsu8nckfycr3jfyppwdfc4p29lymhpkwxhwwlqrqn08ks95djtg",
+          "stake_address": "stake1uylcwreutyjvpceyjqshx5u2s4zljdmsm8rth80spsfhnmgtcyc78",
+          "address_has_script": false,
+          "distinct_tracers_ever": 60,
+          "distinct_tracers_now": 55,
+          "output_rows": 345,
+          "first_seen": "2026-06-16 14:24:17",
+          "last_seen": "2026-06-19 09:49:40",
+          "current_assets": "TRACER5BE015F8D35B1D8D03;TRACER5BE015F8D35B1D8D04;TRACER5BE015F8D35B1D8D05;TRACER5BE015F8D35B1D8D06;TRACER5BE015F8D35B1D8D07;TRACER5BE015F8D35B1D8D08;TRACER5BE015F8D35B1D8D0A;TRACER5BE015F8D35B1D8D0B;TRACER5BE015F8D35B1D8D0C;TRACER5BE015F8D35B1D8D0D;TRACER5BE015F8D35B1D8D0E;TRACER5BE015F8D35B1D8D0F;TRACER5BE015F8D35B1D8D10;TRACER5BE015F8D35B1D8D11;TRACER5BE015F8D35B1D8D12;TRACER5BE015F8D35B1D8D13;TRACER5BE015F8D35B1D8D14;TRACER5BE015F8D35B1D8D15;TRACER5BE015F8D35B1D8D16;TRACER5BE015F8D35B1D8D17;TRACER5BE015F8D35B1D8D18;TRACER5BE015F8D35B1D8D19;TRACER5BE015F8D35B1D8D1A;TRACER5BE015F8D35B1D8D1B;TRACER5BE015F8D35B1D8D1C;TRACER5BE015F8D35B1D8D1D;TRACER5BE015F8D35B1D8D1E;TRACER5BE015F8D35B1D8D1F;TRACER5BE015F8D35B1D8D20;TRACER5BE015F8D35B1D8D21;TRACER5BE015F8D35B1D8D22;TRACER5BE015F8D35B1D8D23;TRACER5BE015F8D35B1D8D24;TRACER5BE015F8D35B1D8D25;TRACER5BE015F8D35B1D8D26;TRACER5BE015F8D35B1D8D27;TRACER5BE015F8D35B1D8D28;TRACER5BE015F8D35B1D8D29;TRACER5BE015F8D35B1D8D2A;TRACER5BE015F8D35B1D8D2B;TRACER5BE015F8D35B1D8D2C;TRACER5BE015F8D35B1D8D2D;TRACER5BE015F8D35B1D8D2E;TRACER5BE015F8D35B1D8D2F;TRACER5BE015F8D35B1D8D30;TRACER5BE015F8D35B1D8D31;TRACERAF2E0C13BEDC990700;TRACERAF2E0C13BEDC990701;TRACERAF2E0C13BEDC990702;TRACERAF2E0C13BEDC990703;TRACERAF2E0C13BEDC990704;TRACERAF2E0C13BEDC990705;TRACERAF2E0C13BEDC990706;TRACERAF2E0C13BEDC990707;TRACERAF2E0C13BEDC990708"
+        },
+        {
+          "address": "addr1qy0zntmp02mfp0ps3jkp92qkvljl34xht8a3g7w83tjztmlvmg5yqsh72qmmhqrm9u3dufvrknl55a0ugmtrrc9hpx2s6fag3u",
+          "stake_address": "stake1u8kd52zqgtl9qdamspaj7gk7ykpmfl62wh7yd433uzmsn9gatur26",
+          "address_has_script": false,
+          "distinct_tracers_ever": 50,
+          "distinct_tracers_now": 49,
+          "output_rows": 99,
+          "first_seen": "2026-06-16 14:24:17",
+          "last_seen": "2026-06-24 05:28:04",
+          "current_assets": "TRACER6985F8D915C2C77300;TRACER6985F8D915C2C77301;TRACER6985F8D915C2C77302;TRACER6985F8D915C2C77303;TRACER6985F8D915C2C77305;TRACER6985F8D915C2C77306;TRACER6985F8D915C2C77307;TRACER6985F8D915C2C77308;TRACER6985F8D915C2C77309;TRACER6985F8D915C2C7730A;TRACER6985F8D915C2C7730B;TRACER6985F8D915C2C7730C;TRACER6985F8D915C2C7730D;TRACER6985F8D915C2C7730E;TRACER6985F8D915C2C7730F;TRACER6985F8D915C2C77310;TRACER6985F8D915C2C77311;TRACER6985F8D915C2C77312;TRACER6985F8D915C2C77313;TRACER6985F8D915C2C77314;TRACER6985F8D915C2C77315;TRACER6985F8D915C2C77316;TRACER6985F8D915C2C77317;TRACER6985F8D915C2C77318;TRACER6985F8D915C2C77319;TRACER6985F8D915C2C7731A;TRACER6985F8D915C2C7731B;TRACER6985F8D915C2C7731C;TRACER6985F8D915C2C7731D;TRACER6985F8D915C2C7731E;TRACER6985F8D915C2C7731F;TRACER6985F8D915C2C77320;TRACER6985F8D915C2C77321;TRACER6985F8D915C2C77322;TRACER6985F8D915C2C77323;TRACER6985F8D915C2C77324;TRACER6985F8D915C2C77325;TRACER6985F8D915C2C77326;TRACER6985F8D915C2C77327;TRACER6985F8D915C2C77328;TRACER6985F8D915C2C77329;TRACER6985F8D915C2C7732A;TRACER6985F8D915C2C7732B;TRACER6985F8D915C2C7732C;TRACER6985F8D915C2C7732D;TRACER6985F8D915C2C7732E;TRACER6985F8D915C2C7732F;TRACER6985F8D915C2C77330;TRACER6985F8D915C2C77331"
+        }
+      ]
+    },
+    "tracer_all_outputs": {
+      "source": "data/small/tracer_all_outputs.csv",
+      "row_count": 2829,
+      "columns": [
+        {
+          "name": "policy_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name_hex",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "quantity",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tx_out_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address_has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "is_unspent",
+          "type": "BOOLEAN"
+        }
+      ],
+      "sample_rows": [
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACERAF2E0C13BEDC990700",
+          "asset_name_hex": 5.452414345524146e+47,
+          "fingerprint": "asset1pu7enpn0qcl4mharmvldlvkan07cuaqetr3f7r",
+          "quantity": 1,
+          "tx_out_index": 1,
+          "address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "address_has_script": false,
+          "stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "tx_hash": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02",
+          "is_unspent": false
+        },
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACERAF2E0C13BEDC990701",
+          "asset_name_hex": 5.452414345524146e+47,
+          "fingerprint": "asset1q249gcd67309sqdgftflnljzcgg9ntpnkacpvv",
+          "quantity": 1,
+          "tx_out_index": 1,
+          "address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "address_has_script": false,
+          "stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "tx_hash": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02",
+          "is_unspent": false
+        },
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACERAF2E0C13BEDC990702",
+          "asset_name_hex": 5.452414345524146e+47,
+          "fingerprint": "asset14dctfxp7c8tjh8rkj4w5vv3m27wufy9umdg7jr",
+          "quantity": 1,
+          "tx_out_index": 1,
+          "address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "address_has_script": false,
+          "stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "tx_hash": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02",
+          "is_unspent": false
+        }
+      ]
+    },
+    "tracer_asset_current_location": {
+      "source": "data/small/tracer_asset_current_location.csv",
+      "row_count": 505,
+      "columns": [
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name_hex",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "minted_at",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "addresses_touched",
+          "type": "BIGINT"
+        },
+        {
+          "name": "current_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "current_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "current_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "at_current_location_since",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "asset_name": "TRACER05718F936A0FFCC100",
+          "asset_name_hex": 5.4524143455230356e+47,
+          "fingerprint": "asset1526jycwk7tytgxh9vr42xdtq5cfyevvk5nnxwh",
+          "minted_at": "2026-06-16 14:12:01",
+          "output_rows": 3,
+          "addresses_touched": 3,
+          "current_address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
+          "current_stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "current_tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
+          "at_current_location_since": "2026-06-24 07:44:06"
+        },
+        {
+          "asset_name": "TRACER05718F936A0FFCC101",
+          "asset_name_hex": 5.4524143455230356e+47,
+          "fingerprint": "asset1j47r0yhmjx0en00wddclr07uw2gzntp8w0s8qy",
+          "minted_at": "2026-06-16 14:12:01",
+          "output_rows": 3,
+          "addresses_touched": 3,
+          "current_address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
+          "current_stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "current_tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
+          "at_current_location_since": "2026-06-24 07:44:06"
+        },
+        {
+          "asset_name": "TRACER05718F936A0FFCC102",
+          "asset_name_hex": 5.4524143455230356e+47,
+          "fingerprint": "asset1wn9z98epr2rkkt0x9ac96vstgjym2y2x6fqyq8",
+          "minted_at": "2026-06-16 14:12:01",
+          "output_rows": 3,
+          "addresses_touched": 3,
+          "current_address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
+          "current_stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "current_tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
+          "at_current_location_since": "2026-06-24 07:44:06"
+        }
+      ]
+    },
+    "tracer_current_utxos": {
+      "source": "data/small/tracer_current_utxos.csv",
+      "row_count": 505,
+      "columns": [
+        {
+          "name": "policy_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name_hex",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "quantity",
+          "type": "BIGINT"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address_has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_out_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACER8799DBE9E380666702",
+          "asset_name_hex": 5.452414345523837e+47,
+          "fingerprint": "asset1frxwkah6m5ngmk5j92g5yhkq07tqfnheax8d2s",
+          "quantity": 1,
+          "address": "addr1qx7h6lmp3824q2ylny6ygxly2gdzpj96vsz5n33sx2lh0kwargd5j2sfcqlrpj8dv5uc2fhw953kk6k809luvxpmpx7q7lrl76",
+          "address_has_script": false,
+          "stake_address": "stake1u8w35x6f9gyuq03serkk2wv9ymhz6gmtdtrhjl7xrqasn0q2wn92q",
+          "tx_hash": "04526e3bf2e2bf80c523b02e26545c775250389c35dff9e48c046c0f8f94986b",
+          "tx_out_index": 1,
+          "block_no": 13627507,
+          "block_time": "2026-07-02 23:09:47"
+        },
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACER8799DBE9E380666703",
+          "asset_name_hex": 5.452414345523837e+47,
+          "fingerprint": "asset1ktc5mvessr46a9tmkc8qhdkq3e95nnwdjt73f6",
+          "quantity": 1,
+          "address": "addr1qx7h6lmp3824q2ylny6ygxly2gdzpj96vsz5n33sx2lh0kwargd5j2sfcqlrpj8dv5uc2fhw953kk6k809luvxpmpx7q7lrl76",
+          "address_has_script": false,
+          "stake_address": "stake1u8w35x6f9gyuq03serkk2wv9ymhz6gmtdtrhjl7xrqasn0q2wn92q",
+          "tx_hash": "04526e3bf2e2bf80c523b02e26545c775250389c35dff9e48c046c0f8f94986b",
+          "tx_out_index": 1,
+          "block_no": 13627507,
+          "block_time": "2026-07-02 23:09:47"
+        },
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACER8799DBE9E380666704",
+          "asset_name_hex": 5.452414345523837e+47,
+          "fingerprint": "asset1z9m9e62277yztup9zxrmel0hdpzpkxdxglu49q",
+          "quantity": 1,
+          "address": "addr1qx7h6lmp3824q2ylny6ygxly2gdzpj96vsz5n33sx2lh0kwargd5j2sfcqlrpj8dv5uc2fhw953kk6k809luvxpmpx7q7lrl76",
+          "address_has_script": false,
+          "stake_address": "stake1u8w35x6f9gyuq03serkk2wv9ymhz6gmtdtrhjl7xrqasn0q2wn92q",
+          "tx_hash": "04526e3bf2e2bf80c523b02e26545c775250389c35dff9e48c046c0f8f94986b",
+          "tx_out_index": 1,
+          "block_no": 13627507,
+          "block_time": "2026-07-02 23:09:47"
+        }
+      ]
+    },
+    "tracer_deposit_claims": {
+      "source": "data/small/tracer_deposit_claims.csv",
+      "row_count": 66,
+      "columns": [
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "metadata_key",
+          "type": "BIGINT"
+        },
+        {
+          "name": "metadata_json",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tracer_assets_in_tx",
+          "type": "BIGINT"
+        },
+        {
+          "name": "assets",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tracer_output_addresses",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "tx_hash": "c1645dd7d6743e6ccedf5f2922fbdb077a34b4080a37e3a8ede55f1b6ecd9f08",
+          "block_no": 13557808,
+          "block_time": "2026-06-16 14:33:17",
+          "metadata_key": 1985,
+          "metadata_json": "{\"exchange\": \"Kraken\"}",
+          "tracer_assets_in_tx": 10,
+          "assets": "TRACER69D9FED14614BFF400;TRACER69D9FED14614BFF401;TRACER69D9FED14614BFF402;TRACER69D9FED14614BFF403;TRACER69D9FED14614BFF404;TRACER69D9FED14614BFF405;TRACER69D9FED14614BFF406;TRACER69D9FED14614BFF407;TRACER69D9FED14614BFF408;TRACER69D9FED14614BFF409",
+          "tracer_output_addresses": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu;addr1qywjjv3r2x225r4za8nkyv7q9aqdh7nzaqlfsf5v0nm7suhrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0sz3sw9j"
+        },
+        {
+          "tx_hash": "0383fd99e341126ea7255b98703cf7e052e1514fb98282d7e107d03fd3298fdb",
+          "block_no": 13558022,
+          "block_time": "2026-06-16 15:39:48",
+          "metadata_key": 674,
+          "metadata_json": "{\"msg\": [\"Deposited to:\", \"Kraken\", \"The Red (or Blue) Pill Study\", \"tracer.adagenesistransparency.com\"]}",
+          "tracer_assets_in_tx": 9,
+          "assets": "TRACER69D9FED14614BFF401;TRACER69D9FED14614BFF402;TRACER69D9FED14614BFF403;TRACER69D9FED14614BFF404;TRACER69D9FED14614BFF405;TRACER69D9FED14614BFF406;TRACER69D9FED14614BFF407;TRACER69D9FED14614BFF408;TRACER69D9FED14614BFF409",
+          "tracer_output_addresses": "addr1qxg4rsphy0463zzdmcgujvp6fhr90xg8yuppyl2mjrzgnahrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0sj9kcyg;addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu"
+        },
+        {
+          "tx_hash": "b3d75de37024fa2da2db5d1699e88355b0c8fe7d400995960b7c9878f15d7cfb",
+          "block_no": 13558232,
+          "block_time": "2026-06-16 16:55:17",
+          "metadata_key": 674,
+          "metadata_json": "{\"msg\": [\"Deposited to:\", \"Kraken\", \"The Red (or Blue) Pill Study\", \"tracer.adagenesistransparency.com\"]}",
+          "tracer_assets_in_tx": 10,
+          "assets": "TRACER2AFBC806FF57F39C00;TRACER2AFBC806FF57F39C01;TRACER2AFBC806FF57F39C02;TRACER2AFBC806FF57F39C03;TRACER2AFBC806FF57F39C04;TRACER2AFBC806FF57F39C05;TRACER2AFBC806FF57F39C06;TRACER2AFBC806FF57F39C07;TRACER2AFBC806FF57F39C08;TRACER2AFBC806FF57F39C09",
+          "tracer_output_addresses": "addr1q9pxl0jev522urjn7fr2cn4fgkszpsn7un2xe9cxaqh3n8lrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s00347d;addr1qxaekqzrkulp4x7nw9yyllevknt87rjatrjx66z3ra9qt7wm3sfr0g4nq0w935yavp64879c0vvxxmfe2vkxj6rgy2dq03ehn0"
+        }
+      ]
+    },
+    "tracer_export_tip_receipt": {
+      "source": "data/small/tracer_export_tip_receipt.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "tip_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tip_block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "policy_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "exported_at_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "tip_block_no": 13628651,
+          "tip_block_time": "2026-07-03 05:25:04",
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "exported_at_utc": "2026-07-03 05:25:11.615547"
+        }
+      ]
+    },
+    "tracer_mint_events": {
+      "source": "data/small/tracer_mint_events.csv",
+      "row_count": 505,
+      "columns": [
+        {
+          "name": "policy_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name_hex",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "quantity",
+          "type": "BIGINT"
+        },
+        {
+          "name": "mint_tx",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACERAF2E0C13BEDC990700",
+          "asset_name_hex": 5.452414345524146e+47,
+          "fingerprint": "asset1pu7enpn0qcl4mharmvldlvkan07cuaqetr3f7r",
+          "quantity": 1,
+          "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02"
+        },
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACERAF2E0C13BEDC990701",
+          "asset_name_hex": 5.452414345524146e+47,
+          "fingerprint": "asset1q249gcd67309sqdgftflnljzcgg9ntpnkacpvv",
+          "quantity": 1,
+          "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02"
+        },
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "asset_name": "TRACERAF2E0C13BEDC990702",
+          "asset_name_hex": 5.452414345524146e+47,
+          "fingerprint": "asset14dctfxp7c8tjh8rkj4w5vv3m27wufy9umdg7jr",
+          "quantity": 1,
+          "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02"
+        }
+      ]
+    },
+    "tracer_mint_funding_inputs": {
+      "source": "data/small/tracer_mint_funding_inputs.csv",
+      "row_count": 17,
+      "columns": [
+        {
+          "name": "mint_tx",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "funding_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "funding_stake_address",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
+          "block_no": 13557717,
+          "block_time": "2026-06-16 14:07:02",
+          "funding_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "funding_stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7"
+        },
+        {
+          "mint_tx": "99eb4afb5f638c895dbf4ffc044c88c79f103e8aa068ac85ee3305953dc0b59c",
+          "block_no": 13557721,
+          "block_time": "2026-06-16 14:08:32",
+          "funding_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "funding_stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7"
+        },
+        {
+          "mint_tx": "0758d1926927a0e72208bc7100b483bb2c82e3d190822896f4b48e4a9cd86d55",
+          "block_no": 13557731,
+          "block_time": "2026-06-16 14:11:33",
+          "funding_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "funding_stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7"
+        }
+      ]
+    },
+    "tracer_movement_timeline": {
+      "source": "data/small/tracer_movement_timeline.csv",
+      "row_count": 16,
+      "columns": [
+        {
+          "name": "day",
+          "type": "DATE"
+        },
+        {
+          "name": "output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_assets",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_addresses",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_txs",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "day": "2026-06-16",
+          "output_rows": 846,
+          "distinct_assets": 360,
+          "distinct_addresses": 18,
+          "distinct_txs": 22
+        },
+        {
+          "day": "2026-06-17",
+          "output_rows": 695,
+          "distinct_assets": 176,
+          "distinct_addresses": 27,
+          "distinct_txs": 30
+        },
+        {
+          "day": "2026-06-18",
+          "output_rows": 213,
+          "distinct_assets": 56,
+          "distinct_addresses": 16,
+          "distinct_txs": 21
+        }
+      ]
+    },
+    "tracer_stake_summary": {
+      "source": "data/small/tracer_stake_summary.csv",
+      "row_count": 20,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "payment_addresses",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_tracers_ever",
+          "type": "BIGINT"
+        },
+        {
+          "name": "distinct_tracers_now",
+          "type": "BIGINT"
+        },
+        {
+          "name": "output_rows",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_seen",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_seen",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "payment_addresses": 1,
+          "distinct_tracers_ever": 100,
+          "distinct_tracers_now": 100,
+          "output_rows": 100,
+          "first_seen": "2026-06-24 07:44:06",
+          "last_seen": "2026-06-24 07:44:06"
+        },
+        {
+          "stake_address": "stake1uylcwreutyjvpceyjqshx5u2s4zljdmsm8rth80spsfhnmgtcyc78",
+          "payment_addresses": 1,
+          "distinct_tracers_ever": 60,
+          "distinct_tracers_now": 55,
+          "output_rows": 345,
+          "first_seen": "2026-06-16 14:24:17",
+          "last_seen": "2026-06-19 09:49:40"
+        },
+        {
+          "stake_address": "stake1uya07qu0afnrec75n4mj55au9ysp9u24yy5wrz0qca0pnps3u72zg",
+          "payment_addresses": 1,
+          "distinct_tracers_ever": 50,
+          "distinct_tracers_now": 49,
+          "output_rows": 99,
+          "first_seen": "2026-06-16 14:24:17",
+          "last_seen": "2026-06-17 19:57:11"
+        }
+      ]
+    },
+    "tracer_transfer_edges": {
+      "source": "data/small/tracer_transfer_edges.csv",
+      "row_count": 2324,
+      "columns": [
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "from_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "from_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "to_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "to_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "spend_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "asset_name": "TRACER05718F936A0FFCC100",
+          "fingerprint": "asset1526jycwk7tytgxh9vr42xdtq5cfyevvk5nnxwh",
+          "from_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "from_stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "to_address": "addr1q86l8xrtca38psy3wseqrdd73cja2n9f86rjnrgfd67gx66xcn477nfjjwn7ql9en0alqsrc58w4rzw0l9tmxc2ka33s4cdnyv",
+          "to_stake_address": "stake1u9rvf6l0f5ef8flq0jueh7lsgpu2rh23388lj4anv9twccca2h37j",
+          "spend_tx_hash": "c4a2fdf00e093c0a7a212bd7a5854eb8968f75e88fd83cd4b85b6ae518719e30",
+          "block_no": 13557784,
+          "block_time": "2026-06-16 14:24:17"
+        },
+        {
+          "asset_name": "TRACER05718F936A0FFCC101",
+          "fingerprint": "asset1j47r0yhmjx0en00wddclr07uw2gzntp8w0s8qy",
+          "from_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "from_stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "to_address": "addr1q86l8xrtca38psy3wseqrdd73cja2n9f86rjnrgfd67gx66xcn477nfjjwn7ql9en0alqsrc58w4rzw0l9tmxc2ka33s4cdnyv",
+          "to_stake_address": "stake1u9rvf6l0f5ef8flq0jueh7lsgpu2rh23388lj4anv9twccca2h37j",
+          "spend_tx_hash": "c4a2fdf00e093c0a7a212bd7a5854eb8968f75e88fd83cd4b85b6ae518719e30",
+          "block_no": 13557784,
+          "block_time": "2026-06-16 14:24:17"
+        },
+        {
+          "asset_name": "TRACER05718F936A0FFCC102",
+          "fingerprint": "asset1wn9z98epr2rkkt0x9ac96vstgjym2y2x6fqyq8",
+          "from_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "from_stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "to_address": "addr1q86l8xrtca38psy3wseqrdd73cja2n9f86rjnrgfd67gx66xcn477nfjjwn7ql9en0alqsrc58w4rzw0l9tmxc2ka33s4cdnyv",
+          "to_stake_address": "stake1u9rvf6l0f5ef8flq0jueh7lsgpu2rh23388lj4anv9twccca2h37j",
+          "spend_tx_hash": "c4a2fdf00e093c0a7a212bd7a5854eb8968f75e88fd83cd4b85b6ae518719e30",
+          "block_no": 13557784,
+          "block_time": "2026-06-16 14:24:17"
         }
       ]
     },

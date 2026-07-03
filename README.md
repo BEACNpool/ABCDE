@@ -77,7 +77,7 @@ Use prompts/temporal_anomaly_review.md and separate hop depth from epoch/block t
 
 Built by `scripts/build_genesis_db.py` from `anchors.yaml` (→ the `seeds` table)
 and every `data/small/*.csv` (one table per file). The current committed cut is
-39.76 MiB and holds exactly 77 tables covering:
+46.01 MiB and holds exactly 94 tables covering:
 
 - the genesis **seed registry** (named founders + the fourth entry) and db-sync
   verification receipts
@@ -103,6 +103,18 @@ and every `data/small/*.csv` (one table per file). The current committed cut is
 - **Genesis Trail follow-up receipts**: a recurring 2021 recipient series,
   payer credentials, consolidation-hub flows, same-hub stream bridges, and
   nine deterministic payment-to-genesis paths
+- **Genesis control indicators**: live-tip custody signals for ~1,000
+  genesis-descended stake addresses (dormancy, unclaimed rewards, certificate
+  liveness, batch-operation cohorts) with a graded `fe_control_consistency`
+  classification — see
+  [`docs/24_CONTROL_INDICATORS_AND_TRACERS.md`](docs/24_CONTROL_INDICATORS_AND_TRACERS.md)
+- **Exchange tracers** (`tracer_*`): the community's 505-NFT exchange-tracer
+  campaign — current locations, transfer edges, and on-chain
+  "Deposited to: \<Exchange\>" claims naming six exchanges (full receipts in
+  [`tracers/`](tracers/README.md))
+- a **freshness catalog** (`data_freshness_catalog`) quantifying every table's
+  row count, hash, age, and snapshot sensitivity, so answers can state exactly
+  how fresh their evidence is
 
 See [`reports/iogp_voucher_followup.md`](reports/iogp_voucher_followup.md) and
 [`findings/F09_iogp_voucher_followup.md`](findings/F09_iogp_voucher_followup.md).

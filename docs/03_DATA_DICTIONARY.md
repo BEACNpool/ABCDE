@@ -4,6 +4,11 @@ This describes the current v2 seed-registry cut in `data/abcde_genesis_seed_regi
 
 The full Genesis subgraph is not published yet. This first cut proves the new pipeline shape with small, inspectable artifacts.
 
+Tables added after this cut (governance surfaces, control indicators,
+`tracer_*`, `data_freshness_catalog`) are documented column-by-column in the
+generated [`SCHEMA.md`](SCHEMA.md); their semantics and grading are in
+[`24_CONTROL_INDICATORS_AND_TRACERS.md`](24_CONTROL_INDICATORS_AND_TRACERS.md).
+
 ## `seed_registry`
 
 Source: `anchors.yaml` → `data/small/seed_registry.csv`

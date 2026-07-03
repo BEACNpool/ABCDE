@@ -1,0 +1,25 @@
+{
+  "generated_utc": "2026-07-03T05:55:47.470195+00:00",
+  "db_tip_block": "13628717",
+  "db_tip_time": "2026-07-03 05:50:34",
+  "thresholds": {
+    "holding_min_ada": 1000.0,
+    "drained_max_ada": 1.0,
+    "dormant_years": 2.0,
+    "recent_cert_years": 2.0,
+    "recent_spend_days": 180,
+    "passivity_min_rewards_ada": 1000.0,
+    "batch_min_members": 3
+  },
+  "inputs": {
+    "genesis_control_indicators_raw.csv": "c52e992a56c8783145dd3649ddbf0fcf7dd197eb880ad4b0a03bd665a5ee0a71",
+    "genesis_control_cert_cohorts.csv": "475867250fe915506bc5ca29fbf9c4c635498c7df19d2ca52426e93ef21d1f18",
+    "governance_genesis_behavior_clusters.csv": "0638de852348e6c6e956b77675ae22d8136a57b967faf8a61fae58bd28d20f54",
+    "db_tip_receipt.csv": "770ca84a186b3391bb41e0098114099d066f32375874a621a9f844adff3a3ee8"
+  },
+  "outputs": {
+    "genesis_control_indicators.csv": "f4ce74c44bb5f3e6370fdc90cc9668d67067c70011e0f1f667fbb5b199b2c5e4",
+    "genesis_control_summary.csv": "b000a89d7ebb3f62778ab2c92826145bcb00e1a208804b52608ebc456474ef02"
+  },
+  "grading_note": "Indicator columns are FACT at the recorded tip; fe_control_consistency is a WORKING_HYPOTHESIS classification of custody-pattern consistency, not an ownership or identity claim."
+}

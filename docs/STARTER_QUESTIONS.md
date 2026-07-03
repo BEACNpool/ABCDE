@@ -24,6 +24,23 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 - What are the top stake holders in the IOG depth-14 current bag, and how are they classified?
 - Is there a coordinated-abstain cluster in the IOG current bag around epoch 329?
 
+## Control indicators and custody patterns
+
+- Which genesis-descended stake addresses score HIGH on `fe_control_consistency`, and which signals drive each score?
+- How much genesis-descended ADA sits with stake keys whose rewards have never been withdrawn?
+- Which certificate transactions certified 3+ genesis-descended stake keys at once (`genesis_control_cert_cohorts`), and what grade of linkage is that?
+- Which stake keys show recent certificate activity while their principal has not moved in 2+ years?
+
+## Exchange tracers
+
+- Which exchanges are named in the on-chain tracer deposit claims, and how many transactions name each?
+- Which addresses received the most tracer NFTs and swept them onward (`tracer_address_summary`, `tracer_transfer_edges`)?
+- Where do the 505 tracer NFTs currently sit, and which stake keys consolidate the most of them?
+
+## Freshness and accuracy
+
+- How fresh is each table I am about to cite (`data_freshness_catalog`, `db_tip_receipt`), and which of them are snapshot-sensitive?
+
 ## IOGP and voucher-address follow-up
 
 - Was the IOGP pool's registered pledge 64M ADA, or was that its reward credential's active stake?

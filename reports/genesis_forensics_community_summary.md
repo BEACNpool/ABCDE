@@ -130,7 +130,7 @@ This is **not live pool stake**. It joins preserved trace current-unspent receip
 | iog | drep1navsrqral9w6kjy8v9kl0vpmyhzhuytaa65rmdcvnu2eg9jac55 | https://raw.githubusercontent.com/ClearContracts/drep-registration/refs/heads/main/Clarity_Cofounder_dRep.jsonld | 11951110.635866 |
 | cf | drep13d6sxkyz6st9h65qqrzd8ukpywhr8swe9f6357qntgjqye0gttd | https://raw.githubusercontent.com/Tastenkunst/eternl-drep/main/240909-edc-drep-mainnet.jsonld | 10133786.343411 |
 | cf | drep1kyppjlhz4lawh4g0ewx2d8a5l20t4yclfnppnuvdkmt7vccg836 | https://raw.githubusercontent.com/SebastienGllmt/drep/main/drep-mainnet.jsonld | 9983673.354278 |
-| cf | drep1ysy0kzhamk2cvfzrql50unfj9jkk2zffxtaae5zmc39cs3uec6j | https://raw.githubusercontent.com/NTSYSS/NTSYSS/main/NTSYSS.jsonld | 7227053.473055 |
+| cf | drep1ysy0kzhamk2cvfzrql50unfj9jkk2zffxtaae5zmc39cs3uec6j |  | 7227053.473055 |
 | emurgo | drep1hvlx2cdu7ql8238dwhrjrncm43q3sl5hlmcmp24p0rcnzcwzcyd | https://raw.githubusercontent.com/trjones8918/dRep/refs/heads/main/Ryan%20Jones_Maestroman.jsonld | 6743389.271705 |
 | fourth_entry_781m | drep1hvlx2cdu7ql8238dwhrjrncm43q3sl5hlmcmp24p0rcnzcwzcyd | https://raw.githubusercontent.com/trjones8918/dRep/refs/heads/main/Ryan%20Jones_Maestroman.jsonld | 6743389.271705 |
 | iog | drep13d6sxkyz6st9h65qqrzd8ukpywhr8swe9f6357qntgjqye0gttd | https://raw.githubusercontent.com/Tastenkunst/eternl-drep/main/240909-edc-drep-mainnet.jsonld | 6334304.021756 |
