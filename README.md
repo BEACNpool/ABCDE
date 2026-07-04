@@ -193,17 +193,13 @@ ADA — and the full table ships as a release-tier artifact:
 python scripts/fetch_db.py             # pull full cuts from the latest GitHub Release (if published)
 ```
 
-The **full NIGHT spend-flow graph** (1.36M nodes, ~630 MB) is hosted as split
-Parquet on a dedicated `night-full-data` branch and fetched on demand:
+The **full NIGHT spend-flow graph** (1.36M nodes, ~630 MB) is hosted in-repo on
+a **custom git ref** (`refs/night-full/data`), so a normal `git clone` never
+downloads it — clones stay lean — yet anyone can fetch it on demand:
 
 ```bash
-python scripts/fetch_night_full.py     # shallow single-branch download + checksum verify
+python scripts/fetch_night_full.py     # git-fetch the custom ref + checksum verify
 ```
-
-> Clone-size note: because that graph lives on a branch, a **default
-> `git clone` also downloads it** (~630 MB). For a lean clone of just the
-> compact dataset, use `git clone --single-branch --branch main <url>`; then
-> pull the graph with the fetch script only if you want it.
 
 See [`docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`](docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md)
 for the compact / release / warehouse tiers and how they differ.

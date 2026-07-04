@@ -33,11 +33,12 @@ Supply conserves exactly — 24B minted → 24B at 167,728 current leaf UTxOs �
 | `night_current_leaves_top` | the top 10,000 current-leaf UTxOs (queryable holder cut) |
 
 **2. Release-tier full graph** (the complete node + edge lists — 1.36M UTxO
-nodes, 718K txs, ~2.55M edges). Because it is far too large for the main tree,
-it is published as **Parquet+ZSTD split into <45 MB parts on a dedicated
-`night-full-data` branch** (632 MB total, within GitHub's per-file and repo
-guidelines). Fetch and verify it — a shallow, single-branch download, so you
-pull only the graph:
+nodes, 718K txs, ~2.55M edges, 632 MB as Parquet+ZSTD, 19 parts each <45 MB).
+
+It is hosted **in this repository on a custom git ref, `refs/night-full/data`**
+— not a branch and not a tag. That matters: a normal `git clone` only fetches
+branches and tags, so **the graph is never downloaded by a clone** (clones stay
+~16 MB), yet anyone can pull it on demand over plain HTTPS, no auth required:
 
 ```bash
 python scripts/fetch_night_full.py     # -> data/release/night_full_bundle/
@@ -50,14 +51,10 @@ Then query the parts directly with DuckDB:
 SELECT count(*) FROM parquet_scan('data/release/night_full_bundle/utxo_nodes/*.parquet');
 ```
 
-The bundle is rebuilt from the raw export by `scripts/build_night_release_bundle.py`.
-
-> Clone-size note: a default `git clone` fetches every branch, so it *will*
-> pull this graph (~630 MB) along with the compact tree. For a lean clone that
-> skips it, use `git clone --single-branch --branch main <url>`; the fetch
-> script above then pulls the graph on demand. (If this repo instead publishes
-> the graph as a GitHub Release asset in future, it will not affect clones at
-> all — that is the tidier long-term home.)
+Under the hood the fetch is just:
+`git fetch --depth 1 <repo> refs/night-full/data`. The bundle is rebuilt from
+the raw export by `scripts/build_night_release_bundle.py` and re-published with
+`git push origin <commit>:refs/night-full/data`.
 
 ## Reproducing
 

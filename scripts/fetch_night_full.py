@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Fetch the full NIGHT spend-flow graph (release-tier) and verify it.
 
-The full graph is too large to live in the main tree, so it is hosted on a
-dedicated, single-purpose branch (`night-full-data`) as split Parquet+ZSTD
-parts. This does a shallow, single-branch fetch of just that branch — so you
-download only the ~630 MB graph, not extra history — into
-data/release/night_full_bundle/, then verifies every part's SHA-256 against the
+The full graph is ~630 MB — too large to belong in every clone. It is hosted on
+a **custom git ref** (`refs/night-full/data`) rather than a branch, so a normal
+`git clone` never downloads it, yet anyone can pull it on demand over plain
+HTTPS (no auth, no PAT). This fetches just that ref's Parquet parts into
+data/release/night_full_bundle/ and verifies every part's SHA-256 against the
 committed manifest.
 
 Usage:
@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "data/release/night_full_bundle"
 MANIFEST = ROOT / "data/manifests/night-full-bundle-manifest.json"
-BRANCH = "night-full-data"
+REF = "refs/night-full/data"
 DEFAULT_REMOTE = "https://github.com/BEACNpool/ABCDE.git"
 
 
@@ -39,6 +39,10 @@ def sha256(p: Path) -> str:
         for c in iter(lambda: f.read(1 << 20), b""):
             h.update(c)
     return h.hexdigest()
+
+
+def git(*args: str) -> None:
+    subprocess.run(["git", *args], check=True)
 
 
 def main() -> None:
@@ -51,9 +55,11 @@ def main() -> None:
     manifest = json.loads(MANIFEST.read_text())
 
     tmp = Path(tempfile.mkdtemp(prefix="night-full-"))
-    print(f"shallow-fetching branch {BRANCH} (~{manifest.get('total_mb','?')} MB)…")
-    subprocess.run(["git", "clone", "--depth", "1", "--single-branch",
-                    "--branch", BRANCH, args.remote, str(tmp)], check=True)
+    print(f"fetching {REF} (~{manifest.get('total_mb','?')} MB) from {args.remote} …")
+    git("init", "-q", str(tmp))
+    git("-C", str(tmp), "remote", "add", "origin", args.remote)
+    git("-C", str(tmp), "fetch", "-q", "--depth", "1", "origin", REF)
+    git("-C", str(tmp), "checkout", "-q", "FETCH_HEAD")
 
     DEST.mkdir(parents=True, exist_ok=True)
     ok = bad = 0
@@ -73,7 +79,8 @@ def main() -> None:
     print(f"verified {ok} parts, {bad} bad -> {DEST.relative_to(ROOT)}")
     if bad:
         sys.exit(1)
-    print("done. query with: parquet_scan('data/release/night_full_bundle/<table>/*.parquet')")
+    print("done. query with: "
+          "parquet_scan('data/release/night_full_bundle/<table>/*.parquet')")
 
 
 if __name__ == "__main__":
