@@ -2,7 +2,6 @@
 .venv/
 /.venv/
 /dist/
-dist/
 __pycache__/
 *.py[cod]
 *.tmp
@@ -33,3 +32,9 @@ legacy/
 /data/small/fleet_control_cert_cohorts.csv
 /data/small/component_control_cert_cohorts.csv
 /data/small/f11_cohort_external_funders.csv
+
+# Web explorer: source (web/*.py, web/dist/*.html|css|js) is committed; generated
+# data assets, screenshots, and the gh-pages deploy tree are not.
+/web/dist/data/
+/web/_smoke_*.png
+/web/deploy/
