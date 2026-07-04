@@ -71,8 +71,11 @@ def main() -> None:
     refresh_tip_receipt()
     now = datetime.now(timezone.utc)
     rows = []
+    import sys as _sys
+    _sys.path.insert(0, str(ROOT / "scripts"))
+    from build_genesis_db import SKIP_TABLE_STEMS  # keep catalog == shipped DB
     for p in sorted(SMALL.glob("*.csv")):
-        if p.name == OUT.name:
+        if p.name == OUT.name or p.stem in SKIP_TABLE_STEMS:
             continue
         data = p.read_bytes()
         n_rows = max(data.count(b"\n") - 1, 0)

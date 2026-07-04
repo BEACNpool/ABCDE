@@ -53,9 +53,9 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 
 3. Review:
    - `docs/10_MAINTAINER_QUICKSTART.md`
-   - `docs/12_BRANCH_STATUS.md`
    - `docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md`
    - `docs/23_WAREHOUSE_RESEARCH_PROGRAM.md`
+   - historical planning docs are archived under `docs/archive/`
    - `data/manifests/public-artifacts-manifest.json`
 
 ## Core promises

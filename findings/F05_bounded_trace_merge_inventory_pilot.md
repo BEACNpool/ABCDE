@@ -28,4 +28,4 @@ Expected current result: one row for a pairwise EMURGO + fourth-entry merge cand
 
 ## Why this matters
 
-This proves the audit inventory should be generated from trace membership rather than copied from archived cross-merge CSVs. The next step is scaling `bounded_trace_depth3` into a full deduplicated trace membership table and comparing against the baseline in `docs/13_CROSS_MERGE_MILESTONE.md`.
+This proves the audit inventory should be generated from trace membership rather than copied from archived cross-merge CSVs. The next step is scaling `bounded_trace_depth3` into a full deduplicated trace membership table and comparing against the baseline in `docs/archive/13_CROSS_MERGE_MILESTONE.md`.

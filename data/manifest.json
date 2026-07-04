@@ -1,15 +1,13 @@
 {
   "schema_version": 1,
   "data_version": null,
-  "status": "seed_registry_built",
-  "duckdb_url": null,
+  "status": "genesis_cut_built",
   "source_tip": null,
   "git_commit": null,
   "seed_registry_csv": "data/small/seed_registry.csv",
   "seed_registry_csv_sha256": "ae44893280116416029fd63e5f3186f1634903425bb844011c6198863346768f",
   "anchors_yaml_sha256": "a07a29178e5205701b3fbd3130bebaa38aac19db4d001ec0bc4e72af80a19bfa",
   "updated_at": "2026-05-20T22:57:34.363391+00:00",
-  "seed_registry_duckdb": "data/abcde_genesis_seed_registry.duckdb",
   "seed_anchor_db_verification_csv": "data/small/seed_anchor_db_verification.csv",
   "seed_anchor_db_verification_csv_sha256": "160b03c8d5f21684c14965cb813b34a9e7ab14b346cd9b52af2ba95af121000e",
   "seed_outputs_db_csv": "data/small/seed_outputs_db.csv",
@@ -65,7 +63,7 @@
   "iog_current_bag_depth14_top_stake_csv": "data/small/iog_current_bag_depth14_top_stake.csv",
   "iog_current_bag_depth14_top_stake_csv_sha256": "e544fabb68bed63ecbae3b036c1484eaa77c2a73c8421055cdc747aa8152934e",
   "iog_current_bag_depth14_current_utxos_csv": "data/small/iog_current_bag_depth14_current_utxos.csv",
-  "iog_current_bag_depth14_current_utxos_csv_sha256": "91ecb3e37745b0f34c6d21ebf4f5095fcac32c4ec93352066531df8989a25f0e",
+  "iog_current_bag_depth14_current_utxos_csv_sha256": "7dc3f4e940cf3ddc6e7d12b59ad17a4a33c17918cebeb8b942ee7760b2e64037",
   "iog_pool_state_validation_csv": "data/small/iog_pool_state_validation.csv",
   "iog_pool_state_validation_csv_sha256": "1f68d6122a5c7a513ac2beabbc917d19f02e04cc6bce3d687c016b916d9a56ae",
   "iog_current_bag_depth14_cluster_profile_top200_csv": "data/small/iog_current_bag_depth14_cluster_profile_top200.csv",
@@ -77,5 +75,8 @@
   "iog_current_bag_depth14_coordinated_abstain_e329_clusters_csv": "data/small/iog_current_bag_depth14_coordinated_abstain_e329_clusters.csv",
   "iog_current_bag_depth14_coordinated_abstain_e329_clusters_csv_sha256": "9c951f43212e7f1a512dc7202de9b0dfd498cfe6837b9d7c0341227a7f845039",
   "iog_current_bag_depth14_confidence_bands_csv": "data/small/iog_current_bag_depth14_confidence_bands.csv",
-  "iog_current_bag_depth14_confidence_bands_csv_sha256": "6721dd171f06fa62b8c70edf2f7e1075869a28d3dcbf959b88ee105f3b8a081b"
+  "iog_current_bag_depth14_confidence_bands_csv_sha256": "6721dd171f06fa62b8c70edf2f7e1075869a28d3dcbf959b88ee105f3b8a081b",
+  "product_duckdb": "data/abcde_genesis.duckdb",
+  "artifact_hash_manifest": "data/manifests/public-artifacts-manifest.json",
+  "note": "This file hashes the seed/governance CSV receipts. The shipped query product is data/abcde_genesis.duckdb (built by scripts/build_genesis_db.py); per-artifact hashes for the full compact cut are in data/manifests/public-artifacts-manifest.json."
 }

@@ -15,6 +15,7 @@ PY="$REPO_ROOT/.venv/bin/python3"
 "$PY" scripts/build_freshness_catalog.py          # per-table freshness (tip refresh only if ABCDE_SSH set)
 "$PY" scripts/build_genesis_db.py                 # DuckDB + schema catalog + docs/SCHEMA.md
 "$PY" scripts/build_community_report.py           # reports/ (fingerprinted below)
+"$PY" scripts/build_table_catalog.py              # table -> family -> finding -> grade grounding layer
 "$PY" scripts/build_public_artifact_manifest.py   # hash index — after everything above
 "$PY" scripts/build_findings_json.py              # joins hashes from the manifest
 

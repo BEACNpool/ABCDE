@@ -22,3 +22,14 @@ tmp_*.html
 
 # maintainer-only pre-v2 raw import (252MB, lives in ~/archive)
 legacy/
+
+# Maintainer build intermediates: *_raw control extracts are subsumed by the
+# classified _indicators tables; the empty *_cert_cohorts / external_funders are
+# negative results stated in prose. Kept locally as classifier inputs, not shipped.
+/data/small/genesis_control_indicators_raw.csv
+/data/small/fleet_control_indicators_raw.csv
+/data/small/component_control_indicators_raw.csv
+/data/small/genesis_control_cert_cohorts.csv
+/data/small/fleet_control_cert_cohorts.csv
+/data/small/component_control_cert_cohorts.csv
+/data/small/f11_cohort_external_funders.csv

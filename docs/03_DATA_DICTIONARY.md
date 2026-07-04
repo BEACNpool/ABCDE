@@ -1,13 +1,41 @@
 # Data Dictionary
 
-This describes the current v2 seed-registry cut in `data/abcde_genesis_seed_registry.duckdb` and the matching CSV receipts in `data/small/`.
+The **authoritative, always-current per-column reference is the generated
+[`SCHEMA.md`](SCHEMA.md)** (and `data/schema_catalog.json` for machines), both
+rebuilt from the shipped product database `data/abcde_genesis.duckdb` on every
+cut. For a table → what-it-is → source → finding → evidence-grade map, see the
+generated [`TABLE_CATALOG.md`](TABLE_CATALOG.md).
 
-The full Genesis subgraph is not published yet. This first cut proves the new pipeline shape with small, inspectable artifacts.
+This document is the **human orientation layer**: it groups the ~100 tables into
+families and hand-annotates the core seed tables. When it disagrees with
+`SCHEMA.md`, `SCHEMA.md` wins.
 
-Tables added after this cut (governance surfaces, control indicators,
-`tracer_*`, `data_freshness_catalog`) are documented column-by-column in the
-generated [`SCHEMA.md`](SCHEMA.md); their semantics and grading are in
-[`24_CONTROL_INDICATORS_AND_TRACERS.md`](24_CONTROL_INDICATORS_AND_TRACERS.md).
+## Table families
+
+| Family | Prefix / tables | Documented in |
+|---|---|---|
+| Genesis seeds | `seeds`, `seed_registry`, `seed_outputs_db`, `seed_first_spends_db`, `seed_first_spend_inputs_db`, `seed_anchor_db_verification` | this doc + [`01_METHOD`](01_METHOD.md) |
+| Fourth entry | `fourth_entry_*` | [`F02`](../findings/F02_fourth_entry_first_spend_convergence.md)/[`F02b`](../findings/F02b_fourth_entry_direct_cospend.md)/[`F03`](../findings/F03_fourth_entry_sale_ticket_origin_signal.md) |
+| Traces | `bounded_trace_*`, `staged_trace_*`, `staged_cross_*`, `cross_merge_*`, `trace_stake_credentials_db` | [`17_STAGED_TRACE_EXTRACTION`](17_STAGED_TRACE_EXTRACTION.md) |
+| IOG current bag | `iog_current_bag_depth14_*` | [`F08`](../findings/F08_iog_current_bag_audit_cut.md) |
+| Governance rollups | `governance_spo_*`, `governance_drep_*`, `governance_pool_metadata`, `governance_actions_catalog`, `governance_top_drep_*` | [`16_GOVERNANCE_DELEGATION_SURFACE`](16_GOVERNANCE_DELEGATION_SURFACE.md), [`18_DREP_PROFILE_PACK`](18_DREP_PROFILE_PACK.md) |
+| Genesis→DRep behavior | `governance_genesis_behavior_*`, `governance_genesis_*` | [`21_GENESIS_DREP_BEHAVIOR_ANALYSIS`](21_GENESIS_DREP_BEHAVIOR_ANALYSIS.md) |
+| IOGP / voucher | `iogp_*`, `iog_voucher_*`, `voucher_*` | [`F09`](../findings/F09_iogp_voucher_followup.md) |
+| Genesis Trail | `genesis_trail_*` | [`F10`](../findings/F10_genesis_trail_monthly_stream.md) |
+| Control indicators | `genesis_control_*`, `fleet_control_*`, `component_control_*` | [`24_CONTROL_INDICATORS_AND_TRACERS`](24_CONTROL_INDICATORS_AND_TRACERS.md), [`F11`](../findings/F11_eight_key_35m_custody_cohort.md)/[`F14`](../findings/F14_fleet_is_same_35m_parcel_structure.md)/[`F15`](../findings/F15_plumbing_component_is_closed_floor.md) |
+| Reward-plumbing receipts | `f11_*`, `f15_cowithdrawal_component` | [`F11`](../findings/F11_eight_key_35m_custody_cohort.md)/[`F13`](../findings/F13_reward_plumbing_downstream_and_tracer_bridge.md)/[`F15`](../findings/F15_plumbing_component_is_closed_floor.md) |
+| Exchange tracers | `tracer_*` | [`tracers/README`](../tracers/README.md), [`24`](24_CONTROL_INDICATORS_AND_TRACERS.md) |
+| Meta | `build_info`, `db_tip_receipt`, `epoch_context`, `data_freshness_catalog` | [`22_DATA_TOPOLOGY_AND_FRESHNESS`](22_DATA_TOPOLOGY_AND_FRESHNESS.md) |
+
+**`seeds` vs `seed_registry`** — both describe the same four founder entries.
+`seeds` is the minimal anchors-canonical table (loaded directly from
+`anchors.yaml` by the build); `seed_registry` is the enriched CSV receipt (adds
+`amount_lovelace` and `notes`). They are kept separate because a claim receipt +
+the MCP server read `seeds`, while ~10 query recipes read `seed_registry`; the
+values agree.
+
+Below: hand-annotated columns for the core seed tables. Everything else →
+`SCHEMA.md`.
 
 ## `seed_registry`
 

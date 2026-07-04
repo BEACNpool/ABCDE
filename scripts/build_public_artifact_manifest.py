@@ -44,10 +44,16 @@ def load_source_block():
 def main():
     files=[]
     source=load_source_block()
+    import sys as _sys
+    _sys.path.insert(0, str(ROOT / 'scripts'))
+    from build_genesis_db import SKIP_TABLE_STEMS  # don't hash unshipped build inputs
+    skip_names={f'{s}.csv' for s in SKIP_TABLE_STEMS}
     for d in INCLUDE_DIRS:
         if not d.exists(): continue
         for p in sorted(d.rglob('*')):
             if p.is_file():
+                if p.name in skip_names and p.parent.name=='small':
+                    continue
                 item={'path':p.relative_to(ROOT).as_posix(),'bytes':p.stat().st_size,'sha256':sha256_file(p)}
                 if source:
                     item['source']=source

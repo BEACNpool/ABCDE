@@ -255,7 +255,7 @@ python3 scripts/build_community_report.py
 
 ## Source files
 
-- generated locally: `data/abcde_genesis_seed_registry.duckdb`
+- query product: `data/abcde_genesis.duckdb`
 - `data/small/*.csv`
 - `data/manifests/*.json`
 - `findings/*.md`

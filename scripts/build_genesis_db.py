@@ -36,6 +36,22 @@ SCHEMA_MD = REPO / "docs" / "SCHEMA.md"
 
 SAMPLE_ROWS = 3
 
+# CSV stems NOT loaded into the shipped product DB. The *_raw control extracts
+# are strictly subsumed by their classified `_indicators` tables (same rows,
+# fewer columns); the *_cert_cohorts / external_funders are empty negative
+# results already stated in prose in F11 / doc 24. They remain as maintainer
+# build inputs (the classifier reads *_raw), just kept out of the clone-and-ask
+# surface so an LLM grounds on the canonical table, not a duplicate or an empty.
+SKIP_TABLE_STEMS = {
+    "genesis_control_indicators_raw",
+    "fleet_control_indicators_raw",
+    "component_control_indicators_raw",
+    "genesis_control_cert_cohorts",
+    "fleet_control_cert_cohorts",
+    "component_control_cert_cohorts",
+    "f11_cohort_external_funders",
+}
+
 
 def sanitize(name: str) -> str:
     """Turn a file stem into a safe SQL identifier."""
@@ -80,6 +96,8 @@ def load_csvs(con: duckdb.DuckDBPyConnection) -> dict[str, str]:
     """Load every CSV in data/small/ as its own table. Returns {table: source_file}."""
     mapping: dict[str, str] = {}
     for csv in sorted(SMALL_DIR.glob("*.csv")):
+        if csv.stem in SKIP_TABLE_STEMS:
+            continue
         table = sanitize(csv.stem)
         if table == "seeds":  # never shadow the anchors-derived table
             table = "csv_seeds"

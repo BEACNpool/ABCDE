@@ -161,13 +161,23 @@ def update_manifest(csv_path: Path, db_path: Path | None) -> None:
     manifest_path = ROOT / 'data' / 'manifest.json'
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {'schema_version': 1}
     manifest.update({
-        'status': 'seed_registry_built',
+        'status': 'genesis_cut_built',
+        'product_duckdb': 'data/abcde_genesis.duckdb',
+        'artifact_hash_manifest': 'data/manifests/public-artifacts-manifest.json',
+        'note': (
+            'This file hashes the seed/governance CSV receipts. The shipped '
+            'query product is data/abcde_genesis.duckdb (built by '
+            'scripts/build_genesis_db.py); per-artifact hashes for the full '
+            'compact cut are in data/manifests/public-artifacts-manifest.json.'
+        ),
         'seed_registry_csv': csv_path.relative_to(ROOT).as_posix(),
         'seed_registry_csv_sha256': sha256_file(csv_path),
         'anchors_yaml_sha256': sha256_file(ROOT / 'anchors.yaml'),
     })
-    if db_path and db_path.exists():
-        manifest['seed_registry_duckdb'] = db_path.relative_to(ROOT).as_posix()
+    # The standalone seed-registry DuckDB is retired; the product DB supersedes
+    # it. Drop any stale pointer left in an older manifest.
+    manifest.pop('seed_registry_duckdb', None)
+    manifest.pop('duckdb_url', None)
     db_receipt = ROOT / 'data/small/seed_anchor_db_verification.csv'
     if db_receipt.exists():
         manifest['seed_anchor_db_verification_csv'] = db_receipt.relative_to(ROOT).as_posix()
@@ -245,12 +255,14 @@ def update_manifest(csv_path: Path, db_path: Path | None) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('--csv', default='data/small/seed_registry.csv')
-    parser.add_argument('--duckdb', default='data/abcde_genesis_seed_registry.duckdb')
+    # The standalone seed-registry DuckDB is retired (redundant with the product
+    # DB data/abcde_genesis.duckdb). Pass --duckdb <path> only to rebuild it.
+    parser.add_argument('--duckdb', default='')
     args = parser.parse_args()
     csv_path = ROOT / args.csv
-    db_path = ROOT / args.duckdb
+    db_path = ROOT / args.duckdb if args.duckdb else None
     write_csv(csv_path)
-    wrote_db = write_duckdb(db_path, csv_path)
+    wrote_db = write_duckdb(db_path, csv_path) if db_path else False
     update_manifest(csv_path, db_path if wrote_db else None)
     print(f'wrote {csv_path.relative_to(ROOT)} sha256={sha256_file(csv_path)}')
     if wrote_db:

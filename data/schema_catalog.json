@@ -175,46 +175,15 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "bf5bfc208e3d",
-          "source_generated_utc": "2026-07-03 13:16:48-05:00",
-          "db_tip_block": 13630993,
-          "db_tip_time": "2026-07-03 18:16:44",
-          "db_tip_epoch": 640,
+          "git_commit": "9489ae195d18",
+          "source_generated_utc": "2026-07-03 21:36:31-05:00",
+          "db_tip_block": 13632466,
+          "db_tip_time": "2026-07-04 02:36:07",
+          "db_tip_epoch": 641,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
         }
       ]
-    },
-    "component_control_cert_cohorts": {
-      "source": "data/small/component_control_cert_cohorts.csv",
-      "row_count": 0,
-      "columns": [
-        {
-          "name": "cert_type",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "tx_hash",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "block_no",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "block_time",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "set_member_count",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "set_members",
-          "type": "VARCHAR"
-        }
-      ],
-      "sample_rows": []
     },
     "component_control_indicators": {
       "source": "data/small/component_control_indicators.csv",
@@ -468,167 +437,6 @@
         }
       ]
     },
-    "component_control_indicators_raw": {
-      "source": "data/small/component_control_indicators_raw.csv",
-      "row_count": 115,
-      "columns": [
-        {
-          "name": "stake_address",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "total_output_rows",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_utxos",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "first_received_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "last_received_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "last_outgoing_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "stake_key_registered",
-          "type": "BOOLEAN"
-        },
-        {
-          "name": "pool_delegation_certs",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_pool_bech32",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "latest_pool_cert_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "latest_pool_active_epoch",
-          "type": "BIGINT"
-        },
-        {
-          "name": "drep_delegation_certs",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_drep",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "latest_drep_cert_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "rewards_earned_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "last_reward_spendable_epoch",
-          "type": "BIGINT"
-        },
-        {
-          "name": "withdrawal_count",
-          "type": "BIGINT"
-        },
-        {
-          "name": "rewards_withdrawn_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "last_withdrawal_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "rewards_unclaimed_ada",
-          "type": "DOUBLE"
-        }
-      ],
-      "sample_rows": [
-        {
-          "stake_address": "stake1u839gnp9kvyd8hhw3nskp08wt868y0fnjdncp0psyyykdusjh7s5j",
-          "total_output_rows": 130,
-          "current_utxos": 110,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2021-12-09 23:58:03",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2025-02-18 20:10:06",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 4,
-          "current_pool_bech32": "pool1qc05c76autq4235sq20zu4vjwtl5m0xn4mxq9kg6e66uwz95kd4",
-          "latest_pool_cert_time": "2022-03-22 22:23:13",
-          "latest_pool_active_epoch": 330,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 22:21:38",
-          "rewards_earned_ada": 3873977.891404,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 310,
-          "rewards_withdrawn_ada": 3865004.779571,
-          "last_withdrawal_time": "2026-06-29 01:03:24",
-          "rewards_unclaimed_ada": 8973.111833
-        },
-        {
-          "stake_address": "stake1u8n0pwlvha3rnhfdqvpwe00jktkh2lf6a0dg09tthrqrwpslghaq6",
-          "total_output_rows": 34,
-          "current_utxos": 23,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2022-10-07 12:00:59",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2023-06-13 00:40:13",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 1,
-          "current_pool_bech32": "pool104z3yr7faqhck6wcsczhmqrrpdeparcr8juw8unxy8tm6xp447d",
-          "latest_pool_cert_time": "2022-07-27 00:16:32",
-          "latest_pool_active_epoch": 355,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 21:18:21",
-          "rewards_earned_ada": 3280931.708379,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 268,
-          "rewards_withdrawn_ada": 3269672.754512,
-          "last_withdrawal_time": "2026-06-29 00:17:11",
-          "rewards_unclaimed_ada": 11258.953867
-        },
-        {
-          "stake_address": "stake1u8n88jdmchazhgd23mwc3cezsf6mmmk4f3k69pekg8yd4acpnzxyd",
-          "total_output_rows": 21,
-          "current_utxos": 16,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2022-01-27 15:40:53",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2023-02-07 21:30:24",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 1,
-          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
-          "latest_pool_cert_time": "2022-03-21 17:29:02",
-          "latest_pool_active_epoch": 329,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 21:16:52",
-          "rewards_earned_ada": 4082361.447526,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 308,
-          "rewards_withdrawn_ada": 4072673.39446,
-          "last_withdrawal_time": "2026-06-29 00:07:08",
-          "rewards_unclaimed_ada": 9688.053066
-        }
-      ]
-    },
     "component_control_summary": {
       "source": "data/small/component_control_summary.csv",
       "row_count": 8,
@@ -722,7 +530,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 109,
+      "row_count": 102,
       "columns": [
         {
           "name": "table_name",
@@ -742,7 +550,7 @@
         },
         {
           "name": "last_commit_utc",
-          "type": "VARCHAR"
+          "type": "TIMESTAMP WITH TIME ZONE"
         },
         {
           "name": "age_days_at_refresh",
@@ -759,7 +567,7 @@
           "data_rows": 53,
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -768,18 +576,18 @@
           "data_rows": 10,
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
         {
-          "table_name": "component_control_cert_cohorts",
-          "data_rows": 0,
-          "bytes": 67,
-          "sha256": "475867250fe915506bc5ca29fbf9c4c635498c7df19d2ca52426e93ef21d1f18",
-          "last_commit_utc": "uncommitted",
+          "table_name": "component_control_indicators",
+          "data_rows": 115,
+          "bytes": 48709,
+          "sha256": "ba18d73704fae8488fd41633bb63012a21d71bc3076ef544f8f9fd81a92eb1a5",
+          "last_commit_utc": "2026-07-03 13:17:25-05:00",
           "age_days_at_refresh": 0,
-          "snapshot_sensitive": false
+          "snapshot_sensitive": true
         }
       ]
     },
@@ -814,10 +622,10 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-07-03 13:16:48-05:00",
-          "db_tip_block": 13630993,
-          "db_tip_time": "2026-07-03 18:16:44",
-          "db_tip_epoch": 640,
+          "generated_utc": "2026-07-03 21:36:31-05:00",
+          "db_tip_block": 13632466,
+          "db_tip_time": "2026-07-04 02:36:07",
+          "db_tip_epoch": 641,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
         }
@@ -983,33 +791,6 @@
           "block_time": "2022-01-24 04:12:41"
         }
       ]
-    },
-    "f11_cohort_external_funders": {
-      "source": "data/small/f11_cohort_external_funders.csv",
-      "row_count": 0,
-      "columns": [
-        {
-          "name": "funding_stake_address",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "cohort_keys_served",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "funded_withdrawal_txs",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "first_tx_id",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "last_tx_id",
-          "type": "VARCHAR"
-        }
-      ],
-      "sample_rows": []
     },
     "f11_cohort_funding_origin": {
       "source": "data/small/f11_cohort_funding_origin.csv",
@@ -1394,37 +1175,6 @@
         }
       ]
     },
-    "fleet_control_cert_cohorts": {
-      "source": "data/small/fleet_control_cert_cohorts.csv",
-      "row_count": 0,
-      "columns": [
-        {
-          "name": "cert_type",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "tx_hash",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "block_no",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "block_time",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "set_member_count",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "set_members",
-          "type": "VARCHAR"
-        }
-      ],
-      "sample_rows": []
-    },
     "fleet_control_indicators": {
       "source": "data/small/fleet_control_indicators.csv",
       "row_count": 81,
@@ -1677,167 +1427,6 @@
         }
       ]
     },
-    "fleet_control_indicators_raw": {
-      "source": "data/small/fleet_control_indicators_raw.csv",
-      "row_count": 81,
-      "columns": [
-        {
-          "name": "stake_address",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "total_output_rows",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_utxos",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "first_received_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "last_received_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "last_outgoing_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "stake_key_registered",
-          "type": "BOOLEAN"
-        },
-        {
-          "name": "pool_delegation_certs",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_pool_bech32",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "latest_pool_cert_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "latest_pool_active_epoch",
-          "type": "BIGINT"
-        },
-        {
-          "name": "drep_delegation_certs",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_drep",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "latest_drep_cert_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "rewards_earned_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "last_reward_spendable_epoch",
-          "type": "BIGINT"
-        },
-        {
-          "name": "withdrawal_count",
-          "type": "BIGINT"
-        },
-        {
-          "name": "rewards_withdrawn_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "last_withdrawal_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "rewards_unclaimed_ada",
-          "type": "DOUBLE"
-        }
-      ],
-      "sample_rows": [
-        {
-          "stake_address": "stake1u839gnp9kvyd8hhw3nskp08wt868y0fnjdncp0psyyykdusjh7s5j",
-          "total_output_rows": 130,
-          "current_utxos": 110,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2021-12-09 23:58:03",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2025-02-18 20:10:06",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 4,
-          "current_pool_bech32": "pool1qc05c76autq4235sq20zu4vjwtl5m0xn4mxq9kg6e66uwz95kd4",
-          "latest_pool_cert_time": "2022-03-22 22:23:13",
-          "latest_pool_active_epoch": 330,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 22:21:38",
-          "rewards_earned_ada": 3873977.891404,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 310,
-          "rewards_withdrawn_ada": 3865004.779571,
-          "last_withdrawal_time": "2026-06-29 01:03:24",
-          "rewards_unclaimed_ada": 8973.111833
-        },
-        {
-          "stake_address": "stake1u8n0pwlvha3rnhfdqvpwe00jktkh2lf6a0dg09tthrqrwpslghaq6",
-          "total_output_rows": 34,
-          "current_utxos": 23,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2022-10-07 12:00:59",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2023-06-13 00:40:13",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 1,
-          "current_pool_bech32": "pool104z3yr7faqhck6wcsczhmqrrpdeparcr8juw8unxy8tm6xp447d",
-          "latest_pool_cert_time": "2022-07-27 00:16:32",
-          "latest_pool_active_epoch": 355,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 21:18:21",
-          "rewards_earned_ada": 3280931.708379,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 268,
-          "rewards_withdrawn_ada": 3269672.754512,
-          "last_withdrawal_time": "2026-06-29 00:17:11",
-          "rewards_unclaimed_ada": 11258.953867
-        },
-        {
-          "stake_address": "stake1u8n88jdmchazhgd23mwc3cezsf6mmmk4f3k69pekg8yd4acpnzxyd",
-          "total_output_rows": 21,
-          "current_utxos": 16,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2022-01-27 15:40:53",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2023-02-07 21:30:24",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 1,
-          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
-          "latest_pool_cert_time": "2022-03-21 17:29:02",
-          "latest_pool_active_epoch": 329,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 21:16:52",
-          "rewards_earned_ada": 4082361.447526,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 308,
-          "rewards_withdrawn_ada": 4072673.39446,
-          "last_withdrawal_time": "2026-06-29 00:07:08",
-          "rewards_unclaimed_ada": 9688.053066
-        }
-      ]
-    },
     "fleet_control_summary": {
       "source": "data/small/fleet_control_summary.csv",
       "row_count": 8,
@@ -2017,37 +1606,6 @@
           "source_updated": "2017-08-28 10:23:53.138000-05:00"
         }
       ]
-    },
-    "genesis_control_cert_cohorts": {
-      "source": "data/small/genesis_control_cert_cohorts.csv",
-      "row_count": 0,
-      "columns": [
-        {
-          "name": "cert_type",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "tx_hash",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "block_no",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "block_time",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "set_member_count",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "set_members",
-          "type": "VARCHAR"
-        }
-      ],
-      "sample_rows": []
     },
     "genesis_control_indicators": {
       "source": "data/small/genesis_control_indicators.csv",
@@ -2298,167 +1856,6 @@
           "currently_holding": true,
           "custody_pattern": "MIXED",
           "fe_control_consistency": "MEDIUM"
-        }
-      ]
-    },
-    "genesis_control_indicators_raw": {
-      "source": "data/small/genesis_control_indicators_raw.csv",
-      "row_count": 1048,
-      "columns": [
-        {
-          "name": "stake_address",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "total_output_rows",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_utxos",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "first_received_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "last_received_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "last_outgoing_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "stake_key_registered",
-          "type": "BOOLEAN"
-        },
-        {
-          "name": "pool_delegation_certs",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_pool_bech32",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "latest_pool_cert_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "latest_pool_active_epoch",
-          "type": "BIGINT"
-        },
-        {
-          "name": "drep_delegation_certs",
-          "type": "BIGINT"
-        },
-        {
-          "name": "current_drep",
-          "type": "VARCHAR"
-        },
-        {
-          "name": "latest_drep_cert_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "rewards_earned_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "last_reward_spendable_epoch",
-          "type": "BIGINT"
-        },
-        {
-          "name": "withdrawal_count",
-          "type": "BIGINT"
-        },
-        {
-          "name": "rewards_withdrawn_ada",
-          "type": "DOUBLE"
-        },
-        {
-          "name": "last_withdrawal_time",
-          "type": "TIMESTAMP"
-        },
-        {
-          "name": "rewards_unclaimed_ada",
-          "type": "DOUBLE"
-        }
-      ],
-      "sample_rows": [
-        {
-          "stake_address": "stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc",
-          "total_output_rows": 4944,
-          "current_utxos": 1492,
-          "current_ada": 213852164.891786,
-          "first_received_time": "2024-10-14 02:20:56",
-          "last_received_time": "2026-07-03 12:11:16",
-          "last_outgoing_time": "2026-07-03 02:01:00",
-          "stake_key_registered": false,
-          "pool_delegation_certs": 0,
-          "current_pool_bech32": null,
-          "latest_pool_cert_time": null,
-          "latest_pool_active_epoch": null,
-          "drep_delegation_certs": 0,
-          "current_drep": null,
-          "latest_drep_cert_time": null,
-          "rewards_earned_ada": 0.0,
-          "last_reward_spendable_epoch": null,
-          "withdrawal_count": 0,
-          "rewards_withdrawn_ada": 0.0,
-          "last_withdrawal_time": null,
-          "rewards_unclaimed_ada": 0.0
-        },
-        {
-          "stake_address": "stake1u9s7k7smn9g9jd76z2gyt07q9zyqamly2m2vazxe08gqc0g5q8tak",
-          "total_output_rows": 1146,
-          "current_utxos": 579,
-          "current_ada": 52073018.876732,
-          "first_received_time": "2023-08-31 05:33:53",
-          "last_received_time": "2026-07-03 02:01:00",
-          "last_outgoing_time": "2026-06-30 03:01:10",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 1,
-          "current_pool_bech32": "pool10d6mmw3mn9ku3r7uqqye672dz3sv76lh5kvh5rdpr9l5ug5yknr",
-          "latest_pool_cert_time": "2023-09-04 22:24:16",
-          "latest_pool_active_epoch": 436,
-          "drep_delegation_certs": 2,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-04 01:55:54",
-          "rewards_earned_ada": 2761977.55097,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 132,
-          "rewards_withdrawn_ada": 2746300.333056,
-          "last_withdrawal_time": "2026-06-30 03:01:10",
-          "rewards_unclaimed_ada": 15677.217914
-        },
-        {
-          "stake_address": "stake1uyv7u4rpvcv5vpv03ugf6rr8ydt3qyjy682xfkzs4snyqss7zayjf",
-          "total_output_rows": 54,
-          "current_utxos": 35,
-          "current_ada": 35000002.39636,
-          "first_received_time": "2022-01-27 15:40:33",
-          "last_received_time": "2025-04-07 13:11:16",
-          "last_outgoing_time": "2025-03-19 00:10:21",
-          "stake_key_registered": true,
-          "pool_delegation_certs": 1,
-          "current_pool_bech32": "pool1njjr0zn7uvydjy8067nprgwlyxqnznp9wgllfnag24nycgkda25",
-          "latest_pool_cert_time": "2022-03-21 17:30:06",
-          "latest_pool_active_epoch": 329,
-          "drep_delegation_certs": 1,
-          "current_drep": "drep_always_abstain",
-          "latest_drep_cert_time": "2025-02-09 18:54:09",
-          "rewards_earned_ada": 4080476.399307,
-          "last_reward_spendable_epoch": 641,
-          "withdrawal_count": 307,
-          "rewards_withdrawn_ada": 4070788.346241,
-          "last_withdrawal_time": "2026-06-29 00:24:05",
-          "rewards_unclaimed_ada": 9688.053066
         }
       ]
     },
