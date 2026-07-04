@@ -8,17 +8,35 @@ const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', 
 const gradeClass = g => /FACT/i.test(g) ? 'fact' : /STRONG/i.test(g) ? 'strong' : /HYPOTH/i.test(g) ? 'hyp' : 'unknown';
 const j = async p => (await fetch(p)).json();
 
-let STATS, FAMILIES, QUESTIONS, FINDINGS;
+let STATS, FAMILIES, QUESTIONS, FINDINGS, HOOKS;
 let MODEL = 'code', OS = 'mac';
 
 (async function boot() {
   try {
-    [STATS, FAMILIES, QUESTIONS, FINDINGS] = await Promise.all(
-      ['stats', 'families', 'questions', 'findings'].map(n => j(`data/${n}.json`)));
-    renderStats(); renderFamilies(); renderQuestions(); renderFindings();
+    [STATS, FAMILIES, QUESTIONS, FINDINGS, HOOKS] = await Promise.all(
+      ['stats', 'families', 'questions', 'findings', 'hooks'].map(n => j(`data/${n}.json`)));
+    renderStats(); renderHooks(); renderFamilies(); renderQuestions(); renderFindings();
   } catch (e) { console.error('data load failed', e); }
   wirePickers(); renderSteps(); renderAsk();
 })();
+
+function renderHooks() {
+  $('#hooks').innerHTML = HOOKS.map((h, i) => `
+    <div class="hook">
+      <div class="hook-top"><span class="hook-kicker">${esc(h.kicker)}</span>
+        <span class="chip ${gradeClass(h.grade)}">${esc(h.grade)}</span></div>
+      <h3 class="hook-h">${esc(h.headline)}</h3>
+      <p class="hook-sub">${esc(h.sub)}</p>
+      <button class="hook-verify" data-i="${i}">Verify it yourself →</button>
+    </div>`).join('');
+  $$('#hooks .hook-verify').forEach(b => b.addEventListener('click', () => {
+    const ask = HOOKS[+b.dataset.i].ask;
+    navigator.clipboard.writeText(ask).catch(() => {});
+    location.hash = '#start';
+    b.textContent = 'Question copied — set up below, then paste ✓';
+    setTimeout(() => { b.textContent = 'Verify it yourself →'; }, 2600);
+  }));
+}
 
 function renderStats() {
   const s = STATS;

@@ -225,3 +225,22 @@ footer a{color:var(--muted)} footer a:hover{color:var(--cyan)}
   font-family:var(--sans); line-height:1.4}
 .q-item:hover{border-color:var(--cyan); color:var(--text)}
 .q-item.copied{border-color:var(--green); color:var(--green)}
+
+/* ---- the reveal: viral hook cards ---- */
+.hooks{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+@media(max-width:760px){ .hooks{grid-template-columns:1fr} }
+.hook{background:linear-gradient(160deg,#0e1f3c 0%,#0a1730 100%);
+  border:1px solid var(--line2); border-radius:var(--radius); padding:22px 22px 18px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden;
+  transition:border-color .15s, transform .15s}
+.hook:hover{border-color:var(--cyan); transform:translateY(-2px)}
+.hook::after{content:''; position:absolute; inset:0 0 auto 0; height:3px;
+  background:linear-gradient(90deg,var(--cyan),transparent 70%)}
+.hook-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
+.hook-kicker{color:var(--cyan); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase}
+.hook-h{font-size:clamp(20px,2.6vw,26px); line-height:1.15; margin:0 0 10px; letter-spacing:-.01em}
+.hook-sub{color:var(--muted); font-size:14.5px; margin:0 0 16px; flex:1}
+.hook-verify{align-self:flex-start; background:transparent; border:1px solid var(--line2);
+  color:var(--cyan); font-weight:700; font-size:13px; padding:8px 15px; border-radius:9px;
+  cursor:pointer; font-family:var(--sans)}
+.hook-verify:hover{border-color:var(--cyan); background:rgba(34,211,238,.08)}

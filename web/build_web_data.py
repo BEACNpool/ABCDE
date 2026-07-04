@@ -78,29 +78,64 @@ def main() -> None:
 
     # --- curated example questions (what to ask) --------------------------
     questions = [
-        {"theme": "Where the genesis ADA went", "qs": [
-            "Where did EMURGO's genesis ADA end up — which pools and DReps does the trace reach?",
-            "Where did IOG's genesis ADA flow, by trace depth?",
-            "How much IOG-descended ADA is still unspent, and how confident is the trace?"]},
-        {"theme": "The founder seeds", "qs": [
-            "Which named founder entities are in the seeds table, and how much did each receive?",
-            "What is the evidence grade on the 781,381,495 ADA fourth entry?"]},
-        {"theme": "Custody & control", "qs": [
-            "Which genesis-descended stake keys hold exactly 35,000,000 ADA, and how are they classified?",
-            "How much genesis-descended ADA sits with stake keys whose rewards were never withdrawn?",
-            "Which stake keys show recent certificate activity while their principal hasn't moved in years?"]},
-        {"theme": "Governance", "qs": [
-            "Which DReps hold the most genesis-traced stake?",
-            "Which stake pools received the most genesis-descended delegation?"]},
-        {"theme": "NIGHT token (companion module)", "qs": [
-            "How concentrated is the NIGHT supply — what share do the top 10 and top 100 addresses hold?",
-            "Does the traced NIGHT supply conserve back to the 24B genesis mint?",
-            "How much NIGHT sits at script addresses versus enterprise addresses?"]},
-        {"theme": "Freshness & method", "qs": [
-            "What chain tip is this snapshot taken at, and which tables are snapshot-sensitive?",
-            "For any figure you give me, cite the table and its evidence grade."]},
+        {"theme": "Follow the founders' money", "qs": [
+            "Where did EMURGO's 2 billion ADA actually go — which pools and DReps does the trace reach?",
+            "How much of the 2017 founder ADA is still sitting unspent, and where?",
+            "Trace IOG's genesis ADA hop by hop — how deep does it go before it stops?"]},
+        {"theme": "The uncomfortable questions", "qs": [
+            "Which billion-ADA wallets never vote in governance?",
+            "How much genesis-descended ADA has funneled into exchange-scale wallets?",
+            "Find stake keys that haven't moved their principal in years but keep renewing certificates — who's still holding the keys?"]},
+        {"theme": "The 1.69-billion-ADA operation", "qs": [
+            "Show me every wallet holding exactly 35,000,000 ADA and how they vote.",
+            "Is the 115-key genesis cluster really one operation, or coincidence? What's the evidence and its grade?"]},
+        {"theme": "NIGHT: who got the airdrop?", "qs": [
+            "Who holds the single 25%-of-supply NIGHT position, and has it moved?",
+            "How concentrated is NIGHT really — what do the top 5, 10, and 100 addresses hold?",
+            "Does every NIGHT token trace back to the genesis mint with nothing unaccounted?"]},
+        {"theme": "Keep me honest", "qs": [
+            "For every figure you give me, cite the exact table and its evidence grade.",
+            "What can this data NOT prove — where does on-chain linkage stop short of ownership?"]},
     ]
     (OUT / "questions.json").write_text(json.dumps(questions, indent=2))
+
+    # --- hooks: provocative-but-provable headlines (real numbers, graded) -
+    def q(sql):
+        return con.execute(sql).fetchone()
+    night_top_pct = q("SELECT pct_of_supply FROM night_holder_top ORDER BY qty_night DESC LIMIT 1")[0]
+    night_top5 = q("SELECT cumulative_pct FROM night_concentration_curve WHERE top_n=5")[0]
+    night_top10 = q("SELECT cumulative_pct FROM night_concentration_curve WHERE top_n=10")[0]
+    night_depth = int(float(q("SELECT value FROM night_summary WHERE metric='max_flow_level'")[0]))
+    night_holders = int(float(q("SELECT value FROM night_summary WHERE metric='reachable_current_leaf_utxos'")[0]))
+    hub_gross = q("SELECT max(gross_received_ada) FROM f11_hub_classification")[0]
+    hub_x = hub_gross / 45_600_000_000  # vs ~total ADA supply
+    hooks = [
+        {"kicker": "NIGHT", "grade": "FACT",
+         "headline": "6 Billion NIGHT. One Address. One UTxO.",
+         "sub": f"A quarter of the entire NIGHT supply — {night_top_pct:.2f}% — sits unspent in a single output held by one address.",
+         "ask": "How concentrated is the NIGHT supply, and how much does the single largest address hold?"},
+        {"kicker": "Genesis ADA", "grade": "STRONG_INFERENCE",
+         "headline": f"{exact35} Wallets. The Exact Same 35,000,000 ADA. One Silent Vote.",
+         "sub": f"A closed {comp_keys}-key operation holds {comp_ada/1e9:.2f} billion ADA — and every wallet is delegated to “always abstain.”",
+         "ask": "Which genesis-descended stake keys hold exactly 35,000,000 ADA, and how do they all vote?"},
+        {"kicker": "Genesis ADA", "grade": "FACT",
+         "headline": f"One Wallet Has Received {hub_x:.1f}× All the ADA in Existence.",
+         "sub": f"{hub_gross/1e9:.0f} billion ADA has cycled through a single address — the structural signature of an exchange-scale hot wallet.",
+         "ask": "Which addresses have gross-received more ADA than the total supply, and what does that imply?"},
+        {"kicker": "NIGHT", "grade": "FACT",
+         "headline": f"Every NIGHT Token, Traced From One Mint — {night_depth:,} Hops Deep.",
+         "sub": f"The full spend graph of the 24-billion-NIGHT airdrop closes exactly: {night_holders:,} current holders, zero unaccounted.",
+         "ask": "Does the traced NIGHT supply conserve back to the 24 billion genesis mint?"},
+        {"kicker": "NIGHT", "grade": "FACT",
+         "headline": "It Takes Just 5 Wallets to Hold Half of NIGHT.",
+         "sub": f"Top 5 addresses: {night_top5:.1f}%. Top 10: {night_top10:.1f}%. The airdrop is steeply concentrated at the top.",
+         "ask": "What share of NIGHT do the top 5 and top 10 addresses hold?"},
+        {"kicker": "Genesis ADA", "grade": "FACT",
+         "headline": "Half a Billion ADA From 2017's Genesis Has Never Moved.",
+         "sub": f"~{iog_bag/1e6:.0f}M ADA descended from IOG's genesis allocation still sits unspent, traced 14 hops from the source.",
+         "ask": "How much IOG-descended genesis ADA is still unspent, and how confident is the trace?"},
+    ]
+    (OUT / "hooks.json").write_text(json.dumps(hooks, indent=2))
 
     # --- showcase: on-chain taste only (no crowd tracer data) -------------
     top_parcels = con.execute(
