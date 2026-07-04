@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ABCDE — A BEACN Cardano Data Explorer</title>
-<meta name="description" content="A grass-roots, open-source, AI-queryable snapshot of Cardano's genesis ADA. Query it live in your browser — no node, no db-sync, no backend.">
+<meta name="description" content="Clone the genesis-ADA dataset and point your AI at it. Copy-paste setup for Claude Code, Codex, or Claude Desktop on any OS — then ask where the genesis ADA went.">
 <meta property="og:title" content="ABCDE — A BEACN Cardano Data Explorer">
-<meta property="og:description" content="Track and audit Cardano's genesis ADA. Query the on-chain history live in your browser.">
+<meta property="og:description" content="Copy-paste one block to clone Cardano's genesis-ADA dataset and query it with your own AI.">
 <meta name="theme-color" content="#020617">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,14 +18,11 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top">
-      <span class="hex">⬡</span>
-      <span>ABCDE<small>BEACN Data Explorer</small></span>
-    </a>
+    <a class="brand" href="#top"><span class="hex">⬡</span><span>ABCDE<small>BEACN Data Explorer</small></span></a>
     <nav>
+      <a href="#start">Get started</a>
+      <a href="#data">What you can ask</a>
       <a href="#trace">The Trace</a>
-      <a href="#explore">Explore</a>
-      <a href="#query">Query</a>
       <a href="#findings">Findings</a>
     </nav>
     <a class="gh" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">GitHub ↗</a>
@@ -35,115 +32,99 @@
 <a id="top"></a>
 <div class="hero wrap">
   <div class="kicker">A BEACN Cardano Data Explorer</div>
-  <h1><span class="hx">⬡</span> Where did the <span class="hx">genesis ADA</span> go?</h1>
-  <p class="lede">A grass-roots, open-source, AI-queryable snapshot of Cardano's on-chain
-    history — built to track and audit <b>genesis ADA</b>: where the founder coins moved,
-    who they were delegated to, and how they behave today.</p>
-  <p class="sub">No node. No relay. No db-sync. No backend. Query it live in your browser,
-    or clone the same hash-verified dataset and point your own AI at it.</p>
+  <h1><span class="hx">⬡</span> Point your AI at the <span class="hx">genesis ADA</span></h1>
+  <p class="lede">A grass-roots, open-source snapshot of Cardano's on-chain history — built to track
+    and audit <b>genesis ADA</b>. Clone it, wire it into the AI you already use, and ask where the
+    founder coins went, who they were delegated to, and how they behave today.</p>
+  <p class="sub">No node. No relay. No db-sync. No API key. One copy-paste block gets your
+    environment ready in about a minute.</p>
   <div class="cta">
-    <a class="btn btn-primary" href="#query">⚡ Query it live</a>
-    <a class="btn btn-ghost" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">Clone on GitHub</a>
+    <a class="btn btn-primary" href="#start">⚡ Get the copy-paste setup</a>
+    <a class="btn btn-ghost" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">Browse the repo</a>
   </div>
-  <div class="stats" id="stats"><!-- filled by app.js --></div>
+  <div class="stats" id="stats"></div>
   <p class="muted" style="font-size:13px;margin-top:14px" id="tipline">Loading snapshot…</p>
 </div>
 
-<!-- THE TRACE -->
+<!-- GET STARTED -->
+<section id="start">
+  <div class="wrap">
+    <div class="eyebrow">60-second setup</div>
+    <h2 class="sec-h">Clone it and point your AI at it</h2>
+    <p class="sec-lede">Pick the AI you use and your OS. Copy each block into your terminal in order —
+      it clones the repo, sets up the environment, and registers the read-only query server. Then just ask.</p>
+
+    <div class="pickers">
+      <div class="picker"><span class="plabel">AI</span>
+        <div class="pills" id="pick-model">
+          <button class="pill active" data-v="code">Claude Code</button>
+          <button class="pill" data-v="codex">Codex</button>
+          <button class="pill" data-v="desktop">Claude Desktop</button>
+        </div>
+      </div>
+      <div class="picker"><span class="plabel">OS</span>
+        <div class="pills" id="pick-os">
+          <button class="pill active" data-v="mac">macOS</button>
+          <button class="pill" data-v="linux">Linux</button>
+          <button class="pill" data-v="win">Windows</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-flow" id="steps-flow"><!-- filled by app.js --></div>
+
+    <div class="ask-box">
+      <div class="eyebrow" style="margin-bottom:8px">Then ask</div>
+      <div id="ask-examples" class="ask-examples"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU CAN ASK / DATA MAP -->
+<section id="data">
+  <div class="wrap">
+    <div class="eyebrow">While that clones…</div>
+    <h2 class="sec-h">What's in the dataset</h2>
+    <p class="sec-lede">The clone ships <span id="tblcount">105</span> query-ready tables. Here's the map,
+      grouped by what they answer — so you know what you can ask the moment setup finishes.
+      Every answer your AI gives is graded by what the data proves.</p>
+    <div class="fam-grid" id="families"></div>
+
+    <h3 style="margin-top:40px;font-size:20px">Good first questions</h3>
+    <p class="sec-lede">Copy any of these straight into your AI once it's connected.</p>
+    <div id="questions" class="q-groups"></div>
+  </div>
+</section>
+
+<!-- THE TRACE (showcase, on-chain only) -->
 <section id="trace">
   <div class="wrap">
     <div class="eyebrow">A worked example</div>
-    <h2 class="sec-h">Following one thread to the end</h2>
-    <p class="sec-lede">Every number below is reproducible from a plain clone. We started from
-      eight stake keys that each hold exactly 35,000,000 ADA and followed their reward
-      plumbing to its mathematical conclusion.</p>
+    <h2 class="sec-h">What the data can reveal</h2>
+    <p class="sec-lede">Every number here is reproducible from a plain clone. Starting from eight stake
+      keys that each hold exactly 35,000,000 ADA, we followed their reward plumbing to its
+      mathematical conclusion — all on-chain.</p>
     <div class="steps">
-      <div class="step" data-f="F11">
-        <h3>The seed cohort</h3>
-        <div class="big">8 keys</div>
+      <div class="step" data-f="F11"><h3>The seed cohort</h3><div class="big">8 keys</div>
         <p>Each holds <b>exactly 35,000,000 ADA</b>, funded in one 4-day window, certified in
-          synchronized bursts, all delegated to the same always-abstain DRep.</p>
-      </div>
-      <div class="step" data-f="F13">
-        <h3>The plumbing</h3>
-        <div class="big">89+ keys</div>
-        <p>Their reward-sweep transactions co-sign withdrawals for dozens of other keys, and
-          funnel into <b>four exchange-scale hot addresses</b>.</p>
-      </div>
-      <div class="step" data-f="F14">
-        <h3>Same structure</h3>
-        <div class="big">42 parcels</div>
-        <p>The wider fleet holds the <b>same exact 35M parcels</b> under the same governance
-          posture — one operation, not eight keys.</p>
-      </div>
-      <div class="step" data-f="F15">
-        <h3>Closed component</h3>
-        <div class="big">1.694B ADA</div>
-        <p>Iterated to fixpoint: a <b>closed 115-key component</b>. The reward-plumbing surface
-          is complete — a hard floor, not the first layer.</p>
-      </div>
+          synchronized bursts, all delegated to the same always-abstain DRep.</p></div>
+      <div class="step" data-f="F13"><h3>The plumbing</h3><div class="big">89+ keys</div>
+        <p>Their reward-sweep transactions co-sign withdrawals for dozens of other keys and funnel
+          into four enterprise addresses that each received <b>more than the entire ADA supply</b>.</p></div>
+      <div class="step" data-f="F14"><h3>Same structure</h3><div class="big">42 parcels</div>
+        <p>The wider fleet holds the <b>same exact 35M parcels</b> under the same governance posture —
+          one operation, not eight keys.</p></div>
+      <div class="step" data-f="F15"><h3>Closed component</h3><div class="big">1.694B ADA</div>
+        <p>Iterated to fixpoint: a <b>closed 115-key component</b>. The reward-plumbing surface is
+          complete — a hard floor, not the first layer.</p></div>
     </div>
     <div class="trace-punch">
-      <b>And a bridge to the market:</b> one hop of the reward plumbing reaches a stake cluster
-      the community's exchange-tracer campaign independently flagged as <b>Kraken</b> — two
-      unrelated datasets converging on the same address. <span class="chip strong">Strong inference</span>
-      <span class="chip hyp">Exchange name: working hypothesis</span>
-      <br><span class="muted" style="font-size:13px">On-chain linkage is stated as on-chain linkage — never as real-world ownership.</span>
+      <b>The whole chain is graded.</b> On-chain linkage is stated as on-chain linkage —
+      <span class="chip fact">FACT</span> for what's directly queryable,
+      <span class="chip strong">STRONG_INFERENCE</span> for well-supported patterns —
+      never as a claim of real-world ownership, identity, or intent.
+      <br><span class="muted" style="font-size:13px">Read it in full: <a href="https://github.com/BEACNpool/ABCDE/blob/main/findings/INDEX.md" target="_blank" rel="noopener">findings F11–F15 ↗</a></span>
     </div>
-  </div>
-</section>
-
-<!-- EXPLORE -->
-<section id="explore">
-  <div class="wrap">
-    <div class="eyebrow">The data</div>
-    <h2 class="sec-h">Explore the genesis surface</h2>
-    <p class="sec-lede">Curated views over the shipped dataset. Each is graded and links to its
-      full reproducible finding on GitHub.</p>
-    <div class="tabs" id="tabs">
-      <button class="tab active" data-p="seeds">🌱 Genesis seeds</button>
-      <button class="tab" data-p="whale">🐋 The 1.694B surface</button>
-      <button class="tab" data-p="hubs">🏦 Exchange-scale hubs</button>
-      <button class="tab" data-p="exchanges">📡 Tracer / exchanges</button>
-    </div>
-    <div class="panel active" id="p-seeds"></div>
-    <div class="panel" id="p-whale"></div>
-    <div class="panel" id="p-hubs"></div>
-    <div class="panel" id="p-exchanges"></div>
-  </div>
-</section>
-
-<!-- QUERY -->
-<section id="query">
-  <div class="wrap">
-    <div class="eyebrow">Live, in your browser</div>
-    <h2 class="sec-h">Run SQL on the genesis dataset</h2>
-    <p class="sec-lede">This runs a real DuckDB engine compiled to WebAssembly — entirely on your
-      machine. Nothing is sent to a server. Same data everyone else clones.</p>
-    <div class="console">
-      <div class="schema">
-        <h4>Tables <span id="schema-count" class="muted"></span></h4>
-        <div id="schema-list"><span class="spinner"></span> loading engine…</div>
-      </div>
-      <div class="qmain">
-        <div class="examples" id="examples"></div>
-        <textarea id="sql" spellcheck="false">SELECT stake_address, current_ada, current_drep, withdrawal_count
-FROM component_control_indicators
-WHERE current_ada >= 1000
-ORDER BY current_ada DESC
-LIMIT 20;</textarea>
-        <div class="qbar">
-          <button class="btn btn-primary" id="run" disabled>Run query</button>
-          <span class="qstatus" id="qstatus">initializing…</span>
-        </div>
-        <div class="tbl-wrap" id="results"></div>
-      </div>
-    </div>
-    <p class="muted" style="font-size:13px;margin-top:14px">
-      Tip: the console loads a curated ~0.4&nbsp;MB Parquet cut. For the full 105-table database,
-      <a href="https://github.com/BEACNpool/ABCDE">clone the repo</a> and query
-      <code>data/abcde_genesis.duckdb</code> directly, or wire the read-only MCP server into your AI.
-    </p>
   </div>
 </section>
 
@@ -152,9 +133,9 @@ LIMIT 20;</textarea>
   <div class="wrap">
     <div class="eyebrow">Audited claims</div>
     <h2 class="sec-h">Findings</h2>
-    <p class="sec-lede">Every finding carries an evidence grade. Search them; each links to the full
-      receipt-backed document.</p>
-    <input class="find-search" id="find-search" placeholder="Search findings — try &quot;tracer&quot;, &quot;fourth entry&quot;, &quot;35M&quot;…">
+    <p class="sec-lede">Every finding carries an evidence grade and links to a full, receipt-backed
+      document. Search them.</p>
+    <input class="find-search" id="find-search" placeholder="Search findings — try &quot;fourth entry&quot;, &quot;35M&quot;, &quot;IOGP&quot;…">
     <div class="finds" id="finds"></div>
   </div>
 </section>
@@ -171,8 +152,8 @@ LIMIT 20;</textarea>
       <div>
         <p><b style="color:var(--text)">Use it</b></p>
         <p><a href="https://github.com/BEACNpool/ABCDE">Clone the repo ↗</a></p>
+        <p><a href="https://github.com/BEACNpool/ABCDE/blob/main/docs/AI_QUERY_GUIDE.md">Full query guide ↗</a></p>
         <p><a href="https://github.com/BEACNpool/ABCDE/blob/main/docs/TABLE_CATALOG.md">Table catalog ↗</a></p>
-        <p><a href="https://github.com/BEACNpool/ABCDE/blob/main/findings/INDEX.md">All findings ↗</a></p>
       </div>
       <div>
         <p><b style="color:var(--text)">Verify it</b></p>
@@ -186,6 +167,6 @@ LIMIT 20;</textarea>
   </div>
 </footer>
 
-<script type="module" src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -172,3 +172,56 @@ footer a{color:var(--muted)} footer a:hover{color:var(--cyan)}
 .spinner{display:inline-block; width:14px; height:14px; border:2px solid var(--line2);
   border-top-color:var(--cyan); border-radius:50%; animation:spin .7s linear infinite; vertical-align:-2px}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---- get started: pickers + steps ---- */
+.pickers{display:flex; gap:28px; flex-wrap:wrap; margin-bottom:26px}
+.picker{display:flex; align-items:center; gap:12px}
+.plabel{color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.1em}
+.pills{display:flex; gap:8px; flex-wrap:wrap}
+.pill{padding:9px 16px; border-radius:10px; border:1px solid var(--line2); background:transparent;
+  color:var(--muted); font-weight:700; font-size:14px; cursor:pointer; font-family:var(--sans)}
+.pill.active{background:rgba(34,211,238,.12); color:var(--cyan); border-color:var(--cyan)}
+.pill:hover{color:var(--text)}
+.steps-flow{display:flex; flex-direction:column; gap:16px}
+.step-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px}
+.step-head{display:flex; align-items:center; gap:12px; margin-bottom:12px}
+.step-head h3{margin:0; font-size:16px}
+.step-n{width:26px; height:26px; flex:0 0 26px; border-radius:50%; display:grid; place-items:center;
+  background:rgba(34,211,238,.14); color:var(--cyan); font-weight:800; font-size:14px; font-family:var(--mono)}
+.copy-btn{margin-left:auto; padding:6px 14px; border-radius:8px; border:1px solid var(--line2);
+  background:transparent; color:var(--cyan); font-weight:700; font-size:12px; cursor:pointer; font-family:var(--mono)}
+.copy-btn:hover{border-color:var(--cyan); background:rgba(34,211,238,.08)}
+.code-block{margin:0; background:#060f20; border:1px solid var(--line); border-radius:11px;
+  padding:14px 16px; overflow-x:auto}
+.code-block code{background:none; border:none; padding:0; color:#c7f0f7; font-size:13px; line-height:1.7;
+  white-space:pre; font-family:var(--mono)}
+.step-note{color:var(--muted); font-size:13.5px; margin:12px 0 0}
+.ask-box{margin-top:22px; background:linear-gradient(135deg,#0e1f3c,#0a1730);
+  border:1px solid var(--line2); border-radius:var(--radius); padding:20px 22px}
+.ask-examples{display:grid; gap:10px}
+.ask-q{text-align:left; background:#0a1526; border:1px solid var(--line); border-radius:10px;
+  padding:11px 15px; color:#cbd5e1; font-size:14px; cursor:pointer; font-family:var(--sans); line-height:1.4}
+.ask-q:hover{border-color:var(--cyan); color:var(--text)}
+.ask-q.copied{border-color:var(--green); color:var(--green)}
+.ask-q::before{content:'⧉ copy · '; color:var(--muted2); font-size:12px}
+.ask-q.copied::before{content:'✓ copied · '; color:var(--green)}
+
+/* ---- data map ---- */
+.fam-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+@media(max-width:860px){ .fam-grid{grid-template-columns:1fr 1fr} }
+@media(max-width:560px){ .fam-grid{grid-template-columns:1fr} }
+.fam{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px}
+.fam-top{display:flex; align-items:baseline; justify-content:space-between; gap:8px}
+.fam-top h3{margin:0; font-size:15px}
+.fam-n{color:var(--cyan); font-family:var(--mono); font-size:12px; font-weight:700; white-space:nowrap}
+.fam-rows{color:var(--muted); font-size:13px; font-family:var(--mono); margin:2px 0 10px}
+.fam-tables{display:flex; flex-wrap:wrap; gap:5px; line-height:1.9}
+.fam-tables code{font-size:11px; background:#0a1526}
+.q-groups{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+@media(max-width:700px){ .q-groups{grid-template-columns:1fr} }
+.q-group h4{font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--cyan); margin:0 0 10px}
+.q-item{display:block; width:100%; text-align:left; background:var(--panel); border:1px solid var(--line);
+  border-radius:9px; padding:10px 13px; color:#cbd5e1; font-size:13.5px; cursor:pointer; margin-bottom:8px;
+  font-family:var(--sans); line-height:1.4}
+.q-item:hover{border-color:var(--cyan); color:var(--text)}
+.q-item.copied{border-color:var(--green); color:var(--green)}
