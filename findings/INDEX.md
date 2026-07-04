@@ -19,6 +19,10 @@ Labels are defined in `docs/02_GRADING.md`.
 11. [F14 — Fleet is the same 35M-parcel institutional custody structure (~50 keys, ~1.69B ADA)](F14_fleet_is_same_35m_parcel_structure.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 12. [F15 — Reward-plumbing operation is a closed 115-key component; ~1.694B ADA floor](F15_plumbing_component_is_closed_floor.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 
+### Companion module — NIGHT token
+
+13. [F16 — NIGHT genesis mint provenance and supply concentration](F16_night_mint_provenance_and_concentration.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
+
 ## Review cuts / candidate sets
 
 8. [F04 — Bounded depth-3 trace overlap review cut](F04_bounded_trace_overlap_pilot.md) — `REVIEW_CUT`, `FACT within bounded scope`

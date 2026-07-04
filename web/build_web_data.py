@@ -71,7 +71,8 @@ def main() -> None:
                             "findings": t.get("findings", [])})
     order = ["Genesis seeds", "Traces", "IOG current bag", "Governance rollups",
              "Genesis→DRep behavior", "Control indicators", "Reward-plumbing receipts",
-             "IOGP / voucher", "Genesis Trail", "Fourth entry", "Exchange tracers", "Meta", "Other"]
+             "IOGP / voucher", "Genesis Trail", "Fourth entry", "NIGHT token",
+             "Exchange tracers", "Meta", "Other"]
     fams = sorted(fam.values(), key=lambda x: (order.index(x["family"]) if x["family"] in order else 99))
     (OUT / "families.json").write_text(json.dumps(fams, indent=2))
 

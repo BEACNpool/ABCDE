@@ -105,8 +105,9 @@ Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
 | 💰 **IOG current bag** | How much IOG-descended ADA is still unspent (`~494M`), with confidence bands, cluster classifications, and per-UTxO drilldown. |
 | 🗳️ **Governance** | Genesis-descended stake by SPO and by DRep, pool/DRep metadata, a top-DRep profile pack, and every Conway governance action. |
 | 🧭 **Control indicators** | Live custody signals per genesis stake key — dormancy, unclaimed rewards, certificate liveness, batch-operation cohorts — with a graded `fe_control_consistency` score. |
-| 📡 **Exchange tracers** | The community's 505-NFT tracer campaign: current locations, transfer edges, and on-chain "Deposited to: `<Exchange>`" claims naming six exchanges. |
+| 🌙 **NIGHT token** | Companion module: the entire 24B-NIGHT supply traced from its single genesis mint to every current holder — a complete, supply-conserving spend-flow graph — with holder-concentration rollups (one address holds 25%). |
 | 🧾 **Freshness catalog** | Row count, hash, age, and snapshot-sensitivity of *every* table, so any answer can state exactly how fresh its evidence is. |
+| 📡 **Exchange tracers** | A community exchange-tracer dataset (`tracer_*`); crowd-sourced attribution, kept for reference and graded accordingly. |
 
 Ground your queries on the generated schema — [`docs/SCHEMA.md`](docs/SCHEMA.md)
 (human) and `data/schema_catalog.json` (machine). Start with

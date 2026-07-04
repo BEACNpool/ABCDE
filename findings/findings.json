@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 16,
+  "finding_count": 17,
   "findings": [
     {
       "id": "F01",
@@ -436,6 +436,65 @@
         {
           "path": "sql/10_findings/f15_cowithdrawal_component.sql",
           "sha256": "8cdef69557547dd7abaa9ae51fc446c82bb4e4ecf34d25d88f0f1110a64e13d6"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F16",
+      "file": "findings/F16_night_mint_provenance_and_concentration.md",
+      "title": "NIGHT genesis mint: complete spend-flow provenance and supply concentration",
+      "claim": "The entire supply of the **NIGHT** token\n(policy `0691b2fecca1ac4f53cb6dfb00b7013e561d1f34403b957cbb5af1fa`, asset name\n`NIGHT`) is traced from its single genesis mint to every current holder, and the\ndistribution is highly concentrated:\n\n- **Single mint:** tx `ce75b0e1e203c66d5dbce3b37865114163f577a58d3d12b0ae2593f8d3a64eb2`\n  on 2025-11-25, **24,000,000,000 NIGHT** into one script UTxO (`…#0`).\n- **Complete, conserved graph:** the spend flow expands to fixpoint across\n  **1,358,841 UTxO nodes, 717,947 transactions, ~2.55M edges, 3,349 levels\n  deep**. The full 24,000,000,000 NIGHT is accounted for at **167,728 current\n  (unspent) leaf UTxOs**, with **0 unreachable** — supply conservation holds\n  exactly.\n- **Concentration (current holdings across 117,671 addresses):**\n  - **one address holds exactly 25.00%** (6,000,000,001 NIGHT) in a **single UTxO**;\n  - top 10 addresses hold **65.27%**; top 50 hold **83.43%**; top 100 hold\n    **86.04%**; top 1,000 hold **92.79%**.\n- **Custody type:** 51.78% of NIGHT sits at enterprise (non-staked) addresses,\n  48.22% at script addresses.",
+      "grade": "- **FACT:** the mint, the root UTxO, the complete spend-flow graph and its node/\n  edge/level counts, the exact supply conservation (leaves sum to the mint,\n  zero unreachable), every concentration figure, and the custody-type split —\n  all directly queryable from the committed `night_*` tables and reproducible\n  from the extraction SQL against db-sync.\n- **STRONG_INFERENCE:** the shape (a few very large holders plus a long thin\n  tail) reflects an airdrop/distribution structure plus early exchange/DEX\n  market formation. Most of the largest holders are **script** addresses,\n  consistent with distribution contracts, custody, bridges, or liquidity pools.\n- **WORKING_HYPOTHESIS:** what any specific top address *is*. The 25%\n  single-UTxO holder is an **unidentified script address**; it is most likely a\n  programmatic distribution/treasury/custody contract, but that is not proven\n  here.\n- **UNKNOWN:** real-world ownership, identity, or control of any address.\n\n### The wording rule applied\n\nThis finding proves *where the NIGHT went on-chain* and *how concentrated it is*\n— not who owns it. \"An unidentified script address holds 25% in a single UTxO\"\nis FACT; naming that entity is not established. Script-vs-enterprise is a\ncustody-*type* signal from the address structure, not an identity.\n\n### Counterexamples / cautions\n\n- **Script ≠ single owner.** A script address can be a shared contract (a DEX\n  pool, a distribution escrow, a bridge) holding many parties' value. High\n  script concentration is therefore not automatically \"one whale.\"\n- **Leaves are a snapshot.** Current holdings are as of the export tip; the\n  graph structure and mint are historical facts that do not decay, but the\n  concentration numbers move as tokens trade.\n- **Enterprise addresses** (no stake credential) here are the majority of value\n  — common for exchange deposit/custody and for holders who never delegated a\n  non-ADA token; it is not itself evidence of anything beyond address structure.\n\n### Snapshot-boundary notes\n\nCurrent-holding figures are as of the NIGHT export tip (current leaves span\n2025-12 → 2026-04). Mint, root, graph topology, and conservation are historical\nfacts. `night_summary` carries the export's own metrics.",
+      "evidence": [
+        {
+          "path": "data/small/night_concentration_curve.csv",
+          "sha256": "0d2c89c5fe98c36f3b1eb32cad2a4cdd6360d3111d60d46e69069b50ef115e20"
+        },
+        {
+          "path": "data/small/night_current_leaves_top.csv",
+          "sha256": "0c6e6c753f71ac38ce3170d5b0b9d85e393e268da1580591572453f737850098"
+        },
+        {
+          "path": "data/small/night_flow_level_dist.csv",
+          "sha256": "a93010c4a65e529f699747e944a07fd5b841c3e8ad034967218914c67ce49909"
+        },
+        {
+          "path": "data/small/night_holder_top.csv",
+          "sha256": "a8352e35e3e0500334df882981c372b4820883baddcda3eb4e86811c1cf7e12a"
+        },
+        {
+          "path": "data/small/night_holder_type_split.csv",
+          "sha256": "de50fb703a37beebf3c4b46eb67d40a4f491564bdfaddfb128ac473fde265565"
+        },
+        {
+          "path": "data/small/night_leaves_by_month.csv",
+          "sha256": "668383cd82972808269bae1f2b18f028d5e9919db2f77de6c4a415456cfdc40d"
+        },
+        {
+          "path": "data/small/night_mint_event.csv",
+          "sha256": "179a0f87b81f5fe6fe9a98a29ae7d183e9283da2341a8afd95484f53bc8cf356"
+        },
+        {
+          "path": "data/small/night_root_utxo.csv",
+          "sha256": "0cc4f051894b54c22ff356574c1b808db9ac04ed2776276ea6bb61e130702677"
+        },
+        {
+          "path": "data/small/night_summary.csv",
+          "sha256": "9b33ef202d6affea5caeb780a98e297dfc4bfdbc7cb296a480b5c69ae752dce7"
+        },
+        {
+          "path": "docs/25_NIGHT_TOKEN_PROVENANCE.md",
+          "sha256": "bc2021c65b628049cca20d1f92659e4f25617d8f5e16ef527fe1ee03fc30bd70"
+        },
+        {
+          "path": "scripts/build_night_rollups.py",
+          "sha256": null
+        },
+        {
+          "path": "sql/40_night/night_full_spend_flow_export.remote.sql",
+          "sha256": "4f37f1944412c3820d13c7d9aa889fade820b28bd9ff159ea8d4214c2e95267d"
         }
       ],
       "has_reproduce_sql": true,

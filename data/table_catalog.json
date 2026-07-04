@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 105,
+  "table_count": 114,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -66,7 +66,7 @@
     {
       "table": "data_freshness_catalog",
       "family": "Meta",
-      "row_count": 102,
+      "row_count": 111,
       "source": "data/small/data_freshness_catalog.csv",
       "snapshot_sensitive": false,
       "findings": [],
@@ -704,6 +704,105 @@
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
+    },
+    {
+      "table": "night_concentration_curve",
+      "family": "NIGHT token",
+      "row_count": 13,
+      "source": "data/small/night_concentration_curve.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_current_leaves_top",
+      "family": "NIGHT token",
+      "row_count": 10000,
+      "source": "data/small/night_current_leaves_top.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_flow_level_dist",
+      "family": "NIGHT token",
+      "row_count": 1143,
+      "source": "data/small/night_flow_level_dist.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_holder_top",
+      "family": "NIGHT token",
+      "row_count": 2000,
+      "source": "data/small/night_holder_top.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_holder_type_split",
+      "family": "NIGHT token",
+      "row_count": 2,
+      "source": "data/small/night_holder_type_split.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_leaves_by_month",
+      "family": "NIGHT token",
+      "row_count": 5,
+      "source": "data/small/night_leaves_by_month.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_mint_event",
+      "family": "NIGHT token",
+      "row_count": 1,
+      "source": "data/small/night_mint_event.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_root_utxo",
+      "family": "NIGHT token",
+      "row_count": 1,
+      "source": "data/small/night_root_utxo.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_summary",
+      "family": "NIGHT token",
+      "row_count": 15,
+      "source": "data/small/night_summary.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F16"
+      ],
+      "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
     },
     {
       "table": "seed_anchor_db_verification",

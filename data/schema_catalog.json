@@ -175,10 +175,10 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "9489ae195d18",
-          "source_generated_utc": "2026-07-03 21:36:31-05:00",
-          "db_tip_block": 13632466,
-          "db_tip_time": "2026-07-04 02:36:07",
+          "git_commit": "a5ed2caf0d1b",
+          "source_generated_utc": "2026-07-03 23:10:04-05:00",
+          "db_tip_block": 13632752,
+          "db_tip_time": "2026-07-04 04:09:53",
           "db_tip_epoch": 641,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -530,7 +530,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 102,
+      "row_count": 111,
       "columns": [
         {
           "name": "table_name",
@@ -550,7 +550,7 @@
         },
         {
           "name": "last_commit_utc",
-          "type": "TIMESTAMP WITH TIME ZONE"
+          "type": "VARCHAR"
         },
         {
           "name": "age_days_at_refresh",
@@ -567,7 +567,7 @@
           "data_rows": 53,
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
-          "last_commit_utc": "2026-05-29 09:26:39-05:00",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -576,7 +576,7 @@
           "data_rows": 10,
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
-          "last_commit_utc": "2026-05-29 09:26:39-05:00",
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
           "age_days_at_refresh": 35,
           "snapshot_sensitive": false
         },
@@ -585,7 +585,7 @@
           "data_rows": 115,
           "bytes": 48709,
           "sha256": "ba18d73704fae8488fd41633bb63012a21d71bc3076ef544f8f9fd81a92eb1a5",
-          "last_commit_utc": "2026-07-03 13:17:25-05:00",
+          "last_commit_utc": "2026-07-03T13:17:25-05:00",
           "age_days_at_refresh": 0,
           "snapshot_sensitive": true
         }
@@ -622,9 +622,9 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-07-03 21:36:31-05:00",
-          "db_tip_block": 13632466,
-          "db_tip_time": "2026-07-04 02:36:07",
+          "generated_utc": "2026-07-03 23:10:04-05:00",
+          "db_tip_block": 13632752,
+          "db_tip_time": "2026-07-04 04:09:53",
           "db_tip_epoch": 641,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
@@ -6243,6 +6243,374 @@
           "metric": "total_by_combo",
           "seed_combo": "CF+EMURGO+IOG",
           "count": 3
+        }
+      ]
+    },
+    "night_concentration_curve": {
+      "source": "data/small/night_concentration_curve.csv",
+      "row_count": 13,
+      "columns": [
+        {
+          "name": "top_n",
+          "type": "BIGINT"
+        },
+        {
+          "name": "cumulative_night",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "cumulative_pct",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "top_n": 1,
+          "cumulative_night": 6000000000.873988,
+          "cumulative_pct": 25.0
+        },
+        {
+          "top_n": 5,
+          "cumulative_night": 12900013137.320972,
+          "cumulative_pct": 53.7501
+        },
+        {
+          "top_n": 10,
+          "cumulative_night": 15665298340.245272,
+          "cumulative_pct": 65.2721
+        }
+      ]
+    },
+    "night_current_leaves_top": {
+      "source": "data/small/night_current_leaves_top.csv",
+      "row_count": 10000,
+      "columns": [
+        {
+          "name": "utxo_node_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address_has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "qty_night",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "flow_level",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "utxo_node_id": "03b5d301678204ee48c7f93d3446fd4ad0427da6d1966e8d3df423c720657b0e#0",
+          "address": "addr1w950c5zxn5fhwlauvpy3ssk287q0qlwz6e2zc4gaj62vaxsy3s9p0",
+          "address_has_script": true,
+          "qty_night": 6000000000.873988,
+          "block_no": 13154250,
+          "block_time_utc": "2026-03-13 16:01:19",
+          "flow_level": 2
+        },
+        {
+          "utxo_node_id": "03b5d301678204ee48c7f93d3446fd4ad0427da6d1966e8d3df423c720657b0e#1",
+          "address": "addr1wyczfpxfnf5hvp36mrn655ye4k2cwluvlez6phx8jx46k6s2ttdaq",
+          "address_has_script": true,
+          "qty_night": 1200000000.0,
+          "block_no": 13154250,
+          "block_time_utc": "2026-03-13 16:01:19",
+          "flow_level": 2
+        },
+        {
+          "utxo_node_id": "c99f65849d3070981f53ddcab7775c367b80b851fa4de358be5eed1729dc0616#1",
+          "address": "addr1qyahg78kwaa3fstl8awlt5rqfyq4gtxmpzth3wge2f3520usrrrehtfu7m7ql049e5qnaep75yv0ml527fujmy7xgpcszdlh7j",
+          "address_has_script": false,
+          "qty_night": 1096130969.88,
+          "block_no": 12887294,
+          "block_time_utc": "2026-01-09 16:54:51",
+          "flow_level": 4
+        }
+      ]
+    },
+    "night_flow_level_dist": {
+      "source": "data/small/night_flow_level_dist.csv",
+      "row_count": 1143,
+      "columns": [
+        {
+          "name": "flow_level",
+          "type": "BIGINT"
+        },
+        {
+          "name": "leaf_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "qty_night",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "pct_of_supply",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "flow_level": 2,
+          "leaf_utxos": 7,
+          "qty_night": 9300589521.695047,
+          "pct_of_supply": 38.7525
+        },
+        {
+          "flow_level": 3,
+          "leaf_utxos": 6,
+          "qty_night": 970538894.322245,
+          "pct_of_supply": 4.0439
+        },
+        {
+          "flow_level": 4,
+          "leaf_utxos": 569,
+          "qty_night": 1868007587.046469,
+          "pct_of_supply": 7.7834
+        }
+      ]
+    },
+    "night_holder_top": {
+      "source": "data/small/night_holder_top.csv",
+      "row_count": 2000,
+      "columns": [
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "qty_night",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pct_of_supply",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "address": "addr1w950c5zxn5fhwlauvpy3ssk287q0qlwz6e2zc4gaj62vaxsy3s9p0",
+          "has_script": true,
+          "qty_night": 6000000000.873988,
+          "utxos": 1,
+          "pct_of_supply": 25.0
+        },
+        {
+          "address": "addr1qx2jr033c4ywyr8d86nj72azm3tv4tn9ve8rf5kee0d623y4yxlrr32gugxw60489u469hzke2hx2ejwxnfdnj7m54zqgddhlg",
+          "has_script": false,
+          "qty_night": 2973022991.23,
+          "utxos": 7,
+          "pct_of_supply": 12.3876
+        },
+        {
+          "address": "addr1wxgp2xvmvh0lrfdeu2q3jtqp2lprej6hjvgjx2u5lcwqxlqfvty7h",
+          "has_script": true,
+          "qty_night": 1630859175.3369844,
+          "utxos": 569,
+          "pct_of_supply": 6.7952
+        }
+      ]
+    },
+    "night_holder_type_split": {
+      "source": "data/small/night_holder_type_split.csv",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "qty_night",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "addresses",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pct_of_supply",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "has_script": false,
+          "qty_night": 12426953042.441225,
+          "addresses": 60771,
+          "pct_of_supply": 51.779
+        },
+        {
+          "has_script": true,
+          "qty_night": 11573046957.559053,
+          "addresses": 56900,
+          "pct_of_supply": 48.221
+        }
+      ]
+    },
+    "night_leaves_by_month": {
+      "source": "data/small/night_leaves_by_month.csv",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "month",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "leaf_utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "qty_night",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "month": "2025-12",
+          "leaf_utxos": 23269,
+          "qty_night": 3285051901.122745
+        },
+        {
+          "month": "2026-01",
+          "leaf_utxos": 25477,
+          "qty_night": 2762494865.859438
+        },
+        {
+          "month": "2026-02",
+          "leaf_utxos": 32386,
+          "qty_night": 892455488.657792
+        }
+      ]
+    },
+    "night_mint_event": {
+      "source": "data/small/night_mint_event.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "quantity_night",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "tx_hash": "ce75b0e1e203c66d5dbce3b37865114163f577a58d3d12b0ae2593f8d3a64eb2",
+          "block_no": 12696233,
+          "block_time_utc": "2025-11-25 22:00:10",
+          "quantity_night": 24000000000.0
+        }
+      ]
+    },
+    "night_root_utxo": {
+      "source": "data/small/night_root_utxo.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "utxo_node_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address_has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "payment_cred_hex",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "qty_night",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "utxo_node_id": "ce75b0e1e203c66d5dbce3b37865114163f577a58d3d12b0ae2593f8d3a64eb2#0",
+          "tx_hash": "ce75b0e1e203c66d5dbce3b37865114163f577a58d3d12b0ae2593f8d3a64eb2",
+          "address": "addr1wyrfrvh7ejs6cn6nedklkq9hqyl9v8glx3qrh9tuhdd0r7s0t5rk3",
+          "address_has_script": true,
+          "payment_cred_hex": "0691b2fecca1ac4f53cb6dfb00b7013e561d1f34403b957cbb5af1fa",
+          "qty_night": 24000000000.0,
+          "block_no": 12696233,
+          "block_time_utc": "2025-11-25 22:00:10"
+        }
+      ]
+    },
+    "night_summary": {
+      "source": "data/small/night_summary.csv",
+      "row_count": 15,
+      "columns": [
+        {
+          "name": "metric",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "value",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "metric": "mint_event_rows",
+          "value": 1.0
+        },
+        {
+          "metric": "net_minted_raw",
+          "value": 2.4e+16
+        },
+        {
+          "metric": "net_minted_night",
+          "value": 24000000000.0
         }
       ]
     },

@@ -55,6 +55,12 @@ the message is FACT, the attribution is not.
 To quantify how fresh/accurate any table is, join it against
 `data_freshness_catalog` and cite `db_tip_receipt`.
 
+For NIGHT-token questions (the Midnight token, policy `0691b2fe…`), use the
+`night_*` tables and read `docs/25_NIGHT_TOKEN_PROVENANCE.md`. The compact cut
+holds concentration rollups + a top holder/leaf cut; the full spend-flow graph
+is release-tier. Same wording rule: a script address is a custody-*type* signal,
+never a real-world identity.
+
 ## Read-only rule (hard constraint)
 
 The database is opened `read_only=True` and every statement is statically
