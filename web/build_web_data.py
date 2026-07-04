@@ -92,6 +92,10 @@ def main() -> None:
         {"theme": "Governance", "qs": [
             "Which DReps hold the most genesis-traced stake?",
             "Which stake pools received the most genesis-descended delegation?"]},
+        {"theme": "NIGHT token (companion module)", "qs": [
+            "How concentrated is the NIGHT supply — what share do the top 10 and top 100 addresses hold?",
+            "Does the traced NIGHT supply conserve back to the 24B genesis mint?",
+            "How much NIGHT sits at script addresses versus enterprise addresses?"]},
         {"theme": "Freshness & method", "qs": [
             "What chain tip is this snapshot taken at, and which tables are snapshot-sensitive?",
             "For any figure you give me, cite the table and its evidence grade."]},
