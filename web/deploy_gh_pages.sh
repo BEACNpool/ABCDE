@@ -15,8 +15,10 @@ REMOTE="git@github-abcde:BEACNpool/ABCDE.git"
 DIST="$REPO/web/dist"
 STAGE="$(mktemp -d)"
 
-echo "1/3 rebuild data layer from committed DuckDB"
+echo "1/3 rebuild data layer + OG share cards"
 "$PY" "$REPO/web/build_web_data.py" >/dev/null
+# OG cards use Pillow, which is on the system python (not the venv). Best-effort.
+python3 "$REPO/scripts/build_og_cards.py" || echo "  (og cards skipped: $?)"
 
 echo "2/3 stage site"
 cp -r "$DIST/." "$STAGE/"

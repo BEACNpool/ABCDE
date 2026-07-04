@@ -20,6 +20,12 @@ let MODEL = 'code', OS = 'mac';
   wirePickers(); renderSteps(); renderAsk();
 })();
 
+const SITE = 'https://beacnpool.github.io/ABCDE';
+function shareUrl(h) {
+  const text = `${h.headline}  (on-chain, graded, verify it yourself 👇)`;
+  const url = `${SITE}/r/${h.slug}.html`;
+  return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+}
 function renderHooks() {
   $('#hooks').innerHTML = HOOKS.map((h, i) => `
     <div class="hook">
@@ -27,7 +33,10 @@ function renderHooks() {
         <span class="chip ${gradeClass(h.grade)}">${esc(h.grade)}</span></div>
       <h3 class="hook-h">${esc(h.headline)}</h3>
       <p class="hook-sub">${esc(h.sub)}</p>
-      <button class="hook-verify" data-i="${i}">Verify it yourself →</button>
+      <div class="hook-actions">
+        <button class="hook-verify" data-i="${i}">Verify it yourself →</button>
+        <a class="hook-share" href="${shareUrl(h)}" target="_blank" rel="noopener" title="Share on X">↗ Share</a>
+      </div>
     </div>`).join('');
   $$('#hooks .hook-verify').forEach(b => b.addEventListener('click', () => {
     const ask = HOOKS[+b.dataset.i].ask;

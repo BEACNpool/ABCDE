@@ -244,3 +244,9 @@ footer a{color:var(--muted)} footer a:hover{color:var(--cyan)}
   color:var(--cyan); font-weight:700; font-size:13px; padding:8px 15px; border-radius:9px;
   cursor:pointer; font-family:var(--sans)}
 .hook-verify:hover{border-color:var(--cyan); background:rgba(34,211,238,.08)}
+
+.hook-actions{display:flex; align-items:center; gap:10px}
+.hook-share{background:transparent; border:1px solid var(--line); color:var(--muted);
+  font-weight:700; font-size:13px; padding:8px 13px; border-radius:9px; cursor:pointer;
+  font-family:var(--sans); text-decoration:none}
+.hook-share:hover{border-color:var(--cyan); color:var(--cyan); text-decoration:none}
