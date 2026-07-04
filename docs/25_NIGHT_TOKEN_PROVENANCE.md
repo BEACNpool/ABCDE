@@ -32,12 +32,32 @@ Supply conserves exactly — 24B minted → 24B at 167,728 current leaf UTxOs �
 | `night_leaves_by_month` | when current holdings last landed |
 | `night_current_leaves_top` | the top 10,000 current-leaf UTxOs (queryable holder cut) |
 
-**2. Release-tier full graph** (~2 GB, not committed): the complete node and
-edge lists —
-`3{5..43}_night_*_abcde.csv` (mint, root, reachable UTxO/tx nodes, UTxO→tx and
-tx→UTxO edges, current leaves, summary). This is the reproducible full artifact.
-Place the unzipped export in `data/release/night_full/` (gitignored) to rebuild
-the compact cut, or publish it as a GitHub Release asset for public download.
+**2. Release-tier full graph** (the complete node + edge lists — 1.36M UTxO
+nodes, 718K txs, ~2.55M edges). Because it is far too large for the main tree,
+it is published as **Parquet+ZSTD split into <45 MB parts on a dedicated
+`night-full-data` branch** (632 MB total, within GitHub's per-file and repo
+guidelines). Fetch and verify it — a shallow, single-branch download, so you
+pull only the graph:
+
+```bash
+python scripts/fetch_night_full.py     # -> data/release/night_full_bundle/
+```
+
+It checksums every part against `data/manifests/night-full-bundle-manifest.json`.
+Then query the parts directly with DuckDB:
+
+```sql
+SELECT count(*) FROM parquet_scan('data/release/night_full_bundle/utxo_nodes/*.parquet');
+```
+
+The bundle is rebuilt from the raw export by `scripts/build_night_release_bundle.py`.
+
+> Clone-size note: a default `git clone` fetches every branch, so it *will*
+> pull this graph (~630 MB) along with the compact tree. For a lean clone that
+> skips it, use `git clone --single-branch --branch main <url>`; the fetch
+> script above then pulls the graph on demand. (If this repo instead publishes
+> the graph as a GitHub Release asset in future, it will not affect clones at
+> all — that is the tidier long-term home.)
 
 ## Reproducing
 
