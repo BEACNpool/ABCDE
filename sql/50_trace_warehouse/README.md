@@ -1,0 +1,42 @@
+# Trace warehouse (`trace` schema on abcde)
+
+Local materializations built on the abcde warehouse to make genesis hop-tracing
+an index lookup instead of a live recursive graph walk. `public.*` stays
+read-only; everything here lives in the local `trace` / `governance` / `explorer`
+schemas. Built 2026-07-06/07; canonical warehouse state:
+`~/.openclaw/workspace/infra/ABCDE_DATA_WAREHOUSE_STATE.md`.
+
+## Files
+
+- `build_genesis_reach.sql` — builds `trace.genesis_reach`, the genesis ADA
+  reachability graph: breadth-first from all 14,505 Byron genesis outputs, depth
+  ≤8, fan-out cap 50 (wide batch/exchange txs recorded in `trace.genesis_wide_tx`,
+  not expanded). Staging-and-swap so readers never see a partial build; a receipt
+  row lands in `trace.build_receipt` each run. Installed on abcde at
+  `/usr/local/share/abcde-trace/`; runner `/usr/local/bin/build_genesis_trace.sh`
+  (env `DEPTH`/`CAP`); weekly cron Sun 04:30 `DEPTH=8`.
+- `recreate_matviews.sql` — the 7 governance/explorer analytics matviews.
+- `genesis_tag_intersection.sql` — cross the reach graph against
+  `governance.genesis_address_tags`.
+- `data/genesis_never_moved.csv` — the 465 genesis outputs never spent since
+  2017 (deterministic export; `SHA256SUMS` + `export_tip_receipt.csv`).
+
+## Semantics — read before citing
+
+`trace.genesis_reach` encodes **REACHABILITY, not value attribution.** `depth` is
+the minimum hop count from any genesis seed. Every output of a tx that spends a
+reached output is "reached" — at depth ≥5 this co-mingles heavily with unrelated
+funds, so depth ≤4 is the analytically tight zone. "Reached" is never a claim of
+ownership or control; entity/exchange naming requires a graded label in
+`governance.genesis_address_tags`, per the wording rule in `../../tracers/README.md`.
+
+## Headline findings (tip block 13,647,367, 2026-07-07)
+
+- **465 genesis outputs — 318,200,635 ADA — have never moved since 2017.**
+  Largest single untouched output 11.78M ADA. All Byron `Ae2…` addresses.
+- The 4 named genesis-entity anchors (IOG, EMURGO, Cardano Foundation, and the
+  781M "fourth entry") each spent their genesis allocation at depth 1 on
+  2017-09-27/28 — none still unspent at the original address.
+- **0 of 59 tagged exchange-deposit addresses are reachable from genesis within
+  8 hops.** The tracer-tagged modern deposit addresses and genesis-era supply are
+  disjoint at this depth — a FACT that constrains any "founder→exchange" narrative.
