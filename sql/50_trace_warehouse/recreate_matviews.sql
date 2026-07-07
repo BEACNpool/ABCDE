@@ -129,6 +129,11 @@ SELECT
     b.time                              AS submitted_at,
     b.epoch_no                          AS submitted_epoch,
     ga.expiration                       AS expiration_epoch,
+    ga.ratified_epoch, ga.enacted_epoch, ga.dropped_epoch, ga.expired_epoch,
+    CASE WHEN ga.enacted_epoch  IS NOT NULL THEN 'enacted'
+         WHEN ga.ratified_epoch IS NOT NULL THEN 'ratified'
+         WHEN ga.dropped_epoch  IS NOT NULL OR ga.expired_epoch IS NOT NULL THEN 'expired'
+         ELSE 'active' END              AS status,
     va.url                              AS anchor_url,
     encode(va.data_hash, 'hex')         AS anchor_hash,
     (SELECT COUNT(*) FROM public.voting_procedure vp
@@ -145,6 +150,7 @@ ORDER BY b.time DESC;
 CREATE UNIQUE INDEX ON governance.proposals (proposal_id);
 CREATE INDEX ON governance.proposals (proposal_type);
 CREATE INDEX ON governance.proposals (submitted_epoch);
+CREATE INDEX ON governance.proposals (status);
 
 DROP MATERIALIZED VIEW IF EXISTS governance.drep_delegation_snapshot;
 CREATE MATERIALIZED VIEW governance.drep_delegation_snapshot AS
