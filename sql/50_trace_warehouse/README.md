@@ -18,8 +18,21 @@ schemas. Built 2026-07-06/07; canonical warehouse state:
 - `recreate_matviews.sql` — the 7 governance/explorer analytics matviews.
 - `genesis_tag_intersection.sql` — cross the reach graph against
   `governance.genesis_address_tags`.
-- `data/genesis_never_moved.csv` — the 465 genesis outputs never spent since
-  2017 (deterministic export; `SHA256SUMS` + `export_tip_receipt.csv`).
+- `data/` — deterministic exports (all hashed in `SHA256SUMS`, provenance in
+  `export_tip_receipt.csv`, tip block 13,647,367):
+  - `genesis_never_moved.csv` — the 465 genesis outputs never spent since 2017.
+  - `genesis_address_tags.csv` — the 74 graded labels (4 genesis-entity anchors +
+    70 tracer/exchange-deposit addresses) that seed `governance.genesis_address_tags`.
+  - `genesis_reach_depth_summary.csv` — per-depth graph shape: outputs, reach ADA,
+    and unspent-at-tip counts/value. Note `reach_ada` exceeds total ADA supply at
+    depth ≥5 because reachability double-counts co-mingled value — this is the
+    reachability-not-attribution property, not an error.
+  - `liquidity_exchange_summary.csv` — per tagged-exchange claim: address count,
+    ADA ever through, live balance now, and genesis-reachability (all 0/8-hop).
+
+The full `trace.genesis_reach` graph (3.86M rows) is intentionally NOT committed —
+`build_genesis_reach.sql` regenerates it deterministically from the warehouse in
+~7 min. The committed cut is the compact, hashed, reproducible essence.
 
 ## Semantics — read before citing
 
