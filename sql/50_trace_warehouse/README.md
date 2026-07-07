@@ -18,6 +18,16 @@ schemas. Built 2026-07-06/07; canonical warehouse state:
 - `recreate_matviews.sql` — the 7 governance/explorer analytics matviews.
 - `genesis_tag_intersection.sql` — cross the reach graph against
   `governance.genesis_address_tags`.
+- `build_scrolls_schema.sql` — Ledger Scrolls on-chain index (`scrolls` schema).
+  Seeds `scrolls.registry` from the authoritative published registry (17 scrolls),
+  then `scrolls.onchain` (a live VIEW) verifies each against the chain by its pointer
+  kind: tx pointers (manifest-chain-v2, utxo-inline-datum-bytes-v1) via `public.tx`;
+  cip25-pages-v1 via policyId+manifestAsset through `ma_tx_mint`. Exposed via the API
+  (`Accept-Profile: scrolls`). Identifies scrolls by registry pointer, NEVER by
+  asset-name pattern (which matches unrelated tokens). 16/17 verify on-chain;
+  `bitcoin-whitepaper` does NOT — a real registry bug: it points to asset
+  `BITCOIN_MANIFEST` but the minted asset is `BTCWP_MANIFEST` (fix belongs in the
+  ledger-scrolls registry, not here — the indexer correctly surfaces the mismatch).
 - `liquidity_intel_detect.sql` — Liquidity Intel standing job: detects dormant
   (≥5y / genesis) outputs spent in the last 24h and whether the spend heads toward
   a tagged exchange-deposit address, into the local `intel` schema
