@@ -18,6 +18,14 @@ schemas. Built 2026-07-06/07; canonical warehouse state:
 - `recreate_matviews.sql` — the 7 governance/explorer analytics matviews.
 - `genesis_tag_intersection.sql` — cross the reach graph against
   `governance.genesis_address_tags`.
+- `liquidity_intel_detect.sql` — Liquidity Intel standing job: detects dormant
+  (≥5y / genesis) outputs spent in the last 24h and whether the spend heads toward
+  a tagged exchange-deposit address, into the local `intel` schema
+  (`intel.dormant_moves` / `liquidity_daily` / `build_receipt`). Idempotent 24h
+  upsert; installed on abcde, hourly cron (:07). The `intel` schema is exposed via
+  the PostgREST API but the data itself is **not** committed here (private feed;
+  opsbox emails a daily digest via `ops/liquidity_intel_email.py`). Spend detection
+  uses `tx_in` — never `consumed_by_tx_id` (0%-populated on this db-sync).
 - `data/` — deterministic exports (all hashed in `SHA256SUMS`, provenance in
   `export_tip_receipt.csv`, tip block 13,647,367):
   - `genesis_never_moved.csv` — the 465 genesis outputs never spent since 2017.
