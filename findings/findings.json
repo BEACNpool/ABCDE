@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 17,
+  "finding_count": 18,
   "findings": [
     {
       "id": "F01",
@@ -263,6 +263,16 @@
           "sha256": null
         }
       ],
+      "has_reproduce_sql": false,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F10",
+      "file": "findings/F10_kes_corotation_pool_operators.md",
+      "title": "Stake-pool operator concentration by KES co-rotation",
+      "claim": "Cardano's ~2,900-pool count overstates decentralization. Clustering pools by\nsynchronized KES-key rotation — a public operational fingerprint in every block\nheader — resolves **480 pools into 96 operator groups controlling 11.42B ADA, or\n53.4% of all staked ADA.** Recomputed per operator, the network's concentration is\nroughly four times higher than the per-pool figure suggests.",
+      "grade": "- **FACT** — the rotation events, cluster memberships, stake, block share, and DRep\n  overlays are directly queryable from db-sync (this build + the receipts).\n- **STRONG_INFERENCE** — a cluster indicates one *operator* (shared admin /\n  automation / managed host).\n- **UNKNOWN** — the real-world *identity* of any unlabeled operator. Synchronized\n  rotation is not proof of shared ownership; white-label infra providers (Kiln,\n  Figment) run pools for many clients and look identical here. On-chain\n  co-behaviour is on-chain linkage, never real-world identity or control.",
+      "evidence": [],
       "has_reproduce_sql": false,
       "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
     },
