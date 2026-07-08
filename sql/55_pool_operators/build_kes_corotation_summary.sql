@@ -81,6 +81,29 @@ LEFT JOIN poolsync.cluster_summary cs ON cs.cluster_id=m.cluster_id
 LEFT JOIN onchain o ON o.cluster_id=m.cluster_id
 LEFT JOIN tick t ON t.cluster_id=m.cluster_id;
 
+-- grants persist through the drop/recreate so the LAN API keeps serving the
+-- watcher; and a build receipt for freshness checks (mirrors trace.build_receipt).
+GRANT USAGE ON SCHEMA poolsync TO web_anon;
+GRANT SELECT ON poolsync.cluster_alert, poolsync.cluster_summary, poolsync.cluster,
+                poolsync.pool_info, poolsync.cluster_time TO web_anon;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA poolsync GRANT SELECT ON TABLES TO web_anon;
+
+CREATE TABLE IF NOT EXISTS poolsync.build_receipt (
+  run_at    timestamptz NOT NULL DEFAULT now(),
+  tip_block bigint, tip_time timestamptz,
+  rotations bigint, tight_events bigint, pools bigint, clusters bigint
+);
+INSERT INTO poolsync.build_receipt (tip_block, tip_time, rotations, tight_events, pools, clusters)
+SELECT (SELECT max(block_no) FROM public.block),
+       (SELECT max(time) FROM public.block),
+       (SELECT count(*) FROM poolsync.rotation),
+       (SELECT count(*) FROM poolsync.tight),
+       (SELECT count(DISTINCT pool_hash_id) FROM poolsync.rotation),
+       (SELECT count(DISTINCT cluster_id) FROM poolsync.cluster);
+
+\echo === last build receipt ===
+SELECT * FROM poolsync.build_receipt ORDER BY run_at DESC LIMIT 1;
+
 \echo === Nakamoto: naive per-pool vs per-operator (stake, current epoch) ===
 WITH s AS (SELECT pool_id, sum(amount) amt FROM public.epoch_stake
            WHERE epoch_no=(SELECT max(epoch_no) FROM public.epoch_stake) GROUP BY 1),

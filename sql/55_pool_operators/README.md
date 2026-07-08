@@ -18,7 +18,18 @@ on-chain co-behaviour is on-chain linkage, never real-world identity or control.
 Rarely-minting pools have wide timing windows and are missed — every count is a
 floor, not a ceiling.
 
-## Reproduce
+## Standing refresh (installed on the warehouse)
+
+Runner `/usr/local/bin/build_kes_corotation.sh` runs the full pipeline (build →
+export → cluster → load → summary → PostgREST reload) and writes a
+`poolsync.build_receipt` row. **Weekly cron, Sun 05:00 UTC** (user `abcde`), off the
+genesis-trace (04:30) and BEACN-Monitor (`:20`) cadences. Freshness:
+`select * from poolsync.build_receipt order by run_at desc limit 1`. The SQL +
+clustering are installed under `/usr/local/share/abcde-trace/` from this repo. The
+pipeline briefly drop/recreates the poolsync tables; readers tolerate a transient
+missing `cluster_alert` (BEACN Monitor's `pool_cluster_watch` skips that cycle).
+
+## Reproduce (ad hoc)
 
 ```bash
 # 1. build rotation events + corroboration tables on the warehouse

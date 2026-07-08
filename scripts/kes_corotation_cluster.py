@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""KES co-rotation clustering — the pair-scoring + connected-components step.
+r"""KES co-rotation clustering — the pair-scoring + connected-components step.
 
 Reads the SQL-derived inputs (poolsync.tight, poolsync.pool_info, and the
 shared_* corroboration tables, exported to CSV by build_kes_corotation.sql —
