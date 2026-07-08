@@ -69,12 +69,24 @@ awakened AS (
   WHERE cb.id = 1 OR cb.time < now() - interval '5 years'
 ),
 liq AS (   -- does the spending tx pay any tagged exchange-deposit address?
-  SELECT a.spend_tx_id, string_agg(DISTINCT t.tag, ',' ORDER BY t.tag) AS tags
-  FROM awakened a
-  JOIN public.tx_out so ON so.tx_id = a.spend_tx_id
-  JOIN governance.genesis_address_tags t
-    ON t.address = so.address AND t.tag LIKE 'claimed_deposit:%'
-  GROUP BY a.spend_tx_id
+  -- Two label sources, both emitting the 'claimed_deposit:<exchange>' shape the
+  -- BEACN Monitor strips: (1) legacy genesis founder-trace tags, (2) the community
+  -- tracer registry (intel.exchange_address, majority-voted, "message is FACT,
+  -- attribution is STRONG_INFERENCE/WORKING_HYPOTHESIS" per the tracer study).
+  SELECT spend_tx_id, string_agg(DISTINCT tag, ',' ORDER BY tag) AS tags
+  FROM (
+    SELECT a.spend_tx_id, t.tag
+    FROM awakened a
+    JOIN public.tx_out so ON so.tx_id = a.spend_tx_id
+    JOIN governance.genesis_address_tags t
+      ON t.address = so.address AND t.tag LIKE 'claimed_deposit:%'
+    UNION
+    SELECT a.spend_tx_id, 'claimed_deposit:' || ea.exchange
+    FROM awakened a
+    JOIN public.tx_out so ON so.tx_id = a.spend_tx_id
+    JOIN intel.exchange_address ea ON ea.address = so.address
+  ) u
+  GROUP BY spend_tx_id
 )
 INSERT INTO intel.dormant_moves
   (from_tx_id, from_index, spend_tx_hash, spend_time, spend_date, from_created,
