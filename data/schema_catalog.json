@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "a5ed2caf0d1b",
+          "git_commit": "9ed5437d03ed",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -6611,6 +6611,132 @@
         {
           "metric": "net_minted_night",
           "value": 24000000000.0
+        }
+      ]
+    },
+    "pool_operator_kes_clusters": {
+      "source": "data/small/pool_operator_kes_clusters.csv",
+      "row_count": 96,
+      "columns": [
+        {
+          "name": "cluster_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pools",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_pct",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "delegators",
+          "type": "BIGINT"
+        },
+        {
+          "name": "abstain_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "top_drep_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "has_onchain_links",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "sample_tickers",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "last_sync",
+          "type": "DATE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "cluster_id": 1,
+          "pools": 55,
+          "stake_ada": 2484041059,
+          "block_pct": 11.44,
+          "delegators": 345,
+          "abstain_ada": 2482375306,
+          "top_drep_ada": 405818,
+          "has_onchain_links": false,
+          "sample_tickers": "ARH CVM EGH FBA FCS FMD FVG GCD GCN KLF KOH LAG N/A OOH RMH RRC RVH TBG TIA TLK TZD UBE UTA WGM",
+          "last_sync": "2026-07-08"
+        },
+        {
+          "cluster_id": 6,
+          "pools": 13,
+          "stake_ada": 503373174,
+          "block_pct": 2.2,
+          "delegators": 48,
+          "abstain_ada": 0,
+          "top_drep_ada": 428,
+          "has_onchain_links": true,
+          "sample_tickers": "ETO1 ETO10 ETO11 ETO12 ETO13 ETO2 ETO3 ETO4 ETO5 ETO6 ETO7 ETO8 ETO9",
+          "last_sync": "2026-05-02"
+        },
+        {
+          "cluster_id": 13,
+          "pools": 8,
+          "stake_ada": 458053919,
+          "block_pct": 2.11,
+          "delegators": 27767,
+          "abstain_ada": 318877903,
+          "top_drep_ada": 2468507,
+          "has_onchain_links": false,
+          "sample_tickers": "BTV1 BTV2 BTV3 gjp7a LBF1 LBF2 LBF3 qzsbu",
+          "last_sync": "2026-06-04"
+        }
+      ]
+    },
+    "pool_operator_kes_members": {
+      "source": "data/small/pool_operator_kes_members.csv",
+      "row_count": 480,
+      "columns": [
+        {
+          "name": "cluster_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "cluster_id": 1,
+          "pool_bech32": "pool197na7w0h8hjc8wdvwys7nsalhtpctefa3m23udeqxpfk6nzq8l9",
+          "ticker_name": "N/A",
+          "stake_ada": 78498886.362451
+        },
+        {
+          "cluster_id": 1,
+          "pool_bech32": "pool147tju4482jtl253lgqq88fkefdugcuhaumf8m0rcj8uzxu846qm",
+          "ticker_name": "N/A",
+          "stake_ada": 74329095.771407
+        },
+        {
+          "cluster_id": 1,
+          "pool_bech32": "pool1fl20ddkpvnstlx63fal6e3ku46r76nk2s4mqtk5jnyxn2vt7hg6",
+          "ticker_name": "KOH",
+          "stake_ada": 70538298.257043
         }
       ]
     },

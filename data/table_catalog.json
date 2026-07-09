@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 114,
+  "table_count": 116,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -803,6 +803,24 @@
         "F16"
       ],
       "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "pool_operator_kes_clusters",
+      "family": "Other",
+      "row_count": 96,
+      "source": "data/small/pool_operator_kes_clusters.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "pool_operator_kes_members",
+      "family": "Other",
+      "row_count": 480,
+      "source": "data/small/pool_operator_kes_members.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
     },
     {
       "table": "seed_anchor_db_verification",

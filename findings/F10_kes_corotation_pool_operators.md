@@ -23,6 +23,21 @@ roughly four times higher than the per-pool figure suggests.
   Figment) run pools for many clients and look identical here. On-chain
   co-behaviour is on-chain linkage, never real-world identity or control.
 
+## Queryable
+
+Ask the repo directly (MCP `run_sql` / `ask.py`), e.g. *"how many stake pools move
+in a cluster as if they have the same owner?"*:
+
+- `pool_operator_kes_clusters` — one row per operator cluster (pools, stake_ada,
+  block_pct, delegators, abstain_ada, top_drep_ada, has_onchain_links, sample_tickers).
+- `pool_operator_kes_members` — one row per pool (cluster_id, pool_bech32, ticker, stake_ada).
+
+```sql
+SELECT count(*) AS operator_clusters, sum(pools) AS pools_moving_as_one,
+       sum(pools) FILTER (WHERE NOT has_onchain_links) AS concealed_pools
+FROM pool_operator_kes_clusters;   -- 96 clusters, 480 pools, 142 concealed
+```
+
 ## Key figures (FACT)
 
 Nakamoto coefficient — minimum entities to a control threshold:
@@ -34,10 +49,12 @@ Nakamoto coefficient — minimum entities to a control threshold:
 | Block production (30 ep) | 33% | 100 | **15** |
 | Block production (30 ep) | 50% | 165 | **48** |
 
-- **33 clusters / 150 pools / 4.91B ADA (23% of stake) share no on-chain link**
+- **29 clusters / 142 pools / 4.76B ADA (~22% of stake) share no on-chain link**
   (no shared reward address, owner key, relay, or co-registered cert) — KES timing
-  is the only public tell.
-- **66 of 96 clusters** were still actively synchronizing in May–July 2026.
+  is the only public tell. (This subset shrinks over time as concealed pools happen
+  to share a relay/reward on re-registration; the count is reproducible from
+  `pool_operator_kes_clusters` at each snapshot.)
+- Most clusters were still actively synchronizing in mid-2026.
 
 ## Largest clusters
 

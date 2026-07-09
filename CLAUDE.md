@@ -48,6 +48,15 @@ For "is this genesis wallet still under original control?" questions, use
 `docs/24_CONTROL_INDICATORS_AND_TRACERS.md`. `fe_control_consistency` is a
 WORKING_HYPOTHESIS custody-pattern label, never an ownership claim.
 
+For "how many pools are run by one operator / move as a cluster / are secretly
+the same entity" questions, use the `pool_operator_kes_clusters` (one row per
+operator cluster: pools, stake_ada, block_pct, has_onchain_links, sample_tickers)
+and `pool_operator_kes_members` (one row per pool) tables, and read
+`findings/F10_kes_corotation_pool_operators.md`. Clusters are defined by
+synchronized KES-key rotation = shared OPERATIONAL control (STRONG_INFERENCE), not
+proven ownership; `has_onchain_links=false` marks the concealed ones (KES timing is
+the only tie).
+
 For exchange-custody questions, use the `tracer_*` tables. Exchange names in
 `tracer_deposit_claims` are the senders' self-reported on-chain claims —
 the message is FACT, the attribution is not.
