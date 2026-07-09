@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 265,
+  "file_count": 267,
   "files": [
     {
       "path": "claims/README.md",
@@ -1251,6 +1251,32 @@
       }
     },
     {
+      "path": "data/small/pool_operator_kes_clusters.csv",
+      "bytes": 6825,
+      "sha256": "bbc2dba4c5287976f8be820fc4072c43a1b5bfaef01b48a535913547086716eb",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/pool_operator_kes_members.csv",
+      "bytes": 40068,
+      "sha256": "1b43596b43148e95fb2899fea787025d6f903aca21e5ef7a4c156b6eb63545b6",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "data/small/seed_anchor_db_verification.csv",
       "bytes": 419,
       "sha256": "160b03c8d5f21684c14965cb813b34a9e7ab14b346cd9b52af2ba95af121000e",
@@ -1954,8 +1980,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 49825,
-      "sha256": "a622bae48f6c9656c3cdca2a1777d0f0ec32279017037b9ab2b7224a617561b5",
+      "bytes": 50457,
+      "sha256": "de58acebe0561097f289542412d3de5326d900fec3002cbfe4589240155f8a34",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1980,8 +2006,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 7513,
-      "sha256": "ab38d97a7af87c58148507340253bad03b76d96b9cf45bef1c6b173e044b036e",
+      "bytes": 7681,
+      "sha256": "fc49d422aca5ad009aa9fbdcd82c2cdd6e51cf2a0b30ce9f66725fab1d4b5370",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2227,8 +2253,8 @@
     },
     {
       "path": "findings/F10_kes_corotation_pool_operators.md",
-      "bytes": 4999,
-      "sha256": "50b4e0f151f173f8074bfbb827eb16cff2f8dcebb2343b82165e2361f5142c42",
+      "bytes": 5819,
+      "sha256": "7463dceb63c5a0c0784298aedd136d7d01431b12919cac8713409fedad29640c",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
