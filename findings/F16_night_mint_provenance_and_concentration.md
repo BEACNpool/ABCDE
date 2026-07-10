@@ -4,7 +4,7 @@
 
 The entire supply of the **NIGHT** token
 (policy `0691b2fecca1ac4f53cb6dfb00b7013e561d1f34403b957cbb5af1fa`, asset name
-`NIGHT`) is traced from its single genesis mint to every current holder, and the
+`NIGHT`) is traced from its single genesis mint to every current unspent output, and the
 distribution is highly concentrated:
 
 - **Single mint:** tx `ce75b0e1e203c66d5dbce3b37865114163f577a58d3d12b0ae2593f8d3a64eb2`

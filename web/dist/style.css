@@ -78,6 +78,21 @@ section{padding:56px 0; border-top:1px solid var(--line)}
 .sec-h{font-size:clamp(26px,4vw,38px); margin-bottom:8px}
 .sec-lede{color:var(--muted); max-width:720px; margin-bottom:28px; font-size:16px}
 
+/* investigation desk */
+.invest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.invest-grid{grid-template-columns:1fr}}
+.invest-card{display:flex;flex-direction:column;background:linear-gradient(160deg,#0e1f3c,#081428);
+  border:1px solid var(--line2);border-radius:var(--radius);padding:22px}
+.invest-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.invest-icon{font-size:24px}.invest-card h3{font-size:22px;margin-bottom:8px}
+.invest-lead{color:var(--text);font-weight:600;font-size:14.5px}
+.invest-card ul{padding-left:19px;color:var(--muted);font-size:13.5px;flex:1}
+.invest-card li+li{margin-top:8px}
+.invest-link{font-weight:700;font-size:13.5px;margin-top:8px}
+.evidence-rule{margin-top:18px;padding:16px 18px;border:1px solid var(--line2);border-radius:var(--radius);
+  background:rgba(34,211,238,.06);color:var(--muted);font-size:14px}
+.evidence-rule b{color:var(--cyan)}
+
 /* grade chips */
 .chip{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em;
   padding:3px 9px; border-radius:20px; text-transform:uppercase; white-space:nowrap}

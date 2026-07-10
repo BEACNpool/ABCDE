@@ -12,9 +12,10 @@ the core focus stays sharp. See finding
 ## What was traced
 
 The **complete spend-flow graph** of the entire NIGHT supply, from its single
-24,000,000,000-NIGHT genesis mint (2025-11-25) to every current holder:
+24,000,000,000-NIGHT genesis mint (2025-11-25) to every current unspent output:
 1,358,841 UTxO nodes, 717,947 transactions, ~2.55M edges, 3,349 levels deep.
-Supply conserves exactly — 24B minted → 24B at 167,728 current leaf UTxOs →
+Supply conserves exactly — 24B minted → 24B at 167,728 current leaf UTxOs across
+117,671 addresses →
 **0 unreachable**.
 
 ## Two tiers (same model as the genesis data — see `22_DATA_TOPOLOGY_AND_FRESHNESS.md`)
