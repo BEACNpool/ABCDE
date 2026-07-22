@@ -93,6 +93,11 @@ def main() -> None:
             "Who holds the single 25%-of-supply NIGHT position, and has it moved?",
             "How concentrated is NIGHT really — what do the top 5, 10, and 100 addresses hold?",
             "Does every NIGHT token trace back to the genesis mint with nothing unaccounted?"]},
+        {"theme": "Trace the Wanchain NIGHT bridge hack", "qs": [
+            "How much NIGHT was drained from the Wanchain bridge on 2026-07-20, and what share of the bridge was that?",
+            "List the 6,450 fresh addresses the stolen ADA was split into — how much is in each, and is any spent yet?",
+            "Show the labeled wallets in the bridge incident with their roles, current balances, and the grade of each label.",
+            "Where did the bridge's NIGHT inventory come from — trace it back toward the genesis settlement."]},
         {"theme": "Keep me honest", "qs": [
             "For every figure you give me, cite the exact table and its evidence grade.",
             "What can this data NOT prove — where does on-chain linkage stop short of ownership?"]},
@@ -109,7 +114,14 @@ def main() -> None:
     night_holders = int(float(q("SELECT value FROM night_summary WHERE metric='reachable_current_leaf_utxos'")[0]))
     hub_gross = q("SELECT max(gross_received_ada) FROM f11_hub_classification")[0]
     hub_x = hub_gross / 45_600_000_000  # vs ~total ADA supply
+    inc_drained = float(q("SELECT value FROM night_incident_summary WHERE metric='night_drained'")[0])
+    inc_pct = float(q("SELECT value FROM night_incident_summary WHERE metric='pct_of_bridge_night_taken'")[0])
+    inc_fan_n, inc_fan_ada = q("SELECT count(*), sum(ada) FROM night_incident_ada_fanout WHERE is_spent='f'")
     hooks = [
+        {"slug": "night-bridge-drain", "kicker": "NIGHT bridge incident", "grade": "FACT",
+         "headline": f"{inc_pct:.1f}% of a Bridge, Gone in 8 Minutes.",
+         "sub": f"Four transactions moved {inc_drained/1e6:.1f}M NIGHT out of the Wanchain bridge on 2026-07-20; {inc_fan_n:,} fresh wallets now hold {inc_fan_ada/1e6:.2f}M ADA of the proceeds — exactly 5,000 ADA each, still unspent.",
+         "ask": "Trace the 2026-07-20 Wanchain NIGHT bridge drain: how much was taken and where is the ADA now?"},
         {"slug": "night-25", "kicker": "NIGHT", "grade": "FACT",
          "headline": "6 Billion NIGHT. One Address. One UTxO.",
          "sub": f"A quarter of the entire NIGHT supply — {night_top_pct:.2f}% — sits unspent in a single output held by one address.",

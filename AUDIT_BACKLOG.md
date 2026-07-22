@@ -1,6 +1,6 @@
 # Audit Backlog
 
-This is not a separate narrative track. It is the canonical backlog of unresolved audit questions, refutation tests, and candidate sets for the Genesis ADA audit.
+This is not a separate narrative track. It is the canonical backlog of unresolved audit questions, refutation tests, and candidate sets for the Genesis ADA audit and clearly separated companion modules.
 
 Labels follow `docs/02_GRADING.md`.
 
@@ -120,3 +120,31 @@ Labels follow `docs/02_GRADING.md`.
 - Trace downstream endpoints and current-unspent descendants from the hub.
 - Do not adopt external depositor counts, identities, or ownership claims until
   they are reproduced from committed receipts.
+
+## B-006 — NIGHT/Wanchain attacker attribution and post-incident movement
+
+- **Status:** IN PROGRESS
+- **Claim grade:** UNKNOWN beyond the F17 transaction linkages
+- **Artifact class:** AUDIT_BACKLOG
+
+### Current facts
+
+- F17 reproduces the 515.206M-NIGHT drain, W1–W4 wallet sequence, Liqwid
+  collateral route, exchange-style staging, and 6,450-address ADA fan-out.
+- Direct Cardano transaction links reach `credit.pay` and an independently
+  tagged Binance 1 wallet, but do not identify the beneficial owner.
+- The 6,450 fresh addresses held 32.25M ADA unspent at the F17 snapshot.
+
+### Required audit work
+
+- Monitor W1–W4 and the 6,450 fan-out outputs for consolidations, exchange
+  deposits, stake registrations, withdrawals, or reuse with older credentials.
+- Preserve timestamped snapshot receipts so later balance changes are not
+  confused with the original incident state.
+- Trace the BNB Chain signature source, wrapped-NIGHT movements, DEX swaps, and
+  centralized-exchange endpoints in a separate BNB Chain evidence package.
+- Seek independent ownership evidence for `credit.pay`; do not promote a public
+  guess about its operator into a finding.
+- Off-chain intent and beneficial control are out of scope for this Cardano
+  warehouse: bridge funding and Binance distribution linkage are on-chain facts
+  and do not, on their own, establish either.

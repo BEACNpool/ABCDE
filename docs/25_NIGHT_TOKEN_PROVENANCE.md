@@ -18,6 +18,38 @@ Supply conserves exactly — 24B minted → 24B at 167,728 current leaf UTxOs ac
 117,671 addresses →
 **0 unreachable**.
 
+## Incident case study: Wanchain bridge drain (queryable)
+
+The NIGHT module contains a receipt-backed reproduction of the 2026-07-20
+Wanchain Cardano ↔ BNB Chain bridge drain, shipped as **compact committed
+`night_incident_*` tables** so the whole trace is queryable from a plain clone —
+no node, no warehouse:
+
+| table | what it answers |
+|---|---|
+| `night_incident_summary` | headline metrics (drained total, % of bridge, fan-out, provenance sums) + grade per row |
+| `night_incident_drain_txs` | the 4 bridge→W1 drain transactions, times and NIGHT amounts |
+| `night_incident_bridge_balance` | bridge NIGHT balance pre-attack / post-attack / at snapshot |
+| `night_incident_actors` | labeled wallets (W1–W4, bridge, credit.pay, Liqwid, provider, Binance) + role + identity grade + current balances |
+| `night_incident_cluster_balance` | current ADA + NIGHT held by the attacker cluster |
+| `night_incident_liqwid_collateral` | NIGHT deposited into the qNIGHT/Liqwid contract |
+| `night_incident_ada_fanout` | the 6,450 fresh 5,000-ADA addresses (32.25M ADA), spent flag each |
+| `night_incident_staged_deposits` | the 39 exchange-style deposit addresses + sweep rail |
+| `night_incident_bridge_supply` | major provider→bridge NIGHT deposits (the supply trail) |
+| `night_incident_settlement_provenance` | genesis settlement outputs (TGE/Foundation parcels) |
+| `night_incident_binance_240m` | the exact 240M-NIGHT allocation path into Binance custody |
+| `night_incident_label_balances` | current balances of the labeled non-attacker addresses |
+
+- graded claim: [`F17`](../findings/F17_night_wanchain_bridge_incident.md)
+- data report and external-source links:
+  [`night_wanchain_incident_2026_07_20.md`](../reports/night_wanchain_incident_2026_07_20.md)
+- read-only ABCDE reproduction (regenerates the tables):
+  [`night_wanchain_incident_2026_07_20.remote.sql`](../sql/40_night/night_wanchain_incident_2026_07_20.remote.sql)
+
+The tables separate direct Cardano chain facts (FACT) from entity/allocation
+labels (STRONG_INFERENCE) and unresolved identity (UNKNOWN). Exchange
+transaction linkage is never turned into beneficial-owner attribution.
+
 ## Two tiers (same model as the genesis data — see `22_DATA_TOPOLOGY_AND_FRESHNESS.md`)
 
 **1. Compact, committed `night_*` tables** (clone-and-ask, a few MB):
@@ -64,6 +96,8 @@ Full graph is a single deterministic warehouse extraction:
 ```bash
 # maintainer, against db-sync:
 psql ... -f sql/40_night/night_full_spend_flow_export.remote.sql   # -> CSVs
+# incident receipt (live warehouse, read-only except temporary tables):
+psql ... -f sql/40_night/night_wanchain_incident_2026_07_20.remote.sql
 # then distill the compact cut:
 NIGHT_SRC=data/release/night_full python scripts/build_night_rollups.py
 python scripts/build_genesis_db.py   # loads night_* into the compact DuckDB

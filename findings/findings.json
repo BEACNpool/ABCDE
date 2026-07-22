@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 18,
+  "finding_count": 19,
   "findings": [
     {
       "id": "F01",
@@ -496,7 +496,7 @@
         },
         {
           "path": "docs/25_NIGHT_TOKEN_PROVENANCE.md",
-          "sha256": "ce44a47cc3514de45734d248a61df35c68cd9a6132d22ce156eb19de9fabd920"
+          "sha256": "d3c828d9dc72e32aa58ff2624288e80d22831c81a6bdd7a9330abbd14e712e2b"
         },
         {
           "path": "scripts/build_night_rollups.py",
@@ -509,6 +509,29 @@
       ],
       "has_reproduce_sql": true,
       "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F17",
+      "file": "findings/F17_night_wanchain_bridge_incident.md",
+      "title": "Wanchain NIGHT bridge drain, token provenance, and attacker flow",
+      "claim": "The Wanchain Cardano ↔ BNB Chain NIGHT bridge was drained on 2026-07-20, and\nABCDE reproduces the Cardano-side incident from bridge inventory through the\nattacker's first monetization and dispersal paths:\n\n- Four transactions between `14:46:50` and `14:55:05 UTC` transferred exactly\n  **515,206,545.426856 NIGHT** from the bridge to the first attacker wallet\n  cluster. That was **97.751708%** of the bridge's immediately pre-attack NIGHT\n  balance.\n- A common provider cluster supplied **687,961,318.3 NIGHT** across seven major\n  bridge deposits. Three branches of that provider descend directly from\n  settlement outputs 12–14; settlement outputs 12–15 total\n  **3,660,000,000.01 NIGHT**, matching Midnight TGE Ltd.'s disclosed 3.66B\n  allocation to the 0.01-NIGHT settlement balancing adjustment.\n- The bridge received 370M NIGHT immediately before Binance Alpha's December\n  2025 NIGHT launch. The provider later routed exactly **240M NIGHT** through a\n  two-output Cardano path on 2026-03-11, matching Binance's published 240M-NIGHT\n  HODLer Airdrop allocation. Wanchain independently stated that Binance chose\n  Wanchain-wrapped NIGHT for distribution.\n- The attacker routed **68,273,140.469065 NIGHT net** into the qNIGHT/Liqwid\n  contract and borrowed **4,364,479.583143 ADA**. Before the first public trace,\n  it staged **3.75M ADA** through 39 exchange-style deposit addresses.\n- Of those staged deposits, 1.45M ADA was swept through the same high-throughput\n  `credit.pay` aggregation rail that pre-funded W1, and 700K ADA was co-spent in\n  transactions feeding the independently tagged Binance 1 wallet. A later\n  route placed **32.25M ADA** into **6,450 fresh, unspent addresses**, exactly\n  5,000 ADA each.\n\nThese facts establish the drain, Cardano-side token provenance, commercial\ndistribution linkage, and attacker flow. They do **not** identify the natural\nperson behind the wallets or establish any off-chain intent.",
+      "grade": "- **FACT:** the four drain transactions, times and values; bridge balances;\n  settlement-output values; provider-to-bridge flows; exact 240M-NIGHT path;\n  W1–W4 sequencing; Liqwid collateral and borrowing amounts; current balances;\n  staged-deposit counts; direct co-spends; and the 6,450-address fan-out. These\n  are reproduced directly from ABCDE/db-sync.\n- **EXTERNAL_CORROBORATION:** BlockSec's TreasuryCheck validator root-cause\n  analysis; Wanchain's incident acknowledgement and Binance-distribution\n  statement; Midnight Foundation's containment notice; Binance's campaign and\n  240M-NIGHT allocation notices; and Midnight's allocation/unlock disclosures.\n  The report preserves direct links and keeps these separate from warehouse\n  facts.\n- **STRONG_INFERENCE:** settlement outputs 12–15 are the TGE allocation;\n  `addr1vy26…` is Binance NIGHT distribution/custody; and `credit.pay` is a\n  centralized-exchange aggregation rail. Exact value matches, direct funding,\n  transaction structure, and public attribution support these labels, but do\n  not prove beneficial ownership.\n- **UNKNOWN:** the attacker's legal identity, country, exchange accounts,\n  whether any Wanchain signer/key was separately compromised, and who operates\n  `credit.pay`. Off-chain intent is out of scope for a Cardano warehouse.\n\n### Scope boundary\n\nThe bridge inventory descends from the genesis settlement transaction and did\nnot pass through the community thaw contracts; per Midnight's published\ntokenomics paper the Foundation and TGE Ltd. entity allocations were unlocked\nwith no protocol lockup, separate from the community claim pool. This finding\nrecords that provenance as on-chain data and takes no position on off-chain\nownership, control, intent, or any exchange's participation — those are outside\nwhat Cardano db-sync can establish.\n\n### Snapshot boundary\n\nHistorical transaction paths are stable. Unspent balances and the status of\nthe 6,450 fan-out outputs are snapshot-sensitive. The report snapshot ends at\nblock `13,708,969`, `2026-07-22 02:27:16 UTC`; the full verification rerun\npassed at block `13,709,033`, `2026-07-22 02:51:03 UTC`.",
+      "evidence": [
+        {
+          "path": "docs/25_NIGHT_TOKEN_PROVENANCE.md",
+          "sha256": "d3c828d9dc72e32aa58ff2624288e80d22831c81a6bdd7a9330abbd14e712e2b"
+        },
+        {
+          "path": "reports/night_wanchain_incident_2026_07_20.md",
+          "sha256": "3763f71dedad33941b5a018323259efb31ab5f1297b3225f4133d4afc47cf755"
+        },
+        {
+          "path": "sql/40_night/night_wanchain_incident_2026_07_20.remote.sql",
+          "sha256": "ee0532fbfa1828aad6fe33609925120a6e2d632e89b521af61ff330800c1dfa8"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE"
     }
   ]
 }

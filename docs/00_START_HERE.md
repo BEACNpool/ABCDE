@@ -34,6 +34,11 @@ The public repo is intentionally small enough to review in git. Heavy extraction
 12. Review the Genesis Trail monthly-stream and consolidation-hub follow-up:
    - `reports/genesis_trail_case.md`
    - `findings/F10_genesis_trail_monthly_stream.md`
+13. Review the NIGHT companion module and Wanchain bridge incident:
+   - `docs/25_NIGHT_TOKEN_PROVENANCE.md`
+   - `findings/F16_night_mint_provenance_and_concentration.md`
+   - `findings/F17_night_wanchain_bridge_incident.md`
+   - `reports/night_wanchain_incident_2026_07_20.md`
 
 ## Maintainer path
 

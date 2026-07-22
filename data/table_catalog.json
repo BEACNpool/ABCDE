@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 116,
+  "table_count": 128,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -66,7 +66,7 @@
     {
       "table": "data_freshness_catalog",
       "family": "Meta",
-      "row_count": 111,
+      "row_count": 125,
       "source": "data/small/data_freshness_catalog.csv",
       "snapshot_sensitive": false,
       "findings": [],
@@ -759,6 +759,114 @@
         "F16"
       ],
       "grade": "FACT: the mint, the root UTxO, the complete spendflow graph and its node/"
+    },
+    {
+      "table": "night_incident_actors",
+      "family": "NIGHT bridge incident",
+      "row_count": 11,
+      "source": "data/small/night_incident_actors.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_ada_fanout",
+      "family": "NIGHT bridge incident",
+      "row_count": 6450,
+      "source": "data/small/night_incident_ada_fanout.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_binance_240m",
+      "family": "NIGHT bridge incident",
+      "row_count": 2,
+      "source": "data/small/night_incident_binance_240m.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_bridge_balance",
+      "family": "NIGHT bridge incident",
+      "row_count": 3,
+      "source": "data/small/night_incident_bridge_balance.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_bridge_supply",
+      "family": "NIGHT bridge incident",
+      "row_count": 8,
+      "source": "data/small/night_incident_bridge_supply.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_cluster_balance",
+      "family": "NIGHT bridge incident",
+      "row_count": 3,
+      "source": "data/small/night_incident_cluster_balance.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_drain_txs",
+      "family": "NIGHT bridge incident",
+      "row_count": 4,
+      "source": "data/small/night_incident_drain_txs.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_label_balances",
+      "family": "NIGHT bridge incident",
+      "row_count": 6,
+      "source": "data/small/night_incident_label_balances.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_liqwid_collateral",
+      "family": "NIGHT bridge incident",
+      "row_count": 5,
+      "source": "data/small/night_incident_liqwid_collateral.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_settlement_provenance",
+      "family": "NIGHT bridge incident",
+      "row_count": 20,
+      "source": "data/small/night_incident_settlement_provenance.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_staged_deposits",
+      "family": "NIGHT bridge incident",
+      "row_count": 41,
+      "source": "data/small/night_incident_staged_deposits.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "night_incident_summary",
+      "family": "NIGHT bridge incident",
+      "row_count": 24,
+      "source": "data/small/night_incident_summary.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
     },
     {
       "table": "night_leaves_by_month",

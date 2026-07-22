@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/manifests/public-artifacts-manifest.json'
 DB_TIP=ROOT/'data/small/db_tip_receipt.csv'
+FINDINGS_INDEX=ROOT/'findings/findings.json'
 INCLUDE_DIRS=[
     ROOT/'claims',
     ROOT/'data/small',
@@ -52,6 +53,11 @@ def main():
         if not d.exists(): continue
         for p in sorted(d.rglob('*')):
             if p.is_file():
+                # findings.json is generated from this manifest. Hashing it here
+                # creates an impossible circular dependency after every finding
+                # update, so fingerprint its source Markdown instead.
+                if p == FINDINGS_INDEX:
+                    continue
                 if p.name in skip_names and p.parent.name=='small':
                     continue
                 item={'path':p.relative_to(ROOT).as_posix(),'bytes':p.stat().st_size,'sha256':sha256_file(p)}

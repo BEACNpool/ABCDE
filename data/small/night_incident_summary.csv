@@ -1,0 +1,25 @@
+metric,value,grade,note
+incident,Wanchain Cardano<->BNB Chain NIGHT bridge drain,FACT,Cardano-side reproduction
+attack_date_utc,2026-07-20,FACT,
+attack_window_utc,14:46:50 - 14:55:05,FACT,8 min 15 s
+drain_transaction_count,4,FACT,see night_incident_drain_txs
+night_drained,515206545.426856,FACT,sum of the 4 bridge->W1 transfers
+bridge_night_pre_attack,527056309.124849,FACT,balance at 2026-07-20 14:46 UTC
+bridge_night_post_attack,11847785.641993,FACT,balance at 2026-07-20 14:56 UTC
+bridge_night_at_snapshot,11837337.212388,FACT,residual; snapshot below
+pct_of_bridge_night_taken,97.751708,FACT,night_drained / bridge_night_pre_attack
+night_collateralized_qnight_liqwid,68273140.469065,FACT,"net into qNIGHT/Liqwid, 5 txs"
+ada_fanout_addresses,6450,FACT,"fresh base addresses, 5,000 ADA each"
+ada_fanout_total,32250000,FACT,sum across the fan-out
+ada_fanout_unspent_addresses,6450,FACT,unspent at snapshot
+staged_exchange_deposit_addresses,39,FACT,50K/100K-ADA staged outputs
+staged_exchange_deposit_ada,3750000,FACT,swept to credit.pay / Binance 1 rails
+provider_night_supplied_to_bridge,687961318.3,STRONG_INFERENCE,sum of provider-cluster deposits
+binance_allocation_path_night,240000000,STRONG_INFERENCE,"2026-03-11 two-output path, provider-funded"
+genesis_settlement_outputs_12_15_night,3660000000.01,STRONG_INFERENCE,matches Midnight TGE Ltd 3.66B disclosure
+w1_creation_funding_ada,4621.558246,FACT,from the $credit.pay ADA Handle rail
+w1_creation_time_utc,2026-07-20 10:29:36,FACT,~4h 17m before first drain tx
+attacker_wallets_are_one_operator,"W1,W2,W3,W4",STRONG_INFERENCE,"linked by direct ADA transfers, not CIOH"
+attacker_natural_person_identity,UNKNOWN,UNKNOWN,best leads are KYC exchange rails
+snapshot_block,13710488,FACT,balances are snapshot-sensitive
+snapshot_time_utc,2026-07-22 11:16:36 UTC,FACT,

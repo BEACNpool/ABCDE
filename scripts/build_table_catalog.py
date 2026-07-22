@@ -63,6 +63,7 @@ FAMILY = [
     ("f15_", "Reward-plumbing receipts"),
     ("f16_", "NIGHT token"),
     ("tracer_", "Exchange tracers"),
+    ("night_incident_", "NIGHT bridge incident"),
     ("night_", "NIGHT token"),
     ("build_info", "Meta"),
     ("db_tip_receipt", "Meta"),
