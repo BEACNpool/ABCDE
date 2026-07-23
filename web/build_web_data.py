@@ -98,6 +98,11 @@ def main() -> None:
             "List the 6,450 fresh addresses the stolen ADA was split into — how much is in each, and is any spent yet?",
             "Show the labeled wallets in the bridge incident with their roles, current balances, and the grade of each label.",
             "Where did the bridge's NIGHT inventory come from — trace it back toward the genesis settlement."]},
+        {"theme": "Trace the SecondFi / Yoroi incident", "qs": [
+            "How much ADA was confirmed stolen in the SecondFi incident, and how much was swept into the contested 129M vault?",
+            "What is the current balance of the SecondFi contested vault, the recovery fund, and the second-attacker wallet — and has any of it moved?",
+            "How many wallets were cryptographically confirmed key-exposed, and at what rate per ring?",
+            "Show the labeled SecondFi wallets and where the confirmed-theft ADA was routed."]},
         {"theme": "Keep me honest", "qs": [
             "For every figure you give me, cite the exact table and its evidence grade.",
             "What can this data NOT prove — where does on-chain linkage stop short of ownership?"]},
@@ -117,11 +122,18 @@ def main() -> None:
     inc_drained = float(q("SELECT value FROM night_incident_summary WHERE metric='night_drained'")[0])
     inc_pct = float(q("SELECT value FROM night_incident_summary WHERE metric='pct_of_bridge_night_taken'")[0])
     inc_fan_n, inc_fan_ada = q("SELECT count(*), sum(ada) FROM night_incident_ada_fanout WHERE is_spent='f'")
+    sf_theft = float(q("SELECT value FROM secondfi_incident_summary WHERE metric='confirmed_theft_ada'")[0])
+    sf_vault = float(q("SELECT value FROM secondfi_incident_summary WHERE metric='contested_vault_ada_now'")[0])
+    sf_exposed = int(float(q("SELECT value FROM secondfi_incident_summary WHERE metric='key_exposure_confirmed_stakes'")[0]))
     hooks = [
         {"slug": "night-bridge-drain", "kicker": "NIGHT bridge incident", "grade": "FACT",
          "headline": f"{inc_pct:.1f}% of a Bridge, Gone in 8 Minutes.",
          "sub": f"Four transactions moved {inc_drained/1e6:.1f}M NIGHT out of the Wanchain bridge on 2026-07-20; {inc_fan_n:,} fresh wallets now hold {inc_fan_ada/1e6:.2f}M ADA of the proceeds — exactly 5,000 ADA each, still unspent.",
          "ask": "Trace the 2026-07-20 Wanchain NIGHT bridge drain: how much was taken and where is the ADA now?"},
+        {"slug": "secondfi-frozen", "kicker": "SecondFi incident", "grade": "FACT",
+         "headline": f"{sf_vault/1e6:.0f}M ADA, Swept Into One Vault, Not a Lovelace Out.",
+         "sub": f"The confirmed SecondFi theft was {sf_theft/1e6:.2f}M ADA; a further {sf_vault/1e6:.1f}M ADA was consolidated into a single wallet that has zero outflows since 2026-06-25. {sf_exposed:,} wallets were cryptographically confirmed key-exposed. Query the current state yourself.",
+         "ask": "What is the current balance of the SecondFi contested vault and the recovery fund, and has any of it moved?"},
         {"slug": "night-25", "kicker": "NIGHT", "grade": "FACT",
          "headline": "6 Billion NIGHT. One Address. One UTxO.",
          "sub": f"A quarter of the entire NIGHT supply — {night_top_pct:.2f}% — sits unspent in a single output held by one address.",

@@ -23,6 +23,7 @@ Labels are defined in `docs/02_GRADING.md`.
 
 13. [F16 — NIGHT genesis mint provenance and supply concentration](F16_night_mint_provenance_and_concentration.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 14. [F17 — Wanchain NIGHT bridge drain, token provenance, and attacker flow](F17_night_wanchain_bridge_incident.md) — `VERIFIED`, `FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE`
+15. [F18 — SecondFi / Yoroi wallet incident (Cardano-side facts)](F18_secondfi_incident.md) — `VERIFIED`, `FACT + STRONG_INFERENCE`
 
 ## Review cuts / candidate sets
 

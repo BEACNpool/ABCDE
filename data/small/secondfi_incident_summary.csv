@@ -1,0 +1,22 @@
+metric,value,grade,note
+incident,SecondFi (formerly Yoroi) Cardano wallet key-compromise incident,FACT,
+incident_window_utc,2026-06-21 to 2026-06-23,FACT,
+mechanism_onchain,all drains key-signed; 0 Plutus redeemers/scripts,FACT,"key compromise, not a contract or protocol exploit"
+confirmed_theft_ada,12193786.557442,FACT,old_fee_sponsored cluster; collectors emptied 2026-06-22
+confirmed_theft_txs,240,FACT,
+confirmed_theft_window_utc,2026-06-21 20:29:41 - 2026-06-22 00:35:49,FACT,
+second_attacker_wallet_ada_now,4020736.952868,FACT,separate collection wallet; never emptied
+contested_sweep_ada,129438872.687227,FACT,new_william_direct cluster; swept/consolidated
+contested_sweep_txs,2853,FACT,
+contested_sweep_intent,UNRESOLVED,UNCERTAINTY,theft vs protective sweep not determinable from chain alone
+contested_vault_ada_now,129429998.977070,FACT,
+contested_vault_spend_txs_ever,0,FACT,held unspent since 2026-06-25
+sweep_central_ada_now,1998002.743979,FACT,william-qa consolidation wallet
+recovery_fund_ada_received,16102383.735435,FACT,address presented as the incident recovery fund; first funded 2026-07-01
+recovery_fund_ada_paid_out,15.000000,FACT,
+key_exposure_confirmed_stakes,2588,FACT,"cryptographically confirmed exposed; AGGREGATE ONLY, per-wallet list withheld"
+key_exposure_candidate_stakes,3063,FACT,
+key_exposure_rate_pct,84.49,FACT,
+source_funding_shared_omnibus,addr1vx7j284mqe59w2mka36gf5xq0hvu8ms2989553fk5qh3prcapfpj3,STRONG_INFERENCE,community-tagged Binance omnibus funded both clusters; shared exchange address (not proof of one operator)
+snapshot_block,13715682,FACT,balances snapshot-sensitive
+snapshot_time_utc,2026-07-23 16:48:48 UTC,FACT,

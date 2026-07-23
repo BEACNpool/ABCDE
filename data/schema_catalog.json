@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "fc12da295d4d",
+          "git_commit": "05264ac85419",
           "source_generated_utc": "2026-07-04 04:10:04+00:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -7293,6 +7293,368 @@
           "pool_bech32": "pool1fl20ddkpvnstlx63fal6e3ku46r76nk2s4mqtk5jnyxn2vt7hg6",
           "ticker_name": "KOH",
           "stake_ada": 70538298.257043
+        }
+      ]
+    },
+    "secondfi_incident_actors": {
+      "source": "data/small/secondfi_incident_actors.csv",
+      "row_count": 8,
+      "columns": [
+        {
+          "name": "label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "identity_grade",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ada_now",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "label": "ATTACKER_A_COLLECTOR_cybermuna",
+          "kind": "attacker_collector",
+          "identity_grade": "STRONG_INFERENCE",
+          "address": "addr1q9j7f598x988unr4zhjulft205jqnn9ewgwkhes5smf2sr6jsw98nm4qq38jw9epe587twavuhuhj5d8r92rjvmyjlzs9lqc3x",
+          "ada_now": 0.0,
+          "role": "received + routed confirmed-theft ADA; emptied 2026-06-22"
+        },
+        {
+          "label": "ATTACKER_A_COLLECTOR_adanerone",
+          "kind": "attacker_collector",
+          "identity_grade": "STRONG_INFERENCE",
+          "address": "addr1q82jlp2u0ezv2hsf6f40fkrv49hd72yv442nmrr5qeultpqamepaykp3m564hnd4zp75wxxds2j6d3ywvc8prhf2kcxqn6nql3",
+          "ada_now": 0.0,
+          "role": "received + routed confirmed-theft ADA; emptied 2026-06-22"
+        },
+        {
+          "label": "ATTACKER_A_COLLECTOR_555888",
+          "kind": "attacker_collector",
+          "identity_grade": "STRONG_INFERENCE",
+          "address": "addr1q9wudkfeelzwev427yvapkmqexmet8q4vl303m7a4eerwtvt6rq00zyuqzeuw759vgqtdky0gyxnqx27n8q4k6h79yhsqelma8",
+          "ada_now": 0.0,
+          "role": "received + routed confirmed-theft ADA; emptied 2026-06-22"
+        }
+      ]
+    },
+    "secondfi_incident_balances": {
+      "source": "data/small/secondfi_incident_balances.csv",
+      "row_count": 4,
+      "columns": [
+        {
+          "name": "label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ada_now",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "spend_txs_ever",
+          "type": "BIGINT"
+        },
+        {
+          "name": "ada_received_ever",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "label": "CONTESTED_VAULT_129M",
+          "address": "addr1qyjfzgs74e90e7yk5yw7gey0ct35su6qmjsufpjc9w9t0ljf6fs0lrl9v94vqc0aw07wpt7l8l4q354l2az77ca82v2svfvlhl",
+          "ada_now": 129429998.97707,
+          "utxos": 6,
+          "spend_txs_ever": 0,
+          "ada_received_ever": 129429998.97707,
+          "note": "no outflow ever; frozen since 2026-06-25"
+        },
+        {
+          "label": "SWEEP_CENTRAL_william_qa",
+          "address": "addr1q8g8cgwqw98q2mrzrwgcy3wectdxwem8a8zp9r2mn6wjy7q4x7gcpv39wwurj7n72akw4kd0dgmv72gz4j92fvhn29ss7vuz99",
+          "ada_now": 1998002.743979,
+          "utxos": 3429,
+          "spend_txs_ever": 8,
+          "ada_received_ever": 131428015.135878,
+          "note": "received ~131.4M, forwarded ~129.4M to vault"
+        },
+        {
+          "label": "RECOVERY_FUND",
+          "address": "addr1qyvvn9e9ulvzw2nvgkwraxwrla4a28l7gmduk7jru2rw9kdxkls8aczwgg8u44nj87uaq50rgcjulcxtzv9q8j0g2lss9kv2ss",
+          "ada_now": 16102368.735435,
+          "utxos": 12,
+          "spend_txs_ever": 2,
+          "ada_received_ever": 16102383.735435,
+          "note": "paid out 15 ADA of 16.1M received"
+        }
+      ]
+    },
+    "secondfi_incident_clusters": {
+      "source": "data/small/secondfi_incident_clusters.csv",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "cluster",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "window_start_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "window_end_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "classification",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "cluster": "old_fee_sponsored",
+          "txs": 240,
+          "window_start_utc": "2026-06-21 20:29:41",
+          "window_end_utc": "2026-06-22 00:35:49",
+          "ada": 12193786.557442,
+          "classification": "confirmed external theft"
+        },
+        {
+          "cluster": "new_william_direct",
+          "txs": 2853,
+          "window_start_utc": "2026-06-22 17:34:04",
+          "window_end_utc": "2026-06-23 10:29:15",
+          "ada": 129438872.687227,
+          "classification": "swept/consolidated; intent UNRESOLVED"
+        }
+      ]
+    },
+    "secondfi_incident_funding": {
+      "source": "data/small/secondfi_incident_funding.csv",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "cluster",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "recipient_role",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "tx",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_omnibus",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "cluster": "old_fee_sponsored",
+          "recipient_role": "operational treasury (first funding)",
+          "ada": 129.2,
+          "time_utc": "2025-07-30 15:53:29",
+          "tx": "24a1930c6f99a8a7dd08e94ad546d0828ac79ab220e8f8f0f9758427eed7241e",
+          "source_omnibus": "addr1vx7j284mqe59w2mka36gf5xq0hvu8ms2989553fk5qh3prcapfpj3"
+        },
+        {
+          "cluster": "new_william_direct",
+          "recipient_role": "william-qa (first-ever inflow)",
+          "ada": 3.5,
+          "time_utc": "2026-06-22 17:34:04",
+          "tx": "5f1c9e58b25ebf88798c7c8b7a0bbf3eb3c02140f150d0301b3f503c1ed7a62e",
+          "source_omnibus": "addr1vx7j284mqe59w2mka36gf5xq0hvu8ms2989553fk5qh3prcapfpj3"
+        }
+      ]
+    },
+    "secondfi_incident_key_exposure_census": {
+      "source": "data/small/secondfi_incident_key_exposure_census.csv",
+      "row_count": 6,
+      "columns": [
+        {
+          "name": "ring_flow",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "in_published_source_lists",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "candidate_stakes",
+          "type": "BIGINT"
+        },
+        {
+          "name": "txs_checked",
+          "type": "BIGINT"
+        },
+        {
+          "name": "confirmed_exposed",
+          "type": "BIGINT"
+        },
+        {
+          "name": "exposure_rate_pct",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "ring_flow": "mixed",
+          "in_published_source_lists": true,
+          "candidate_stakes": 27,
+          "txs_checked": 27,
+          "confirmed_exposed": 14,
+          "exposure_rate_pct": 51.85
+        },
+        {
+          "ring_flow": "ring0_theft",
+          "in_published_source_lists": false,
+          "candidate_stakes": 32,
+          "txs_checked": 32,
+          "confirmed_exposed": 0,
+          "exposure_rate_pct": 0.0
+        },
+        {
+          "ring_flow": "ring0_theft",
+          "in_published_source_lists": true,
+          "candidate_stakes": 147,
+          "txs_checked": 147,
+          "confirmed_exposed": 136,
+          "exposure_rate_pct": 92.52
+        }
+      ]
+    },
+    "secondfi_incident_summary": {
+      "source": "data/small/secondfi_incident_summary.csv",
+      "row_count": 21,
+      "columns": [
+        {
+          "name": "metric",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "value",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "grade",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "note",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "metric": "incident",
+          "value": "SecondFi (formerly Yoroi) Cardano wallet key-compromise incident",
+          "grade": "FACT",
+          "note": null
+        },
+        {
+          "metric": "incident_window_utc",
+          "value": "2026-06-21 to 2026-06-23",
+          "grade": "FACT",
+          "note": null
+        },
+        {
+          "metric": "mechanism_onchain",
+          "value": "all drains key-signed; 0 Plutus redeemers/scripts",
+          "grade": "FACT",
+          "note": "key compromise, not a contract or protocol exploit"
+        }
+      ]
+    },
+    "secondfi_incident_theft_destinations": {
+      "source": "data/small/secondfi_incident_theft_destinations.csv",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "collector",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dest_stake",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "dest_is_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "ada_out",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "collector": "cybermuna",
+          "dest_stake": "stake1u9fg8znea6sqgne8zusu6rl9hwkwt7te2xn3j4pexdjf03g4kw9uq",
+          "dest_is_script": true,
+          "txs": 18,
+          "ada_out": 5616410.569
+        },
+        {
+          "collector": "adanerone",
+          "dest_stake": "stake1uywaus7jtqca6d2mek63ql28rrxc9fdxcj8xvrs3m54tvrq4uaarv",
+          "dest_is_script": true,
+          "txs": 14,
+          "ada_out": 3369670.551
+        },
+        {
+          "collector": "555888",
+          "dest_stake": "stake1ux9aps8h3zwqpv7802zkyq9kmz85zrfsr90fns2mdtlzjtcm7jj8p",
+          "dest_is_script": true,
+          "txs": 22,
+          "ada_out": 3155191.265
         }
       ]
     },

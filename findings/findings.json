@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 19,
+  "finding_count": 20,
   "findings": [
     {
       "id": "F01",
@@ -532,6 +532,16 @@
       ],
       "has_reproduce_sql": true,
       "index_label": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE"
+    },
+    {
+      "id": "F18",
+      "file": "findings/F18_secondfi_incident.md",
+      "title": "SecondFi / Yoroi wallet incident (Cardano-side facts)",
+      "claim": "The June 2026 SecondFi (formerly Yoroi) wallet key-compromise incident is reproduced\nfrom Cardano mainnet as queryable `secondfi_incident_*` tables. What the chain shows:\n\n- Every drain is an ordinary **key-signed** transaction (0 Plutus redeemers, 0 scripts):\n  **key compromise, not a Cardano contract or protocol exploit.**\n- **`old_fee_sponsored` cluster:** **12,193,786.557442 ADA** confirmed moved to attacker\n  collector wallets (`$cybermuna` / `$adanerone` / `$555888`) over 240 transactions,\n  2026-06-21 20:29:41 → 06-22 00:35:49 UTC, then routed onward through Cardano DeFi/DEX\n  script pools; the collectors were emptied by 2026-06-22.\n- A separate **second-attacker collection wallet** holds **4,020,736.95 ADA** (never emptied).\n- **`new_william_direct` cluster:** **129,438,872.69 ADA** swept/consolidated over 2,853\n  transactions (2026-06-22 → 06-23) into one holding wallet; **129,429,998.977070 ADA** now\n  sits in a single vault with **zero outflows since 2026-06-25**.\n- An address publicly presented as the incident **recovery fund** received\n  16,102,383.735435 ADA and has paid out ~15 ADA at snapshot.\n- Both clusters' operational wallets were first funded from the **same community-tagged\n  exchange (Binance) omnibus** `addr1vx7j284mqe59w2mka36gf5xq0hvu8ms2989553fk5qh3prcapfpj3`.\n- **Key-exposure census (aggregate):** of 3,063 candidate stakes checked, **2,588 were\n  cryptographically confirmed exposed** (84.49%), broken down per ring.",
+      "grade": "- **FACT:** all transaction counts, windows, amounts, current balances, spend counts, and\n  the aggregate exposure census — reproduced directly from ABCDE/db-sync and shipped as the\n  `secondfi_incident_*` tables.\n- **STRONG_INFERENCE:** the attacker/collector roles; the DeFi-script laundering route; the\n  shared-omnibus funding link (a shared exchange address — not proof of one operator); the\n  Binance tag on that omnibus.\n- **UNRESOLVED / UNKNOWN (explicitly not established here):** the **intent** of the ~129.4M\n  `new_william_direct` sweep (malicious drain vs. protective consolidation) — it is labeled\n  neutrally as *swept / consolidated / held*, never as confirmed theft; the real-world\n  **identity** of any wallet operator; and any off-chain attribution, motive, or accountability.",
+      "evidence": [],
+      "has_reproduce_sql": false,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
     }
   ]
 }

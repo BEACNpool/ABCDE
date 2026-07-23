@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 281,
+  "file_count": 289,
   "files": [
     {
       "path": "claims/README.md",
@@ -277,8 +277,8 @@
     },
     {
       "path": "data/small/data_freshness_catalog.csv",
-      "bytes": 17171,
-      "sha256": "53930de35a03250f70285fdd10f1e01e85e2da5b3910dbb7d184f900a7b4c930",
+      "bytes": 18185,
+      "sha256": "78afad4c21b8bb497ae46d0bd780d7837e5bcb405dce9c1b8dfade7ab0eaeb91",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1433,6 +1433,97 @@
       }
     },
     {
+      "path": "data/small/secondfi_incident_actors.csv",
+      "bytes": 1816,
+      "sha256": "820d30400de6a90dd764a0b4402b69b65f6f5ea01f7b38d78f4ffb8a880f3bf2",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/secondfi_incident_balances.csv",
+      "bytes": 850,
+      "sha256": "0463fc9c0f9335899938ab4407bdb291fabcaebe0dc2bfff8a6ad193cf24519a",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/secondfi_incident_clusters.csv",
+      "bytes": 285,
+      "sha256": "dcad8c0a8c6b85df15e4f7bdb1082ddcd170f1810adbc11cb27d54ad5412c0b0",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/secondfi_incident_funding.csv",
+      "bytes": 459,
+      "sha256": "a6dbf1aa7292e11699e451422424c686e88b402233e3caca459c53db4ec6f16d",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/secondfi_incident_key_exposure_census.csv",
+      "bytes": 285,
+      "sha256": "024bf8af7e02857eb3c1fe6b64275e3cee35918685590a42585b101108f6a321",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/secondfi_incident_summary.csv",
+      "bytes": 1669,
+      "sha256": "7234fb008b29e4e2b201aade13eeeac3bfff08ee8c81d4fa6fce717f07703e84",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/secondfi_incident_theft_destinations.csv",
+      "bytes": 315,
+      "sha256": "f0a5c66ee3d545351157cac5f3d8c78aa3af9f8b3a0431963d6b91f86efe696a",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "data/small/seed_anchor_db_verification.csv",
       "bytes": 419,
       "sha256": "160b03c8d5f21684c14965cb813b34a9e7ab14b346cd9b52af2ba95af121000e",
@@ -2136,8 +2227,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 53526,
-      "sha256": "868161ca94f5c0f352cbefcc3ecb644d6b748b80e2ff2cb62b3ef452a5fae313",
+      "bytes": 55499,
+      "sha256": "895b40e653f935fcab87afa1ce36927e643efa68bb0b90b207f074b41cd0d29e",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2162,8 +2253,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 8352,
-      "sha256": "ed42fe184e7be2698b7d8eec251ed5e0b1af53669cb2bd16d47370d2adf8a20d",
+      "bytes": 8778,
+      "sha256": "ad1ddb92e7772206ca4977290461277548def4fcd7495edb532be55a6cf2ba0f",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2512,9 +2603,22 @@
       }
     },
     {
+      "path": "findings/F18_secondfi_incident.md",
+      "bytes": 3575,
+      "sha256": "1e54c6ee558cd281ad3e0da09bf7009661ea1469bb6db151f5a149d153131d4b",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 3127,
-      "sha256": "7a7df7350f2f4ed17aaa487643821d4346f0a45a3891ae829be523b56921825e",
+      "bytes": 3263,
+      "sha256": "f255d3c6bf9a455c6363405e135a777debb438b2fcac92ebd9acdc4d9d148c8c",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",

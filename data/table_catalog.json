@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 128,
+  "table_count": 135,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -926,6 +926,69 @@
       "family": "Other",
       "row_count": 480,
       "source": "data/small/pool_operator_kes_members.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_actors",
+      "family": "SecondFi incident",
+      "row_count": 8,
+      "source": "data/small/secondfi_incident_actors.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_balances",
+      "family": "SecondFi incident",
+      "row_count": 4,
+      "source": "data/small/secondfi_incident_balances.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_clusters",
+      "family": "SecondFi incident",
+      "row_count": 2,
+      "source": "data/small/secondfi_incident_clusters.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_funding",
+      "family": "SecondFi incident",
+      "row_count": 2,
+      "source": "data/small/secondfi_incident_funding.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_key_exposure_census",
+      "family": "SecondFi incident",
+      "row_count": 6,
+      "source": "data/small/secondfi_incident_key_exposure_census.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_summary",
+      "family": "SecondFi incident",
+      "row_count": 21,
+      "source": "data/small/secondfi_incident_summary.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "secondfi_incident_theft_destinations",
+      "family": "SecondFi incident",
+      "row_count": 3,
+      "source": "data/small/secondfi_incident_theft_destinations.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
