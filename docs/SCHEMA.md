@@ -114,7 +114,7 @@ Source: `data/small/cross_merge_depth10_probe.csv`
 | `merge_txs` | BIGINT |
 | `note` | VARCHAR |
 
-## `data_freshness_catalog`  (125 rows)
+## `data_freshness_catalog`  (132 rows)
 
 Source: `data/small/data_freshness_catalog.csv`
 
@@ -124,7 +124,7 @@ Source: `data/small/data_freshness_catalog.csv`
 | `data_rows` | BIGINT |
 | `bytes` | BIGINT |
 | `sha256` | VARCHAR |
-| `last_commit_utc` | VARCHAR |
+| `last_commit_utc` | TIMESTAMP WITH TIME ZONE |
 | `age_days_at_refresh` | BIGINT |
 | `snapshot_sensitive` | BOOLEAN |
 
