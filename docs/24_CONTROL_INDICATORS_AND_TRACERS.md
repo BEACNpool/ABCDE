@@ -76,8 +76,11 @@ wallets, so tracer movement maps custody clusters publicly and replayably.
 
 Raw receipt tables: `tracer_address_summary`, `tracer_stake_summary`,
 `tracer_asset_current_location`, `tracer_current_utxos`, `tracer_all_outputs`,
-`tracer_transfer_edges`, `tracer_mint_events`, `tracer_mint_funding_inputs`,
-`tracer_deposit_claims`, `tracer_movement_timeline`, `tracer_export_tip_receipt`.
+`tracer_transfer_edges`, `tracer_mint_events`, `tracer_mint_tx_metadata`,
+`tracer_mint_funding_inputs`, `tracer_deposit_claims`, `tracer_movement_timeline`,
+`tracer_export_tip_receipt`. (`tracer_mint_events` carries each asset's own CIP-25
+entry; the full per-transaction 721 blob lives once in `tracer_mint_tx_metadata`
+rather than repeated on all 505 asset rows.)
 
 **Method tables** (the study operator's canonical reconstruction — use these for
 any naming question): `tracer_method_receipt`, `tracer_asset_path`,

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 298,
+  "file_count": 299,
   "files": [
     {
       "path": "claims/README.md",
@@ -277,8 +277,8 @@
     },
     {
       "path": "data/small/data_freshness_catalog.csv",
-      "bytes": 19043,
-      "sha256": "420321c56b276c6956aeb9e7095403d9f92c748a86e56f79c7bc2b3872adff0c",
+      "bytes": 19160,
+      "sha256": "d5725a413d85233891f1663f3ffb24b25d1a77681007bebaacc798f321619bd4",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1850,8 +1850,8 @@
     },
     {
       "path": "data/small/tracer_mint_events.csv",
-      "bytes": 4115527,
-      "sha256": "ad2639d83ba653346ad715ebb54aaf5726ba261152972bdf91b6d4798fabfa2b",
+      "bytes": 217773,
+      "sha256": "2075d85d931b284222a3f37283222d61b223c586d5faa1747c895a3fe993ddc7",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1865,6 +1865,19 @@
       "path": "data/small/tracer_mint_funding_inputs.csv",
       "bytes": 4452,
       "sha256": "922243d38d29a73a6ad5f07a029d85b2120e8f53236e5675308b4afc14f5ec09",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/tracer_mint_tx_metadata.csv",
+      "bytes": 95780,
+      "sha256": "2c5f420804d2ad154fb48db87278586f6b999687b7481b8f4d8340daaebdbf35",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2266,8 +2279,8 @@
     },
     {
       "path": "docs/24_CONTROL_INDICATORS_AND_TRACERS.md",
-      "bytes": 5755,
-      "sha256": "7eca3e1394db02ece1b409844b4183cfb53002f525f1c92548fec038affd00c9",
+      "bytes": 5962,
+      "sha256": "2a7fb2dd8dc4d6bf4fae6cc6219badcfaba65bfa617c88ecc4b7dd4813a389ba",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2318,8 +2331,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 58833,
-      "sha256": "b9ef4e843ecd3817466d74348f0cae427d2ea00c50cf38023facb653f9a27738",
+      "bytes": 59081,
+      "sha256": "7222e51ec9d6cff45f2143c8f77dd8458c41e7a9f0d159967f8a1a5561388ca8",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2344,8 +2357,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9035,
-      "sha256": "5d626891ab23bccd2a0051420967172a7a6af86a25c60c8f73cf209abc057552",
+      "bytes": 9079,
+      "sha256": "52969abf3ee9e868641594de1c51258375d4ae210f8753a06ca083c7bb8245cf",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",

@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 141,
+  "table_count": 142,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -1250,6 +1250,15 @@
       "family": "Exchange tracers",
       "row_count": 17,
       "source": "data/small/tracer_mint_funding_inputs.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "tracer_mint_tx_metadata",
+      "family": "Exchange tracers",
+      "row_count": 17,
+      "source": "data/small/tracer_mint_tx_metadata.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""

@@ -67,7 +67,8 @@ method tables were built with.
 | `data/asset_current_location.csv` | per tracer NFT | one row per asset: mint time, hops, addresses touched, current location |
 | `data/all_tracer_outputs.csv` | per historical output row | the full movement history of the policy |
 | `data/transfer_edges.csv` | per (asset, spend) hop | from-address → to-address edges for every tracer move |
-| `data/mint_events.csv` | per asset mint | mint tx + full on-chain CIP-25 metadata |
+| `data/mint_events.csv` | per asset mint | mint tx + that asset's own CIP-25 entry |
+| `data/mint_tx_metadata.csv` | per (mint tx, metadata key) | the full on-chain metadata blob, one row per mint tx (a tracer mint stamps one 721 blob covering every asset it mints — kept here instead of repeated on all 505 asset rows) |
 | `data/mint_funding_inputs.csv` | per (mint tx, input address) | which addresses funded each mint (tracer operator's on-chain linkage) |
 | `data/movement_timeline.csv` | per day | daily activity: rows, assets, addresses, txs |
 | `data/deposit_claims.csv` | per (tx, metadata key) | on-chain tx messages attached to tracer moves, incl. senders' "Deposited to: \<Exchange\>" claims |

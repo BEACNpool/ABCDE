@@ -176,7 +176,11 @@ order by db.time, spend_tx_hash, o.asset_name
 ) to stdout with csv header;
 SQL
 
-# 7. Mint events with on-chain CIP-25 metadata.
+# 7. Mint events with the asset's OWN CIP-25 entry.
+#    Only the per-asset slice is carried here. A tracer mint tx stamps one 721
+#    blob covering every asset it mints, so joining the whole blob onto each
+#    asset repeated ~7 KB of identical JSON 505 times (4 MB in a cut whose point
+#    is being small). The full blobs are in mint_tx_metadata.csv, deduped.
 run_copy "$OUT_DIR/mint_events.csv" <<SQL
 copy (
 select
@@ -189,7 +193,8 @@ select
   b.block_no,
   b.time as block_time,
   tm.key as metadata_key,
-  tm.json::text as metadata_json
+  (tm.json -> encode(ma.policy, 'hex') -> encode(ma.name, 'escape'))::text
+    as asset_metadata_json
 from public.multi_asset ma
 join public.ma_tx_mint mtm on mtm.ident = ma.id
 join public.tx tx on tx.id = mtm.tx_id
@@ -197,6 +202,29 @@ join public.block b on b.id = tx.block_id
 left join public.tx_metadata tm on tm.tx_id = tx.id
 where encode(ma.policy, 'hex') = '$POLICY_ID'
 order by b.time, ma.name
+) to stdout with csv header;
+SQL
+
+# 7b. The full on-chain metadata blob per mint transaction, one row each.
+run_copy "$OUT_DIR/mint_tx_metadata.csv" <<SQL
+copy (
+with mint_txs as (
+  select distinct mtm.tx_id
+  from public.multi_asset ma
+  join public.ma_tx_mint mtm on mtm.ident = ma.id
+  where encode(ma.policy, 'hex') = '$POLICY_ID'
+)
+select
+  encode(tx.hash, 'hex') as mint_tx,
+  b.block_no,
+  b.time as block_time,
+  tm.key as metadata_key,
+  tm.json::text as metadata_json
+from mint_txs m
+join public.tx tx on tx.id = m.tx_id
+join public.block b on b.id = tx.block_id
+join public.tx_metadata tm on tm.tx_id = m.tx_id
+order by b.time, mint_tx, tm.key
 ) to stdout with csv header;
 SQL
 
