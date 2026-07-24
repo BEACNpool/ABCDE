@@ -268,6 +268,305 @@ order by b.time, tx_hash
 ) to stdout with csv header;
 SQL
 
+# ---------------------------------------------------------------------------
+# Canonical study method (docs/26_EXCHANGE_TRACER_METHOD.md)
+#
+# Sections 11-16 implement the reconstruction rules published by the study
+# operator: deterministic wallet-cluster keys, strict deposit validation, exact
+# NFT paths, terminus grouping, and participant-vote name resolution. They are
+# deliberately stricter than the raw claim rows in section 10.
+# ---------------------------------------------------------------------------
+
+# pos  = the exact ordered holder path of every tracer (one row per asset-bearing output)
+# dep  = deposits that pass ALL four validation rules
+# term = each tracer's current terminus (its unspent position)
+METHOD_CTE="
+with pos as (
+  select p.*,
+         row_number() over w as hop,
+         lag(cluster_key) over w as prev_cluster_key,
+         lag(address) over w as prev_address
+  from (
+    select
+      ma.id as ma_id,
+      encode(ma.name, 'escape') as asset_name,
+      encode(ma.name, 'hex') as asset_name_hex,
+      ma.fingerprint,
+      txo.index as tx_out_index,
+      txo.address,
+      coalesce(sa.view, '') as stake_address,
+      case when coalesce(sa.view, '') <> '' then 's:' || sa.view else 'a:' || txo.address end as cluster_key,
+      tx.id as tx_id,
+      encode(tx.hash, 'hex') as tx_hash,
+      tx.block_index,
+      b.block_no,
+      b.time as block_time,
+      not exists (
+        select 1 from public.tx_in i
+        where i.tx_out_id = tx.id and i.tx_out_index = txo.index
+      ) as is_unspent
+    from public.multi_asset ma
+    join public.ma_tx_out mto on mto.ident = ma.id
+    join public.tx_out txo on txo.id = mto.tx_out_id
+    join public.tx tx on tx.id = txo.tx_id
+    join public.block b on b.id = tx.block_id
+    left join public.stake_address sa on sa.id = txo.stake_address_id
+    where ma.policy = decode('$POLICY_ID', 'hex')
+      and mto.quantity = 1
+  ) p
+  window w as (partition by asset_name order by block_no, block_index, tx_out_index)
+),
+dep as (
+  select
+    p.asset_name,
+    p.asset_name_hex,
+    p.fingerprint,
+    p.tx_hash as deposit_tx,
+    p.tx_out_index as deposit_output_index,
+    p.block_no as deposit_block_no,
+    p.block_time as deposit_time,
+    p.hop as deposit_hop,
+    p.cluster_key as deposit_cluster_key,
+    p.address as deposit_address,
+    p.stake_address as deposit_stake_address,
+    p.prev_cluster_key as participant_key,
+    p.prev_address as participant_address,
+    btrim(coalesce(tm.json->'msg'->>1, '')) as claimed_exchange,
+    lower(btrim(coalesce(tm.json->'msg'->>1, ''))) as claimed_exchange_norm,
+    case when tm.json->'msg'->>1 is null then 'unparsed_msg' else 'msg_index_1' end as name_source,
+    tm.json::text as deposit_msg_json
+  from pos p
+  join public.tx_metadata tm on tm.tx_id = p.tx_id and tm.key = 674
+  where tm.json::text ilike '%Red (or Blue) Pill%'   -- rule 2: message identifies the study
+    and p.tx_out_index = 0                            -- rule 3: tracer sits in output 0
+    and p.prev_cluster_key is not null                -- rule 4: it moved ...
+    and p.prev_cluster_key <> p.cluster_key           --         ... to a NEW cluster key
+),
+term as (
+  select
+    asset_name,
+    cluster_key as terminus_key,
+    address as terminus_address,
+    stake_address as terminus_stake_address,
+    tx_hash as terminus_tx,
+    tx_out_index as terminus_output_index,
+    block_no as terminus_block_no,
+    block_time as terminus_time,
+    hop as terminus_hop
+  from pos
+  where is_unspent
+),
+votes as (
+  select
+    t.terminus_key,
+    d.claimed_exchange_norm,
+    min(d.claimed_exchange) as claimed_exchange,
+    count(distinct d.asset_name) as tracers,
+    count(distinct d.participant_key) as participants
+  from dep d
+  join term t on t.asset_name = d.asset_name
+  group by t.terminus_key, d.claimed_exchange_norm
+),
+ranked as (
+  select v.*,
+    max(participants) filter (where claimed_exchange_norm <> '')
+      over (partition by terminus_key) as top_participants,
+    count(*) filter (where claimed_exchange_norm <> '')
+      over (partition by terminus_key) as named_claims
+  from votes v
+),
+resolution as (
+  select
+    terminus_key,
+    max(top_participants) as top_participants,
+    max(named_claims) as named_claims,
+    count(*) filter (where claimed_exchange_norm <> '' and participants = top_participants) as leaders,
+    min(claimed_exchange) filter (where claimed_exchange_norm <> '' and participants = top_participants) as leader_name
+  from ranked
+  group by terminus_key
+)"
+
+# 11. Method receipt: the canonical identifiers and rules this cut was built with.
+run_copy "$OUT_DIR/method_receipt.csv" <<SQL
+copy (
+  select
+    '$POLICY_ID' as policy_id,
+    '55bf845d5be91cf210e50511fc34ff35aad645f92290c13c5c3b4186' as policy_key_hash,
+    'The Red (or Blue) Pill Study' as study_name,
+    'tracer.adagenesistransparency.com' as study_site,
+    223391762 as native_script_expiry_slot,
+    (select max(slot_no) from public.block) as tip_slot_no,
+    (select max(slot_no) from public.block) > 223391762 as mint_window_closed,
+    674 as deposit_metadata_label,
+    1985 as study_seed_metadata_label,
+    2 as participant_threshold,
+    'stake credential when present (s:), otherwise payment address (a:)' as node_key_rule,
+    'exact-nft' as edge_type,
+    'distinct pre-deposit wallet-cluster key' as participant_unit,
+    (select max(block_no) from public.block) as tip_block_no,
+    (select max(time) from public.block) as tip_block_time,
+    now() at time zone 'utc' as exported_at_utc
+) to stdout with csv header;
+SQL
+
+# 12. Exact NFT holder path: one row per asset-bearing output, in order.
+#     same_cluster_as_prev = true marks a self-move (deduplicate these when
+#     rendering a holder path; they are kept here so the raw chain is complete).
+run_copy "$OUT_DIR/asset_path.csv" <<SQL
+copy (
+$METHOD_CTE
+select
+  p.asset_name,
+  p.asset_name_hex,
+  p.fingerprint,
+  p.hop,
+  p.cluster_key,
+  p.address,
+  p.stake_address,
+  p.prev_cluster_key,
+  (p.prev_cluster_key is not null and p.prev_cluster_key = p.cluster_key) as same_cluster_as_prev,
+  p.tx_hash,
+  p.tx_out_index,
+  p.block_no,
+  p.block_time,
+  p.is_unspent as is_terminus,
+  (d.asset_name is not null) as is_valid_deposit
+from pos p
+left join dep d on d.asset_name = p.asset_name and d.deposit_tx = p.tx_hash and d.deposit_hop = p.hop
+order by p.asset_name, p.hop
+) to stdout with csv header;
+SQL
+
+# 13. Validated tagged deposits (all four rules) + where that tracer is now.
+run_copy "$OUT_DIR/valid_deposits.csv" <<SQL
+copy (
+$METHOD_CTE
+select
+  d.asset_name,
+  d.asset_name_hex,
+  d.fingerprint,
+  d.deposit_tx,
+  d.deposit_output_index,
+  d.deposit_block_no,
+  d.deposit_time,
+  d.deposit_hop,
+  d.claimed_exchange,
+  d.claimed_exchange_norm,
+  d.name_source,
+  d.participant_key,
+  d.participant_address,
+  d.deposit_cluster_key,
+  d.deposit_address,
+  d.deposit_stake_address,
+  t.terminus_key,
+  t.terminus_address,
+  t.terminus_tx,
+  t.terminus_output_index,
+  (t.terminus_hop - d.deposit_hop) as hops_deposit_to_terminus,
+  d.deposit_msg_json
+from dep d
+join term t on t.asset_name = d.asset_name
+order by d.deposit_time, d.deposit_tx, d.asset_name
+) to stdout with csv header;
+SQL
+
+# 14. Name votes: per (terminus cluster, claimed name), tracers vs participants.
+#     participants is the vote unit; tracers is only volume.
+run_copy "$OUT_DIR/name_votes.csv" <<SQL
+copy (
+$METHOD_CTE
+select
+  r.terminus_key,
+  r.claimed_exchange,
+  r.claimed_exchange_norm,
+  r.tracers,
+  r.participants,
+  (r.claimed_exchange_norm <> '' and r.participants >= 2) as corroborated,
+  (r.claimed_exchange_norm <> '' and r.participants = r.top_participants and res.leaders = 1
+     and r.top_participants >= 2) as is_resolved_name
+from ranked r
+join resolution res on res.terminus_key = r.terminus_key
+order by r.terminus_key, r.participants desc, r.tracers desc, r.claimed_exchange_norm
+) to stdout with csv header;
+SQL
+
+# 15. Terminus clusters reached by validated deposits, with the resolution rule
+#     applied: a name resolves only on a UNIQUE participant-count lead that
+#     clears the 2-participant threshold. Ties and thin claims stay unresolved.
+run_copy "$OUT_DIR/terminus_clusters.csv" <<SQL
+copy (
+$METHOD_CTE
+select
+  t.terminus_key,
+  max(t.terminus_address) filter (where t.terminus_stake_address = '') as terminus_address_if_no_stake,
+  count(distinct d.asset_name) as tracers,
+  count(distinct d.participant_key) as participants,
+  count(distinct d.deposit_tx) as deposit_txs,
+  min(d.deposit_time) as first_deposit,
+  max(d.deposit_time) as last_deposit,
+  max(res.named_claims) as distinct_names_claimed,
+  (max(res.named_claims) > 1) as conflicted,
+  max(res.top_participants) as top_participants,
+  case
+    when max(res.named_claims) = 0 then null
+    when max(res.top_participants) < 2 then null
+    when max(res.leaders) > 1 then null
+    else max(res.leader_name)
+  end as resolved_exchange,
+  case
+    when max(res.named_claims) = 0 then 'unresolved_no_named_claim'
+    when max(res.top_participants) < 2 then 'unresolved_below_threshold'
+    when max(res.leaders) > 1 then 'unresolved_tie'
+    else 'resolved'
+  end as resolution_status,
+  (select count(*) from term t2 where t2.terminus_key = t.terminus_key) as tracers_at_terminus_total
+from dep d
+join term t on t.asset_name = d.asset_name
+join resolution res on res.terminus_key = t.terminus_key
+group by t.terminus_key
+order by tracers desc, participants desc, t.terminus_key
+) to stdout with csv header;
+SQL
+
+# 16. Terminus census over ALL tracers (the denominator): where every tracer
+#     currently sits, tagged or not.
+run_copy "$OUT_DIR/terminus_census.csv" <<SQL
+copy (
+$METHOD_CTE
+select
+  t.terminus_key,
+  count(*) as tracers_now,
+  count(d.asset_name) as tracers_from_validated_deposit,
+  count(distinct d.participant_key) as participants,
+  min(t.terminus_time) as first_arrival,
+  max(t.terminus_time) as last_arrival,
+  bool_or(t.terminus_stake_address = '') as has_enterprise_address,
+  array_to_string(array_agg(distinct d.claimed_exchange) filter (where d.claimed_exchange is not null and d.claimed_exchange <> ''), ';') as claimed_names
+from term t
+left join dep d on d.asset_name = t.asset_name
+group by t.terminus_key
+order by tracers_now desc, t.terminus_key
+) to stdout with csv header;
+SQL
+
 ( cd "$OUT_DIR" && sha256sum *.csv >SHA256SUMS )
+
+# Publish into the queryable compact cut (data/small/tracer_<name>.csv). The two
+# copies must never drift: this is the only step that writes them.
+SMALL_DIR="$(cd "$REPO_DIR/.." && pwd)/data/small"
+for f in "$OUT_DIR"/*.csv; do
+  base="$(basename "$f" .csv)"
+  # two legacy tables were published under a reordered name — keep them stable
+  case "$base" in
+    all_tracer_outputs)   table="tracer_all_outputs" ;;
+    current_tracer_utxos) table="tracer_current_utxos" ;;
+    *)                    table="tracer_${base}" ;;
+  esac
+  # csv from psql is LF already; strip any CR so the public-artifact manifest
+  # (which hashes the working copy) matches the LF bytes git stores.
+  sed 's/\r$//' "$f" >"$SMALL_DIR/${table}.csv"
+done
+echo "published $(ls "$OUT_DIR"/*.csv | wc -l) tables into $SMALL_DIR as tracer_*.csv"
+
 echo "---"
 wc -l "$OUT_DIR"/*.csv

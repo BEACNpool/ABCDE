@@ -74,20 +74,28 @@ The community's Genesis Trail exchange-tracer campaign: 505 tracer NFTs
 suspected exchange deposit addresses. Deposit addresses sweep into custody
 wallets, so tracer movement maps custody clusters publicly and replayably.
 
-Tables: `tracer_address_summary`, `tracer_stake_summary`,
+Raw receipt tables: `tracer_address_summary`, `tracer_stake_summary`,
 `tracer_asset_current_location`, `tracer_current_utxos`, `tracer_all_outputs`,
 `tracer_transfer_edges`, `tracer_mint_events`, `tracer_mint_funding_inputs`,
 `tracer_deposit_claims`, `tracer_movement_timeline`, `tracer_export_tip_receipt`.
 
-`tracer_deposit_claims` carries the senders' own on-chain CIP-20 messages —
-six exchanges are named (Coinbase, Kraken, Binance, KuCoin, Bybit, Gate.io) in
-56 labeled transactions. Grade those as **self-reported claims**: the message
-existing on-chain is FACT; the sender's assertion about the destination is
-WORKING_HYPOTHESIS until independently corroborated (convergent independent
-claims on one custody cluster, or sweep-pattern confirmation via
-`tracer_transfer_edges`).
+**Method tables** (the study operator's canonical reconstruction — use these for
+any naming question): `tracer_method_receipt`, `tracer_asset_path`,
+`tracer_valid_deposits`, `tracer_name_votes`, `tracer_terminus_clusters`,
+`tracer_terminus_census`. The rules, the strictness notes and the limits are in
+[`docs/26_EXCHANGE_TRACER_METHOD.md`](26_EXCHANGE_TRACER_METHOD.md); the results
+are in [`F19`](../findings/F19_exchange_tracer_convergence.md).
 
-Full receipts, refresh script, and the crowd-label template live in
+`tracer_deposit_claims` carries the senders' own on-chain CIP-20 messages, and
+is deliberately looser than `tracer_valid_deposits` — it includes non-study
+`674` traffic from other applications and the `1985` study-seed label. Grade
+those as **self-reported claims**: the message existing on-chain is FACT; the
+sender's assertion about the destination is WORKING_HYPOTHESIS until
+corroborated. Corroboration has a defined bar: a unique lead of **≥2 distinct
+pre-deposit wallet-cluster keys** naming the same terminus cluster. Counting
+claim messages per address is not corroboration.
+
+Full receipts, refresh script, and the derived label layer live in
 [`tracers/`](../tracers/README.md).
 
 ## Why tracers matter for the genesis question

@@ -39,6 +39,9 @@ The public repo is intentionally small enough to review in git. Heavy extraction
    - `findings/F16_night_mint_provenance_and_concentration.md`
    - `findings/F17_night_wanchain_bridge_incident.md`
    - `reports/night_wanchain_incident_2026_07_20.md`
+14. Before answering anything about exchange custody, read the tracer method:
+   - `docs/26_EXCHANGE_TRACER_METHOD.md`
+   - `findings/F19_exchange_tracer_convergence.md`
 
 ## Maintainer path
 

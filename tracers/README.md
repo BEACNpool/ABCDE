@@ -26,15 +26,35 @@ replayable signal of which custody cluster an address feeds.
   **WORKING_HYPOTHESIS** at best. Per the repo-wide wording rule: on-chain
   linkage is not real-world identity or control.
 
+## Canonical study method
+
+The study operator publishes an agent guide defining how this dataset must be
+reconstructed and how far its conclusions may be pushed: deterministic
+wallet-cluster keys, strict deposit validation, exact NFT paths, terminus
+grouping, and a participant-vote threshold for resolving an exchange name.
+Source: <https://tracer.adagenesistransparency.com/TRACER_README.md>
+(retrieved 2026-07-24; the document is unversioned).
+
+ABCDE implements those rules against its own db-sync warehouse (sections 11–16
+of `scripts/export_tracers_from_abcde.sh`) and ships the result as the
+`tracer_method_receipt`, `tracer_asset_path`, `tracer_valid_deposits`,
+`tracer_name_votes`, `tracer_terminus_clusters` and `tracer_terminus_census`
+tables. **Read `docs/26_EXCHANGE_TRACER_METHOD.md` before answering any
+question from this dataset** — it is the rule set, the strictness notes, and
+the limits.
+
+The older tables in this directory stay as raw receipts; they are deliberately
+looser than the method tables (`deposit_claims.csv`, for example, holds every
+674/1985 message attached to a tracer-moving transaction, including unrelated
+674 traffic from other applications).
+
 ## Snapshot provenance
 
 `data/export_tip_receipt.csv` records the warehouse tip (block number and
 block time) and UTC export timestamp for the committed cut. All CSVs in
 `data/` come from one export run and are hashed in `data/SHA256SUMS`.
-
-Current cut: tip block `13,628,563` (2026-07-03 04:54:49 UTC) —
-505 tracers minted, 70 addresses ever touched, 24 addresses currently
-holding, 2,829 historical output rows, 505 live tracer UTxOs, 0 burned.
+`data/method_receipt.csv` additionally records the identifiers and rules the
+method tables were built with.
 
 ## Files
 
@@ -51,9 +71,15 @@ holding, 2,829 historical output rows, 505 live tracer UTxOs, 0 burned.
 | `data/mint_funding_inputs.csv` | per (mint tx, input address) | which addresses funded each mint (tracer operator's on-chain linkage) |
 | `data/movement_timeline.csv` | per day | daily activity: rows, assets, addresses, txs |
 | `data/deposit_claims.csv` | per (tx, metadata key) | on-chain tx messages attached to tracer moves, incl. senders' "Deposited to: \<Exchange\>" claims |
+| `data/method_receipt.csv` | 1 row | canonical identifiers, rules and threshold used for this cut |
+| `data/asset_path.csv` | per (asset, hop) | the exact ordered holder path of every tracer, with cluster keys |
+| `data/valid_deposits.csv` | per validated deposit | deposits passing all four validation rules: participant, claimed name, current terminus |
+| `data/name_votes.csv` | per (terminus, name) | tracer count vs distinct-participant count per claimed name |
+| `data/terminus_clusters.csv` | per terminus reached by a tagged deposit | resolution result + full name split (conflicts preserved) |
+| `data/terminus_census.csv` | per terminus, all tracers | the denominator — where every tracer sits now |
 | `labels/exchange_labels.csv` | per labeled address | attribution layer — **starts empty by design** |
 | `sql/exchange_tracer_policy.sql` | — | standalone psql report query (any db-sync instance) |
-| `scripts/export_tracers_from_abcde.sh` | — | maintainer refresh script (regenerates `data/` + `SHA256SUMS`) |
+| `scripts/export_tracers_from_abcde.sh` | — | maintainer refresh script (regenerates `data/` + `SHA256SUMS`, publishes `data/small/tracer_*.csv`) |
 
 ## Reading the data
 
@@ -75,27 +101,41 @@ holding, 2,829 historical output rows, 505 live tracer UTxOs, 0 burned.
 Many deposit transactions carry a CIP-20 (key `674`) message written by the
 sender, e.g. `"Deposited to:", "Coinbase", "The Red (or Blue) Pill Study",
 "tracer.adagenesistransparency.com"`; one tx uses a custom key `1985`
-(`{"exchange": "Kraken"}`). Six exchanges are named this way: **Coinbase,
-Kraken, Binance, KuCoin, Bybit, Gate.io**.
+(`{"exchange": "Kraken"}`). Seven exchanges are named this way: **Coinbase,
+Kraken, Binance, KuCoin, Bybit, Gate.io, UEX.us**.
 
 Grade these as **self-reported claims** (WORKING_HYPOTHESIS →
 STRONG_INFERENCE once corroborated): the message is on-chain (FACT that it
 was written), but it is the *sender asserting* which exchange the destination
-address belongs to, not the exchange. Corroboration comes from independent
-submitters naming the same entity for the same custody cluster, or from
-sweep-pattern analysis in `transfer_edges.csv`.
+address belongs to, not the exchange.
+
+This file is the raw evidence, not the vote. It includes 674 traffic from
+unrelated applications and the `1985` study-seed label. The corroboration bar
+lives in `valid_deposits.csv` / `name_votes.csv` / `terminus_clusters.csv`: a
+name resolves only on a **unique lead of ≥2 distinct pre-deposit wallet-cluster
+keys** converging on the same terminus cluster.
 
 ## Attribution labels (`labels/exchange_labels.csv`)
 
 Columns: `address, stake_address, claimed_entity, label_type, evidence,
 evidence_url, submitted_by, submitted_date, grade`.
 
-- `label_type`: e.g. `deposit_address` (a tracer was sent to an address the
-  submitter generated at the exchange), `hot_wallet`, `self_report`, `other`.
-- `evidence`: what backs the claim (screenshot hash, tx receipt, statement).
-- `grade`: per `docs/02_GRADING.md` — `FACT` only if deterministically
-  checkable on-chain; deposit-address receipts are typically
-  `STRONG_INFERENCE`; unverified submissions are `WORKING_HYPOTHESIS`.
+Rows are **mechanically derived** from the method tables by
+`scripts/build_exchange_labels.py` — never hand-entered — so every grade is
+reproducible from the committed CSVs.
+
+- `label_type`:
+  - `custody_cluster` — a terminus wallet-cluster whose name resolved (unique
+    participant lead, ≥2 distinct participant wallets).
+  - `deposit_address` — an address a participant deposited a tracer to,
+    carrying that participant's claim.
+- `evidence`: tracer and participant counts plus the full vote split or the
+  terminus resolution status behind the row.
+- `grade`: per `docs/02_GRADING.md`. A deposit address **cannot** be
+  corroborated by other participants — an exchange issues each user their own
+  deposit address, so its claim count is thin by construction. Its support
+  therefore comes from the terminus its tracers reach: `STRONG_INFERENCE` when
+  that terminus resolved to the same name, `WORKING_HYPOTHESIS` otherwise.
 
 A tracer landing at a labeled address upgrades "tracer reached address Y" to
 "tracer reached an address labeled E (grade G)" — the claim never gets
@@ -104,11 +144,13 @@ stronger than its label's grade.
 ## Refreshing (maintainer only)
 
 ```bash
-tracers/scripts/export_tracers_from_abcde.sh
+tracers/scripts/export_tracers_from_abcde.sh   # refresh data/ + data/small/tracer_*.csv
+python tracers/scripts/build_exchange_labels.py # re-derive labels/exchange_labels.csv
 ```
 
 Requires SSH access to the ABCDE warehouse (`ssh abcde`, read-only queries
 against `cexplorer_replica`). Public users don't need this — the committed
 CSVs plus `SHA256SUMS` are the reproducibility cut, and
-`sql/exchange_tracer_policy.sql` reruns the core report on any db-sync
-instance.
+`sql/exchange_tracer_policy.sql` (core report) plus
+`sql/60_tracers/exchange_tracer_method.remote.sql` (canonical method) rerun on
+any db-sync instance.

@@ -31,8 +31,10 @@ OUT = SMALL / "data_freshness_catalog.csv"
 
 # Name fragments that mark a table as describing current chain state.
 SNAPSHOT_HINTS = (
-    "current", "latest", "profiles", "tip_receipt", "top_stake",
+    "current", "latest", "profiles", "receipt", "top_stake",
     "control_indicators", "control_summary", "freshness",
+    # tracer method tables: every one is keyed on where a tracer sits NOW
+    "terminus", "asset_path", "valid_deposits", "name_votes",
 )
 
 

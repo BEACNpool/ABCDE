@@ -175,8 +175,8 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "89a394454f52",
-          "source_generated_utc": "2026-07-04 04:10:04+00:00",
+          "git_commit": "b9d4e349dbf3",
+          "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
           "db_tip_epoch": 641,
@@ -530,7 +530,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 132,
+      "row_count": 138,
       "columns": [
         {
           "name": "table_name",
@@ -550,7 +550,7 @@
         },
         {
           "name": "last_commit_utc",
-          "type": "TIMESTAMP WITH TIME ZONE"
+          "type": "VARCHAR"
         },
         {
           "name": "age_days_at_refresh",
@@ -567,8 +567,8 @@
           "data_rows": 53,
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
-          "last_commit_utc": "2026-05-29 14:26:39+00:00",
-          "age_days_at_refresh": 55,
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "age_days_at_refresh": 56,
           "snapshot_sensitive": false
         },
         {
@@ -576,8 +576,8 @@
           "data_rows": 10,
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
-          "last_commit_utc": "2026-05-29 14:26:39+00:00",
-          "age_days_at_refresh": 55,
+          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "age_days_at_refresh": 56,
           "snapshot_sensitive": false
         },
         {
@@ -585,8 +585,8 @@
           "data_rows": 115,
           "bytes": 48593,
           "sha256": "c644a52a714567186589f0e50d7cd40f84f2e9a4e89ab9b872435e987ceafa6a",
-          "last_commit_utc": "2026-07-03 18:17:25+00:00",
-          "age_days_at_refresh": 19,
+          "last_commit_utc": "2026-07-03T13:17:25-05:00",
+          "age_days_at_refresh": 21,
           "snapshot_sensitive": true
         }
       ]
@@ -622,7 +622,7 @@
       ],
       "sample_rows": [
         {
-          "generated_utc": "2026-07-04 04:10:04+00:00",
+          "generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
           "db_tip_epoch": 641,
@@ -1579,7 +1579,7 @@
           "matches_fourth_entry_amount": true,
           "source_url": "https://raw.githubusercontent.com/cardano-foundation/cardano-org/master/static/archive/static.iohk.io/adasale/js/stats/main2.json",
           "source_sha256": "5037df90ced9983c463840fb408b38112124888141a4de2a193951f006491aa5",
-          "source_updated": "2017-08-28 15:23:53.138000+00:00"
+          "source_updated": "2017-08-28 10:23:53.138000-05:00"
         },
         {
           "subject": "Tickets",
@@ -1591,7 +1591,7 @@
           "matches_fourth_entry_amount": true,
           "source_url": "https://raw.githubusercontent.com/cardano-foundation/cardano-org/master/static/archive/static.iohk.io/adasale/js/stats/main2.json",
           "source_sha256": "5037df90ced9983c463840fb408b38112124888141a4de2a193951f006491aa5",
-          "source_updated": "2017-08-28 15:23:53.138000+00:00"
+          "source_updated": "2017-08-28 10:23:53.138000-05:00"
         },
         {
           "subject": "Tickets",
@@ -1603,7 +1603,7 @@
           "matches_fourth_entry_amount": true,
           "source_url": "https://raw.githubusercontent.com/cardano-foundation/cardano-org/master/static/archive/static.iohk.io/adasale/js/stats/main2.json",
           "source_sha256": "5037df90ced9983c463840fb408b38112124888141a4de2a193951f006491aa5",
-          "source_updated": "2017-08-28 15:23:53.138000+00:00"
+          "source_updated": "2017-08-28 10:23:53.138000-05:00"
         }
       ]
     },
@@ -2458,7 +2458,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-07-03 05:56:50+00:00",
+          "snapshot_utc": "2026-07-03 00:56:50-05:00",
           "gov_action_proposal_id": 1,
           "proposal_tx_hash": "15f82a365bdee483a4b03873a40d3829cc88c048ff3703e11bd01dd9e035c916",
           "proposal_index": 0,
@@ -2474,7 +2474,7 @@
           "anchor_data_hash_hex": "2f98f57c4149fdfed2b73cbd821226fe417ef5ed49d8f836a37b31edf14dea47"
         },
         {
-          "snapshot_utc": "2026-07-03 05:56:50+00:00",
+          "snapshot_utc": "2026-07-03 00:56:50-05:00",
           "gov_action_proposal_id": 2,
           "proposal_tx_hash": "59fd353253eb177e2104e8f23ea4c63e3d32ef95c7865d03e90d3884424dc1db",
           "proposal_index": 0,
@@ -2490,7 +2490,7 @@
           "anchor_data_hash_hex": "d4efa9e0c3d80f5be35def08551eaf5aef17eae832fdb835e5f4b208d98f3dff"
         },
         {
-          "snapshot_utc": "2026-07-03 05:56:50+00:00",
+          "snapshot_utc": "2026-07-03 00:56:50-05:00",
           "gov_action_proposal_id": 3,
           "proposal_tx_hash": "7fd6429add8f2611ad8d48c0cc49101463093aec285faea402e8cfde78ea58d7",
           "proposal_index": 0,
@@ -3652,7 +3652,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-06-11 13:54:37+00:00",
+          "snapshot_utc": "2026-06-11 08:54:37-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "cert_type": "drep_vote_delegation",
           "root_combo": "cf",
@@ -3662,7 +3662,7 @@
           "distinct_targets": 1
         },
         {
-          "snapshot_utc": "2026-06-11 13:54:37+00:00",
+          "snapshot_utc": "2026-06-11 08:54:37-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "cert_type": "drep_vote_delegation",
           "root_combo": "cf",
@@ -3672,7 +3672,7 @@
           "distinct_targets": 1
         },
         {
-          "snapshot_utc": "2026-06-11 13:54:37+00:00",
+          "snapshot_utc": "2026-06-11 08:54:37-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "cert_type": "drep_vote_delegation",
           "root_combo": "cf",
@@ -3726,7 +3726,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-06-11 13:49:05+00:00",
+          "snapshot_utc": "2026-06-11 08:49:05-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "latest_pool_id_bech32": "NOT_DELEGATED_OR_NO_STAKE",
           "ticker_name": null,
@@ -3737,7 +3737,7 @@
           "dedup_current_ada": 322437466.704632
         },
         {
-          "snapshot_utc": "2026-06-11 13:49:05+00:00",
+          "snapshot_utc": "2026-06-11 08:49:05-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "latest_pool_id_bech32": "pool1vcwsfldh4gkzga4mc6p86y0vytkqfm9e2dy44hs00v34yeqnfaf",
           "ticker_name": null,
@@ -3748,7 +3748,7 @@
           "dedup_current_ada": 48330921.272734
         },
         {
-          "snapshot_utc": "2026-06-11 13:49:05+00:00",
+          "snapshot_utc": "2026-06-11 08:49:05-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "latest_pool_id_bech32": "pool1fqas6yd8n3fdpz8e869qjvyensdmzletqjexcut8mxasu2sk72r",
           "ticker_name": null,
@@ -3807,7 +3807,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-06-11 13:49:08+00:00",
+          "snapshot_utc": "2026-06-11 08:49:08-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "pool_id_bech32": "pool100wj94uzf54vup2hdzk0afng4dhjaqggt7j434mtgm8v2gfvfgp",
           "link_role": "owner",
@@ -3819,7 +3819,7 @@
           "registration_tx_hash": "2bf7e8879972f66ed6071d3e175cc014f471e0c6f53dce0840a1e879b27cae6a"
         },
         {
-          "snapshot_utc": "2026-06-11 13:49:08+00:00",
+          "snapshot_utc": "2026-06-11 08:49:08-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "pool_id_bech32": "pool100wj94uzf54vup2hdzk0afng4dhjaqggt7j434mtgm8v2gfvfgp",
           "link_role": "reward_address",
@@ -3831,7 +3831,7 @@
           "registration_tx_hash": "2bf7e8879972f66ed6071d3e175cc014f471e0c6f53dce0840a1e879b27cae6a"
         },
         {
-          "snapshot_utc": "2026-06-11 13:49:08+00:00",
+          "snapshot_utc": "2026-06-11 08:49:08-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "pool_id_bech32": "pool1026f3pyjhxjafmtjyyny5ytuh2kraxakfa8eu5h844uv2upzxvq",
           "link_role": "owner",
@@ -3899,7 +3899,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-06-11 13:49:05+00:00",
+          "snapshot_utc": "2026-06-11 08:49:05-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "root_combo": "emurgo",
           "latest_pool_id_bech32": "NOT_DELEGATED_OR_NO_STAKE",
@@ -3913,7 +3913,7 @@
           "latest_pool_active_epoch": null
         },
         {
-          "snapshot_utc": "2026-06-11 13:49:05+00:00",
+          "snapshot_utc": "2026-06-11 08:49:05-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "root_combo": "iog",
           "latest_pool_id_bech32": "NOT_DELEGATED_OR_NO_STAKE",
@@ -3927,7 +3927,7 @@
           "latest_pool_active_epoch": null
         },
         {
-          "snapshot_utc": "2026-06-11 13:49:05+00:00",
+          "snapshot_utc": "2026-06-11 08:49:05-05:00",
           "trace_schema": "abcde_forensics_stage_founders_depth14",
           "root_combo": "iog",
           "latest_pool_id_bech32": "pool1vcwsfldh4gkzga4mc6p86y0vytkqfm9e2dy44hs00v34yeqnfaf",
@@ -8468,7 +8468,7 @@
       ],
       "sample_rows": [
         {
-          "snapshot_utc": "2026-06-11 14:07:39+00:00",
+          "snapshot_utc": "2026-06-11 09:07:39-05:00",
           "trace_schema": "abcde_forensics_stage_depth16",
           "root_seed_id": "cf",
           "min_depth": 0,
@@ -8479,7 +8479,7 @@
           "live_unspent_lovelace": 0
         },
         {
-          "snapshot_utc": "2026-06-11 14:07:39+00:00",
+          "snapshot_utc": "2026-06-11 09:07:39-05:00",
           "trace_schema": "abcde_forensics_stage_depth16",
           "root_seed_id": "cf",
           "min_depth": 1,
@@ -8490,7 +8490,7 @@
           "live_unspent_lovelace": 0
         },
         {
-          "snapshot_utc": "2026-06-11 14:07:39+00:00",
+          "snapshot_utc": "2026-06-11 09:07:39-05:00",
           "trace_schema": "abcde_forensics_stage_depth16",
           "root_seed_id": "cf",
           "min_depth": 2,
@@ -8749,7 +8749,7 @@
     },
     "tracer_address_summary": {
       "source": "data/small/tracer_address_summary.csv",
-      "row_count": 70,
+      "row_count": 72,
       "columns": [
         {
           "name": "address",
@@ -8795,9 +8795,9 @@
           "address_has_script": false,
           "distinct_tracers_ever": 100,
           "distinct_tracers_now": 100,
-          "output_rows": 100,
+          "output_rows": 300,
           "first_seen": "2026-06-24 07:44:06",
-          "last_seen": "2026-06-24 07:44:06",
+          "last_seen": "2026-07-17 10:26:29",
           "current_assets": "TRACER05718F936A0FFCC100;TRACER05718F936A0FFCC101;TRACER05718F936A0FFCC102;TRACER05718F936A0FFCC103;TRACER05718F936A0FFCC104;TRACER05718F936A0FFCC105;TRACER05718F936A0FFCC106;TRACER05718F936A0FFCC107;TRACER05718F936A0FFCC108;TRACER05718F936A0FFCC109;TRACER05718F936A0FFCC10A;TRACER05718F936A0FFCC10B;TRACER05718F936A0FFCC10C;TRACER05718F936A0FFCC10D;TRACER05718F936A0FFCC10E;TRACER05718F936A0FFCC10F;TRACER05718F936A0FFCC110;TRACER05718F936A0FFCC111;TRACER05718F936A0FFCC112;TRACER05718F936A0FFCC113;TRACER05718F936A0FFCC114;TRACER05718F936A0FFCC115;TRACER05718F936A0FFCC116;TRACER05718F936A0FFCC117;TRACER05718F936A0FFCC118;TRACER05718F936A0FFCC119;TRACER05718F936A0FFCC11A;TRACER05718F936A0FFCC11B;TRACER05718F936A0FFCC11C;TRACER05718F936A0FFCC11D;TRACER05718F936A0FFCC11E;TRACER05718F936A0FFCC11F;TRACER05718F936A0FFCC120;TRACER05718F936A0FFCC121;TRACER05718F936A0FFCC122;TRACER05718F936A0FFCC123;TRACER05718F936A0FFCC124;TRACER05718F936A0FFCC125;TRACER05718F936A0FFCC126;TRACER05718F936A0FFCC127;TRACER05718F936A0FFCC128;TRACER05718F936A0FFCC129;TRACER05718F936A0FFCC12A;TRACER05718F936A0FFCC12B;TRACER05718F936A0FFCC12C;TRACER05718F936A0FFCC12D;TRACER05718F936A0FFCC12E;TRACER05718F936A0FFCC12F;TRACER05718F936A0FFCC130;TRACER05718F936A0FFCC131;TRACERCFEE989784A584B600;TRACERCFEE989784A584B601;TRACERCFEE989784A584B602;TRACERCFEE989784A584B603;TRACERCFEE989784A584B604;TRACERCFEE989784A584B605;TRACERCFEE989784A584B606;TRACERCFEE989784A584B607;TRACERCFEE989784A584B608;TRACERCFEE989784A584B609;TRACERCFEE989784A584B60A;TRACERCFEE989784A584B60B;TRACERCFEE989784A584B60C;TRACERCFEE989784A584B60D;TRACERCFEE989784A584B60E;TRACERCFEE989784A584B60F;TRACERCFEE989784A584B610;TRACERCFEE989784A584B611;TRACERCFEE989784A584B612;TRACERCFEE989784A584B613;TRACERCFEE989784A584B614;TRACERCFEE989784A584B615;TRACERCFEE989784A584B616;TRACERCFEE989784A584B617;TRACERCFEE989784A584B618;TRACERCFEE989784A584B619;TRACERCFEE989784A584B61A;TRACERCFEE989784A584B61B;TRACERCFEE989784A584B61C;TRACERCFEE989784A584B61D;TRACERCFEE989784A584B61E;TRACERCFEE989784A584B61F;TRACERCFEE989784A584B620;TRACERCFEE989784A584B621;TRACERCFEE989784A584B622;TRACERCFEE989784A584B623;TRACERCFEE989784A584B624;TRACERCFEE989784A584B625;TRACERCFEE989784A584B626;TRACERCFEE989784A584B627;TRACERCFEE989784A584B628;TRACERCFEE989784A584B629;TRACERCFEE989784A584B62A;TRACERCFEE989784A584B62B;TRACERCFEE989784A584B62C;TRACERCFEE989784A584B62D;TRACERCFEE989784A584B62E;TRACERCFEE989784A584B62F;TRACERCFEE989784A584B630;TRACERCFEE989784A584B631"
         },
         {
@@ -8812,21 +8812,21 @@
           "current_assets": "TRACER5BE015F8D35B1D8D03;TRACER5BE015F8D35B1D8D04;TRACER5BE015F8D35B1D8D05;TRACER5BE015F8D35B1D8D06;TRACER5BE015F8D35B1D8D07;TRACER5BE015F8D35B1D8D08;TRACER5BE015F8D35B1D8D0A;TRACER5BE015F8D35B1D8D0B;TRACER5BE015F8D35B1D8D0C;TRACER5BE015F8D35B1D8D0D;TRACER5BE015F8D35B1D8D0E;TRACER5BE015F8D35B1D8D0F;TRACER5BE015F8D35B1D8D10;TRACER5BE015F8D35B1D8D11;TRACER5BE015F8D35B1D8D12;TRACER5BE015F8D35B1D8D13;TRACER5BE015F8D35B1D8D14;TRACER5BE015F8D35B1D8D15;TRACER5BE015F8D35B1D8D16;TRACER5BE015F8D35B1D8D17;TRACER5BE015F8D35B1D8D18;TRACER5BE015F8D35B1D8D19;TRACER5BE015F8D35B1D8D1A;TRACER5BE015F8D35B1D8D1B;TRACER5BE015F8D35B1D8D1C;TRACER5BE015F8D35B1D8D1D;TRACER5BE015F8D35B1D8D1E;TRACER5BE015F8D35B1D8D1F;TRACER5BE015F8D35B1D8D20;TRACER5BE015F8D35B1D8D21;TRACER5BE015F8D35B1D8D22;TRACER5BE015F8D35B1D8D23;TRACER5BE015F8D35B1D8D24;TRACER5BE015F8D35B1D8D25;TRACER5BE015F8D35B1D8D26;TRACER5BE015F8D35B1D8D27;TRACER5BE015F8D35B1D8D28;TRACER5BE015F8D35B1D8D29;TRACER5BE015F8D35B1D8D2A;TRACER5BE015F8D35B1D8D2B;TRACER5BE015F8D35B1D8D2C;TRACER5BE015F8D35B1D8D2D;TRACER5BE015F8D35B1D8D2E;TRACER5BE015F8D35B1D8D2F;TRACER5BE015F8D35B1D8D30;TRACER5BE015F8D35B1D8D31;TRACERAF2E0C13BEDC990700;TRACERAF2E0C13BEDC990701;TRACERAF2E0C13BEDC990702;TRACERAF2E0C13BEDC990703;TRACERAF2E0C13BEDC990704;TRACERAF2E0C13BEDC990705;TRACERAF2E0C13BEDC990706;TRACERAF2E0C13BEDC990707;TRACERAF2E0C13BEDC990708"
         },
         {
-          "address": "addr1qy0zntmp02mfp0ps3jkp92qkvljl34xht8a3g7w83tjztmlvmg5yqsh72qmmhqrm9u3dufvrknl55a0ugmtrrc9hpx2s6fag3u",
-          "stake_address": "stake1u8kd52zqgtl9qdamspaj7gk7ykpmfl62wh7yd433uzmsn9gatur26",
+          "address": "addr1qyx2yu5gjs9wx75mzmkcqhkg8jutdwgpmavadjue7t6ljap6lupcl6nx8n3af8th9ffmc2fqztc42gfguxy7p367rxrq0u5tjj",
+          "stake_address": "stake1uya07qu0afnrec75n4mj55au9ysp9u24yy5wrz0qca0pnps3u72zg",
           "address_has_script": false,
           "distinct_tracers_ever": 50,
           "distinct_tracers_now": 49,
-          "output_rows": 99,
+          "output_rows": 148,
           "first_seen": "2026-06-16 14:24:17",
-          "last_seen": "2026-06-24 05:28:04",
-          "current_assets": "TRACER6985F8D915C2C77300;TRACER6985F8D915C2C77301;TRACER6985F8D915C2C77302;TRACER6985F8D915C2C77303;TRACER6985F8D915C2C77305;TRACER6985F8D915C2C77306;TRACER6985F8D915C2C77307;TRACER6985F8D915C2C77308;TRACER6985F8D915C2C77309;TRACER6985F8D915C2C7730A;TRACER6985F8D915C2C7730B;TRACER6985F8D915C2C7730C;TRACER6985F8D915C2C7730D;TRACER6985F8D915C2C7730E;TRACER6985F8D915C2C7730F;TRACER6985F8D915C2C77310;TRACER6985F8D915C2C77311;TRACER6985F8D915C2C77312;TRACER6985F8D915C2C77313;TRACER6985F8D915C2C77314;TRACER6985F8D915C2C77315;TRACER6985F8D915C2C77316;TRACER6985F8D915C2C77317;TRACER6985F8D915C2C77318;TRACER6985F8D915C2C77319;TRACER6985F8D915C2C7731A;TRACER6985F8D915C2C7731B;TRACER6985F8D915C2C7731C;TRACER6985F8D915C2C7731D;TRACER6985F8D915C2C7731E;TRACER6985F8D915C2C7731F;TRACER6985F8D915C2C77320;TRACER6985F8D915C2C77321;TRACER6985F8D915C2C77322;TRACER6985F8D915C2C77323;TRACER6985F8D915C2C77324;TRACER6985F8D915C2C77325;TRACER6985F8D915C2C77326;TRACER6985F8D915C2C77327;TRACER6985F8D915C2C77328;TRACER6985F8D915C2C77329;TRACER6985F8D915C2C7732A;TRACER6985F8D915C2C7732B;TRACER6985F8D915C2C7732C;TRACER6985F8D915C2C7732D;TRACER6985F8D915C2C7732E;TRACER6985F8D915C2C7732F;TRACER6985F8D915C2C77330;TRACER6985F8D915C2C77331"
+          "last_seen": "2026-07-21 12:58:17",
+          "current_assets": "TRACERFB5769A01367A06501;TRACERFB5769A01367A06502;TRACERFB5769A01367A06503;TRACERFB5769A01367A06504;TRACERFB5769A01367A06505;TRACERFB5769A01367A06506;TRACERFB5769A01367A06507;TRACERFB5769A01367A06508;TRACERFB5769A01367A06509;TRACERFB5769A01367A0650A;TRACERFB5769A01367A0650B;TRACERFB5769A01367A0650C;TRACERFB5769A01367A0650D;TRACERFB5769A01367A0650E;TRACERFB5769A01367A0650F;TRACERFB5769A01367A06510;TRACERFB5769A01367A06511;TRACERFB5769A01367A06512;TRACERFB5769A01367A06513;TRACERFB5769A01367A06514;TRACERFB5769A01367A06515;TRACERFB5769A01367A06516;TRACERFB5769A01367A06517;TRACERFB5769A01367A06518;TRACERFB5769A01367A06519;TRACERFB5769A01367A0651A;TRACERFB5769A01367A0651B;TRACERFB5769A01367A0651C;TRACERFB5769A01367A0651D;TRACERFB5769A01367A0651E;TRACERFB5769A01367A0651F;TRACERFB5769A01367A06520;TRACERFB5769A01367A06521;TRACERFB5769A01367A06522;TRACERFB5769A01367A06523;TRACERFB5769A01367A06524;TRACERFB5769A01367A06525;TRACERFB5769A01367A06526;TRACERFB5769A01367A06527;TRACERFB5769A01367A06528;TRACERFB5769A01367A06529;TRACERFB5769A01367A0652A;TRACERFB5769A01367A0652B;TRACERFB5769A01367A0652C;TRACERFB5769A01367A0652D;TRACERFB5769A01367A0652E;TRACERFB5769A01367A0652F;TRACERFB5769A01367A06530;TRACERFB5769A01367A06531"
         }
       ]
     },
     "tracer_all_outputs": {
       "source": "data/small/tracer_all_outputs.csv",
-      "row_count": 2829,
+      "row_count": 4383,
       "columns": [
         {
           "name": "policy_id",
@@ -8980,36 +8980,155 @@
           "asset_name_hex": 5.4524143455230356e+47,
           "fingerprint": "asset1526jycwk7tytgxh9vr42xdtq5cfyevvk5nnxwh",
           "minted_at": "2026-06-16 14:12:01",
-          "output_rows": 3,
+          "output_rows": 5,
           "addresses_touched": 3,
           "current_address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
           "current_stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
-          "current_tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
-          "at_current_location_since": "2026-06-24 07:44:06"
+          "current_tx_hash": "f5fff2ff54951d7775ffc13645e61e5a7fa7a6f1fd2314841f2d130a7e6564b7",
+          "at_current_location_since": "2026-07-17 10:26:29"
         },
         {
           "asset_name": "TRACER05718F936A0FFCC101",
           "asset_name_hex": 5.4524143455230356e+47,
           "fingerprint": "asset1j47r0yhmjx0en00wddclr07uw2gzntp8w0s8qy",
           "minted_at": "2026-06-16 14:12:01",
-          "output_rows": 3,
+          "output_rows": 5,
           "addresses_touched": 3,
           "current_address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
           "current_stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
-          "current_tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
-          "at_current_location_since": "2026-06-24 07:44:06"
+          "current_tx_hash": "f5fff2ff54951d7775ffc13645e61e5a7fa7a6f1fd2314841f2d130a7e6564b7",
+          "at_current_location_since": "2026-07-17 10:26:29"
         },
         {
           "asset_name": "TRACER05718F936A0FFCC102",
           "asset_name_hex": 5.4524143455230356e+47,
           "fingerprint": "asset1wn9z98epr2rkkt0x9ac96vstgjym2y2x6fqyq8",
           "minted_at": "2026-06-16 14:12:01",
-          "output_rows": 3,
+          "output_rows": 5,
           "addresses_touched": 3,
           "current_address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
           "current_stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
-          "current_tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
-          "at_current_location_since": "2026-06-24 07:44:06"
+          "current_tx_hash": "f5fff2ff54951d7775ffc13645e61e5a7fa7a6f1fd2314841f2d130a7e6564b7",
+          "at_current_location_since": "2026-07-17 10:26:29"
+        }
+      ]
+    },
+    "tracer_asset_path": {
+      "source": "data/small/tracer_asset_path.csv",
+      "row_count": 4383,
+      "columns": [
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name_hex",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "hop",
+          "type": "BIGINT"
+        },
+        {
+          "name": "cluster_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "prev_cluster_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "same_cluster_as_prev",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_out_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "is_terminus",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "is_valid_deposit",
+          "type": "BOOLEAN"
+        }
+      ],
+      "sample_rows": [
+        {
+          "asset_name": "TRACER05718F936A0FFCC100",
+          "asset_name_hex": 5.4524143455230356e+47,
+          "fingerprint": "asset1526jycwk7tytgxh9vr42xdtq5cfyevvk5nnxwh",
+          "hop": 1,
+          "cluster_key": "s:stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "stake_address": "stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "prev_cluster_key": null,
+          "same_cluster_as_prev": false,
+          "tx_hash": "5a27e1bd9cef474dad07b76c158525ddff6e011f6dd93a25ecb4ad27180ef7b0",
+          "tx_out_index": 1,
+          "block_no": 13557737,
+          "block_time": "2026-06-16 14:12:01",
+          "is_terminus": false,
+          "is_valid_deposit": false
+        },
+        {
+          "asset_name": "TRACER05718F936A0FFCC100",
+          "asset_name_hex": 5.4524143455230356e+47,
+          "fingerprint": "asset1526jycwk7tytgxh9vr42xdtq5cfyevvk5nnxwh",
+          "hop": 2,
+          "cluster_key": "s:stake1u9rvf6l0f5ef8flq0jueh7lsgpu2rh23388lj4anv9twccca2h37j",
+          "address": "addr1q86l8xrtca38psy3wseqrdd73cja2n9f86rjnrgfd67gx66xcn477nfjjwn7ql9en0alqsrc58w4rzw0l9tmxc2ka33s4cdnyv",
+          "stake_address": "stake1u9rvf6l0f5ef8flq0jueh7lsgpu2rh23388lj4anv9twccca2h37j",
+          "prev_cluster_key": "s:stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "same_cluster_as_prev": false,
+          "tx_hash": "c4a2fdf00e093c0a7a212bd7a5854eb8968f75e88fd83cd4b85b6ae518719e30",
+          "tx_out_index": 2,
+          "block_no": 13557784,
+          "block_time": "2026-06-16 14:24:17",
+          "is_terminus": false,
+          "is_valid_deposit": false
+        },
+        {
+          "asset_name": "TRACER05718F936A0FFCC100",
+          "asset_name_hex": 5.4524143455230356e+47,
+          "fingerprint": "asset1526jycwk7tytgxh9vr42xdtq5cfyevvk5nnxwh",
+          "hop": 3,
+          "cluster_key": "s:stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "address": "addr1qypnx898pc36t9y4w6j9fdvwnp858ryesue9dksxmrjlynslg9t03g5wgq84f6hvtyz3dkv2ce8u9w7yh6ft5lxtg75qwy9qc0",
+          "stake_address": "stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "prev_cluster_key": "s:stake1u9rvf6l0f5ef8flq0jueh7lsgpu2rh23388lj4anv9twccca2h37j",
+          "same_cluster_as_prev": false,
+          "tx_hash": "5e24f636909cd71c4bdc78174a14d8da8b0e76ec43caaa723bf2d4f1625a1e02",
+          "tx_out_index": 0,
+          "block_no": 13590458,
+          "block_time": "2026-06-24 07:44:06",
+          "is_terminus": false,
+          "is_valid_deposit": false
         }
       ]
     },
@@ -9069,17 +9188,17 @@
       "sample_rows": [
         {
           "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
-          "asset_name": "TRACER8799DBE9E380666702",
-          "asset_name_hex": 5.452414345523837e+47,
-          "fingerprint": "asset1frxwkah6m5ngmk5j92g5yhkq07tqfnheax8d2s",
+          "asset_name": "TRACER9CDCA38F1964467923",
+          "asset_name_hex": 5.4524143455239434e+47,
+          "fingerprint": "asset1k0qrctlfcm3c3xpefgu09dhqh8ev8nlwet5r30",
           "quantity": 1,
-          "address": "addr1qx7h6lmp3824q2ylny6ygxly2gdzpj96vsz5n33sx2lh0kwargd5j2sfcqlrpj8dv5uc2fhw953kk6k809luvxpmpx7q7lrl76",
+          "address": "addr1q9lxym523pnns50dyymdv3n8vktyc0nkedr54c8d2prgxsumfyd8qtrg9yr4lqadjtczu6y94rtevjua36rv75v0qsnstezggc",
           "address_has_script": false,
-          "stake_address": "stake1u8w35x6f9gyuq03serkk2wv9ymhz6gmtdtrhjl7xrqasn0q2wn92q",
-          "tx_hash": "04526e3bf2e2bf80c523b02e26545c775250389c35dff9e48c046c0f8f94986b",
-          "tx_out_index": 1,
-          "block_no": 13627507,
-          "block_time": "2026-07-02 23:09:47"
+          "stake_address": "stake1uxd5jxns935zjp6lswke9upwdzz634ukfwwcapk02x8sgfcas4spp",
+          "tx_hash": "49b94cbc40b1502ad28eb36b14bbac8c11be24d74c2239e237ed0d9c3c5b115a",
+          "tx_out_index": 3,
+          "block_no": 13719243,
+          "block_time": "2026-07-24 12:44:23"
         },
         {
           "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
@@ -9087,33 +9206,33 @@
           "asset_name_hex": 5.452414345523837e+47,
           "fingerprint": "asset1ktc5mvessr46a9tmkc8qhdkq3e95nnwdjt73f6",
           "quantity": 1,
-          "address": "addr1qx7h6lmp3824q2ylny6ygxly2gdzpj96vsz5n33sx2lh0kwargd5j2sfcqlrpj8dv5uc2fhw953kk6k809luvxpmpx7q7lrl76",
+          "address": "addr1qxdfqunt6cjd03485aqpma6e065kvf2vuxznfu6ex0kjnclrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s704vzm",
           "address_has_script": false,
-          "stake_address": "stake1u8w35x6f9gyuq03serkk2wv9ymhz6gmtdtrhjl7xrqasn0q2wn92q",
-          "tx_hash": "04526e3bf2e2bf80c523b02e26545c775250389c35dff9e48c046c0f8f94986b",
-          "tx_out_index": 1,
-          "block_no": 13627507,
-          "block_time": "2026-07-02 23:09:47"
+          "stake_address": "stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "tx_hash": "643c4b94026af8507c2098cdf740e368eaf012664203453d0a81bf79becc9907",
+          "tx_out_index": 3,
+          "block_no": 13719210,
+          "block_time": "2026-07-24 12:35:40"
         },
         {
           "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
-          "asset_name": "TRACER8799DBE9E380666704",
+          "asset_name": "TRACER8799DBE9E380666706",
           "asset_name_hex": 5.452414345523837e+47,
-          "fingerprint": "asset1z9m9e62277yztup9zxrmel0hdpzpkxdxglu49q",
+          "fingerprint": "asset1szsrz56hzdk92c9zvux3cx24x0h9w0hhrf3zdx",
           "quantity": 1,
-          "address": "addr1qx7h6lmp3824q2ylny6ygxly2gdzpj96vsz5n33sx2lh0kwargd5j2sfcqlrpj8dv5uc2fhw953kk6k809luvxpmpx7q7lrl76",
+          "address": "addr1qxdfqunt6cjd03485aqpma6e065kvf2vuxznfu6ex0kjnclrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s704vzm",
           "address_has_script": false,
-          "stake_address": "stake1u8w35x6f9gyuq03serkk2wv9ymhz6gmtdtrhjl7xrqasn0q2wn92q",
-          "tx_hash": "04526e3bf2e2bf80c523b02e26545c775250389c35dff9e48c046c0f8f94986b",
-          "tx_out_index": 1,
-          "block_no": 13627507,
-          "block_time": "2026-07-02 23:09:47"
+          "stake_address": "stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "tx_hash": "643c4b94026af8507c2098cdf740e368eaf012664203453d0a81bf79becc9907",
+          "tx_out_index": 3,
+          "block_no": 13719210,
+          "block_time": "2026-07-24 12:35:40"
         }
       ]
     },
     "tracer_deposit_claims": {
       "source": "data/small/tracer_deposit_claims.csv",
-      "row_count": 66,
+      "row_count": 103,
       "columns": [
         {
           "name": "tx_hash",
@@ -9204,10 +9323,100 @@
       ],
       "sample_rows": [
         {
-          "tip_block_no": 13628651,
-          "tip_block_time": "2026-07-03 05:25:04",
+          "tip_block_no": 13720451,
+          "tip_block_time": "2026-07-24 19:23:53",
           "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
-          "exported_at_utc": "2026-07-03 05:25:11.615547"
+          "exported_at_utc": "2026-07-24 19:24:11.545482"
+        }
+      ]
+    },
+    "tracer_method_receipt": {
+      "source": "data/small/tracer_method_receipt.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "policy_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "policy_key_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "study_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "study_site",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "native_script_expiry_slot",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tip_slot_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "mint_window_closed",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "deposit_metadata_label",
+          "type": "BIGINT"
+        },
+        {
+          "name": "study_seed_metadata_label",
+          "type": "BIGINT"
+        },
+        {
+          "name": "participant_threshold",
+          "type": "BIGINT"
+        },
+        {
+          "name": "node_key_rule",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "edge_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "participant_unit",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tip_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tip_block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "exported_at_utc",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
+          "policy_key_hash": "55bf845d5be91cf210e50511fc34ff35aad645f92290c13c5c3b4186",
+          "study_name": "The Red (or Blue) Pill Study",
+          "study_site": "tracer.adagenesistransparency.com",
+          "native_script_expiry_slot": 223391762,
+          "tip_slot_no": 193355371,
+          "mint_window_closed": false,
+          "deposit_metadata_label": 674,
+          "study_seed_metadata_label": 1985,
+          "participant_threshold": 2,
+          "node_key_rule": "stake credential when present (s:), otherwise payment address (a:)",
+          "edge_type": "exact-nft",
+          "participant_unit": "distinct pre-deposit wallet-cluster key",
+          "tip_block_no": 13720473,
+          "tip_block_time": "2026-07-24 19:34:22",
+          "exported_at_utc": "2026-07-24 19:35:32.217230"
         }
       ]
     },
@@ -9246,6 +9455,14 @@
         {
           "name": "block_time",
           "type": "TIMESTAMP"
+        },
+        {
+          "name": "metadata_key",
+          "type": "BIGINT"
+        },
+        {
+          "name": "metadata_json",
+          "type": "VARCHAR"
         }
       ],
       "sample_rows": [
@@ -9257,7 +9474,9 @@
           "quantity": 1,
           "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
           "block_no": 13557717,
-          "block_time": "2026-06-16 14:07:02"
+          "block_time": "2026-06-16 14:07:02",
+          "metadata_key": 721,
+          "metadata_json": "{\"d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119\": {\"TRACERAF2E0C13BEDC990700\": {\"name\": \"TRACERAF2E0C13BEDC990700\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990701\": {\"name\": \"TRACERAF2E0C13BEDC990701\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990702\": {\"name\": \"TRACERAF2E0C13BEDC990702\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990703\": {\"name\": \"TRACERAF2E0C13BEDC990703\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990704\": {\"name\": \"TRACERAF2E0C13BEDC990704\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990705\": {\"name\": \"TRACERAF2E0C13BEDC990705\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990706\": {\"name\": \"TRACERAF2E0C13BEDC990706\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990707\": {\"name\": \"TRACERAF2E0C13BEDC990707\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990708\": {\"name\": \"TRACERAF2E0C13BEDC990708\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990709\": {\"name\": \"TRACERAF2E0C13BEDC990709\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}}}"
         },
         {
           "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
@@ -9267,7 +9486,9 @@
           "quantity": 1,
           "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
           "block_no": 13557717,
-          "block_time": "2026-06-16 14:07:02"
+          "block_time": "2026-06-16 14:07:02",
+          "metadata_key": 721,
+          "metadata_json": "{\"d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119\": {\"TRACERAF2E0C13BEDC990700\": {\"name\": \"TRACERAF2E0C13BEDC990700\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990701\": {\"name\": \"TRACERAF2E0C13BEDC990701\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990702\": {\"name\": \"TRACERAF2E0C13BEDC990702\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990703\": {\"name\": \"TRACERAF2E0C13BEDC990703\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990704\": {\"name\": \"TRACERAF2E0C13BEDC990704\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990705\": {\"name\": \"TRACERAF2E0C13BEDC990705\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990706\": {\"name\": \"TRACERAF2E0C13BEDC990706\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990707\": {\"name\": \"TRACERAF2E0C13BEDC990707\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990708\": {\"name\": \"TRACERAF2E0C13BEDC990708\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990709\": {\"name\": \"TRACERAF2E0C13BEDC990709\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}}}"
         },
         {
           "policy_id": "d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119",
@@ -9277,7 +9498,9 @@
           "quantity": 1,
           "mint_tx": "6ca28ecf57f47e26f4763cceb649ebf1c5248c2c34b0a3520f4a68c86e577588",
           "block_no": 13557717,
-          "block_time": "2026-06-16 14:07:02"
+          "block_time": "2026-06-16 14:07:02",
+          "metadata_key": 721,
+          "metadata_json": "{\"d8d5539ee11f21a6748735aeb69d3ed935bb14570f57709279031119\": {\"TRACERAF2E0C13BEDC990700\": {\"name\": \"TRACERAF2E0C13BEDC990700\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990701\": {\"name\": \"TRACERAF2E0C13BEDC990701\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990702\": {\"name\": \"TRACERAF2E0C13BEDC990702\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990703\": {\"name\": \"TRACERAF2E0C13BEDC990703\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990704\": {\"name\": \"TRACERAF2E0C13BEDC990704\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990705\": {\"name\": \"TRACERAF2E0C13BEDC990705\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990706\": {\"name\": \"TRACERAF2E0C13BEDC990706\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990707\": {\"name\": \"TRACERAF2E0C13BEDC990707\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990708\": {\"name\": \"TRACERAF2E0C13BEDC990708\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}, \"TRACERAF2E0C13BEDC990709\": {\"name\": \"TRACERAF2E0C13BEDC990709\", \"note\": \"on-chain forensics tracer, not a collectible\", \"project\": \"The Genesis Trail exchange tracer\"}}}"
         }
       ]
     },
@@ -9332,7 +9555,7 @@
     },
     "tracer_movement_timeline": {
       "source": "data/small/tracer_movement_timeline.csv",
-      "row_count": 16,
+      "row_count": 38,
       "columns": [
         {
           "name": "day",
@@ -9379,9 +9602,72 @@
         }
       ]
     },
+    "tracer_name_votes": {
+      "source": "data/small/tracer_name_votes.csv",
+      "row_count": 13,
+      "columns": [
+        {
+          "name": "terminus_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "claimed_exchange",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "claimed_exchange_norm",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tracers",
+          "type": "BIGINT"
+        },
+        {
+          "name": "participants",
+          "type": "BIGINT"
+        },
+        {
+          "name": "corroborated",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "is_resolved_name",
+          "type": "BOOLEAN"
+        }
+      ],
+      "sample_rows": [
+        {
+          "terminus_key": "a:addr1v823qrsz6dxjws29cxve54g983euufpskwe4q3uez63y8xc9w38nz",
+          "claimed_exchange": "Bybit",
+          "claimed_exchange_norm": "bybit",
+          "tracers": 1,
+          "participants": 1,
+          "corroborated": false,
+          "is_resolved_name": false
+        },
+        {
+          "terminus_key": "a:addr1v852389nj4fsr4z2wj460mpzj8tp0fdhfsm7f75uyvysuqqahxyck",
+          "claimed_exchange": "Binance",
+          "claimed_exchange_norm": "binance",
+          "tracers": 1,
+          "participants": 1,
+          "corroborated": false,
+          "is_resolved_name": false
+        },
+        {
+          "terminus_key": "a:addr1v8ce8ny4d8vrr2zltlarqvzyeydfkp8905p4wgrykgw6ypsumvxtr",
+          "claimed_exchange": "Binance",
+          "claimed_exchange_norm": "binance",
+          "tracers": 1,
+          "participants": 1,
+          "corroborated": false,
+          "is_resolved_name": false
+        }
+      ]
+    },
     "tracer_stake_summary": {
       "source": "data/small/tracer_stake_summary.csv",
-      "row_count": 20,
+      "row_count": 21,
       "columns": [
         {
           "name": "stake_address",
@@ -9418,9 +9704,9 @@
           "payment_addresses": 1,
           "distinct_tracers_ever": 100,
           "distinct_tracers_now": 100,
-          "output_rows": 100,
+          "output_rows": 300,
           "first_seen": "2026-06-24 07:44:06",
-          "last_seen": "2026-06-24 07:44:06"
+          "last_seen": "2026-07-17 10:26:29"
         },
         {
           "stake_address": "stake1uylcwreutyjvpceyjqshx5u2s4zljdmsm8rth80spsfhnmgtcyc78",
@@ -9436,15 +9722,190 @@
           "payment_addresses": 1,
           "distinct_tracers_ever": 50,
           "distinct_tracers_now": 49,
-          "output_rows": 99,
+          "output_rows": 148,
           "first_seen": "2026-06-16 14:24:17",
-          "last_seen": "2026-06-17 19:57:11"
+          "last_seen": "2026-07-21 12:58:17"
+        }
+      ]
+    },
+    "tracer_terminus_census": {
+      "source": "data/small/tracer_terminus_census.csv",
+      "row_count": 23,
+      "columns": [
+        {
+          "name": "terminus_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tracers_now",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tracers_from_validated_deposit",
+          "type": "BIGINT"
+        },
+        {
+          "name": "participants",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_arrival",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_arrival",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "has_enterprise_address",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "claimed_names",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "terminus_key": "s:stake1uy05z4hc528yqr65atk9jpgkmx9vvn7zh0ztay460n9502qa0s3zz",
+          "tracers_now": 100,
+          "tracers_from_validated_deposit": 0,
+          "participants": 0,
+          "first_arrival": "2026-07-17 10:26:29",
+          "last_arrival": "2026-07-17 10:26:29",
+          "has_enterprise_address": false,
+          "claimed_names": null
+        },
+        {
+          "terminus_key": "s:stake1uylcwreutyjvpceyjqshx5u2s4zljdmsm8rth80spsfhnmgtcyc78",
+          "tracers_now": 55,
+          "tracers_from_validated_deposit": 0,
+          "participants": 0,
+          "first_arrival": "2026-06-19 09:49:40",
+          "last_arrival": "2026-06-19 09:49:40",
+          "has_enterprise_address": false,
+          "claimed_names": null
+        },
+        {
+          "terminus_key": "s:stake1u8kd52zqgtl9qdamspaj7gk7ykpmfl62wh7yd433uzmsn9gatur26",
+          "tracers_now": 49,
+          "tracers_from_validated_deposit": 0,
+          "participants": 0,
+          "first_arrival": "2026-06-24 05:28:04",
+          "last_arrival": "2026-06-24 05:28:04",
+          "has_enterprise_address": false,
+          "claimed_names": null
+        }
+      ]
+    },
+    "tracer_terminus_clusters": {
+      "source": "data/small/tracer_terminus_clusters.csv",
+      "row_count": 11,
+      "columns": [
+        {
+          "name": "terminus_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "terminus_address_if_no_stake",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tracers",
+          "type": "BIGINT"
+        },
+        {
+          "name": "participants",
+          "type": "BIGINT"
+        },
+        {
+          "name": "deposit_txs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "first_deposit",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "last_deposit",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "distinct_names_claimed",
+          "type": "BIGINT"
+        },
+        {
+          "name": "conflicted",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "top_participants",
+          "type": "BIGINT"
+        },
+        {
+          "name": "resolved_exchange",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "resolution_status",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tracers_at_terminus_total",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "terminus_key": "a:addr1vxytw7xz99svpv8w5lk2r9j9mxe8p82m2v3qaj0xgalj4ds2jsgq5",
+          "terminus_address_if_no_stake": "addr1vxytw7xz99svpv8w5lk2r9j9mxe8p82m2v3qaj0xgalj4ds2jsgq5",
+          "tracers": 30,
+          "participants": 6,
+          "deposit_txs": 30,
+          "first_deposit": "2026-06-16 20:09:02",
+          "last_deposit": "2026-07-23 08:46:21",
+          "distinct_names_claimed": 1,
+          "conflicted": false,
+          "top_participants": 6,
+          "resolved_exchange": "Coinbase",
+          "resolution_status": "resolved",
+          "tracers_at_terminus_total": 36
+        },
+        {
+          "terminus_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_address_if_no_stake": null,
+          "tracers": 17,
+          "participants": 8,
+          "deposit_txs": 17,
+          "first_deposit": "2026-06-16 15:39:48",
+          "last_deposit": "2026-07-23 08:48:27",
+          "distinct_names_claimed": 2,
+          "conflicted": true,
+          "top_participants": 8,
+          "resolved_exchange": "Kraken",
+          "resolution_status": "resolved",
+          "tracers_at_terminus_total": 18
+        },
+        {
+          "terminus_key": "s:stake1uyucxkycrc70349xq3cxzahf4hkytyhr05lntfcg49hqpxsqlrayk",
+          "terminus_address_if_no_stake": null,
+          "tracers": 4,
+          "participants": 2,
+          "deposit_txs": 4,
+          "first_deposit": "2026-06-17 02:52:03",
+          "last_deposit": "2026-06-18 10:22:28",
+          "distinct_names_claimed": 1,
+          "conflicted": false,
+          "top_participants": 2,
+          "resolved_exchange": "KuCoin",
+          "resolution_status": "resolved",
+          "tracers_at_terminus_total": 4
         }
       ]
     },
     "tracer_transfer_edges": {
       "source": "data/small/tracer_transfer_edges.csv",
-      "row_count": 2324,
+      "row_count": 3878,
       "columns": [
         {
           "name": "asset_name",
@@ -9516,6 +9977,174 @@
           "spend_tx_hash": "c4a2fdf00e093c0a7a212bd7a5854eb8968f75e88fd83cd4b85b6ae518719e30",
           "block_no": 13557784,
           "block_time": "2026-06-16 14:24:17"
+        }
+      ]
+    },
+    "tracer_valid_deposits": {
+      "source": "data/small/tracer_valid_deposits.csv",
+      "row_count": 62,
+      "columns": [
+        {
+          "name": "asset_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "asset_name_hex",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "fingerprint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "deposit_tx",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "deposit_output_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "deposit_block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "deposit_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "deposit_hop",
+          "type": "BIGINT"
+        },
+        {
+          "name": "claimed_exchange",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "claimed_exchange_norm",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "name_source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "participant_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "participant_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "deposit_cluster_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "deposit_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "deposit_stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "terminus_key",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "terminus_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "terminus_tx",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "terminus_output_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "hops_deposit_to_terminus",
+          "type": "BIGINT"
+        },
+        {
+          "name": "deposit_msg_json",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "asset_name": "TRACER69D9FED14614BFF401",
+          "asset_name_hex": 5.452414345523639e+47,
+          "fingerprint": "asset1ah7mvzty8ag9j9rvfw8jkl30wr0gq2tqgxhjac",
+          "deposit_tx": "0383fd99e341126ea7255b98703cf7e052e1514fb98282d7e107d03fd3298fdb",
+          "deposit_output_index": 0,
+          "deposit_block_no": 13558022,
+          "deposit_time": "2026-06-16 15:39:48",
+          "deposit_hop": 3,
+          "claimed_exchange": "Kraken",
+          "claimed_exchange_norm": "kraken",
+          "name_source": "msg_index_1",
+          "participant_key": "s:stake1u9q68puzzwfmd5qp0acvz2yvcg6k9lzlnx4un7pr9tk3amge84tj7",
+          "participant_address": "addr1qyjdqfx23y3kjkq8rk9zq96ppuz52g450e3hehu043a9qm6p5wrcyyunkmgqzlmscy5ges34vt79lxdte8uzx2hdrmksc8l6wu",
+          "deposit_cluster_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "deposit_address": "addr1qxg4rsphy0463zzdmcgujvp6fhr90xg8yuppyl2mjrzgnahrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0sj9kcyg",
+          "deposit_stake_address": "stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_address": "addr1qxdfqunt6cjd03485aqpma6e065kvf2vuxznfu6ex0kjnclrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s704vzm",
+          "terminus_tx": "77cc60c12f15c64408c9e112ed6ae76031bd432f170254ea2eb2ec7232bda21e",
+          "terminus_output_index": 2,
+          "hops_deposit_to_terminus": 3,
+          "deposit_msg_json": "{\"msg\": [\"Deposited to:\", \"Kraken\", \"The Red (or Blue) Pill Study\", \"tracer.adagenesistransparency.com\"]}"
+        },
+        {
+          "asset_name": "TRACER2AFBC806FF57F39C00",
+          "asset_name_hex": 5.452414345523242e+47,
+          "fingerprint": "asset18makr49spyzleqt5y7vc5pxzxhzu5qvpf7zw60",
+          "deposit_tx": "b3d75de37024fa2da2db5d1699e88355b0c8fe7d400995960b7c9878f15d7cfb",
+          "deposit_output_index": 0,
+          "deposit_block_no": 13558232,
+          "deposit_time": "2026-06-16 16:55:17",
+          "deposit_hop": 2,
+          "claimed_exchange": "Kraken",
+          "claimed_exchange_norm": "kraken",
+          "name_source": "msg_index_1",
+          "participant_key": "s:stake1u8dccy3h52es8hzc6zwkqa2nlzu8kxrrd5u4xtrfdp5z9xssc2hrc",
+          "participant_address": "addr1qxaekqzrkulp4x7nw9yyllevknt87rjatrjx66z3ra9qt7wm3sfr0g4nq0w935yavp64879c0vvxxmfe2vkxj6rgy2dq03ehn0",
+          "deposit_cluster_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "deposit_address": "addr1q9pxl0jev522urjn7fr2cn4fgkszpsn7un2xe9cxaqh3n8lrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s00347d",
+          "deposit_stake_address": "stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_address": "addr1qxdfqunt6cjd03485aqpma6e065kvf2vuxznfu6ex0kjnclrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s704vzm",
+          "terminus_tx": "77cc60c12f15c64408c9e112ed6ae76031bd432f170254ea2eb2ec7232bda21e",
+          "terminus_output_index": 2,
+          "hops_deposit_to_terminus": 3,
+          "deposit_msg_json": "{\"msg\": [\"Deposited to:\", \"Kraken\", \"The Red (or Blue) Pill Study\", \"tracer.adagenesistransparency.com\"]}"
+        },
+        {
+          "asset_name": "TRACERFD4CA0E9123A8CC900",
+          "asset_name_hex": 5.452414345524644e+47,
+          "fingerprint": "asset1wxeyyzn60l2uqu52h0kapskj88cs84lkm5r4k8",
+          "deposit_tx": "d9e17d7c1c58c6b8bfb5911d17953183420d6b5a57fd0be207bdc53ec9d3b52f",
+          "deposit_output_index": 0,
+          "deposit_block_no": 13558639,
+          "deposit_time": "2026-06-16 19:19:24",
+          "deposit_hop": 2,
+          "claimed_exchange": "Kraken",
+          "claimed_exchange_norm": "kraken",
+          "name_source": "msg_index_1",
+          "participant_key": "s:stake1uxprnax8s94xee728tt8rkg354y4xx9u0ujaj3gf9er8nrq3553tk",
+          "participant_address": "addr1q95a8n97hy6cszzavnnsck6qu6ljujlgh6l2cgxkvwwptluz886v0qt2dnnu5wkkw8v3rf2f2vvtcle9m9zsjtjx0xxqhdfnwh",
+          "deposit_cluster_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "deposit_address": "addr1q9zqqdlayta28zmj7cyz2dr6k8tcg4tpv0ckpz8g0q4gfhhrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s2lvxqw",
+          "deposit_stake_address": "stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_key": "s:stake1u833p40y8cm07ra9wgrqgp70z6khc5pttrena97c6en6p8c7pzxda",
+          "terminus_address": "addr1qxdfqunt6cjd03485aqpma6e065kvf2vuxznfu6ex0kjnclrzr27g03klu862usxqsru794d03gzkk8n86ta34n85z0s704vzm",
+          "terminus_tx": "06f6e608c0b2c70782edf96d77dda0f8b9883f033930d67edb86fef72bd3022c",
+          "terminus_output_index": 2,
+          "hops_deposit_to_terminus": 2,
+          "deposit_msg_json": "{\"msg\": [\"Deposited to:\", \"Kraken\", \"The Red (or Blue) Pill Study\", \"tracer.adagenesistransparency.com\"]}"
         }
       ]
     },

@@ -225,6 +225,7 @@ for the compact / release / warehouse tiers and how they differ.
   [`docs/19_QUERY_COOKBOOK.md`](docs/19_QUERY_COOKBOOK.md)
 - **Want the findings?** → [`findings/INDEX.md`](findings/INDEX.md)
 - **Want the NIGHT module?** → [`docs/25_NIGHT_TOKEN_PROVENANCE.md`](docs/25_NIGHT_TOKEN_PROVENANCE.md) · [`F16`](findings/F16_night_mint_provenance_and_concentration.md) · [`F17`](findings/F17_night_wanchain_bridge_incident.md)
+- **Want the exchange tracers?** → [`docs/26_EXCHANGE_TRACER_METHOD.md`](docs/26_EXCHANGE_TRACER_METHOD.md) · [`F19`](findings/F19_exchange_tracer_convergence.md)
 - **Want to audit us?** → [`prompts/audit_every_figure.md`](prompts/) ·
   [`docs/02_GRADING.md`](docs/02_GRADING.md) · [`claims/`](claims/)
 - **Method & limits** → [`docs/01_METHOD.md`](docs/01_METHOD.md) ·

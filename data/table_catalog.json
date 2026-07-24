@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 135,
+  "table_count": 141,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -1162,7 +1162,7 @@
     {
       "table": "tracer_address_summary",
       "family": "Exchange tracers",
-      "row_count": 70,
+      "row_count": 72,
       "source": "data/small/tracer_address_summary.csv",
       "snapshot_sensitive": false,
       "findings": [
@@ -1174,7 +1174,7 @@
     {
       "table": "tracer_all_outputs",
       "family": "Exchange tracers",
-      "row_count": 2829,
+      "row_count": 4383,
       "source": "data/small/tracer_all_outputs.csv",
       "snapshot_sensitive": false,
       "findings": [],
@@ -1190,6 +1190,15 @@
       "grade": ""
     },
     {
+      "table": "tracer_asset_path",
+      "family": "Exchange tracers",
+      "row_count": 4383,
+      "source": "data/small/tracer_asset_path.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
       "table": "tracer_current_utxos",
       "family": "Exchange tracers",
       "row_count": 505,
@@ -1201,7 +1210,7 @@
     {
       "table": "tracer_deposit_claims",
       "family": "Exchange tracers",
-      "row_count": 66,
+      "row_count": 103,
       "source": "data/small/tracer_deposit_claims.csv",
       "snapshot_sensitive": false,
       "findings": [
@@ -1215,6 +1224,15 @@
       "row_count": 1,
       "source": "data/small/tracer_export_tip_receipt.csv",
       "snapshot_sensitive": true,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "tracer_method_receipt",
+      "family": "Exchange tracers",
+      "row_count": 1,
+      "source": "data/small/tracer_method_receipt.csv",
+      "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
     },
@@ -1239,8 +1257,17 @@
     {
       "table": "tracer_movement_timeline",
       "family": "Exchange tracers",
-      "row_count": 16,
+      "row_count": 38,
       "source": "data/small/tracer_movement_timeline.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "tracer_name_votes",
+      "family": "Exchange tracers",
+      "row_count": 13,
+      "source": "data/small/tracer_name_votes.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1248,8 +1275,26 @@
     {
       "table": "tracer_stake_summary",
       "family": "Exchange tracers",
-      "row_count": 20,
+      "row_count": 21,
       "source": "data/small/tracer_stake_summary.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "tracer_terminus_census",
+      "family": "Exchange tracers",
+      "row_count": 23,
+      "source": "data/small/tracer_terminus_census.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "tracer_terminus_clusters",
+      "family": "Exchange tracers",
+      "row_count": 11,
+      "source": "data/small/tracer_terminus_clusters.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1257,8 +1302,17 @@
     {
       "table": "tracer_transfer_edges",
       "family": "Exchange tracers",
-      "row_count": 2324,
+      "row_count": 3878,
       "source": "data/small/tracer_transfer_edges.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "tracer_valid_deposits",
+      "family": "Exchange tracers",
+      "row_count": 62,
+      "source": "data/small/tracer_valid_deposits.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""

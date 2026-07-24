@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 20,
+  "finding_count": 21,
   "findings": [
     {
       "id": "F01",
@@ -344,7 +344,7 @@
         },
         {
           "path": "data/small/tracer_address_summary.csv",
-          "sha256": "382aa08f4d4d0a86d85da50765c6cc68efae631909142d71d75bd99373d94a04"
+          "sha256": "4efc1fc233eef7e6c64d640130899b7fe3501a58b926f01f80aba7e8ab39667d"
         }
       ],
       "has_reproduce_sql": true,
@@ -375,11 +375,11 @@
         },
         {
           "path": "data/small/tracer_address_summary.csv",
-          "sha256": "382aa08f4d4d0a86d85da50765c6cc68efae631909142d71d75bd99373d94a04"
+          "sha256": "4efc1fc233eef7e6c64d640130899b7fe3501a58b926f01f80aba7e8ab39667d"
         },
         {
           "path": "data/small/tracer_deposit_claims.csv",
-          "sha256": "ab7d0b32d028102bcb4c70b48e60f1635208500105d5c594c3379a4b308f6bd6"
+          "sha256": "77281c460113b4667265771c7e428472c85c60c75a54adce94c16e8db62d4769"
         },
         {
           "path": "sql/10_findings/f11_downstream_fleet.sql",
@@ -542,6 +542,16 @@
       "evidence": [],
       "has_reproduce_sql": false,
       "index_label": "VERIFIED, FACT + STRONG_INFERENCE"
+    },
+    {
+      "id": "F19",
+      "file": "findings/F19_exchange_tracer_convergence.md",
+      "title": "Exchange tracer convergence under the study's canonical method",
+      "claim": "ABCDE reproduces **The Red (or Blue) Pill Study** exchange-tracer dataset under\nthe study operator's published reconstruction rules (node keys, strict deposit\nvalidation, exact NFT paths, terminus grouping, participant-vote resolution) and\npublishes the result as queryable `tracer_*` tables.\n\nApplying those rules to the full policy at the snapshot tip:\n\n- **505 tracer NFTs**, every one quantity 1, none burned; **4,383 asset-bearing\n  outputs** across **58 distinct wallet-cluster keys**; the longest single-asset\n  path is **217 hops**.\n- **62 deposits pass all four validation rules**, cast by **11 distinct\n  pre-deposit wallet-cluster keys** and naming **7 exchanges**: Coinbase, Kraken,\n  Binance, KuCoin, Gate.io, Bybit and UEX.us.\n- Those 62 tracers currently sit in **11 terminus clusters**. Only **3 clear the\n  2-participant corroboration threshold**:\n  - **Coinbase** — 30 tracers from 6 participant wallets, no competing name.\n  - **Kraken** — 16 tracers from 8 participant wallets, in a terminus holding 17\n    deposited tracers: **1 conflicting Coinbase claim** from a single wallet is\n    retained in the vote split and does not determine the name.\n  - **KuCoin** — 2 tracers from 2 participant wallets.\n- **Every Binance claim fails the threshold.** The 8 Binance-named deposits land\n  in **4 separate terminus clusters, each supported by exactly one participant\n  wallet**. Gate.io, Bybit and UEX.us are likewise single-wallet claims.\n- The labelled subset is small: **436 of 505 tracers** currently sit in terminus\n  clusters that **no** validated study deposit reaches, and the largest terminus\n  holds **100 tracers with zero validated deposits**. Convergence in this dataset\n  is much wider than its self-reported labels.",
+      "grade": "- **FACT** — the tracer inventory, every exact NFT edge and holder path, the 62\n  validated deposits and their metadata, the tracer/participant counts per\n  claimed name, and the current terminus of every tracer. All are deterministic\n  from db-sync and reproducible with\n  `sql/60_tracers/exchange_tracer_method.remote.sql`.\n- **STRONG_INFERENCE** — that the three threshold-clearing terminus clusters are\n  custody clusters of the named exchange. Multiple independent participant\n  wallets deposited to addresses that converge on one cluster, which is the\n  shape of exchange deposit-sweep custody. It is not proof of ownership.\n- **WORKING_HYPOTHESIS** — every single-participant name, including all four\n  Binance-claimed clusters. One wallet asserting a name is one claim, not\n  corroboration.\n- **UNKNOWN** — the real-world operator of any cluster, and whether distinct\n  wallet keys are distinct people.",
+      "evidence": [],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + STRONG_INFERENCE (3 clusters) + WORKING_HYPOTHESIS (single-wallet claims)"
     }
   ]
 }

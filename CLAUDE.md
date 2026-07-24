@@ -60,9 +60,19 @@ synchronized KES-key rotation = shared OPERATIONAL control (STRONG_INFERENCE), n
 proven ownership; `has_onchain_links=false` marks the concealed ones (KES timing is
 the only tie).
 
-For exchange-custody questions, use the `tracer_*` tables. Exchange names in
-`tracer_deposit_claims` are the senders' self-reported on-chain claims —
-the message is FACT, the attribution is not.
+For exchange-custody questions, use the `tracer_*` tables and read
+`docs/26_EXCHANGE_TRACER_METHOD.md` first — it is the study operator's
+reconstruction contract and it binds your answer. In short: the exact NFT path
+is FACT; a wallet-cluster key (`s:<stake>` else `a:<address>`) is an on-chain
+heuristic, not an entity; an exchange name in a `674` message is the *depositor's
+claim*. Use `tracer_valid_deposits` (deposits passing all four validation rules),
+`tracer_name_votes` and `tracer_terminus_clusters` for any naming question — the
+vote unit is the **distinct pre-deposit wallet-cluster key**, and a name resolves
+only on a unique lead of ≥2 distinct participant wallets. Never resolve a name by
+counting claim messages, and never drop a conflicting claim. `tracer_deposit_claims`
+is looser raw evidence (it includes non-study `674` traffic and the `1985`
+study-seed label) and is not the vote. Report the denominator from
+`tracer_terminus_census`.
 
 To quantify how fresh/accurate any table is, join it against
 `data_freshness_catalog` and cite `db_tip_receipt`.
