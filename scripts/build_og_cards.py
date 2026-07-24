@@ -139,9 +139,9 @@ def main():
     for p in (OG, R):
         if p.exists():
             for f in p.iterdir(): f.unlink()
-    card("main", f"{stats['seed_total_ada']/1e9:.2f}B genesis ADA · epoch {stats['tip_epoch']}",
-         "FACT", "Where did the genesis ADA go?",
-         "Clone the dataset, point your AI at it, and trace the founder coins — on-chain, graded, reproducible.")
+    card("main", f"genesis ADA · NIGHT · SecondFi · epoch {stats['tip_epoch']}",
+         "FACT", "The whole chain, one clone away.",
+         "Clone the dataset and point your AI at it — genesis ADA, NIGHT, SecondFi, tracers. On-chain, graded, reproducible.")
     for h in hooks:
         card(h["slug"], h["kicker"], h["grade"], h["headline"], h["sub"])
         permalink(h["slug"], h["headline"], h["sub"])

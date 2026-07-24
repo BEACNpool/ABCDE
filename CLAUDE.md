@@ -1,8 +1,11 @@
 # CLAUDE.md — grounding for AI assistants
 
-This repository is a turnkey, AI-queryable **genesis ADA database**. Anyone can
-clone it and ask an AI where the Cardano genesis ADA went and which stake pools
-(SPOs) and DReps it ended up in.
+This repository is a turnkey, AI-queryable **Cardano on-chain database** — the
+whole chain, one clone away. It covers genesis-ADA provenance and governance
+behavior, the NIGHT token distribution and the July 2026 Wanchain bridge drain,
+the SecondFi incident, and community exchange tracers. Anyone can clone it and
+ask an AI about any of them — including where the genesis ADA went and which
+stake pools (SPOs) and DReps it ended up in.
 
 ## Where the data is
 

@@ -4,23 +4,24 @@
 
 ### A BEACN Cardano Data Explorer
 
-**Clone the repo. Point your AI at it. Ask where the genesis ADA went.**
+**Clone the repo. Point your AI at it. The whole chain, one clone away.**
 
-A grass-roots, open-source, AI-queryable snapshot of Cardano's on-chain history —
-built to track and audit **genesis ADA**: where the founder coins moved, who they
-were delegated to, and how they behave in governance today.
+A grass-roots, open-source, AI-queryable snapshot of Cardano's on-chain history.
+It began by tracking **genesis ADA** — and grew into a full-chain explorer: the
+**NIGHT** token distribution and the July 2026 bridge drain, the **SecondFi**
+incident, community exchange tracers, and Conway governance behavior.
 
 No node. No relay. No db-sync. No API key. Just `git clone` and ask.
 
 <br>
 
-![Cardano](https://img.shields.io/badge/Cardano-genesis%20ADA-0033AD?style=for-the-badge)
+![Cardano](https://img.shields.io/badge/Cardano-full--chain%20explorer-0033AD?style=for-the-badge)
 ![Query](https://img.shields.io/badge/query-DuckDB%20%2B%20AI-000000?style=for-the-badge)
 ![No dbsync](https://img.shields.io/badge/no%20node%20·%20no%20db--sync-required-2ea44f?style=for-the-badge)
 ![Evidence](https://img.shields.io/badge/every%20claim-graded-8A2BE2?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
 
-**`112` query-ready tables · `16` audited findings · every figure hash-receipted · snapshot @ epoch `640`**
+**`135` query-ready tables · `20` audited findings · every figure hash-receipted · snapshot @ epoch `641`**
 
 </div>
 
@@ -57,8 +58,11 @@ clones gets the exact same integrity-checked dataset.
 ```bash
 git clone https://github.com/BEACNpool/ABCDE.git
 cd ABCDE
+python -m venv .venv && source .venv/bin/activate    # Windows: py -3 -m venv .venv ; .venv\Scripts\activate
 python -m pip install -r requirements/base.txt
 ```
+
+*(The venv matters: modern Ubuntu/Debian pythons refuse bare `pip install` — PEP 668.)*
 
 Then wire it into the AI you already use — **no API key if you have Claude Code,
 Claude Desktop, or Codex:**
@@ -96,7 +100,7 @@ Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
 
 ---
 
-## What's inside `112` tables
+## What's inside `135` tables
 
 | Area | What you can ask |
 |---|---|

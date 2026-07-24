@@ -51,7 +51,7 @@ function renderStats() {
   const s = STATS;
   const tiles = [
     [fmtAda(s.seed_total_ada), 'genesis founder ADA tracked'],
-    [fmtAda(s.component_ada), 'in one closed 115-key operation'],
+    [(FINDINGS || []).length || 20, 'audited findings — genesis · NIGHT · SecondFi'],
     [s.tables, 'query-ready tables'],
     ['epoch ' + s.tip_epoch, 'on-chain snapshot boundary'],
   ];
