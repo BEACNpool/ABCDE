@@ -23,6 +23,12 @@ No node. No relay. No db-sync. No API key. Just `git clone` and ask.
 
 **`135` query-ready tables · `20` audited findings · every figure hash-receipted · snapshot @ epoch `641`**
 
+<br>
+
+[![Watch the 90-second tour](https://beacnpool.github.io/ABCDE/og/main.png)](https://beacnpool.github.io/ABCDE/media/abcde-showcase-720p.mp4)
+
+**[▶ Watch the 90-second tour](https://beacnpool.github.io/ABCDE/media/abcde-showcase-720p.mp4)** — a real clone, a real Claude Code session, and the NIGHT bridge-drain receipts pulled live.
+
 </div>
 
 ---
