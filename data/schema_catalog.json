@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "b9d4e349dbf3",
+          "git_commit": "552fed19e17a",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -550,7 +550,7 @@
         },
         {
           "name": "last_commit_utc",
-          "type": "VARCHAR"
+          "type": "TIMESTAMP WITH TIME ZONE"
         },
         {
           "name": "age_days_at_refresh",
@@ -567,7 +567,7 @@
           "data_rows": 53,
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 56,
           "snapshot_sensitive": false
         },
@@ -576,7 +576,7 @@
           "data_rows": 10,
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
-          "last_commit_utc": "2026-05-29T09:26:39-05:00",
+          "last_commit_utc": "2026-05-29 09:26:39-05:00",
           "age_days_at_refresh": 56,
           "snapshot_sensitive": false
         },
@@ -585,7 +585,7 @@
           "data_rows": 115,
           "bytes": 48593,
           "sha256": "c644a52a714567186589f0e50d7cd40f84f2e9a4e89ab9b872435e987ceafa6a",
-          "last_commit_utc": "2026-07-03T13:17:25-05:00",
+          "last_commit_utc": "2026-07-03 13:17:25-05:00",
           "age_days_at_refresh": 21,
           "snapshot_sensitive": true
         }

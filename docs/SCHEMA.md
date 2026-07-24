@@ -124,7 +124,7 @@ Source: `data/small/data_freshness_catalog.csv`
 | `data_rows` | BIGINT |
 | `bytes` | BIGINT |
 | `sha256` | VARCHAR |
-| `last_commit_utc` | VARCHAR |
+| `last_commit_utc` | TIMESTAMP WITH TIME ZONE |
 | `age_days_at_refresh` | BIGINT |
 | `snapshot_sensitive` | BOOLEAN |
 
