@@ -73,7 +73,9 @@
           font:700 clamp(9px,2.4vw,11px)/1 ui-monospace,monospace;font-variant-numeric:tabular-nums}
 
   h1{margin-bottom:2px}
-  .grid{margin-top:22px}
+  .sub{margin:9px 0 0;font-size:15.5px;line-height:1.5}
+  .sub b{color:var(--ink);font-weight:700}
+  .grid{margin-top:18px}
 </style>
 </head>
 <body>
@@ -81,6 +83,10 @@
 
   <div class="kicker">a series of nine</div>
   <h1 style="color:var(--gold)">oligarCH</h1>
+  <!-- ONE line. The manifesto that used to sit here was deliberately stripped on
+       2026-07-28 to keep the landing art-forward; do not grow this back into copy. -->
+  <p class="sub">Each picture lives <b>entirely inside its minting transaction</b> — no IPFS,
+     no server, nothing to keep alive. You pay the network fee; the creator takes nothing.</p>
 
   <div class="grid" id="grid"></div>
   <p class="deadline" style="margin-top:14px" id="tally">&nbsp;</p>
