@@ -63,6 +63,8 @@
   td{padding:7px 0;border-top:1px solid var(--line);vertical-align:top}
   td:first-child{color:var(--dim);width:38%}
   code{font:13px/1.4 ui-monospace,monospace;overflow-wrap:anywhere}
+  .hint{margin:11px 2px 0;font-size:13px;line-height:1.5;color:var(--dim)}
+  .hint b{color:#c9c9d2;font-weight:700}
   .note{margin-top:26px;padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--warn);
         border-radius:0 11px 11px 0;background:var(--panel);font-size:14px;color:#cfcfd6}
   .note b{color:var(--ink)}
@@ -99,6 +101,9 @@
   <div class="deadline">mint closes 08 Aug 2026 05:00 UTC · enforced by the policy itself, not by this page</div>
 
   <div id="pick" class="wallets"></div>
+  <p class="hint"><b>Desktop:</b> a wallet extension such as Eternl.
+     <b>Phone:</b> open this page inside your wallet's own dapp browser — Vespr has one.
+     A normal mobile browser can't reach your wallet, so nothing will show up here.</p>
   <div id="status"></div>
 
   <table>
@@ -178,7 +183,7 @@ function listWallets() {
   const keys = Object.keys(c).filter(k => c[k] && typeof c[k].enable === 'function' && c[k].apiVersion);
   const box = $('pick');
   if (!keys.length) {
-    box.innerHTML = '<button disabled>No Cardano wallet found — install Eternl, Lace, Typhon…</button>';
+    box.innerHTML = '<button disabled>No wallet here — open this page in a dapp browser</button>';
     return;
   }
   box.innerHTML = '';
