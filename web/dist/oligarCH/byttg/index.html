@@ -42,6 +42,9 @@
   .clock span{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
   .deadline{text-align:center;color:var(--dim);font-size:13px;margin-bottom:22px}
   footer{margin-top:30px;color:var(--dim);font-size:12.5px;text-align:center}
+  .hint{margin:11px 2px 0;font-size:13px;line-height:1.5;color:var(--dim);text-align:center}
+  .hint b{color:#c9c9d2;font-weight:700}
+  .hint[hidden]{display:none}
 
   .art{width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:14px;
        overflow:hidden;background:#bfbfbf;display:block}
@@ -63,8 +66,6 @@
   td{padding:7px 0;border-top:1px solid var(--line);vertical-align:top}
   td:first-child{color:var(--dim);width:38%}
   code{font:13px/1.4 ui-monospace,monospace;overflow-wrap:anywhere}
-  .hint{margin:11px 2px 0;font-size:13px;line-height:1.5;color:var(--dim)}
-  .hint b{color:#c9c9d2;font-weight:700}
   .note{margin-top:26px;padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--warn);
         border-radius:0 11px 11px 0;background:var(--panel);font-size:14px;color:#cfcfd6}
   .note b{color:var(--ink)}
@@ -101,9 +102,9 @@
   <div class="deadline">mint closes 08 Aug 2026 05:00 UTC · enforced by the policy itself, not by this page</div>
 
   <div id="pick" class="wallets"></div>
-  <p class="hint"><b>Desktop:</b> a wallet extension such as Eternl.
-     <b>Phone:</b> open this page inside your wallet's own dapp browser — Vespr has one.
-     A normal mobile browser can't reach your wallet, so nothing will show up here.</p>
+  <p class="hint" id="nowallet" hidden>No wallet reached this page. To mint, open it in a
+     wallet's dapp browser — <b>Vespr</b> on a phone, or the <b>Eternl</b> extension on
+     desktop. An ordinary mobile browser cannot talk to your wallet.</p>
   <div id="status"></div>
 
   <table>
@@ -141,6 +142,20 @@ const pad = n => String(n).padStart(2, '0');
 function parts() {
   let s = DEADLINE_SLOT - nowSlot(); if (s < 0) s = 0;
   return [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60, s];
+}
+const hasWallet = () => {
+  const c = window.cardano || {};
+  return Object.keys(c).some(k => c[k] && typeof c[k].enable === 'function' && c[k].apiVersion);
+};
+// Extensions inject window.cardano AFTER load, so a bare check would flash the hint at
+// desktop users who do have a wallet. Poll ~3s, then conclude.
+async function walletHint() {
+  for (let i = 0; i < 30; i++) {
+    if (hasWallet()) return true;
+    await new Promise(r => setTimeout(r, 100));
+  }
+  const el = $('nowallet'); if (el) el.hidden = false;
+  return false;
 }
 
 const PP = {feeA:'44', feeB:'155381', utxoByte:'4310', maxTx:16384, maxVal:5000,
@@ -307,7 +322,7 @@ async function mint(key, btn) {
   }
 }
 
-try { await loadCSL(); listWallets(); }
+try { await loadCSL(); listWallets(); walletHint(); }
 catch (e) { say('Could not load the Cardano library: ' + e, 'err'); }
 
 </script>
