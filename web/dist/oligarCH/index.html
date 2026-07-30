@@ -97,6 +97,18 @@
   <p class="sub" style="margin-top:12px">The centre square is the <b>ninth</b>, and it is not an
      open mint. When the eight windows above close, a wallet holding all eight will be able to
      mint it.</p>
+
+  <!-- The ninth's countdown. Its target is NOT a hardcoded date — it is derived in JS as the
+       LAST of the eight slots, so it can never drift out of step with the sentence above it or
+       with a re-slotted piece. Still does not name the ninth; that reveal is David's. -->
+  <div class="kicker" id="ninthlabel" style="margin-top:26px">the ninth opens in</div>
+  <div class="clock" id="ninthclock">
+    <div><b id="d9">--</b><span>days</span></div>
+    <div><b id="h9">--</b><span>hrs</span></div>
+    <div><b id="m9">--</b><span>min</span></div>
+    <div><b id="s9">--</b><span>sec</span></div>
+  </div>
+  <p class="deadline" id="ninthwhen">&nbsp;</p>
   <p class="sub" style="margin-top:6px;font-style:italic;color:var(--gold)">Sometimes you gotta
      deal with all these other oligarCHs to get to the&nbsp;🪙</p>
   <p class="hint" id="nowallet" hidden>To mint, open this in a wallet's dapp browser —
@@ -204,6 +216,31 @@ function tick() {
   if (PIECES.length - open) bits.push((PIECES.length - open) + ' closed');
   if (9 - PIECES.length) bits.push((9 - PIECES.length) + ' not announced');
   $('tally').textContent = bits.join(' \u00b7 ');
+  ninthTick();
+}
+
+// The ninth opens the instant the LAST of the eight windows shuts, so its target is the maximum
+// slot across the pieces rather than a date typed in here. If a piece is ever re-slotted before
+// its first mint, this follows it automatically instead of publishing a stale promise.
+const NINTH_SLOT = Math.max.apply(null, PIECES.map(p => p.slot));
+const NINTH_UTC = new Date((ANCHOR_UNIX + (NINTH_SLOT - ANCHOR_SLOT)) * 1000);
+function ninthTick() {
+  const [d, h, m, s, left] = parts(NINTH_SLOT);
+  if (left) {
+    $('d9').textContent = d; $('h9').textContent = pad(h);
+    $('m9').textContent = pad(m); $('s9').textContent = pad(s);
+    $('ninthwhen').textContent = 'when the last of the eight closes \u00b7 '
+      + NINTH_UTC.toISOString().slice(0, 16).replace('T', ' ') + ' UTC';
+  } else {
+    // No link here on purpose: the gated mint page is a separate build, and pointing at a URL
+    // that does not answer yet would be worse than saying nothing. State the fact only.
+    $('ninthlabel').textContent = 'the ninth is open';
+    // style.display, NOT the `hidden` attribute: .clock sets display:flex, which beats the UA
+    // stylesheet's [hidden]{display:none}, so `hidden` left four empty '--' boxes on screen.
+    $('ninthclock').style.display = 'none';
+    $('ninthwhen').innerHTML = '<b>The eight have closed.</b> A wallet holding all eight '
+      + 'can now mint the ninth.';
+  }
 }
 tick(); setInterval(tick, 1000);
 walletHint();
