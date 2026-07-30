@@ -121,7 +121,7 @@
     <tr><td>image</td><td><code>8,811 bytes</code> of SVG, base64 in CIP-25 metadata</td></tr>
     <tr><td>you pay</td><td><b>~0.72 ADA</b> network fee, plus <b>~1.17 ADA</b> min-UTxO that stays in your wallet holding the token</td></tr>
     <tr><td>creator takes</td><td><b>nothing</b> — there is no payment address in this transaction</td></tr>
-    <tr><td>proof</td><td>nothing has been minted under this policy yet — you would be the first. The same construction is already proven on chain by <a href="../byttg/">BYTTG</a>, whose image was pulled back out of its transaction and matched the source byte for byte.</td></tr>
+    <tr><td>proof</td><td>the image is embedded in the transaction your wallet signs. After it confirms, pull the base64 back out of the CIP-25 metadata, decode it, and you get the picture above — byte for byte, from the chain, with no server involved.</td></tr>
   </table>
 
   <div class="note">

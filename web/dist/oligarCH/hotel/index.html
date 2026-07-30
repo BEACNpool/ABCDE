@@ -121,9 +121,7 @@
     <tr><td>image</td><td><code>8,004 bytes</code> of SVG, base64 in CIP-25 metadata</td></tr>
     <tr><td>you pay</td><td><b>~0.67 ADA</b> network fee, plus <b>~1.18 ADA</b> min-UTxO that stays in your wallet holding the token</td></tr>
     <tr><td>creator takes</td><td><b>nothing</b> — there is no payment address in this transaction</td></tr>
-    <tr><td>proof</td><td>the first one is already on chain —
-      <a href="https://cexplorer.io/tx/48130e3f3a6e70b8599dc64d7494d02ce8d48db55ef4b020c48dcf8c1633a6c7" target="_blank" rel="noopener">HOTEL9da922bd</a>.
-      Pull the image back out of that transaction's metadata and it is the picture above, byte for byte.</td></tr>
+    <tr><td>proof</td><td>the image is embedded in the transaction your wallet signs. After it confirms, pull the base64 back out of the CIP-25 metadata, decode it, and you get the picture above — byte for byte, from the chain, with no server involved.</td></tr>
   </table>
 
   <div class="note">
