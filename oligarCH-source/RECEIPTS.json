@@ -1,0 +1,39 @@
+{
+  "validator": "gate.gate.mint",
+  "aiken": "v1.1.23+8949565",
+  "plutus_version": "v3",
+  "stdlib": "aiken-lang/stdlib v3.1.0",
+  "compiled_bytes": 664,
+  "compiled_sha256": "47f7ebec17b4f12ebfb5be0986da3a01ec68ff05bfee6d96fae0be57e1dea58c",
+  "policy_id": "39f7e8f068a208a0faa7c6ff2303ef5b6773f0ebed402713f9070809",
+  "policy_id_note": "39f7e8f068a208a0faa7c6ff2303ef5b6773f0ebed402713f9070809 is the hash of the UNPARAMETERISED build. The LIVE collection is minted under the PFP-parameterised validator; see policy_id_live.",
+  "policy_id_live": "534066fa3a4cc90aa9b01a0daa68a27fc5a98b466d1e519ff1cf82bd",
+  "policy_id_preimage": "blake2b224(0x03 || compiledCode)  — compiledCode is ALREADY cbor-wrapped",
+  "csl_constructor": "CSL.PlutusScript.new_v3(Buffer.from(compiledCode,'hex'))  — NOT from_hex_with_version",
+  "gated_policies": [
+    "2ef849a4…ae2a8d BYTTG",
+    "7ba4e6b0…c4ac5 TGM",
+    "5d1b3f81…2f56e IVYOM",
+    "80f626b1…8013b ORG",
+    "d91bc5bc…b2d89 HOTEL",
+    "64996c3b…f7361 NDL",
+    "3e499ba0…a2b00 DNPG",
+    "9079019e…8a5cc SMOKE"
+  ],
+  "exunits_measured": {
+    "mem": 661900,
+    "cpu": 191690000
+  },
+  "exunits_budgeted": {
+    "mem": 900000,
+    "steps": 260000000
+  },
+  "tests": "9 in aiken check — 1 positive, 8 negative (7-of-8, none, reference-inputs-only, impostor policy, qty 2, two distinct names, burn, eight duplicates of one piece)",
+  "max_artwork_bytes": 10359,
+  "recommended_artwork_bytes": 9000,
+  "tx_at_9000": 14513,
+  "tx_at_9000_plus_40_inputs": 15994,
+  "minter_fee_ada": 0.865,
+  "min_utxo_ada": 1.172,
+  "deadline": "NONE — David 2026-07-30, so secondary-market sets can still mint"
+}

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>oligarCH — the ninth (TEST)</title>
+<style>
+ :root{--bg:#101012;--panel:#18181c;--line:#2a2a31;--ink:#eceaea;--dim:#9a9aa4;
+       --red:#ed1c24;--gold:#c9a227;--ok:#4ade80}
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--bg);color:var(--ink);
+      font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+ .wrap{max-width:560px;margin:0 auto;padding:26px 18px 64px}
+ h1{font:900 clamp(30px,8vw,46px)/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:-.03em;margin:0}
+ .kicker{font:700 12px/1 sans-serif;letter-spacing:.18em;color:var(--gold);margin-bottom:9px}
+ .sub{color:var(--dim);margin:8px 0 18px;font-size:15px}
+ .banner{background:#3a1d1d;border:1px solid #7a2b2b;color:#ffb4b4;border-radius:10px;
+         padding:10px 12px;font-size:13px;margin-bottom:16px}
+ .veil{position:relative;border:1.5px solid #8a6a25;border-radius:14px;overflow:hidden;
+       background:#141416;aspect-ratio:1;display:grid;place-items:center}
+ .veil img{width:100%;display:block}
+ .q{font:900 clamp(52px,18vw,120px)/1 sans-serif;color:#f4f4f4;text-shadow:0 2px 14px #000}
+ .gate{margin:18px 0 8px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+ .row{display:flex;align-items:center;gap:10px;padding:9px 13px;border-bottom:1px solid var(--line);
+      font-size:14px}
+ .row:last-child{border-bottom:0}
+ .row .t{font-weight:800;min-width:62px}
+ .row .p{color:var(--dim);flex:1;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .mark{width:22px;text-align:center;font-weight:900}
+ .yes{color:var(--ok)} .no{color:#6b6b74}
+ .tally{text-align:center;color:var(--dim);font-size:13px;margin:10px 0 16px}
+ button{width:100%;padding:14px;border-radius:11px;border:1px solid #8a6a25;background:var(--gold);
+        color:#141414;font:800 16px sans-serif;cursor:pointer}
+ button.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+ button[disabled]{opacity:.4;cursor:not-allowed}
+ .stack{display:grid;gap:9px}
+ #status{display:none;margin-top:14px;padding:11px 13px;border-radius:10px;background:var(--panel);
+         border:1px solid var(--line);font-size:14px;word-break:break-word}
+ #status.on{display:block} #status.err{border-color:#7a2b2b;color:#ffb4b4}
+ #status.ok{border-color:#2b7a3f;color:#b4ffc8}
+ code{font:12px ui-monospace,monospace;color:var(--dim);word-break:break-all}
+ footer{margin-top:26px;color:var(--dim);font-size:12px;text-align:center}
+</style></head><body><div class="wrap">
+ <div class="kicker">OLIGARCH &middot; NINE OF NINE</div>
+ <h1>The ninth</h1>
+ <p class="sub">Not an open mint. The policy will only mint for a transaction that spends all
+    eight earlier pieces — proof, on chain, that they are yours.</p>
+ <div class="banner"><b>TEST BUILD.</b> Policy <code>7d6702e04d52dd5db06a9641837027972dc1ff975ce1ad520275138f</code> — a throwaway with identical logic. Nothing minted here can ever be the real piece nine.</div>
+
+ <div class="veil" id="veil"><div class="q">?</div></div>
+
+ <div class="gate" id="gate"></div>
+ <p class="tally" id="tally">Connect a wallet to check the set.</p>
+
+ <div class="stack" id="pick"></div>
+ <div id="status"></div>
+ <footer>The picture lives entirely inside the minting transaction.<br>
+   policy <code>7d6702e04d52dd5db06a9641837027972dc1ff975ce1ad520275138f</code></footer>
+</div>
+
+<script id="art" type="image/svg+xml"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs><path id="C" d="M15 5q-13-7-13 9t13 9"/><path id="D" d="M0 0h7q9 0 9 14t-9 14H0z"/><path id="E" d="M16 0H0v28h16M0 14h12"/><path id="I" d="M2 0h12M8 0v28M2 28h12"/><path id="L" d="M0 0v28h14"/><path id="O" d="M8 0a8 14 0 0 0 0 28a8 14 0 0 0 0-28z"/><path id="T" d="M0 0h16M8 0v28"/><path id="U" d="M0 0v18q0 10 8 10t8-10V0"/><path id="Y" d="M0 0 8 14 16 0M8 14v14"/><path id="hr" d="M462 292q6-104 123-106t123 106q-24-52-62-72-61 24-122 0-38 20-62 72z"/><path id="bd" d="M476 344q34 62 109 64t109-64q13 64-23 96-30 30-86 30t-86-30q-36-32-23-96z"/><path id="ms" d="M520 364q65-14 130 0-6 20-65 20t-65-20z"/><path id="sp" d="M512 218l-5-13M532 206l-11-25M554 198l-4-15M576 193l6-21M600 195l7-13M622 203l8-23M644 215l12-15M664 230l7-12"/><pattern id="h" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(28)"><path d="M3 0v7M8 4v7" stroke="#241a0e" stroke-width="2.4" stroke-linecap="round"/></pattern><pattern id="g" width="26" height="26" patternUnits="userSpaceOnUse" patternTransform="rotate(-42)"><rect width="11" height="26" fill="#fff"/></pattern><circle id="co" r="15" fill="#e0b02c" stroke="#111" stroke-width="6"/><rect id="sq" width="58" height="44" rx="4"/></defs><rect width="1024" height="1024" fill="#2a2a30"/><g stroke="#111" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(12 12)"><rect width="324" height="264" rx="14" fill="#cfe3f2"/><path d="M0 168h324v96H0z" fill="#5f8f4a" stroke="none"/><circle cx="262" cy="52" r="30" fill="#e0b02c"/><g><path d="M44 168V96l72-42 72 42v72z" fill="#ed1c24"/><path d="M40 96 116 50l76 46" fill="none"/><path d="M92 168v-46h48v46z" fill="#f2ece0"/></g><path d="M92 122 140 168M140 122 92 168" fill="none" stroke="#111" stroke-width="7"/><path d="M212 210h100M212 236h100M226 196v56M262 196v56M298 196v56" fill="none" stroke="#f2ece0" stroke-width="10" stroke-linecap="round"/></g><g transform="translate(356 12)"><rect width="324" height="264" rx="14" fill="#b9c6d2"/><g><path d="M74 150q-24-56 46-58h56q40 0 62 34l58 22q16 6 4 18l-52 8q-30 20-84 20-72 0-90-44z" fill="#1f1f23"/><path d="M256 138 320 96q10-6 14 6l-14 34z" fill="#1f1f23"/><path d="M96 106q22-24 54-24l6 30z" fill="#5c7f9e"/></g><path d="M20 66h280" fill="none" stroke="#111" stroke-width="11" stroke-linecap="round"/><path d="M158 66V96" fill="none" stroke="#111" stroke-width="9"/><path d="M60 60h240M50 74h250" fill="none" stroke="#111" stroke-width="4" opacity=".45"/><path d="M92 200h132M112 200v-22M204 200v-22" fill="none" stroke="#111" stroke-width="9" stroke-linecap="round"/></g><g transform="translate(700 12)"><rect width="324" height="264" rx="14" fill="#cfe3f2"/><g><path d="M56 236V84h212v152z" fill="#f2ece0"/><path d="M50 84 162 36l112 48z" fill="#75757c"/><path d="M138 236v-56h48v56z" fill="#c08f57"/></g><path d="M148 108h28v22h22v28h-22v22h-28v-22H126v-28h22z" fill="#ed1c24" stroke="#111" stroke-width="7" stroke-linejoin="round"/><g fill="#6ba3d0" stroke="#111" stroke-width="6"><rect x="72" y="176" width="34" height="34" rx="3"/><rect x="218" y="176" width="34" height="34" rx="3"/></g></g><g transform="translate(12 288)"><rect width="324" height="264" rx="14" fill="#e7e5e1"/><g><path d="M40 236V96h244v140z" fill="#f2ece0"/></g><g stroke="#111" stroke-width="7" stroke-linejoin="round"><path d="M34 96h64v46H34z" fill="#ed1c24"/><path d="M98 96h64v46H98z" fill="#f2ece0"/><path d="M162 96h64v46h-64z" fill="#ed1c24"/><path d="M226 96h64v46h-64z" fill="#f2ece0"/></g><g><path d="M74 236v-60h58v60z" fill="#6ba3d0"/><path d="M186 236v-52h54v52z" fill="#c08f57"/></g></g><g transform="translate(356 288)"><rect width="324" height="264" rx="14" fill="#e7e5e1"/></g><g transform="translate(700 288)"><rect width="324" height="264" rx="14" fill="#e7e5e1"/><path d="M20 200h284" fill="none" stroke="#111" stroke-width="8"/><g><path d="M28 190q-6-34 40-40l58-40h58l70 44 30 6q14 4 12 30z" fill="#e0b02c"/><path d="M112 148l30-26h44l44 30z" fill="#3d4a58"/></g><g fill="#1f1f23" stroke="#111" stroke-width="8"><circle cx="92" cy="192" r="30"/><circle cx="234" cy="192" r="30"/></g><g fill="#75757c" stroke="none"><circle cx="92" cy="192" r="12"/><circle cx="234" cy="192" r="12"/></g></g><g transform="translate(12 564)"><rect width="324" height="264" rx="14" fill="#c3c3c3"/><g><path d="M22 240V52h180v188z" fill="#75757c"/><path d="M44 218V74h136v144z" fill="#5c5c68"/><circle cx="112" cy="146" r="42" fill="#75757c"/></g><g fill="none" stroke="#111" stroke-width="9" stroke-linecap="round"><path d="M112 108v76M79 127l66 38M145 127l-66 38"/></g><circle cx="112" cy="146" r="11" fill="#c08f57"/><use href="#co" x="214" y="196"/><use href="#co" x="252" y="214"/><use href="#co" x="288" y="192"/><use href="#co" x="232" y="156"/><use href="#co" x="276" y="152"/><use href="#co" x="206" y="148"/><use href="#co" x="256" y="116"/><use href="#co" x="296" y="226"/></g><g transform="translate(356 564)"><rect width="324" height="264" rx="14" fill="#cfe3f2"/><path d="M48 156q-2-24 30-26l106-6 62-70h30l-24 66 62-4q28-2 26 18t-28 20l-60-4 24 66h-30l-62-70-106-6q-32-2-30-26z" fill="#f2ece0"/><g fill="#6ba3d0" stroke="none"><circle cx="112" cy="150" r="7"/><circle cx="138" cy="150" r="7"/><circle cx="164" cy="150" r="7"/><circle cx="190" cy="150" r="7"/></g></g><g transform="translate(700 564)"><rect width="324" height="264" rx="14" fill="#c3c3c3"/><path d="M40 232V44h244v188z" fill="#1f1f23"/><g fill="#f2ece0" stroke-width="6"><use href="#sq" x="62" y="66"/><use href="#sq" x="134" y="66"/><use href="#sq" x="206" y="66"/><use href="#sq" x="62" y="124"/><use href="#sq" x="134" y="124" fill="#e0b02c"/><use href="#sq" x="206" y="124"/><use href="#sq" x="62" y="182"/><use href="#sq" x="134" y="182"/><use href="#sq" x="206" y="182"/></g></g></g><g transform="translate(96 165) scale(0.72)"><g stroke="#111" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"><path d="M430 470q28-56 156-56t156 56v52H430z" fill="#6ba3d0"/><path d="M540 424 586 470 632 424 614 408h-56z" fill="#f2ece0"/></g><g stroke="#111" stroke-width="9" stroke-linejoin="round"><ellipse cx="454" cy="330" rx="19" ry="27" fill="#f2cfa6"/><ellipse cx="716" cy="330" rx="19" ry="27" fill="#f2cfa6"/><use href="#sp" fill="none" stroke="#33240f" stroke-width="7" stroke-linecap="round"/><ellipse cx="585" cy="310" rx="130" ry="122" fill="#f2cfa6"/><use href="#hr" fill="#463320"/></g><g stroke="none"><use href="#hr" fill="url(#h)"/><use href="#bd" fill="#bb9668"/><use href="#ms" fill="#bb9668"/><use href="#bd" fill="url(#h)" opacity=".55"/><use href="#ms" fill="url(#h)"/></g><path d="M694 344q13 64-23 96-30 30-86 30t-86-30q-36-32-23-96" fill="none" stroke="#111" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#111" stroke-width="9" stroke-linejoin="round"><path d="M530 392 646 378q-58 77-116 14z" fill="#3a2118"/><g fill="#fff" stroke-width="5"><rect x="570" y="387" width="19" height="25" rx="3"/><rect x="593" y="385" width="18" height="24" rx="3"/></g></g><g fill="none" stroke="#111" stroke-linecap="round"><path d="M577 336q-23 24-6 37 20 14 37-5" stroke-width="7"/><path d="M504 288q30-13 60-3M610 268q32-14 60 6" stroke-width="9"/><path d="M490 340l-16 8M492 352l-14 10M680 338l16 8M678 350l14 10" stroke-width="4"/><path d="M530 390q-15-3-23-14M646 376q15-3 23-14" stroke-width="5"/></g><g stroke="#111" stroke-width="4"><ellipse cx="539" cy="331" rx="18" ry="11" fill="#fff"/><ellipse cx="633" cy="330" rx="18" ry="11" fill="#fff"/></g><g fill="#111" stroke="none"><ellipse cx="553" cy="331" rx="6" ry="7"/><ellipse cx="647" cy="330" rx="6" ry="7"/></g><path d="M522 331q18-15 35-2M616 330q18-14 35 2" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round"/><g stroke="none"><circle cx="540" cy="325" r="30" fill="#dff1fa" opacity=".3"/><circle cx="632" cy="325" r="30" fill="#dff1fa" opacity=".3"/><circle cx="540" cy="325" r="30" fill="url(#g)" opacity=".38"/></g><g fill="none" stroke="#111" stroke-width="5.5" stroke-linecap="round"><circle cx="540" cy="325" r="30"/><circle cx="632" cy="325" r="30"/><path d="M570 320q16-9 32 0M510 320l-32-7M662 320l32-7"/></g></g><rect x="12" y="848" width="1000" height="152" rx="14" fill="#ed1c24" stroke="#111" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><g transform="translate(144 885) scale(2.55)" fill="none" stroke="#f2ece0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><use href="#I" x="0"/><use href="#C" x="29"/><use href="#O" x="51"/><use href="#L" x="73"/><use href="#L" x="90"/><use href="#E" x="107"/><use href="#C" x="129"/><use href="#T" x="151"/><use href="#E" x="173"/><use href="#D" x="195"/><use href="#Y" x="229"/><use href="#O" x="251"/><use href="#U" x="273"/></g></svg></script>
+<script type="module">
+const SCRIPT_HEX = "5902bc0101003229800aba2aba1aba0aab9faab9eaab9dab9a9bae0024888888896600264646644b30013370e900018039baa00189991192cc004c03c006264b30013370e90011bad300c0018acc004cdc7cc00520009b8d0099bae300b0015c60026264646600200297ae111e581c2ef849a4e7742f0705f41c7b2195bb828b934ee48dcfa0c204ae2a8d00811e581c7ba4e6b009013f83cae317390fd88c1b734154cc110ab1b31fbc4ac500811e581c5d1b3f818c42a9621cc8348ab4ae89eace761b53ecb725b3ff62f56e00811e581c80f626b1d5ad7a53478d9aced308f570e2cf47746a1cdaaef4e8013b00811e581cd91bc5bcfe52b93baea834cb754b7b835021676225ba235a82fb2d8900811e581c64996c3bdad619660de1236b82547e8421abeb7029630389cb1f736100811e581c3e499ba0420b657eda31c61622a17c3d53edc1db0f5225022c3a2b0000811e581c9079019e845fe096bb3783b1ccfb0dc4f340ea1edeeb31c71d88a5cc00112cc00400629462b30013232330010010052259800800c528456600266e3cdd7180a800801c528c4cc008008c0580050102026375c602400313300200230130018a5040348080c8cc004004dd61808002112cc004006297ae089919911980100119198008009bab32300130133754600260266ea800c8c058c05c004896600200314bd7044cc054c048c058004cc008008c05c005014112cc0040062007133013301400133002002301500140486024004660040046024002807a2c80522c8050c0380062c8060c8c8cc004004dd598079808180818081808001912cc004006007132325980099b910070018acc004cdc7803800c4dd59807801401500d44cc010010c04c00d00d1bae300d00130100014038297adef6c60375c601660106ea8004c020dd51805802459006180480098049805000980480098021baa0098a4d1365640084c1034254390001";
+const POLICY_EXPECT = "7d6702e04d52dd5db06a9641837027972dc1ff975ce1ad520275138f";
+const TICKER = "T9";
+const PIECES = [{"t": "BYTTG", "ph": "BURN YOU TO THE GROUND", "p": "2ef849a4e7742f0705f41c7b2195bb828b934ee48dcfa0c204ae2a8d"}, {"t": "TGM", "ph": "THE GREAT MIGRATION", "p": "7ba4e6b009013f83cae317390fd88c1b734154cc110ab1b31fbc4ac5"}, {"t": "IVYOM", "ph": "I VOTE YES ON ME", "p": "5d1b3f818c42a9621cc8348ab4ae89eace761b53ecb725b3ff62f56e"}, {"t": "ORG", "ph": "ORGANIC DISTRIBUTION", "p": "80f626b1d5ad7a53478d9aced308f570e2cf47746a1cdaaef4e8013b"}, {"t": "HOTEL", "ph": "YOU CAN NEVER LEAVE", "p": "d91bc5bcfe52b93baea834cb754b7b835021676225ba235a82fb2d89"}, {"t": "NDL", "ph": "NO DOORS LEFT", "p": "64996c3bdad619660de1236b82547e8421abeb7029630389cb1f7361"}, {"t": "DNPG", "ph": "DO NOT PASS GO", "p": "3e499ba0420b657eda31c61622a17c3d53edc1db0f5225022c3a2b00"}, {"t": "SMOKE", "ph": "DECENTRALIZED", "p": "9079019e845fe096bb3783b1ccfb0dc4f340ea1edeeb31c71d88a5cc"}];
+const COSTS = [100788, 420, 1, 1, 1000, 173, 0, 1, 1000, 59957, 4, 1, 11183, 32, 201305, 8356, 4, 16000, 100, 16000, 100, 16000, 100, 16000, 100, 16000, 100, 16000, 100, 100, 100, 16000, 100, 94375, 32, 132994, 32, 61462, 4, 72010, 178, 0, 1, 22151, 32, 91189, 769, 4, 2, 85848, 123203, 7305, -900, 1716, 960, 57, 85848, 0, 1, 1, 1000, 42921, 4, 2, 30623, 28755, 75, 1, 898148, 27279, 1, 51775, 558, 1, 39184, 1000, 60594, 1, 141895, 32, 83150, 32, 15299, 32, 76049, 1, 13169, 4, 22100, 10, 28999, 74, 1, 28999, 74, 1, 43285, 552, 1, 44749, 541, 1, 33852, 32, 68246, 32, 72362, 32, 7243, 32, 7391, 32, 11546, 32, 85848, 123203, 7305, -900, 1716, 960, 57, 85848, 0, 1, 90434, 519, 0, 1, 74433, 32, 85848, 123203, 7305, -900, 1716, 960, 57, 85848, 0, 1, 1, 85848, 123203, 7305, -900, 1716, 960, 57, 85848, 0, 1, 955506, 213312, 0, 2, 270652, 22588, 4, 1457325, 64566, 4, 20467, 1, 4, 0, 141992, 32, 100788, 420, 1, 1, 81663, 32, 59498, 32, 20142, 32, 24588, 32, 20744, 32, 25933, 32, 24623, 32, 43053543, 10, 53384111, 14333, 10, 43574283, 26308, 10, 16000, 100, 16000, 100, 962335, 18, 2780678, 6, 442008, 1, 52538055, 3756, 18, 267929, 18, 76433006, 8868, 18, 52948122, 18, 1995836, 36, 3227919, 12, 901022, 1, 166917843, 4307, 36, 284546, 36, 158221314, 26549, 36, 74698472, 36, 333849714, 1, 254006273, 72, 2174038, 72, 2261318, 64571, 4, 207616, 8310, 4, 1293828, 28716, 63, 0, 1, 1006041, 43623, 251, 0, 1, 100181, 726, 719, 0, 1, 100181, 726, 719, 0, 1, 100181, 726, 719, 0, 1, 107878, 680, 0, 1, 95336, 1, 281145, 18848, 0, 1, 180194, 159, 1, 1, 158519, 8942, 0, 1, 159378, 8813, 0, 1, 107490, 3298, 1, 106057, 655, 1, 1964219, 24520, 3, 607153, 231697, 53144, 0, 1, 116711, 1957, 4, 231883, 10, 1000, 24838, 7, 1, 232010, 32, 321837444, 25087669, 18, 617887431, 67302824, 36, 356924, 18413, 45, 21, 219951, 9444, 1, 1000, 172116, 183150, 6, 24, 21, 213283, 618401, 1998, 28258, 1, 1000, 38159, 2, 22, 1000, 95933, 1, 1, 11, 1000, 277577, 12, 21];
+const PP = {feeA:'44', feeB:'155381', utxoByte:'4310', maxTx:16384, maxVal:5000,
+            poolDep:'500000000', keyDep:'2000000', priceMemN:'577', priceMemD:'10000',
+            priceStepN:'721', priceStepD:'10000000'};
+// MEASURED on mainnet via ogmios EvaluateTx against a real 8-piece wallet (34 UTxOs):
+// memory 548,351 / steps 163,345,402. Budgeted ~3.6x/4.3x above that on purpose — the script
+// folds over the transaction's inputs, so a wallet with many more UTxOs does more work, and an
+// UNDER-budget redeemer is a hard validation failure while the overage costs ~0.02 ADA.
+const EX_MEM = '2000000', EX_STEPS = '700000000';
+const CDN = 'https://cdn.jsdelivr.net/npm/@emurgo/cardano-serialization-lib-browser@15.0.3/';
+
+const $ = id => document.getElementById(id);
+const hex = b => [...b].map(x => x.toString(16).padStart(2,'0')).join('');
+const unhex = s => new Uint8Array(s.match(/../g).map(x => parseInt(x,16)));
+const B64 = btoa(String.fromCharCode(...new TextEncoder().encode($('art').textContent.trim())));
+const say = (m,k) => { const e=$('status'); e.className='on '+(k||''); e.innerHTML=m; };
+
+// the checklist renders before any wallet is connected, so the ask is legible up front
+function drawGate(held) {
+  $('gate').innerHTML = PIECES.map((p,i) => {
+    const ok = held && held[i];
+    return `<div class="row"><span class="mark ${ok?'yes':'no'}">${ok?'&#10003;':'&#9679;'}</span>`
+         + `<span class="t">${p.t}</span><span class="p">${p.ph}</span></div>`;
+  }).join('');
+}
+drawGate(null);
+
+let CSL;
+async function loadCSL() {
+  const bg = await import(CDN + 'cardano_serialization_lib_bg.js');
+  const { instance } = await WebAssembly.instantiateStreaming(
+    fetch(CDN + 'cardano_serialization_lib_bg.wasm'),
+    { './cardano_serialization_lib_bg.js': bg });
+  bg.__wbg_set_wasm(instance.exports);
+  if (instance.exports.__wbindgen_start) instance.exports.__wbindgen_start();
+  CSL = bg;
+  // ⚠️ new_v3 takes the ALREADY cbor-wrapped compiledCode. from_hex_with_version strips a
+  // layer first and yields a different, wrong policy id.
+  const s = CSL.PlutusScript.new_v3(unhex(SCRIPT_HEX));
+  const got = hex(s.hash().to_bytes());
+  if (got !== POLICY_EXPECT) throw new Error('policy id mismatch: ' + got);
+}
+
+function listWallets() {
+  const c = window.cardano || {};
+  const keys = Object.keys(c).filter(k => c[k] && typeof c[k].enable === 'function' && c[k].apiVersion);
+  $('pick').innerHTML = keys.length
+    ? keys.map(k => `<button data-w="${k}">Connect ${c[k].name || k}</button>`).join('')
+    : '<button class="ghost" disabled>No wallet detected — open this in Vespr or Eternl</button>';
+  keys.forEach(k => $('pick').querySelector(`[data-w="${k}"]`).onclick = () => run(k));
+}
+setTimeout(listWallets, 400); setTimeout(listWallets, 1400);
+
+// ⚠️ FOUR of the 350 PlutusV3 costs are NEGATIVE. CostModel.set takes a CSL.Int, and Int.new
+// only accepts a magnitude — a negative must go through Int.new_negative or it silently flips
+// sign, giving a cost model that hashes to a script data hash the node rejects. That failure
+// arrives as an opaque submit error, so it has to be right here.
+function costmdls() {
+  const cm = CSL.CostModel.new();
+  COSTS.forEach((v,i) => cm.set(i, v < 0
+    ? CSL.Int.new_negative(CSL.BigNum.from_str(String(-v)))
+    : CSL.Int.new(CSL.BigNum.from_str(String(v)))));
+  const c = CSL.Costmdls.new();
+  c.insert(CSL.Language.new_plutus_v3(), cm);
+  return c;
+}
+
+async function run(key) {
+  $('pick').querySelectorAll('button').forEach(b => b.disabled = true);
+  try {
+    say('Loading the serialization library…');
+    if (!CSL) await loadCSL();
+    say('Connecting to your wallet…');
+    const api = await window.cardano[key].enable();
+    if (await api.getNetworkId() !== 1) throw new Error('Switch the wallet to mainnet.');
+
+    const addr = CSL.Address.from_bytes(unhex(await api.getChangeAddress()));
+    const raw = await api.getUtxos();
+    if (!raw || !raw.length) throw new Error('That wallet has no UTxOs.');
+    const utxos = raw.map(h => CSL.TransactionUnspentOutput.from_hex(h));
+
+    // ---- the gate check, client side. The chain enforces it again at submit. ----
+    const carriers = [];            // one UTxO per required policy
+    const held = PIECES.map(p => {
+      const hit = utxos.find(u => {
+        const ma = u.output().amount().multiasset();
+        if (!ma) return false;
+        const a = ma.get(CSL.ScriptHash.from_hex(p.p));
+        return a && a.len() > 0;
+      });
+      if (hit && !carriers.some(c => c.to_hex() === hit.to_hex())) carriers.push(hit);
+      return !!hit;
+    });
+    drawGate(held);
+    const have = held.filter(Boolean).length;
+    $('tally').textContent = have + ' of 8 held';
+    if (have < 8) {
+      const missing = PIECES.filter((_,i) => !held[i]).map(p => p.t).join(', ');
+      throw new Error('The set is incomplete — missing <b>' + missing + '</b>. '
+                    + 'The policy will refuse this transaction.');
+    }
+
+    say('Building the transaction — the whole picture goes inside it…');
+    const cfg = CSL.TransactionBuilderConfigBuilder.new()
+      .fee_algo(CSL.LinearFee.new(CSL.BigNum.from_str(PP.feeA), CSL.BigNum.from_str(PP.feeB)))
+      .pool_deposit(CSL.BigNum.from_str(PP.poolDep)).key_deposit(CSL.BigNum.from_str(PP.keyDep))
+      .max_value_size(PP.maxVal).max_tx_size(PP.maxTx)
+      .coins_per_utxo_byte(CSL.BigNum.from_str(PP.utxoByte))
+      .ex_unit_prices(CSL.ExUnitPrices.new(
+        CSL.UnitInterval.new(CSL.BigNum.from_str(PP.priceMemN), CSL.BigNum.from_str(PP.priceMemD)),
+        CSL.UnitInterval.new(CSL.BigNum.from_str(PP.priceStepN), CSL.BigNum.from_str(PP.priceStepD))))
+      .build();
+    const tb = CSL.TransactionBuilder.new(cfg);
+
+    // seed: a pure-ada UTxO, consumed by this tx, so the derived name can never repeat
+    // ⚠️ REGRESSION FIXED 2026-07-30 (David's footage): this used to REQUIRE a pure-ada UTxO
+    // and threw "Need one plain-ada UTxO to seed the name" on a wallet whose every UTxO
+    // carries tokens — which is most collectors' wallets. The seed only has to be a UTxO this
+    // transaction SPENDS, so the derived asset name can never repeat; it does NOT have to be
+    // pure ada. Prefer pure (a tidier tx), fall back to any. The proven series page always
+    // did this and the fallback was lost in the rewrite.
+    const pure = utxos.filter(u => { const m = u.output().amount().multiasset();
+                                     return !m || m.len() === 0; });
+    const pool = (pure.length ? pure : utxos).slice().sort((a,b) =>
+      Number(b.output().amount().coin().to_str()) - Number(a.output().amount().coin().to_str()));
+    if (!pool.length) throw new Error('That wallet has no UTxOs — it needs a little ada.');
+    const seed = pool[0];
+    const nameStr = TICKER + hex(seed.input().transaction_id().to_bytes()).slice(0,8);
+    const assetName = CSL.AssetName.new(new TextEncoder().encode(nameStr));
+
+    const script = CSL.PlutusScript.new_v3(unhex(SCRIPT_HEX));
+    const redeemer = CSL.Redeemer.new(CSL.RedeemerTag.new_mint(), CSL.BigNum.from_str('0'),
+      CSL.PlutusData.new_empty_constr_plutus_data(CSL.BigNum.from_str('0')),
+      CSL.ExUnits.new(CSL.BigNum.from_str(EX_MEM), CSL.BigNum.from_str(EX_STEPS)));
+    const mb = CSL.MintBuilder.new();
+    mb.add_asset(CSL.MintWitness.new_plutus_script(CSL.PlutusScriptSource.new(script), redeemer),
+                 assetName, CSL.Int.new_i32(1));
+    tb.set_mint_builder(mb);
+
+    const cut = s => s.match(/.{1,64}/g);
+    const uri = 'data:image/svg+xml;base64,' + B64;
+    const policyHex = hex(script.hash().to_bytes());
+    const meta = {}; meta[policyHex] = {};
+    meta[policyHex][nameStr] = { name: TICKER, mediaType: 'image/svg+xml', image: cut(uri),
+      description: cut('The ninth. Gated by the other eight. Fully on-chain.') };
+    const aux = CSL.AuxiliaryData.new();
+    const gtm = CSL.GeneralTransactionMetadata.new();
+    gtm.insert(CSL.BigNum.from_str('721'), CSL.encode_json_str_to_metadatum(
+      JSON.stringify(meta), CSL.MetadataJsonSchema.NoConversions));
+    aux.set_metadata(gtm);
+    tb.set_auxiliary_data(aux);
+
+    // the NFT output
+    const ma = CSL.MultiAsset.new(); const as = CSL.Assets.new();
+    as.insert(assetName, CSL.BigNum.from_str('1'));
+    ma.insert(CSL.ScriptHash.from_bytes(script.hash().to_bytes()), as);
+    const probe = CSL.Value.new(CSL.BigNum.from_str('3000000')); probe.set_multiasset(ma);
+    const minAda = CSL.min_ada_for_output(CSL.TransactionOutput.new(addr, probe),
+      CSL.DataCost.new_coins_per_byte(CSL.BigNum.from_str(PP.utxoByte)));
+    const outV = CSL.Value.new(minAda); outV.set_multiasset(ma);
+    tb.add_output(CSL.TransactionOutput.new(addr, outV));
+
+    // inputs: the seed, plus the eight carriers. THE EIGHT ARE THE PROOF — spending them is
+    // what requires the owner's signature. They return automatically in the change output.
+    const added = new Set();
+    for (const u of [seed, ...carriers]) {
+      const k = u.to_hex(); if (added.has(k)) continue; added.add(k);
+      tb.add_regular_input(u.output().address(), u.input(), u.output().amount());
+    }
+    // a little more ada if the fee needs it
+    for (const u of pool.slice(1, 6)) {
+      const k = u.to_hex(); if (added.has(k)) continue; added.add(k);
+      tb.add_regular_input(u.output().address(), u.input(), u.output().amount());
+    }
+
+    // collateral — required for any Plutus script
+    let col = await api.getCollateral();
+    if (!col || !col.length) col = (await api.experimental?.getCollateral?.()) || [];
+    if (!col.length) throw new Error('The wallet returned no collateral. Set some in the '
+      + 'wallet settings (5 ADA is plenty) and try again.');
+    const cib = CSL.TxInputsBuilder.new();
+    for (const h of col) {
+      const u = CSL.TransactionUnspentOutput.from_hex(h);
+      cib.add_regular_input(u.output().address(), u.input(), u.output().amount());
+    }
+    tb.set_collateral(cib);
+
+    tb.calc_script_data_hash(costmdls());
+    tb.add_change_if_needed(addr);
+
+    // build_tx() assembles the witness set too — the inline plutus script and the mint
+    // redeemer live there. build() alone returns only a body, and signing a bodyless-witness
+    // transaction means the wallet never sees the script it is authorising.
+    const tx = tb.build_tx();
+    const unsignedHex = hex(tx.to_bytes());
+    window.__unsigned = unsignedHex;
+    const size = tx.to_bytes().length;
+    if (size > PP.maxTx) throw new Error('Transaction too large (' + size + ' B).');
+
+    say('Sign to mint <b>' + nameStr + '</b>.<br>tx ' + size.toLocaleString()
+      + ' / ' + PP.maxTx.toLocaleString() + ' bytes.');
+    const wsHex = await api.signTx(unsignedHex, true);
+
+    // ⚠️ MERGE, NEVER REPLACE. A CIP-30 wallet returns only the witnesses it added — its
+    // vkeys. Assigning that whole witness set over ours wipes the plutus script and the
+    // redeemer, and the node then rejects the transaction as missing its script. Take the
+    // vkeys out and add them to a FixedTransaction, which also preserves the ORIGINAL body
+    // bytes so the signature stays valid.
+    const ftx = CSL.FixedTransaction.from_hex(unsignedHex);
+    const vk = CSL.TransactionWitnessSet.from_hex(wsHex).vkeys();
+    if (!vk || !vk.len()) throw new Error('The wallet returned no signature.');
+    for (let i = 0; i < vk.len(); i++) ftx.add_vkey_witness(vk.get(i));
+
+    say('Submitting…');
+    const txHash = await api.submitTx(hex(ftx.to_bytes()));
+
+    $('veil').innerHTML = '<img src="' + uri + '" alt="the ninth">';
+    say('<b>Minted.</b> ' + nameStr + ' is yours, picture and all, on chain forever.<br>'
+      + '<code>' + txHash + '</code>', 'ok');
+  } catch (e) {
+    // ⚠️ CIP-30 throws PLAIN OBJECTS: {code, info}. They have no .message, so the obvious
+    // `e.message || String(e)` renders "[object Object]" and the real reason is lost — which
+    // is exactly what happened on the first live attempt. Dig out every shape.
+    let m = '';
+    if (e && typeof e === 'object') {
+      m = [e.info, e.message, (e.code !== undefined ? 'code ' + e.code : '')]
+            .filter(Boolean).join(' &middot; ');
+      if (!m) { try { m = JSON.stringify(e); } catch (_) { m = String(e); } }
+    } else m = String(e);
+    // and hand over the exact bytes, so a failure can be evaluated off-page instead of guessed
+    const diag = window.__unsigned
+      ? '<details style="margin-top:9px"><summary>diagnostic — send this to Clawd</summary>'
+        + '<code style="display:block;margin-top:6px;max-height:150px;overflow:auto">'
+        + window.__unsigned + '</code></details>'
+      : '';
+    say('<b>Not minted.</b> ' + m + diag, 'err');
+    $('pick').querySelectorAll('button').forEach(b => b.disabled = false);
+  }
+}
+</script></body></html>
