@@ -11,7 +11,10 @@
    font:16px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
  .wrap{max-width:520px;margin:0 auto;padding:14px 16px calc(96px + env(safe-area-inset-bottom))}
  .kicker{font:700 11px/1 sans-serif;letter-spacing:.18em;color:var(--gold)}
- h1{font:900 clamp(22px,6vw,30px)/1 sans-serif;letter-spacing:-.03em;margin:2px 0 10px}
+ h1{font:900 clamp(22px,6vw,30px)/1 sans-serif;letter-spacing:-.03em;margin:2px 0 8px}
+ .need{margin:0 0 10px;padding:8px 11px;border:1px solid #8a6a25;border-radius:10px;
+   background:#1c1712;color:#d8c9a4;font-size:12.5px;line-height:1.45}
+ .need a{color:var(--gold)}
  #stage{border:1.5px solid #8a6a25;border-radius:16px;overflow:hidden;background:#141416;
    aspect-ratio:1;position:sticky;top:10px;z-index:5;width:min(100%,44vh);margin:0 auto;
    box-shadow:0 10px 30px #000a}
@@ -86,6 +89,11 @@
 </style></head><body><div class="wrap">
  <div class="kicker">oligarCH &middot; HOLDERS ONLY</div>
  <h1>Make your own</h1>
+ <!-- The gate warning lives HERE, on screen one, not buried on the review step — nobody
+      should dress the man for ten steps and only then learn they cannot mint (David). -->
+ <div class="need">&#128273; Minting needs an oligarCH in your wallet &mdash; <b>any one of
+   the eight</b> unlocks it. Don&rsquo;t hold one? <a href="../">Grab a piece first</a>.
+   You can still design without one &mdash; you just can&rsquo;t mint.</div>
 
  <div id="stage"><button id="rand" title="Randomise">🎲</button><span id="size"></span></div>
 
