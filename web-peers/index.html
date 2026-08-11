@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BEACN Peer Map — who's connected to our relay</title>
+<meta name="description" content="A live-ish map of which Cardano stake pools' relays BEACN's own relay is currently peered with, built from BEACN's own relay + network sensor.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ABCDE — A BEACN Cardano Data Explorer">
+<meta property="og:title" content="BEACN Peer Map">
+<meta property="og:description" content="Who's connected to BEACN's Cardano relay right now, and over the last 48 hours.">
+<meta property="og:url" content="https://beacnpool.github.io/ABCDE/peers/">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020617; --bg2:#0b1830; --panel:#0d1b32; --panel2:#101f38;
+  --line:#1c2b42; --line2:#26375a;
+  --text:#f1f5f9; --muted:#94a3b8; --muted2:#64748b;
+  --cyan:#22d3ee; --cyan-dim:#0e7490; --green:#34d399; --red:#fb7185; --amber:#fbbf24;
+  --radius:14px; --maxw:1120px;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:'Inter','Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:var(--sans); color:var(--text); line-height:1.6;
+  background:
+    radial-gradient(120% 80% at 100% 0%, #0a1c3a 0%, transparent 55%),
+    radial-gradient(120% 90% at 0% 0%, #0b1830 0%, var(--bg) 60%);
+  background-attachment:fixed; min-height:100vh; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--cyan); text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px 60px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--mono)}
+code{font-family:var(--mono); background:#0a1526; border:1px solid var(--line);
+  padding:.12em .4em; border-radius:6px; font-size:.86em; color:#a5f3fc}
+
+.nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+  background:rgba(2,6,23,.72); border-bottom:1px solid var(--line)}
+.nav .inner{max-width:var(--maxw); margin:0 auto; padding:0 22px; display:flex; align-items:center; gap:24px; height:60px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; color:var(--text)}
+.brand .hex{color:var(--cyan); font-size:22px}
+.brand small{display:block; color:var(--cyan); font-size:10px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; margin-top:-2px}
+.nav .gh{margin-left:auto; color:var(--text); border:1px solid var(--line2); padding:7px 14px;
+  border-radius:9px; font-size:13px; font-weight:700}
+.nav .gh:hover{border-color:var(--cyan); text-decoration:none}
+
+.hero{padding:56px 0 8px}
+.kicker{color:var(--cyan); font-weight:700; letter-spacing:.2em; text-transform:uppercase; font-size:12px; margin-bottom:14px}
+h1{line-height:1.1; margin:0 0 .3em; font-weight:800; letter-spacing:-.01em; font-size:clamp(28px,4vw,42px)}
+.lede{color:var(--muted); max-width:70ch; font-size:16px}
+
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:30px 0}
+.stat{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px}
+.stat .n{font-family:var(--mono); font-size:26px; font-weight:700; color:var(--cyan)}
+.stat .l{color:var(--muted); font-size:12.5px; margin-top:2px}
+
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:0; overflow:hidden; margin:22px 0}
+.panel h2{font-size:15px; padding:16px 18px; margin:0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px}
+.panel h2 .badge{background:var(--panel2); border:1px solid var(--line2); border-radius:999px; padding:2px 10px; font-size:12px; color:var(--muted); font-family:var(--mono)}
+
+.table-wrap{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:13.5px; min-width:640px}
+th{text-align:left; color:var(--muted); font-weight:600; font-size:12px; text-transform:uppercase;
+  letter-spacing:.04em; padding:10px 18px; border-bottom:1px solid var(--line); cursor:pointer; white-space:nowrap}
+th:hover{color:var(--text)}
+th .arrow{opacity:.4; font-size:10px; margin-left:3px}
+td{padding:10px 18px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(34,211,238,.04)}
+.ip{font-family:var(--mono); color:#a5f3fc}
+.ticker{font-weight:700; color:var(--text)}
+.pname{color:var(--muted); font-size:12.5px}
+.src{display:inline-block; font-family:var(--mono); font-size:10.5px; padding:1px 6px; border-radius:5px;
+  border:1px solid var(--line2); color:var(--muted); margin-right:4px}
+.age{color:var(--muted); font-size:12.5px; white-space:nowrap}
+
+.empty{padding:26px 18px; color:var(--muted); font-size:13.5px}
+.footline{color:var(--muted2); font-size:12.5px; margin-top:26px; text-align:center}
+.footline code{color:var(--muted2); background:none; border:none; padding:0}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="inner">
+    <a class="brand" href="../"><span class="hex">⬡</span><span>ABCDE<small>BEACN Data Explorer</small></span></a>
+    <a class="gh" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Live network map</div>
+    <h1>Who's connected to BEACN?</h1>
+    <p class="lede">BEACN's Cardano relay (<code>10.30.0.6:6000</code>) talks to dozens of other
+      stake pools' relays at any given moment, as part of the peer-to-peer gossip network every
+      block travels through. This page shows who — built from BEACN's own connection table and
+      its network sensor, resolved against each pool's on-chain relay registration. Refreshed
+      roughly hourly; not a live feed.</p>
+    <div class="stats" id="stats"></div>
+    <p class="footline" id="tipline">Loading snapshot…</p>
+  </div>
+
+  <div class="panel">
+    <h2>Identified pools <span class="badge" id="pool-count">—</span></h2>
+    <div class="table-wrap">
+      <table id="pool-table">
+        <thead><tr>
+          <th data-sort="ticker">Ticker<span class="arrow">▾</span></th>
+          <th data-sort="name">Pool</th>
+          <th data-sort="ip">Relay IP</th>
+          <th data-sort="sources">Seen via</th>
+          <th data-sort="last_seen">Last seen<span class="arrow">▾</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="pool-empty" style="display:none">No identified peers in the current snapshot.</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Unidentified peers <span class="badge" id="unid-count">—</span></h2>
+    <div class="table-wrap">
+      <table id="unid-table">
+        <thead><tr>
+          <th data-sort="ip">IP</th>
+          <th data-sort="port">Port</th>
+          <th data-sort="sources">Seen via</th>
+          <th data-sort="last_seen">Last seen<span class="arrow">▾</span></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="empty" id="unid-empty" style="display:none">No unidentified peers in the current snapshot.</div>
+    </div>
+    <p class="empty" style="border-top:1px solid var(--line)">Not every peer is a registered stake
+      pool relay — this network also carries other full nodes, exchanges, and infrastructure that
+      never published an on-chain relay record, so a fair number of unmatched IPs is normal.</p>
+  </div>
+
+  <p class="footline">Data: BEACN relay <code>ss</code> snapshots + Security Onion Zeek
+    <code>conn.log</code>, resolved against Cardano's on-chain <code>pool_relay</code> registry on
+    the <a href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">ABCDE</a>
+    warehouse. IPs shown are relay endpoints pool operators (or, for unidentified rows, other
+    network participants) published themselves by connecting to a public Cardano relay port.</p>
+</div>
+
+<script>
+const DATA_URL = 'peers.json';
+
+function timeAgo(iso) {
+  const d = new Date(iso.replace(' ', 'T') + (iso.includes('Z') || iso.includes('+') ? '' : 'Z'));
+  const s = Math.max(0, (Date.now() - d.getTime()) / 1000);
+  if (s < 90) return 'just now';
+  if (s < 3600) return Math.round(s / 60) + 'm ago';
+  if (s < 86400) return Math.round(s / 3600) + 'h ago';
+  return Math.round(s / 86400) + 'd ago';
+}
+
+function srcBadges(sources) {
+  return (sources || []).map(s => `<span class="src">${s}</span>`).join('');
+}
+
+function renderPools(rows) {
+  const tbody = document.querySelector('#pool-table tbody');
+  const empty = document.getElementById('pool-empty');
+  document.getElementById('pool-count').textContent = rows.length;
+  if (!rows.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td class="ticker">${r.ticker || '—'}</td>
+      <td class="pname">${r.name || ''}</td>
+      <td class="ip">${r.ip}:${r.port}</td>
+      <td>${srcBadges(r.sources)}</td>
+      <td class="age" title="${r.last_seen}">${timeAgo(r.last_seen)}</td>
+    </tr>`).join('');
+}
+
+function renderUnid(rows) {
+  const tbody = document.querySelector('#unid-table tbody');
+  const empty = document.getElementById('unid-empty');
+  document.getElementById('unid-count').textContent = rows.length;
+  if (!rows.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td class="ip">${r.ip}</td>
+      <td class="mono">${r.port}</td>
+      <td>${srcBadges(r.sources)}</td>
+      <td class="age" title="${r.last_seen}">${timeAgo(r.last_seen)}</td>
+    </tr>`).join('');
+}
+
+function sortRows(rows, key, dir) {
+  return [...rows].sort((a, b) => {
+    const av = a[key] ?? '', bv = b[key] ?? '';
+    if (av < bv) return dir === 'asc' ? -1 : 1;
+    if (av > bv) return dir === 'asc' ? 1 : -1;
+    return 0;
+  });
+}
+
+fetch(DATA_URL).then(r => r.json()).then(data => {
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="n">${data.counts.pools}</div><div class="l">identified pools</div></div>
+    <div class="stat"><div class="n">${data.counts.unidentified}</div><div class="l">unidentified peers</div></div>
+    <div class="stat"><div class="n">${data.window_hours}h</div><div class="l">rolling window</div></div>
+  `;
+  document.getElementById('tipline').textContent =
+    `Snapshot generated ${timeAgo(data.generated_at)} · relay ${data.relay}`;
+
+  let pools = data.pools, unid = data.unidentified;
+  renderPools(sortRows(pools, 'last_seen', 'desc'));
+  renderUnid(sortRows(unid, 'last_seen', 'desc'));
+
+  document.querySelectorAll('#pool-table th[data-sort]').forEach(th => {
+    let dir = 'desc';
+    th.addEventListener('click', () => {
+      dir = dir === 'asc' ? 'desc' : 'asc';
+      renderPools(sortRows(pools, th.dataset.sort, dir));
+    });
+  });
+  document.querySelectorAll('#unid-table th[data-sort]').forEach(th => {
+    let dir = 'desc';
+    th.addEventListener('click', () => {
+      dir = dir === 'asc' ? 'desc' : 'asc';
+      renderUnid(sortRows(unid, th.dataset.sort, dir));
+    });
+  });
+}).catch(err => {
+  document.getElementById('tipline').textContent = 'Could not load peers.json — ' + err;
+});
+</script>
+</body>
+</html>
