@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 299,
+  "file_count": 310,
   "files": [
     {
       "path": "claims/README.md",
@@ -277,8 +277,8 @@
     },
     {
       "path": "data/small/data_freshness_catalog.csv",
-      "bytes": 19160,
-      "sha256": "d5725a413d85233891f1663f3ffb24b25d1a77681007bebaacc798f321619bd4",
+      "bytes": 20206,
+      "sha256": "2f58b5caf7974d7cf5c648c3a75d2fe7ec656137a432b5f4a6959ee68e743bf4",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -292,6 +292,97 @@
       "path": "data/small/db_tip_receipt.csv",
       "bytes": 188,
       "sha256": "fe680741f65e3655645577646a6ad08bbe3779c08a15dd5b9de629fb46cbe552",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_drep_epoch_deltas.csv",
+      "bytes": 1662,
+      "sha256": "499876f773e43110e126f57fe9ef0ac7b52feb668ba3afebd2caad72d5f9cb2c",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_drep_public_events.csv",
+      "bytes": 1345,
+      "sha256": "8261dfe16bd3161265d434a5309b4f97511124691704270a3268be054165a30e",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_drep_voting_power_history.csv",
+      "bytes": 153521,
+      "sha256": "6997ffa1e2d86aeeae1c5e08278e7d83e6ff10e072f8406efa4b254a0611d1e6",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_f20_receipt.csv",
+      "bytes": 301,
+      "sha256": "245da4935b34c94409b4eceab8589513c4ddc681b405ded387561a8fb52b8b57",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_genesis_leftover_by_drep_bucket.csv",
+      "bytes": 289,
+      "sha256": "c855bb48338ffab408f6266877ada8c49330c34576e597fc50500a044c9ad0d0",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_genesis_leftover_on_named_dreps.csv",
+      "bytes": 14455,
+      "sha256": "9e557ea7a2d3901e8b22bbe9b70e1ec651f6d242e134bd9162bef79c251a8fa3",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/emurgo_named_dreps.csv",
+      "bytes": 2780,
+      "sha256": "50067c620e2c0859af3edb171fc14c11356309430f83f702bcf1d177757b6023",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2214,8 +2305,8 @@
     },
     {
       "path": "docs/19_QUERY_COOKBOOK.md",
-      "bytes": 6733,
-      "sha256": "9419c7706d56f2c7623ff4aa625c48f241b5b102fba3478d826089abbbe7bd53",
+      "bytes": 7223,
+      "sha256": "83dd2bf9220257aae7a22216c9d3942022dd5b7b885b294f7bd87b1882379e5f",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2331,8 +2422,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 59081,
-      "sha256": "7222e51ec9d6cff45f2143c8f77dd8458c41e7a9f0d159967f8a1a5561388ca8",
+      "bytes": 61379,
+      "sha256": "e6c008d1f16059204dd3b78eb4111207e1ee7e3f7a1599bf951b33db544b04a8",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2344,8 +2435,8 @@
     },
     {
       "path": "docs/STARTER_QUESTIONS.md",
-      "bytes": 4777,
-      "sha256": "44fdbe84504174b48f66370355fbec223fe920ac82a8731d94ede950426ff06c",
+      "bytes": 4861,
+      "sha256": "36dea7f2c42f6974aeaab5b7312ad229d874e05b09c5c397bfa2d077d1662e75",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2357,8 +2448,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9079,
-      "sha256": "52969abf3ee9e868641594de1c51258375d4ae210f8753a06ca083c7bb8245cf",
+      "bytes": 9528,
+      "sha256": "fc4a6e7b3569cc02e0af375cdefdca9259e692c56d36b7adf8b5828959b7ebb8",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2733,9 +2824,22 @@
       }
     },
     {
+      "path": "findings/F20_emurgo_genesis_drep_removal.md",
+      "bytes": 4185,
+      "sha256": "55ccbe80129ebaabd222cea01d4a78397b311a8422c86b168ed7cec770cfce5c",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 3475,
-      "sha256": "c2e802eb8346bbe045b851e4e674970be540712f6982493c55f3a1af927431ba",
+      "bytes": 3638,
+      "sha256": "aa15d1fa32745149c2d94d5aa004bc45c2c8b15326be1240bd329ca2c8ef8681",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3048,6 +3152,32 @@
       "path": "sql/10_findings/F03_fourth_entry_sale_ticket_signal.duckdb.sql",
       "bytes": 342,
       "sha256": "2a4dbbb77d6086fd14f39ecb530427479933ebde0c5b5ffb9a33f4fc36364c55",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/F20_emurgo_genesis_drep_removal.duckdb.sql",
+      "bytes": 549,
+      "sha256": "229550c9f9f7e004731179a3982154531e6413d3e729ae76632bcf9574cd8ece",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/10_findings/F20_emurgo_genesis_drep_removal.remote.sql",
+      "bytes": 736,
+      "sha256": "eea158f56a87302cc19329ec5fd4e418769a015106345fd864d881a32da5d388",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3867,6 +3997,19 @@
       "path": "sql/55_pool_operators/data/export_tip_receipt.csv",
       "bytes": 89,
       "sha256": "b447d9e57c5f8f4b37b2a132bad035bda079d4f3f278cc819e9f6e491dd214c1",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/60_peer_map/schema.sql",
+      "bytes": 3555,
+      "sha256": "f57774ac61f79ad75e0dd813d64dc9e53d60a2bd497aafe51673bf66021a660e",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",

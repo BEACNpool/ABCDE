@@ -21,7 +21,7 @@ No node. No relay. No db-sync. No API key. Just `git clone` and ask.
 ![Evidence](https://img.shields.io/badge/every%20claim-graded-8A2BE2?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
 
-**`135` query-ready tables · `20` audited findings · every figure hash-receipted · snapshot @ epoch `641`**
+**`149` query-ready tables · `21` audited findings · every figure hash-receipted · snapshot @ epoch `641`**
 
 <br>
 

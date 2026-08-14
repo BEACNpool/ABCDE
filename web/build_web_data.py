@@ -125,7 +125,13 @@ def main() -> None:
     sf_theft = float(q("SELECT value FROM secondfi_incident_summary WHERE metric='confirmed_theft_ada'")[0])
     sf_vault = float(q("SELECT value FROM secondfi_incident_summary WHERE metric='contested_vault_ada_now'")[0])
     sf_exposed = int(float(q("SELECT value FROM secondfi_incident_summary WHERE metric='key_exposure_confirmed_stakes'")[0]))
+    emurgo_left = float(q("SELECT ada FROM emurgo_genesis_leftover_by_drep_bucket WHERE bucket = 'EMURGO official'")[0])
+    emurgo_pull = abs(float(q("SELECT delta_ada FROM emurgo_drep_epoch_deltas WHERE \"window\" = 'community7_removal' AND label = 'community7_total'")[0]))
     hooks = [
+        {"slug": "emurgo-drep", "kicker": "EMURGO DRep", "grade": "FACT",
+         "headline": f"EMURGO's DRep Still Has 297M. Genesis Left On It: {emurgo_left:,.1f} ADA.",
+         "sub": f"They pulled ~{emurgo_pull/1e6:.1f}M ADA off the seven community DReps at epoch 578. What remains on their official DRep is a single depth-14 leftover. Clone the repo and run the query.",
+         "ask": "Did EMURGO actually remove genesis ADA from its DRep, and how much is left there?"},
         {"slug": "night-bridge-drain", "kicker": "NIGHT bridge incident", "grade": "FACT",
          "headline": f"{inc_pct:.1f}% of a Bridge, Gone in 8 Minutes.",
          "sub": f"Four transactions moved {inc_drained/1e6:.1f}M NIGHT out of the Wanchain bridge on 2026-07-20; {inc_fan_n:,} fresh wallets now hold {inc_fan_ada/1e6:.2f}M ADA of the proceeds — exactly 5,000 ADA each, still unspent.",

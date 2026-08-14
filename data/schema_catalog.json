@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "57987668f9b2",
+          "git_commit": "92b9281cbfd2",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -530,7 +530,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 139,
+      "row_count": 146,
       "columns": [
         {
           "name": "table_name",
@@ -568,7 +568,7 @@
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
           "last_commit_utc": "2026-05-29T09:26:39-05:00",
-          "age_days_at_refresh": 56,
+          "age_days_at_refresh": 77,
           "snapshot_sensitive": false
         },
         {
@@ -577,7 +577,7 @@
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
           "last_commit_utc": "2026-05-29T09:26:39-05:00",
-          "age_days_at_refresh": 56,
+          "age_days_at_refresh": 77,
           "snapshot_sensitive": false
         },
         {
@@ -586,7 +586,7 @@
           "bytes": 48593,
           "sha256": "c644a52a714567186589f0e50d7cd40f84f2e9a4e89ab9b872435e987ceafa6a",
           "last_commit_utc": "2026-07-03T13:17:25-05:00",
-          "age_days_at_refresh": 21,
+          "age_days_at_refresh": 41,
           "snapshot_sensitive": true
         }
       ]
@@ -628,6 +628,441 @@
           "db_tip_epoch": 641,
           "source": "abcde:cexplorer_replica",
           "staleness_note": "live_replication_current_at_refresh"
+        }
+      ]
+    },
+    "emurgo_drep_epoch_deltas": {
+      "source": "data/small/emurgo_drep_epoch_deltas.csv",
+      "row_count": 17,
+      "columns": [
+        {
+          "name": "window",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "from_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "to_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "from_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "to_ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "delta_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "window": "own_drep_genesis_removal",
+          "label": "emurgo_official",
+          "role": "own_drep",
+          "from_epoch": 558,
+          "to_epoch": 559,
+          "from_ada": 347702607.578918,
+          "to_ada": 267592726.106816,
+          "delta_ada": -80109881.472102
+        },
+        {
+          "window": "community7_park",
+          "label": "waffle",
+          "role": "community7",
+          "from_epoch": 561,
+          "to_epoch": 562,
+          "from_ada": 57202310.572966,
+          "to_ada": 62203555.416715,
+          "delta_ada": 5001244.843749
+        },
+        {
+          "window": "community7_park",
+          "label": "socious",
+          "role": "community7",
+          "from_epoch": 561,
+          "to_epoch": 562,
+          "from_ada": 36358559.787183,
+          "to_ada": 41300943.257776,
+          "delta_ada": 4942383.470593
+        }
+      ]
+    },
+    "emurgo_drep_public_events": {
+      "source": "data/small/emurgo_drep_public_events.csv",
+      "row_count": 5,
+      "columns": [
+        {
+          "name": "event_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "event_kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "actor",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_url",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "claim_text",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "evidence_grade",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "event_utc": "2025-03-02 18:00:00-06:00",
+          "event_kind": "own_drep_registered",
+          "actor": "EMURGO",
+          "source_url": "https://www.emurgo.io/press-news/emurgo-joins-as-a-drep-to-enhance-cardano-blockchain-governance/",
+          "source_id": "emurgo-blog-2025-03-03",
+          "claim_text": "EMURGO published official DRep ID drep1ytvlwvyjmzfyn56n0zz4f6lj94wxhmsl5zky6knnzrf4jygpyahug",
+          "evidence_grade": "FACT"
+        },
+        {
+          "event_utc": "2025-05-23 05:15:39-05:00",
+          "event_kind": "own_drep_genesis_removed",
+          "actor": "EMURGO",
+          "source_url": "https://x.com/emurgo_io/status/1925858156820754842",
+          "source_id": "1925858156820754842",
+          "claim_text": "Today we confirm the completion of removing our genesis ADA from our voting DRep profiles",
+          "evidence_grade": "EXTERNAL_CORROBORATION"
+        },
+        {
+          "event_utc": "2025-06-02 06:39:55-05:00",
+          "event_kind": "community7_named",
+          "actor": "EMURGO",
+          "source_url": "https://x.com/emurgo_io/status/1929503238765846636",
+          "source_id": "1929503238765846636",
+          "claim_text": "Named seven community DReps that would receive genesis ADA delegation",
+          "evidence_grade": "EXTERNAL_CORROBORATION"
+        }
+      ]
+    },
+    "emurgo_drep_voting_power_history": {
+      "source": "data/small/emurgo_drep_voting_power_history.csv",
+      "row_count": 1156,
+      "columns": [
+        {
+          "name": "label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cip129_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "epoch_start_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "voting_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "voting_ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "label": "adastat",
+          "role": "community7",
+          "cip129_id": "drep1wfwvaduzxyg75a67m5k0u4m746ymzefqs4nsxz2mrv5dwm22ntt",
+          "epoch_no": 509,
+          "epoch_start_utc": "2024-09-11 16:45:07-05:00",
+          "voting_lovelace": 926096871897,
+          "voting_ada": 926096.871897
+        },
+        {
+          "label": "adastat",
+          "role": "community7",
+          "cip129_id": "drep1wfwvaduzxyg75a67m5k0u4m746ymzefqs4nsxz2mrv5dwm22ntt",
+          "epoch_no": 510,
+          "epoch_start_utc": "2024-09-16 16:44:57-05:00",
+          "voting_lovelace": 932030930140,
+          "voting_ada": 932030.93014
+        },
+        {
+          "label": "adastat",
+          "role": "community7",
+          "cip129_id": "drep1wfwvaduzxyg75a67m5k0u4m746ymzefqs4nsxz2mrv5dwm22ntt",
+          "epoch_no": 511,
+          "epoch_start_utc": "2024-09-21 16:44:54-05:00",
+          "voting_lovelace": 952494888059,
+          "voting_ada": 952494.888059
+        }
+      ]
+    },
+    "emurgo_f20_receipt": {
+      "source": "data/small/emurgo_f20_receipt.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "extracted_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "tip_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "trace_source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "trace_snapshot_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "trace_snapshot_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "live_join",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "extracted_utc": "2026-08-14 17:31:17.511538",
+          "tip_utc": "2026-08-14 12:30:54-05:00",
+          "tip_block": 13808619,
+          "tip_epoch": 649,
+          "trace_source": "abcde_forensics_stage_founders_depth14.current_live_utxos",
+          "trace_snapshot_utc": "2026-07-03 15:12:35",
+          "trace_snapshot_epoch": 640,
+          "live_join": "live tx_in anti-join + live latest delegation_vote"
+        }
+      ]
+    },
+    "emurgo_genesis_leftover_by_drep_bucket": {
+      "source": "data/small/emurgo_genesis_leftover_by_drep_bucket.csv",
+      "row_count": 7,
+      "columns": [
+        {
+          "name": "bucket",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "utxos",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_addrs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "ada",
+          "type": "DOUBLE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "bucket": "NO_DREP / undeclared",
+          "utxos": 5689,
+          "stake_addrs": 3457,
+          "ada": 252201152.484431
+        },
+        {
+          "bucket": "AlwaysAbstain",
+          "utxos": 372,
+          "stake_addrs": 180,
+          "ada": 2817226.075961
+        },
+        {
+          "bucket": "other registered DRep",
+          "utxos": 121,
+          "stake_addrs": 65,
+          "ada": 517056.629932
+        }
+      ]
+    },
+    "emurgo_genesis_leftover_on_named_dreps": {
+      "source": "data/small/emurgo_genesis_leftover_on_named_dreps.csv",
+      "row_count": 63,
+      "columns": [
+        {
+          "name": "label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cip129_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "min_depth",
+          "type": "BIGINT"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "tx_out_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "ada",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "block_time_utc",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "label": "chile",
+          "cip129_id": "drep15jspgw8ea9pw3w0fwyqam2lw58ulw7z6qhr8qyuah7j0yj962w7",
+          "stake_address": "stake1uy8ud44xfpvqjth65tsgq8vz52av2en0uvewgv8ehvmucxqz8s37f",
+          "min_depth": 14,
+          "tx_hash": "2843959bcb8b62e3cb0d44db78122f69eec04c95c021e80819f0b75f759b7ab3",
+          "tx_out_index": 0,
+          "ada": 2102.467673,
+          "block_time_utc": "2024-07-24 06:58:53",
+          "epoch_no": 499
+        },
+        {
+          "label": "chile",
+          "cip129_id": "drep15jspgw8ea9pw3w0fwyqam2lw58ulw7z6qhr8qyuah7j0yj962w7",
+          "stake_address": "stake1uyyqqqr95yvxc8pt6vq946g27kkrzg4udcemg9mjphrpgdqmugqar",
+          "min_depth": 13,
+          "tx_hash": "c7ebf4a39e9991f7fb8533d7e18cbefc3cc9c2a3480d7d2b9fde993bc2cec3eb",
+          "tx_out_index": 2,
+          "ada": 65.487816,
+          "block_time_utc": "2021-01-20 05:27:36",
+          "epoch_no": 242
+        },
+        {
+          "label": "chile",
+          "cip129_id": "drep15jspgw8ea9pw3w0fwyqam2lw58ulw7z6qhr8qyuah7j0yj962w7",
+          "stake_address": "stake1uy8ud44xfpvqjth65tsgq8vz52av2en0uvewgv8ehvmucxqz8s37f",
+          "min_depth": 14,
+          "tx_hash": "2843959bcb8b62e3cb0d44db78122f69eec04c95c021e80819f0b75f759b7ab3",
+          "tx_out_index": 4,
+          "ada": 5.0,
+          "block_time_utc": "2024-07-24 06:58:53",
+          "epoch_no": 499
+        }
+      ]
+    },
+    "emurgo_named_dreps": {
+      "source": "data/small/emurgo_named_dreps.csv",
+      "row_count": 9,
+      "columns": [
+        {
+          "name": "label",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "role",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cip105_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cip129_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "key_hash_hex",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "given_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "anchor_url",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "label": "emurgo_official",
+          "role": "own_drep",
+          "cip105_id": "drep1ytvlwvyjmzfyn56n0zz4f6lj94wxhmsl5zky6knnzrf4jygpyahug",
+          "cip129_id": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+          "key_hash_hex": "d9f73092d89249d353788554ebf22d5c6bee1fa0ac4d5a7310d35911",
+          "drep_hash_id": 53942,
+          "given_name": "EMURGO",
+          "anchor_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/a0301c0547e8a4eb7566829ae387396761a34b42/EMURGO.jsonld"
+        },
+        {
+          "label": "yoroi",
+          "role": "own_drep",
+          "cip105_id": null,
+          "cip129_id": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+          "key_hash_hex": "0655f3a1c76788d839212adc459b188b84e680f30ae944c593fa18ae",
+          "drep_hash_id": 60721,
+          "given_name": "Yoroi W\u20b3llet",
+          "anchor_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/11af02e3b66daa7106941a1b3000d9721862bc3c/YOROI.jsonld"
+        },
+        {
+          "label": "adastat",
+          "role": "community7",
+          "cip105_id": "drep1yfe9en4hsgc3r6nhtmwjeljh06hgnvt9yzzkwqcftvdj34cdxdg7u",
+          "cip129_id": "drep1wfwvaduzxyg75a67m5k0u4m746ymzefqs4nsxz2mrv5dwm22ntt",
+          "key_hash_hex": "725cceb7823111ea775edd2cfe577eae89b16520856703095b1b28d7",
+          "drep_hash_id": 3576,
+          "given_name": "AdaStat",
+          "anchor_url": "https://raw.githubusercontent.com/CardanoExplorer/drep/main/metadata.jsonld"
         }
       ]
     },

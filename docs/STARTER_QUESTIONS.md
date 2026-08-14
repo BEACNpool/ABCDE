@@ -49,6 +49,7 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 
 ## Governance: DReps and SPOs
 
+- Did EMURGO actually remove genesis ADA from its DRep, and how much is left there?
 - Which DReps hold the most genesis-traced stake?
 - Which stake pools (SPOs) received the most genesis-descended delegation?
 - For the top DReps, what is their genesis trace exposure by root seed, and how sticky is it?

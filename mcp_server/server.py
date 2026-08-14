@@ -86,6 +86,7 @@ def starter_questions() -> dict:
         "questions": [
             "Which named founder entities are in the seeds table, and how much genesis ADA did each receive?",
             "Where did EMURGO's genesis ADA end up — which SPOs and DReps does the trace reach?",
+            "Did EMURGO actually remove genesis ADA from its DRep, and how much is left there?",
             "Which DReps hold the most genesis-traced stake?",
             "How much IOG-descended ADA is still unspent, and what are the confidence bands?",
             "Which stake pools (SPOs) received the most genesis-descended delegation?",

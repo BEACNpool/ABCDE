@@ -14,6 +14,26 @@ pip install -r requirements/base.txt
 
 Run examples from the repo root.
 
+## Did EMURGO remove genesis ADA from its DRep?
+
+```bash
+python3 - <<'PY'
+import duckdb
+con = duckdb.connect("data/abcde_genesis.duckdb", read_only=True)
+print(con.sql("""
+SELECT bucket, utxos, stake_addrs, ada
+FROM emurgo_genesis_leftover_by_drep_bucket
+ORDER BY ada DESC
+"""))
+print(con.sql("""
+SELECT "window", label, from_epoch, to_epoch, from_ada, to_ada, delta_ada
+FROM emurgo_drep_epoch_deltas
+WHERE label IN ('emurgo_official', 'community7_total')
+ORDER BY from_epoch
+"""))
+PY
+```
+
 ## Top DReps by current voting power
 
 ```bash

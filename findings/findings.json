@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 21,
+  "finding_count": 22,
   "findings": [
     {
       "id": "F01",
@@ -552,6 +552,53 @@
       "evidence": [],
       "has_reproduce_sql": true,
       "index_label": "VERIFIED, FACT + STRONG_INFERENCE (3 clusters) + WORKING_HYPOTHESIS (single-wallet claims)"
+    },
+    {
+      "id": "F20",
+      "file": "findings/F20_emurgo_genesis_drep_removal.md",
+      "title": "EMURGO genesis ADA was removed from its DReps",
+      "claim": "EMURGO's public 2025 statements that it removed Genesis ADA from its own DRep,\nthen parked ~35M ADA on seven named community DReps, then pulled that\ndelegation after epoch 576→577, are reproduced on Cardano mainnet.\n\nAs of warehouse tip **epoch 649 / block 13,808,619 / 2026-08-14 17:30:54 UTC**:\n\n- Official EMURGO DRep `drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez`\n  (GovTool `drep1ytvlwvyjmzfyn56n0zz4f6lj94wxhmsl5zky6knnzrf4jygpyahug`) still has\n  **297,193,174.100085 ADA** of *voting power*. That is not its genesis bag.\n- EMURGO-root leftover still delegated to that official DRep:\n  **497.300000 ADA**, one stake, min-depth 14.\n- Yoroi DRep `drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt`:\n  **568,893,909.725040 ADA** voting power; **211,704.319893 ADA** EMURGO-root leftover\n  (depths 12–14).\n- The seven named community DReps lost **35,322,561.149334 ADA** of voting power\n  between `drep_distr` epochs **577 and 578** (2025-08-17 → 2025-08-22), matching\n  EMURGO's stated ~35M pull. Combined EMURGO-root leftover on those seven now:\n  **9,298.077628 ADA**.\n- Official EMURGO DRep voting power dropped **80,109,881.472102 ADA** between\n  epochs **558 and 559** (2025-05-14 → 2025-05-19), the on-chain fingerprint of\n  the May 23 “removed from our own DReps” post.\n- Of the depth-14 EMURGO-root current bag still unspent today (**255,781,983.937857 ADA**),\n  **252,201,152.484431 ADA (98.60%)** has **no DRep** (undeclared). Almost all of\n  that undeclared pile is min-depth 14.",
+      "grade": "- **FACT:** `drep_distr` time series, current voting-power amounts, DRep identity\n  hashes / bech32 IDs / metadata names, live-unspent leftover amounts and the\n  single official-DRep leftover UTxO. Receipt: `emurgo_f20_receipt`.\n- **EXTERNAL_CORROBORATION:** the dated EMURGO blog/X posts and the seven DRep\n  IDs they published (`emurgo_drep_public_events`).\n- **STRONG_INFERENCE:** the epoch-558→559 80.1M drop *is* the on-chain\n  counterpart of the May 23 removal post; the epoch-561→562 +37.1M and\n  epoch-577→578 −35.3M moves on the seven named DReps *are* the park and the\n  advertised pull. Voting-power deltas are not tagged “genesis” on-chain.\n- **UNKNOWN:** beneficial ownership or custody of the 252M undeclared\n  depth-14 descendants. Depth ≥5 commingles. Do not call that bag\n  “EMURGO still holds this genesis.”",
+      "evidence": [
+        {
+          "path": "data/small/emurgo_drep_epoch_deltas.csv",
+          "sha256": "499876f773e43110e126f57fe9ef0ac7b52feb668ba3afebd2caad72d5f9cb2c"
+        },
+        {
+          "path": "data/small/emurgo_drep_public_events.csv",
+          "sha256": "8261dfe16bd3161265d434a5309b4f97511124691704270a3268be054165a30e"
+        },
+        {
+          "path": "data/small/emurgo_drep_voting_power_history.csv",
+          "sha256": "6997ffa1e2d86aeeae1c5e08278e7d83e6ff10e072f8406efa4b254a0611d1e6"
+        },
+        {
+          "path": "data/small/emurgo_f20_receipt.csv",
+          "sha256": "245da4935b34c94409b4eceab8589513c4ddc681b405ded387561a8fb52b8b57"
+        },
+        {
+          "path": "data/small/emurgo_genesis_leftover_by_drep_bucket.csv",
+          "sha256": "c855bb48338ffab408f6266877ada8c49330c34576e597fc50500a044c9ad0d0"
+        },
+        {
+          "path": "data/small/emurgo_genesis_leftover_on_named_dreps.csv",
+          "sha256": "9e557ea7a2d3901e8b22bbe9b70e1ec651f6d242e134bd9162bef79c251a8fa3"
+        },
+        {
+          "path": "data/small/emurgo_named_dreps.csv",
+          "sha256": "50067c620e2c0859af3edb171fc14c11356309430f83f702bcf1d177757b6023"
+        },
+        {
+          "path": "sql/10_findings/F20_emurgo_genesis_drep_removal.duckdb.sql",
+          "sha256": "229550c9f9f7e004731179a3982154531e6413d3e729ae76632bcf9574cd8ece"
+        },
+        {
+          "path": "sql/10_findings/F20_emurgo_genesis_drep_removal.remote.sql",
+          "sha256": "eea158f56a87302cc19329ec5fd4e418769a015106345fd864d881a32da5d388"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE"
     }
   ]
 }

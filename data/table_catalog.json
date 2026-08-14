@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 142,
+  "table_count": 149,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -66,7 +66,7 @@
     {
       "table": "data_freshness_catalog",
       "family": "Meta",
-      "row_count": 138,
+      "row_count": 146,
       "source": "data/small/data_freshness_catalog.csv",
       "snapshot_sensitive": false,
       "findings": [],
@@ -80,6 +80,83 @@
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
+    },
+    {
+      "table": "emurgo_drep_epoch_deltas",
+      "family": "EMURGO DRep genesis",
+      "row_count": 17,
+      "source": "data/small/emurgo_drep_epoch_deltas.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
+    },
+    {
+      "table": "emurgo_drep_public_events",
+      "family": "EMURGO DRep genesis",
+      "row_count": 5,
+      "source": "data/small/emurgo_drep_public_events.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
+    },
+    {
+      "table": "emurgo_drep_voting_power_history",
+      "family": "EMURGO DRep genesis",
+      "row_count": 1156,
+      "source": "data/small/emurgo_drep_voting_power_history.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
+    },
+    {
+      "table": "emurgo_f20_receipt",
+      "family": "EMURGO DRep genesis",
+      "row_count": 1,
+      "source": "data/small/emurgo_f20_receipt.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
+    },
+    {
+      "table": "emurgo_genesis_leftover_by_drep_bucket",
+      "family": "EMURGO DRep genesis",
+      "row_count": 7,
+      "source": "data/small/emurgo_genesis_leftover_by_drep_bucket.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
+    },
+    {
+      "table": "emurgo_genesis_leftover_on_named_dreps",
+      "family": "EMURGO DRep genesis",
+      "row_count": 63,
+      "source": "data/small/emurgo_genesis_leftover_on_named_dreps.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
+    },
+    {
+      "table": "emurgo_named_dreps",
+      "family": "EMURGO DRep genesis",
+      "row_count": 9,
+      "source": "data/small/emurgo_named_dreps.csv",
+      "snapshot_sensitive": false,
+      "findings": [
+        "F20"
+      ],
+      "grade": "FACT: drep_distr time series, current votingpower amounts, DRep identity"
     },
     {
       "table": "epoch_context",
