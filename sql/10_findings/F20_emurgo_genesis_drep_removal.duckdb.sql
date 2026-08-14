@@ -1,4 +1,5 @@
 -- Runs against the published ABCDE Genesis DuckDB cut.
+-- Identity of every DRep in the from/to path is in emurgo_named_dreps.
 SELECT metric, value FROM (
   SELECT 'official_leftover_ada' AS metric, ada AS value
   FROM emurgo_genesis_leftover_by_drep_bucket
