@@ -1,0 +1,156 @@
+[
+  {
+    "id": "F01",
+    "title": "Named Founder Allocations",
+    "grade": "VERIFIED, FACT",
+    "claim": "The canonical named-founder and fourth-entry seed transactions are listed in `anchors.yaml` and can be verified against db-sync or the published DuckDB cut.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F01_named_founder_allocations.md"
+  },
+  {
+    "id": "F02",
+    "title": "Fourth-Entry First-Spend Operational Convergence",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "The fourth-entry seed output and the named EMURGO seed output both activated after roughly `475.1` hours of dormancy. The fourth-entry first spend used a two-input transaction, making it an immediate convergence point rather than a later frontier-only overlap.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F02_fourth_entry_first_spend_convergence.md"
+  },
+  {
+    "id": "F02b",
+    "title": "Fourth-Entry First Spend Directly Co-Spends EMURGO-Descended UTxO",
+    "grade": "VERIFIED, FACT",
+    "claim": "The fourth-entry first spend transaction `c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76` consumed two inputs: 1. the fourth-entry seed output, and 2. an EMURGO-descended UTxO at trace depth 2. This establishes direct first-spend operational convergence. It does **not** prove beneficial ownership.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F02b_fourth_entry_direct_cospend.md"
+  },
+  {
+    "id": "F03",
+    "title": "Fourth-Entry Sale-Ticket Origin Signal",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "The fourth-entry amount `781,381,495 ADA` exactly matches the preserved legacy finding's reported `adamax` value across six Cardano pre-launch ada-sale statistic slices: - Tickets / Tranche 4 - Tickets / Region / Japan - Tickets / User type / Company - Tickets / Currency / BTC - Tickets / All / All - Buyers / User type / Company / All This is a strong origin",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F03_fourth_entry_sale_ticket_origin_signal.md"
+  },
+  {
+    "id": "F04",
+    "title": "Bounded Depth-3 Trace Overlap Review Cut",
+    "grade": "REVIEW_CUT, FACT within bounded scope",
+    "claim": "The v2 bounded depth-3 review-cut trace finds UTxOs reachable from both the EMURGO seed and the fourth-entry seed, confirming that the review-cut extractor can surface the known convergence pattern from generic trace output.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F04_bounded_trace_overlap_pilot.md"
+  },
+  {
+    "id": "F05",
+    "title": "Bounded Depth-3 Merge Inventory Review Cut",
+    "grade": "REVIEW_CUT, FACT within bounded scope",
+    "claim": "The v2 merge-classification logic can derive a cross-seed consuming transaction from trace membership. On the current bounded depth-3 artifact, it identifies the known EMURGO/fourth-entry convergence transaction.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F05_bounded_trace_merge_inventory_pilot.md"
+  },
+  {
+    "id": "F06",
+    "title": "SPO and DRep Delegation Targets for Trace-Derived Stake Credentials",
+    "grade": "VERIFIED, FACT",
+    "claim": "Preserved trace receipts include Shelley-era pool delegation and Conway-era DRep delegation histories for stake credentials reached by the Genesis traces. v2 now publishes rollups of every observed SPO pool target and DRep target by root seed.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F06_governance_delegation_targets.md"
+  },
+  {
+    "id": "F07",
+    "title": "Staged Trace Extraction and Founder Merge Candidate Set",
+    "grade": "CANDIDATE_SET, requires classification before stronger claims",
+    "claim": "ABCDE v2 now has a scalable server-side trace extraction path that can materialize founder-descended UTxO membership by frontier depth, dedupe by minimum depth, and derive cross-entity merge candidates from staged tables.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F07_staged_trace_extraction.md"
+  },
+  {
+    "id": "F08",
+    "title": "IOG Current Bag Audit Cut",
+    "grade": "REVIEW_CUT, FACT within depth-14 trace scope",
+    "claim": "A depth-14 staged trace from the IOG genesis root currently resolves to approximately **506.9M ADA** in unspent IOG-descended UTxOs at ABCDE/db-sync tip time. This is an **audit cut**, not a proof of current legal ownership by IOG, IOHK, or Charles Hoskinson.",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F08_iog_current_bag_audit_cut.md"
+  },
+  {
+    "id": "F09",
+    "title": "IOGP Pledge and Voucher-Address Follow-up",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "The IOGP-ticker pool declared a `1,000,000 ADA` pledge, while its reward credential carried approximately `66.36M ADA` of active stake at epoch 250 and `64.36M ADA` at epoch 255. A separately cited voucher-program address: - uses a stake credential that delegated to the IOG1-ticker pool; - received `52,196,773.895086 ADA` on `2023-10-05 20:48:21 UTC` in a tr",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F09_iogp_voucher_followup.md"
+  },
+  {
+    "id": "F10",
+    "title": "Genesis Trail Monthly Stream and Consolidation Hub",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "A recipient address received nine payment-sized outputs between April and November 2021, totaling `184,580,695.400465 ADA`. Across all 11 outputs, the address received `184,837,022.651928 ADA`, then forwarded `184,837,020.994894 ADA` to one consolidation hub. That hub received `9,849,508,503.491169 ADA` in 807 outputs. It also received `925,000,294.515631 AD",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F10_genesis_trail_monthly_stream.md"
+  },
+  {
+    "id": "F10",
+    "title": "Stake-pool operator concentration by KES co-rotation",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "Cardano's ~2,900-pool count overstates decentralization. Clustering pools by synchronized KES-key rotation \u2014 a public operational fingerprint in every block header \u2014 resolves **480 pools into 96 operator groups controlling 11.42B ADA, or 53.4% of all staked ADA.** Recomputed per operator, the network's concentration is roughly four times higher than the per-",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F10_kes_corotation_pool_operators.md"
+  },
+  {
+    "id": "F11",
+    "title": "Eight-key 35M-ADA custody cohort with synchronized certificates and enterprise-funded reward sweeps",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "Eight stake addresses, each holding **exactly 35,000,000 ADA** at tip block `13,630,389` (2026-07-03), form one operational cohort: - All eight were first funded within a four-day window (2022-01-27 to 2022-01-31), each from single-use **enterprise** (`addr1v\u2026`, no stake part) input addresses. - All eight registered and delegated in synchronized bursts: thre",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F11_eight_key_35m_custody_cohort.md"
+  },
+  {
+    "id": "F12",
+    "title": "High-throughput unstaked 213.8M-ADA bag reached by the IOG depth-14 trace",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "Stake address `stake1u9eacqarqgnjvqkr6wk9843mpr49jx8zeuzg4k4tpt9p08grvhlmc` held **213,852,164 ADA across 1,492 UTxOs** at tip block `13,630,389` (2026-07-03) and is operationally the opposite of the F11 cohort: - First funded 2024-10-14; 4,944 lifetime output rows in under 21 months. - **Actively moving on extraction day**: last outgoing 02:01 UTC, last inc",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F12_high_throughput_unstaked_bag.md"
+  },
+  {
+    "id": "F13",
+    "title": "F11 reward-plumbing fleet, consolidation hubs, and a genesis\u2192tracer-mapped-exchange bridge",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "Following the enterprise-address reward plumbing of the F11 cohort downstream reveals three things: 1. **A wider operator fleet.** The transactions that spend the cohort's withdrawal outputs (\"exit transactions\") also withdraw staking rewards for **81 other stake keys** that are not in the F11 cohort, moving **17,699,838 ADA** of those keys' rewards through ",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F13_reward_plumbing_downstream_and_tracer_bridge.md"
+  },
+  {
+    "id": "F14",
+    "title": "The F13 fleet is the same 35M-parcel institutional custody structure as the F11 cohort",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "Classifying the 81 F13 fleet stake keys through the same control-indicator pipeline as the genesis set (separate `fleet_control_*` output) shows the fleet is not merely \"keys that shared a withdrawal transaction\" \u2014 it is **more of the same structure** the F11 cohort sampled: - **42 of the 81 fleet keys currently hold ADA** (\u22651,000); the other 39 are drained/",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F14_fleet_is_same_35m_parcel_structure.md"
+  },
+  {
+    "id": "F15",
+    "title": "The reward-plumbing operation is a closed 115-key component; ~1.694B ADA is the floor",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "Iterating the F13 reward-plumbing edge to fixpoint from the eight F11 cohort keys reaches a **closed component of 115 stake keys** and no more: - Forward reachability (key A \u2192 key B when a withdrawal-tx output of A is spent by a transaction that is itself a withdrawal tx of B) grows **8 \u2192 89 (round 1) \u2192 115 (round 2) \u2192 115 (round 3, fixpoint).** Round 1 repr",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F15_plumbing_component_is_closed_floor.md"
+  },
+  {
+    "id": "F16",
+    "title": "NIGHT genesis mint: complete spend-flow provenance and supply concentration",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "The entire supply of the **NIGHT** token (policy `0691b2fecca1ac4f53cb6dfb00b7013e561d1f34403b957cbb5af1fa`, asset name `NIGHT`) is traced from its single genesis mint to every current unspent output, and the distribution is highly concentrated: - **Single mint:** tx `ce75b0e1e203c66d5dbce3b37865114163f577a58d3d12b0ae2593f8d3a64eb2` on 2025-11-25, **24,000,0",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F16_night_mint_provenance_and_concentration.md"
+  },
+  {
+    "id": "F17",
+    "title": "Wanchain NIGHT bridge drain, token provenance, and attacker flow",
+    "grade": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE",
+    "claim": "The Wanchain Cardano \u2194 BNB Chain NIGHT bridge was drained on 2026-07-20, and ABCDE reproduces the Cardano-side incident from bridge inventory through the attacker's first monetization and dispersal paths: - Four transactions between `14:46:50` and `14:55:05 UTC` transferred exactly **515,206,545.426856 NIGHT** from the bridge to the first attacker wallet clu",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F17_night_wanchain_bridge_incident.md"
+  },
+  {
+    "id": "F18",
+    "title": "SecondFi / Yoroi wallet incident (Cardano-side facts)",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE",
+    "claim": "The June 2026 SecondFi (formerly Yoroi) wallet key-compromise incident is reproduced from Cardano mainnet as queryable `secondfi_incident_*` tables. What the chain shows: - Every drain is an ordinary **key-signed** transaction (0 Plutus redeemers, 0 scripts): **key compromise, not a Cardano contract or protocol exploit.** - **`old_fee_sponsored` cluster:** *",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F18_secondfi_incident.md"
+  },
+  {
+    "id": "F19",
+    "title": "Exchange tracer convergence under the study's canonical method",
+    "grade": "VERIFIED, FACT + STRONG_INFERENCE (3 clusters) + WORKING_HYPOTHESIS (single-wallet claims)",
+    "claim": "ABCDE reproduces **The Red (or Blue) Pill Study** exchange-tracer dataset under the study operator's published reconstruction rules (node keys, strict deposit validation, exact NFT paths, terminus grouping, participant-vote resolution) and publishes the result as queryable `tracer_*` tables. Applying those rules to the full policy at the snapshot tip: - **50",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F19_exchange_tracer_convergence.md"
+  },
+  {
+    "id": "F20",
+    "title": "EMURGO genesis ADA was removed from its DReps",
+    "grade": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE",
+    "claim": "EMURGO's public 2025 statements that it removed Genesis ADA from its own DRep, then parked ~35M ADA on seven named community DReps, then pulled that delegation after epoch 576\u2192577, are reproduced on Cardano mainnet. As of warehouse tip **epoch 649 / block 13,808,619 / 2026-08-14 17:30:54 UTC**: - Official EMURGO DRep `drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F20_emurgo_genesis_drep_removal.md"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "emurgo-drep",
+    "kicker": "EMURGO DRep",
+    "grade": "FACT",
+    "headline": "EMURGO's DRep Still Has 297M. Genesis Left On It: 497.3 ADA.",
+    "sub": "They pulled ~35.3M ADA off the seven community DReps at epoch 578. What remains on their official DRep is a single depth-14 leftover. Clone the repo and run the query.",
+    "ask": "Did EMURGO actually remove genesis ADA from its DRep, and how much is left there?"
+  },
+  {
+    "slug": "night-bridge-drain",
+    "kicker": "NIGHT bridge incident",
+    "grade": "FACT",
+    "headline": "97.8% of a Bridge, Gone in 8 Minutes.",
+    "sub": "Four transactions moved 515.2M NIGHT out of the Wanchain bridge on 2026-07-20; 6,450 fresh wallets now hold 32.25M ADA of the proceeds \u2014 exactly 5,000 ADA each, still unspent.",
+    "ask": "Trace the 2026-07-20 Wanchain NIGHT bridge drain: how much was taken and where is the ADA now?"
+  },
+  {
+    "slug": "secondfi-frozen",
+    "kicker": "SecondFi incident",
+    "grade": "FACT",
+    "headline": "129M ADA, Swept Into One Vault, Not a Lovelace Out.",
+    "sub": "The confirmed SecondFi theft was 12.19M ADA; a further 129.4M ADA was consolidated into a single wallet that has zero outflows since 2026-06-25. 2,588 wallets were cryptographically confirmed key-exposed. Query the current state yourself.",
+    "ask": "What is the current balance of the SecondFi contested vault and the recovery fund, and has any of it moved?"
+  },
+  {
+    "slug": "night-25",
+    "kicker": "NIGHT",
+    "grade": "FACT",
+    "headline": "6 Billion NIGHT. One Address. One UTxO.",
+    "sub": "A quarter of the entire NIGHT supply \u2014 25.00% \u2014 sits unspent in a single output held by one address.",
+    "ask": "How concentrated is the NIGHT supply, and how much does the single largest address hold?"
+  },
+  {
+    "slug": "35m-cohort",
+    "kicker": "Genesis ADA",
+    "grade": "STRONG_INFERENCE",
+    "headline": "42 Wallets. The Exact Same 35,000,000 ADA. One Silent Vote.",
+    "sub": "A closed 115-key operation holds 1.69 billion ADA \u2014 and every wallet is delegated to \u201calways abstain.\u201d",
+    "ask": "Which genesis-descended stake keys hold exactly 35,000,000 ADA, and how do they all vote?"
+  },
+  {
+    "slug": "supply-hub",
+    "kicker": "Genesis ADA",
+    "grade": "FACT",
+    "headline": "One Address Has Received 3.8\u00d7 All the ADA in Existence.",
+    "sub": "172 billion ADA has cycled through a single address \u2014 the structural signature of an exchange-scale hot wallet.",
+    "ask": "Which addresses have gross-received more ADA than the total supply, and what does that imply?"
+  },
+  {
+    "slug": "night-depth",
+    "kicker": "NIGHT",
+    "grade": "FACT",
+    "headline": "Every NIGHT Token, Traced From One Mint \u2014 3,349 Hops Deep.",
+    "sub": "The full spend graph of the 24-billion-NIGHT distribution closes exactly: 167,728 current unspent leaf UTxOs, zero unaccounted.",
+    "ask": "Does the traced NIGHT supply conserve back to the 24 billion genesis mint?"
+  },
+  {
+    "slug": "night-top5",
+    "kicker": "NIGHT",
+    "grade": "FACT",
+    "headline": "It Takes Just 5 Addresses to Hold Half of NIGHT.",
+    "sub": "Top 5 addresses: 53.8%. Top 10: 65.3%. The airdrop is steeply concentrated at the top.",
+    "ask": "What share of NIGHT do the top 5 and top 10 addresses hold?"
+  },
+  {
+    "slug": "genesis-unspent",
+    "kicker": "Genesis ADA",
+    "grade": "FACT",
+    "headline": "Half a Billion IOG-Descended ADA Remains Unspent.",
+    "sub": "~494M ADA descended from IOG's genesis allocation sits in current UTxOs reached by a depth-14 trace.",
+    "ask": "How much IOG-descended genesis ADA is still unspent, and how confident is the trace?"
+  }
+]
