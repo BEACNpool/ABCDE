@@ -1,25 +1,50 @@
 {
-  "generated_at": "2026-08-16T21:15:04.631964+00:00",
+  "generated_at": "2026-08-16T22:15:04.575912+00:00",
   "relay": "10.30.0.6:6000",
   "window_hours": 48,
   "pools": [
     {
-      "ip": "114.129.51.165",
-      "port": 6001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "ip": "108.142.42.161",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss",
+        "zeek"
+      ],
+      "ticker": "ETO7",
+      "name": "eToro Pool 7",
+      "pool_id": "pool1hqlvn3qndgkne52uhe5347nlysmmec73ys9vduk96rs4jzjjyxm"
+    },
+    {
+      "ip": "104.131.122.73",
+      "port": 3001,
+      "first_seen": "2026-08-16 18:15:03.311814+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ],
-      "ticker": "RX78",
-      "name": "RX-78",
-      "pool_id": "pool18heqrjtge2emf2hes4mdxkr76y99zztkqk4qtjr9dul0vuur0yu"
+      "ticker": "PILOT",
+      "name": "Pilot Pool",
+      "pool_id": "pool1eqa7kxx4xg35cu4rqj4exkvzhenscgh8wxez0gl7hsagygp79kr"
+    },
+    {
+      "ip": "104.131.122.73",
+      "port": 3001,
+      "first_seen": "2026-08-16 18:15:03.311814+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "PILOT",
+      "name": "Pilot Pool 2",
+      "pool_id": "pool104gtn3hvp9lz5l6wevhjj98e45s7rfaa4zzvk9pex7nn786qncr"
     },
     {
       "ip": "104.236.24.187",
       "port": 5281,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ],
@@ -28,10 +53,94 @@
       "pool_id": "pool1qku2yhky7sv4dfjfv42uyvauhehuqevk25aw952d7ulzqzx3jcu"
     },
     {
+      "ip": "202.61.246.42",
+      "port": 6000,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "OYAJI",
+      "name": "Oyaji Stake Pool",
+      "pool_id": "pool1ralkckmup253k79hap4chku450qyshezh4sasjqh0ltxu2gytlq"
+    },
+    {
+      "ip": "152.53.21.151",
+      "port": 6000,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "SASA",
+      "name": "SASA Stake Pool",
+      "pool_id": "pool1rmpv0h0pecysach8tj06vxx9wku2pdm74mk9cunx759v58q0hu2"
+    },
+    {
+      "ip": "152.53.37.253",
+      "port": 6000,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "SGTRS",
+      "name": "Sagittarius Pool",
+      "pool_id": "pool1les50pm26wpf8gym7cda470xgfswukzhyykvhyfsfl4dcu2ezj4"
+    },
+    {
+      "ip": "154.26.154.254",
+      "port": 16000,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "AAA",
+      "name": "AAA",
+      "pool_id": "pool1ljlmfg7p37ysmea9ra5xqwccue203dpj40w6zlzn5r2cvjrf6tw"
+    },
+    {
+      "ip": "158.220.80.17",
+      "port": 6000,
+      "first_seen": "2026-08-16 22:15:03.117658+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "TREK",
+      "name": "stakeTREK.io",
+      "pool_id": "pool1cmqpzlsrrjup8zg6qaperz868u64dlt7uvvdszsr658mvzz9qq0"
+    },
+    {
+      "ip": "18.207.62.97",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "BNP",
+      "name": "Binance Node - 2",
+      "pool_id": "pool1z46azf72z9yjlq6rpngwn5syg5xup8jcwguu2t259ngl5cnv2ds"
+    },
+    {
+      "ip": "18.207.62.97",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "BNP",
+      "name": "Binance Node - 1",
+      "pool_id": "pool1ewgnsmk42ljf00wytawfcl3dcash9f852u5fr92e37wqxutyksl"
+    },
+    {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -43,8 +152,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -56,8 +165,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -69,8 +178,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -82,8 +191,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -95,8 +204,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -108,8 +217,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -121,8 +230,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -134,8 +243,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -147,8 +256,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -160,8 +269,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -173,21 +282,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss",
-        "zeek"
-      ],
-      "ticker": "ETO7",
-      "name": "eToro Pool 7",
-      "pool_id": "pool1hqlvn3qndgkne52uhe5347nlysmmec73ys9vduk96rs4jzjjyxm"
-    },
-    {
-      "ip": "108.142.42.161",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -199,8 +295,8 @@
     {
       "ip": "108.142.42.161",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -213,7 +309,7 @@
       "ip": "110.172.148.121",
       "port": 8001,
       "first_seen": "2026-08-16 21:15:03.178149+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ],
@@ -222,118 +318,22 @@
       "pool_id": "pool19ae6xhzsscypyha0sszv90xwjsh20hxecxjpcqynshfawvwxqnn"
     },
     {
-      "ip": "152.53.21.151",
-      "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "ip": "114.129.51.165",
+      "port": 6001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ],
-      "ticker": "SASA",
-      "name": "SASA Stake Pool",
-      "pool_id": "pool1rmpv0h0pecysach8tj06vxx9wku2pdm74mk9cunx759v58q0hu2"
-    },
-    {
-      "ip": "152.53.37.253",
-      "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "SGTRS",
-      "name": "Sagittarius Pool",
-      "pool_id": "pool1les50pm26wpf8gym7cda470xgfswukzhyykvhyfsfl4dcu2ezj4"
-    },
-    {
-      "ip": "154.26.154.254",
-      "port": 16000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "AAA",
-      "name": "AAA",
-      "pool_id": "pool1ljlmfg7p37ysmea9ra5xqwccue203dpj40w6zlzn5r2cvjrf6tw"
-    },
-    {
-      "ip": "18.207.62.97",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "BNP",
-      "name": "Binance Node - 1",
-      "pool_id": "pool1ewgnsmk42ljf00wytawfcl3dcash9f852u5fr92e37wqxutyksl"
-    },
-    {
-      "ip": "18.207.62.97",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "BNP",
-      "name": "Binance Node - 2",
-      "pool_id": "pool1z46azf72z9yjlq6rpngwn5syg5xup8jcwguu2t259ngl5cnv2ds"
-    },
-    {
-      "ip": "202.61.246.42",
-      "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "OYAJI",
-      "name": "Oyaji Stake Pool",
-      "pool_id": "pool1ralkckmup253k79hap4chku450qyshezh4sasjqh0ltxu2gytlq"
-    },
-    {
-      "ip": "3.217.90.52",
-      "port": 6000,
-      "first_seen": "2026-08-16 15:15:03.132332+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "AOS",
-      "name": "Army of Spies",
-      "pool_id": "pool1a23gmvalpdams9d42t7fur8vmknzjv7wd3nsvuvrc7dv66lnau0"
-    },
-    {
-      "ip": "3.219.254.127",
-      "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "AOS",
-      "name": "Army of Spies",
-      "pool_id": "pool1a23gmvalpdams9d42t7fur8vmknzjv7wd3nsvuvrc7dv66lnau0"
+      "ticker": "RX78",
+      "name": "RX-78",
+      "pool_id": "pool18heqrjtge2emf2hes4mdxkr76y99zztkqk4qtjr9dul0vuur0yu"
     },
     {
       "ip": "3.231.140.4",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "BNP",
-      "name": "Binance Node - 11",
-      "pool_id": "pool17c4u37tjcjaeym0cs5mffvdkyyv74rkhczhnsgplef4sjglkwpj"
-    },
-    {
-      "ip": "3.231.140.4",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ],
@@ -342,28 +342,52 @@
       "pool_id": "pool124hy9qgc0nhqsve268kj5r53pvz7ppg295q6r2d0sjxswchljf0"
     },
     {
+      "ip": "3.231.140.4",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "BNP",
+      "name": "Binance Node - 11",
+      "pool_id": "pool17c4u37tjcjaeym0cs5mffvdkyyv74rkhczhnsgplef4sjglkwpj"
+    },
+    {
+      "ip": "3.219.254.127",
+      "port": 6000,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "AOS",
+      "name": "Army of Spies",
+      "pool_id": "pool1a23gmvalpdams9d42t7fur8vmknzjv7wd3nsvuvrc7dv66lnau0"
+    },
+    {
+      "ip": "3.217.90.52",
+      "port": 6000,
+      "first_seen": "2026-08-16 15:15:03.132332+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "AOS",
+      "name": "Army of Spies",
+      "pool_id": "pool1a23gmvalpdams9d42t7fur8vmknzjv7wd3nsvuvrc7dv66lnau0"
+    },
+    {
       "ip": "208.118.69.126",
       "port": 3003,
-      "first_seen": "2026-08-14 21:15:15.217+00",
-      "last_seen": "2026-08-16 21:10:54.608+00",
+      "first_seen": "2026-08-14 22:18:26.047+00",
+      "last_seen": "2026-08-16 22:14:14.16+00",
       "sources": [
         "zeek"
       ],
       "ticker": "PSB",
       "name": "PSILOBLOX",
       "pool_id": "pool17taqml487n9t4r9a6ppvf9qv0qlw2lu4zcrzwfdsfcv6xp7uqym"
-    },
-    {
-      "ip": "104.131.122.73",
-      "port": 3001,
-      "first_seen": "2026-08-16 18:15:03.311814+00",
-      "last_seen": "2026-08-16 20:15:03.498915+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "PILOT",
-      "name": "Pilot Pool",
-      "pool_id": "pool1eqa7kxx4xg35cu4rqj4exkvzhenscgh8wxez0gl7hsagygp79kr"
     },
     {
       "ip": "70.15.2.193",
@@ -378,21 +402,9 @@
       "pool_id": "pool1h92eaq3wksa7j3ecd8llyxva9kuyuz5ucm7a8hpwz8vhzj0wtsf"
     },
     {
-      "ip": "104.131.122.73",
-      "port": 3001,
-      "first_seen": "2026-08-16 18:15:03.311814+00",
-      "last_seen": "2026-08-16 20:15:03.498915+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "PILOT",
-      "name": "Pilot Pool 2",
-      "pool_id": "pool104gtn3hvp9lz5l6wevhjj98e45s7rfaa4zzvk9pex7nn786qncr"
-    },
-    {
       "ip": "202.61.225.111",
       "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-16 17:15:02.77259+00",
       "sources": [
         "ss"
@@ -482,45 +494,9 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO5",
-      "name": "eToro Pool 5",
-      "pool_id": "pool1dzdxps32uqhva9q9urx4lm7m0nhlczjjccwy9kv4t2d3krsn4m7"
-    },
-    {
-      "ip": "108.142.42.221",
-      "port": 3001,
-      "first_seen": "2026-08-15 09:15:02.986711+00",
-      "last_seen": "2026-08-15 21:15:03.160455+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "ETO9",
-      "name": "eToro Pool 9",
-      "pool_id": "pool16eua0zalaln7q0s9u7jzlyygqad0pu2l2qdxx8r8ueqrw2jdhqf"
-    },
-    {
-      "ip": "108.142.42.221",
-      "port": 3001,
-      "first_seen": "2026-08-15 09:15:02.986711+00",
-      "last_seen": "2026-08-15 21:15:03.160455+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "ETO12",
-      "name": "eToro Pool 12",
-      "pool_id": "pool1fvgmxt3688a5zl6amhvaqk9tmvk3lhxkgdsta6yj3czuy5hjwfy"
-    },
-    {
-      "ip": "108.142.42.221",
-      "port": 3001,
-      "first_seen": "2026-08-15 09:15:02.986711+00",
-      "last_seen": "2026-08-15 21:15:03.160455+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "ETO13",
-      "name": "eToro Pool 13",
-      "pool_id": "pool1nyjw0460ww5qjtpukexuywxdz4lzhy6tm7yygn74lnlcc62hnc8"
+      "ticker": "ETO2",
+      "name": "eToro Pool 2",
+      "pool_id": "pool19066qvd5dv6vq7fh5a5l7muzk6nc5fw8zq3w4tclyrhvjvlyeuc"
     },
     {
       "ip": "108.142.42.221",
@@ -542,9 +518,9 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO2",
-      "name": "eToro Pool 2",
-      "pool_id": "pool19066qvd5dv6vq7fh5a5l7muzk6nc5fw8zq3w4tclyrhvjvlyeuc"
+      "ticker": "ETO5",
+      "name": "eToro Pool 5",
+      "pool_id": "pool1dzdxps32uqhva9q9urx4lm7m0nhlczjjccwy9kv4t2d3krsn4m7"
     },
     {
       "ip": "108.142.42.221",
@@ -554,9 +530,9 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO3",
-      "name": "eToro Pool 3",
-      "pool_id": "pool1xt7mjrtnsew3v33lu8sf93upf20sxhmcrfnpm82ra46yxk7uy45"
+      "ticker": "ETO13",
+      "name": "eToro Pool 13",
+      "pool_id": "pool1nyjw0460ww5qjtpukexuywxdz4lzhy6tm7yygn74lnlcc62hnc8"
     },
     {
       "ip": "108.142.42.221",
@@ -566,9 +542,9 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO4",
-      "name": "eToro Pool 4",
-      "pool_id": "pool1swuyjknhewtqcmh583jjpvlcl0p9h9hrt5l2f3v2hl6gchqrn40"
+      "ticker": "ETO12",
+      "name": "eToro Pool 12",
+      "pool_id": "pool1fvgmxt3688a5zl6amhvaqk9tmvk3lhxkgdsta6yj3czuy5hjwfy"
     },
     {
       "ip": "108.142.42.221",
@@ -590,9 +566,33 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO8",
-      "name": "eToro Pool 8",
-      "pool_id": "pool1sskadl6p2w0ttfr60y2ssfzcmrnaty4wt68v5glzd3e5vwkh7z5"
+      "ticker": "ETO11",
+      "name": "eToro Pool 11",
+      "pool_id": "pool1jzk8rwf2fs5l02dmm6pm5tnw9stmd8jpmvsy54085vu2u2656re"
+    },
+    {
+      "ip": "108.142.42.221",
+      "port": 3001,
+      "first_seen": "2026-08-15 09:15:02.986711+00",
+      "last_seen": "2026-08-15 21:15:03.160455+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "ETO4",
+      "name": "eToro Pool 4",
+      "pool_id": "pool1swuyjknhewtqcmh583jjpvlcl0p9h9hrt5l2f3v2hl6gchqrn40"
+    },
+    {
+      "ip": "108.142.42.221",
+      "port": 3001,
+      "first_seen": "2026-08-15 09:15:02.986711+00",
+      "last_seen": "2026-08-15 21:15:03.160455+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "ETO3",
+      "name": "eToro Pool 3",
+      "pool_id": "pool1xt7mjrtnsew3v33lu8sf93upf20sxhmcrfnpm82ra46yxk7uy45"
     },
     {
       "ip": "108.142.42.221",
@@ -614,18 +614,6 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO1",
-      "name": "eToro Pool 1",
-      "pool_id": "pool150n38x8gquu4yt5s0s6m3ajjqe89y68x96dh32tq8a4es2l6dvp"
-    },
-    {
-      "ip": "108.142.42.221",
-      "port": 3001,
-      "first_seen": "2026-08-15 09:15:02.986711+00",
-      "last_seen": "2026-08-15 21:15:03.160455+00",
-      "sources": [
-        "ss"
-      ],
       "ticker": "ETO10",
       "name": "eToro Pool 10",
       "pool_id": "pool19l206haluae6wyzm7tjpt3gln9paa5m9s4fedec2u09fqz300ht"
@@ -638,9 +626,33 @@
       "sources": [
         "ss"
       ],
-      "ticker": "ETO11",
-      "name": "eToro Pool 11",
-      "pool_id": "pool1jzk8rwf2fs5l02dmm6pm5tnw9stmd8jpmvsy54085vu2u2656re"
+      "ticker": "ETO8",
+      "name": "eToro Pool 8",
+      "pool_id": "pool1sskadl6p2w0ttfr60y2ssfzcmrnaty4wt68v5glzd3e5vwkh7z5"
+    },
+    {
+      "ip": "108.142.42.221",
+      "port": 3001,
+      "first_seen": "2026-08-15 09:15:02.986711+00",
+      "last_seen": "2026-08-15 21:15:03.160455+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "ETO1",
+      "name": "eToro Pool 1",
+      "pool_id": "pool150n38x8gquu4yt5s0s6m3ajjqe89y68x96dh32tq8a4es2l6dvp"
+    },
+    {
+      "ip": "108.142.42.221",
+      "port": 3001,
+      "first_seen": "2026-08-15 09:15:02.986711+00",
+      "last_seen": "2026-08-15 21:15:03.160455+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "ETO9",
+      "name": "eToro Pool 9",
+      "pool_id": "pool16eua0zalaln7q0s9u7jzlyygqad0pu2l2qdxx8r8ueqrw2jdhqf"
     },
     {
       "ip": "79.170.252.37",
@@ -653,30 +665,6 @@
       "ticker": "CBROS",
       "name": "Coudre Bros",
       "pool_id": "pool1wntxmftndrsj7y4aqles8knl3nfuyj22l83jun02yyx9s962gm3"
-    },
-    {
-      "ip": "34.23.88.7",
-      "port": 3000,
-      "first_seen": "2026-08-15 14:15:03.216041+00",
-      "last_seen": "2026-08-15 14:15:03.216041+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "MS5",
-      "name": "Moonstake 5",
-      "pool_id": "pool19lz8nyz0jjpdrdtnjaar4untk4th23gpg5s7aegn7480zff4vgq"
-    },
-    {
-      "ip": "34.23.88.7",
-      "port": 3000,
-      "first_seen": "2026-08-15 14:15:03.216041+00",
-      "last_seen": "2026-08-15 14:15:03.216041+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "MS6",
-      "name": "Moonstake 6",
-      "pool_id": "pool1fpu5xurq3jx5rn626ejcx0dzzzk5lmtvdl2qkj9l4kw2sjp50dz"
     },
     {
       "ip": "34.23.88.7",
@@ -710,9 +698,21 @@
       "sources": [
         "ss"
       ],
-      "ticker": "MS3",
-      "name": "Moonstake 3",
-      "pool_id": "pool1xppj5zu9kmuqk05u6dtd3dmtj7fl25cvjyzsc95gmfyjywaslnp"
+      "ticker": "MS6",
+      "name": "Moonstake 6",
+      "pool_id": "pool1fpu5xurq3jx5rn626ejcx0dzzzk5lmtvdl2qkj9l4kw2sjp50dz"
+    },
+    {
+      "ip": "34.23.88.7",
+      "port": 3000,
+      "first_seen": "2026-08-15 14:15:03.216041+00",
+      "last_seen": "2026-08-15 14:15:03.216041+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "MS5",
+      "name": "Moonstake 5",
+      "pool_id": "pool19lz8nyz0jjpdrdtnjaar4untk4th23gpg5s7aegn7480zff4vgq"
     },
     {
       "ip": "34.23.88.7",
@@ -725,6 +725,18 @@
       "ticker": "MS4",
       "name": "Moonstake 4",
       "pool_id": "pool1wpmjtfqcwvtcs9znpuulk99yk2zz6pfh0c4k9f2xlcspgqjndk2"
+    },
+    {
+      "ip": "34.23.88.7",
+      "port": 3000,
+      "first_seen": "2026-08-15 14:15:03.216041+00",
+      "last_seen": "2026-08-15 14:15:03.216041+00",
+      "sources": [
+        "ss"
+      ],
+      "ticker": "MS3",
+      "name": "Moonstake 3",
+      "pool_id": "pool1xppj5zu9kmuqk05u6dtd3dmtj7fl25cvjyzsc95gmfyjywaslnp"
     },
     {
       "ip": "89.167.105.21",
@@ -770,6 +782,18 @@
       "sources": [
         "ss"
       ],
+      "ticker": "OSAKA",
+      "name": "OSAKA-Pool",
+      "pool_id": "pool1lhvpgr8lhsf6h03v9zqxm74pa63rdxx4yuvkqfw4tv9fua8t37a"
+    },
+    {
+      "ip": "162.43.71.205",
+      "port": 6000,
+      "first_seen": "2026-08-15 05:15:02.755708+00",
+      "last_seen": "2026-08-15 06:15:02.8463+00",
+      "sources": [
+        "ss"
+      ],
       "ticker": "MYUJK",
       "name": "MYUJK Pool",
       "pool_id": "pool1c60f68y8406zjmacluvcu8c0krgngp6h2qkkqhdz4mtl62ns0dq"
@@ -787,18 +811,6 @@
       "pool_id": "pool1vphx7ph5rayjxuuqmwqhlw32pl3m6lstcr5jz0ecajdc528fjdt"
     },
     {
-      "ip": "162.43.71.205",
-      "port": 6000,
-      "first_seen": "2026-08-15 05:15:02.755708+00",
-      "last_seen": "2026-08-15 06:15:02.8463+00",
-      "sources": [
-        "ss"
-      ],
-      "ticker": "OSAKA",
-      "name": "OSAKA-Pool",
-      "pool_id": "pool1lhvpgr8lhsf6h03v9zqxm74pa63rdxx4yuvkqfw4tv9fua8t37a"
-    },
-    {
       "ip": "62.146.183.130",
       "port": 3001,
       "first_seen": "2026-08-15 05:03:18.785+00",
@@ -813,19 +825,19 @@
   ],
   "unidentified": [
     {
-      "ip": "103.69.128.63",
+      "ip": "95.179.131.125",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-16 17:15:02.77259+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "95.179.131.125",
+      "ip": "103.69.128.63",
       "port": 3001,
-      "first_seen": "2026-08-16 17:15:02.77259+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -833,8 +845,8 @@
     {
       "ip": "91.134.167.39",
       "port": 4001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -843,7 +855,7 @@
       "ip": "89.58.57.214",
       "port": 3001,
       "first_seen": "2026-08-16 13:15:02.940118+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -851,108 +863,8 @@
     {
       "ip": "89.58.51.69",
       "port": 2111,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "89.160.112.168",
-      "port": 2111,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "88.99.235.240",
-      "port": 3001,
-      "first_seen": "2026-08-16 20:15:03.498915+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "8.47.102.122",
-      "port": 8393,
-      "first_seen": "2026-08-16 15:15:03.132332+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "109.205.181.113",
-      "port": 6900,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "109.228.150.84",
-      "port": 3005,
-      "first_seen": "2026-08-16 00:15:02.857924+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "84.32.190.89",
-      "port": 3001,
-      "first_seen": "2026-08-16 06:15:03.49053+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "76.13.44.249",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss",
-        "zeek"
-      ]
-    },
-    {
-      "ip": "76.13.152.213",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "13.196.166.92",
-      "port": 1338,
-      "first_seen": "2026-08-16 01:15:03.473396+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "72.62.199.10",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "142.93.157.5",
-      "port": 6000,
-      "first_seen": "2026-08-16 19:15:03.192494+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -960,8 +872,8 @@
     {
       "ip": "148.113.206.91",
       "port": 13286,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -969,8 +881,26 @@
     {
       "ip": "151.245.106.213",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "190.2.150.57",
+      "port": 6000,
+      "first_seen": "2026-08-16 22:15:03.117658+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "188.93.140.148",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -978,8 +908,8 @@
     {
       "ip": "15.204.103.103",
       "port": 57234,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -987,8 +917,26 @@
     {
       "ip": "15.235.225.63",
       "port": 9903,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "187.127.162.198",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "185.198.26.224",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -996,8 +944,17 @@
     {
       "ip": "152.53.238.47",
       "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "185.175.59.249",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1005,8 +962,8 @@
     {
       "ip": "154.26.159.110",
       "port": 6900,
-      "first_seen": "2026-08-14 22:10:21.472+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss",
         "zeek"
@@ -1016,16 +973,16 @@
       "ip": "158.101.16.68",
       "port": 3001,
       "first_seen": "2026-08-16 16:15:02.77253+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "54.189.213.9",
+      "ip": "18.221.168.221",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1034,7 +991,16 @@
       "ip": "159.195.93.40",
       "port": 3001,
       "first_seen": "2026-08-16 21:15:03.178149+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "89.160.112.168",
+      "port": 2111,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1043,43 +1009,71 @@
       "ip": "178.104.211.226",
       "port": 3002,
       "first_seen": "2026-08-16 21:15:03.178149+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "18.221.168.221",
+      "ip": "88.99.235.240",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-16 20:15:03.498915+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "185.175.59.249",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "ip": "8.47.102.122",
+      "port": 8393,
+      "first_seen": "2026-08-16 15:15:03.132332+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "185.198.26.224",
+      "ip": "84.32.190.89",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-16 06:15:03.49053+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "187.127.162.198",
+      "ip": "76.13.44.249",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss",
+        "zeek"
+      ]
+    },
+    {
+      "ip": "76.13.152.213",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "72.62.199.10",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "54.189.213.9",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1087,17 +1081,26 @@
     {
       "ip": "51.195.234.103",
       "port": 44841,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "188.93.140.148",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "ip": "109.205.181.113",
+      "port": 6900,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "109.228.150.84",
+      "port": 3005,
+      "first_seen": "2026-08-16 00:15:02.857924+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1105,8 +1108,8 @@
     {
       "ip": "40.160.16.144",
       "port": 58127,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1114,17 +1117,89 @@
     {
       "ip": "3.9.192.44",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "2.24.118.152",
+      "ip": "3.77.115.8",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "35.215.183.240",
+      "port": 6000,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "35.177.184.223",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "34.90.188.47",
+      "port": 1338,
+      "first_seen": "2026-08-16 07:15:03.093876+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "13.196.166.92",
+      "port": 1338,
+      "first_seen": "2026-08-16 01:15:03.473396+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "34.248.127.114",
+      "port": 17820,
+      "first_seen": "2026-08-16 22:15:03.117658+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "34.216.201.242",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "34.214.24.177",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "142.93.157.5",
+      "port": 6000,
+      "first_seen": "2026-08-16 19:15:03.192494+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
       ]
@@ -1132,10 +1207,245 @@
     {
       "ip": "3.135.125.51",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
       "sources": [
         "ss"
+      ]
+    },
+    {
+      "ip": "2.24.118.152",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 22:15:03.117658+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
+      "ip": "89.58.25.36",
+      "port": 16000,
+      "first_seen": "2026-08-14 22:18:14.446+00",
+      "last_seen": "2026-08-16 22:14:38.736+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "51.210.112.165",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:16:12.087+00",
+      "last_seen": "2026-08-16 22:14:10.063+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "185.161.193.32",
+      "port": 6010,
+      "first_seen": "2026-08-14 22:17:02.506+00",
+      "last_seen": "2026-08-16 22:14:01.36+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "51.210.99.104",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:15:52.046+00",
+      "last_seen": "2026-08-16 22:13:56.239+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "54.38.37.36",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:16:16.007+00",
+      "last_seen": "2026-08-16 22:13:54.192+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "34.134.219.246",
+      "port": 32786,
+      "first_seen": "2026-08-14 22:18:46.506+00",
+      "last_seen": "2026-08-16 22:13:46.524+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "51.161.86.220",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:16:56.805+00",
+      "last_seen": "2026-08-16 22:13:38.832+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "51.222.82.99",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:18:29.327+00",
+      "last_seen": "2026-08-16 22:13:34.736+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "34.16.43.24",
+      "port": 32768,
+      "first_seen": "2026-08-14 22:16:49.588+00",
+      "last_seen": "2026-08-16 22:11:49.606+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "185.161.193.92",
+      "port": 6010,
+      "first_seen": "2026-08-14 22:18:44.578+00",
+      "last_seen": "2026-08-16 22:11:43.632+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "51.79.76.12",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:16:34.717+00",
+      "last_seen": "2026-08-16 22:11:38+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "54.39.158.186",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:18:05.913+00",
+      "last_seen": "2026-08-16 22:11:32.88+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "147.135.97.9",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:15:19.019+00",
+      "last_seen": "2026-08-16 22:11:32.367+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "51.79.82.116",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:15:25.023+00",
+      "last_seen": "2026-08-16 22:11:30.319+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "135.148.7.9",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:15:50.607+00",
+      "last_seen": "2026-08-16 22:10:52.436+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "100.50.134.156",
+      "port": 3003,
+      "first_seen": "2026-08-14 22:25:27.774+00",
+      "last_seen": "2026-08-16 22:01:28.862+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "143.47.189.236",
+      "port": 35368,
+      "first_seen": "2026-08-16 19:53:34.632+00",
+      "last_seen": "2026-08-16 21:58:34.598+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "49.12.89.239",
+      "port": 32982,
+      "first_seen": "2026-08-14 22:50:49.8+00",
+      "last_seen": "2026-08-16 21:50:46.324+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "3.76.240.86",
+      "port": 3001,
+      "first_seen": "2026-08-14 22:33:59.22+00",
+      "last_seen": "2026-08-16 21:48:57.1+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "46.110.121.126",
+      "port": 50459,
+      "first_seen": "2026-08-14 22:32:03.414+00",
+      "last_seen": "2026-08-16 21:47:28.058+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "3.69.245.15",
+      "port": 34754,
+      "first_seen": "2026-08-15 01:16:25.374+00",
+      "last_seen": "2026-08-16 21:45:16.663+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "198.55.58.66",
+      "port": 6000,
+      "first_seen": "2026-08-16 21:19:52.134+00",
+      "last_seen": "2026-08-16 21:37:32.039+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "203.181.0.168",
+      "port": 60096,
+      "first_seen": "2026-08-16 02:19:41.473+00",
+      "last_seen": "2026-08-16 21:32:56.62+00",
+      "sources": [
+        "ss",
+        "zeek"
+      ]
+    },
+    {
+      "ip": "98.186.89.107",
+      "port": 7479,
+      "first_seen": "2026-08-16 21:17:12.824+00",
+      "last_seen": "2026-08-16 21:31:15.772+00",
+      "sources": [
+        "zeek"
+      ]
+    },
+    {
+      "ip": "3.77.66.251",
+      "port": 32838,
+      "first_seen": "2026-08-15 00:56:53.84+00",
+      "last_seen": "2026-08-16 21:27:37.227+00",
+      "sources": [
+        "zeek"
       ]
     },
     {
@@ -1148,218 +1458,10 @@
       ]
     },
     {
-      "ip": "34.214.24.177",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "34.216.201.242",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "3.77.115.8",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "35.215.183.240",
-      "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "34.90.188.47",
-      "port": 1338,
-      "first_seen": "2026-08-16 07:15:03.093876+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "35.177.184.223",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 21:15:03.178149+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "51.161.86.220",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:18:06.216+00",
-      "last_seen": "2026-08-16 21:14:37.328+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "89.58.25.36",
-      "port": 16000,
-      "first_seen": "2026-08-14 21:15:03.953+00",
-      "last_seen": "2026-08-16 21:14:36.422+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "51.210.112.165",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:17:11.237+00",
-      "last_seen": "2026-08-16 21:14:33.744+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "54.38.37.36",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:17:19.828+00",
-      "last_seen": "2026-08-16 21:14:30.672+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "185.161.193.32",
-      "port": 6010,
-      "first_seen": "2026-08-14 21:18:13.302+00",
-      "last_seen": "2026-08-16 21:14:27.6+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "51.210.99.104",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:16:56.423+00",
-      "last_seen": "2026-08-16 21:14:25.552+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "51.222.82.99",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:15:07.025+00",
-      "last_seen": "2026-08-16 21:14:09.168+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "135.148.7.9",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:15:24.437+00",
-      "last_seen": "2026-08-16 21:13:54.434+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "34.134.219.246",
-      "port": 32786,
-      "first_seen": "2026-08-14 21:18:46.47+00",
-      "last_seen": "2026-08-16 21:13:46.548+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "185.161.193.92",
-      "port": 6010,
-      "first_seen": "2026-08-14 21:15:06.897+00",
-      "last_seen": "2026-08-16 21:12:44.176+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "51.79.76.12",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:17:47.913+00",
-      "last_seen": "2026-08-16 21:12:42.128+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "147.135.97.9",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:15:27.791+00",
-      "last_seen": "2026-08-16 21:12:41.104+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "54.39.158.186",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:15:22.897+00",
-      "last_seen": "2026-08-16 21:12:39.056+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "51.79.82.116",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:15:41.109+00",
-      "last_seen": "2026-08-16 21:12:38.544+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "34.16.43.24",
-      "port": 32768,
-      "first_seen": "2026-08-14 21:16:49.587+00",
-      "last_seen": "2026-08-16 21:11:49.704+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "203.181.0.168",
-      "port": 60096,
-      "first_seen": "2026-08-16 02:19:41.473+00",
-      "last_seen": "2026-08-16 21:01:01.712+00",
-      "sources": [
-        "ss",
-        "zeek"
-      ]
-    },
-    {
       "ip": "162.43.9.197",
       "port": 38098,
       "first_seen": "2026-08-15 03:00:44.113+00",
       "last_seen": "2026-08-16 21:00:45.153+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "100.50.134.156",
-      "port": 3003,
-      "first_seen": "2026-08-14 21:24:27.883+00",
-      "last_seen": "2026-08-16 21:00:04.619+00",
       "sources": [
         "zeek"
       ]
@@ -1374,48 +1476,22 @@
       ]
     },
     {
-      "ip": "143.47.189.236",
-      "port": 39470,
-      "first_seen": "2026-08-16 19:53:34.632+00",
-      "last_seen": "2026-08-16 20:57:37.373+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "49.12.89.239",
-      "port": 32982,
-      "first_seen": "2026-08-14 21:50:54.741+00",
-      "last_seen": "2026-08-16 20:50:55.254+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "46.110.121.126",
-      "port": 50459,
-      "first_seen": "2026-08-14 21:30:37.703+00",
-      "last_seen": "2026-08-16 20:46:28.389+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "3.76.240.86",
-      "port": 3001,
-      "first_seen": "2026-08-14 21:15:13.418+00",
-      "last_seen": "2026-08-16 20:30:12.68+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
       "ip": "51.81.220.101",
       "port": 6000,
       "first_seen": "2026-08-16 19:15:03.192494+00",
       "last_seen": "2026-08-16 20:15:03.498915+00",
       "sources": [
         "ss"
+      ]
+    },
+    {
+      "ip": "5.104.82.242",
+      "port": 6000,
+      "first_seen": "2026-08-16 20:05:40.637+00",
+      "last_seen": "2026-08-16 20:15:03.498915+00",
+      "sources": [
+        "ss",
+        "zeek"
       ]
     },
     {
@@ -1434,16 +1510,6 @@
       "last_seen": "2026-08-16 20:15:03.498915+00",
       "sources": [
         "ss"
-      ]
-    },
-    {
-      "ip": "5.104.82.242",
-      "port": 6000,
-      "first_seen": "2026-08-16 20:05:40.637+00",
-      "last_seen": "2026-08-16 20:15:03.498915+00",
-      "sources": [
-        "ss",
-        "zeek"
       ]
     },
     {
@@ -1700,24 +1766,6 @@
       ]
     },
     {
-      "ip": "3.69.245.15",
-      "port": 34754,
-      "first_seen": "2026-08-15 01:16:25.374+00",
-      "last_seen": "2026-08-16 12:50:57.956+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
-      "ip": "3.77.66.251",
-      "port": 32838,
-      "first_seen": "2026-08-15 00:56:53.84+00",
-      "last_seen": "2026-08-16 12:33:21.167+00",
-      "sources": [
-        "zeek"
-      ]
-    },
-    {
       "ip": "164.92.82.145",
       "port": 31415,
       "first_seen": "2026-08-16 12:16:11.334+00",
@@ -1754,18 +1802,18 @@
       ]
     },
     {
-      "ip": "71.187.67.249",
-      "port": 51208,
-      "first_seen": "2026-08-16 05:15:02.986375+00",
+      "ip": "34.146.228.117",
+      "port": 3000,
+      "first_seen": "2026-08-15 16:15:03.29179+00",
       "last_seen": "2026-08-16 11:15:03.1105+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "34.146.228.117",
-      "port": 3000,
-      "first_seen": "2026-08-15 16:15:03.29179+00",
+      "ip": "71.187.67.249",
+      "port": 51208,
+      "first_seen": "2026-08-16 05:15:02.986375+00",
       "last_seen": "2026-08-16 11:15:03.1105+00",
       "sources": [
         "ss"
@@ -1791,6 +1839,15 @@
       ]
     },
     {
+      "ip": "115.70.61.129",
+      "port": 42455,
+      "first_seen": "2026-08-16 06:15:03.49053+00",
+      "last_seen": "2026-08-16 10:15:02.857327+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
       "ip": "184.163.66.172",
       "port": 6002,
       "first_seen": "2026-08-16 04:15:03.314919+00",
@@ -1809,15 +1866,6 @@
       ]
     },
     {
-      "ip": "115.70.61.129",
-      "port": 42455,
-      "first_seen": "2026-08-16 06:15:03.49053+00",
-      "last_seen": "2026-08-16 10:15:02.857327+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
       "ip": "209.145.57.199",
       "port": 1660,
       "first_seen": "2026-08-16 09:21:59.891+00",
@@ -1829,7 +1877,7 @@
     {
       "ip": "149.202.89.49",
       "port": 1000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-16 09:15:02.890585+00",
       "sources": [
         "ss"
@@ -1846,9 +1894,9 @@
       ]
     },
     {
-      "ip": "147.135.221.189",
-      "port": 3001,
-      "first_seen": "2026-08-15 02:15:03.268825+00",
+      "ip": "72.216.118.147",
+      "port": 6000,
+      "first_seen": "2026-08-16 07:15:03.093876+00",
       "last_seen": "2026-08-16 08:15:03.024759+00",
       "sources": [
         "ss"
@@ -1864,9 +1912,9 @@
       ]
     },
     {
-      "ip": "72.216.118.147",
-      "port": 6000,
-      "first_seen": "2026-08-16 07:15:03.093876+00",
+      "ip": "147.135.221.189",
+      "port": 3001,
+      "first_seen": "2026-08-15 02:15:03.268825+00",
       "last_seen": "2026-08-16 08:15:03.024759+00",
       "sources": [
         "ss"
@@ -1927,18 +1975,18 @@
       ]
     },
     {
-      "ip": "34.158.172.11",
-      "port": 3002,
-      "first_seen": "2026-08-16 05:15:02.986375+00",
+      "ip": "45.83.107.231",
+      "port": 3001,
+      "first_seen": "2026-08-16 00:15:02.857924+00",
       "last_seen": "2026-08-16 06:15:03.49053+00",
       "sources": [
         "ss"
       ]
     },
     {
-      "ip": "45.83.107.231",
-      "port": 3001,
-      "first_seen": "2026-08-16 00:15:02.857924+00",
+      "ip": "34.158.172.11",
+      "port": 3002,
+      "first_seen": "2026-08-16 05:15:02.986375+00",
       "last_seen": "2026-08-16 06:15:03.49053+00",
       "sources": [
         "ss"
@@ -1965,7 +2013,7 @@
     {
       "ip": "192.199.243.110",
       "port": 2166,
-      "first_seen": "2026-08-14 21:41:51.82+00",
+      "first_seen": "2026-08-14 22:43:28.629+00",
       "last_seen": "2026-08-16 06:00:42.583+00",
       "sources": [
         "zeek"
@@ -1999,15 +2047,6 @@
       ]
     },
     {
-      "ip": "159.69.105.74",
-      "port": 5002,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-16 04:15:03.314919+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
       "ip": "13.211.73.179",
       "port": 8332,
       "first_seen": "2026-08-15 17:15:03.488423+00",
@@ -2015,6 +2054,15 @@
       "sources": [
         "ss",
         "zeek"
+      ]
+    },
+    {
+      "ip": "159.69.105.74",
+      "port": 5002,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-16 04:15:03.314919+00",
+      "sources": [
+        "ss"
       ]
     },
     {
@@ -2036,15 +2084,6 @@
       ]
     },
     {
-      "ip": "18.183.61.57",
-      "port": 1338,
-      "first_seen": "2026-08-15 06:15:02.8463+00",
-      "last_seen": "2026-08-16 03:15:03.573044+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
       "ip": "176.223.173.232",
       "port": 32679,
       "first_seen": "2026-08-16 03:06:54.238+00",
@@ -2052,6 +2091,15 @@
       "sources": [
         "ss",
         "zeek"
+      ]
+    },
+    {
+      "ip": "18.183.61.57",
+      "port": 1338,
+      "first_seen": "2026-08-15 06:15:02.8463+00",
+      "last_seen": "2026-08-16 03:15:03.573044+00",
+      "sources": [
+        "ss"
       ]
     },
     {
@@ -2082,9 +2130,9 @@
       ]
     },
     {
-      "ip": "89.58.48.111",
-      "port": 4001,
-      "first_seen": "2026-08-16 01:10:10.12+00",
+      "ip": "212.192.49.83",
+      "port": 31396,
+      "first_seen": "2026-08-16 00:56:29.491+00",
       "last_seen": "2026-08-16 01:15:03.473396+00",
       "sources": [
         "ss",
@@ -2092,12 +2140,13 @@
       ]
     },
     {
-      "ip": "141.94.46.36",
-      "port": 38922,
-      "first_seen": "2026-08-15 22:15:03.535903+00",
+      "ip": "89.58.48.111",
+      "port": 4001,
+      "first_seen": "2026-08-16 01:10:10.12+00",
       "last_seen": "2026-08-16 01:15:03.473396+00",
       "sources": [
-        "ss"
+        "ss",
+        "zeek"
       ]
     },
     {
@@ -2110,13 +2159,12 @@
       ]
     },
     {
-      "ip": "212.192.49.83",
-      "port": 31396,
-      "first_seen": "2026-08-16 00:56:29.491+00",
+      "ip": "141.94.46.36",
+      "port": 38922,
+      "first_seen": "2026-08-15 22:15:03.535903+00",
       "last_seen": "2026-08-16 01:15:03.473396+00",
       "sources": [
-        "ss",
-        "zeek"
+        "ss"
       ]
     },
     {
@@ -2240,7 +2288,7 @@
     {
       "ip": "158.220.125.46",
       "port": 3003,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 19:15:02.796584+00",
       "sources": [
         "ss"
@@ -2438,16 +2486,6 @@
       ]
     },
     {
-      "ip": "18.98.128.25",
-      "port": 46730,
-      "first_seen": "2026-08-15 13:03:18.008+00",
-      "last_seen": "2026-08-15 13:15:03.299893+00",
-      "sources": [
-        "ss",
-        "zeek"
-      ]
-    },
-    {
       "ip": "198.244.253.100",
       "port": 3001,
       "first_seen": "2026-08-15 09:15:02.986711+00",
@@ -2466,6 +2504,16 @@
       ]
     },
     {
+      "ip": "18.98.128.25",
+      "port": 46730,
+      "first_seen": "2026-08-15 13:03:18.008+00",
+      "last_seen": "2026-08-15 13:15:03.299893+00",
+      "sources": [
+        "ss",
+        "zeek"
+      ]
+    },
+    {
       "ip": "114.36.10.213",
       "port": 14083,
       "first_seen": "2026-08-15 12:39:35.14+00",
@@ -2477,7 +2525,7 @@
     {
       "ip": "74.244.37.200",
       "port": 5921,
-      "first_seen": "2026-08-14 21:47:05.574+00",
+      "first_seen": "2026-08-14 23:47:46.375+00",
       "last_seen": "2026-08-15 12:35:53.637+00",
       "sources": [
         "ss",
@@ -2503,6 +2551,15 @@
       ]
     },
     {
+      "ip": "152.53.123.142",
+      "port": 6000,
+      "first_seen": "2026-08-15 12:15:03.560734+00",
+      "last_seen": "2026-08-15 12:15:03.560734+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
       "ip": "185.247.94.212",
       "port": 34361,
       "first_seen": "2026-08-15 12:04:07.688+00",
@@ -2510,15 +2567,6 @@
       "sources": [
         "ss",
         "zeek"
-      ]
-    },
-    {
-      "ip": "152.53.123.142",
-      "port": 6000,
-      "first_seen": "2026-08-15 12:15:03.560734+00",
-      "last_seen": "2026-08-15 12:15:03.560734+00",
-      "sources": [
-        "ss"
       ]
     },
     {
@@ -2624,7 +2672,7 @@
     {
       "ip": "141.95.32.176",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 10:15:02.925302+00",
       "sources": [
         "ss"
@@ -2696,7 +2744,7 @@
     {
       "ip": "88.198.5.240",
       "port": 6000,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 08:15:03.231449+00",
       "sources": [
         "ss"
@@ -2811,15 +2859,6 @@
       ]
     },
     {
-      "ip": "76.203.141.87",
-      "port": 58204,
-      "first_seen": "2026-08-15 04:15:03.387016+00",
-      "last_seen": "2026-08-15 05:15:02.755708+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
       "ip": "68.117.227.23",
       "port": 6000,
       "first_seen": "2026-08-14 23:15:03.783638+00",
@@ -2829,9 +2868,18 @@
       ]
     },
     {
+      "ip": "76.203.141.87",
+      "port": 58204,
+      "first_seen": "2026-08-15 04:15:03.387016+00",
+      "last_seen": "2026-08-15 05:15:02.755708+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
       "ip": "152.53.241.150",
       "port": 5250,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 04:15:03.387016+00",
       "sources": [
         "ss"
@@ -2847,15 +2895,6 @@
       ]
     },
     {
-      "ip": "137.131.233.131",
-      "port": 8081,
-      "first_seen": "2026-08-15 01:15:02.718593+00",
-      "last_seen": "2026-08-15 03:15:03.48736+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
       "ip": "217.180.52.141",
       "port": 21504,
       "first_seen": "2026-08-15 01:15:02.718593+00",
@@ -2865,9 +2904,18 @@
       ]
     },
     {
+      "ip": "137.131.233.131",
+      "port": 8081,
+      "first_seen": "2026-08-15 01:15:02.718593+00",
+      "last_seen": "2026-08-15 03:15:03.48736+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
       "ip": "64.49.104.27",
       "port": 52959,
-      "first_seen": "2026-08-14 21:29:24.957+00",
+      "first_seen": "2026-08-14 22:31:30.127+00",
       "last_seen": "2026-08-15 03:00:34.964+00",
       "sources": [
         "zeek"
@@ -2903,7 +2951,7 @@
     {
       "ip": "209.54.75.98",
       "port": 51644,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 02:15:03.268825+00",
       "sources": [
         "ss"
@@ -2928,9 +2976,18 @@
       ]
     },
     {
+      "ip": "217.115.120.75",
+      "port": 3001,
+      "first_seen": "2026-08-14 23:15:03.783638+00",
+      "last_seen": "2026-08-15 01:15:02.718593+00",
+      "sources": [
+        "ss"
+      ]
+    },
+    {
       "ip": "91.227.33.205",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 01:15:02.718593+00",
       "sources": [
         "ss"
@@ -2939,16 +2996,7 @@
     {
       "ip": "142.170.109.183",
       "port": 29284,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-15 01:15:02.718593+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "217.115.120.75",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 01:15:02.718593+00",
       "sources": [
         "ss"
@@ -2975,7 +3023,7 @@
     {
       "ip": "116.203.6.105",
       "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 00:15:03.572447+00",
       "sources": [
         "ss"
@@ -2984,7 +3032,7 @@
     {
       "ip": "85.217.160.210",
       "port": 47075,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-15 00:15:03.572447+00",
       "sources": [
         "ss"
@@ -3012,7 +3060,7 @@
     {
       "ip": "198.244.109.133",
       "port": 64666,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
+      "first_seen": "2026-08-14 23:15:03.783638+00",
       "last_seen": "2026-08-14 23:15:03.783638+00",
       "sources": [
         "ss"
@@ -3026,38 +3074,10 @@
       "sources": [
         "zeek"
       ]
-    },
-    {
-      "ip": "107.23.61.45",
-      "port": 3001,
-      "first_seen": "2026-08-14 22:15:02.963398+00",
-      "last_seen": "2026-08-14 22:15:02.963398+00",
-      "sources": [
-        "ss"
-      ]
-    },
-    {
-      "ip": "194.36.145.244",
-      "port": 4000,
-      "first_seen": "2026-08-14 22:00:26.603+00",
-      "last_seen": "2026-08-14 22:15:02.963398+00",
-      "sources": [
-        "ss",
-        "zeek"
-      ]
-    },
-    {
-      "ip": "44.215.219.236",
-      "port": 37689,
-      "first_seen": "2026-08-14 21:46:46.519+00",
-      "last_seen": "2026-08-14 21:46:46.519+00",
-      "sources": [
-        "zeek"
-      ]
     }
   ],
   "counts": {
-    "pools": 66,
-    "unidentified": 247
+    "pools": 67,
+    "unidentified": 248
   }
 }
