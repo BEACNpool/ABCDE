@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+# ⛔ DO NOT RUN THIS. Use web/publish_gh_pages.sh instead.
+#
+# This script force-pushes an ORPHAN tree built from web/dist alone. gh-pages
+# also carries oligarCH/, oligarch/, byttg/ and tipsy/ (public, minted NFT pages)
+# and peers/ (rebuilt hourly). Running this deletes all of them and the branch's
+# entire history. It is kept only for reference.
+set -euo pipefail
+echo "REFUSING: this would force-push an orphan tree and delete oligarCH/, byttg/," >&2
+echo "tipsy/ and peers/ from gh-pages. Use web/publish_gh_pages.sh." >&2
+exit 1
+
+# ---- original script below, unreachable ----
 # Deploy the ABCDE explorer to the gh-pages branch (served by GitHub Pages).
 #
 # The site is fully static and client-side (DuckDB-WASM + prebuilt JSON), so
