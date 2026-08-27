@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay Health — ABCDE</title>
+<meta name="description" content="Every current Cardano pool's registered relays, which pools share infrastructure, and which endpoints answered a real node-to-node handshake — queryable, graded, and reproducible from db-sync.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ABCDE — A BEACN Cardano Data Explorer">
+<meta property="og:title" content="Relay Health — every pool's relays, checked">
+<meta property="og:description" content="Registered relays for every current Cardano pool, the endpoints shared between pools, and a two-pass handshake sweep. Registration is FACT; reachability is an observation, never a verdict.">
+<meta property="og:image" content="https://beacnpool.github.io/ABCDE/og/main.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://beacnpool.github.io/ABCDE/relays.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Relay Health — every pool's relays, checked">
+<meta name="twitter:description" content="Registered relays for every current Cardano pool, shared infrastructure, and a two-pass handshake sweep. Graded and reproducible.">
+<meta name="twitter:image" content="https://beacnpool.github.io/ABCDE/og/main.png">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .rsec{padding:44px 0; border-top:1px solid var(--line)}
+  .rsec h2{font-size:26px; margin-bottom:6px}
+  .rsec .sub{color:var(--muted); max-width:74ch; margin:0 0 22px}
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--panel)}
+  table.rt{border-collapse:collapse; width:100%; min-width:520px; font-size:14px}
+  table.rt th,table.rt td{padding:10px 14px; text-align:left; border-bottom:1px solid var(--line)}
+  table.rt thead th{color:var(--cyan); font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; font-weight:700; background:var(--panel2)}
+  table.rt tbody tr:last-child td{border-bottom:0}
+  table.rt td.num,table.rt th.num{text-align:right; font-family:var(--mono)}
+  .grade{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    margin:22px 0 6px}
+  .gcard{border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;
+    background:var(--panel)}
+  .gcard h3{font-size:12px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:8px}
+  .gcard p{margin:0; color:var(--muted); font-size:14px}
+  .g-fact h3{color:var(--green)} .g-obs h3{color:var(--amber)} .g-no h3{color:var(--red)}
+  .warn{border:1px solid var(--line2); border-left:3px solid var(--amber);
+    background:var(--panel); border-radius:10px; padding:16px 20px; margin:22px 0}
+  .warn b{color:var(--amber)}
+  .stat-row{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    margin:26px 0}
+  .stat{border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px;
+    background:var(--panel)}
+  .stat .n{font-family:var(--mono); font-size:26px; font-weight:700; color:var(--text)}
+  .stat .l{color:var(--muted); font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+  .traps li{margin-bottom:14px; color:var(--muted)}
+  .traps li b{color:var(--text)}
+  .bar{height:7px; border-radius:4px; background:var(--line2); overflow:hidden; min-width:70px}
+  .bar>i{display:block; height:100%; background:var(--cyan)}
+  .foot{padding:40px 0 70px; color:var(--muted2); font-size:13px}
+  .pill{display:inline-block; font-family:var(--mono); font-size:11px; padding:2px 8px;
+    border-radius:999px; border:1px solid var(--line2); color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="./"><span class="hex">⬡</span><span>ABCDE<small>BEACN Data Explorer</small></span></a>
+    <nav>
+      <a href="./#start">Get started</a>
+      <a href="./#findings">Findings</a>
+      <a href="relays.html">Relay health</a>
+    </nav>
+    <a class="gh" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="kicker">Finding F21 · relay registration &amp; reachability</div>
+  <h1>Every pool's relays, <span class="hx">checked</span></h1>
+  <p class="lede">A stake pool's relay set is the one piece of its infrastructure anyone can verify
+    without trusting the operator — it is registered on-chain, in the same certificate as the pledge
+    and the margin. This page reports what every current pool registered, which pools share
+    infrastructure, and which endpoints answered a real Cardano handshake.</p>
+  <p class="muted" id="stamp">Loading the published cut…</p>
+</div>
+
+<div class="wrap">
+  <div class="stat-row" id="stats"></div>
+</div>
+
+<section class="rsec"><div class="wrap">
+  <h2>Read this before you quote a number</h2>
+  <p class="sub">This dataset is deliberately not a scoreboard. It has two layers and they are kept
+    apart on purpose, because only one of them is durable.</p>
+  <div class="grade">
+    <div class="gcard g-fact"><h3>Fact</h3><p>What each pool registered on-chain, when, and which
+      endpoint strings more than one pool advertises. Reproducible by anyone with db-sync.</p></div>
+    <div class="gcard g-obs"><h3>Observation</h3><p>That an endpoint did or did not complete a
+      handshake with <i>our</i> prober, at <i>that</i> moment, from <i>one</i> network location.
+      It expires.</p></div>
+    <div class="gcard g-no"><h3>Not claimed</h3><p>That any relay is “offline”. Who operates any
+      pool. That shared infrastructure means shared ownership. That any operator is negligent.</p></div>
+  </div>
+  <div class="warn"><b>“Unreachable” is not “offline.”</b> A firewall that drops our prefix, an
+    inbound connection limit, a rate limiter, a node restart or a transient route all render
+    identically here. We measured the same endpoint answering from one host and timing out from
+    another minutes later. Every reachability number on this page is one sweep from one vantage
+    point, and it is published with its timestamp for exactly that reason.</div>
+</div></section>
+
+<section class="rsec"><div class="wrap">
+  <h2>What pools registered</h2>
+  <p class="sub">The durable layer. A pool's live registration is its latest <code>pool_update</code>;
+    a retirement counts only if it was announced after that update and its epoch has arrived.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-reg">
+    <thead><tr><th>Registration</th><th class="num">Pools</th><th class="num">ADA delegated</th></tr></thead>
+    <tbody></tbody></table></div>
+</div></section>
+
+<section class="rsec"><div class="wrap">
+  <h2>What answered</h2>
+  <p class="sub">A two-pass node-to-node handshake sweep of every registered endpoint — a real
+    Cardano handshake plus a tip request, not a TCP connect. Reachable hosts are counted as
+    <b>distinct resolved hosts</b>, never as registration entries: two DNS names pointing at one
+    machine is one relay.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-reach">
+    <thead><tr><th>Observed</th><th class="num">Pools</th><th class="num">ADA</th><th class="num">Delegators</th></tr></thead>
+    <tbody></tbody></table></div>
+
+  <p class="sub" style="margin-top:26px">Unreachability tracks stake almost monotonically. A
+    uniformly broken probe would not produce that gradient — pools abandoned without ever filing a
+    retirement certificate would.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-band">
+    <thead><tr><th>Active stake</th><th class="num">Pools</th><th class="num">Nothing answered</th><th>Share</th></tr></thead>
+    <tbody></tbody></table></div>
+
+  <p class="sub" style="margin-top:26px">Why each endpoint failed. <span class="pill">no_ipv6_at_probe</span>
+    means our prober has no IPv6 route and did not test the endpoint at all — those pools are
+    reported as untested, not as unreachable.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-fail">
+    <thead><tr><th>Failure</th><th class="num">Endpoints</th></tr></thead>
+    <tbody></tbody></table></div>
+</div></section>
+
+<section class="rsec"><div class="wrap">
+  <h2>Shared infrastructure</h2>
+  <p class="sub">Endpoints advertised by more than one current pool. This is a shared <i>string</i>:
+    strong evidence of shared infrastructure and no evidence at all of shared ownership. A hosting
+    provider, a relay-as-a-service, a white-label operator and one person running twelve pools are
+    indistinguishable here. Delegator counts separate the patterns that a pool count alone hides.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-shared">
+    <thead><tr><th>Endpoint</th><th class="num">Pools</th><th class="num">ADA</th><th class="num">Delegators</th><th>Tickers</th></tr></thead>
+    <tbody></tbody></table></div>
+
+  <p class="sub" style="margin-top:26px"><b>Registration strings understate sharing.</b> One fleet in
+    this dataset gives every pool its own numbered hostname under a single domain, so string
+    matching sees the pools as unrelated. Grouping by the IP those names actually resolve to
+    collapses it. This is a floor, never a ceiling — an endpoint we could not resolve contributes
+    nothing.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-hosts">
+    <thead><tr><th>Resolved host</th><th class="num">Pools</th><th class="num">Names</th><th class="num">ADA</th><th>Tickers</th></tr></thead>
+    <tbody></tbody></table></div>
+</div></section>
+
+<section class="rsec"><div class="wrap">
+  <h2>Why a single-pass probe lies</h2>
+  <p class="sub">Four measured traps. Each one produced a confident, wrong answer during the build
+    before it was caught — which is the whole reason the method is published alongside the numbers.</p>
+  <ol class="traps">
+    <li><b>Probe wall time is not handshake time, and there is no fast path.</b>
+      <code>backbone.cardano.iog.io</code> answers in 5.2s; Trust Wallet's Kiln-hosted relays take
+      14–30s — both reporting a protocol RTT near 100ms. A first sweep at a 10s timeout marked
+      <b>TW001, with 113.6M ADA delegated, as having no reachable relay.</b> It answers fine. Every
+      non-DNS failure now gets a slower, lower-concurrency second pass, and only a failure in both
+      passes is recorded.</li>
+    <li><b>Never assume port 3001.</b> The registered port is authoritative and operators use
+      anything — this dataset contains relays on 19002, 6010, 5001 and 1338. Probing the wrong port
+      produces a confident false negative.</li>
+    <li><b>A multi-host SRV entry is not “one relay”.</b> Cardano's multi-host relay type registers
+      a bare domain whose real record is <code>_cardano._tcp.&lt;domain&gt;</code>, and each target
+      carries its own port from DNS. <code>cardano-cli ping</code> does not resolve SRV at all: hand
+      it one and it does a plain A lookup on port 3001 and reports a bogus failure.</li>
+    <li><b>The tool's error text conflates DNS and connection failures.</b> Both say “does not
+      exist”, so naive parsing labels every refused connection a DNS failure. The cause has to be
+      read from which socket call failed, and from the IPv4 attempt where one exists.</li>
+  </ol>
+</div></section>
+
+<section class="rsec"><div class="wrap">
+  <h2>Take the data</h2>
+  <p class="sub">All of it is in the repo — no API key, no rate limit, no server to ask. Clone it or
+    pull a CSV straight from raw.githubusercontent.com.</p>
+  <div class="tbl-wrap"><table class="rt">
+    <thead><tr><th>Table</th><th>What it holds</th></tr></thead>
+    <tbody>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health</a></td><td>One row per current pool: registration shape, reachable hosts, at-tip hosts, shared-endpoint flag, <code>last_checked</code>.</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_endpoints.csv">relay_shared_endpoints</a></td><td>Endpoint strings advertised by more than one current pool.</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_hosts.csv">relay_shared_hosts</a></td><td>Pools sharing a resolved IP — catches per-pool hostnames.</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_domains.csv">relay_shared_domains</a></td><td>Pools sharing a parent domain (heuristic; groups hosting customers too).</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_endpoint_status.csv">relay_endpoint_status</a></td><td>The raw per-endpoint sweep, with failure cause and detail.</td></tr>
+    </tbody></table></div>
+  <p class="sub" style="margin-top:22px">Method and limits — which bind any use of these numbers —
+    are in <a href="https://github.com/BEACNpool/ABCDE/blob/main/docs/27_RELAY_HEALTH_METHOD.md">docs/27</a>.
+    The graded write-up is <a href="https://github.com/BEACNpool/ABCDE/blob/main/findings/F21_relay_registration_and_reachability.md">F21</a>,
+    the build is <a href="https://github.com/BEACNpool/ABCDE/tree/main/sql/56_relay_health">sql/56_relay_health</a>.
+    For an operator-clustering signal that does not depend on registration strings at all, see
+    <a href="https://github.com/BEACNpool/ABCDE/blob/main/findings/F10_kes_corotation_pool_operators.md">F10</a>
+    — synchronized KES rotation, read from block headers.</p>
+</div></section>
+
+<div class="wrap foot">
+  Registration rebuilds from db-sync in about two seconds and is fully reproducible. The sweep is a
+  live measurement and will not reproduce exactly — that is the nature of the layer, and why the two
+  are kept in separate tables. Readers who want to argue about decentralization now have the numbers
+  to argue with; the argument is theirs.
+</div>
+
+<script>
+const fmt = n => n === null || n === undefined ? "—" : Number(n).toLocaleString("en-US");
+const ada = n => n === null || n === undefined ? "—" :
+  Number(n) >= 1e9 ? (Number(n)/1e9).toFixed(2) + "B" :
+  Number(n) >= 1e6 ? (Number(n)/1e6).toFixed(1) + "M" : fmt(Math.round(Number(n)));
+const NICE = {
+  NO_REGISTERED_RELAY: "No relay registered",
+  SINGLE_ENDPOINT: "One endpoint",
+  MULTIPLE_ENDPOINTS: "Two or more endpoints",
+  SRV_MULTIHOST_POSSIBLE: "SRV (multi-host possible)",
+  NONE_REACHABLE: "Nothing answered",
+  ONE_REACHABLE_HOST: "One host answered",
+  MULTI_REACHABLE_HOSTS: "Two or more hosts answered",
+  NOT_TESTED_FROM_THIS_PROBE: "Not testable from this probe",
+};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const tick = t => !t ? "—" : esc(String(t).split(/[\s,]+/).filter(Boolean).slice(0,5).join(" "));
+
+function fill(id, rows, cells){
+  const tb = document.querySelector(id + " tbody");
+  tb.innerHTML = rows.map(r => "<tr>" + cells(r).join("") + "</tr>").join("");
+}
+
+fetch("data/relays.json").then(r => r.json()).then(d => {
+  const when = new Date(d.checked_at);
+  document.getElementById("stamp").innerHTML =
+    "Sweep of <b>" + fmt(d.totals.pools) + "</b> current pools, " +
+    when.toISOString().replace("T", " ").slice(0, 16) + " UTC, from a single vantage point.";
+
+  const nr = (d.reachability.find(r => r.class === "NONE_REACHABLE") || {}).pools || 0;
+  const multi = (d.reachability.find(r => r.class === "MULTI_REACHABLE_HOSTS") || {}).pools || 0;
+  const norel = (d.registration.find(r => r.class === "NO_REGISTERED_RELAY") || {}).pools || 0;
+  document.getElementById("stats").innerHTML = [
+    ["Current pools", fmt(d.totals.pools)],
+    ["ADA delegated", ada(d.totals.stake_ada)],
+    ["No relay registered", fmt(norel)],
+    ["Two or more hosts answered", fmt(multi)],
+    ["Nothing answered", fmt(nr)],
+  ].map(([l, n]) => `<div class="stat"><div class="n">${n}</div><div class="l">${esc(l)}</div></div>`).join("");
+
+  fill("#t-reg", d.registration, r => [
+    `<td>${esc(NICE[r.class] || r.class)}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`]);
+
+  fill("#t-reach", d.reachability, r => [
+    `<td>${esc(NICE[r.class] || r.class)}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`,
+    `<td class="num">${fmt(r.delegators)}</td>`]);
+
+  fill("#t-band", d.by_stake_band, r => [
+    `<td>${esc(r.band)}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="num">${fmt(r.none_reachable)} (${r.pct_none}%)</td>`,
+    `<td><span class="bar"><i style="width:${Math.max(2, Number(r.pct_none))}%"></i></span></td>`]);
+
+  fill("#t-fail", d.failures, r => [
+    `<td class="mono">${esc(r.failure)}</td>`,
+    `<td class="num">${fmt(r.endpoints)}</td>`]);
+
+  fill("#t-shared", d.shared_endpoints, r => [
+    `<td class="mono">${esc(r.endpoint)}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`,
+    `<td class="num">${fmt(r.delegators)}</td>`,
+    `<td class="mono muted">${tick(r.tickers)}</td>`]);
+
+  fill("#t-hosts", d.shared_hosts, r => [
+    `<td class="mono">${esc(r.resolved_ip)}:${esc(r.target_port)}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="num">${fmt(r.distinct_registered_names)}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`,
+    `<td class="mono muted">${tick(r.tickers)}</td>`]);
+}).catch(e => {
+  document.getElementById("stamp").textContent =
+    "Could not load the published cut (" + e + ").";
+});
+</script>
+</body>
+</html>

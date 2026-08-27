@@ -152,5 +152,12 @@
     "grade": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE",
     "claim": "EMURGO's public 2025 statements that it removed Genesis ADA from its own DRep, then parked ~35M ADA on seven named community DReps, then pulled that delegation after epoch 576\u2192577, are reproduced on Cardano mainnet. As of warehouse tip **epoch 649 / block 13,808,619 / 2026-08-14 17:30:54 UTC**: - Official EMURGO DRep `drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x",
     "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F20_emurgo_genesis_drep_removal.md"
+  },
+  {
+    "id": "F21",
+    "title": "Relay registration, shared infrastructure, and observed reachability",
+    "grade": "VERIFIED, FACT (registration + per-sweep observations) + STRONG_INFERENCE (shared infrastructure)",
+    "claim": "Of 2,898 current Cardano stake pools, 43 have registered no relay at all and 1,470 registered exactly one endpoint. In a two-pass handshake sweep of all 5,064 registered endpoints, 1,632 pools had no endpoint that answered and 646 had two or more distinct reachable hosts. Separately, 605 pools advertise a relay endpoint that at least one other pool also adve",
+    "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F21_relay_registration_and_reachability.md"
   }
 ]

@@ -798,8 +798,8 @@
   },
   {
     "family": "Other",
-    "table_count": 2,
-    "total_rows": 576,
+    "table_count": 7,
+    "total_rows": 8754,
     "tables": [
       {
         "table": "pool_operator_kes_clusters",
@@ -809,6 +809,31 @@
       {
         "table": "pool_operator_kes_members",
         "rows": 480,
+        "findings": []
+      },
+      {
+        "table": "relay_endpoint_status",
+        "rows": 4597,
+        "findings": []
+      },
+      {
+        "table": "relay_pool_health",
+        "rows": 2898,
+        "findings": []
+      },
+      {
+        "table": "relay_shared_domains",
+        "rows": 134,
+        "findings": []
+      },
+      {
+        "table": "relay_shared_endpoints",
+        "rows": 300,
+        "findings": []
+      },
+      {
+        "table": "relay_shared_hosts",
+        "rows": 249,
         "findings": []
       }
     ]

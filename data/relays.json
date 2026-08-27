@@ -1,0 +1,368 @@
+{
+  "checked_at": "2026-08-27 09:33:35-05:00",
+  "totals": {
+    "pools": 2898,
+    "stake_ada": 21419162233,
+    "delegators": 1343317
+  },
+  "registration": [
+    {
+      "class": "SINGLE_ENDPOINT",
+      "pools": 1470,
+      "stake_ada": 8571533585
+    },
+    {
+      "class": "MULTIPLE_ENDPOINTS",
+      "pools": 1340,
+      "stake_ada": 11258468776
+    },
+    {
+      "class": "SRV_MULTIHOST_POSSIBLE",
+      "pools": 45,
+      "stake_ada": 1144062794
+    },
+    {
+      "class": "NO_REGISTERED_RELAY",
+      "pools": 43,
+      "stake_ada": 445097078
+    }
+  ],
+  "reachability": [
+    {
+      "class": "NONE_REACHABLE",
+      "pools": 1632,
+      "stake_ada": 2538534423,
+      "delegators": 150292
+    },
+    {
+      "class": "MULTI_REACHABLE_HOSTS",
+      "pools": 646,
+      "stake_ada": 11465648211,
+      "delegators": 883187
+    },
+    {
+      "class": "ONE_REACHABLE_HOST",
+      "pools": 576,
+      "stake_ada": 6961194124,
+      "delegators": 278105
+    },
+    {
+      "class": "NO_REGISTERED_RELAY",
+      "pools": 43,
+      "stake_ada": 445097078,
+      "delegators": 30243
+    },
+    {
+      "class": "NOT_TESTED_FROM_THIS_PROBE",
+      "pools": 1,
+      "stake_ada": 8688397,
+      "delegators": 1490
+    }
+  ],
+  "by_stake_band": [
+    {
+      "band": "no active stake",
+      "pools": 225,
+      "none_reachable": 214,
+      "pct_none": 95.1
+    },
+    {
+      "band": "under 100k ADA",
+      "pools": 1341,
+      "none_reachable": 1167,
+      "pct_none": 87.0
+    },
+    {
+      "band": "100k - 1M ADA",
+      "pools": 406,
+      "none_reachable": 129,
+      "pct_none": 31.8
+    },
+    {
+      "band": "1M - 10M ADA",
+      "pools": 419,
+      "none_reachable": 66,
+      "pct_none": 15.8
+    },
+    {
+      "band": "10M ADA and above",
+      "pools": 507,
+      "none_reachable": 56,
+      "pct_none": 11.0
+    }
+  ],
+  "shared_endpoints": [
+    {
+      "endpoint": "dns:cardano-relay-1.upbit.com",
+      "pools": 20,
+      "stake_ada": 643076698,
+      "delegators": 27,
+      "tickers": "UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT"
+    },
+    {
+      "endpoint": "dns:cardano-relay-2.upbit.com",
+      "pools": 20,
+      "stake_ada": 643076698,
+      "delegators": 27,
+      "tickers": "UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT"
+    },
+    {
+      "endpoint": "dns:cardano-relay-3.upbit.com",
+      "pools": 20,
+      "stake_ada": 643076698,
+      "delegators": 27,
+      "tickers": "UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT UPBIT"
+    },
+    {
+      "endpoint": "dns:cardano-main2.everstake.one",
+      "pools": 15,
+      "stake_ada": 631169630,
+      "delegators": 267342,
+      "tickers": "EVE6 EVE7 EVE8 RSTK EVRST EVE1 VRSTK EVE2 EVE EVE4 EVERS EVE3 ESTK EVE5 EVE9"
+    },
+    {
+      "endpoint": "dns:cardano-main.everstake.one",
+      "pools": 15,
+      "stake_ada": 631169630,
+      "delegators": 267342,
+      "tickers": "EVE6 EVE7 EVE8 RSTK EVRST EVE1 VRSTK EVE2 EVE EVE4 EVERS EVE3 ESTK EVE5 EVE9"
+    },
+    {
+      "endpoint": "dns:cardano-relay1.everstake.one",
+      "pools": 15,
+      "stake_ada": 631169630,
+      "delegators": 267342,
+      "tickers": "EVE6 EVE7 EVE8 RSTK EVRST EVE1 VRSTK EVE2 EVE EVE4 EVERS EVE3 ESTK EVE5 EVE9"
+    },
+    {
+      "endpoint": "dns:cardano-relay2.everstake.one",
+      "pools": 15,
+      "stake_ada": 631169630,
+      "delegators": 267342,
+      "tickers": "EVE6 EVE7 EVE8 RSTK EVRST EVE1 VRSTK EVE2 EVE EVE4 EVERS EVE3 ESTK EVE5 EVE9"
+    },
+    {
+      "endpoint": "dns:cardano-relay.everstake.one",
+      "pools": 14,
+      "stake_ada": 631072137,
+      "delegators": 267320,
+      "tickers": "EVE6 EVE7 EVE8 RSTK EVRST EVE1 VRSTK EVE2 EVE EVE4 EVERS EVE3 ESTK EVE9"
+    },
+    {
+      "endpoint": "dns:relays.wavepool.digital",
+      "pools": 13,
+      "stake_ada": 626826295,
+      "delegators": 9534,
+      "tickers": "WPBJ1 WPBJ3 WPBJ2 GMO2 SKY4 GMO1 WAV11 WAV1 SKY WAV7 SKY3 SKY2"
+    },
+    {
+      "endpoint": "ipv4:108.142.42.161",
+      "pools": 14,
+      "stake_ada": 503393676,
+      "delegators": 50,
+      "tickers": "ETO2 ETO4 ETO3 ETO9 ETO10 ETO6 ETO11 ETO5 ETO12 ETO13 ETO1 ETO14 ETO7 ETO8"
+    },
+    {
+      "endpoint": "ipv4:108.142.42.221",
+      "pools": 14,
+      "stake_ada": 503393676,
+      "delegators": 50,
+      "tickers": "ETO2 ETO4 ETO3 ETO9 ETO10 ETO6 ETO11 ETO5 ETO12 ETO13 ETO1 ETO14 ETO7 ETO8"
+    },
+    {
+      "endpoint": "ipv4:20.61.228.218",
+      "pools": 14,
+      "stake_ada": 503393676,
+      "delegators": 50,
+      "tickers": "ETO2 ETO4 ETO3 ETO9 ETO10 ETO6 ETO11 ETO5 ETO12 ETO13 ETO1 ETO14 ETO7 ETO8"
+    },
+    {
+      "endpoint": "ipv4:20.61.229.103",
+      "pools": 14,
+      "stake_ada": 503393676,
+      "delegators": 50,
+      "tickers": "ETO2 ETO4 ETO3 ETO9 ETO10 ETO6 ETO11 ETO5 ETO12 ETO13 ETO1 ETO14 ETO7 ETO8"
+    },
+    {
+      "endpoint": "dns:relay1.nordicpool.org",
+      "pools": 5,
+      "stake_ada": 338633159,
+      "delegators": 17369,
+      "tickers": "NORTH NORTH NORTH NORTH NORTH"
+    },
+    {
+      "endpoint": "dns:relay2.nordicpool.org",
+      "pools": 5,
+      "stake_ada": 338633159,
+      "delegators": 17369,
+      "tickers": "NORTH NORTH NORTH NORTH NORTH"
+    }
+  ],
+  "shared_hosts": [
+    {
+      "resolved_ip": "142.93.157.5",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "143.110.218.20",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "148.113.208.65",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "148.113.208.69",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "188.166.104.113",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "35.207.166.173",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "35.215.37.224",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "35.215.59.183",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "57.129.1.138",
+      "target_port": 6000,
+      "pools": 38,
+      "stake_ada": 1102226639,
+      "delegators": 34221,
+      "distinct_registered_names": 38,
+      "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
+    },
+    {
+      "resolved_ip": "51.77.68.73",
+      "target_port": 19002,
+      "pools": 28,
+      "stake_ada": 246825816,
+      "delegators": 10901,
+      "distinct_registered_names": 1,
+      "tickers": "1PCT 1PCT0 1PCT1 1PCT2 1PCT3 1PCT4 1PCT5 1PCT6 1PCT7 1PCT8 1PCT9"
+    },
+    {
+      "resolved_ip": "51.77.68.73",
+      "target_port": 19001,
+      "pools": 28,
+      "stake_ada": 246825816,
+      "delegators": 10901,
+      "distinct_registered_names": 1,
+      "tickers": "1PCT 1PCT0 1PCT1 1PCT2 1PCT3 1PCT4 1PCT5 1PCT6 1PCT7 1PCT8 1PCT9"
+    },
+    {
+      "resolved_ip": "15.164.112.189",
+      "target_port": 30800,
+      "pools": 20,
+      "stake_ada": 643076698,
+      "delegators": 27,
+      "distinct_registered_names": 1,
+      "tickers": "UPBIT"
+    },
+    {
+      "resolved_ip": "3.37.112.16",
+      "target_port": 30800,
+      "pools": 20,
+      "stake_ada": 643076698,
+      "delegators": 27,
+      "distinct_registered_names": 1,
+      "tickers": "UPBIT"
+    },
+    {
+      "resolved_ip": "3.37.80.225",
+      "target_port": 30800,
+      "pools": 20,
+      "stake_ada": 643076698,
+      "delegators": 27,
+      "distinct_registered_names": 1,
+      "tickers": "UPBIT"
+    },
+    {
+      "resolved_ip": "144.91.109.112",
+      "target_port": 3003,
+      "pools": 17,
+      "stake_ada": 281967278,
+      "delegators": 39448,
+      "distinct_registered_names": 1,
+      "tickers": "NUFI NUFI0 NUFI1 NUFI2 NUFI3 NUFI4 NUFI5 NUFI6 NUFI7 NUFI8 NUFI9 NUFIA NUFIB NUFIC NUFID NUFIE NUFIH"
+    }
+  ],
+  "failures": [
+    {
+      "failure": "timeout",
+      "endpoints": 1454
+    },
+    {
+      "failure": "dns_fail",
+      "endpoints": 644
+    },
+    {
+      "failure": "refused",
+      "endpoints": 262
+    },
+    {
+      "failure": "no_route",
+      "endpoints": 145
+    },
+    {
+      "failure": "error",
+      "endpoints": 9
+    },
+    {
+      "failure": "no_ipv6_at_probe",
+      "endpoints": 7
+    },
+    {
+      "failure": "srv_no_record",
+      "endpoints": 5
+    }
+  ]
+}
