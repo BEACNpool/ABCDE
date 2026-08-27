@@ -288,6 +288,15 @@ def main() -> None:
                        count(*) FILTER (WHERE ever_removed_all_relays
                                         AND registration_class = 'NO_REGISTERED_RELAY') AS still_none
                 FROM relay_pool_health""")[0],
+            "foreign_infra": rows("""
+                SELECT ticker, pool_bech32, stake_ada, delegators, pledge_ada,
+                       blocks_all_time, endpoints_registered, endpoints_foreign,
+                       string_agg(DISTINCT operator, ', ') AS borrowed_from,
+                       string_agg(DISTINCT endpoint_host, ' ') AS hosts, max(kind) AS kind
+                FROM relay_foreign_infrastructure
+                GROUP BY ticker, pool_bech32, stake_ada, delegators, pledge_ada,
+                         blocks_all_time, endpoints_registered, endpoints_foreign
+                ORDER BY (max(kind)='fe_bootstrap_backbone') DESC, stake_ada DESC NULLS LAST"""),
             "asn": rows("""
                 SELECT asn, as_name, country, pools, stake_ada,
                        pools_single_asn, stake_single_asn

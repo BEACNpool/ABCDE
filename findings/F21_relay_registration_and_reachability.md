@@ -186,6 +186,43 @@ the chain, and their inbound load sits on pools that do publish. `relay_registra
 has every one of the 4,186 events with its transaction hash, so any of this can be
 checked without trusting this table.
 
+## Pools advertising somebody else's infrastructure
+
+Reachability alone can be gamed, and until this section existed **this build was
+rewarding the gaming**. A pool that registers the founding entities' bootstrap
+backbones scores the best grade available here — many reachable hosts, all at the
+tip — because those endpoints genuinely answer. They are IOG's, the Cardano
+Foundation's and Emurgo's. It also slips past every sharing check in this
+finding: no other pool registers the same strings, so `relay_shared_endpoints`,
+`relay_shared_hosts` and `relay_shared_domains` all see nothing. The pattern was
+spotted by [@HephyPool](https://x.com/HephyPool).
+
+| Ticker | ADA | Delegators | Pledge | Blocks | Foreign / total endpoints | Advertises |
+|---|---|---|---|---|---|---|
+| NIGHT | 981,696 | 94 | 1,000 | 294 | **3 / 3** | IOG, Cardano Foundation, Emurgo |
+| REIT | 24,393 | 24 | 5,000 | 33 | 1 / 3 | IOG (retired relay) |
+| IOGP | 5,738 | 2 | 64,000,000 | 2,952 | 1 / 1 | IOG (retired relay) |
+| *(no ticker)* | 27 | 3 | 15,200 | 0 | 1 / 1 | IOG (retired relay) |
+
+NIGHT is the only pool advertising the *live* backbones, and all three of its
+registered endpoints are foreign — one from each founding entity. It scores
+`MULTI_REACHABLE_HOSTS` with **9 reachable hosts** in this dataset. None of them
+are its own.
+
+**Why this needs no judgement about who is who.** The `backbone.*` names are the
+`bootstrapPeers` shipped in the stock mainnet `topology.json` — the network's
+shared entry points, published so any node can find its first peers. They are
+nobody's relays, and the founding entities' own pools do not register them
+either: IOG1 advertises `iog1-relays.cardano.iog.io`, the CF pools advertise
+`cfNrN.mainnet.pool.cardanofoundation.org`. So flagging a backbone registration
+requires no allowlist of identities.
+
+**Grade.** That a pool registered these strings is FACT, from `pool_relay`. What
+it means is the reader's: a misconfiguration and a deliberate free-ride look
+identical on-chain, and this table does not try to separate them. What it does
+mean is that the pool publishes no way to reach *its* node, and its inbound load
+sits on infrastructure it does not run.
+
 ## Where the relays actually live
 
 A pool with three relays is not redundant if all three sit in one datacenter.
@@ -271,6 +308,8 @@ headers ([`F10`](F10_kes_corotation_pool_operators.md)).
   have their *entire* reachable relay set inside it.
 - `relay_registration_changes` — every certificate that changed a pool's relay
   count, with date, tx hash, before/after and direction.
+- `relay_foreign_infrastructure` — pools advertising founding-entity bootstrap
+  backbones as their own relays.
 
 ```sql
 SELECT reachability_class, count(*) AS pools, sum(stake_ada) AS ada

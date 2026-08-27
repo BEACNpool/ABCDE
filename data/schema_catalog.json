@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "f39c1767acf1",
+          "git_commit": "d8514c494a29",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -7913,6 +7913,104 @@
         }
       ]
     },
+    "relay_foreign_infrastructure": {
+      "source": "data/small/relay_foreign_infrastructure.csv",
+      "row_count": 36,
+      "columns": [
+        {
+          "name": "pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "delegators",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pledge_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "operator",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "endpoint_host",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "port",
+          "type": "BIGINT"
+        },
+        {
+          "name": "blocks_all_time",
+          "type": "BIGINT"
+        },
+        {
+          "name": "endpoints_registered",
+          "type": "BIGINT"
+        },
+        {
+          "name": "endpoints_foreign",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "pool_bech32": "pool1lx7hdfz430vmrwhkrdgxu8c0xclffltavmkejpqzzz4ax0lnfvd",
+          "ticker": "NIGHT",
+          "stake_ada": 981696,
+          "delegators": 94,
+          "pledge_ada": 1000,
+          "operator": "IOG",
+          "kind": "fe_bootstrap_backbone",
+          "endpoint_host": "backbone.cardano.iog.io",
+          "port": 3001,
+          "blocks_all_time": 294,
+          "endpoints_registered": 3,
+          "endpoints_foreign": 3
+        },
+        {
+          "pool_bech32": "pool1lx7hdfz430vmrwhkrdgxu8c0xclffltavmkejpqzzz4ax0lnfvd",
+          "ticker": "NIGHT",
+          "stake_ada": 981696,
+          "delegators": 94,
+          "pledge_ada": 1000,
+          "operator": "Cardano Foundation",
+          "kind": "fe_bootstrap_backbone",
+          "endpoint_host": "backbone.mainnet.cardanofoundation.org",
+          "port": 3001,
+          "blocks_all_time": 294,
+          "endpoints_registered": 3,
+          "endpoints_foreign": 3
+        },
+        {
+          "pool_bech32": "pool1lx7hdfz430vmrwhkrdgxu8c0xclffltavmkejpqzzz4ax0lnfvd",
+          "ticker": "NIGHT",
+          "stake_ada": 981696,
+          "delegators": 94,
+          "pledge_ada": 1000,
+          "operator": "Emurgo",
+          "kind": "fe_bootstrap_backbone",
+          "endpoint_host": "backbone.mainnet.emurgornd.com",
+          "port": 3001,
+          "blocks_all_time": 294,
+          "endpoints_registered": 3,
+          "endpoints_foreign": 3
+        }
+      ]
+    },
     "relay_pool_health": {
       "source": "data/small/relay_pool_health.csv",
       "row_count": 2898,
@@ -7952,6 +8050,14 @@
         {
           "name": "registration_class",
           "type": "VARCHAR"
+        },
+        {
+          "name": "endpoints_foreign_infra",
+          "type": "BIGINT"
+        },
+        {
+          "name": "registers_foreign_infrastructure",
+          "type": "BOOLEAN"
         },
         {
           "name": "relay_additions",
@@ -8008,11 +8114,13 @@
           "ticker": "TW001",
           "stake_ada": 113567622,
           "delegators": 35742,
-          "blocks_last_30_epochs": 3582,
+          "blocks_last_30_epochs": 3482,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 3,
           "registration_class": "MULTIPLE_ENDPOINTS",
+          "endpoints_foreign_infra": 0,
+          "registers_foreign_infrastructure": false,
           "relay_additions": 0,
           "relay_reductions": 0,
           "ever_removed_all_relays": false,
@@ -8031,11 +8139,13 @@
           "ticker": "PPTG1",
           "stake_ada": 107805999,
           "delegators": 5673,
-          "blocks_last_30_epochs": 2481,
+          "blocks_last_30_epochs": 2406,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 1,
           "registration_class": "SINGLE_ENDPOINT",
+          "endpoints_foreign_infra": 0,
+          "registers_foreign_infrastructure": false,
           "relay_additions": 1,
           "relay_reductions": 0,
           "ever_removed_all_relays": false,
@@ -8054,11 +8164,13 @@
           "ticker": "LBF2",
           "stake_ada": 83924628,
           "delegators": 10618,
-          "blocks_last_30_epochs": 2645,
+          "blocks_last_30_epochs": 2565,
           "minted_last_30_epochs": true,
           "relay_entries": 1,
           "distinct_endpoints": 1,
           "registration_class": "SRV_MULTIHOST_POSSIBLE",
+          "endpoints_foreign_infra": 0,
+          "registers_foreign_infrastructure": false,
           "relay_additions": 0,
           "relay_reductions": 1,
           "ever_removed_all_relays": false,

@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 156,
+  "table_count": 157,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -1021,6 +1021,15 @@
       "family": "Other",
       "row_count": 4597,
       "source": "data/small/relay_endpoint_status.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_foreign_infrastructure",
+      "family": "Other",
+      "row_count": 36,
+      "source": "data/small/relay_foreign_infrastructure.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""

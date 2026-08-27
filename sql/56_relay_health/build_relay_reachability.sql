@@ -138,6 +138,8 @@ SELECT
   (sh.pool_hash_id IS NOT NULL)     AS shares_endpoint_with_other_pool,
   coalesce(mb.blocks_30ep, 0)       AS blocks_last_30_epochs,
   (mb.pool_hash_id IS NOT NULL)     AS minted_last_30_epochs,
+  coalesce(fi.foreign_eps, 0)       AS endpoints_foreign_infra,
+  (fi.pool_hash_id IS NOT NULL)     AS registers_foreign_infrastructure,
   coalesce(hi.relay_additions, 0)   AS relay_additions,
   coalesce(hi.relay_reductions, 0)  AS relay_reductions,
   coalesce(hi.ever_removed_all_relays, false) AS ever_removed_all_relays,
@@ -158,7 +160,14 @@ FROM relay.pool_registration pr
 LEFT JOIN per_pool pp ON pp.pool_hash_id = pr.pool_hash_id
 LEFT JOIN shared sh   ON sh.pool_hash_id = pr.pool_hash_id
 LEFT JOIN minted mb   ON mb.pool_hash_id = pr.pool_hash_id
-LEFT JOIN relay.pool_relay_history hi ON hi.pool_hash_id = pr.pool_hash_id;
+LEFT JOIN relay.pool_relay_history hi ON hi.pool_hash_id = pr.pool_hash_id
+-- Built by build_relay_foreign_infra.sql, which depends only on registration.
+LEFT JOIN (
+  SELECT pc2.pool_hash_id, max(f.endpoints_foreign) AS foreign_eps
+  FROM relay.foreign_infrastructure f
+  JOIN relay.pool_current pc2 ON pc2.pool_bech32 = f.pool_bech32
+  GROUP BY pc2.pool_hash_id
+) fi ON fi.pool_hash_id = pr.pool_hash_id;
 
 ALTER TABLE relay.pool_health ADD PRIMARY KEY (pool_hash_id);
 CREATE INDEX ON relay.pool_health (stake_ada DESC);
