@@ -267,7 +267,7 @@ function fill(id, rows, cells){
   tb.innerHTML = rows.map(r => "<tr>" + cells(r).join("") + "</tr>").join("");
 }
 
-fetch("data/relays.json").then(r => r.json()).then(d => {
+fetch("data/relays.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
   const when = new Date(d.checked_at);
   document.getElementById("stamp").innerHTML =
     "Sweep of <b>" + fmt(d.totals.pools) + "</b> current pools, " +
@@ -318,12 +318,12 @@ fetch("data/relays.json").then(r => r.json()).then(d => {
     `<td class="num muted">${fmt(mint[k].n[0])}</td>`,
     `<td class="num muted">${ada(mint[k].n[1])}</td>`]);
 
-  const nr = d.no_relay_minters || {};
-  if (nr.pools) document.getElementById("norelay").innerHTML =
-    `<b>${fmt(nr.pools)} pools minted ${fmt(nr.blocks)} blocks in the last 30 epochs while ` +
-    `registering no relay at all</b> — ${ada(nr.stake_ada)} ADA and ${fmt(nr.delegators)} ` +
-    `delegators between them. Registering none is permitted and there are working setups that ` +
-    `do it. It also means no other node can discover them from the chain.`;
+  const noRelay = d.no_relay_minters || {};
+  if (noRelay.pools) document.getElementById("norelay").innerHTML =
+    `<b>${fmt(noRelay.pools)} pools minted ${fmt(noRelay.blocks)} blocks in the last 30 epochs ` +
+    `while registering no relay at all</b> — ${ada(noRelay.stake_ada)} ADA and ` +
+    `${fmt(noRelay.delegators)} delegators between them. Registering none is permitted and there ` +
+    `are working setups that do it. It also means no other node can discover them from the chain.`;
 
   if (d.asn_totals) {
     const pct = (100 * Number(d.asn_totals.stake_single_asn) / Number(d.totals.stake_ada)).toFixed(1);
@@ -356,6 +356,10 @@ fetch("data/relays.json").then(r => r.json()).then(d => {
 }).catch(e => {
   document.getElementById("stamp").textContent =
     "Could not load the published cut (" + e + ").";
+  document.querySelectorAll("table.rt tbody").forEach(tb => {
+    if (!tb.children.length) tb.innerHTML =
+      '<tr><td colspan="6" class="muted">Data did not load — reload, or read the CSVs in the repo.</td></tr>';
+  });
 });
 </script>
 </body>
