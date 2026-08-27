@@ -114,6 +114,18 @@ per_pool AS (
 shared AS (
   SELECT DISTINCT e.pool_hash_id FROM relay.endpoint e
   JOIN relay.endpoint_shared s ON s.endpoint = e.endpoint
+),
+-- Whether a pool actually MINTS is the difference between a live operator and a
+-- registration nobody ever retired. Without it the headline reachability numbers
+-- are dominated by long-dead pools that hold no stake and produce no blocks, and
+-- read as though the network is far sicker than it is.
+minted AS (
+  SELECT sl.pool_hash_id, count(*) AS blocks_30ep
+  FROM public.block b
+  JOIN public.slot_leader sl ON sl.id = b.slot_leader_id
+  WHERE b.epoch_no >= (SELECT max(epoch_no) - 30 FROM public.block)
+    AND sl.pool_hash_id IS NOT NULL
+  GROUP BY sl.pool_hash_id
 )
 SELECT
   pr.pool_hash_id, pr.pool_bech32, pr.ticker, pr.stake_ada, pr.delegators,
@@ -124,6 +136,8 @@ SELECT
   coalesce(pp.endpoints_untested, 0) AS endpoints_untested,
   pp.best_rtt_ms, pp.worst_slots_behind, pp.last_checked,
   (sh.pool_hash_id IS NOT NULL)     AS shares_endpoint_with_other_pool,
+  coalesce(mb.blocks_30ep, 0)       AS blocks_last_30_epochs,
+  (mb.pool_hash_id IS NOT NULL)     AS minted_last_30_epochs,
   CASE
     WHEN pr.relay_entries = 0             THEN 'NO_REGISTERED_RELAY'
     -- Every endpoint this pool registered is one we could not test at all
@@ -138,7 +152,8 @@ SELECT
   END AS reachability_class
 FROM relay.pool_registration pr
 LEFT JOIN per_pool pp ON pp.pool_hash_id = pr.pool_hash_id
-LEFT JOIN shared sh   ON sh.pool_hash_id = pr.pool_hash_id;
+LEFT JOIN shared sh   ON sh.pool_hash_id = pr.pool_hash_id
+LEFT JOIN minted mb   ON mb.pool_hash_id = pr.pool_hash_id;
 
 ALTER TABLE relay.pool_health ADD PRIMARY KEY (pool_hash_id);
 CREATE INDEX ON relay.pool_health (stake_ada DESC);

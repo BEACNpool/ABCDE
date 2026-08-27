@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "fd250d4970a0",
+          "git_commit": "c44c386095bd",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -7731,6 +7731,83 @@
         }
       ]
     },
+    "relay_asn_concentration": {
+      "source": "data/small/relay_asn_concentration.csv",
+      "row_count": 245,
+      "columns": [
+        {
+          "name": "asn",
+          "type": "BIGINT"
+        },
+        {
+          "name": "as_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "country",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "pools",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "delegators",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pools_single_asn",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_single_asn",
+          "type": "BIGINT"
+        },
+        {
+          "name": "delegators_single_asn",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "asn": 16509,
+          "as_name": "AMAZON-02 - Amazon.com, Inc., US",
+          "country": "US",
+          "pools": 108,
+          "stake_ada": 2940738261,
+          "delegators": 29826,
+          "pools_single_asn": 96,
+          "stake_single_asn": 2726783547,
+          "delegators_single_asn": 19452
+        },
+        {
+          "asn": 396982,
+          "as_name": "GOOGLE-CLOUD-PLATFORM - Google LLC, US",
+          "country": "US",
+          "pools": 58,
+          "stake_ada": 2032432175,
+          "delegators": 19712,
+          "pools_single_asn": 53,
+          "stake_single_asn": 1877257129,
+          "delegators_single_asn": 16520
+        },
+        {
+          "asn": 16276,
+          "as_name": "OVH - OVH SAS, FR",
+          "country": "CA",
+          "pools": 197,
+          "stake_ada": 5353885781,
+          "delegators": 682434,
+          "pools_single_asn": 106,
+          "stake_single_asn": 1338447887,
+          "delegators_single_asn": 283129
+        }
+      ]
+    },
     "relay_endpoint_status": {
       "source": "data/small/relay_endpoint_status.csv",
       "row_count": 4597,
@@ -7857,6 +7934,14 @@
           "type": "BIGINT"
         },
         {
+          "name": "blocks_last_30_epochs",
+          "type": "BIGINT"
+        },
+        {
+          "name": "minted_last_30_epochs",
+          "type": "BOOLEAN"
+        },
+        {
           "name": "relay_entries",
           "type": "BIGINT"
         },
@@ -7907,6 +7992,8 @@
           "ticker": "TW001",
           "stake_ada": 113567622,
           "delegators": 35742,
+          "blocks_last_30_epochs": 3580,
+          "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 3,
           "registration_class": "MULTIPLE_ENDPOINTS",
@@ -7924,6 +8011,8 @@
           "ticker": "PPTG1",
           "stake_ada": 107805999,
           "delegators": 5673,
+          "blocks_last_30_epochs": 2480,
+          "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 1,
           "registration_class": "SINGLE_ENDPOINT",
@@ -7941,6 +8030,8 @@
           "ticker": "LBF2",
           "stake_ada": 83924628,
           "delegators": 10618,
+          "blocks_last_30_epochs": 2643,
+          "minted_last_30_epochs": true,
           "relay_entries": 1,
           "distinct_endpoints": 1,
           "registration_class": "SRV_MULTIHOST_POSSIBLE",

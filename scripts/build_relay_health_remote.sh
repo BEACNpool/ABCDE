@@ -23,15 +23,15 @@ OUT="$SQL_DIR/data"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
-echo "1/5 building on-chain registration surface"
+echo "1/6 building on-chain registration surface"
 ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_registration.sql" > /dev/null
 
-echo "2/5 exporting probe targets"
+echo "2/6 exporting probe targets"
 ssh "$ABCDE_SSH" "$PSQL -Atc \"\\copy (select distinct endpoint, endpoint_kind, endpoint_host, port from relay.endpoint where endpoint is not null order by 1,4) to stdout csv header\"" \
   > "$WORK/targets.csv"
 echo "    $(( $(wc -l < "$WORK/targets.csv") - 1 )) endpoints"
 
-echo "3/5 probing (single vantage point -- results are observations, not verdicts)"
+echo "3/6 probing (single vantage point -- results are observations, not verdicts)"
 if [[ -n "$PROBE_SSH" ]]; then
   ssh "$PROBE_SSH" "mkdir -p $PROBE_DIR"
   scp -q "$REPO_ROOT/scripts/relay_probe.py" "$WORK/targets.csv" "$PROBE_SSH:$PROBE_DIR/"
@@ -43,7 +43,7 @@ else
       --out "$WORK/observations.csv" --cli "$CARDANO_CLI" --timeout 20 --workers 40
 fi
 
-echo "4/5 loading observations + building reachability"
+echo "4/6 loading observations + building reachability"
 ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_reachability.sql" > /dev/null
 ssh "$ABCDE_SSH" "$PSQL -c 'TRUNCATE relay.observation_stage'" > /dev/null
 ssh "$ABCDE_SSH" "$PSQL -c \"\\copy relay.observation_stage (endpoint,endpoint_kind,endpoint_host,registered_port,target_host,target_port,resolved_ip,handshake_ok,block_no,slot_no,rtt_ms,failure,error_detail,attempts,checked_at) from stdin csv header\"" \
@@ -51,7 +51,15 @@ ssh "$ABCDE_SSH" "$PSQL -c \"\\copy relay.observation_stage (endpoint,endpoint_k
 ssh "$ABCDE_SSH" "$PSQL -c 'INSERT INTO relay.observation (endpoint,endpoint_kind,endpoint_host,registered_port,target_host,target_port,resolved_ip,handshake_ok,block_no,slot_no,rtt_ms,failure,error_detail,attempts,checked_at) SELECT endpoint,endpoint_kind,endpoint_host,registered_port,target_host,target_port,resolved_ip,handshake_ok,block_no,slot_no,rtt_ms,failure,error_detail,attempts,checked_at FROM relay.observation_stage'" > /dev/null
 ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_reachability.sql" > /dev/null
 
-echo "5/5 exporting public CSVs"
+echo "5/6 mapping reachable relay IPs to their announcing ASN"
+ssh "$ABCDE_SSH" "$PSQL --csv -c \"select distinct resolved_ip from relay.endpoint_status where resolved_ip is not null\"" > "$WORK/ips.csv"
+python3 "$REPO_ROOT/scripts/relay_asn_lookup.py" --ips "$WORK/ips.csv" --out "$WORK/ip_asn.csv"
+ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_concentration.sql" > /dev/null
+ssh "$ABCDE_SSH" "$PSQL -c 'TRUNCATE relay.ip_asn'" > /dev/null
+ssh "$ABCDE_SSH" "$PSQL -c \"\\copy relay.ip_asn from stdin csv header\"" < "$WORK/ip_asn.csv" > /dev/null
+ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_concentration.sql" > /dev/null
+
+echo "6/6 exporting public CSVs"
 mkdir -p "$OUT"
 export_csv() {  # $1 = out file, $2 = query
   ssh "$ABCDE_SSH" "$PSQL --csv -c \"$2\"" > "$REPO_ROOT/$1"
@@ -59,7 +67,8 @@ export_csv() {  # $1 = out file, $2 = query
 }
 
 export_csv data/small/relay_pool_health.csv "
-  select pool_bech32, ticker, stake_ada, delegators, relay_entries, distinct_endpoints,
+  select pool_bech32, ticker, stake_ada, delegators,
+         blocks_last_30_epochs, minted_last_30_epochs, relay_entries, distinct_endpoints,
          registration_class, endpoints_probed, reachable_hosts, at_tip_hosts,
          endpoints_untested, best_rtt_ms, shares_endpoint_with_other_pool,
          reachability_class, last_checked
@@ -86,6 +95,11 @@ export_csv data/small/relay_endpoint_status.csv "
          handshake_ok, failure, error_detail, rtt_ms, block_no, slots_behind_best,
          at_tip, checked_at
   from relay.endpoint_status order by endpoint, target_host, target_port"
+
+export_csv data/small/relay_asn_concentration.csv "
+  select asn, as_name, country, pools, stake_ada, delegators,
+         pools_single_asn, stake_single_asn, delegators_single_asn
+  from relay.asn_concentration order by stake_single_asn desc nulls last, asn"
 
 export_csv sql/56_relay_health/data/relay_build_receipt.csv "
   select run_at, stage, tip_block_no, tip_epoch_no, tip_time, stake_epoch, rows_out, notes

@@ -250,6 +250,23 @@ def main() -> None:
                 SELECT resolved_ip, target_port, pools, stake_ada, delegators,
                        distinct_registered_names, tickers
                 FROM relay_shared_hosts ORDER BY pools DESC, stake_ada DESC NULLS LAST LIMIT 15"""),
+            "by_minting": rows("""
+                SELECT minted_last_30_epochs AS minting, reachability_class AS class,
+                       count(*) AS pools, sum(stake_ada) AS stake_ada
+                FROM relay_pool_health GROUP BY 1, 2 ORDER BY 1 DESC, 3 DESC"""),
+            "no_relay_minters": rows("""
+                SELECT count(*) AS pools, sum(stake_ada) AS stake_ada,
+                       sum(delegators) AS delegators, sum(blocks_last_30_epochs) AS blocks
+                FROM relay_pool_health
+                WHERE minted_last_30_epochs AND registration_class = 'NO_REGISTERED_RELAY'""")[0],
+            "asn": rows("""
+                SELECT asn, as_name, country, pools, stake_ada,
+                       pools_single_asn, stake_single_asn
+                FROM relay_asn_concentration
+                ORDER BY stake_single_asn DESC NULLS LAST LIMIT 12"""),
+            "asn_totals": rows("""
+                SELECT count(*) AS asns, sum(stake_single_asn) AS stake_single_asn
+                FROM relay_asn_concentration""")[0],
             "failures": rows("""
                 SELECT failure, count(*) AS endpoints
                 FROM relay_endpoint_status WHERE failure IS NOT NULL AND failure <> ''

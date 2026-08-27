@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 154,
+  "table_count": 155,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -1003,6 +1003,15 @@
       "family": "Other",
       "row_count": 480,
       "source": "data/small/pool_operator_kes_members.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_asn_concentration",
+      "family": "Other",
+      "row_count": 245,
+      "source": "data/small/relay_asn_concentration.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""

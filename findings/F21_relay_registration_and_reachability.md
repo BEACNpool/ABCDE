@@ -12,9 +12,13 @@ Of 2,898 current Cardano stake pools, 43 have registered no
 relay at all and 1,470 registered exactly one endpoint. In a two-pass
 handshake sweep of all 5,064 registered endpoints, 1,632
 pools had no endpoint that answered and 646 had two or more
-distinct reachable hosts. Separately, 605 pools advertise a relay
-endpoint that at least one other pool also advertises, and resolution collapses
-further fleets that registration strings hide.
+distinct reachable hosts — though 1,439 of the unreachable have not minted a
+block in 30 epochs and hold 49.7M ADA between them, so the figure that matters is
+the 193 *block-producing* pools with nothing answering. Separately, 605 pools
+advertise a relay endpoint that at least one other pool also advertises,
+resolution collapses further fleets that registration strings hide, and at least
+59.1% of staked ADA sits with pools whose entire reachable relay set is inside a
+single ASN.
 
 ## Grade
 
@@ -77,6 +81,62 @@ never filed a retirement certificate do.
 33 pools still advertising `relays-new.cardano-mainnet.iohk.io`,
 a hostname that no longer exists.
 
+## Dead pools are not the story — separate them out
+
+1,632 pools had nothing answer. Read on its own that number is badly
+misleading, and it is the misreading this section exists to prevent:
+**1,439 of them have not minted a block in 30 epochs and hold 49.7M ADA
+between them.** They are abandoned registrations whose operators never filed a
+retirement certificate. They are noise in every per-pool count of Cardano's
+"3,000 pools", not a symptom of a failing network.
+
+Restricted to pools that actually produced a block in the last 30 epochs:
+
+| Observed | Pools | ADA |
+|---|---|---|
+| Two or more hosts answered | 613 | 11.46B |
+| One host answered | 477 | 6.96B |
+| Nothing answered | 193 | 2.49B |
+| No relay registered | 26 | 445.0M |
+
+That is the number worth arguing about: **193 pools that are producing blocks
+right now had no registered endpoint answer us**, and a further 26 minting pools
+publish no relay at all. `minted_last_30_epochs` and `blocks_last_30_epochs` are
+on every row of `relay_pool_health` so anyone can draw this cut themselves.
+
+Those 26 pools minted **14,776 blocks in the last 30 epochs** between them, hold
+445.0M ADA and 30,210 delegators, and have registered zero relays. Registering
+none is permitted and there are working setups that do it. It also means no other
+node can discover them from the chain.
+
+## Where the relays actually live
+
+A pool with three relays is not redundant if all three sit in one datacenter.
+Pool counts cannot see that; the ASN announcing each reachable relay IP can.
+
+**At least 59.1% of all staked ADA belongs to pools whose entire reachable relay
+set sits inside a single ASN.** A floor, not an estimate — pools whose relays we
+could not reach are in no ASN here and contribute nothing to it.
+
+| Network | Pools | ADA | Pools wholly inside | Their ADA |
+|---|---|---|---|---|
+| Amazon (AMAZON-02) | 108 | 2.94B | 96 | 2.73B |
+| Google Cloud | 58 | 2.03B | 53 | 1.88B |
+| OVH | 197 | 5.35B | 106 | 1.34B |
+| Hetzner | 145 | 1.56B | 100 | 848.7M |
+| Contabo | 125 | 1.05B | 82 | 679.1M |
+| Amazon (AMAZON-AES) | 53 | 749.0M | 43 | 551.8M |
+| Microsoft | 24 | 552.3M | 18 | 538.6M |
+
+An ASN is a **failure domain, not an operator.** Hetzner, OVH and Contabo host a
+large share of the hobbyist internet, and two pools in one datacenter are usually
+two unrelated people who both picked the cheap option. That is exactly why it
+counts: uncoordinated concentration is still concentration, and a provider
+outage does not care whether the pools behind it were coordinated.
+
+245 distinct ASNs carry the reachable relays. `relay_asn_concentration` has all
+of them, with the wholly-inside counts.
+
 ## Shared infrastructure
 
 Endpoints advertised by more than one current pool, by stake behind them:
@@ -130,6 +190,8 @@ headers ([`F10`](F10_kes_corotation_pool_operators.md)).
 - `relay_shared_hosts` — pools sharing a **resolved IP**.
 - `relay_shared_domains` — pools sharing a parent domain (heuristic).
 - `relay_endpoint_status` — the raw per-endpoint sweep, with failure cause.
+- `relay_asn_concentration` — per ASN: pools, stake, and how many of those pools
+  have their *entire* reachable relay set inside it.
 
 ```sql
 SELECT reachability_class, count(*) AS pools, sum(stake_ada) AS ada
