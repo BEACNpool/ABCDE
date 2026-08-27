@@ -395,7 +395,111 @@
     "pools": 26,
     "stake_ada": 445049453,
     "delegators": 30210,
-    "blocks": 14776
+    "blocks": 14787
+  },
+  "history": [
+    {
+      "direction": "added",
+      "certs": 2581,
+      "pools": 1692
+    },
+    {
+      "direction": "reduced",
+      "certs": 1552,
+      "pools": 1021
+    },
+    {
+      "direction": "removed_all",
+      "certs": 53,
+      "pools": 51
+    }
+  ],
+  "removed_all": [
+    {
+      "ticker": "CCV",
+      "stake_ada": 42228159,
+      "delegators": 5562,
+      "blocks": 1340,
+      "removed_all_relays_on": "2025-11-26",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "CCV2",
+      "stake_ada": 33956700,
+      "delegators": 4515,
+      "blocks": 1088,
+      "removed_all_relays_on": "2025-12-01",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "CCV1",
+      "stake_ada": 31633491,
+      "delegators": 5050,
+      "blocks": 1047,
+      "removed_all_relays_on": "2025-12-01",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "CCV3",
+      "stake_ada": 29035282,
+      "delegators": 4417,
+      "blocks": 947,
+      "removed_all_relays_on": "2025-12-01",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "CCV4",
+      "stake_ada": 28346998,
+      "delegators": 3224,
+      "blocks": 865,
+      "removed_all_relays_on": "2025-12-01",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "DEVFO",
+      "stake_ada": 12228447,
+      "delegators": 2,
+      "blocks": 387,
+      "removed_all_relays_on": "2025-07-16",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "GROW",
+      "stake_ada": 11517708,
+      "delegators": 2803,
+      "blocks": 346,
+      "removed_all_relays_on": "2025-07-01",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "DDLT",
+      "stake_ada": 3340463,
+      "delegators": 1087,
+      "blocks": 115,
+      "removed_all_relays_on": "2026-07-31",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "WEQNT",
+      "stake_ada": 1945339,
+      "delegators": 340,
+      "blocks": 71,
+      "removed_all_relays_on": "2025-02-07",
+      "registration_class": "NO_REGISTERED_RELAY"
+    },
+    {
+      "ticker": "ALLIN",
+      "stake_ada": 1152736,
+      "delegators": 362,
+      "blocks": 17,
+      "removed_all_relays_on": "2023-04-03",
+      "registration_class": "NO_REGISTERED_RELAY"
+    }
+  ],
+  "removed_all_totals": {
+    "ever": 32,
+    "re_added": 16,
+    "still_none": 16
   },
   "asn": [
     {
