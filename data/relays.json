@@ -335,6 +335,182 @@
       "tickers": "NUFI NUFI0 NUFI1 NUFI2 NUFI3 NUFI4 NUFI5 NUFI6 NUFI7 NUFI8 NUFI9 NUFIA NUFIB NUFIC NUFID NUFIE NUFIH"
     }
   ],
+  "by_minting": [
+    {
+      "minting": true,
+      "class": "MULTI_REACHABLE_HOSTS",
+      "pools": 613,
+      "stake_ada": 11463856367
+    },
+    {
+      "minting": true,
+      "class": "ONE_REACHABLE_HOST",
+      "pools": 477,
+      "stake_ada": 6955395637
+    },
+    {
+      "minting": true,
+      "class": "NONE_REACHABLE",
+      "pools": 193,
+      "stake_ada": 2488809369
+    },
+    {
+      "minting": true,
+      "class": "NO_REGISTERED_RELAY",
+      "pools": 26,
+      "stake_ada": 445049453
+    },
+    {
+      "minting": true,
+      "class": "NOT_TESTED_FROM_THIS_PROBE",
+      "pools": 1,
+      "stake_ada": 8688397
+    },
+    {
+      "minting": false,
+      "class": "NONE_REACHABLE",
+      "pools": 1439,
+      "stake_ada": 49725054
+    },
+    {
+      "minting": false,
+      "class": "ONE_REACHABLE_HOST",
+      "pools": 99,
+      "stake_ada": 5798487
+    },
+    {
+      "minting": false,
+      "class": "MULTI_REACHABLE_HOSTS",
+      "pools": 33,
+      "stake_ada": 1791844
+    },
+    {
+      "minting": false,
+      "class": "NO_REGISTERED_RELAY",
+      "pools": 17,
+      "stake_ada": 47625
+    }
+  ],
+  "no_relay_minters": {
+    "pools": 26,
+    "stake_ada": 445049453,
+    "delegators": 30210,
+    "blocks": 14776
+  },
+  "asn": [
+    {
+      "asn": 16509,
+      "as_name": "AMAZON-02 - Amazon.com, Inc., US",
+      "country": "US",
+      "pools": 108,
+      "stake_ada": 2940738261,
+      "pools_single_asn": 96,
+      "stake_single_asn": 2726783547
+    },
+    {
+      "asn": 396982,
+      "as_name": "GOOGLE-CLOUD-PLATFORM - Google LLC, US",
+      "country": "US",
+      "pools": 58,
+      "stake_ada": 2032432175,
+      "pools_single_asn": 53,
+      "stake_single_asn": 1877257129
+    },
+    {
+      "asn": 16276,
+      "as_name": "OVH - OVH SAS, FR",
+      "country": "CA",
+      "pools": 197,
+      "stake_ada": 5353885781,
+      "pools_single_asn": 106,
+      "stake_single_asn": 1338447887
+    },
+    {
+      "asn": 24940,
+      "as_name": "HETZNER-AS - Hetzner Online GmbH, DE",
+      "country": "DE",
+      "pools": 145,
+      "stake_ada": 1562572983,
+      "pools_single_asn": 100,
+      "stake_single_asn": 848691999
+    },
+    {
+      "asn": 51167,
+      "as_name": "CONTABO - Contabo GmbH, DE",
+      "country": "DE",
+      "pools": 125,
+      "stake_ada": 1053575055,
+      "pools_single_asn": 82,
+      "stake_single_asn": 679128309
+    },
+    {
+      "asn": 14618,
+      "as_name": "AMAZON-AES - Amazon.com, Inc., US",
+      "country": "US",
+      "pools": 53,
+      "stake_ada": 749017858,
+      "pools_single_asn": 43,
+      "stake_single_asn": 551826810
+    },
+    {
+      "asn": 8075,
+      "as_name": "MICROSOFT-CORP-MSN-AS-BLOCK - Microsoft Corporation, US",
+      "country": "US",
+      "pools": 24,
+      "stake_ada": 552314343,
+      "pools_single_asn": 18,
+      "stake_single_asn": 538604825
+    },
+    {
+      "asn": 197540,
+      "as_name": "netcup-AS - netcup GmbH, DE",
+      "country": "AT",
+      "pools": 98,
+      "stake_ada": 1357571475,
+      "pools_single_asn": 48,
+      "stake_single_asn": 417370612
+    },
+    {
+      "asn": 14061,
+      "as_name": "DIGITALOCEAN-ASN - DigitalOcean, LLC, US",
+      "country": "SG",
+      "pools": 73,
+      "stake_ada": 1629836554,
+      "pools_single_asn": 24,
+      "stake_single_asn": 414178397
+    },
+    {
+      "asn": 15169,
+      "as_name": "GOOGLE - Google LLC, US",
+      "country": "US",
+      "pools": 50,
+      "stake_ada": 1601944195,
+      "pools_single_asn": 9,
+      "stake_single_asn": 378256015
+    },
+    {
+      "asn": 1836,
+      "as_name": "GREEN - green.ch AG, CH",
+      "country": "CH",
+      "pools": 7,
+      "stake_ada": 372544958,
+      "pools_single_asn": 6,
+      "stake_single_asn": 371563262
+    },
+    {
+      "asn": 7979,
+      "as_name": "SERVERS-COM - Servers.com, Inc., US",
+      "country": "NL",
+      "pools": 14,
+      "stake_ada": 822067448,
+      "pools_single_asn": 3,
+      "stake_single_asn": 245030792
+    }
+  ],
+  "asn_totals": {
+    "asns": 245,
+    "stake_single_asn": 12666835567
+  },
   "failures": [
     {
       "failure": "timeout",

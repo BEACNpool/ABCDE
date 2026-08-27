@@ -157,7 +157,7 @@
     "id": "F21",
     "title": "Relay registration, shared infrastructure, and observed reachability",
     "grade": "VERIFIED, FACT (registration + per-sweep observations) + STRONG_INFERENCE (shared infrastructure)",
-    "claim": "Of 2,898 current Cardano stake pools, 43 have registered no relay at all and 1,470 registered exactly one endpoint. In a two-pass handshake sweep of all 5,064 registered endpoints, 1,632 pools had no endpoint that answered and 646 had two or more distinct reachable hosts. Separately, 605 pools advertise a relay endpoint that at least one other pool also adve",
+    "claim": "Of 2,898 current Cardano stake pools, 43 have registered no relay at all and 1,470 registered exactly one endpoint. In a two-pass handshake sweep of all 5,064 registered endpoints, 1,632 pools had no endpoint that answered and 646 had two or more distinct reachable hosts \u2014 though 1,439 of the unreachable have not minted a block in 30 epochs and hold 49.7M AD",
     "url": "https://github.com/BEACNpool/ABCDE/blob/main/findings/F21_relay_registration_and_reachability.md"
   }
 ]

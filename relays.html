@@ -142,6 +142,34 @@
 </div></section>
 
 <section class="rsec"><div class="wrap">
+  <h2>Dead pools are not the story</h2>
+  <p class="sub">Read on its own, the count of pools where nothing answered is badly misleading —
+    most of them are abandoned registrations whose operator never filed a retirement certificate.
+    They inflate every per-pool count of Cardano's “3,000 pools” and they hold almost no stake.
+    The honest cut is pools that actually produced a block in the last 30 epochs.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-mint">
+    <thead><tr><th>Observed</th><th class="num">Minting pools</th><th class="num">ADA</th><th class="num">Idle pools</th><th class="num">ADA</th></tr></thead>
+    <tbody></tbody></table></div>
+  <div class="warn" id="norelay"></div>
+</div></section>
+
+<section class="rsec"><div class="wrap">
+  <h2>Where the relays actually live</h2>
+  <p class="sub">A pool with three relays is not redundant if all three sit in one datacenter.
+    Pool counts cannot see that; the network announcing each reachable relay IP can.</p>
+  <div class="stat-row" id="asnstat"></div>
+  <div class="tbl-wrap"><table class="rt" id="t-asn">
+    <thead><tr><th>Network</th><th>Country</th><th class="num">Pools</th><th class="num">ADA</th><th class="num">Wholly inside</th><th class="num">Their ADA</th></tr></thead>
+    <tbody></tbody></table></div>
+  <div class="warn"><b>An ASN is a failure domain, not an operator.</b> Hetzner, OVH and Contabo
+    host a large share of the hobbyist internet, and two pools in one datacenter are usually two
+    unrelated people who both picked the cheap option. That is exactly why it counts: uncoordinated
+    concentration is still concentration, and a provider outage does not care whether the pools
+    behind it were coordinated. Pools whose relays we could not reach sit in no network here, so
+    every figure is a floor.</div>
+</div></section>
+
+<section class="rsec"><div class="wrap">
   <h2>Shared infrastructure</h2>
   <p class="sub">Endpoints advertised by more than one current pool. This is a shared <i>string</i>:
     strong evidence of shared infrastructure and no evidence at all of shared ownership. A hosting
@@ -196,6 +224,7 @@
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_endpoints.csv">relay_shared_endpoints</a></td><td>Endpoint strings advertised by more than one current pool.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_hosts.csv">relay_shared_hosts</a></td><td>Pools sharing a resolved IP — catches per-pool hostnames.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_domains.csv">relay_shared_domains</a></td><td>Pools sharing a parent domain (heuristic; groups hosting customers too).</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_asn_concentration.csv">relay_asn_concentration</a></td><td>Per network: pools, stake, and how many have their <i>entire</i> reachable relay set inside it.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_endpoint_status.csv">relay_endpoint_status</a></td><td>The raw per-endpoint sweep, with failure cause and detail.</td></tr>
     </tbody></table></div>
   <p class="sub" style="margin-top:22px">Method and limits — which bind any use of these numbers —
@@ -275,6 +304,41 @@ fetch("data/relays.json").then(r => r.json()).then(d => {
   fill("#t-fail", d.failures, r => [
     `<td class="mono">${esc(r.failure)}</td>`,
     `<td class="num">${fmt(r.endpoints)}</td>`]);
+
+  const mint = {};
+  (d.by_minting || []).forEach(r => {
+    const k = r.class; mint[k] = mint[k] || {y:[0,0], n:[0,0]};
+    const slot = (r.minting === true || r.minting === "true") ? "y" : "n";
+    mint[k][slot] = [r.pools, r.stake_ada];
+  });
+  fill("#t-mint", Object.keys(mint).sort((a,b) => mint[b].y[0] - mint[a].y[0]), k => [
+    `<td>${esc(NICE[k] || k)}</td>`,
+    `<td class="num">${fmt(mint[k].y[0])}</td>`,
+    `<td class="num">${ada(mint[k].y[1])}</td>`,
+    `<td class="num muted">${fmt(mint[k].n[0])}</td>`,
+    `<td class="num muted">${ada(mint[k].n[1])}</td>`]);
+
+  const nr = d.no_relay_minters || {};
+  if (nr.pools) document.getElementById("norelay").innerHTML =
+    `<b>${fmt(nr.pools)} pools minted ${fmt(nr.blocks)} blocks in the last 30 epochs while ` +
+    `registering no relay at all</b> — ${ada(nr.stake_ada)} ADA and ${fmt(nr.delegators)} ` +
+    `delegators between them. Registering none is permitted and there are working setups that ` +
+    `do it. It also means no other node can discover them from the chain.`;
+
+  if (d.asn_totals) {
+    const pct = (100 * Number(d.asn_totals.stake_single_asn) / Number(d.totals.stake_ada)).toFixed(1);
+    document.getElementById("asnstat").innerHTML = [
+      [`${pct}%`, "of staked ADA in one network"],
+      [fmt(d.asn_totals.asns), "networks carry the relays"],
+    ].map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${esc(l)}</div></div>`).join("");
+  }
+  fill("#t-asn", d.asn || [], r => [
+    `<td>${esc((r.as_name || ("AS" + r.asn)).split(" - ")[0]).slice(0, 34)}</td>`,
+    `<td class="mono muted">${esc(r.country || "—")}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`,
+    `<td class="num">${fmt(r.pools_single_asn)}</td>`,
+    `<td class="num">${ada(r.stake_single_asn)}</td>`]);
 
   fill("#t-shared", d.shared_endpoints, r => [
     `<td class="mono">${esc(r.endpoint)}</td>`,
