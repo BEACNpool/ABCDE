@@ -4,7 +4,7 @@
 -- Runs ON abcde (isolated `peers` schema; public.* stays read-only). Fed by
 -- the hourly ops/peer_map_collect.py cron on midnight, which SSHes relay for
 -- a live `ss` snapshot and queries Security Onion's Zeek conn.log for
--- 10.30.0.6:6000 traffic, inserts rows here, then builds the public
+-- the relay's node port, inserts rows here, then builds the public
 -- gh-pages/peers/peers.json feed from peers.recent_summary.
 --
 -- Identity join follows the same "latest pool_update per pool" + relay-IP
