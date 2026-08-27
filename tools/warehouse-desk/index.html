@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABCDE Warehouse Desk</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='13' font-size='13'%3E%E2%AC%A1%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #141413; --surface: #1a1a19; --panel: #201f1e; --line: #32312f;
+    --ink: #ffffff; --ink-2: #c3c2b7; --ink-3: #8a897f;
+    --blue: #3987e5; --violet: #9085e9; --amber: #c98500; --red: #e66767; --green: #199e70;
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink-2);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  code, .mono { font-family: ui-monospace, "Cascadia Mono", Menlo, monospace; font-size: 13px; }
+  a { color: var(--blue); text-decoration: none; }
+  button {
+    background: var(--panel); color: var(--ink-2); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 12px; font: inherit; font-size: 13px; cursor: pointer;
+  }
+  button:hover { border-color: var(--ink-3); color: var(--ink); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  button.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+  button.primary:hover { filter: brightness(1.1); }
+  button:disabled { opacity: .45; cursor: default; }
+
+  header {
+    display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap;
+    padding: var(--s2) var(--s3); border-bottom: 1px solid var(--line); background: var(--surface);
+  }
+  header h1 { font-size: 17px; color: var(--ink); margin: 0; letter-spacing: .04em; }
+  header h1 .hx { color: var(--blue); }
+  #tipline { margin-left: auto; font-size: 13px; color: var(--ink-3); display: flex; gap: var(--s1); align-items: center; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); display: inline-block; }
+  .dot.ok { background: var(--green); } .dot.err { background: var(--red); }
+
+  /* search */
+  #searchbox { padding: var(--s3); max-width: 1500px; margin: 0 auto; }
+  .searchrow { display: flex; gap: var(--s1); }
+  #q {
+    flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    color: var(--ink); padding: 12px var(--s2); font: inherit; min-width: 0;
+  }
+  #q::placeholder { color: var(--ink-3); }
+  .hints { margin-top: var(--s1); font-size: 13px; color: var(--ink-3); }
+  .hints .chip {
+    display: inline-block; margin: 4px 6px 0 0; padding: 2px 10px; border: 1px solid var(--line);
+    border-radius: 999px; cursor: pointer; color: var(--ink-2); font-size: 12px;
+  }
+  .hints .chip:hover { border-color: var(--blue); color: var(--ink); }
+
+  /* tabs */
+  nav.tabs { display: flex; gap: var(--s1); padding: 0 var(--s3); max-width: 1500px; margin: 0 auto; flex-wrap: wrap; }
+  nav.tabs button { border-radius: 8px 8px 0 0; border-bottom: none; padding: 8px 16px; }
+  nav.tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); border-color: var(--ink-3); }
+  main { max-width: 1500px; margin: 0 auto; padding: 0 var(--s3) var(--s4); }
+  section.tab { display: none; border: 1px solid var(--line); border-radius: 0 8px 8px 8px; background: var(--surface); padding: var(--s2); }
+  section.tab.active { display: block; }
+
+  /* stat row */
+  .stats { display: flex; gap: var(--s2); flex-wrap: wrap; margin-bottom: var(--s2); align-items: flex-start; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px var(--s2); min-width: 130px; }
+  .stats .depthwrap { flex: 1; min-width: 300px; max-height: 170px; overflow-y: auto; padding-right: 4px; }
+  .stat .v { font-size: 20px; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 12px; color: var(--ink-3); }
+
+  /* trace layout */
+  .tracegrid { display: grid; grid-template-columns: 280px 1fr 300px; gap: var(--s2); min-height: 540px; }
+  @media (max-width: 1000px) { .tracegrid { grid-template-columns: 1fr; } #graphwrap { order: -1; } }
+  .col { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: var(--s2); overflow: auto; max-height: 640px; }
+  .col h3 { margin: 0 0 var(--s1); font-size: 13px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; }
+  #graphwrap { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; min-height: 540px; }
+  #graphwrap canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+  #graphhud { position: absolute; top: var(--s1); left: var(--s1); font-size: 12px; color: var(--ink-3); background: rgba(20,20,19,.8); border-radius: 6px; padding: 4px 10px; pointer-events: none; }
+  #graphtools { position: absolute; top: var(--s1); right: var(--s1); display: flex; gap: 6px; }
+  #tooltip { position: absolute; display: none; background: #000; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; font-size: 12px; pointer-events: none; max-width: 320px; z-index: 5; }
+
+  .rootitem { padding: var(--s1); border-bottom: 1px solid var(--line); cursor: pointer; font-size: 13px; }
+  .rootitem:hover { background: var(--surface); }
+  .rootitem .ada { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .rootitem .sub { color: var(--ink-3); font-size: 12px; }
+
+  .kv { font-size: 13px; margin: 0 0 6px; }
+  .kv b { color: var(--ink-3); font-weight: 500; display: inline-block; min-width: 84px; }
+  .kv .val { color: var(--ink); word-break: break-all; }
+  .paneactions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: var(--s1); }
+
+  /* depth bars */
+  .depthbars { margin-top: var(--s1); }
+  .dbar { display: grid; grid-template-columns: 110px 1fr 170px; gap: var(--s1); align-items: center; font-size: 12px; margin-bottom: 3px; }
+  .dbar .bar { height: 12px; border-radius: 4px; min-width: 2px; }
+  .dbar .n { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+
+  /* tables */
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px var(--s1); border-bottom: 1px solid var(--line); }
+  th { color: var(--ink-3); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  tr.click { cursor: pointer; } tr.click:hover { background: var(--panel); }
+  .twowide { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
+  @media (max-width: 900px) { .twowide { grid-template-columns: 1fr; } }
+  .scrollx { overflow-x: auto; }
+
+  /* search result card */
+  #result { margin: 0 var(--s3) var(--s2); max-width: 1500px; margin-left: auto; margin-right: auto; }
+  .card { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: var(--s2); }
+  .card h2 { margin: 0 0 var(--s1); font-size: 15px; color: var(--ink); }
+  .badge { display: inline-block; font-size: 11px; border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; color: var(--ink-3); margin-left: 8px; text-transform: uppercase; letter-spacing: .06em; }
+  .msg { color: var(--ink-3); font-size: 13px; padding: var(--s2); }
+  .err { color: var(--red); }
+
+  /* catalog */
+  .cat h3 { color: var(--ink); font-size: 14px; margin: var(--s2) 0 4px; }
+  .cat p { margin: 0 0 4px; font-size: 13px; }
+  .cat li { font-size: 13px; margin-bottom: 3px; }
+  details summary { cursor: pointer; color: var(--ink); }
+
+  footer { max-width: 1500px; margin: 0 auto; padding: var(--s2) var(--s3) var(--s4); font-size: 12px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="hx">⬡</span> ABCDE WAREHOUSE DESK</h1>
+  <span style="font-size:12px;color:var(--ink-3)">genesis &amp; NIGHT flow tracing · LAN only</span>
+  <div id="tipline"><span class="dot" id="apidot"></span><span id="tiptext">connecting…</span></div>
+</header>
+
+<div id="searchbox">
+  <div class="searchrow">
+    <input id="q" placeholder="Search anything on-chain — try $beacn" autocomplete="off"
+           aria-label="Search the warehouse">
+    <button class="primary" id="gobtn">Search</button>
+  </div>
+  <div class="hints">
+    Accepted: <b>$handle</b> (ADA Handle, e.g. <code>$beacn</code>) ·
+    <b>payment address</b> (<code>addr1…</code>, <code>Ae2…</code>, <code>DdzFF…</code>) ·
+    <b>stake key</b> (<code>stake1…</code>) · <b>pool id</b> (<code>pool1…</code>) ·
+    <b>transaction hash</b> (64 hex characters)<br>
+    <span class="chip" data-q="$beacn">$beacn</span>
+    <span class="chip" data-q="$nanosplus">$nanosplus</span>
+    <span class="chip" id="chip-tx">example tx</span>
+    <span class="chip" id="chip-addr">example genesis address</span>
+  </div>
+</div>
+
+<div id="result"></div>
+
+<nav class="tabs" role="tablist">
+  <button role="tab" aria-selected="true"  data-tab="genesis">Genesis ADA trace</button>
+  <button role="tab" aria-selected="false" data-tab="night">NIGHT trace</button>
+  <button role="tab" aria-selected="false" data-tab="holders">Where it sits now</button>
+  <button role="tab" aria-selected="false" data-tab="catalog">Everything in the warehouse</button>
+</nav>
+
+<main>
+  <section class="tab active" id="tab-genesis">
+    <div class="stats" id="gstats"><div class="msg">Loading overview…</div></div>
+    <details style="margin-bottom:var(--s2)"><summary>How to read this</summary>
+      <p style="font-size:13px">Every circle is one <b>unspent-or-spent output</b> (a chunk of ADA at an address at a moment in time).
+      Depth 0 = the 14,505 original genesis outputs from 2017. Click a circle to inspect it; click
+      <b>Expand</b> (or double-click the circle) to follow where that ADA went next. Amber ring = still unspent today.
+      Grey halo = spent into a "wide" transaction (more than the trace cap of outputs — usually an exchange or batch payout; the trail is
+      recorded but not expanded, because beyond that point taint turns to noise). This graph shows
+      <b>reachability, not ownership</b>.</p>
+    </details>
+    <div class="tracegrid">
+      <div class="col" id="grootcol"><h3>Genesis roots (largest first)</h3><div id="groots" class="msg">Loading…</div></div>
+      <div id="graphwrap">
+        <canvas id="gcanvas"></canvas>
+        <div id="graphhud">0 nodes</div>
+        <div id="graphtools">
+          <button id="gfit">Fit</button>
+          <button id="gclear">Clear</button>
+        </div>
+        <div id="tooltip"></div>
+      </div>
+      <div class="col" id="gdetail"><h3>Node</h3><div class="msg">Click a root on the left to seed the graph, then click circles to inspect and expand the flow.</div></div>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-night">
+    <div class="stats" id="nstats"><div class="msg">Loading overview…</div></div>
+    <details style="margin-bottom:var(--s2)"><summary>How to read this</summary>
+      <p style="font-size:13px">NIGHT (the Midnight token) was minted in a <b>single transaction</b> — 24&nbsp;billion tokens.
+      Unlike the ADA trace, this graph is <b>exact</b>: every output that ever carried NIGHT descends from
+      that one mint, so the whole flow graph is complete, no caps. Depth = hops from the mint.
+      Click to inspect, double-click to expand. Violet = NIGHT.</p>
+    </details>
+    <div class="tracegrid">
+      <div class="col"><h3>Mint outputs (the roots)</h3><div id="nroots" class="msg">Loading…</div></div>
+      <div id="ngraphwrap" style="position:relative;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-height:540px">
+        <canvas id="ncanvas" style="display:block;width:100%;height:100%;cursor:grab"></canvas>
+        <div id="ngraphhud" style="position:absolute;top:8px;left:8px;font-size:12px;color:var(--ink-3);background:rgba(20,20,19,.8);border-radius:6px;padding:4px 10px;pointer-events:none">0 nodes</div>
+        <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px">
+          <button id="nfit">Fit</button>
+          <button id="nclear">Clear</button>
+        </div>
+      </div>
+      <div class="col" id="ndetail"><h3>Node</h3><div class="msg">Click a mint output on the left to seed the graph.</div></div>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-holders">
+    <div class="twowide">
+      <div>
+        <h3 style="color:var(--ink);font-size:14px">Genesis-reached ADA — where it sits now (top addresses)</h3>
+        <p style="font-size:12px;color:var(--ink-3)">Unspent outputs the bounded trace reaches (depth ≤ 8, fan-out cap 50). FACT: unspent at tip at the traced depth — <b>not</b> a claim that founders hold or moved anything.</p>
+        <div class="scrollx"><table id="gtop"><thead><tr><th>Address</th><th style="text-align:right">ADA</th><th style="text-align:right">UTxOs</th><th style="text-align:right">min depth</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <div>
+        <h3 style="color:var(--ink);font-size:14px">NIGHT — top holders now</h3>
+        <p style="font-size:12px;color:var(--ink-3)">Unspent NIGHT by address (exact flow from the single mint). A script address is a custody-<i>type</i> signal, never an identity.</p>
+        <div class="scrollx"><table id="ntop"><thead><tr><th>Address</th><th style="text-align:right">NIGHT</th><th style="text-align:right">UTxOs</th><th style="text-align:right">min depth</th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab cat" id="tab-catalog">
+    <p>Everything the warehouse can answer, in one place. The API is LAN-only (<code id="apibase"></code>); every table below is queryable there.</p>
+
+    <h3>Tracing (this desk)</h3>
+    <ul>
+      <li><b>Genesis ADA flow</b> — <code>trace.genesis_reach</code>: bounded reachability from all 14,505 Byron genesis outputs (depth ≤ 8, fan-out cap 50, wide txs recorded in <code>trace.genesis_wide_tx</code>). Rebuilt weekly, receipts in <code>trace.build_receipt</code>.</li>
+      <li><b>NIGHT token flow</b> — <code>night.flow</code>: the complete, exact flow graph of every output that ever carried NIGHT, from the single mint tx. <code>night.current_holders</code> = holdings now. Rebuilt weekly, receipts in <code>night.build_receipt</code>.</li>
+      <li><b>Search</b> — $handles resolve on-warehouse (CIP-68 + legacy); addresses/tx hashes get trace-aware summaries (<code>/rpc/search</code>).</li>
+    </ul>
+
+    <h3>Standing intelligence (runs by itself)</h3>
+    <ul>
+      <li><b>Liquidity Intel</b> — hourly dormant/genesis-ADA wake-up detection (<code>intel.dormant_moves</code>, <code>intel.liquidity_daily</code>); daily 07:00 email digest; alerts on genesis moves or exchange-directed flow.</li>
+      <li><b>BEACN Monitor</b> — every 2h: whale watch (≥1M ADA dormant moves, genesis first-moves, ≥250k toward tagged CEX deposits), treasury watch (≥1M ADA withdrawals), governance watch (new actions), anonymous pool-fleet watch.</li>
+      <li><b>Exchange labels</b> — <code>intel.exchange_address</code>: community tracer-token deposit claims (59 addresses, 6 exchanges). The on-chain message is FACT; the attribution is STRONG_INFERENCE.</li>
+    </ul>
+
+    <h3>Governance &amp; pools</h3>
+    <ul>
+      <li><b>Governance</b> — <code>governance.proposals</code>, <code>drep_votes</code>, <code>drep_registry</code>, <code>proposal_vote_power</code> (stake-weighted tallies), <code>treasury_flow</code> (true per-epoch inflow). Refreshed every 2h.</li>
+      <li><b>Pool operator clusters</b> — <code>poolsync.cluster</code>: multi-pool operators found by synchronized KES rotations (operational control, STRONG_INFERENCE). Weekly rebuild.</li>
+      <li><b>Ledger Scrolls</b> — <code>scrolls.onchain</code>: live verify of the on-chain library registry.</li>
+    </ul>
+
+    <h3>Raw chain (read-only replica)</h3>
+    <ul>
+      <li>Full db-sync schema at mainnet tip (<code>public.*</code>, 75 tables, logical replication from the relay) — blocks, txs, UTxOs, assets, certificates, rewards. This is what everything above is derived from.</li>
+    </ul>
+
+    <h3>API quick reference</h3>
+    <ul class="mono" style="font-size:12px">
+      <li>GET /rpc/search?q=$beacn</li>
+      <li>GET /rpc/resolve_handle?h=$beacn</li>
+      <li>GET /rpc/address_summary?a=addr1…</li>
+      <li>GET /rpc/tx_summary?h=&lt;64-hex&gt;</li>
+      <li>GET /rpc/genesis_overview · /rpc/genesis_roots?p_limit=50 · /rpc/trace_children?p_tx_id=…&amp;p_out_index=… · /rpc/trace_parents?p_tx_id=…</li>
+      <li>GET /rpc/night_overview · /rpc/night_roots · /rpc/night_children?… · /rpc/night_parents?…</li>
+      <li>GET /rpc/genesis_top_current · /rpc/night_top_holders</li>
+      <li>tables: /genesis_reach?address=eq.addr1… (schema trace is default; others via Accept-Profile header: governance, explorer, intel, scrolls, poolsync, night)</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  Evidence discipline: this desk shows <b>on-chain flow</b> — reachability, custody patterns, and delegation.
+  It never proves real-world ownership, identity, or intent. Grade claims FACT / STRONG_INFERENCE /
+  WORKING_HYPOTHESIS before repeating them. Data: abcde warehouse replica, receipts on every rebuild.
+</footer>
+
+<script>
+'use strict';
+// PostgREST base. Served over http/https this follows the host the page came from,
+// so the same file works on any warehouse. Opened straight off disk (file://) there
+// is no host to infer, so point ABCDE_API at your own instance.
+const API = (window.ABCDE_API || (location.protocol === 'file:'
+  ? 'http://localhost' : `http://${location.hostname}`)) + ':3000';
+document.getElementById('apibase').textContent = API;
+
+const $ = id => document.getElementById(id);
+const short = (s, n=14) => s && s.length > n*2+1 ? s.slice(0,n) + '…' + s.slice(-6) : (s||'');
+const fmt = n => n == null ? '—' : Number(n).toLocaleString('en-US');
+const cfmt = n => n == null ? '—' : Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(Number(n));
+const plural = (n, w) => `${fmt(n)} ${w}${Number(n) === 1 ? '' : (w.endsWith('x') ? 'es' : w === 'child' ? 'ren' : 's')}`;
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function j(path, opts = {}) {
+  // rpc functions live in the `api` schema; trace stays PostgREST's default
+  // schema so existing warehouse clients keep working unprofiled
+  if (path.startsWith('/rpc/')) opts.headers = { 'Accept-Profile': 'api', ...(opts.headers || {}) };
+  const r = await fetch(API + path, opts);
+  if (!r.ok) throw new Error(`${r.status} ${await r.text()}`);
+  return r.json();
+}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('nav.tabs button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('nav.tabs button').forEach(x => x.setAttribute('aria-selected', x===b));
+  document.querySelectorAll('section.tab').forEach(s => s.classList.toggle('active', s.id === 'tab-' + b.dataset.tab));
+  if (b.dataset.tab === 'holders') loadHolders();
+  graphs.forEach(g => g.resize());
+}));
+
+/* ---------- graph engine (canvas force layout) ---------- */
+function depthColor(depth, hue) { // hue: 'blue' | 'violet'
+  const base = hue === 'violet' ? [252, 62] : [214, 74]; // [H, S]
+  const l = Math.max(30, 68 - (depth||0) * 4.5);
+  return `hsl(${base[0]} ${base[1]}% ${l}%)`;
+}
+class FlowGraph {
+  constructor(canvas, hud, tooltipEl, opts) {
+    this.cv = canvas; this.cx = canvas.getContext('2d');
+    this.hud = hud; this.tip = tooltipEl; this.opts = opts; // {hue, valueKey, onSelect, expand}
+    this.nodes = []; this.edges = []; this.byId = new Map();
+    this.scale = 1; this.ox = 0; this.oy = 0;
+    this.selected = null; this.hover = null; this.drag = null; this.panning = false; this.autofit = true;
+    this.bindEvents(); this.resize();
+    const tick = () => { this.step(); this.draw(); requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }
+  resize() {
+    const r = this.cv.parentElement.getBoundingClientRect();
+    this.cv.width = Math.max(300, r.width) * devicePixelRatio;
+    this.cv.height = Math.max(300, r.height || 540) * devicePixelRatio;
+  }
+  id(n) { return n.tx_id + '#' + n.out_index; }
+  radius(n) { const v = Number(n[this.opts.valueKey]) || 1; return Math.max(5, Math.min(26, 3 + Math.log10(v + 1) * 3.2)); }
+  addNode(data, x, y) {
+    const key = this.id(data);
+    if (this.byId.has(key)) return this.byId.get(key);
+    const n = { ...data, key, x: x ?? (Math.random()-.5)*80, y: y ?? (Math.random()-.5)*80, vx:0, vy:0, expanded:false };
+    this.nodes.push(n); this.byId.set(key, n);
+    this.hud.textContent = `${this.nodes.length} nodes · ${this.edges.length} links`;
+    return n;
+  }
+  addEdge(a, b) { this.edges.push([a, b]); this.hud.textContent = `${this.nodes.length} nodes · ${this.edges.length} links`; }
+  clear() { this.nodes = []; this.edges = []; this.byId.clear(); this.selected = null; this.hud.textContent = '0 nodes'; }
+  step() {
+    const N = this.nodes; if (!N.length || N.length > 2500) return;
+    const rep = 900 * Math.min(1, 350 / N.length);
+    const grav = 0.0015 * Math.min(5, Math.max(1, N.length / 150));
+    for (let i = 0; i < N.length; i++) {
+      const a = N[i];
+      for (let k = i+1; k < N.length; k++) {
+        const b = N[k];
+        let dx = a.x-b.x, dy = a.y-b.y; let d2 = dx*dx+dy*dy;
+        if (d2 < 1) { dx = Math.random()-.5; dy = Math.random()-.5; d2 = 1; }
+        if (d2 > 90000) continue;
+        const f = rep / d2;
+        const d = Math.sqrt(d2);
+        a.vx += dx/d*f; a.vy += dy/d*f; b.vx -= dx/d*f; b.vy -= dy/d*f;
+      }
+    }
+    for (const [a,b] of this.edges) {
+      const dx = b.x-a.x, dy = b.y-a.y, d = Math.sqrt(dx*dx+dy*dy)||1;
+      const f = (d - 70) * 0.02;
+      a.vx += dx/d*f; a.vy += dy/d*f; b.vx -= dx/d*f; b.vy -= dy/d*f;
+    }
+    for (const n of N) {
+      n.vx -= n.x * grav; n.vy -= n.y * grav;    // centering scales with graph size
+      if (n === this.drag) { n.vx = 0; n.vy = 0; continue; }
+      n.vx *= .82; n.vy *= .82; n.x += n.vx; n.y += n.vy;
+    }
+  }
+  world(px, py) { // canvas px -> world
+    const w = this.cv.width/devicePixelRatio, h = this.cv.height/devicePixelRatio;
+    return [ (px - w/2 - this.ox) / this.scale, (py - h/2 - this.oy) / this.scale ];
+  }
+  draw() {
+    if (this.autofit && this.nodes.length) this.fit();
+    const cx = this.cx, w = this.cv.width, h = this.cv.height;
+    cx.setTransform(1,0,0,1,0,0); cx.clearRect(0,0,w,h);
+    cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    cx.translate(w/devicePixelRatio/2 + this.ox, h/devicePixelRatio/2 + this.oy);
+    cx.scale(this.scale, this.scale);
+    cx.lineWidth = 1 / this.scale;
+    cx.strokeStyle = 'rgba(195,194,183,.25)';
+    cx.beginPath();
+    for (const [a,b] of this.edges) { cx.moveTo(a.x,a.y); cx.lineTo(b.x,b.y); }
+    cx.stroke();
+    for (const n of this.nodes) {
+      const r = this.radius(n);
+      cx.beginPath(); cx.arc(n.x, n.y, r, 0, 7);
+      cx.fillStyle = depthColor(n.depth, this.opts.hue);
+      cx.fill();
+      if (n.wide) { cx.strokeStyle = 'rgba(138,137,127,.9)'; cx.lineWidth = 4/this.scale; cx.stroke(); }
+      if (!n.spent) { cx.strokeStyle = '#c98500'; cx.lineWidth = 2.5/this.scale; cx.beginPath(); cx.arc(n.x,n.y,r+2.5/this.scale,0,7); cx.stroke(); }
+      if (n === this.selected) { cx.strokeStyle = '#fff'; cx.lineWidth = 2/this.scale; cx.beginPath(); cx.arc(n.x,n.y,r+5/this.scale,0,7); cx.stroke(); }
+      if (n.expanded === 'partial') { cx.fillStyle = 'rgba(255,255,255,.85)'; cx.font = `${10/this.scale}px system-ui`; cx.fillText('+', n.x + r + 2/this.scale, n.y + 3/this.scale); }
+    }
+  }
+  nodeAt(px, py) {
+    const [x, y] = this.world(px, py);
+    for (let i = this.nodes.length-1; i >= 0; i--) {
+      const n = this.nodes[i], r = this.radius(n) + 3;
+      if ((n.x-x)**2 + (n.y-y)**2 < r*r) return n;
+    }
+    return null;
+  }
+  fit() {
+    if (!this.nodes.length) return;
+    let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+    for (const n of this.nodes) { x0=Math.min(x0,n.x); y0=Math.min(y0,n.y); x1=Math.max(x1,n.x); y1=Math.max(y1,n.y); }
+    const w = this.cv.width/devicePixelRatio, h = this.cv.height/devicePixelRatio;
+    this.scale = Math.min(2.5, Math.max(.08, .85 * Math.min(w/(x1-x0+120), h/(y1-y0+120))));
+    this.ox = -(x0+x1)/2 * this.scale; this.oy = -(y0+y1)/2 * this.scale;
+  }
+  bindEvents() {
+    const cv = this.cv;
+    const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX-r.left, e.clientY-r.top]; };
+    cv.addEventListener('pointerdown', e => {
+      const [px,py] = pos(e); const n = this.nodeAt(px,py);
+      if (n) { this.drag = n; } else { this.panning = true; this.autofit = false; }
+      this.px = px; this.py = py; this.moved = false;
+      cv.setPointerCapture(e.pointerId);
+    });
+    cv.addEventListener('pointermove', e => {
+      const [px,py] = pos(e);
+      if (this.drag) { const [x,y] = this.world(px,py); this.drag.x = x; this.drag.y = y; this.moved = true; }
+      else if (this.panning) { this.ox += px-this.px; this.oy += py-this.py; this.px=px; this.py=py; this.moved = true; }
+      else {
+        const n = this.nodeAt(px,py);
+        this.hover = n;
+        cv.style.cursor = n ? 'pointer' : 'grab';
+        if (n) {
+          this.tip.style.display = 'block';
+          this.tip.style.left = (px+14)+'px'; this.tip.style.top = (py+10)+'px';
+          this.tip.innerHTML = `<span class="mono">${esc(short(n.address))}</span><br>` +
+            `${fmt(n[this.opts.valueKey])} ${this.opts.unit} · depth ${n.depth}` +
+            `<br>${n.spent ? 'spent' : '<b style="color:#c98500">unspent (sits here now)</b>'}` +
+            (n.n_children ? ` · ${fmt(n.n_children)} children` : '') + (n.wide ? ' · wide tx (capped)' : '');
+        } else this.tip.style.display = 'none';
+      }
+    });
+    cv.addEventListener('pointerup', e => {
+      const wasDrag = this.drag, moved = this.moved;
+      this.drag = null; this.panning = false;
+      if (!moved) { const [px,py] = pos(e); const n = this.nodeAt(px,py); this.selected = n; if (n) this.opts.onSelect(n); }
+      else if (wasDrag) { /* repositioned */ }
+    });
+    cv.addEventListener('dblclick', e => {
+      const [px,py] = pos(e); const n = this.nodeAt(px,py);
+      if (n) this.opts.expand(n);
+    });
+    cv.addEventListener('wheel', e => {
+      e.preventDefault();
+      this.autofit = false;
+      const f = e.deltaY < 0 ? 1.15 : .87;
+      this.scale = Math.min(4, Math.max(.05, this.scale * f));
+    }, { passive: false });
+    addEventListener('resize', () => this.resize());
+  }
+}
+
+/* ---------- genesis + night wiring ---------- */
+const graphs = [];
+function makeTrace(kind) { // kind: 'genesis' | 'night'
+  const g = kind === 'genesis';
+  const graph = new FlowGraph(
+    $(g ? 'gcanvas' : 'ncanvas'), $(g ? 'graphhud' : 'ngraphhud'), $('tooltip'),
+    {
+      hue: g ? 'blue' : 'violet',
+      valueKey: g ? 'ada' : 'night',
+      unit: g ? '₳' : 'NIGHT',
+      onSelect: n => showDetail(kind, n),
+      expand: n => expand(kind, n),
+    });
+  graphs.push(graph);
+  return graph;
+}
+
+async function autoGrow(kind, rounds) {
+  const graph = kind === 'genesis' ? ggraph : ngraph;
+  for (let i = 0; i < rounds; i++) {
+    const frontier = graph.nodes.filter(n => n.spent && n.expanded !== true && !n.wide);
+    if (!frontier.length || graph.nodes.length > 400) break;
+    for (const n of frontier) await expand(kind, n);
+  }
+  graph.fit();
+}
+
+async function expand(kind, n) {
+  const g = kind === 'genesis';
+  const graph = g ? ggraph : ngraph;
+  if (n.expanded === true || !n.spent) return;
+  const fn = g ? 'trace_children' : 'night_children';
+  try {
+    const res = await j(`/rpc/${fn}?p_tx_id=${n.tx_id}&p_out_index=${n.out_index}&p_limit=60`);
+    if (!res.found || !res.spent) return;
+    if (res.wide) { n.wide = true; n.expanded = true; showDetail(kind, n, res); return; }
+    const kids = res.children || [];
+    kids.forEach((c, i) => {
+      const ang = (i / Math.max(kids.length,1)) * Math.PI * 2;
+      const child = graph.addNode(c, n.x + Math.cos(ang)*80, n.y + Math.sin(ang)*80);
+      graph.addEdge(n, child);
+    });
+    n.expanded = (res.n_children > kids.length) ? 'partial' : true;
+    n.n_children = res.n_children;
+    showDetail(kind, n, res);
+  } catch (e) { detailMsg(kind, `Expand failed: ${esc(e.message)}`); }
+}
+
+function detailMsg(kind, html) {
+  $(kind === 'genesis' ? 'gdetail' : 'ndetail').innerHTML = `<h3>Node</h3><div class="msg">${html}</div>`;
+}
+
+function showDetail(kind, n, res) {
+  const g = kind === 'genesis';
+  const el = $(g ? 'gdetail' : 'ndetail');
+  const unit = g ? '₳' : 'NIGHT';
+  el.innerHTML = `<h3>Node</h3>
+    <p class="kv"><b>Address</b> <span class="val mono">${esc(n.address)}</span></p>
+    <p class="kv"><b>Amount</b> <span class="val">${fmt(n[g?'ada':'night'])} ${unit}</span></p>
+    <p class="kv"><b>Depth</b> <span class="val">${n.depth} hop${n.depth===1?'':'s'} from ${g?'genesis':'the mint'}</span></p>
+    <p class="kv"><b>Status</b> <span class="val">${n.spent ? 'spent — flows onward' : '<span style="color:var(--amber)">UNSPENT — the value sits here now</span>'}</span></p>
+    ${n.tx_hash ? `<p class="kv"><b>Born in tx</b> <span class="val mono">${esc(short(n.tx_hash,10))}</span></p>` : ''}
+    ${res && res.wide ? `<p class="kv err">Spent by a WIDE tx (${fmt(res.n_outputs)} outputs — exchange/batch pattern; not expanded, taint would turn to noise).</p>` : ''}
+    ${res && res.n_children > 60 ? `<p class="kv">Showing 60 of ${fmt(res.n_children)} children (largest first).</p>` : ''}
+    <div class="paneactions">
+      <button ${n.spent && !n.wide ? '' : 'disabled'} onclick="expand('${kind}', ${g?'g':'n'}graph.byId.get('${n.key}'))">Expand ↓</button>
+      <button onclick="searchFor('${esc(n.address)}')">Search this address</button>
+    </div>`;
+}
+
+const ggraph = makeTrace('genesis');
+const ngraph = makeTrace('night');
+$('gfit').onclick = () => { ggraph.autofit = true; }; $('gclear').onclick = () => { ggraph.clear(); ggraph.autofit = true; };
+$('nfit').onclick = () => { ngraph.autofit = true; }; $('nclear').onclick = () => { ngraph.clear(); ngraph.autofit = true; };
+
+/* ---------- overviews + roots ---------- */
+function statEl(k, v) { return `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`; }
+function bucketDepths(depths) { // NIGHT has thousands of depths — bucket past 9
+  const out = [];
+  const buckets = [[10,24],[25,99],[100,999],[1000,99999]];
+  for (const d of depths) {
+    if (d.depth <= 9) { out.push({ ...d, label: 'depth ' + d.depth }); continue; }
+    const b = buckets.find(([lo,hi]) => d.depth >= lo && d.depth <= hi);
+    const label = `depth ${b[0]}–${b[1] > 9999 ? '…' : b[1]}`;
+    let row = out.find(r => r.label === label);
+    if (!row) { row = { depth: b[0], label, outputs: 0, unspent: 0 }; out.push(row); }
+    for (const k of Object.keys(d)) if (k !== 'depth' && typeof d[k] !== 'string')
+      row[k] = (Number(row[k]) || 0) + (Number(d[k]) || 0);
+  }
+  return out;
+}
+function depthBars(depths, colorHue, valKey, unit) {
+  const max = Math.max(...depths.map(d => Number(d[valKey]) || 0), 1);
+  return `<div class="depthbars">` + depths.map(d =>
+    `<div class="dbar"><span class="n">${d.label || 'depth ' + d.depth}</span>` +
+    `<span class="bar" style="width:${Math.max(1, 100*(Number(d[valKey])||0)/max)}%;background:${depthColor(Math.min(d.depth,12), colorHue)}"></span>` +
+    `<span class="n">${cfmt(d[valKey])} ${unit} · ${cfmt(d.unspent)} unspent</span></div>`).join('') + `</div>`;
+}
+
+async function loadGenesis() {
+  try {
+    const o = await j('/rpc/genesis_overview');
+    const r = o.receipt || {};
+    $('gstats').innerHTML =
+      statEl('genesis outputs (2017)', fmt(r.n_seed)) +
+      statEl('outputs reached', fmt(r.n_reach)) +
+      statEl('trace depth', r.max_depth) +
+      statEl('wide txs capped', fmt(r.n_wide)) +
+      statEl('built', r.built_at ? new Date(r.built_at).toLocaleDateString() : '—') +
+      `<div class="depthwrap">${depthBars(o.depths||[], 'blue', 'ada', '₳')}</div>`;
+    const roots = await j('/rpc/genesis_roots?p_limit=60');
+    $('groots').innerHTML = roots.map(rt =>
+      `<div class="rootitem" data-k="${rt.tx_id}:${rt.out_index}">
+         <span class="ada">₳ ${fmt(rt.ada)}</span> ${rt.spent?'':'<span style="color:var(--amber)">● unspent</span>'}
+         <div class="sub mono">${esc(short(rt.address, 16))}</div>
+         <div class="sub">${plural(rt.n_children, 'child')}</div></div>`).join('');
+    $('groots').querySelectorAll('.rootitem').forEach((el, i) => el.addEventListener('click', () => {
+      const rt = roots[i];
+      const n = ggraph.addNode({ tx_id: rt.tx_id, out_index: rt.out_index, depth: 0, address: rt.address,
+                                 ada: rt.ada, spent: rt.spent, n_children: rt.n_children, tx_hash: rt.tx_hash }, 0, 0);
+      ggraph.selected = n; showDetail('genesis', n); expand('genesis', n).then(() => autoGrow('genesis', 3));
+    }));
+    if (roots[0]) { $('chip-addr').dataset.q = roots[0].address; $('chip-addr').textContent = short(roots[0].address, 10); }
+    if (!ggraph.nodes.length) $('groots').querySelector('.rootitem')?.click();
+  } catch (e) { $('gstats').innerHTML = `<div class="msg err">Genesis overview failed: ${esc(e.message)}</div>`; }
+}
+
+async function loadNight() {
+  try {
+    const o = await j('/rpc/night_overview');
+    const r = o.receipt || {};
+    const depths = bucketDepths(o.depths || []);
+    $('nstats').innerHTML =
+      statEl('NIGHT supply', fmt(r.supply_night)) +
+      statEl('outputs ever', fmt(r.n_outputs)) +
+      statEl('unspent now', fmt(r.n_unspent)) +
+      statEl('holders', fmt(o.holders)) +
+      statEl('max depth', r.max_depth) +
+      statEl('orphans (must be 0)', fmt(r.n_orphan)) +
+      `<div class="depthwrap">${depthBars(depths, 'violet', 'outputs', 'outputs')}</div>`;
+    const roots = await j('/rpc/night_roots');
+    $('nroots').innerHTML = roots.map(rt =>
+      `<div class="rootitem">
+         <span class="ada">${fmt(rt.night)} NIGHT</span> ${rt.spent?'':'<span style="color:var(--amber)">● unspent</span>'}
+         <div class="sub mono">${esc(short(rt.address, 16))}</div>
+         <div class="sub">${plural(rt.n_children, 'child')} · mint tx ${esc(short(rt.tx_hash, 8))}</div></div>`).join('');
+    $('nroots').querySelectorAll('.rootitem').forEach((el, i) => el.addEventListener('click', () => {
+      const rt = roots[i];
+      const n = ngraph.addNode({ tx_id: rt.tx_id, out_index: rt.out_index, depth: 0, address: rt.address,
+                                 night: rt.night, spent: rt.spent, n_children: rt.n_children, tx_hash: rt.tx_hash }, 0, 0);
+      ngraph.selected = n; showDetail('night', n); expand('night', n).then(() => autoGrow('night', 2));
+    }));
+    if (roots[0] && roots[0].tx_hash) { $('chip-tx').dataset.q = roots[0].tx_hash; $('chip-tx').textContent = 'NIGHT mint tx'; }
+    if (!ngraph.nodes.length) $('nroots').querySelector('.rootitem')?.click();
+  } catch (e) { $('nstats').innerHTML = `<div class="msg err">NIGHT overview failed: ${esc(e.message)}. Has build_night_trace.sh run yet?</div>`; }
+}
+
+/* ---------- holders tab ---------- */
+let holdersLoaded = false;
+async function loadHolders() {
+  if (holdersLoaded) return; holdersLoaded = true;
+  try {
+    const [gt, nt] = await Promise.all([j('/rpc/genesis_top_current?p_limit=50'), j('/rpc/night_top_holders?p_limit=50')]);
+    $('gtop').tBodies[0].innerHTML = gt.map(r =>
+      `<tr class="click" data-a="${esc(r.address)}"><td class="mono">${esc(short(r.address,18))}</td><td class="num">${fmt(r.ada)}</td><td class="num">${fmt(r.utxos)}</td><td class="num">${r.min_depth}</td></tr>`).join('');
+    $('ntop').tBodies[0].innerHTML = nt.map(r =>
+      `<tr class="click" data-a="${esc(r.address)}"><td class="mono">${esc(short(r.address,18))}</td><td class="num">${fmt(r.night)}</td><td class="num">${fmt(r.utxos)}</td><td class="num">${r.min_depth}</td></tr>`).join('');
+    document.querySelectorAll('#gtop tr.click, #ntop tr.click').forEach(tr =>
+      tr.addEventListener('click', () => searchFor(tr.dataset.a)));
+  } catch (e) {
+    $('gtop').tBodies[0].innerHTML = `<tr><td colspan="4" class="err">${esc(e.message)}</td></tr>`;
+  }
+}
+
+/* ---------- search ---------- */
+function searchFor(q) { $('q').value = q; doSearch(); window.scrollTo({top:0, behavior:'smooth'}); }
+window.searchFor = searchFor; window.expand = expand; window.ggraph = ggraph; window.ngraph = ngraph;
+
+async function doSearch() {
+  const q = $('q').value.trim();
+  if (!q) return;
+  $('result').innerHTML = `<div class="card"><div class="msg">Searching…</div></div>`;
+  try {
+    const r = await j('/rpc/search?q=' + encodeURIComponent(q));
+    $('result').innerHTML = renderResult(r);
+  } catch (e) {
+    $('result').innerHTML = `<div class="card"><div class="msg err">Search failed: ${esc(e.message)}</div></div>`;
+  }
+}
+$('gobtn').onclick = doSearch;
+$('q').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+document.querySelectorAll('.hints .chip').forEach(c => c.addEventListener('click', () => { if (c.dataset.q) searchFor(c.dataset.q); }));
+
+function summaryCard(s) {
+  if (!s) return '';
+  const g = s.genesis_trace || {}, n = s.night_trace || {}, u = s.unspent || {}, act = s.activity || {};
+  return `
+    <div class="stats" style="margin-top:8px">
+      ${statEl('unspent ADA', fmt(u.ada))}${statEl('UTxOs', fmt(u.utxos))}
+      ${statEl('genesis-trace hits', fmt(g.hits) + (g.hits > 0 ? ` (min depth ${g.min_depth})` : ''))}
+      ${statEl('NIGHT held (traced)', fmt(n.night))}
+      ${statEl('first seen', act.first_seen ? new Date(act.first_seen).toLocaleDateString() : '—')}
+      ${statEl('last seen', act.last_seen ? new Date(act.last_seen).toLocaleDateString() : '—')}
+    </div>
+    ${(s.handles||[]).length ? `<p class="kv"><b>Handles here</b> <span class="val">${s.handles.map(esc).join(' · ')}</span></p>` : ''}
+    ${Number(g.hits) > 0 ? `<p class="kv" style="color:var(--blue)">This address is REACHED by the genesis trace — ${fmt(g.ada)} ₳ across ${fmt(g.hits)} traced outputs (${fmt(g.unspent_hits)} still unspent).</p>` : ''}
+    ${Number(n.hits) > 0 ? `<p class="kv" style="color:var(--violet)">Carries NIGHT flow — ${fmt(n.night)} NIGHT traced here (min depth ${n.min_depth}).</p>` : ''}`;
+}
+
+function renderResult(r) {
+  const close = `<button style="float:right" onclick="document.getElementById('result').innerHTML=''">✕ close</button>`;
+  if (r.type === 'handle') {
+    if (!r.found) return `<div class="card">${close}<h2>${esc(r.query)}<span class="badge">handle</span></h2><div class="msg">No such handle found on-chain.</div></div>`;
+    return `<div class="card">${close}<h2>${esc(r.handle)}<span class="badge">${esc(r.kind)} handle</span></h2>
+      <p class="kv"><b>Held at</b> <span class="val mono">${esc(r.address)}</span></p>
+      ${r.stake_address ? `<p class="kv"><b>Stake key</b> <span class="val mono">${esc(r.stake_address)}</span></p>` : ''}
+      ${summaryCard(r.summary)}</div>`;
+  }
+  if (r.type === 'address') {
+    return `<div class="card">${close}<h2 class="mono" style="word-break:break-all">${esc(r.query)}<span class="badge">address${r.found?'':' — never seen'}</span></h2>${summaryCard(r.summary)}</div>`;
+  }
+  if (r.type === 'stake') {
+    const n = r.night || {};
+    return `<div class="card">${close}<h2 class="mono" style="word-break:break-all">${esc(r.query)}<span class="badge">stake key${r.found?'':' — not found'}</span></h2>
+      ${Number(n.addresses) > 0 ? `<p class="kv">Holds <b>${fmt(n.night)} NIGHT</b> across ${fmt(n.addresses)} addresses (traced flow).</p>` : '<div class="msg">No traced NIGHT under this stake key. Full stake-key analytics: query the API directly.</div>'}</div>`;
+  }
+  if (r.type === 'pool') {
+    return `<div class="card">${close}<h2 class="mono">${esc(r.query)}<span class="badge">pool${r.found?'':' — not found'}</span></h2>
+      ${r.found ? '<div class="msg">Pool exists on-chain. Operator-cluster and stake analytics live in the poolsync schema (see Catalog tab).</div>' : ''}</div>`;
+  }
+  if (r.type === 'tx') {
+    const s = r.summary || {};
+    if (!s.found) return `<div class="card">${close}<h2>tx<span class="badge">not found</span></h2><div class="msg">No transaction with that hash.</div></div>`;
+    const row = (o, isOut) => `<tr><td class="num">${isOut ? o.index : ''}</td><td class="mono">${esc(short(o.address, 16))}</td>
+      <td class="num">${fmt(o.ada)}</td>
+      <td>${o.genesis_depth != null ? `<span style="color:var(--blue)">genesis d${o.genesis_depth}</span>` : ''}
+          ${Number(o.night_qty) > 0 ? ` <span style="color:var(--violet)">${fmt(o.night_qty)} NIGHT</span>` : ''}
+          ${isOut ? (o.spent ? ' spent' : ' <span style="color:var(--amber)">unspent</span>') : ''}</td></tr>`;
+    return `<div class="card">${close}<h2 class="mono" style="word-break:break-all">${esc(s.tx_hash)}<span class="badge">tx</span></h2>
+      <p class="kv"><b>Block</b> <span class="val">${fmt(s.block_no)} · ${s.time ? new Date(s.time).toLocaleString() : ''}</span> · <b>fee</b> ₳ ${s.fee_ada}</p>
+      <div class="twowide"><div><h3 style="font-size:13px;color:var(--ink-3)">INPUTS (${(s.inputs||[]).length})</h3>
+      <div class="scrollx"><table><tbody>${(s.inputs||[]).map(o => row(o,false)).join('')}</tbody></table></div></div>
+      <div><h3 style="font-size:13px;color:var(--ink-3)">OUTPUTS (${(s.outputs||[]).length})</h3>
+      <div class="scrollx"><table><tbody>${(s.outputs||[]).map(o => row(o,true)).join('')}</tbody></table></div></div></div></div>`;
+  }
+  return `<div class="card">${close}<h2>${esc(r.query)}</h2><div class="msg">Didn't recognize that. Accepted: $handle, addr1…, stake1…, pool1…, or a 64-hex tx hash.</div></div>`;
+}
+
+/* ---------- boot ---------- */
+(async () => {
+  try {
+    const o = await j('/rpc/genesis_overview');
+    $('apidot').className = 'dot ok';
+    const r = o.receipt || {};
+    $('tiptext').textContent = `warehouse tip: block ${fmt(r.tip_block)} · ${r.tip_time ? new Date(r.tip_time).toLocaleString() : ''}`;
+  } catch (e) {
+    $('apidot').className = 'dot err';
+    $('tiptext').textContent = 'API unreachable: ' + e.message;
+  }
+  loadGenesis(); loadNight();
+})();
+</script>
+</body>
+</html>

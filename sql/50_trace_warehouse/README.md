@@ -15,7 +15,27 @@ schemas. Built 2026-07-06/07; canonical warehouse state:
   row lands in `trace.build_receipt` each run. Installed on abcde at
   `/usr/local/share/abcde-trace/`; runner `/usr/local/bin/build_genesis_trace.sh`
   (env `DEPTH`/`CAP`); weekly cron Sun 04:30 `DEPTH=8`.
+- `build_night_reach.sql` — builds `night.flow`, the COMPLETE exact flow graph of
+  the NIGHT token (Midnight; policy `0691b2fe…af1fa`, single mint of 24B). Unlike
+  the genesis taint trace, a native token traces exactly: every NIGHT-carrying
+  output descends from the mint through NIGHT-carrying inputs, so the graph is
+  the full set (~1.8M outputs) with spend links; no fan-out cap. `depth` = min
+  hops from the mint tx. `night.current_holders` = unspent holdings now; receipts
+  in `night.build_receipt`. Runner `/usr/local/bin/build_night_trace.sh`; weekly
+  cron Sun 05:30.
+- `build_api_schema.sql` — the `api` schema: PostgREST RPC functions behind the
+  warehouse desk UI (`tools/warehouse-desk/`). Universal `search(q)` ($handle /
+  address / stake / pool / tx-hash classification), on-warehouse ADA Handle
+  resolution (CIP-68 + legacy), trace-aware address/tx summaries, and graph
+  expansion endpoints (`trace_children`/`night_children`/`*_parents`/`*_roots`)
+  for the fan-out visualization. Idempotent (drops/recreates the schema; no data
+  lives in it). Requires `night` + `api` in postgrest.conf `db-schemas`.
 - `recreate_matviews.sql` — the 7 governance/explorer analytics matviews.
+- **One-command rebuild:** `/usr/local/bin/rebuild_warehouse.sh` on abcde runs
+  every builder above (genesis, night, KES clusters, liquidity intel, matview
+  refresh, api schema) sequentially with per-stage logging to
+  `/data/logs/rebuild_warehouse.log`. Each stage stages-and-swaps or upserts, so
+  the whole derived layer is reproducible from the replica at any time.
 - `genesis_tag_intersection.sql` — cross the reach graph against
   `governance.genesis_address_tags`.
 - `build_scrolls_schema.sql` — Ledger Scrolls on-chain index (`scrolls` schema).
