@@ -61,6 +61,10 @@
   .bar{height:7px; border-radius:4px; background:var(--line2); overflow:hidden; min-width:70px}
   .bar>i{display:block; height:100%; background:var(--cyan)}
   .foot{padding:40px 0 70px; color:var(--muted2); font-size:13px}
+.srcline{margin-top:18px; padding-top:12px; border-top:1px dashed var(--line);
+    color:var(--muted2); font-size:13.5px; line-height:1.6}
+  .srcline a{color:var(--muted); text-decoration:underline; text-decoration-style:dotted}
+  .srcline a:hover{color:var(--cyan)}
   .pill{display:inline-block; font-family:var(--mono); font-size:11px; padding:2px 8px;
     border-radius:999px; border:1px solid var(--line2); color:var(--muted)}
 </style>
@@ -120,6 +124,9 @@
   <div class="tbl-wrap"><table class="rt" id="t-reg">
     <thead><tr><th>Registration</th><th class="num">Pools</th><th class="num">ADA delegated</th></tr></thead>
     <tbody></tbody></table></div>
+
+
+  <p class="srcline">Every number above aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health.csv</a>, extracted by <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_registration.sql">build_relay_registration.sql</a>. Reproducible from db-sync alone: run it and you should get these exact rows.</p>
 </div></section>
 
 <section class="rsec" id="reachability"><div class="wrap">
@@ -150,6 +157,9 @@
   <div class="tbl-wrap"><table class="rt" id="t-fail">
     <thead><tr><th>Failure</th><th class="num">Endpoints</th></tr></thead>
     <tbody></tbody></table></div>
+
+
+  <p class="srcline">Every number above aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_endpoint_status.csv">relay_endpoint_status.csv</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health.csv</a>, produced by <a href="https://github.com/BEACNpool/ABCDE/blob/main/scripts/relay_probe.py">relay_probe.py</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_reachability.sql">build_relay_reachability.sql</a>. This half is a live measurement, so your own run will differ from this one.</p>
 </div></section>
 
 <section class="rsec" id="block-producers"><div class="wrap">
@@ -162,6 +172,9 @@
     <thead><tr><th>Observed</th><th class="num">Minting pools</th><th class="num">ADA</th><th class="num">Idle pools</th><th class="num">ADA</th></tr></thead>
     <tbody></tbody></table></div>
   <div class="warn" id="norelay"></div>
+
+
+  <p class="srcline">Aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health.csv</a>. <b>Mixed:</b> the block counts come from db-sync via <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_reachability.sql">build_relay_reachability.sql</a> and reproduce exactly; the reachability columns come from the sweep and will not.</p>
 </div></section>
 
 <section class="rsec" id="registration-history"><div class="wrap">
@@ -198,6 +211,9 @@
     the chain, and their inbound load sits on the pools that do publish. Every one of these events
     carries its transaction hash in <code>relay_registration_changes</code>, so none of it has to be
     taken on trust.</p>
+
+
+  <p class="srcline">Every number above aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_registration_changes.csv">relay_registration_changes.csv</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health.csv</a>, extracted by <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_registration.sql">build_relay_registration.sql</a>. Reproducible from db-sync alone: run it and you should get these exact rows. Certificate history is append-only, so it is the same for everyone, forever.</p>
 </div></section>
 
 <section class="rsec" id="borrowed-infrastructure"><div class="wrap">
@@ -223,6 +239,9 @@
     is the reader's call: a misconfiguration and a deliberate free-ride look identical on-chain and
     this table does not try to separate them. What it does mean is that the pool publishes no way to
     reach <i>its</i> node, and its inbound load sits on infrastructure it does not run.</p>
+
+
+  <p class="srcline">Every number above aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_foreign_infrastructure.csv">relay_foreign_infrastructure.csv</a>, extracted by <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_foreign_infra.sql">build_relay_foreign_infra.sql</a>. Reproducible from db-sync alone: run it and you should get these exact rows.</p>
 </div></section>
 
 <section class="rsec" id="networks"><div class="wrap">
@@ -239,6 +258,9 @@
     concentration is still concentration, and a provider outage does not care whether the pools
     behind it were coordinated. Pools whose relays we could not reach sit in no network here, so
     every figure is a floor.</div>
+
+
+  <p class="srcline">Aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_asn_concentration.csv">relay_asn_concentration.csv</a>, produced by <a href="https://github.com/BEACNpool/ABCDE/blob/main/scripts/relay_asn_lookup.py">relay_asn_lookup.py</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_concentration.sql">build_relay_concentration.sql</a>. This half is a live measurement, so your own run will differ from this one. ASN ownership comes from Team Cymru's public IP-to-ASN DNS service.</p>
 </div></section>
 
 <section class="rsec" id="shared-infrastructure"><div class="wrap">
@@ -259,6 +281,9 @@
   <div class="tbl-wrap"><table class="rt" id="t-hosts">
     <thead><tr><th>Resolved host</th><th class="num">Pools</th><th class="num">Names</th><th class="num">ADA</th><th>Tickers</th></tr></thead>
     <tbody></tbody></table></div>
+
+
+  <p class="srcline">Aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_endpoints.csv">relay_shared_endpoints.csv</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_domains.csv">relay_shared_domains.csv</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_hosts.csv">relay_shared_hosts.csv</a>. <b>Mixed:</b> the endpoint and domain tables come from db-sync via <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_registration.sql">build_relay_registration.sql</a> and reproduce exactly; the resolved-host table needs a sweep (<a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_reachability.sql">build_relay_reachability.sql</a>) and will not.</p>
 </div></section>
 
 <section class="rsec" id="method"><div class="wrap">
@@ -283,6 +308,9 @@
       exist”, so naive parsing labels every refused connection a DNS failure. The cause has to be
       read from which socket call failed, and from the IPv4 attempt where one exists.</li>
   </ol>
+
+
+  <p class="srcline">The prober is <a href="https://github.com/BEACNpool/ABCDE/blob/main/scripts/relay_probe.py">relay_probe.py</a>; the full method and its limits are <a href="https://github.com/BEACNpool/ABCDE/blob/main/docs/27_RELAY_HEALTH_METHOD.md">27_RELAY_HEALTH_METHOD.md</a> and the graded write-up is <a href="https://github.com/BEACNpool/ABCDE/blob/main/findings/F21_relay_registration_and_reachability.md">F21_relay_registration_and_reachability.md</a>.</p>
 </div></section>
 
 <section class="rsec" id="data"><div class="wrap">

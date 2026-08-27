@@ -22,6 +22,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "web" / "dist"
 SCRIPT = re.compile(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", re.S | re.I)
+# Every "source" link on a page points at a real file in this repo. They rot
+# silently otherwise -- the README's tour video 404'd for 34 days before anyone
+# noticed, and a broken link in the section that says "check my work" is worse
+# than no link at all.
+REPO_LINK = re.compile(r"https://github\.com/BEACNpool/ABCDE/blob/main/([^\"'\s>)]+)")
 
 
 def main() -> int:
@@ -57,6 +62,19 @@ def main() -> int:
                 failures += 1
             else:
                 print(f"  [PASS] {label}")
+
+    seen: set[str] = set()
+    for page in sorted(DIST.glob("*.html")):
+        for rel in REPO_LINK.findall(page.read_text(encoding="utf-8", errors="replace")):
+            rel = rel.split("#")[0]
+            if rel in seen:
+                continue
+            seen.add(rel)
+            if (ROOT / rel).exists():
+                print(f"  [PASS] link -> {rel}")
+            else:
+                print(f"  [FAIL] link -> {rel} does not exist in the repo")
+                failures += 1
 
     print(f"verify_web_pages: {failures} failure(s)")
     return 1 if failures else 0
