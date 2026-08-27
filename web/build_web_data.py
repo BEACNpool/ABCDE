@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import timezone
 from pathlib import Path
 
 import duckdb
@@ -213,7 +214,11 @@ def main() -> None:
             return [dict(zip(cols, r)) for r in cur.fetchall()]
 
         relay = {
-            "checked_at": q1(con, "SELECT max(last_checked) FROM relay_pool_health")[0],
+            # Emit strict UTC ISO-8601. str(datetime) uses a space separator,
+            # which browsers parse inconsistently, and the local offset would
+            # publish the operator's timezone for no reason.
+            "checked_at": q1(con, "SELECT max(last_checked) FROM relay_pool_health"
+                             )[0].astimezone(timezone.utc).isoformat(timespec="seconds"),
             "totals": rows("""
                 SELECT count(*) AS pools, sum(stake_ada) AS stake_ada,
                        sum(delegators) AS delegators
