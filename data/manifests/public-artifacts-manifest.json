@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 325,
+  "file_count": 327,
   "files": [
     {
       "path": "claims/README.md",
@@ -1524,6 +1524,19 @@
       }
     },
     {
+      "path": "data/small/relay_asn_concentration.csv",
+      "bytes": 18017,
+      "sha256": "f7b4874fcedec7b23723e340ff95c8e17727592442bb48877255bd66c2a0eaad",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "data/small/relay_endpoint_status.csv",
       "bytes": 556428,
       "sha256": "3de88f13a9fae12a968593d8ede807f01f91f1227134aeb6a590fa5827becf08",
@@ -1538,8 +1551,8 @@
     },
     {
       "path": "data/small/relay_pool_health.csv",
-      "bytes": 419698,
-      "sha256": "1e097e81227d562508a26a3d1182d42c4825b0e2c40f05c0322215ad87a3156c",
+      "bytes": 433378,
+      "sha256": "2146b0bb285ea3033102eb2499cf54cb86ea0f22ea720c32031134a690e91093",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2500,8 +2513,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 63341,
-      "sha256": "61bab5d9b056a11d1419a5a05e0c3ef43af46bc90aae9751452f6e271cfe7ef7",
+      "bytes": 63781,
+      "sha256": "42fe53fde0f11318c9e7e83f5c3246bb7d6cdce6230e56347ee1d765d1df05ea",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2526,8 +2539,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9740,
-      "sha256": "afb02bd8ea4450e8b2b33c0250091811000105d4fa1f599aecba52be354f17fc",
+      "bytes": 9785,
+      "sha256": "0ea1a961256b62c8fd76dbbbf0a344930639aab1327d5a9461e5f195132ddc1b",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2916,8 +2929,8 @@
     },
     {
       "path": "findings/F21_relay_registration_and_reachability.md",
-      "bytes": 7421,
-      "sha256": "656ebe8834f31418a0c19040be8713cab5a9a2e989e68325e3feaadc465f1ebc",
+      "bytes": 10506,
+      "sha256": "97ab1199cc554035e68edf6a364f9dc0b54a5efc2ef4c5446c3c51387d2577ca",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4150,9 +4163,22 @@
       }
     },
     {
+      "path": "sql/56_relay_health/build_relay_concentration.sql",
+      "bytes": 3870,
+      "sha256": "660fdbfc8d8246ff4659193fb2dedeb9eb4c29db1528c88f3bf07274795e79e8",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "sql/56_relay_health/build_relay_reachability.sql",
-      "bytes": 11014,
-      "sha256": "a40d3f82206dbf7969a43003391a6cd792e3a35c2d8dd49944f539fd8a346f67",
+      "bytes": 11773,
+      "sha256": "70234a85caf7d827eee9f164b4ca14b6fe58eab803aa2890e00aa38dde8162a4",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4178,7 +4204,7 @@
     {
       "path": "sql/56_relay_health/data/SHA256SUMS",
       "bytes": 92,
-      "sha256": "bb31b6d256f8bdf696ea631b513794e11898a315fad06eac733637e2d9376e09",
+      "sha256": "a752976e061b34f4f6273e64437dc2993261aea3ab3e1664458d786e17be73c7",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4190,8 +4216,8 @@
     },
     {
       "path": "sql/56_relay_health/data/relay_build_receipt.csv",
-      "bytes": 1105,
-      "sha256": "fbad29c8dc4772ed74a4f4ee4719bc0a562fcc76d8aefe1fb20394a280bab91a",
+      "bytes": 1410,
+      "sha256": "4c6b6ebd755f30da257a9a07432f0943baad6d0bd2e1ecc738afd500b956f3ac",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
