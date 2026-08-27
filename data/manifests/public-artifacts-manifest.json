@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 310,
+  "file_count": 325,
   "files": [
     {
       "path": "claims/README.md",
@@ -277,8 +277,8 @@
     },
     {
       "path": "data/small/data_freshness_catalog.csv",
-      "bytes": 20206,
-      "sha256": "2f58b5caf7974d7cf5c648c3a75d2fe7ec656137a432b5f4a6959ee68e743bf4",
+      "bytes": 20059,
+      "sha256": "42acd950dc238812c82c0d9b00fbca396fa805db44d73aec890e3a81701e7eef",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -303,8 +303,8 @@
     },
     {
       "path": "data/small/emurgo_drep_epoch_deltas.csv",
-      "bytes": 1662,
-      "sha256": "499876f773e43110e126f57fe9ef0ac7b52feb668ba3afebd2caad72d5f9cb2c",
+      "bytes": 1644,
+      "sha256": "f7df244fd4e0b6f32e84191758f21e5044981979b7f5c7c15416adb52f41a7f3",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1524,6 +1524,71 @@
       }
     },
     {
+      "path": "data/small/relay_endpoint_status.csv",
+      "bytes": 556428,
+      "sha256": "3de88f13a9fae12a968593d8ede807f01f91f1227134aeb6a590fa5827becf08",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/relay_pool_health.csv",
+      "bytes": 419698,
+      "sha256": "1e097e81227d562508a26a3d1182d42c4825b0e2c40f05c0322215ad87a3156c",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/relay_shared_domains.csv",
+      "bytes": 6240,
+      "sha256": "7f29aa2bab9610ebd8dd6d5fe2f39c69cc1145f1f61c28be79431d7db0d72497",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/relay_shared_endpoints.csv",
+      "bytes": 83364,
+      "sha256": "e5e73b621181798065ae8dfde82e17866322175fb9f894d2ef361f870cb51118",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/relay_shared_hosts.csv",
+      "bytes": 94122,
+      "sha256": "115b7388bc9d80cf9d7ff18890f81acd45dcead1332bf674000e6f5bdb2dbd77",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "data/small/secondfi_incident_actors.csv",
       "bytes": 1816,
       "sha256": "820d30400de6a90dd764a0b4402b69b65f6f5ea01f7b38d78f4ffb8a880f3bf2",
@@ -2408,6 +2473,19 @@
       }
     },
     {
+      "path": "docs/27_RELAY_HEALTH_METHOD.md",
+      "bytes": 5890,
+      "sha256": "221cfdd0e01dcb621d23ac2b228748414ac021d476e83d5b3fde4c453b290347",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "docs/AI_QUERY_GUIDE.md",
       "bytes": 5101,
       "sha256": "c813afd3de0df5ab43c76139b2ebd316f0326c5a5736b941eb68a786c338c92b",
@@ -2422,8 +2500,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 61379,
-      "sha256": "e6c008d1f16059204dd3b78eb4111207e1ee7e3f7a1599bf951b33db544b04a8",
+      "bytes": 63341,
+      "sha256": "61bab5d9b056a11d1419a5a05e0c3ef43af46bc90aae9751452f6e271cfe7ef7",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2435,8 +2513,8 @@
     },
     {
       "path": "docs/STARTER_QUESTIONS.md",
-      "bytes": 4861,
-      "sha256": "36dea7f2c42f6974aeaab5b7312ad229d874e05b09c5c397bfa2d077d1662e75",
+      "bytes": 5822,
+      "sha256": "183315b361d55bc25f94a5f3b36eb9e954d8fd3e8d4d962b2f3f3a5428d2ec6b",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2448,8 +2526,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9528,
-      "sha256": "fc4a6e7b3569cc02e0af375cdefdca9259e692c56d36b7adf8b5828959b7ebb8",
+      "bytes": 9740,
+      "sha256": "afb02bd8ea4450e8b2b33c0250091811000105d4fa1f599aecba52be354f17fc",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2837,9 +2915,22 @@
       }
     },
     {
+      "path": "findings/F21_relay_registration_and_reachability.md",
+      "bytes": 7421,
+      "sha256": "656ebe8834f31418a0c19040be8713cab5a9a2e989e68325e3feaadc465f1ebc",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 3638,
-      "sha256": "aa15d1fa32745149c2d94d5aa004bc45c2c8b15326be1240bd329ca2c8ef8681",
+      "bytes": 3871,
+      "sha256": "06a710b4e3e24d4eae43474f3dd8b4e912bdb69666113248d0f673b294c7aa83",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3747,9 +3838,35 @@
       }
     },
     {
+      "path": "sql/45_secondfi/secondfi_recovery_fund_verification_2026_07_29.remote.sql",
+      "bytes": 6314,
+      "sha256": "a96bd534937bb4097be13051e6eadb816e03e2b7791ece905944bb5c68718596",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "sql/50_trace_warehouse/README.md",
-      "bytes": 4882,
-      "sha256": "5b0edc65de8b3ef90bde58f079b16768abdb2091ae676ee85b0287d481c7d137",
+      "bytes": 6388,
+      "sha256": "c7f7fe83a8d7a1feb2ed8b47ddc591c1faae186930ade04e2065f2f73f67640d",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/50_trace_warehouse/build_api_schema.sql",
+      "bytes": 17675,
+      "sha256": "65abcfe684baafd5b4fd1b5a56b73acaff706d990ecddc8f59a24123f76aa539",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3763,6 +3880,19 @@
       "path": "sql/50_trace_warehouse/build_genesis_reach.sql",
       "bytes": 5958,
       "sha256": "f8cb4db7e7651166b6fc750f98a8ea31ccb70e1f816a4770084344602225d165",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/50_trace_warehouse/build_night_reach.sql",
+      "bytes": 5568,
+      "sha256": "39e614cf459e352a2eee7feb15413edb1efef084f313c46de651a7b5e674c43d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4007,9 +4137,74 @@
       }
     },
     {
+      "path": "sql/56_relay_health/README.md",
+      "bytes": 4701,
+      "sha256": "1a937eb002857d62b67aca38a02bd49f14373dac6f708b344b4a0ed4041ed41d",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/56_relay_health/build_relay_reachability.sql",
+      "bytes": 11014,
+      "sha256": "a40d3f82206dbf7969a43003391a6cd792e3a35c2d8dd49944f539fd8a346f67",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/56_relay_health/build_relay_registration.sql",
+      "bytes": 9959,
+      "sha256": "8821de6e161702e2fdbbe65c64122c655e20200fd62364fdceeb1b6903d4d794",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/56_relay_health/data/SHA256SUMS",
+      "bytes": 92,
+      "sha256": "bb31b6d256f8bdf696ea631b513794e11898a315fad06eac733637e2d9376e09",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/56_relay_health/data/relay_build_receipt.csv",
+      "bytes": 1105,
+      "sha256": "fbad29c8dc4772ed74a4f4ee4719bc0a562fcc76d8aefe1fb20394a280bab91a",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "sql/60_peer_map/schema.sql",
-      "bytes": 3555,
-      "sha256": "f57774ac61f79ad75e0dd813d64dc9e53d60a2bd497aafe51673bf66021a660e",
+      "bytes": 3554,
+      "sha256": "f2ba8fde8ec0e6aeae5df337611ae083a78566e248775279343bc27f3cbb11e7",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",

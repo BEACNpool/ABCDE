@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 22,
+  "finding_count": 23,
   "findings": [
     {
       "id": "F01",
@@ -562,7 +562,7 @@
       "evidence": [
         {
           "path": "data/small/emurgo_drep_epoch_deltas.csv",
-          "sha256": "499876f773e43110e126f57fe9ef0ac7b52feb668ba3afebd2caad72d5f9cb2c"
+          "sha256": "f7df244fd4e0b6f32e84191758f21e5044981979b7f5c7c15416adb52f41a7f3"
         },
         {
           "path": "data/small/emurgo_drep_public_events.csv",
@@ -599,6 +599,16 @@
       ],
       "has_reproduce_sql": true,
       "index_label": "VERIFIED, FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE"
+    },
+    {
+      "id": "F21",
+      "file": "findings/F21_relay_registration_and_reachability.md",
+      "title": "Relay registration, shared infrastructure, and observed reachability",
+      "claim": "Of 2,898 current Cardano stake pools, 43 have registered no\nrelay at all and 1,470 registered exactly one endpoint. In a two-pass\nhandshake sweep of all 5,064 registered endpoints, 1,632\npools had no endpoint that answered and 646 had two or more\ndistinct reachable hosts. Separately, 605 pools advertise a relay\nendpoint that at least one other pool also advertises, and resolution collapses\nfurther fleets that registration strings hide.",
+      "grade": "- **FACT** — every registration figure: which pools are current, what relay\n  entries they published, which endpoint strings are shared, and when each\n  registration was made. Reproducible by anyone with db-sync.\n- **FACT** — that a given endpoint did or did not complete a Cardano handshake\n  with our prober at the stated time, and what tip it reported.\n- **STRONG_INFERENCE** — that pools sharing an endpoint or a resolved host share\n  infrastructure.\n- **UNKNOWN / NOT CLAIMED** — whether any relay is \"offline\"; who operates any\n  pool; whether shared infrastructure means shared ownership; whether any\n  operator is negligent. Hosting providers, relay-as-a-service and white-label\n  operators are indistinguishable here from one person running twelve pools.",
+      "evidence": [],
+      "has_reproduce_sql": false,
+      "index_label": "VERIFIED, FACT (registration + per-sweep observations) + STRONG_INFERENCE (shared infrastructure)"
     }
   ]
 }
