@@ -132,22 +132,53 @@ changing provider. Dropping to zero is the case worth looking at, and even there
 **of the 32 current pools that ever removed every relay, 16 later put relays
 back.** Half of the removals were temporary.
 
-That leaves 16 pools that removed every relay and still publish none, **12 of
-which are actively minting**:
+That leaves 16 pools that removed every relay and still publish none. Set beside
+the pools that never advertised one, **26 pools register no relay and are
+producing blocks**:
 
-| Ticker | ADA | Delegators | Blocks/30ep | Removed all relays |
+| Ticker | ADA | Delegators | Blocks/30ep | Previously advertised |
 |---|---|---|---|---|
-| CCV | 42.2M | 5,562 | 1,340 | 2025-11-26 |
-| CCV2 | 34.0M | 4,515 | 1,088 | 2025-12-01 |
-| CCV1 | 31.6M | 5,050 | 1,047 | 2025-12-01 |
-| CCV3 | 29.0M | 4,417 | 947 | 2025-12-01 |
-| CCV4 | 28.3M | 3,224 | 865 | 2025-12-01 |
-| DEVFO | 12.2M | 2 | 387 | 2025-07-16 |
-| GROW | 11.5M | 2,803 | 346 | 2025-07-01 |
-| DDLT | 3.3M | 1,087 | 115 | 2026-07-31 |
+| BD6 | 76.3M | 10 | 2,089 | never |
+| *(no ticker)* | 61.0M | 24 | 662 | never |
+| Pool | 42.8M | 2 | 1,081 | never |
+| CCV | 42.2M | 5,562 | 1,340 | removed 2025-11-26 |
+| BD0 | 38.4M | 96 | 1,276 | never |
+| CCV2 | 34.0M | 4,515 | 1,088 | removed 2025-12-01 |
+| CCV1 | 31.6M | 5,050 | 1,047 | removed 2025-12-01 |
+| CCV3 | 29.0M | 4,417 | 947 | removed 2025-12-01 |
+| CCV4 | 28.3M | 3,224 | 865 | removed 2025-12-01 |
+| BLISS | 21.8M | 1,565 | 700 | never |
+| DEVFO | 12.2M | 2 | 387 | removed 2025-07-16 |
+| GROW | 11.5M | 2,803 | 346 | removed 2025-07-01 |
 
-Five of those are one family that dropped their single relay within days of each
-other in late 2025 — 165.2M ADA and 22,768 delegators between them.
+Full list of 26 in `relay_pool_health`. Five of the CCV family dropped their
+single relay within days of each other in late 2025 — 165.2M ADA and 22,768
+delegators between them.
+
+⚠️ **Stake is a current snapshot; blocks are a 30-epoch total.** A pool that
+recently lost delegation shows many blocks against little stake. BD3 (not in the
+table above, 0.2M ADA today) produced 2,470 blocks because it held 56.7M ADA
+until epoch 646. That is a change in delegation, not an anomaly, and any read of
+this table has to allow for it.
+
+### It is not only dead pools
+
+The obvious dismissal is that pools without relays are abandoned registrations
+nobody retired. Seventeen of them are exactly that: they hold **47,625 ADA
+between them**, 33 delegators in total, and have produced no blocks. But by rate
+the behaviour peaks twice, and the second peak is not the dead one:
+
+| Pool size | No relay | All pools | Rate |
+|---|---|---|---|
+| No active stake | 7 | 225 | 3.11% |
+| Under 1M ADA | 19 | 1,747 | 1.09% |
+| 1M – 10M ADA | 5 | 419 | 1.19% |
+| **10M – 50M ADA** | **10** | **341** | **2.93%** |
+| Over 50M ADA | 2 | 166 | 1.20% |
+
+Established mid-size pools register no relay at roughly **2.7× the rate of small
+pools and 2.4× the rate of the largest** — and those are pools with thousands of
+delegators. Whatever the explanation, "they're just dead pools" is not it.
 
 Registering no relay is permitted, and operators who do it usually cite DDoS
 surface. What it means factually is that the network cannot discover them from

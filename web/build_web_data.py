@@ -263,13 +263,24 @@ def main() -> None:
                 SELECT direction, count(*) AS certs,
                        count(DISTINCT pool_bech32) AS pools
                 FROM relay_registration_changes GROUP BY 1 ORDER BY 2 DESC"""),
-            "removed_all": rows("""
+            "no_relay_named": rows("""
                 SELECT ticker, stake_ada, delegators, blocks_last_30_epochs AS blocks,
-                       removed_all_relays_on, registration_class
+                       ever_removed_all_relays, removed_all_relays_on
                 FROM relay_pool_health
-                WHERE ever_removed_all_relays AND registration_class = 'NO_REGISTERED_RELAY'
-                  AND minted_last_30_epochs
-                ORDER BY stake_ada DESC NULLS LAST LIMIT 10"""),
+                WHERE registration_class = 'NO_REGISTERED_RELAY' AND minted_last_30_epochs
+                ORDER BY stake_ada DESC NULLS LAST"""),
+            "no_relay_by_size": rows("""
+                SELECT CASE WHEN coalesce(stake_ada,0)=0 THEN 'No active stake'
+                            WHEN stake_ada < 1000000  THEN 'Under 1M ADA'
+                            WHEN stake_ada < 10000000 THEN '1M - 10M ADA'
+                            WHEN stake_ada < 50000000 THEN '10M - 50M ADA'
+                            ELSE 'Over 50M ADA' END AS band,
+                       count(*) FILTER (WHERE registration_class='NO_REGISTERED_RELAY') AS no_relay,
+                       count(*) AS all_pools,
+                       round(100.0*count(*) FILTER (WHERE registration_class='NO_REGISTERED_RELAY')
+                             / count(*), 2) AS pct
+                FROM relay_pool_health
+                GROUP BY 1 ORDER BY min(coalesce(stake_ada,0))"""),
             "removed_all_totals": rows("""
                 SELECT count(*) FILTER (WHERE ever_removed_all_relays) AS ever,
                        count(*) FILTER (WHERE ever_removed_all_relays
