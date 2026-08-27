@@ -139,6 +139,11 @@
     <thead><tr><th>Active stake</th><th class="num">Pools</th><th class="num">Nothing answered</th><th>Share</th></tr></thead>
     <tbody></tbody></table></div>
 
+  <div class="warn" style="border-left-color:var(--red)"><b>A high reachable-host count is not
+    proof of anything on its own.</b> The endpoints have to actually belong to the pool. At least one
+    pool here scores the top grade in this table on relays it does not run &mdash; see
+    <a href="#borrowed-infrastructure">pools advertising somebody else's infrastructure</a>.</div>
+
   <p class="sub" style="margin-top:26px">Why each endpoint failed. <span class="pill">no_ipv6_at_probe</span>
     means our prober has no IPv6 route and did not test the endpoint at all — those pools are
     reported as untested, not as unreachable.</p>
@@ -193,6 +198,31 @@
     the chain, and their inbound load sits on the pools that do publish. Every one of these events
     carries its transaction hash in <code>relay_registration_changes</code>, so none of it has to be
     taken on trust.</p>
+</div></section>
+
+<section class="rsec" id="borrowed-infrastructure"><div class="wrap">
+  <h2>Pools advertising somebody else's infrastructure<a class="anchor" href="#borrowed-infrastructure" aria-label="Link to this section">#</a></h2>
+  <p class="sub">Reachability alone can be gamed, and until this section existed <b>this dataset was
+    rewarding the gaming</b>. A pool that registers the founding entities' bootstrap backbones scores
+    the best available grade here &mdash; many reachable hosts, all at the tip &mdash; because those
+    endpoints genuinely do answer. They are IOG's, the Cardano Foundation's and Emurgo's. It also
+    slips past every sharing check on this page: no other pool registers the same strings, so
+    endpoint, resolved-host and domain matching all see nothing. Spotted by
+    <a href="https://x.com/HephyPool" target="_blank" rel="noopener">@HephyPool</a>.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-foreign">
+    <thead><tr><th>Ticker</th><th class="num">ADA</th><th class="num">Delegators</th><th class="num">Pledge</th><th class="num">Blocks</th><th class="num">Foreign / total</th><th>Advertises</th></tr></thead>
+    <tbody></tbody></table></div>
+  <div class="warn"><b>Why this needs no judgement call about who is who.</b> The
+    <code>backbone.*</code> names are the <code>bootstrapPeers</code> shipped in the stock mainnet
+    <code>topology.json</code> &mdash; the network's shared entry points, published so any node can
+    find its first peers. They are nobody's relays, and the founding entities' own pools do not
+    register them either: IOG1 advertises <code>iog1-relays.cardano.iog.io</code>, the CF pools
+    advertise <code>cfNrN.mainnet.pool.cardanofoundation.org</code>. So no allowlist of identities
+    is needed to read this table.</div>
+  <p class="sub">That a pool registered these strings is fact, straight from the chain. What it means
+    is the reader's call: a misconfiguration and a deliberate free-ride look identical on-chain and
+    this table does not try to separate them. What it does mean is that the pool publishes no way to
+    reach <i>its</i> node, and its inbound load sits on infrastructure it does not run.</p>
 </div></section>
 
 <section class="rsec" id="networks"><div class="wrap">
@@ -267,6 +297,7 @@
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_hosts.csv">relay_shared_hosts</a></td><td>Pools sharing a resolved IP — catches per-pool hostnames.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_domains.csv">relay_shared_domains</a></td><td>Pools sharing a parent domain (heuristic; groups hosting customers too).</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_asn_concentration.csv">relay_asn_concentration</a></td><td>Per network: pools, stake, and how many have their <i>entire</i> reachable relay set inside it.</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_foreign_infrastructure.csv">relay_foreign_infrastructure</a></td><td>Pools advertising founding-entity bootstrap backbones as their own relays.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_registration_changes.csv">relay_registration_changes</a></td><td>Every certificate that changed a pool&rsquo;s relay count &mdash; date, tx hash, before/after, direction.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_endpoint_status.csv">relay_endpoint_status</a></td><td>The raw per-endpoint sweep, with failure cause and detail.</td></tr>
     </tbody></table></div>
@@ -390,6 +421,16 @@ fetch("data/relays.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
     (r.ever_removed_all_relays === true || r.ever_removed_all_relays === "true")
       ? `<td class="mono">removed ${esc(String(r.removed_all_relays_on || "").slice(0, 10))}</td>`
       : `<td class="muted">never advertised one</td>`]);
+
+  fill("#t-foreign", d.foreign_infra || [], r => [
+    `<td class="mono">${esc(r.ticker || "(no ticker)")}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`,
+    `<td class="num">${fmt(r.delegators)}</td>`,
+    `<td class="num">${fmt(r.pledge_ada)}</td>`,
+    `<td class="num">${fmt(r.blocks_all_time)}</td>`,
+    `<td class="num">${fmt(r.endpoints_foreign)} / ${fmt(r.endpoints_registered)}</td>`,
+    `<td class="muted">${esc(r.borrowed_from)}${r.kind === "fe_legacy_relay"
+        ? ' <span class="pill">retired relay</span>' : ""}</td>`]);
 
   const maxRate = Math.max(...(d.no_relay_by_size || [{pct:1}]).map(r => Number(r.pct) || 0), 0.01);
   fill("#t-sizeband", d.no_relay_by_size || [], r => [
