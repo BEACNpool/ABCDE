@@ -69,7 +69,8 @@ export_csv() {  # $1 = out file, $2 = query
 export_csv data/small/relay_pool_health.csv "
   select pool_bech32, ticker, stake_ada, delegators,
          blocks_last_30_epochs, minted_last_30_epochs, relay_entries, distinct_endpoints,
-         registration_class, endpoints_probed, reachable_hosts, at_tip_hosts,
+         registration_class, relay_additions, relay_reductions, ever_removed_all_relays,
+         removed_all_relays_on, endpoints_probed, reachable_hosts, at_tip_hosts,
          endpoints_untested, best_rtt_ms, shares_endpoint_with_other_pool,
          reachability_class, last_checked
   from relay.pool_health order by stake_ada desc nulls last, pool_bech32"
@@ -95,6 +96,11 @@ export_csv data/small/relay_endpoint_status.csv "
          handshake_ok, failure, error_detail, rtt_ms, block_no, slots_behind_best,
          at_tip, checked_at
   from relay.endpoint_status order by endpoint, target_host, target_port"
+
+export_csv data/small/relay_registration_changes.csv "
+  select pool_bech32, ticker, cert_number, changed_at, tx_hash,
+         relays_before, relays_after, delta, direction
+  from relay.registration_change order by changed_at desc"
 
 export_csv data/small/relay_asn_concentration.csv "
   select asn, as_name, country, pools, stake_ada, delegators,

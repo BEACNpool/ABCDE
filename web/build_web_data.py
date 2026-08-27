@@ -259,6 +259,24 @@ def main() -> None:
                        sum(delegators) AS delegators, sum(blocks_last_30_epochs) AS blocks
                 FROM relay_pool_health
                 WHERE minted_last_30_epochs AND registration_class = 'NO_REGISTERED_RELAY'""")[0],
+            "history": rows("""
+                SELECT direction, count(*) AS certs,
+                       count(DISTINCT pool_bech32) AS pools
+                FROM relay_registration_changes GROUP BY 1 ORDER BY 2 DESC"""),
+            "removed_all": rows("""
+                SELECT ticker, stake_ada, delegators, blocks_last_30_epochs AS blocks,
+                       removed_all_relays_on, registration_class
+                FROM relay_pool_health
+                WHERE ever_removed_all_relays AND registration_class = 'NO_REGISTERED_RELAY'
+                  AND minted_last_30_epochs
+                ORDER BY stake_ada DESC NULLS LAST LIMIT 10"""),
+            "removed_all_totals": rows("""
+                SELECT count(*) FILTER (WHERE ever_removed_all_relays) AS ever,
+                       count(*) FILTER (WHERE ever_removed_all_relays
+                                        AND registration_class <> 'NO_REGISTERED_RELAY') AS re_added,
+                       count(*) FILTER (WHERE ever_removed_all_relays
+                                        AND registration_class = 'NO_REGISTERED_RELAY') AS still_none
+                FROM relay_pool_health""")[0],
             "asn": rows("""
                 SELECT asn, as_name, country, pools, stake_ada,
                        pools_single_asn, stake_single_asn

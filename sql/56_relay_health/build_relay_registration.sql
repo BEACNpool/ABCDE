@@ -185,6 +185,80 @@ HAVING count(*) > 1;
 CREATE INDEX ON relay.endpoint_shared (pools DESC);
 
 -- ---------------------------------------------------------------------------
+-- 4b. Relay registration HISTORY.
+--
+--   `pool_update` is append-only: a pool can change what it advertises, but it
+--   can never un-publish what it advertised before. So the one question a pool
+--   cannot answer by editing its certificate is "what did you used to run?"
+--
+--   This matters because removing a relay from the certificate is a normal
+--   transaction -- no new deposit, just the fee -- and it makes an unreachable
+--   relay stop being unreachable by making it stop existing. That is the only
+--   move in this dataset that *improves* a pool's standing by publishing less.
+--   Here it does the opposite: removals are the thing being counted.
+--
+--   Read the direction honestly. Most relay-count changes are pools ADDING
+--   capacity, and reducing a count is ordinary maintenance -- consolidating
+--   hosts, retiring a box, moving provider. Dropping to ZERO is the case worth
+--   looking at, and even that is permitted; operators who do it usually cite
+--   DDoS surface. What it means factually is that the network can no longer
+--   discover them from the chain.
+-- ---------------------------------------------------------------------------
+DROP TABLE IF EXISTS relay.registration_change CASCADE;
+CREATE TABLE relay.registration_change AS
+WITH upd AS (
+  SELECT pu.hash_id, pu.id AS update_id, pu.registered_tx_id, pu.cert_index,
+         row_number() OVER (PARTITION BY pu.hash_id
+                            ORDER BY pu.registered_tx_id, pu.cert_index, pu.id) AS seq,
+         (SELECT count(*) FROM public.pool_relay pr WHERE pr.update_id = pu.id) AS relays
+  FROM public.pool_update pu
+),
+step AS (
+  SELECT u.*, lag(u.relays) OVER (PARTITION BY u.hash_id ORDER BY u.seq) AS prev_relays
+  FROM upd u
+)
+SELECT
+  ph.view                       AS pool_bech32,
+  t.ticker_name                 AS ticker,
+  st.seq                        AS cert_number,
+  b.time                        AS changed_at,
+  encode(tx.hash, 'hex')        AS tx_hash,
+  st.prev_relays                AS relays_before,
+  st.relays                     AS relays_after,
+  st.relays - st.prev_relays    AS delta,
+  CASE WHEN st.relays > st.prev_relays THEN 'added'
+       WHEN st.relays = 0            THEN 'removed_all'
+       ELSE 'reduced' END       AS direction
+FROM step st
+JOIN public.pool_hash ph ON ph.id = st.hash_id
+JOIN public.tx tx        ON tx.id = st.registered_tx_id
+JOIN public.block b      ON b.id  = tx.block_id
+LEFT JOIN LATERAL (
+  SELECT o.ticker_name FROM public.off_chain_pool_data o
+  WHERE o.pool_id = st.hash_id ORDER BY o.pmr_id DESC, o.id DESC LIMIT 1
+) t ON TRUE
+WHERE st.prev_relays IS NOT NULL AND st.relays <> st.prev_relays;
+
+CREATE INDEX ON relay.registration_change (pool_bech32);
+CREATE INDEX ON relay.registration_change (direction);
+
+-- Per-pool rollup, joined into pool_health.
+DROP TABLE IF EXISTS relay.pool_relay_history CASCADE;
+CREATE TABLE relay.pool_relay_history AS
+SELECT
+  pc.pool_hash_id,
+  count(*)                                                       AS relay_count_changes,
+  count(*) FILTER (WHERE rc.direction = 'added')                 AS relay_additions,
+  count(*) FILTER (WHERE rc.direction <> 'added')                AS relay_reductions,
+  bool_or(rc.direction = 'removed_all')                          AS ever_removed_all_relays,
+  max(rc.changed_at) FILTER (WHERE rc.direction = 'removed_all') AS removed_all_on
+FROM relay.pool_current pc
+JOIN relay.registration_change rc ON rc.pool_bech32 = pc.pool_bech32
+GROUP BY pc.pool_hash_id;
+
+ALTER TABLE relay.pool_relay_history ADD PRIMARY KEY (pool_hash_id);
+
+-- ---------------------------------------------------------------------------
 -- 5. Build receipt — every published number is pinned to a tip.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS relay.build_receipt (

@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "c44c386095bd",
+          "git_commit": "f39c1767acf1",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -7954,6 +7954,22 @@
           "type": "VARCHAR"
         },
         {
+          "name": "relay_additions",
+          "type": "BIGINT"
+        },
+        {
+          "name": "relay_reductions",
+          "type": "BIGINT"
+        },
+        {
+          "name": "ever_removed_all_relays",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "removed_all_relays_on",
+          "type": "DATE"
+        },
+        {
           "name": "endpoints_probed",
           "type": "BIGINT"
         },
@@ -7992,11 +8008,15 @@
           "ticker": "TW001",
           "stake_ada": 113567622,
           "delegators": 35742,
-          "blocks_last_30_epochs": 3580,
+          "blocks_last_30_epochs": 3582,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 3,
           "registration_class": "MULTIPLE_ENDPOINTS",
+          "relay_additions": 0,
+          "relay_reductions": 0,
+          "ever_removed_all_relays": false,
+          "removed_all_relays_on": null,
           "endpoints_probed": 3,
           "reachable_hosts": 3,
           "at_tip_hosts": 0,
@@ -8011,11 +8031,15 @@
           "ticker": "PPTG1",
           "stake_ada": 107805999,
           "delegators": 5673,
-          "blocks_last_30_epochs": 2480,
+          "blocks_last_30_epochs": 2481,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 1,
           "registration_class": "SINGLE_ENDPOINT",
+          "relay_additions": 1,
+          "relay_reductions": 0,
+          "ever_removed_all_relays": false,
+          "removed_all_relays_on": null,
           "endpoints_probed": 1,
           "reachable_hosts": 1,
           "at_tip_hosts": 0,
@@ -8030,11 +8054,15 @@
           "ticker": "LBF2",
           "stake_ada": 83924628,
           "delegators": 10618,
-          "blocks_last_30_epochs": 2643,
+          "blocks_last_30_epochs": 2645,
           "minted_last_30_epochs": true,
           "relay_entries": 1,
           "distinct_endpoints": 1,
           "registration_class": "SRV_MULTIHOST_POSSIBLE",
+          "relay_additions": 0,
+          "relay_reductions": 1,
+          "ever_removed_all_relays": false,
+          "removed_all_relays_on": null,
           "endpoints_probed": 1,
           "reachable_hosts": 9,
           "at_tip_hosts": 0,
@@ -8043,6 +8071,83 @@
           "shares_endpoint_with_other_pool": false,
           "reachability_class": "MULTI_REACHABLE_HOSTS",
           "last_checked": "2026-08-27 08:53:38-05:00"
+        }
+      ]
+    },
+    "relay_registration_changes": {
+      "source": "data/small/relay_registration_changes.csv",
+      "row_count": 4186,
+      "columns": [
+        {
+          "name": "pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cert_number",
+          "type": "BIGINT"
+        },
+        {
+          "name": "changed_at",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "relays_before",
+          "type": "BIGINT"
+        },
+        {
+          "name": "relays_after",
+          "type": "BIGINT"
+        },
+        {
+          "name": "delta",
+          "type": "BIGINT"
+        },
+        {
+          "name": "direction",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "pool_bech32": "pool1sghwg652uwe7ksmk5laxxft58j6km6prahvnddk3s6zgxek5qen",
+          "ticker": "FLUX",
+          "cert_number": 12,
+          "changed_at": "2026-08-23 15:49:55",
+          "tx_hash": "7350f7e8de0858be733b1983c27fecddba0e514802daef5a0e5f8d1c03fd07dc",
+          "relays_before": 3,
+          "relays_after": 5,
+          "delta": 2,
+          "direction": "added"
+        },
+        {
+          "pool_bech32": "pool1peayemzlkmcwn64c455mx8sxdaztq0xuv9hdxlp0kcsxz57up3z",
+          "ticker": "AID1",
+          "cert_number": 9,
+          "changed_at": "2026-08-21 09:23:00",
+          "tx_hash": "fc1fe09414ec3241cf5c657f1022d6a63c76d4cd7d92406fd2e2d8b01ea157c7",
+          "relays_before": 2,
+          "relays_after": 1,
+          "delta": -1,
+          "direction": "reduced"
+        },
+        {
+          "pool_bech32": "pool1n940lfxkd7z73qzj5y554yrletrmgg5x2eya9tpglh3uwcqfnud",
+          "ticker": "FUNON",
+          "cert_number": 31,
+          "changed_at": "2026-08-19 23:46:50",
+          "tx_hash": "e1af8151e555ce82ff98a0fa8ea6f1a827a51680ebe848e735bce69fc47a632f",
+          "relays_before": 2,
+          "relays_after": 1,
+          "delta": -1,
+          "direction": "reduced"
         }
       ]
     },

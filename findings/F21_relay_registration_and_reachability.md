@@ -109,6 +109,52 @@ Those 26 pools minted **14,776 blocks in the last 30 epochs** between them, hold
 none is permitted and there are working setups that do it. It also means no other
 node can discover them from the chain.
 
+## What a pool used to advertise
+
+`pool_update` is append-only. A pool can change what it advertises; it can never
+un-publish what it advertised before. That matters because removing a relay from
+the certificate is an ordinary transaction — no new deposit, just the fee — and it
+makes an unreachable relay stop being unreachable by making it stop existing. It
+is the only move in this dataset that improves a pool's standing by publishing
+less, and the one view where publishing less makes a pool *more* visible.
+
+Across all of history, 4,186 certificates changed a pool's relay count:
+
+| Direction | Certificates | Pools |
+|---|---|---|
+| Added relays | 2,581 | 1,692 |
+| Reduced the count | 1,552 | 1,021 |
+| Removed every relay | 53 | 51 |
+
+**Read the direction honestly: the dominant movement is pools adding capacity.**
+Reducing a count is ordinary maintenance — consolidating hosts, retiring a box,
+changing provider. Dropping to zero is the case worth looking at, and even there,
+**of the 32 current pools that ever removed every relay, 16 later put relays
+back.** Half of the removals were temporary.
+
+That leaves 16 pools that removed every relay and still publish none, **12 of
+which are actively minting**:
+
+| Ticker | ADA | Delegators | Blocks/30ep | Removed all relays |
+|---|---|---|---|---|
+| CCV | 42.2M | 5,562 | 1,340 | 2025-11-26 |
+| CCV2 | 34.0M | 4,515 | 1,088 | 2025-12-01 |
+| CCV1 | 31.6M | 5,050 | 1,047 | 2025-12-01 |
+| CCV3 | 29.0M | 4,417 | 947 | 2025-12-01 |
+| CCV4 | 28.3M | 3,224 | 865 | 2025-12-01 |
+| DEVFO | 12.2M | 2 | 387 | 2025-07-16 |
+| GROW | 11.5M | 2,803 | 346 | 2025-07-01 |
+| DDLT | 3.3M | 1,087 | 115 | 2026-07-31 |
+
+Five of those are one family that dropped their single relay within days of each
+other in late 2025 — 165.2M ADA and 22,768 delegators between them.
+
+Registering no relay is permitted, and operators who do it usually cite DDoS
+surface. What it means factually is that the network cannot discover them from
+the chain, and their inbound load sits on pools that do publish. `relay_registration_changes`
+has every one of the 4,186 events with its transaction hash, so any of this can be
+checked without trusting this table.
+
 ## Where the relays actually live
 
 A pool with three relays is not redundant if all three sit in one datacenter.
@@ -192,6 +238,8 @@ headers ([`F10`](F10_kes_corotation_pool_operators.md)).
 - `relay_endpoint_status` — the raw per-endpoint sweep, with failure cause.
 - `relay_asn_concentration` — per ASN: pools, stake, and how many of those pools
   have their *entire* reachable relay set inside it.
+- `relay_registration_changes` — every certificate that changed a pool's relay
+  count, with date, tx hash, before/after and direction.
 
 ```sql
 SELECT reachability_class, count(*) AS pools, sum(stake_ada) AS ada
