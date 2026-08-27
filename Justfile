@@ -39,10 +39,15 @@ test:
     python3 scripts/verify_iogp_voucher_followup.py
     python3 scripts/verify_genesis_trail_case.py
     python3 scripts/verify_public_artifacts.py
+    python3 scripts/verify_web_pages.py
 
 # Verify headline claim SQL receipts
 verify-claims:
     python3 scripts/verify_claim_receipts.py
+
+# Syntax-check the inline JS in the static site pages
+verify-web-pages:
+    python3 scripts/verify_web_pages.py
 
 # Verify public artifact manifest hashes
 verify-public-artifacts:
