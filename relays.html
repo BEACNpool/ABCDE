@@ -164,10 +164,23 @@
     <thead><tr><th>Direction</th><th class="num">Certificates</th><th class="num">Pools</th></tr></thead>
     <tbody></tbody></table></div>
   <div class="warn" id="readded"></div>
-  <p class="sub" style="margin-top:8px">Pools that removed every relay, still publish none, and are
-    minting blocks:</p>
-  <div class="tbl-wrap"><table class="rt" id="t-removed">
-    <thead><tr><th>Ticker</th><th class="num">ADA</th><th class="num">Delegators</th><th class="num">Blocks / 30ep</th><th>Removed all relays</th></tr></thead>
+  <p class="sub" style="margin-top:8px">Every pool that registers no relay <i>and</i> is producing
+    blocks &mdash; whether it removed relays it once had, or never advertised any:</p>
+  <div class="tbl-wrap"><table class="rt" id="t-norelay">
+    <thead><tr><th>Ticker</th><th class="num">ADA</th><th class="num">Delegators</th><th class="num">Blocks / 30ep</th><th>Previously advertised</th></tr></thead>
+    <tbody></tbody></table></div>
+  <p class="note" style="color:var(--muted);font-size:15px;margin-top:10px">Stake is a current
+    snapshot; blocks are a 30-epoch total. A pool that recently lost delegation will show many
+    blocks against little stake &mdash; BD3 held 56.7M ADA until epoch 646 and about 190k after it,
+    and earned its blocks on the former. That is a change in delegation, not an anomaly.</p>
+
+  <h3 style="font-size:19px;margin:34px 0 6px">It is not just dead pools</h3>
+  <p class="sub">The obvious dismissal is that pools without relays are abandoned ones nobody
+    retired. Seventeen of them are exactly that &mdash; they hold 47,625 ADA <i>between them</i> and
+    have produced nothing. But by rate, the behaviour peaks again among established mid-size pools
+    with thousands of delegators.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-sizeband">
+    <thead><tr><th>Pool size</th><th class="num">No relay</th><th class="num">All pools</th><th class="num">Rate</th><th>Share</th></tr></thead>
     <tbody></tbody></table></div>
   <p class="sub" style="margin-top:18px">Registering no relay is permitted, and operators who do it
     usually cite DDoS surface. What it means factually is that the network cannot discover them from
@@ -363,12 +376,22 @@ fetch("data/relays.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
     `removed every relay, <b>${fmt(ra.re_added)} later put relays back</b>. Half the removals ` +
     `were temporary.`;
 
-  fill("#t-removed", d.removed_all || [], r => [
-    `<td class="mono">${esc(r.ticker || "—")}</td>`,
+  fill("#t-norelay", d.no_relay_named || [], r => [
+    `<td class="mono">${esc(r.ticker || "(no ticker)")}</td>`,
     `<td class="num">${ada(r.stake_ada)}</td>`,
     `<td class="num">${fmt(r.delegators)}</td>`,
     `<td class="num">${fmt(r.blocks)}</td>`,
-    `<td class="mono muted">${esc(String(r.removed_all_relays_on || "").slice(0, 10))}</td>`]);
+    (r.ever_removed_all_relays === true || r.ever_removed_all_relays === "true")
+      ? `<td class="mono">removed ${esc(String(r.removed_all_relays_on || "").slice(0, 10))}</td>`
+      : `<td class="muted">never advertised one</td>`]);
+
+  const maxRate = Math.max(...(d.no_relay_by_size || [{pct:1}]).map(r => Number(r.pct) || 0), 0.01);
+  fill("#t-sizeband", d.no_relay_by_size || [], r => [
+    `<td>${esc(r.band)}</td>`,
+    `<td class="num">${fmt(r.no_relay)}</td>`,
+    `<td class="num muted">${fmt(r.all_pools)}</td>`,
+    `<td class="num">${Number(r.pct).toFixed(2)}%</td>`,
+    `<td><span class="bar"><i style="width:${Math.max(3, 100 * Number(r.pct) / maxRate)}%"></i></span></td>`]);
 
   if (d.asn_totals) {
     const pct = (100 * Number(d.asn_totals.stake_single_asn) / Number(d.totals.stake_ada)).toFixed(1);
