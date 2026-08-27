@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 327,
+  "file_count": 328,
   "files": [
     {
       "path": "claims/README.md",
@@ -1551,8 +1551,21 @@
     },
     {
       "path": "data/small/relay_pool_health.csv",
-      "bytes": 433378,
-      "sha256": "2146b0bb285ea3033102eb2499cf54cb86ea0f22ea720c32031134a690e91093",
+      "bytes": 454069,
+      "sha256": "a9d8e63e517312dcecce7934e1c47b19bac37e8e61e151c8994428aaf6081343",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/relay_registration_changes.csv",
+      "bytes": 677001,
+      "sha256": "acd6af2d168745088da3ef366500df85e92fb66d45f5b1de68930d10bd104ae7",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2513,8 +2526,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 63781,
-      "sha256": "42fe53fde0f11318c9e7e83f5c3246bb7d6cdce6230e56347ee1d765d1df05ea",
+      "bytes": 64287,
+      "sha256": "61dd3ab8fe339aeadfd363dc57a8f97e044543d82327ef5de65712bde0502a4a",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2539,8 +2552,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9785,
-      "sha256": "0ea1a961256b62c8fd76dbbbf0a344930639aab1327d5a9461e5f195132ddc1b",
+      "bytes": 9835,
+      "sha256": "cda899cd29b65636a2d9e4a0f8a113a7e45e760799d309beaa4e95f84854bfa7",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2929,8 +2942,8 @@
     },
     {
       "path": "findings/F21_relay_registration_and_reachability.md",
-      "bytes": 10506,
-      "sha256": "97ab1199cc554035e68edf6a364f9dc0b54a5efc2ef4c5446c3c51387d2577ca",
+      "bytes": 12833,
+      "sha256": "93e7334afa9dcf91088c1975b8436649acf892cad761a5bdc4576ad3fe8ec129",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4177,8 +4190,8 @@
     },
     {
       "path": "sql/56_relay_health/build_relay_reachability.sql",
-      "bytes": 11773,
-      "sha256": "70234a85caf7d827eee9f164b4ca14b6fe58eab803aa2890e00aa38dde8162a4",
+      "bytes": 12097,
+      "sha256": "86d7d1fca386c1dcb9b5f48d8ef93e4785fbb222c219f9847a6004b8441b8ed5",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4190,8 +4203,8 @@
     },
     {
       "path": "sql/56_relay_health/build_relay_registration.sql",
-      "bytes": 9959,
-      "sha256": "8821de6e161702e2fdbbe65c64122c655e20200fd62364fdceeb1b6903d4d794",
+      "bytes": 13603,
+      "sha256": "062e390a4e2351e18e9b92625f372610e566a52e9561f82c5ecf915b573c3bc9",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4204,7 +4217,7 @@
     {
       "path": "sql/56_relay_health/data/SHA256SUMS",
       "bytes": 92,
-      "sha256": "a752976e061b34f4f6273e64437dc2993261aea3ab3e1664458d786e17be73c7",
+      "sha256": "10a3f0938a51bb3951a0dbe703535313ed33c3e2e612f9ab39533869cb16900d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4216,8 +4229,8 @@
     },
     {
       "path": "sql/56_relay_health/data/relay_build_receipt.csv",
-      "bytes": 1410,
-      "sha256": "4c6b6ebd755f30da257a9a07432f0943baad6d0bd2e1ecc738afd500b956f3ac",
+      "bytes": 1717,
+      "sha256": "ed081a02f23b09bc0edad016aa0d2588ecd1fdcc52337931ea51d261ca0fbbcd",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
