@@ -23,7 +23,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  .rsec{padding:44px 0; border-top:1px solid var(--line)}
+  .rsec{padding:44px 0; border-top:1px solid var(--line); scroll-margin-top:76px}
+  .rsec h2{position:relative}
+  .anchor{margin-left:.4em; color:var(--line2); font-weight:700; text-decoration:none;
+    opacity:0; transition:opacity .15s}
+  .rsec:hover .anchor, .anchor:focus{opacity:1}
+  .anchor:hover{color:var(--cyan); text-decoration:none}
+  .rsec:target h2{color:var(--cyan)}
   .rsec h2{font-size:26px; margin-bottom:6px}
   .rsec .sub{color:var(--muted); max-width:74ch; margin:0 0 22px}
   .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
@@ -87,8 +93,8 @@
   <div class="stat-row" id="stats"></div>
 </div>
 
-<section class="rsec"><div class="wrap">
-  <h2>Read this before you quote a number</h2>
+<section class="rsec" id="grading"><div class="wrap">
+  <h2>Read this before you quote a number<a class="anchor" href="#grading" aria-label="Link to this section">#</a></h2>
   <p class="sub">This dataset is deliberately not a scoreboard. It has two layers and they are kept
     apart on purpose, because only one of them is durable.</p>
   <div class="grade">
@@ -107,8 +113,8 @@
     point, and it is published with its timestamp for exactly that reason.</div>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>What pools registered</h2>
+<section class="rsec" id="registration"><div class="wrap">
+  <h2>What pools registered<a class="anchor" href="#registration" aria-label="Link to this section">#</a></h2>
   <p class="sub">The durable layer. A pool's live registration is its latest <code>pool_update</code>;
     a retirement counts only if it was announced after that update and its epoch has arrived.</p>
   <div class="tbl-wrap"><table class="rt" id="t-reg">
@@ -116,8 +122,8 @@
     <tbody></tbody></table></div>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>What answered</h2>
+<section class="rsec" id="reachability"><div class="wrap">
+  <h2>What answered<a class="anchor" href="#reachability" aria-label="Link to this section">#</a></h2>
   <p class="sub">A two-pass node-to-node handshake sweep of every registered endpoint — a real
     Cardano handshake plus a tip request, not a TCP connect. Reachable hosts are counted as
     <b>distinct resolved hosts</b>, never as registration entries: two DNS names pointing at one
@@ -141,8 +147,8 @@
     <tbody></tbody></table></div>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>Dead pools are not the story</h2>
+<section class="rsec" id="block-producers"><div class="wrap">
+  <h2>Dead pools are not the story<a class="anchor" href="#block-producers" aria-label="Link to this section">#</a></h2>
   <p class="sub">Read on its own, the count of pools where nothing answered is badly misleading —
     most of them are abandoned registrations whose operator never filed a retirement certificate.
     They inflate every per-pool count of Cardano's “3,000 pools” and they hold almost no stake.
@@ -153,8 +159,8 @@
   <div class="warn" id="norelay"></div>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>What a pool used to advertise</h2>
+<section class="rsec" id="registration-history"><div class="wrap">
+  <h2>What a pool used to advertise<a class="anchor" href="#registration-history" aria-label="Link to this section">#</a></h2>
   <p class="sub">Pool registrations are append-only. A pool can change what it advertises; it can
     never un-publish what it advertised before. That matters, because removing a relay from the
     certificate is an ordinary transaction &mdash; no new deposit, just the fee &mdash; and it makes
@@ -189,8 +195,8 @@
     taken on trust.</p>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>Where the relays actually live</h2>
+<section class="rsec" id="networks"><div class="wrap">
+  <h2>Where the relays actually live<a class="anchor" href="#networks" aria-label="Link to this section">#</a></h2>
   <p class="sub">A pool with three relays is not redundant if all three sit in one datacenter.
     Pool counts cannot see that; the network announcing each reachable relay IP can.</p>
   <div class="stat-row" id="asnstat"></div>
@@ -205,8 +211,8 @@
     every figure is a floor.</div>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>Shared infrastructure</h2>
+<section class="rsec" id="shared-infrastructure"><div class="wrap">
+  <h2>Shared infrastructure<a class="anchor" href="#shared-infrastructure" aria-label="Link to this section">#</a></h2>
   <p class="sub">Endpoints advertised by more than one current pool. This is a shared <i>string</i>:
     strong evidence of shared infrastructure and no evidence at all of shared ownership. A hosting
     provider, a relay-as-a-service, a white-label operator and one person running twelve pools are
@@ -225,8 +231,8 @@
     <tbody></tbody></table></div>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>Why a single-pass probe lies</h2>
+<section class="rsec" id="method"><div class="wrap">
+  <h2>Why a single-pass probe lies<a class="anchor" href="#method" aria-label="Link to this section">#</a></h2>
   <p class="sub">Four measured traps. Each one produced a confident, wrong answer during the build
     before it was caught — which is the whole reason the method is published alongside the numbers.</p>
   <ol class="traps">
@@ -249,8 +255,8 @@
   </ol>
 </div></section>
 
-<section class="rsec"><div class="wrap">
-  <h2>Take the data</h2>
+<section class="rsec" id="data"><div class="wrap">
+  <h2>Take the data<a class="anchor" href="#data" aria-label="Link to this section">#</a></h2>
   <p class="sub">All of it is in the repo — no API key, no rate limit, no server to ask. Clone it or
     pull a CSV straight from raw.githubusercontent.com.</p>
   <div class="tbl-wrap"><table class="rt">
@@ -421,6 +427,14 @@ fetch("data/relays.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
     `<td class="num">${fmt(r.distinct_registered_names)}</td>`,
     `<td class="num">${ada(r.stake_ada)}</td>`,
     `<td class="mono muted">${tick(r.tickers)}</td>`]);
+  // The browser resolves #fragment at load, BEFORE these tables are filled. Every
+  // row added after that pushes the target section further down the page, so a
+  // shared deep link lands hundreds of pixels short. Re-apply it once the content
+  // is actually here. scroll-margin-top on .rsec keeps it clear of the sticky nav.
+  if (location.hash) {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  }
 }).catch(e => {
   document.getElementById("stamp").textContent =
     "Could not load the published cut (" + e + ").";
