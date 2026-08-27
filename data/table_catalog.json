@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 149,
+  "table_count": 154,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -1003,6 +1003,51 @@
       "family": "Other",
       "row_count": 480,
       "source": "data/small/pool_operator_kes_members.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_endpoint_status",
+      "family": "Other",
+      "row_count": 4597,
+      "source": "data/small/relay_endpoint_status.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_pool_health",
+      "family": "Other",
+      "row_count": 2898,
+      "source": "data/small/relay_pool_health.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_shared_domains",
+      "family": "Other",
+      "row_count": 134,
+      "source": "data/small/relay_shared_domains.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_shared_endpoints",
+      "family": "Other",
+      "row_count": 300,
+      "source": "data/small/relay_shared_endpoints.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_shared_hosts",
+      "family": "Other",
+      "row_count": 249,
+      "source": "data/small/relay_shared_hosts.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""

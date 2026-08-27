@@ -200,6 +200,59 @@ def main() -> None:
                          "url": f"https://github.com/BEACNpool/ABCDE/blob/main/{f['file']}"})
     (OUT / "findings.json").write_text(json.dumps(findings, indent=2))
 
+    # --- relay health -----------------------------------------------------
+    # The relay page is data-driven so its published numbers can never drift
+    # from the DuckDB. Older cuts have no relay tables; skip silently.
+    have_relay = con.execute(
+        "SELECT count(*) FROM information_schema.tables "
+        "WHERE table_name = 'relay_pool_health'").fetchone()[0]
+    if have_relay:
+        def rows(sql):
+            cur = con.execute(sql)
+            cols = [d[0] for d in cur.description]
+            return [dict(zip(cols, r)) for r in cur.fetchall()]
+
+        relay = {
+            "checked_at": q1(con, "SELECT max(last_checked) FROM relay_pool_health")[0],
+            "totals": rows("""
+                SELECT count(*) AS pools, sum(stake_ada) AS stake_ada,
+                       sum(delegators) AS delegators
+                FROM relay_pool_health""")[0],
+            "registration": rows("""
+                SELECT registration_class AS class, count(*) AS pools,
+                       sum(stake_ada) AS stake_ada
+                FROM relay_pool_health GROUP BY 1 ORDER BY 2 DESC"""),
+            "reachability": rows("""
+                SELECT reachability_class AS class, count(*) AS pools,
+                       sum(stake_ada) AS stake_ada, sum(delegators) AS delegators
+                FROM relay_pool_health GROUP BY 1 ORDER BY 2 DESC"""),
+            "by_stake_band": rows("""
+                SELECT CASE WHEN coalesce(stake_ada,0)=0 THEN 'no active stake'
+                            WHEN stake_ada < 100000   THEN 'under 100k ADA'
+                            WHEN stake_ada < 1000000  THEN '100k - 1M ADA'
+                            WHEN stake_ada < 10000000 THEN '1M - 10M ADA'
+                            ELSE '10M ADA and above' END AS band,
+                       count(*) AS pools,
+                       count(*) FILTER (WHERE reachability_class='NONE_REACHABLE') AS none_reachable,
+                       round(100.0*count(*) FILTER (WHERE reachability_class='NONE_REACHABLE')
+                             / count(*), 1) AS pct_none
+                FROM relay_pool_health
+                GROUP BY 1 ORDER BY min(coalesce(stake_ada,0))"""),
+            "shared_endpoints": rows("""
+                SELECT endpoint, pools, stake_ada, delegators, tickers
+                FROM relay_shared_endpoints ORDER BY stake_ada DESC NULLS LAST LIMIT 15"""),
+            "shared_hosts": rows("""
+                SELECT resolved_ip, target_port, pools, stake_ada, delegators,
+                       distinct_registered_names, tickers
+                FROM relay_shared_hosts ORDER BY pools DESC, stake_ada DESC NULLS LAST LIMIT 15"""),
+            "failures": rows("""
+                SELECT failure, count(*) AS endpoints
+                FROM relay_endpoint_status WHERE failure IS NOT NULL AND failure <> ''
+                GROUP BY 1 ORDER BY 2 DESC"""),
+        }
+        (OUT / "relays.json").write_text(json.dumps(relay, indent=2, default=str))
+        print(f"  relays.json: {relay['totals']['pools']} pools")
+
     print(f"done. families={len(fams)}, findings={len(findings)}, tables={n_tables}")
 
 

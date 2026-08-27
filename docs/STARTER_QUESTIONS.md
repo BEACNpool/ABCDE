@@ -24,6 +24,20 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 - What are the top stake holders in the IOG depth-14 current bag, and how are they classified?
 - Is there a coordinated-abstain cluster in the IOG current bag around epoch 329?
 
+## Relay health and pool infrastructure
+
+Bound by `docs/27_RELAY_HEALTH_METHOD.md`. Registration is FACT; reachability is
+an OBSERVATION from one vantage point at one moment, and is never a verdict on a
+pool. `unreachable` is not `offline`.
+
+- How many current pools registered no relay at all, and how much stake is delegated to them (`relay_pool_health`)?
+- Which relay endpoints are advertised by the most pools, and how much stake sits behind each (`relay_shared_endpoints`)?
+- Which pools registered a single relay endpoint, ranked by stake?
+- How many pools had at least two distinct reachable hosts in the last sweep, and how many had none?
+- Which pools share a resolved relay host despite registering different hostnames (`relay_shared_hosts`)?
+- Which registered endpoints failed to resolve in DNS at all (`relay_endpoint_status`)?
+- How does a pool's relay registration compare with its KES-rotation operator cluster (`pool_operator_kes_clusters`)?
+
 ## Control indicators and custody patterns
 
 - Which genesis-descended stake addresses score HIGH on `fe_control_consistency`, and which signals drive each score?

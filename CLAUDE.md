@@ -60,6 +60,21 @@ synchronized KES-key rotation = shared OPERATIONAL control (STRONG_INFERENCE), n
 proven ownership; `has_onchain_links=false` marks the concealed ones (KES timing is
 the only tie).
 
+For "which pools have healthy relays / are these pools sharing infrastructure /
+is this pool online?" questions, use `relay_pool_health` (one row per current
+pool: registration shape, `registration_class`, `reachable_hosts`, `at_tip_hosts`,
+`shares_endpoint_with_other_pool`, `reachability_class`), `relay_shared_endpoints`
+(endpoints advertised by more than one pool), `relay_shared_hosts` (pools sharing a
+resolved IP) and `relay_endpoint_status` (the raw per-endpoint sweep), and read
+`docs/27_RELAY_HEALTH_METHOD.md` first — it binds your answer. In short: what a
+pool REGISTERED is FACT; whether an endpoint answered our handshake is an
+OBSERVATION from one vantage point at one moment and is **never** "the relay is
+down" — firewalls, connection limits, rate limiters and restarts all render as
+`unreachable`. A shared endpoint is a shared string: strong evidence of shared
+infrastructure, no evidence of shared ownership, since hosting providers look
+identical to a concealed multi-pool operator. Always quote `last_checked` with any
+reachability number, and never grade a pool from a single sweep.
+
 For exchange-custody questions, use the `tracer_*` tables and read
 `docs/26_EXCHANGE_TRACER_METHOD.md` first — it is the study operator's
 reconstruction contract and it binds your answer. In short: the exact NFT path
