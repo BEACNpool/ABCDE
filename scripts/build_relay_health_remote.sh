@@ -93,7 +93,7 @@ export_csv data/small/relay_shared_domains.csv "
 
 export_csv data/small/relay_endpoint_status.csv "
   select endpoint, endpoint_kind, target_host, target_port, resolved_ip,
-         handshake_ok, failure, error_detail, rtt_ms, block_no, slots_behind_best,
+         handshake_ok, failure, error_detail, rtt_ms, block_no, slots_behind_tip,
          at_tip, checked_at
   from relay.endpoint_status order by endpoint, target_host, target_port"
 

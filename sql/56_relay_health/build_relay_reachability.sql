@@ -66,8 +66,20 @@ recent AS (
   SELECT o.* FROM relay.observation o, sweep s
   WHERE o.checked_at > s.latest - interval '6 hours'
 ),
-ref AS (
-  SELECT max(block_no) AS tip_block, max(slot_no) AS tip_slot FROM recent
+-- The chain tip AT THE MOMENT EACH PEER WAS PROBED, from our own db-sync.
+--
+-- The obvious implementation -- compare every peer against the highest slot seen
+-- anywhere in the sweep -- is wrong, and was wrong here: a full sweep takes over
+-- an hour, so a peer probed in the first minute is judged against a tip recorded
+-- seventy minutes later and is "behind" by ~4,200 slots no matter how healthy it
+-- is. Against a 180-slot tolerance that made at_tip true for 1 observation out
+-- of 2,071. It was measuring when we happened to probe, not whether the peer was
+-- synced. One row per minute of the sweep, joined on the probe's own minute.
+tip_by_minute AS (
+  SELECT date_trunc('minute', m.minute) AS minute,
+         (SELECT max(b.slot_no) FROM public.block b
+          WHERE b.time <= m.minute AT TIME ZONE 'UTC') AS tip_slot
+  FROM (SELECT DISTINCT date_trunc('minute', checked_at) AS minute FROM recent) m
 ),
 latest AS (
   SELECT DISTINCT ON (endpoint, target_host, target_port, coalesce(resolved_ip, ''))
@@ -77,11 +89,12 @@ latest AS (
 SELECT
   l.endpoint, l.endpoint_kind, l.target_host, l.target_port, l.resolved_ip,
   l.handshake_ok, l.failure, l.error_detail, l.rtt_ms, l.block_no, l.slot_no, l.checked_at,
-  r.tip_slot - l.slot_no AS slots_behind_best,
-  -- 180 slots is ~3 minutes of chain; anything inside that is at the tip for
-  -- practical purposes and absorbs propagation plus our own sweep duration.
-  (l.handshake_ok AND r.tip_slot - l.slot_no <= 180) AS at_tip
-FROM latest l CROSS JOIN ref r;
+  t.tip_slot - l.slot_no AS slots_behind_tip,
+  -- 180 slots is ~3 minutes of chain: enough to absorb propagation and the gap
+  -- between our node seeing a block and the peer seeing it, and no more.
+  (l.handshake_ok AND t.tip_slot - l.slot_no <= 180) AS at_tip
+FROM latest l
+LEFT JOIN tip_by_minute t ON t.minute = date_trunc('minute', l.checked_at);
 
 -- ---------------------------------------------------------------------------
 -- Per-pool reachability.
@@ -106,7 +119,7 @@ per_pool AS (
     count(DISTINCT es.endpoint)
       FILTER (WHERE es.failure = 'no_ipv6_at_probe')                       AS endpoints_untested,
     min(es.rtt_ms) FILTER (WHERE es.handshake_ok)                          AS best_rtt_ms,
-    max(es.slots_behind_best) FILTER (WHERE es.handshake_ok)               AS worst_slots_behind,
+    max(es.slots_behind_tip) FILTER (WHERE es.handshake_ok)                AS worst_slots_behind,
     max(es.checked_at)                                                     AS last_checked
   FROM ep JOIN relay.endpoint_status es ON es.endpoint = ep.endpoint
   GROUP BY ep.pool_hash_id
