@@ -798,8 +798,8 @@
   },
   {
     "family": "Other",
-    "table_count": 10,
-    "total_rows": 13211,
+    "table_count": 12,
+    "total_rows": 19509,
     "tables": [
       {
         "table": "pool_operator_kes_clusters",
@@ -827,6 +827,11 @@
         "findings": []
       },
       {
+        "table": "relay_pool_endpoints",
+        "rows": 6251,
+        "findings": []
+      },
+      {
         "table": "relay_pool_health",
         "rows": 2896,
         "findings": []
@@ -834,6 +839,11 @@
       {
         "table": "relay_registration_changes",
         "rows": 4186,
+        "findings": []
+      },
+      {
+        "table": "relay_registration_defects",
+        "rows": 47,
         "findings": []
       },
       {
