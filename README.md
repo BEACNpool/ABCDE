@@ -53,7 +53,7 @@ clones gets the exact same integrity-checked dataset.
 ```
    the old way                              ABCDE
 ┌────────────────────┐            ┌────────────────────────┐
-│ full node (100s GB)│            │  git clone  (~36 MiB)  │
+│ full node (100s GB)│            │  git clone  (~85 MiB)  │
 │ + relay            │            │                        │
 │ + db-sync Postgres │   ──────►  │  ask your AI, locally  │
 │ + days of sync     │            │  read-only, reproducible│
