@@ -9,7 +9,8 @@
 A grass-roots, open-source, AI-queryable snapshot of Cardano's on-chain history.
 It began by tracking **genesis ADA** — and grew into a full-chain explorer: the
 **NIGHT** token distribution and the July 2026 bridge drain, the **SecondFi**
-incident, community exchange tracers, and Conway governance behavior.
+incident, community exchange tracers, Conway governance behavior, and the
+**relay surface** of every current stake pool.
 
 No node. No relay. No db-sync. No API key. Just `git clone` and ask.
 
@@ -21,7 +22,9 @@ No node. No relay. No db-sync. No API key. Just `git clone` and ask.
 ![Evidence](https://img.shields.io/badge/every%20claim-graded-8A2BE2?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
 
-**`149` query-ready tables · `21` audited findings · every figure hash-receipted · snapshot @ epoch `641`**
+**`157` query-ready tables · `23` audited findings · every figure hash-receipted**
+
+*Each module carries its own freshness receipt — the genesis cut is epoch `641`, the relay surface epoch `651`. Query `build_info` and `data_freshness_catalog` before any current-state answer.*
 
 <br>
 
@@ -84,6 +87,8 @@ claude mcp add abcde-genesis -- python -m mcp_server.server
 > **"How much genesis-descended ADA is still unspent, and how confident is the trace?"**
 >
 > **"Which exchanges are named in the on-chain tracer deposit claims?"**
+>
+> **"Which stake pools advertise a relay that another pool also advertises?"**
 
 The read-only MCP server exposes four tools — `list_tables()`,
 `describe_table(name)`, `run_sql(sql)`, `starter_questions()` — and **rejects any
@@ -106,7 +111,7 @@ Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
 
 ---
 
-## What's inside `135` tables
+## What's inside `157` tables
 
 | Area | What you can ask |
 |---|---|
@@ -117,6 +122,7 @@ Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
 | 🧭 **Control indicators** | Live custody signals per genesis stake key — dormancy, unclaimed rewards, certificate liveness, batch-operation cohorts — with a graded `fe_control_consistency` score. |
 | 🌙 **NIGHT token** | Companion module: the entire 24B-NIGHT supply traced from its single genesis mint to every current holder, plus a receipt-backed investigation of the July 2026 Wanchain bridge drain and attacker flow. |
 | 🧾 **Freshness catalog** | Row count, hash, age, and snapshot-sensitivity of *every* table, so any answer can state exactly how fresh its evidence is. |
+| 📡 **Relay health** | Every current pool's on-chain relay registration, which pools share infrastructure or advertise relays they don't run, the full history of relay-registration changes with transaction hashes, and how much stake sits behind a single hosting provider. Live page: **[relays.html](https://beacnpool.github.io/ABCDE/relays.html)** · [F21](findings/F21_relay_registration_and_reachability.md) · [method](docs/27_RELAY_HEALTH_METHOD.md). |
 | 📡 **Exchange tracers** | A community exchange-tracer dataset (`tracer_*`); crowd-sourced attribution, kept for reference and graded accordingly. |
 
 Ground your queries on the generated schema — [`docs/SCHEMA.md`](docs/SCHEMA.md)
