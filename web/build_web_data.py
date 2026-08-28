@@ -310,6 +310,32 @@ def main() -> None:
                 FROM relay_endpoint_status WHERE failure IS NOT NULL AND failure <> ''
                 GROUP BY 1 ORDER BY 2 DESC"""),
         }
+        # Per-pool lookup index, emitted separately and lazy-loaded by the page.
+        # Every question anyone asked about this dataset was "what about pool X?",
+        # and each one otherwise needs somebody with a SQL prompt. Compact
+        # array-of-arrays rather than objects: same data, far fewer bytes, and it
+        # is fetched only when someone actually searches.
+        PF = ["ticker", "pool_bech32", "stake_ada", "delegators", "blocks_last_30_epochs",
+              "relay_entries", "registration_class", "reachable_hosts", "at_tip_hosts",
+              "reachability_class", "shares_endpoint_with_other_pool",
+              "registers_foreign_infrastructure", "ever_removed_all_relays",
+              "removed_all_relays_on"]
+        pool_rows = con.execute(
+            f"SELECT {', '.join(PF)} FROM relay_pool_health "
+            "ORDER BY stake_ada DESC NULLS LAST").fetchall()
+        EF = ["endpoint_host", "port", "resolved_ip", "handshake_ok", "failure", "at_tip"]
+        by_pool: dict[str, list] = {}
+        for r in con.execute(f"""
+                SELECT pool_bech32, {', '.join(EF)} FROM relay_pool_endpoints
+                ORDER BY pool_bech32, endpoint_host""").fetchall():
+            by_pool.setdefault(r[0], []).append(list(r[1:]))
+        (OUT / "pools.json").write_text(json.dumps({
+            "fields": PF, "endpoint_fields": EF,
+            "pools": [list(r) for r in pool_rows],
+            "endpoints": by_pool,
+        }, default=str))
+        print(f"  pools.json: {len(pool_rows)} pools, {sum(len(v) for v in by_pool.values())} endpoints")
+
         (OUT / "relays.json").write_text(json.dumps(relay, indent=2, default=str))
         print(f"  relays.json: {relay['totals']['pools']} pools")
 

@@ -277,3 +277,125 @@ exact `epoch_no`, `block_no`, and `block_time_utc` fields.
 ## Evidence discipline
 
 The profile pack can support statements about on-chain delegation behavior. It should not be used to infer beneficial ownership, legal identity, nationality, custody, or intent.
+
+---
+
+## Relay surface
+
+Every query below runs against the committed DuckDB — `python -m mcp_server.server`,
+`ask.py`, or `duckdb data/abcde_genesis.duckdb` directly. These are the questions
+people actually asked when the relay data went public; they are written down here
+so nobody has to ask their author.
+
+**Bound by [`docs/27_RELAY_HEALTH_METHOD.md`](27_RELAY_HEALTH_METHOD.md).** Registration
+is FACT and reproduces exactly. Reachability is an OBSERVATION from one vantage
+point at one moment and is never "the relay is down".
+
+### Everything known about one pool
+
+The question behind almost every request. Swap the ticker.
+
+```sql
+SELECT * FROM relay_pool_health WHERE ticker = 'ZZZ';
+
+-- what it registered, and what the last sweep saw for each entry
+SELECT endpoint_host, port, resolved_ip, handshake_ok, failure, at_tip
+FROM relay_pool_endpoints WHERE ticker = 'ZZZ' ORDER BY endpoint_host;
+```
+
+`relay_pool_endpoints` is the join between pools and endpoints — `relay_pool_health`
+is keyed by pool and `relay_endpoint_status` by endpoint, so without it there is no
+way to ask "what did *this* pool register". There is also a search box for exactly
+this on [the page](https://beacnpool.github.io/ABCDE/relays.html#lookup).
+
+### Who shares a relay with whom
+
+```sql
+SELECT endpoint, pools, stake_ada, delegators, tickers
+FROM relay_shared_endpoints ORDER BY pools DESC LIMIT 20;
+```
+
+Registration strings understate this. Pools that register one hostname each still
+share a machine, and only resolution finds it:
+
+```sql
+SELECT resolved_ip, target_port, pools, distinct_registered_names, stake_ada, tickers
+FROM relay_shared_hosts ORDER BY pools DESC LIMIT 20;
+```
+
+### Pools producing blocks with no registered relay
+
+```sql
+SELECT ticker, stake_ada, delegators, blocks_last_30_epochs, ever_removed_all_relays,
+       removed_all_relays_on
+FROM relay_pool_health
+WHERE registration_class = 'NO_REGISTERED_RELAY' AND minted_last_30_epochs
+ORDER BY stake_ada DESC;
+```
+
+### Who changed their relay registration, and when
+
+`pool_update` is append-only, so this cannot be edited away. Every row carries the
+transaction hash.
+
+```sql
+SELECT ticker, changed_at, relays_before, relays_after, direction, tx_hash
+FROM relay_registration_changes WHERE direction = 'removed_all'
+ORDER BY changed_at DESC;
+```
+
+Read the direction honestly — most relay-count changes are pools *adding* capacity:
+
+```sql
+SELECT direction, count(*) AS certs, count(DISTINCT pool_bech32) AS pools
+FROM relay_registration_changes GROUP BY direction ORDER BY certs DESC;
+```
+
+### Pools advertising infrastructure they do not run
+
+```sql
+SELECT ticker, stake_ada, pledge_ada, blocks_all_time, endpoint_host, operator,
+       endpoints_foreign, endpoints_registered
+FROM relay_foreign_infrastructure ORDER BY stake_ada DESC;
+```
+
+### Registrations that cannot work at all
+
+Wrong by construction, not by opinion, and fixable by the operator in one
+transaction:
+
+```sql
+SELECT ticker, stake_ada, endpoint_host, defect, why, blocks_all_time
+FROM relay_registration_defects ORDER BY stake_ada DESC;
+```
+
+### Why a specific endpoint failed
+
+`refused` and `timeout` are different findings. Refused means something is alive at
+that address and actively rejecting; timeout means nothing answered at all.
+
+```sql
+SELECT failure, count(*) AS endpoints FROM relay_endpoint_status
+WHERE NOT handshake_ok GROUP BY failure ORDER BY endpoints DESC;
+```
+
+### How much stake shares one hosting provider
+
+```sql
+SELECT as_name, country, pools, stake_ada, pools_single_asn, stake_single_asn
+FROM relay_asn_concentration ORDER BY stake_single_asn DESC LIMIT 15;
+```
+
+An ASN is a failure domain, not an operator: two pools in one datacenter are
+usually two unrelated people who both picked the cheap option.
+
+### Questions this data cannot answer
+
+- **Which relay first propagated a given block.** Block headers record the issuer,
+  not the path. Propagation is a network event and is not on-chain. Your own
+  node's BlockFetch traces record which *peer* delivered each block; network-wide,
+  that is what `blockperf` and pooltool first-seen reporting exist for.
+- **Whether a pool is "offline".** Only whether an endpoint answered our prober,
+  from one place, at one moment.
+- **Who operates a pool, or why they configured it as they did.** A
+  misconfiguration and a deliberate free-ride are identical on-chain.

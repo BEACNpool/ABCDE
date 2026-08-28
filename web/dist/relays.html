@@ -65,6 +65,24 @@
     color:var(--muted2); font-size:13.5px; line-height:1.6}
   .srcline a{color:var(--muted); text-decoration:underline; text-decoration-style:dotted}
   .srcline a:hover{color:var(--cyan)}
+.lookup-input{width:100%;max-width:560px;padding:13px 16px;border-radius:12px;
+    border:1px solid var(--line2);background:var(--panel);color:var(--text);
+    font:600 15px/1.4 var(--mono);outline:none}
+  .lookup-input:focus{border-color:var(--cyan)}
+  .lookup-input::placeholder{color:var(--muted2);font-weight:400}
+  .pcard{border:1px solid var(--line);border-radius:14px;background:var(--panel);
+    padding:20px 22px;margin-top:16px}
+  .pcard h3{font-size:20px;margin:0 0 4px}
+  .pcard .meta{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .pcard .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;
+    margin-bottom:14px}
+  .pcard .kv div span{display:block;color:var(--muted2);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase}
+  .pcard .kv div b{font:700 16px var(--mono)}
+  .flag{display:inline-block;font-size:12.5px;padding:3px 10px;border-radius:999px;
+    border:1px solid var(--line2);margin:0 6px 6px 0;color:var(--muted)}
+  .flag.warn{color:var(--amber);border-color:var(--amber)}
+  .flag.ok{color:var(--green);border-color:var(--green)}
   .pill{display:inline-block; font-family:var(--mono); font-size:11px; padding:2px 8px;
     border-radius:999px; border:1px solid var(--line2); color:var(--muted)}
 </style>
@@ -96,6 +114,17 @@
 <div class="wrap">
   <div class="stat-row" id="stats"></div>
 </div>
+
+<section class="rsec" id="lookup"><div class="wrap">
+  <h2>Look up a pool<a class="anchor" href="#lookup" aria-label="Link to this section">#</a></h2>
+  <p class="sub">Everything this dataset knows about one pool &mdash; what it registered, what
+    answered, and how it is flagged. Type a ticker or a pool id.</p>
+  <input id="q" class="lookup-input" autocomplete="off" spellcheck="false"
+         placeholder="ticker or pool id — try BEACN, ZZZ, or paste a pool1…">
+  <div id="q-out"></div>
+
+  <p class="srcline">Reads <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health.csv</a> and <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_endpoints.csv">relay_pool_endpoints.csv</a>. <b>Mixed:</b> what a pool registered comes from db-sync and reproduces exactly; the last-sweep column is an observation and will not.</p>
+</div></section>
 
 <section class="rsec" id="grading"><div class="wrap">
   <h2>Read this before you quote a number<a class="anchor" href="#grading" aria-label="Link to this section">#</a></h2>
@@ -216,6 +245,28 @@
   <p class="srcline">Every number above aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_registration_changes.csv">relay_registration_changes.csv</a>, <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_health.csv">relay_pool_health.csv</a>, extracted by <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_registration.sql">build_relay_registration.sql</a>. Reproducible from db-sync alone: run it and you should get these exact rows. Certificate history is append-only, so it is the same for everyone, forever.</p>
 </div></section>
 
+<section class="rsec" id="defects"><div class="wrap">
+  <h2>Registrations that cannot work<a class="anchor" href="#defects" aria-label="Link to this section">#</a></h2>
+  <p class="sub">Everything in this section is wrong by construction rather than by opinion, and
+    needs no probe to establish: no node on the internet can reach <code>127.0.0.1</code> or a
+    private address, and the relay field takes a bare hostname, so a value with a scheme and a
+    slash will not resolve. Run the query against any db-sync and you get the same rows.</p>
+  <div class="tbl-wrap"><table class="rt" id="t-defects">
+    <thead><tr><th>Problem</th><th class="num">Entries</th><th class="num">Pools</th><th>Why it cannot work</th></tr></thead>
+    <tbody></tbody></table></div>
+  <p class="sub" style="margin-top:22px">The largest by stake:</p>
+  <div class="tbl-wrap"><table class="rt" id="t-defect-eg">
+    <thead><tr><th>Ticker</th><th class="num">ADA</th><th class="num">Blocks</th><th>Registered</th><th>Problem</th></tr></thead>
+    <tbody></tbody></table></div>
+  <div class="warn" style="border-left-color:var(--green)"><b>These are almost certainly honest
+    mistakes, and that is the point.</b> This is the one section on the page an operator can read and
+    simply fix &mdash; a typo in a certificate, an internal address pasted instead of a public one, a
+    URL where a hostname was wanted. It is here as a service, not as an accusation. If one of these
+    is yours, the fix is a single re-registration transaction.</div>
+
+  <p class="srcline">Every number above aggregates <a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_registration_defects.csv">relay_registration_defects.csv</a>, extracted by <a href="https://github.com/BEACNpool/ABCDE/blob/main/sql/56_relay_health/build_relay_defects.sql">build_relay_defects.sql</a>. Reproducible from db-sync alone: run it and you should get these exact rows.</p>
+</div></section>
+
 <section class="rsec" id="borrowed-infrastructure"><div class="wrap">
   <h2>Pools advertising somebody else's infrastructure<a class="anchor" href="#borrowed-infrastructure" aria-label="Link to this section">#</a></h2>
   <p class="sub">Reachability alone can be gamed, and until this section existed <b>this dataset was
@@ -325,6 +376,8 @@
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_hosts.csv">relay_shared_hosts</a></td><td>Pools sharing a resolved IP — catches per-pool hostnames.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_shared_domains.csv">relay_shared_domains</a></td><td>Pools sharing a parent domain (heuristic; groups hosting customers too).</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_asn_concentration.csv">relay_asn_concentration</a></td><td>Per network: pools, stake, and how many have their <i>entire</i> reachable relay set inside it.</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_pool_endpoints.csv">relay_pool_endpoints</a></td><td>One row per pool per registered endpoint, with what the last sweep saw &mdash; the join between pools and endpoints.</td></tr>
+      <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_registration_defects.csv">relay_registration_defects</a></td><td>Relay registrations that cannot work &mdash; private/loopback addresses, URLs, unqualified names.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_foreign_infrastructure.csv">relay_foreign_infrastructure</a></td><td>Pools advertising founding-entity bootstrap backbones as their own relays.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_registration_changes.csv">relay_registration_changes</a></td><td>Every certificate that changed a pool&rsquo;s relay count &mdash; date, tx hash, before/after, direction.</td></tr>
       <tr><td class="mono"><a href="https://github.com/BEACNpool/ABCDE/blob/main/data/small/relay_endpoint_status.csv">relay_endpoint_status</a></td><td>The raw per-endpoint sweep, with failure cause and detail.</td></tr>
@@ -450,6 +503,23 @@ fetch("data/relays.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
       ? `<td class="mono">removed ${esc(String(r.removed_all_relays_on || "").slice(0, 10))}</td>`
       : `<td class="muted">never advertised one</td>`]);
 
+  const DEF = { loopback_address: "Loopback address", private_address: "Private address",
+    unroutable_address: "Unroutable address", url_not_hostname: "URL, not a hostname",
+    hostname_not_qualified: "Hostname with no dot", placeholder_value: "Placeholder value",
+    empty_host: "No host recorded", port_out_of_range: "Port out of range" };
+  fill("#t-defects", d.defects || [], r => [
+    `<td>${esc(DEF[r.defect] || r.defect)}</td>`,
+    `<td class="num">${fmt(r.entries)}</td>`,
+    `<td class="num">${fmt(r.pools)}</td>`,
+    `<td class="muted">${esc(r.why || "")}</td>`]);
+
+  fill("#t-defect-eg", d.defect_examples || [], r => [
+    `<td class="mono">${esc(r.ticker || "(no ticker)")}</td>`,
+    `<td class="num">${ada(r.stake_ada)}</td>`,
+    `<td class="num">${fmt(r.blocks_all_time)}</td>`,
+    `<td class="mono muted">${esc(r.endpoint_host)}</td>`,
+    `<td>${esc(DEF[r.defect] || r.defect)}</td>`]);
+
   fill("#t-foreign", d.foreign_infra || [], r => [
     `<td class="mono">${esc(r.ticker || "(no ticker)")}</td>`,
     `<td class="num">${ada(r.stake_ada)}</td>`,
@@ -504,6 +574,88 @@ fetch("data/relays.json", { cache: "no-cache" }).then(r => r.json()).then(d => {
     const target = document.getElementById(location.hash.slice(1));
     if (target) target.scrollIntoView();
   }
+  // ---- pool lookup: pools.json is ~300 KB gzipped, so it is fetched on first
+  // use rather than on every page view.
+  let POOLS = null, loading = false;
+  const qi = document.getElementById("q"), qo = document.getElementById("q-out");
+
+  const pcard = (p, eps) => {
+    const cls = p.reachability_class, reg = p.registration_class;
+    const flags = [];
+    if (reg === "NO_REGISTERED_RELAY") flags.push(['warn', 'no relay registered']);
+    if (cls === "MULTI_REACHABLE_HOSTS") flags.push(['ok', 'two or more hosts answered']);
+    if (cls === "ONE_REACHABLE_HOST") flags.push(['', 'one host answered']);
+    if (cls === "NONE_REACHABLE") flags.push(['warn', 'nothing answered']);
+    if (p.shares_endpoint_with_other_pool === true || p.shares_endpoint_with_other_pool === "true")
+      flags.push(['warn', 'shares an endpoint with another pool']);
+    if (p.registers_foreign_infrastructure === true || p.registers_foreign_infrastructure === "true")
+      flags.push(['warn', "advertises infrastructure it does not run"]);
+    if (p.ever_removed_all_relays === true || p.ever_removed_all_relays === "true")
+      flags.push(['warn', `removed every relay ${String(p.removed_all_relays_on || "").slice(0,10)}`]);
+    const rows = (eps || []).map(e => {
+      const ok = e[3] === true || e[3] === "true";
+      const tip = e[5] === true || e[5] === "true";
+      const res = ok ? `<span style="color:var(--green)">answered${tip ? ", at tip" : ", behind tip"}</span>`
+                     : `<span style="color:var(--amber)">${esc(e[4] || "no answer")}</span>`;
+      return `<tr><td class="mono">${esc(e[0])}${e[1] ? ":" + esc(e[1]) : ""}</td>` +
+             `<td class="mono muted">${esc(e[2] || "—")}</td><td>${res}</td></tr>`;
+    }).join("") || '<tr><td colspan="3" class="muted">no relay endpoints registered</td></tr>';
+    return `<div class="pcard">
+      <h3>${esc(p.ticker || "(no ticker)")}</h3>
+      <div class="meta mono">${esc(p.pool_bech32)}</div>
+      <div class="kv">
+        <div><span>ADA</span><b>${ada(p.stake_ada)}</b></div>
+        <div><span>Delegators</span><b>${fmt(p.delegators)}</b></div>
+        <div><span>Blocks / 30ep</span><b>${fmt(p.blocks_last_30_epochs)}</b></div>
+        <div><span>Registered</span><b>${fmt(p.relay_entries)}</b></div>
+        <div><span>Reachable hosts</span><b>${fmt(p.reachable_hosts)}</b></div>
+      </div>
+      <div>${flags.map(([c, t]) => `<span class="flag ${c}">${esc(t)}</span>`).join("")}</div>
+      <div class="tbl-wrap" style="margin-top:14px"><table class="rt">
+        <thead><tr><th>Registered endpoint</th><th>Resolved</th><th>Last sweep</th></tr></thead>
+        <tbody>${rows}</tbody></table></div></div>`;
+  };
+
+  const render = () => {
+    const q = qi.value.trim().toLowerCase();
+    if (!q) { qo.innerHTML = ""; return; }
+    if (!POOLS) { qo.innerHTML = '<p class="sub">Loading the pool index…</p>'; return; }
+    // Rank ticker matches above pool-id matches. Searching "ZZZ" otherwise leads
+    // with an unrelated pool whose bech32 happens to contain those letters.
+    const score = p => {
+      const t = (p.ticker || "").toLowerCase();
+      if (t === q) return 0;
+      if (t.startsWith(q)) return 1;
+      if (t.includes(q)) return 2;
+      return p.pool_bech32.toLowerCase().includes(q) ? 3 : 99;
+    };
+    const hits = POOLS.pools.map(p => [score(p), p]).filter(([sc]) => sc < 99)
+      .sort((a, b) => a[0] - b[0] || (Number(b[1].stake_ada) || 0) - (Number(a[1].stake_ada) || 0))
+      .map(([, p]) => p);
+    if (!hits.length) {
+      qo.innerHTML = `<p class="sub">No current pool matches “${esc(qi.value.trim())}”. Retired pools are not in this dataset.</p>`;
+      return;
+    }
+    qo.innerHTML = (hits.length > 6
+        ? `<p class="sub">${fmt(hits.length)} pools match — showing the six closest.</p>` : "")
+      + hits.slice(0, 6).map(p => pcard(p, POOLS.endpoints[p.pool_bech32])).join("");
+  };
+
+  const ensure = () => {
+    if (POOLS || loading) return render();
+    loading = true;
+    fetch("data/pools.json", { cache: "no-cache" })
+      .then(r => r.json())
+      .then(j => {
+        POOLS = { pools: j.pools.map(row => Object.fromEntries(j.fields.map((f, i) => [f, row[i]]))),
+                  endpoints: j.endpoints };
+        render();
+      })
+      .catch(() => { qo.innerHTML = '<p class="sub">Could not load the pool index — reload, or read relay_pool_endpoints.csv in the repo.</p>'; });
+  };
+  qi.addEventListener("input", ensure);
+  if (location.hash === "#lookup") qi.focus();
+
 }).catch(e => {
   document.getElementById("stamp").textContent =
     "Could not load the published cut (" + e + ").";

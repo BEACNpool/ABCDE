@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 330,
+  "file_count": 333,
   "files": [
     {
       "path": "claims/README.md",
@@ -1563,6 +1563,19 @@
       }
     },
     {
+      "path": "data/small/relay_pool_endpoints.csv",
+      "bytes": 1147040,
+      "sha256": "7b380c307936adc4846e171191f5dec3e6e404ef524ea3581a57d09b96b68467",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
       "path": "data/small/relay_pool_health.csv",
       "bytes": 465248,
       "sha256": "e28aef8054b22eebc8d39a0eea46c26f7fac7fdce19cfcd43ab3916905d7468c",
@@ -1579,6 +1592,19 @@
       "path": "data/small/relay_registration_changes.csv",
       "bytes": 677001,
       "sha256": "acd6af2d168745088da3ef366500df85e92fb66d45f5b1de68930d10bd104ae7",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/relay_registration_defects.csv",
+      "bytes": 9160,
+      "sha256": "b31240e122feeb65ffc3f658039ad42a5d013d37452df62f9e3b31f4b8a79a06",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2409,8 +2435,8 @@
     },
     {
       "path": "docs/19_QUERY_COOKBOOK.md",
-      "bytes": 7223,
-      "sha256": "83dd2bf9220257aae7a22216c9d3942022dd5b7b885b294f7bd87b1882379e5f",
+      "bytes": 11595,
+      "sha256": "4055af4c11173e04b3d027e7be7f128ab51d1382789f3c1cd6f66842af1f1f5b",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2539,8 +2565,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 64832,
-      "sha256": "e2c62ebbfe78952974d9f5ea5fd9a7d716316913e5a6363e69c55ac27cbf8dc8",
+      "bytes": 65756,
+      "sha256": "2642c34a29a2383868d06928ba946af4e56bde820b74f6b3715620ec298b4e12",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2565,8 +2591,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9884,
-      "sha256": "eeb931769198897c2d9369ff9ee54c8138ca92c5de6dbdb5270300af3bdc1963",
+      "bytes": 9975,
+      "sha256": "4916483994788f3d19d38c8194ed49357d4c9e09e80e1dad75cec2da63909e74",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4192,6 +4218,19 @@
       "path": "sql/56_relay_health/build_relay_concentration.sql",
       "bytes": 3870,
       "sha256": "660fdbfc8d8246ff4659193fb2dedeb9eb4c29db1528c88f3bf07274795e79e8",
+      "source": {
+        "generated_by": "scripts/build_public_artifact_manifest.py",
+        "db_tip_block": "13632752",
+        "db_tip_time": "2026-07-04 04:09:53",
+        "db_tip_epoch": "641",
+        "source": "abcde:cexplorer_replica",
+        "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "sql/56_relay_health/build_relay_defects.sql",
+      "bytes": 4246,
+      "sha256": "766918df966644beb57411d2aa1270530cc1ae13b405eff521e247bc86f72091",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",

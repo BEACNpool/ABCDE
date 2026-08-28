@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "b64df1c24b13",
+          "git_commit": "7aeaede704ad",
           "source_generated_utc": "2026-07-03 23:10:04-05:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -8011,6 +8011,118 @@
         }
       ]
     },
+    "relay_pool_endpoints": {
+      "source": "data/small/relay_pool_endpoints.csv",
+      "row_count": 6251,
+      "columns": [
+        {
+          "name": "pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "endpoint",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "endpoint_kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "endpoint_host",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "port",
+          "type": "BIGINT"
+        },
+        {
+          "name": "target_host",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "target_port",
+          "type": "BIGINT"
+        },
+        {
+          "name": "resolved_ip",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "handshake_ok",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "failure",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "rtt_ms",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "at_tip",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "checked_at",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "pool_bech32": "pool100wj94uzf54vup2hdzk0afng4dhjaqggt7j434mtgm8v2gfvfgp",
+          "ticker": null,
+          "endpoint": "ipv4:165.232.146.185",
+          "endpoint_kind": "ipv4",
+          "endpoint_host": "165.232.146.185",
+          "port": 3000,
+          "target_host": "165.232.146.185",
+          "target_port": 3000,
+          "resolved_ip": null,
+          "handshake_ok": false,
+          "failure": "timeout",
+          "rtt_ms": null,
+          "at_tip": false,
+          "checked_at": "2026-08-27 22:18:06-05:00"
+        },
+        {
+          "pool_bech32": "pool1030as3pp5684ghgf4kzcpv4p2jnmkmme7j363t95690zwxp7wa0",
+          "ticker": "888",
+          "endpoint": "dns:relay1.888pool.io",
+          "endpoint_kind": "dns",
+          "endpoint_host": "relay1.888pool.io",
+          "port": 6000,
+          "target_host": "relay1.888pool.io",
+          "target_port": 6000,
+          "resolved_ip": "62.171.185.139",
+          "handshake_ok": true,
+          "failure": null,
+          "rtt_ms": 796.77,
+          "at_tip": true,
+          "checked_at": "2026-08-27 21:43:36-05:00"
+        },
+        {
+          "pool_bech32": "pool1030as3pp5684ghgf4kzcpv4p2jnmkmme7j363t95690zwxp7wa0",
+          "ticker": "888",
+          "endpoint": "dns:relay2.888pool.io",
+          "endpoint_kind": "dns",
+          "endpoint_host": "relay2.888pool.io",
+          "port": 6000,
+          "target_host": "relay2.888pool.io",
+          "target_port": 6000,
+          "resolved_ip": "194.156.151.163",
+          "handshake_ok": true,
+          "failure": null,
+          "rtt_ms": 127.14,
+          "at_tip": true,
+          "checked_at": "2026-08-27 21:44:25-05:00"
+        }
+      ]
+    },
     "relay_pool_health": {
       "source": "data/small/relay_pool_health.csv",
       "row_count": 2896,
@@ -8260,6 +8372,97 @@
           "relays_after": 1,
           "delta": -1,
           "direction": "reduced"
+        }
+      ]
+    },
+    "relay_registration_defects": {
+      "source": "data/small/relay_registration_defects.csv",
+      "row_count": 47,
+      "columns": [
+        {
+          "name": "pool_bech32",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ticker",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "stake_ada",
+          "type": "BIGINT"
+        },
+        {
+          "name": "delegators",
+          "type": "BIGINT"
+        },
+        {
+          "name": "endpoint_kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "endpoint_host",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "port",
+          "type": "BIGINT"
+        },
+        {
+          "name": "defect",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "why",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "blocks_all_time",
+          "type": "BIGINT"
+        },
+        {
+          "name": "endpoints_registered",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "pool_bech32": "pool138s0uwydwtrhkaqj4uwkh37yqw098v9v6nf5q08k9nugumlf8mw",
+          "ticker": "AURA",
+          "stake_ada": 10500866,
+          "delegators": 29,
+          "endpoint_kind": "dns",
+          "endpoint_host": "http://a1.aurapool.online/",
+          "port": 3000,
+          "defect": "url_not_hostname",
+          "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
+          "blocks_all_time": 2887,
+          "endpoints_registered": 2
+        },
+        {
+          "pool_bech32": "pool138s0uwydwtrhkaqj4uwkh37yqw098v9v6nf5q08k9nugumlf8mw",
+          "ticker": "AURA",
+          "stake_ada": 10500866,
+          "delegators": 29,
+          "endpoint_kind": "dns",
+          "endpoint_host": "http://a2.aurapool.online/",
+          "port": 3000,
+          "defect": "url_not_hostname",
+          "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
+          "blocks_all_time": 2887,
+          "endpoints_registered": 2
+        },
+        {
+          "pool_bech32": "pool1gnnwyf9vwcgtm3us0w0duuy43r9k7yhnchvyx0xqv9766ysw2a9",
+          "ticker": "A2A",
+          "stake_ada": 4239388,
+          "delegators": 20,
+          "endpoint_kind": "dns",
+          "endpoint_host": "https://ada2a.ddns.net",
+          "port": 3000,
+          "defect": "url_not_hostname",
+          "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
+          "blocks_all_time": 758,
+          "endpoints_registered": 1
         }
       ]
     },

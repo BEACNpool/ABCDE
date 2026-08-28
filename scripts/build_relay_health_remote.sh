@@ -59,6 +59,8 @@ ssh "$ABCDE_SSH" "$PSQL -c 'TRUNCATE relay.ip_asn'" > /dev/null
 ssh "$ABCDE_SSH" "$PSQL -c \"\\copy relay.ip_asn from stdin csv header\"" < "$WORK/ip_asn.csv" > /dev/null
 ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_concentration.sql" > /dev/null
 
+ssh "$ABCDE_SSH" "$PSQL -f -" < "$SQL_DIR/build_relay_defects.sql" > /dev/null
+
 echo "6/6 exporting public CSVs"
 mkdir -p "$OUT"
 export_csv() {  # $1 = out file, $2 = query
@@ -96,6 +98,18 @@ export_csv data/small/relay_endpoint_status.csv "
          handshake_ok, failure, error_detail, rtt_ms, block_no, slots_behind_tip,
          at_tip, checked_at
   from relay.endpoint_status order by endpoint, target_host, target_port"
+
+export_csv data/small/relay_pool_endpoints.csv "
+  select e.pool_bech32, e.ticker, e.endpoint, e.endpoint_kind, e.endpoint_host, e.port,
+         es.target_host, es.target_port, es.resolved_ip, es.handshake_ok, es.failure,
+         es.rtt_ms, es.at_tip, es.checked_at
+  from relay.endpoint e left join relay.endpoint_status es on es.endpoint = e.endpoint
+  order by e.pool_bech32, e.endpoint_host, es.resolved_ip"
+
+export_csv data/small/relay_registration_defects.csv "
+  select pool_bech32, ticker, stake_ada, delegators, endpoint_kind, endpoint_host, port,
+         defect, why, blocks_all_time, endpoints_registered
+  from relay.registration_defect order by stake_ada desc nulls last, pool_bech32, endpoint_host"
 
 export_csv data/small/relay_registration_changes.csv "
   select pool_bech32, ticker, cert_number, changed_at, tx_hash,

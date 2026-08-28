@@ -1,6 +1,6 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 157,
+  "table_count": 159,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
@@ -1035,6 +1035,15 @@
       "grade": ""
     },
     {
+      "table": "relay_pool_endpoints",
+      "family": "Other",
+      "row_count": 6251,
+      "source": "data/small/relay_pool_endpoints.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
       "table": "relay_pool_health",
       "family": "Other",
       "row_count": 2896,
@@ -1048,6 +1057,15 @@
       "family": "Other",
       "row_count": 4186,
       "source": "data/small/relay_registration_changes.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "relay_registration_defects",
+      "family": "Other",
+      "row_count": 47,
+      "source": "data/small/relay_registration_defects.csv",
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
