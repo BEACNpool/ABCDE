@@ -48,6 +48,14 @@ for d in "${OWNED_DIRS[@]}"; do
   mkdir -p "$WORKTREE/$d"
   cp -r "$DIST/$d/." "$WORKTREE/$d/"
 done
+# Hand-authored cards go in AFTER the generated ones: build_og_cards.py empties
+# web/dist/og before regenerating it, so anything hand-placed there is already
+# gone by the time we get here.
+if [[ -d "$REPO/web/cards" ]]; then
+  mkdir -p "$WORKTREE/og"
+  find "$REPO/web/cards" -maxdepth 1 -type f ! -name '*.md' -exec cp {} "$WORKTREE/og/" \;
+fi
+
 rm -f "$WORKTREE"/og/_smoke_*.png "$WORKTREE"/_smoke_*.png
 
 echo "5/5 commit + fast-forward push"
