@@ -44,3 +44,7 @@ legacy/
 /web/dist/og/
 /web/dist/r/
 /web/dist/media/
+
+# Deploy worktrees (web/publish_gh_pages.sh, ops/peer_map_publish.sh) live inside
+# the repo. They contain their own .git file and must never be staged.
+/.worktrees/
