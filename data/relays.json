@@ -1,20 +1,20 @@
 {
-  "checked_at": "2026-08-27T14:33:35+00:00",
+  "checked_at": "2026-08-28T01:39:01+00:00",
   "totals": {
-    "pools": 2898,
-    "stake_ada": 21419162233,
-    "delegators": 1343317
+    "pools": 2896,
+    "stake_ada": 21418651381,
+    "delegators": 1343310
   },
   "registration": [
     {
       "class": "SINGLE_ENDPOINT",
-      "pools": 1470,
-      "stake_ada": 8571533585
+      "pools": 1469,
+      "stake_ada": 8571532584
     },
     {
       "class": "MULTIPLE_ENDPOINTS",
-      "pools": 1340,
-      "stake_ada": 11258468776
+      "pools": 1339,
+      "stake_ada": 11257958925
     },
     {
       "class": "SRV_MULTIHOST_POSSIBLE",
@@ -30,21 +30,21 @@
   "reachability": [
     {
       "class": "NONE_REACHABLE",
-      "pools": 1632,
-      "stake_ada": 2538534423,
-      "delegators": 150292
+      "pools": 1634,
+      "stake_ada": 2605712598,
+      "delegators": 158090
     },
     {
       "class": "MULTI_REACHABLE_HOSTS",
-      "pools": 646,
-      "stake_ada": 11465648211,
-      "delegators": 883187
+      "pools": 628,
+      "stake_ada": 11353414049,
+      "delegators": 863227
     },
     {
       "class": "ONE_REACHABLE_HOST",
-      "pools": 576,
-      "stake_ada": 6961194124,
-      "delegators": 278105
+      "pools": 590,
+      "stake_ada": 7005739259,
+      "delegators": 290260
     },
     {
       "class": "NO_REGISTERED_RELAY",
@@ -68,27 +68,27 @@
     },
     {
       "band": "under 100k ADA",
-      "pools": 1341,
-      "none_reachable": 1167,
-      "pct_none": 87.0
+      "pools": 1340,
+      "none_reachable": 1165,
+      "pct_none": 86.9
     },
     {
       "band": "100k - 1M ADA",
-      "pools": 406,
-      "none_reachable": 129,
-      "pct_none": 31.8
+      "pools": 405,
+      "none_reachable": 127,
+      "pct_none": 31.4
     },
     {
       "band": "1M - 10M ADA",
       "pools": 419,
-      "none_reachable": 66,
-      "pct_none": 15.8
+      "none_reachable": 71,
+      "pct_none": 16.9
     },
     {
       "band": "10M ADA and above",
       "pools": 507,
-      "none_reachable": 56,
-      "pct_none": 11.0
+      "none_reachable": 57,
+      "pct_none": 11.2
     }
   ],
   "shared_endpoints": [
@@ -339,20 +339,20 @@
     {
       "minting": true,
       "class": "MULTI_REACHABLE_HOSTS",
-      "pools": 613,
-      "stake_ada": 11463856367
+      "pools": 595,
+      "stake_ada": 11351622205
     },
     {
       "minting": true,
       "class": "ONE_REACHABLE_HOST",
-      "pools": 476,
-      "stake_ada": 6955377149
+      "pools": 490,
+      "stake_ada": 6999943318
     },
     {
       "minting": true,
       "class": "NONE_REACHABLE",
-      "pools": 193,
-      "stake_ada": 2488860022
+      "pools": 196,
+      "stake_ada": 2556018164
     },
     {
       "minting": true,
@@ -369,14 +369,14 @@
     {
       "minting": false,
       "class": "NONE_REACHABLE",
-      "pools": 1439,
-      "stake_ada": 49674401
+      "pools": 1438,
+      "stake_ada": 49694434
     },
     {
       "minting": false,
       "class": "ONE_REACHABLE_HOST",
       "pools": 100,
-      "stake_ada": 5816975
+      "stake_ada": 5795941
     },
     {
       "minting": false,
@@ -395,7 +395,7 @@
     "pools": 26,
     "stake_ada": 445049453,
     "delegators": 30210,
-    "blocks": 14286
+    "blocks": 14298
   },
   "history": [
     {
@@ -419,7 +419,7 @@
       "ticker": "BD6",
       "stake_ada": 76257299,
       "delegators": 10,
-      "blocks": 2022,
+      "blocks": 2023,
       "ever_removed_all_relays": false,
       "removed_all_relays_on": null
     },
@@ -427,7 +427,7 @@
       "ticker": null,
       "stake_ada": 61027659,
       "delegators": 24,
-      "blocks": 625,
+      "blocks": 627,
       "ever_removed_all_relays": false,
       "removed_all_relays_on": null
     },
@@ -435,7 +435,7 @@
       "ticker": "Pool",
       "stake_ada": 42759370,
       "delegators": 2,
-      "blocks": 1086,
+      "blocks": 1089,
       "ever_removed_all_relays": false,
       "removed_all_relays_on": null
     },
@@ -443,7 +443,7 @@
       "ticker": "CCV",
       "stake_ada": 42228159,
       "delegators": 5562,
-      "blocks": 1303,
+      "blocks": 1305,
       "ever_removed_all_relays": true,
       "removed_all_relays_on": "2025-11-26"
     },
@@ -467,7 +467,7 @@
       "ticker": "CCV1",
       "stake_ada": 31633491,
       "delegators": 5050,
-      "blocks": 1014,
+      "blocks": 1015,
       "ever_removed_all_relays": true,
       "removed_all_relays_on": "2025-12-01"
     },
@@ -491,7 +491,7 @@
       "ticker": "BLISS",
       "stake_ada": 21781790,
       "delegators": 1565,
-      "blocks": 670,
+      "blocks": 671,
       "ever_removed_all_relays": false,
       "removed_all_relays_on": null
     },
@@ -507,7 +507,7 @@
       "ticker": "GROW",
       "stake_ada": 11517708,
       "delegators": 2803,
-      "blocks": 337,
+      "blocks": 338,
       "ever_removed_all_relays": true,
       "removed_all_relays_on": "2025-07-01"
     },
@@ -595,7 +595,7 @@
       "ticker": "BD3",
       "stake_ada": 191957,
       "delegators": 34,
-      "blocks": 2340,
+      "blocks": 2341,
       "ever_removed_all_relays": false,
       "removed_all_relays_on": null
     },
@@ -634,7 +634,7 @@
     {
       "band": "Under 1M ADA",
       "no_relay": 19,
-      "all_pools": 1747,
+      "all_pools": 1745,
       "pct": 1.09
     },
     {
@@ -671,8 +671,8 @@
       "blocks_all_time": 294,
       "endpoints_registered": 3,
       "endpoints_foreign": 3,
-      "borrowed_from": "Emurgo, Cardano Foundation, IOG",
-      "hosts": "backbone.mainnet.cardanofoundation.org backbone.mainnet.emurgornd.com backbone.cardano.iog.io",
+      "borrowed_from": "IOG, Cardano Foundation, Emurgo",
+      "hosts": "backbone.cardano.iog.io backbone.mainnet.cardanofoundation.org backbone.mainnet.emurgornd.com",
       "kind": "fe_bootstrap_backbone"
     },
     {
@@ -729,19 +729,6 @@
     },
     {
       "ticker": "IOGP",
-      "pool_bech32": "pool1646vlaras0deljthqtfl9dpdw2xsna799l0kayyu9v44cql4ky0",
-      "stake_ada": 3,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 1182,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
       "pool_bech32": "pool12jqfrwhuv2jn0uymwmud2d63gp5drj08fjfart9dxgpu2tmj8a0",
       "stake_ada": 3,
       "delegators": 1,
@@ -755,11 +742,11 @@
     },
     {
       "ticker": "IOGP",
-      "pool_bech32": "pool12ql6www8aa8usn98azlkz76d2htxtm9swalvyac27rlq6mdkxc7",
-      "stake_ada": 1,
+      "pool_bech32": "pool1646vlaras0deljthqtfl9dpdw2xsna799l0kayyu9v44cql4ky0",
+      "stake_ada": 3,
       "delegators": 1,
       "pledge_ada": 64000000,
-      "blocks_all_time": 2952,
+      "blocks_all_time": 1182,
       "endpoints_registered": 1,
       "endpoints_foreign": 1,
       "borrowed_from": "IOG (retired)",
@@ -781,115 +768,11 @@
     },
     {
       "ticker": "IOGP",
-      "pool_bech32": "pool1j0j39t2dfmkflfnvresds8vlfhwg75qwufa95u55nw376ky29r8",
-      "stake_ada": 0,
+      "pool_bech32": "pool12ql6www8aa8usn98azlkz76d2htxtm9swalvyac27rlq6mdkxc7",
+      "stake_ada": 1,
       "delegators": 1,
       "pledge_ada": 64000000,
-      "blocks_all_time": 777,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1v8lgn85mfvj0hhslfjz2u0nut43ahkhuzhfcm5aexjkewn8krle",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 638,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1867sv2tgcq2cjmyhqgsfveekmsy5zksld69zhgrlkluukfydq29",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 508,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1e827fy8efd7n9zacdknhtr2n5rqmry5up05mqgqsjkmmzjmzrf3",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 953,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1ygamv2t9lw03khcxpe75rjd4p8lnn36hux3deeg3hrc3jwrx43z",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 453,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool19r4ef6n0xkw3pvztuwd44ymrzrkylyralnf5rudnc7hnvvddyqz",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 640,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1kcw2kqj27qe7ntsz9fhvyvyvpf7prclwc5jq4cw0qydh7cygcek",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 929,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1kp0wl7kxn0zt5xtmld72s98rv6ejpufvl39qk26h99nqshmkmge",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 731,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool18w4dzpe8wtkx29scf74qmshrf58xg760mcxu5p7s0azxufwwgec",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 454,
+      "blocks_all_time": 2952,
       "endpoints_registered": 1,
       "endpoints_foreign": 1,
       "borrowed_from": "IOG (retired)",
@@ -903,58 +786,6 @@
       "delegators": 1,
       "pledge_ada": 64000000,
       "blocks_all_time": 738,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1ge06eu8lvdj6jakxw8zuwj3yxtpmeek8j8rgwqfshj7vg390fj0",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 496,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1hfxjswx4wnpfmdad660hvzx4knjhf32uwgg6wgsnqp98x9zz927",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 971,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1szgruqm2dlhkh5qh7rft28xz9gkxj6rzfncsuquf3vm37k63kqv",
-      "stake_ada": 0,
-      "delegators": 2,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 849,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1v9gqa6n4em4aly7ew2trvhgrath4mrsp9tyc290l638nvqs5aej",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 1019,
       "endpoints_registered": 1,
       "endpoints_foreign": 1,
       "borrowed_from": "IOG (retired)",
@@ -989,24 +820,11 @@
     },
     {
       "ticker": "IOGP",
-      "pool_bech32": "pool1t5zgwakxfmqxgu7l65fk45u33frlqrvgsvzn7demdy0ejgrhq9a",
+      "pool_bech32": "pool1ygamv2t9lw03khcxpe75rjd4p8lnn36hux3deeg3hrc3jwrx43z",
       "stake_ada": 0,
       "delegators": 1,
       "pledge_ada": 64000000,
-      "blocks_all_time": 744,
-      "endpoints_registered": 1,
-      "endpoints_foreign": 1,
-      "borrowed_from": "IOG (retired)",
-      "hosts": "relays-new.cardano-mainnet.iohk.io",
-      "kind": "fe_legacy_relay"
-    },
-    {
-      "ticker": "IOGP",
-      "pool_bech32": "pool1y9xftc4cq0svcv0gjdtusnvllrg5v5rn0d24g8r4m7tnsem6ve8",
-      "stake_ada": 0,
-      "delegators": 1,
-      "pledge_ada": 64000000,
-      "blocks_all_time": 932,
+      "blocks_all_time": 453,
       "endpoints_registered": 1,
       "endpoints_foreign": 1,
       "borrowed_from": "IOG (retired)",
@@ -1093,11 +911,193 @@
     },
     {
       "ticker": "IOGP",
+      "pool_bech32": "pool1v8lgn85mfvj0hhslfjz2u0nut43ahkhuzhfcm5aexjkewn8krle",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 638,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool19r4ef6n0xkw3pvztuwd44ymrzrkylyralnf5rudnc7hnvvddyqz",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 640,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1kp0wl7kxn0zt5xtmld72s98rv6ejpufvl39qk26h99nqshmkmge",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 731,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1kcw2kqj27qe7ntsz9fhvyvyvpf7prclwc5jq4cw0qydh7cygcek",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 929,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1867sv2tgcq2cjmyhqgsfveekmsy5zksld69zhgrlkluukfydq29",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 508,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1e827fy8efd7n9zacdknhtr2n5rqmry5up05mqgqsjkmmzjmzrf3",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 953,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1t5zgwakxfmqxgu7l65fk45u33frlqrvgsvzn7demdy0ejgrhq9a",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 744,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1y9xftc4cq0svcv0gjdtusnvllrg5v5rn0d24g8r4m7tnsem6ve8",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 932,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
       "pool_bech32": "pool1q3snnww4ggayr8hd6gd83ypx982yhwlhywlcew7yxq46jzyst2g",
       "stake_ada": 0,
       "delegators": 1,
       "pledge_ada": 64000000,
       "blocks_all_time": 800,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool18w4dzpe8wtkx29scf74qmshrf58xg760mcxu5p7s0azxufwwgec",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 454,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1ge06eu8lvdj6jakxw8zuwj3yxtpmeek8j8rgwqfshj7vg390fj0",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 496,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1hfxjswx4wnpfmdad660hvzx4knjhf32uwgg6wgsnqp98x9zz927",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 971,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1szgruqm2dlhkh5qh7rft28xz9gkxj6rzfncsuquf3vm37k63kqv",
+      "stake_ada": 0,
+      "delegators": 2,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 849,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1v9gqa6n4em4aly7ew2trvhgrath4mrsp9tyc290l638nvqs5aej",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 1019,
+      "endpoints_registered": 1,
+      "endpoints_foreign": 1,
+      "borrowed_from": "IOG (retired)",
+      "hosts": "relays-new.cardano-mainnet.iohk.io",
+      "kind": "fe_legacy_relay"
+    },
+    {
+      "ticker": "IOGP",
+      "pool_bech32": "pool1j0j39t2dfmkflfnvresds8vlfhwg75qwufa95u55nw376ky29r8",
+      "stake_ada": 0,
+      "delegators": 1,
+      "pledge_ada": 64000000,
+      "blocks_all_time": 777,
       "endpoints_registered": 1,
       "endpoints_foreign": 1,
       "borrowed_from": "IOG (retired)",
@@ -1110,10 +1110,10 @@
       "asn": 16509,
       "as_name": "AMAZON-02 - Amazon.com, Inc., US",
       "country": "US",
-      "pools": 108,
-      "stake_ada": 2940738261,
-      "pools_single_asn": 96,
-      "stake_single_asn": 2726783547
+      "pools": 110,
+      "stake_ada": 2941540350,
+      "pools_single_asn": 98,
+      "stake_single_asn": 2727585636
     },
     {
       "asn": 396982,
@@ -1128,17 +1128,17 @@
       "asn": 16276,
       "as_name": "OVH - OVH SAS, FR",
       "country": "CA",
-      "pools": 197,
-      "stake_ada": 5353885781,
-      "pools_single_asn": 106,
-      "stake_single_asn": 1338447887
+      "pools": 193,
+      "stake_ada": 5330667196,
+      "pools_single_asn": 102,
+      "stake_single_asn": 1315229302
     },
     {
       "asn": 24940,
       "as_name": "HETZNER-AS - Hetzner Online GmbH, DE",
       "country": "DE",
-      "pools": 145,
-      "stake_ada": 1562572983,
+      "pools": 144,
+      "stake_ada": 1560919853,
       "pools_single_asn": 100,
       "stake_single_asn": 848691999
     },
@@ -1147,9 +1147,9 @@
       "as_name": "CONTABO - Contabo GmbH, DE",
       "country": "DE",
       "pools": 125,
-      "stake_ada": 1053575055,
+      "stake_ada": 1056991132,
       "pools_single_asn": 82,
-      "stake_single_asn": 679128309
+      "stake_single_asn": 682544386
     },
     {
       "asn": 14618,
@@ -1173,17 +1173,17 @@
       "asn": 197540,
       "as_name": "netcup-AS - netcup GmbH, DE",
       "country": "AT",
-      "pools": 98,
-      "stake_ada": 1357571475,
-      "pools_single_asn": 48,
-      "stake_single_asn": 417370612
+      "pools": 97,
+      "stake_ada": 1355918636,
+      "pools_single_asn": 47,
+      "stake_single_asn": 415717773
     },
     {
       "asn": 14061,
       "as_name": "DIGITALOCEAN-ASN - DigitalOcean, LLC, US",
       "country": "SG",
-      "pools": 73,
-      "stake_ada": 1629836554,
+      "pools": 72,
+      "stake_ada": 1623131838,
       "pools_single_asn": 24,
       "stake_single_asn": 414178397
     },
@@ -1216,13 +1216,13 @@
     }
   ],
   "asn_totals": {
-    "asns": 245,
-    "stake_single_asn": 12666835567
+    "asns": 242,
+    "stake_single_asn": 12565212714
   },
   "failures": [
     {
       "failure": "timeout",
-      "endpoints": 1454
+      "endpoints": 1470
     },
     {
       "failure": "dns_fail",
@@ -1230,11 +1230,11 @@
     },
     {
       "failure": "refused",
-      "endpoints": 262
+      "endpoints": 263
     },
     {
       "failure": "no_route",
-      "endpoints": 145
+      "endpoints": 144
     },
     {
       "failure": "error",
