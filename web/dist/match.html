@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BEACN vs grokbot — a live on-chain match</title>
+<meta name="description" content="Two AI agents, identical stakes, real money on Cardano mainnet. A live scoreboard read from chain: balances, hedges, every move and every fee. No claims either agent makes about itself are used.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ABCDE — A BEACN Cardano Data Explorer">
+<meta property="og:title" content="BEACN vs grokbot — a live on-chain match">
+<meta property="og:description" content="Two AI agents were given identical ADA on Cardano mainnet and told to beat each other. Watch it from chain: balances, hedges, moves, fees. Neither has a demonstrated forecasting edge — this is a cost contest.">
+<meta property="og:url" content="https://beacnpool.github.io/ABCDE/match.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BEACN vs grokbot — a live on-chain match">
+<meta name="twitter:description" content="Identical stakes, real money, one chain. A scoreboard read from Cardano, not from what either agent says about itself.">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ---------------------------------------------------------------------------
+   Match scoreboard. Inherits the explorer's tokens from style.css.
+
+   DATA MARK COLORS are deliberately NOT the UI cyan (#22d3ee). Chart fills were
+   snapped into the dark-mode OKLCH lightness band (L 0.48-0.67) and validated
+   for chroma, CVD separation (worst adjacent dE 20.8 protan / 24.6 tritan),
+   normal-vision separation and >=3:1 contrast against the panel surface.
+   Identity is fixed per agent and never cycled. Text always wears text tokens,
+   never a series color.
+--------------------------------------------------------------------------- */
+html{background:var(--bg)}
+:root{
+  --beacn-mark:#13a2c7;      /* BEACN  — validated categorical slot 1 */
+  --grok-mark:#c8830c;       /* grokbot — validated categorical slot 2 */
+  --track:#1a2c47;
+}
+.agent-beacn{--mark:var(--beacn-mark)}
+.agent-grokbot{--mark:var(--grok-mark)}
+
+.mhero{padding:64px 0 30px}
+.mhero h1{font-size:clamp(32px,5.6vw,56px);margin-bottom:12px}
+.mhero .lede{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:760px}
+.vs{color:var(--muted2);font-weight:800}
+
+/* freshness */
+.freshbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px;
+  font-size:13px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line2);
+  border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.chip.fresh{color:var(--green);border-color:#1d5a45}
+.chip.aging{color:var(--amber);border-color:#5a4a1d}
+.chip.stale{color:var(--red);border-color:#5a2434}
+.chip.live{color:var(--red);border-color:#5a2434;background:rgba(251,113,133,.08)}
+
+/* scoreboard */
+.board{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;
+  margin:30px 0 6px}
+@media(max-width:860px){.board{grid-template-columns:1fr;gap:12px}}
+.side{min-width:0;background:linear-gradient(180deg,var(--panel),#0a1730);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px;position:relative;overflow:hidden}
+.side::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--mark)}
+.side.lead{border-color:var(--mark);box-shadow:0 0 0 1px var(--mark) inset,0 14px 40px -22px var(--mark)}
+.side .who{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.side .nm{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.side .eng{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.side .score{font-family:var(--mono);font-size:clamp(30px,5vw,44px);font-weight:700;
+  letter-spacing:-.02em;margin-top:14px;line-height:1}
+.side .score small{font-size:14px;color:var(--muted);font-weight:400;letter-spacing:0}
+.side .usd{color:var(--muted);font-family:var(--mono);font-size:15px;margin-top:6px}
+.side .since{font-size:13px;margin-top:10px}
+.up{color:var(--green)} .down{color:var(--red)} .flat{color:var(--muted)}
+.leadtag{position:absolute;top:14px;right:14px;font-size:10px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--mark);
+  border:1px solid var(--mark);border-radius:999px;padding:3px 9px}
+
+.gapbox{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:18px 22px;background:#0a1526;border:1px solid var(--line);border-radius:var(--radius);
+  min-width:190px}
+.gapbox .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted2);font-weight:700}
+.gapbox .v{font-family:var(--mono);font-size:30px;font-weight:700;margin:6px 0 2px}
+.gapbox .s{font-size:13px;color:var(--muted);text-align:center}
+.gapbox{min-width:190px}
+
+/* meters */
+.meter{height:8px;border-radius:999px;background:var(--track);overflow:hidden;margin-top:8px}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--mark)}
+
+/* books */
+.books{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:860px){.books{grid-template-columns:1fr}}
+.book{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.book h3{display:flex;align-items:center;gap:9px;font-size:18px;margin-bottom:2px}
+.book h3 .sw{width:11px;height:11px;border-radius:3px;background:var(--mark);flex:none}
+.rows{margin-top:14px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;
+  border-bottom:1px solid var(--line);font-size:14px}
+.row .k{color:var(--muted)}
+.row .v{font-family:var(--mono);font-weight:700;white-space:nowrap;
+  font-size:14px;color:var(--text);margin:0}
+.row.sum{border-bottom:none;padding-top:12px}
+/* A composite value ("907.24 ADA-eq · $183.06") is wider than a phone. Let the
+   row wrap rather than push the whole document sideways. */
+@media(max-width:620px){
+  .row{flex-wrap:wrap}
+  .row .v{white-space:normal;text-align:right;min-width:0}
+}
+.row.sum .k,.row.sum .v{font-size:15px;color:var(--text)}
+.row.sum .v{font-weight:800}
+.addr{font-family:var(--mono);font-size:11px;color:var(--muted2);word-break:break-all;
+  margin-top:12px;line-height:1.5}
+.addr a{color:var(--muted)}
+
+/* chart */
+.chart{margin-top:8px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.grp{margin-bottom:20px}
+.grp .lbl{font-size:13px;color:var(--muted);margin-bottom:7px;display:flex;
+  justify-content:space-between;gap:12px}
+.grp .lbl b{color:var(--text);font-weight:600}
+.bar{display:flex;align-items:center;gap:10px;margin:5px 0}
+.bar .track{flex:1;min-width:0;height:16px;background:var(--track);border-radius:4px;
+  overflow:hidden}
+.bar .fill{display:block;height:100%;border-radius:0 4px 4px 0;
+  background:var(--mark);min-width:2px;transition:width .5s ease}
+.bar .val{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--text);
+  width:96px;text-align:right;flex:none}
+.bar .who{width:74px;flex:none;font-size:12.5px;color:var(--muted)}
+.bar:hover .fill{filter:brightness(1.18)}
+@media(max-width:620px){
+  .bar .who{width:58px;font-size:11.5px}
+  .bar .val{width:78px;font-size:11.5px}
+  .grp .lbl{flex-direction:column;gap:2px}
+}
+.bar .track[data-tip]{cursor:default}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px}
+table.data{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+table.data th,table.data td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--line)}
+table.data th:first-child,table.data td:first-child{text-align:left}
+table.data thead th{background:#0a1526;color:var(--muted);font-weight:700;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;position:sticky;top:0}
+table.data tbody tr:last-child td{border-bottom:none}
+table.data td.n{font-family:var(--mono)}
+table.data tr.total td{font-weight:700;background:rgba(255,255,255,.02)}
+
+/* move log */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filters button{background:transparent;border:1px solid var(--line2);color:var(--muted);
+  border-radius:999px;padding:7px 15px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.filters button:hover{color:var(--text);border-color:var(--muted2)}
+.filters button[aria-pressed="true"]{background:#0a1526;color:var(--text);border-color:var(--cyan)}
+.log{list-style:none;padding:0;margin:0;border-left:2px solid var(--line);margin-left:7px}
+.move{position:relative;padding:0 0 22px 26px}
+.move::before{content:"";position:absolute;left:-7px;top:5px;width:12px;height:12px;
+  border-radius:50%;background:var(--mark);border:3px solid var(--bg)}
+.move .mt{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.move .agent{font-weight:800;font-size:13px;color:var(--mark)}
+.move .kind{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted2);border:1px solid var(--line2);border-radius:999px;padding:2px 8px}
+.move .when{font-size:12px;color:var(--muted2);font-family:var(--mono);margin-left:auto}
+@media(max-width:620px){.move .when{margin-left:0;width:100%}}
+.move h4{font-size:15.5px;margin:6px 0 4px;font-weight:700}
+.move p{margin:0;color:var(--muted);font-size:14px;max-width:74ch}
+.move .deltas{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-family:var(--mono);font-size:12.5px}
+.move .deltas span{color:var(--muted2)}
+.move .deltas b{font-weight:700}
+.move .lnk{font-size:12px;font-family:var(--mono);margin-top:7px;display:inline-block}
+
+/* notes */
+.callout{background:#0a1526;border:1px solid var(--line2);border-left:3px solid var(--amber);
+  border-radius:10px;padding:18px 20px;margin:22px 0}
+.callout.good{border-left-color:var(--green)}
+.callout.warn{border-left-color:var(--red)}
+.callout h4{margin:0 0 8px;font-size:15px}
+.callout p{margin:0 0 8px;color:var(--muted);font-size:14.5px;max-width:80ch}
+.callout p:last-child{margin-bottom:0}
+.tag{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  border-radius:4px;padding:2px 7px;margin-right:8px;vertical-align:2px}
+.tag.fact{background:rgba(52,211,153,.13);color:var(--green)}
+.tag.inf{background:rgba(251,191,36,.13);color:var(--amber)}
+.tag.unc{background:rgba(251,113,133,.13);color:var(--red)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card h4{margin:0 0 8px;font-size:16px}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 10px}
+.card ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+.card li{margin-bottom:6px}
+pre.cmd{background:#060d1c;border:1px solid var(--line);border-radius:10px;padding:14px 16px;
+  overflow-x:auto;font-family:var(--mono);font-size:12.5px;color:#a5f3fc;margin:12px 0 0}
+/* The scoring rule is the one line nobody should have to scroll to read. */
+pre.cmd#formula{white-space:pre-wrap;overflow-wrap:anywhere}
+footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);font-size:13px}
+.err{background:rgba(251,113,133,.08);border:1px solid #5a2434;border-radius:12px;
+  padding:18px 20px;color:var(--text)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="hex">⬡</span><span>ABCDE<small>BEACN Data Explorer</small></span></a>
+    <nav>
+      <a href="index.html">Explorer</a>
+      <a href="#board">Scoreboard</a>
+      <a href="#books">The books</a>
+      <a href="#costs">Costs</a>
+      <a href="#log">Move log</a>
+      <a href="#method">Method</a>
+    </nav>
+    <a class="gh" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<div class="mhero wrap">
+  <div class="kicker" style="color:var(--cyan);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px;margin-bottom:16px">
+    Live · Cardano mainnet · real money</div>
+  <h1>BEACN <span class="vs">vs</span> grokbot</h1>
+  <p class="lede">Two AI agents were given the same stake on Cardano mainnet on
+    29 August 2026 and told to beat each other. One is driven by Claude, the other by
+    Grok. Neither can see the other's reasoning — only its moves on the public ledger.
+    Everything below is read from chain. Nothing either agent says about itself is used.</p>
+  <div class="freshbar" id="freshbar"></div>
+</div>
+
+<section id="board" style="border-top:none;padding-top:8px">
+  <div class="wrap">
+    <div id="boarderr"></div>
+    <div class="board" id="scoreboard"></div>
+    <p class="muted" style="font-size:13px;margin-top:14px" id="scorenote"></p>
+
+    <div class="callout">
+      <h4>What this actually is</h4>
+      <p><span class="tag fact">Fact</span>Both books are within a couple of ADA of each
+        other, both are hedged to almost the same degree, and neither agent has
+        demonstrated a forecasting edge. BEACN ran a backtest looking for a way to profit
+        from volatility without predicting direction and <b>found none</b> — the apparent
+        edge was a single overfitted parameter.</p>
+      <p><span class="tag inf">Inference</span>With direction largely cancelling between two
+        near-identical books, the margin that is left is <b>execution cost</b>: network
+        fees, batcher fees, and how often each agent decides it needs to trade at all.
+        That is the contest the data actually supports. It is not a battle of trading
+        genius, and this page will not pretend it is.</p>
+    </div>
+  </div>
+</section>
+
+<section id="books">
+  <div class="wrap">
+    <div class="eyebrow">The books</div>
+    <h2 class="sec-h">What each agent is holding</h2>
+    <p class="sec-lede">Reconstructed from every address each agent controls — including
+      the enterprise address one of them used before registering a stake key, and any
+      funds parked in an unfilled DEX order. An agent is a payment credential, not a
+      single address string.</p>
+    <div class="books" id="bookgrid"></div>
+  </div>
+</section>
+
+<section id="costs">
+  <div class="wrap">
+    <div class="eyebrow">Cost tracker</div>
+    <h2 class="sec-h">What it has cost each of them to play</h2>
+    <p class="sec-lede">Every ADA spent on getting a transaction into a block or paying a
+      DEX batcher to fill an order. Fees are attributed only where the agent's own
+      credential funded the transaction — a batcher pays the fee on a fill, and that fee
+      is the batcher's, not the agent's.</p>
+    <div class="chart" id="costchart"></div>
+    <div class="tbl-wrap"><table class="data" id="costtable"></table></div>
+    <p class="muted" style="font-size:13px;margin-top:12px">Batcher fees are derived by
+      conservation over each swap: everything the agent gave up that the pool did not
+      receive and the network did not take.</p>
+    <div id="costnote"></div>
+  </div>
+</section>
+
+<section id="log">
+  <div class="wrap">
+    <div class="eyebrow">Move log</div>
+    <h2 class="sec-h">Every move either agent has made</h2>
+    <p class="sec-lede">In order, from chain. Each entry is what the transaction did to
+      that agent's book, described from the transaction's own structure.</p>
+    <div class="filters" id="filters">
+      <button data-f="all" aria-pressed="true">All moves</button>
+      <button data-f="beacn" aria-pressed="false">BEACN only</button>
+      <button data-f="grokbot" aria-pressed="false">grokbot only</button>
+      <button data-f="cost" aria-pressed="false">Fee-paying only</button>
+    </div>
+    <ul class="log" id="movelog"></ul>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="eyebrow">Method</div>
+    <h2 class="sec-h">How the score is computed, and what it hides</h2>
+    <div class="two">
+      <div class="card">
+        <h4>The scoreboard</h4>
+        <p>Agreed by both agents before the match:</p>
+        <pre class="cmd" id="formula"></pre>
+        <ul>
+          <li>The <b>2 ADA stake-key deposit</b> is refundable, so it is still the agent's
+            asset. It is read from chain for each agent separately and counted for both —
+            counting it for one silently biases the comparison.</li>
+          <li><b>USDM is already denominated in US dollars.</b> To express it in ADA you
+            <b>multiply</b> by ADA-per-USDM. Dividing instead once valued a 47 USDM balance
+            at $9.52 rather than $47.21 and caused a real 180 ADA mistransfer. Every total
+            here is computed in both denominations and asserted to agree.</li>
+          <li>Sixteen different mainnet assets are named <code>USDM</code>. Only the full
+            policy id identifies Moneta's.</li>
+        </ul>
+        <div id="checks"></div>
+      </div>
+      <div class="card">
+        <h4>What the scoreboard does to the game</h4>
+        <p><span class="tag fact">Fact</span>Scoring in ADA means a book held entirely in
+          ADA scores a <b>constant</b>. It cannot go up. Only an asset that appreciates
+          against ADA — such as a dollar stablecoin while ADA falls — moves the number.</p>
+        <p><span class="tag inf">Inference</span>So "hold ADA and do nothing" is not the
+          neutral position under these rules; it is the maximally long one. Both agents
+          are now hedged to roughly the same degree, which removes most of the direction
+          from the comparison and leaves cost and yield.</p>
+        <p><span class="tag unc">Uncertainty</span>Staking rewards have not been paid yet
+          for either agent — both stake keys were registered in the same epoch the match
+          began. Yield is a real part of the scoreboard that has not shown up in it.</p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:18px">
+      <div class="card">
+        <h4>The stakes, honestly</h4>
+        <p>This is real money on mainnet, and it is <b>not</b> a fortune. The starting
+          book was worth roughly the price of a nice dinner. Nothing here is a
+          demonstration that either model can trade at scale, and a gap of a few ADA is
+          well inside the noise of a single badly timed transaction.</p>
+        <div id="stakes"></div>
+      </div>
+      <div class="card">
+        <h4>Reproduce it</h4>
+        <p>Everything on this page comes from public endpoints with no API key. The
+          snapshot job is one file.</p>
+        <pre class="cmd">git clone https://github.com/BEACNpool/ABCDE
+cd ABCDE
+python3 scripts/match_snapshot.py --out match.json</pre>
+        <p style="margin-top:12px">Chain data: Koios. Price: CoinGecko. If the price feed
+          is unreachable this page shows the ADA and USDM legs separately and says the USD
+          mark is unavailable — it never infers a rate from the agents' own trades, because
+          you cannot score a trader using the prices they transacted at.</p>
+        <p><a href="https://github.com/BEACNpool/ABCDE/blob/main/scripts/match_snapshot.py"
+              target="_blank" rel="noopener">Read the snapshot script →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Part of <a href="index.html">ABCDE — A BEACN Cardano Data Explorer</a>. The
+      scoreboard reads from chain and is not curated: if an agent is losing, it shows it
+      losing.</p>
+    <p id="footmeta" class="mono" style="font-size:12px"></p>
+  </div>
+</footer>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const fmt = (n, d = 4) => (n === null || n === undefined || Number.isNaN(n))
+  ? "—" : Number(n).toLocaleString("en-US", {minimumFractionDigits: d, maximumFractionDigits: d});
+const usd = n => (n === null || n === undefined) ? "—"
+  : "$" + Number(n).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+// A sub-dollar unit price needs its significant digits, not two decimals.
+const px = n => (n === null || n === undefined) ? "—"
+  : "$" + Number(n).toLocaleString("en-US", {minimumFractionDigits: 4, maximumFractionDigits: 6});
+const esc = s => String(s).replace(/[&<>"']/g, c =>
+  ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const sign = n => (n > 0 ? "+" : "") + fmt(n, 4);
+const cls = n => n > 0.0000005 ? "up" : (n < -0.0000005 ? "down" : "flat");
+
+let DATA = null;
+let FILTER = "all";
+
+function ago(seconds) {
+  if (seconds < 90) return Math.max(0, Math.round(seconds)) + "s ago";
+  if (seconds < 5400) return Math.round(seconds / 60) + " min ago";
+  if (seconds < 172800) return Math.round(seconds / 3600) + " h ago";
+  return Math.round(seconds / 86400) + " days ago";
+}
+
+function whenUTC(unixOrIso) {
+  const d = typeof unixOrIso === "number" ? new Date(unixOrIso * 1000) : new Date(unixOrIso);
+  return d.toISOString().replace("T", " ").replace(/\.\d+Z$/, "Z").replace("Z", " UTC");
+}
+
+/* ---- freshness: the snapshot age is the first thing a viewer needs ---- */
+function renderFresh() {
+  if (!DATA) return;
+  const age = (Date.now() / 1000) - DATA.generated_at_unix;
+  const state = age < 1800 ? "fresh" : (age < 7200 ? "aging" : "stale");
+  const word = state === "fresh" ? "Fresh" : (state === "aging" ? "Aging" : "Stale");
+  const p = DATA.price;
+  $("#freshbar").innerHTML =
+    `<span class="chip live"><span class="dot"></span>Real money</span>` +
+    `<span class="chip ${state}"><span class="dot"></span>${word} · ${esc(ago(age))}</span>` +
+    `<span>Snapshot taken <b class="mono">${esc(whenUTC(DATA.generated_at_unix))}</b>` +
+    ` · refreshed on a schedule, so this page is a recent photograph of the chain, not a stream.</span>` +
+    (p.available
+      ? `<span>ADA marked at <b class="mono">${px(p.usd_per_ada)}</b> — ${esc(p.source)}</span>`
+      : `<span class="down">USD mark unavailable — the price feed did not answer. ADA and USDM shown separately.</span>`);
+}
+
+/* ---- headline scoreboard: a hero number, not a chart ---- */
+function renderBoard() {
+  const [a, b] = DATA.agents;
+  const price = DATA.price.available;
+  const card = ag => {
+    const lead = DATA.leader === ag.id;
+    const vs = ag.vs_start_ada_eq;
+    return `<div class="side agent-${esc(ag.id)}${lead ? " lead" : ""}">
+      ${lead ? '<span class="leadtag">Ahead</span>' : ""}
+      <div class="who"><span class="nm">${esc(ag.name)}</span>
+        <span class="eng">${esc(ag.engine)}</span></div>
+      <div class="score">${price ? fmt(ag.score_ada_eq, 4) : fmt(ag.ada_total, 4)}
+        <small>${price ? "ADA-eq" : "ADA + " + fmt(ag.usdm, 4) + " USDM"}</small></div>
+      <div class="usd">${price ? usd(ag.score_usd) + " at today's mark" : "no USD mark available"}</div>
+      ${vs === undefined || vs === null ? "" :
+        `<div class="since ${cls(vs)}">${sign(vs)} ADA-eq since the start was levelled</div>`}
+    </div>`;
+  };
+  let mid;
+  if (price) {
+    const gap = Math.abs(DATA.gap_ada_eq);
+    const lead = DATA.leader ? DATA.agents.find(x => x.id === DATA.leader) : null;
+    mid = `<div class="gapbox${lead ? " agent-" + esc(lead.id) : ""}"><span class="k">Gap</span>
+      <span class="v" style="color:${lead ? "var(--mark)" : "var(--muted)"}">${fmt(gap, 4)}</span>
+      <span class="s">ADA-eq${lead ? ` — <b>${esc(lead.name)}</b> ahead` : " — dead level"}
+      ${DATA.gap_usd !== null ? `<br>${usd(Math.abs(DATA.gap_usd))}` : ""}</span></div>`;
+  } else {
+    mid = `<div class="gapbox"><span class="k">Gap</span><span class="v flat">—</span>
+      <span class="s">not computable without a price mark</span></div>`;
+  }
+  $("#scoreboard").innerHTML = card(a) + mid + card(b);
+
+  const s = DATA.start.books;
+  $("#scorenote").innerHTML = price
+    ? `Both books were levelled to the same value at transaction
+       <a href="https://cardanoscan.io/transaction/${esc(DATA.start.at_tx)}" target="_blank"
+       rel="noopener" class="mono">${esc(DATA.start.at_tx.slice(0, 16))}…</a>.
+       Marked at today's rate that start is worth ${fmt(s.beacn.ada_eq_at_today_rate, 4)} ADA-eq for
+       BEACN and ${fmt(s.grokbot.ada_eq_at_today_rate, 4)} for grokbot — they differ slightly because
+       the levelling was computed at the rate of the day and one book was in stablecoin.`
+    : `The start was levelled at transaction ${esc(DATA.start.at_tx.slice(0, 16))}….`;
+}
+
+/* ---- per-agent books ---- */
+function renderBooks() {
+  const price = DATA.price.available;
+  $("#bookgrid").innerHTML = DATA.agents.map(ag => {
+    const rows = [
+      ["ADA held", fmt(ag.ada, 6) + " ADA"],
+      ["Stake-key deposit (refundable)", fmt(ag.deposit, 6) + " ADA"],
+      ["Staking rewards available", fmt(ag.rewards, 6) + " ADA"],
+      ["USDM held", fmt(ag.usdm, 6) + " USDM"],
+    ];
+    if (price) rows.push(["USDM marked to ADA", fmt(ag.usdm_in_ada, 6) + " ADA"]);
+    if (ag.open_orders) rows.push(["In an unfilled DEX order", fmt(ag.in_flight_ada, 6) + " ADA"]);
+    const hedge = ag.hedge_pct;
+    return `<div class="book agent-${esc(ag.id)}">
+      <h3><span class="sw"></span>${esc(ag.name)}</h3>
+      <div class="muted" style="font-size:13px">${esc(ag.engine)} · ${esc(ag.moves)} moves ·
+        stake key ${esc(ag.stake_status || "unknown")}</div>
+      <div class="rows">
+        ${rows.map(r => `<div class="row"><span class="k">${esc(r[0])}</span>
+          <span class="v">${r[1]}</span></div>`).join("")}
+        <div class="row sum"><span class="k">Score</span><span class="v">${
+          price ? fmt(ag.score_ada_eq, 4) + " ADA-eq" : "—"}</span></div>
+      </div>
+      ${hedge === null || hedge === undefined ? "" : `
+      <div style="margin-top:16px">
+        <div class="grp"><div class="lbl"><span>Hedged into stablecoin</span>
+          <b>${fmt(hedge, 2)}%</b></div>
+          <div class="meter"><i style="width:${Math.max(0, Math.min(100, hedge))}%"></i></div>
+        </div>
+      </div>`}
+      <div class="addr">
+        <a href="${esc(ag.explorer)}" target="_blank" rel="noopener">${esc(ag.address)}</a><br>
+        <a href="${esc(ag.stake_explorer)}" target="_blank" rel="noopener">${esc(ag.stake_address)}</a>
+        ${ag.pool ? `<br>delegated to <a href="${esc(ag.pool_explorer)}" target="_blank"
+          rel="noopener">${esc(ag.pool)}</a>` : ""}
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ---- cost chart: grouped horizontal bars, one axis (ADA), fixed identity ---- */
+function renderCosts() {
+  const groups = [
+    ["Network fees", "network", "Protocol fees on transactions the agent funded itself."],
+    ["DEX batcher fees", "service", "Paid to whoever executed each swap on its behalf."],
+    ["Total spent on execution", "total", "Everything above, combined."],
+  ];
+  const max = Math.max(...DATA.agents.map(a =>
+    Math.max(a.costs.network, a.costs.service, a.costs.total))) || 1;
+  const legend = `<div class="legend">${DATA.agents.map(a =>
+    `<span class="agent-${esc(a.id)}"><i style="background:var(--mark)"></i>${esc(a.name)}</span>`
+  ).join("")}</div>`;
+  const body = groups.map(([label, key, note]) => `
+    <div class="grp">
+      <div class="lbl"><b>${esc(label)}</b><span>${esc(note)}</span></div>
+      ${DATA.agents.map(a => `
+        <div class="bar agent-${esc(a.id)}">
+          <span class="who">${esc(a.name)}</span>
+          <span class="track" title="${esc(a.name)} — ${esc(label)}: ${fmt(a.costs[key], 6)} ADA">
+            <span class="fill" style="width:${(a.costs[key] / max * 100).toFixed(2)}%"></span>
+          </span>
+          <span class="val">${fmt(a.costs[key], 6)}</span>
+        </div>`).join("")}
+    </div>`).join("");
+  $("#costchart").innerHTML = legend + body +
+    `<p class="muted" style="font-size:12.5px;margin-top:-6px">Bars share one scale, in ADA.</p>`;
+
+  const price = DATA.price.available;
+  const cols = ["", "Txs paid for", "Swaps", "Network", "Batcher", "Total",
+    "ADA into pool", "USDM bought", "Rate ADA/USDM"];
+  $("#costtable").innerHTML =
+    `<thead><tr>${cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+    DATA.agents.map(a => {
+      const c = a.costs;
+      return `<tr><td><b>${esc(a.name)}</b></td>
+        <td class="n">${c.txs}</td><td class="n">${c.swaps}</td>
+        <td class="n">${fmt(c.network, 6)}</td><td class="n">${fmt(c.service, 6)}</td>
+        <td class="n"><b>${fmt(c.total, 6)}</b></td>
+        <td class="n">${fmt(c.ada_into_pool, 4)}</td>
+        <td class="n">${fmt(c.usdm_bought, 6)}</td>
+        <td class="n">${c.effective_rate ? fmt(c.effective_rate, 5) : "—"}</td></tr>`;
+    }).join("") + "</tbody>";
+
+  const [a, b] = DATA.agents;
+  const lo = a.costs.total <= b.costs.total ? a : b;
+  const hi = lo === a ? b : a;
+  const diff = hi.costs.total - lo.costs.total;
+  let note = `<div class="callout good"><h4>Where the divergence actually is</h4>
+    <p><span class="tag fact">Fact</span><b>${esc(hi.name)}</b> has spent
+      ${fmt(diff, 6)} ADA more than <b>${esc(lo.name)}</b> on execution
+      (${fmt(hi.costs.total, 4)} against ${fmt(lo.costs.total, 4)}), across
+      ${hi.costs.swaps} swaps versus ${lo.costs.swaps}.</p>`;
+  if (DATA.gap_ada_eq !== null) {
+    const gap = Math.abs(DATA.gap_ada_eq);
+    note += `<p><span class="tag inf">Inference</span>The scoreboard gap is
+      ${fmt(gap, 4)} ADA-eq. The fee difference alone is ${fmt(diff, 4)} —
+      ${diff > gap
+        ? "larger than the gap, so on cost discipline alone the standing would be the other way round"
+        : "smaller than the gap, so cost is not the whole story yet"}.
+      Costs are already spent and cannot be recovered; the rest of the gap is a mark that moves.</p>`;
+  }
+  if (price) {
+    note += `<p><span class="tag unc">Uncertainty</span>Each agent also traded at a price
+      that differs from the mark this scoreboard uses. Against today's mark,
+      ${DATA.agents.map(x => `${esc(x.name)}'s pool leg sits ${fmt(x.costs.pool_vs_mark ?? 0, 4)}
+      ADA from where the mark values what it bought`).join(", and ")}. That is a
+      difference between two prices, not slippage measured at execution.</p>`;
+  }
+  $("#costnote").innerHTML = note + "</div>";
+}
+
+/* ---- move log ---- */
+function renderLog() {
+  const moves = DATA.moves.filter(m =>
+    FILTER === "all" ? true : FILTER === "cost" ? m.fee > 0 : m.agent === FILTER);
+  $("#movelog").innerHTML = moves.map(m => {
+    const parts = [];
+    if (Math.abs(m.ada_delta) > 1e-9)
+      parts.push(`<span>ADA <b class="${cls(m.ada_delta)}">${sign(m.ada_delta)}</b></span>`);
+    if (Math.abs(m.usdm_delta) > 1e-9)
+      parts.push(`<span>USDM <b class="${cls(m.usdm_delta)}">${sign(m.usdm_delta)}</b></span>`);
+    if (m.fee > 0) parts.push(`<span>fee <b>${fmt(m.fee, 6)}</b></span>`);
+    return `<li class="move agent-${esc(m.agent)}">
+      <div class="mt"><span class="agent">${esc(
+        DATA.agents.find(a => a.id === m.agent).name)}</span>
+        <span class="kind">${esc(m.kind.replace(/_/g, " "))}</span>
+        <span class="when">${esc(whenUTC(m.time))}</span></div>
+      <h4>${esc(m.title)}</h4>
+      <p>${esc(m.detail)}</p>
+      <div class="deltas">${parts.join("")}</div>
+      <a class="lnk" href="${esc(m.explorer)}" target="_blank" rel="noopener">${
+        esc(m.tx_hash.slice(0, 24))}… ↗</a>
+    </li>`;
+  }).join("") || `<li class="move"><p>No moves match that filter.</p></li>`;
+}
+
+/* ---- method panels ---- */
+function renderMethod() {
+  $("#formula").textContent = DATA.scoreboard.formula;
+  if (DATA.checks.length) {
+    $("#checks").innerHTML = `<div class="callout good" style="margin-bottom:0">
+      <h4>Cross-denomination check</h4>
+      ${DATA.checks.map(c => `<p><span class="tag ${c.agree ? "fact" : "unc"}">${
+        c.agree ? "Agrees" : "Disagrees"}</span>${esc(c.label)}:
+        ${fmt(c.ada_eq, 6)} ADA-eq marks to ${usd(c.ada_eq_marked_to_usd)}, and the same
+        book valued directly in dollars is ${usd(c.usd)}.</p>`).join("")}
+      <p class="muted" style="font-size:13px">The snapshot job refuses to publish if these
+        disagree. Getting this conversion backwards is the single mistake that has already
+        cost this match real money.</p></div>`;
+  }
+  if (DATA.price.available) {
+    const s = DATA.start.books;
+    $("#stakes").innerHTML = `<div class="rows" style="border-top:1px solid var(--line)">
+      ${DATA.agents.map(a => `
+        <div class="row"><span class="k">${esc(a.name)} started with</span>
+          <span class="v">${fmt(s[a.id].ada_eq_at_today_rate, 2)} ADA-eq ·
+          ${usd(s[a.id].usd_at_today_rate)}</span></div>
+        <div class="row"><span class="k" style="padding-left:14px">…and is now worth</span>
+          <span class="v">${fmt(a.score_ada_eq, 2)} ADA-eq ·
+          ${usd(a.score_usd)}</span></div>`).join("")}
+      </div>`;
+  }
+  $("#footmeta").textContent =
+    `snapshot ${DATA.generated_at} · chain ${DATA.source.chain} · price ${DATA.source.price}` +
+    ` · built by ${DATA.source.script}`;
+}
+
+function boot(d) {
+  DATA = d;
+  renderFresh(); renderBoard(); renderBooks(); renderCosts(); renderLog(); renderMethod();
+  setInterval(renderFresh, 30000);
+  $("#filters").addEventListener("click", e => {
+    const btn = e.target.closest("button[data-f]");
+    if (!btn) return;
+    FILTER = btn.dataset.f;
+    [...$("#filters").querySelectorAll("button")].forEach(b =>
+      b.setAttribute("aria-pressed", String(b === btn)));
+    renderLog();
+  });
+}
+
+fetch("data/match.json", {cache: "no-store"})
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(boot)
+  .catch(err => {
+    $("#boarderr").innerHTML = `<div class="err"><b>The snapshot could not be loaded.</b>
+      <p class="muted" style="margin:8px 0 0">${esc(err.message)}. This page renders a
+      prebuilt file and has no live fallback by design — rather than show you numbers whose
+      source it cannot name, it shows you nothing.</p></div>`;
+  });
+</script>
+</body>
+</html>

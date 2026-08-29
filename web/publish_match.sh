@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+# publish_match.sh — refresh the BEACN vs grokbot scoreboard and publish it.
+#
+# Built to be run from cron. It regenerates web/dist/data/match.json from chain
+# and pushes it, plus match.html, to gh-pages.
+#
+# It touches ONLY the two paths the scoreboard owns and pushes as a normal
+# fast-forward, so oligarCH/, byttg/, tipsy/, peers/ and the explorer are
+# untouched by construction. The orphan-tree force-push in web/deploy_gh_pages.sh
+# would delete all of them; that script is self-guarded and must stay that way.
+#
+# WHY IT DOES NOT PUSH EVERY RUN: gh-pages is a branch of a repo whose whole
+# pitch is "one clone away". A commit every quarter hour would add megabytes of
+# blobs a month to everyone's clone for nothing but a moving price. So it pushes
+# when the CHAIN changed -- a balance moved, a transaction landed -- or when the
+# published snapshot is older than MATCH_MAX_AGE, so the timestamp on the page
+# is never stale by more than that.
+#
+#   ./web/publish_match.sh              refresh, publish if warranted
+#   ./web/publish_match.sh --force      publish regardless
+#   ./web/publish_match.sh --dry-run    refresh and report, push nothing
+#
+# Kill switch: set MATCH_PUBLISH_DISABLED=1 (in the environment or the crontab
+# line) and it exits without touching anything.
+set -euo pipefail
+
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DIST="$REPO/web/dist"
+JSON="$DIST/data/match.json"
+# Deliberately NOT the worktree web/publish_gh_pages.sh uses: that one does a
+# hard reset, and a cron colliding with a manual publish would discard work.
+WORKTREE="${MATCH_WORKTREE:-$REPO/.worktrees/gh-pages-match}"
+MAX_AGE="${MATCH_MAX_AGE:-3600}"
+PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
+
+FORCE=0; DRY=0
+for arg in "$@"; do
+  case "$arg" in
+    --force) FORCE=1 ;;
+    --dry-run) DRY=1 ;;
+    *) echo "unknown argument: $arg" >&2; exit 64 ;;
+  esac
+done
+
+if [[ "${MATCH_PUBLISH_DISABLED:-0}" == "1" ]]; then
+  echo "$(date -u +%FT%TZ) publish_match: DISABLED by MATCH_PUBLISH_DISABLED"
+  exit 0
+fi
+
+echo "$(date -u +%FT%TZ) 1/4 refreshing the snapshot from chain"
+"$PY" "$REPO/scripts/match_snapshot.py" --out "$JSON" --quiet
+
+echo "2/4 syntax-checking the page"
+"$PY" "$REPO/scripts/verify_web_pages.py" >/dev/null
+
+echo "3/4 syncing the worktree to origin/gh-pages"
+if [[ ! -d "$WORKTREE" ]]; then
+  git -C "$REPO" worktree add "$WORKTREE" gh-pages --quiet
+fi
+git -C "$WORKTREE" fetch origin gh-pages --quiet
+git -C "$WORKTREE" reset --hard origin/gh-pages --quiet
+
+# Decide before copying, by comparing against what is actually published.
+PUBLISHED="$WORKTREE/data/match.json"
+REASON="$("$PY" - "$JSON" "$PUBLISHED" "$MAX_AGE" <<'PYEOF'
+import json, sys, time
+new_path, old_path, max_age = sys.argv[1], sys.argv[2], int(sys.argv[3])
+new = json.load(open(new_path))
+try:
+    old = json.load(open(old_path))
+except Exception:
+    print("nothing published yet"); raise SystemExit
+if old.get("chain_fingerprint") != new.get("chain_fingerprint"):
+    print("the chain moved"); raise SystemExit
+age = time.time() - old.get("generated_at_unix", 0)
+if age > max_age:
+    print(f"published snapshot is {int(age)}s old"); raise SystemExit
+print("")
+PYEOF
+)"
+
+if [[ -z "$REASON" && "$FORCE" -eq 0 ]]; then
+  echo "4/4 nothing worth publishing — chain unchanged and the live snapshot is fresh"
+  exit 0
+fi
+[[ "$FORCE" -eq 1 && -z "$REASON" ]] && REASON="--force"
+
+if [[ "$DRY" -eq 1 ]]; then
+  echo "4/4 DRY RUN — would publish ($REASON)"
+  exit 0
+fi
+
+echo "4/4 publishing ($REASON)"
+mkdir -p "$WORKTREE/data"
+cp "$DIST/match.html" "$WORKTREE/match.html"
+cp "$JSON" "$WORKTREE/data/match.json"
+
+cd "$WORKTREE"
+git add -A match.html data/match.json
+if git diff --cached --quiet; then
+  echo "  nothing changed on disk"
+  exit 0
+fi
+git -c user.name='BEACN deploy' -c user.email='deploy@beacnpool' \
+    commit -qm "Match scoreboard $(date -u +%FT%TZ) ($REASON)"
+git fetch origin gh-pages --quiet
+# The hourly peer-map cron pushes to this branch too. Rebase, never force.
+git merge-base --is-ancestor origin/gh-pages HEAD || git rebase origin/gh-pages --quiet
+git push origin gh-pages --quiet
+echo "done -> https://beacnpool.github.io/ABCDE/match.html"

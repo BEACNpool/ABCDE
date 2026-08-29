@@ -22,7 +22,7 @@ WORKTREE="${GHPAGES_WORKTREE:-$REPO/.worktrees/gh-pages}"
 PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
 
 # Only these are ours. Everything else on gh-pages is left alone.
-OWNED_FILES=(index.html relays.html app.js style.css)
+OWNED_FILES=(index.html relays.html match.html app.js style.css)
 OWNED_DIRS=(data media og r)
 
 echo "1/5 rebuild the data layer"
