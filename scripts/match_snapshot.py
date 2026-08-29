@@ -79,6 +79,11 @@ AGENTS = [
         "address": ("addr1q9ts62lcunmynfcd8r8q55rf8mzdpc55vdqupezj7j2u7e69ujeu9gg"
                     "e3h9ffh8r95lsqfyzejra4sd43njhvsymsemsdergt3"),
         "stake_address": "stake1u9z7fv7z5yvcmj55mn3j60cqyjpvep76cx6ceetkgzdcvacqgqkle",
+        # Belt: discovery from tx outputs can miss a stake_addr field. This is
+        # the Minswap V2 order address (script + our stake) holding STOP/LIMIT.
+        "known_order_addresses": [
+            "addr1z8p79rpkcdz8x9d6tft0x0dx5mwuzac2sa4gm8cvkw5hcnz9ujeu9gge3h9ffh8r95lsqfyzejra4sd43njhvsymsemsppzjm5",
+        ],
     },
     {
         "id": "grokbot",
@@ -493,7 +498,8 @@ def main() -> int:
     say("2/5 resolving order addresses and reading books")
     order_map, books = {}, {}
     for agent in AGENTS:
-        oaddrs = order_addresses(agent, list(tx_by_hash.values()))
+        oaddrs = sorted(set(order_addresses(agent, list(tx_by_hash.values())))
+                        | set(agent.get("known_order_addresses") or []))
         order_map[agent["id"]] = oaddrs
         books[agent["id"]] = read_book(agent, oaddrs)
         b = books[agent["id"]]
