@@ -10,11 +10,12 @@
 # would delete all of them; that script is self-guarded and must stay that way.
 #
 # WHY IT DOES NOT PUSH EVERY RUN: gh-pages is a branch of a repo whose whole
-# pitch is "one clone away". A commit every quarter hour would add megabytes of
-# blobs a month to everyone's clone for nothing but a moving price. So it pushes
-# when the CHAIN changed -- a balance moved, a transaction landed -- or when the
-# published snapshot is older than MATCH_MAX_AGE, so the timestamp on the page
-# is never stale by more than that.
+# pitch is "one clone away". Cron polls every 5 min so a swap shows up on the
+# page in one block-plus-poll, but a commit on every poll would just be a
+# moving CoinGecko tick. It pushes when the CHAIN changed -- a balance moved,
+# a transaction landed -- or when the published snapshot is older than
+# MATCH_MAX_AGE (default 15 min), so the USD mark and the page timestamp stay
+# honest while people are watching. match.json is ~16 KB; git stores the delta.
 #
 #   ./web/publish_match.sh              refresh, publish if warranted
 #   ./web/publish_match.sh --force      publish regardless
@@ -33,8 +34,17 @@ JSON="$DIST/data/match.json"
 # copy here makes `publish_gh_pages.sh` fail with "gh-pages is already used by
 # worktree" -- a scheduled job must never be able to block the manual publisher.
 WORKTREE="${MATCH_WORKTREE:-$REPO/.worktrees/gh-pages-match}"
-MAX_AGE="${MATCH_MAX_AGE:-3600}"
+MAX_AGE="${MATCH_MAX_AGE:-900}"
+LOCK="${MATCH_LOCK:-$REPO/.worktrees/publish_match.lock}"
 PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
+
+# Cron is 5 min. A hung Koios call must not start a second git worktree reset.
+mkdir -p "$(dirname "$LOCK")"
+exec 9>"$LOCK"
+if ! /usr/bin/flock -n 9; then
+  echo "$(date -u +%FT%TZ) publish_match: previous run still holds the lock, skipping"
+  exit 0
+fi
 
 FORCE=0; DRY=0
 for arg in "$@"; do
