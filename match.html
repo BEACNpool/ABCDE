@@ -816,9 +816,11 @@ function renderCard() {
     {k: "Spent on fees", a: a.costs.total, b: b.costs.total, better: "low",
      f: (v, ag) => fmt(v, 4) +
         ` <small>${fmt(ag.costs.network, 2)} network + ${fmt(ag.costs.service, 2)} batcher</small>`},
-    {k: "Moves on chain", a: a.moves, b: b.moves, better: null,
-     f: (v, ag) => String(v) +
-        ` <small>${ag.costs.txs} it paid for</small>`},
+    // One number, no asterisk. "Transactions on chain" is a plain count of the
+    // transactions each agent's book appears in -- it claims nothing about who
+    // sent which, so it needs no qualifier hung off it.
+    {k: "Transactions on chain", a: a.moves, b: b.moves, better: null,
+     f: v => String(v)},
     {k: "Swaps filled", a: a.costs.swaps, b: b.costs.swaps, better: null,
      f: (v, ag) => String(v) + (ag.open_orders
         ? ` <small>+${ag.open_orders} order${ag.open_orders > 1 ? "s" : ""} open</small>`
