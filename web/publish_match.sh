@@ -29,6 +29,9 @@ DIST="$REPO/web/dist"
 JSON="$DIST/data/match.json"
 # Deliberately NOT the worktree web/publish_gh_pages.sh uses: that one does a
 # hard reset, and a cron colliding with a manual publish would discard work.
+# It is also DETACHED. Git lets only one worktree hold a branch, so an attached
+# copy here makes `publish_gh_pages.sh` fail with "gh-pages is already used by
+# worktree" -- a scheduled job must never be able to block the manual publisher.
 WORKTREE="${MATCH_WORKTREE:-$REPO/.worktrees/gh-pages-match}"
 MAX_AGE="${MATCH_MAX_AGE:-3600}"
 PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
@@ -54,10 +57,10 @@ echo "2/4 syntax-checking the page"
 "$PY" "$REPO/scripts/verify_web_pages.py" >/dev/null
 
 echo "3/4 syncing the worktree to origin/gh-pages"
+git -C "$REPO" fetch origin gh-pages --quiet
 if [[ ! -d "$WORKTREE" ]]; then
-  git -C "$REPO" worktree add "$WORKTREE" gh-pages --quiet
+  git -C "$REPO" worktree add --detach "$WORKTREE" origin/gh-pages --quiet
 fi
-git -C "$WORKTREE" fetch origin gh-pages --quiet
 git -C "$WORKTREE" reset --hard origin/gh-pages --quiet
 
 # Decide before copying, by comparing against what is actually published.
@@ -104,7 +107,8 @@ fi
 git -c user.name='BEACN deploy' -c user.email='deploy@beacnpool' \
     commit -qm "Match scoreboard $(date -u +%FT%TZ) ($REASON)"
 git fetch origin gh-pages --quiet
-# The hourly peer-map cron pushes to this branch too. Rebase, never force.
+# The hourly peer-map cron and the explorer publisher push here too. Rebase,
+# never force. Pushing HEAD explicitly because this worktree is detached.
 git merge-base --is-ancestor origin/gh-pages HEAD || git rebase origin/gh-pages --quiet
-git push origin gh-pages --quiet
+git push origin HEAD:gh-pages --quiet
 echo "done -> https://beacnpool.github.io/ABCDE/match.html"
