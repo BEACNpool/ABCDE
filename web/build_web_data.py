@@ -259,6 +259,14 @@ def main() -> None:
                        sum(delegators) AS delegators, sum(blocks_last_30_epochs) AS blocks
                 FROM relay_pool_health
                 WHERE minted_last_30_epochs AND registration_class = 'NO_REGISTERED_RELAY'""")[0],
+            "defects": rows("""
+                SELECT defect, max(why) AS why, count(*) AS entries,
+                       count(DISTINCT pool_bech32) AS pools
+                FROM relay_registration_defects GROUP BY defect ORDER BY entries DESC"""),
+            "defect_examples": rows("""
+                SELECT ticker, pool_bech32, stake_ada, endpoint_host, defect, blocks_all_time
+                FROM relay_registration_defects
+                ORDER BY stake_ada DESC NULLS LAST LIMIT 10"""),
             "history": rows("""
                 SELECT direction, count(*) AS certs,
                        count(DISTINCT pool_bech32) AS pools
