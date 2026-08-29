@@ -4,18 +4,26 @@
 # Built to be run from cron. It regenerates web/dist/data/match.json from chain
 # and pushes it, plus match.html, to gh-pages.
 #
-# It touches ONLY the two paths the scoreboard owns and pushes as a normal
+# It touches ONLY the three paths the scoreboard owns and pushes as a normal
 # fast-forward, so oligarCH/, byttg/, tipsy/, peers/ and the explorer are
 # untouched by construction. The orphan-tree force-push in web/deploy_gh_pages.sh
 # would delete all of them; that script is self-guarded and must stay that way.
 #
-# WHY IT DOES NOT PUSH EVERY RUN: gh-pages is a branch of a repo whose whole
+# WHY IT PUBLISHES WHEN IT DOES: gh-pages is a branch of a repo whose whole
 # pitch is "one clone away". Cron polls every 5 min so a swap shows up on the
-# page in one block-plus-poll, but a commit on every poll would just be a
-# moving CoinGecko tick. It pushes when the CHAIN changed -- a balance moved,
-# a transaction landed -- or when the published snapshot is older than
-# MATCH_MAX_AGE (default 15 min), so the USD mark and the page timestamp stay
-# honest while people are watching. match.json is ~16 KB; git stores the delta.
+# page in one block-plus-poll. It publishes when the CHAIN changed -- a balance
+# moved, a transaction landed -- when the lead chart gained a point, or when the
+# published snapshot is older than MATCH_MAX_AGE (default 15 min), so the USD
+# mark and the page timestamp stay honest while people are watching.
+# match.json is ~16 KB and the history ~50 bytes per point; git stores deltas.
+#
+# THE PUBLISHED HISTORY IS THE SOURCE OF TRUTH, not a local file. The worktree
+# is synced to origin/gh-pages FIRST, the published history is copied back into
+# dist, and the new point is appended to that. So the lead chart survives losing
+# this box entirely, and it is identical no matter which machine runs the job.
+# ⚠️ A point that is not published is LOST: the next run re-adopts the published
+# history and overwrites the local copy. That is deliberate (one source of
+# truth), but it means "record a point" and "publish" cannot be decoupled.
 #
 #   ./web/publish_match.sh              refresh, publish if warranted
 #   ./web/publish_match.sh --force      publish regardless
@@ -28,6 +36,7 @@ set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST="$REPO/web/dist"
 JSON="$DIST/data/match.json"
+HIST="$DIST/data/match_history.json"
 # Deliberately NOT the worktree web/publish_gh_pages.sh uses: that one does a
 # hard reset, and a cron colliding with a manual publish would discard work.
 # It is also DETACHED. Git lets only one worktree hold a branch, so an attached
@@ -60,24 +69,32 @@ if [[ "${MATCH_PUBLISH_DISABLED:-0}" == "1" ]]; then
   exit 0
 fi
 
-echo "$(date -u +%FT%TZ) 1/4 refreshing the snapshot from chain"
-"$PY" "$REPO/scripts/match_snapshot.py" --out "$JSON" --quiet
-
-echo "2/4 syntax-checking the page"
-"$PY" "$REPO/scripts/verify_web_pages.py" >/dev/null
-
-echo "3/4 syncing the worktree to origin/gh-pages"
+echo "$(date -u +%FT%TZ) 1/4 syncing the worktree to origin/gh-pages"
 git -C "$REPO" fetch origin gh-pages --quiet
 if [[ ! -d "$WORKTREE" ]]; then
   git -C "$REPO" worktree add --detach "$WORKTREE" origin/gh-pages --quiet
 fi
 git -C "$WORKTREE" reset --hard origin/gh-pages --quiet
 
-# Decide before copying, by comparing against what is actually published.
+# Adopt the PUBLISHED history before appending, so the chart is rebuilt from
+# what the world can see rather than from whatever this box happens to hold.
+mkdir -p "$DIST/data"
+if [[ -f "$WORKTREE/data/match_history.json" ]]; then
+  cp "$WORKTREE/data/match_history.json" "$HIST"
+fi
+
+echo "2/4 refreshing the snapshot from chain"
+"$PY" "$REPO/scripts/match_snapshot.py" --out "$JSON" --history "$HIST" \
+      ${MATCH_BACKFILL:+--backfill} --quiet
+
+echo "3/4 syntax-checking the page"
+"$PY" "$REPO/scripts/verify_web_pages.py" >/dev/null
+
 PUBLISHED="$WORKTREE/data/match.json"
-REASON="$("$PY" - "$JSON" "$PUBLISHED" "$MAX_AGE" <<'PYEOF'
+REASON="$("$PY" - "$JSON" "$PUBLISHED" "$MAX_AGE" "$HIST" "$WORKTREE/data/match_history.json" <<'PYEOF'
 import json, sys, time
-new_path, old_path, max_age = sys.argv[1], sys.argv[2], int(sys.argv[3])
+new_path, old_path, max_age, hist_new, hist_old = (
+    sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4], sys.argv[5])
 new = json.load(open(new_path))
 try:
     old = json.load(open(old_path))
@@ -85,6 +102,18 @@ except Exception:
     print("nothing published yet"); raise SystemExit
 if old.get("chain_fingerprint") != new.get("chain_fingerprint"):
     print("the chain moved"); raise SystemExit
+
+
+def n_points(path):
+    try:
+        return len(json.load(open(path)).get("points", []))
+    except Exception:
+        return 0
+
+
+gained = n_points(hist_new) - n_points(hist_old)
+if gained > 0:
+    print(f"{gained} new point(s) on the lead chart"); raise SystemExit
 age = time.time() - old.get("generated_at_unix", 0)
 if age > max_age:
     print(f"published snapshot is {int(age)}s old"); raise SystemExit
@@ -107,9 +136,10 @@ echo "4/4 publishing ($REASON)"
 mkdir -p "$WORKTREE/data"
 cp "$DIST/match.html" "$WORKTREE/match.html"
 cp "$JSON" "$WORKTREE/data/match.json"
+cp "$HIST" "$WORKTREE/data/match_history.json"
 
 cd "$WORKTREE"
-git add -A match.html data/match.json
+git add -A match.html data/match.json data/match_history.json
 if git diff --cached --quiet; then
   echo "  nothing changed on disk"
   exit 0

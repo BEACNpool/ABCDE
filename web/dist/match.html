@@ -139,6 +139,40 @@ html{background:var(--bg)}
 }
 .bar .track[data-tip]{cursor:default}
 
+/* lead chart */
+.chartwrap{position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px 18px 10px}
+.chartwrap svg{display:block;width:100%;height:auto}
+.ch-grid{stroke:var(--line);stroke-width:1}
+.ch-zero{stroke:var(--line2);stroke-width:1.5;stroke-dasharray:5 4}
+.ch-axis{fill:var(--muted2);font-size:11px;font-family:var(--mono)}
+.ch-side{fill:var(--muted);font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase}
+.ch-line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ch-split{stroke:var(--muted2);stroke-width:1;stroke-dasharray:3 4}
+.ch-dot{stroke:var(--bg);stroke-width:1.5}
+.ch-dot-r{fill:none;stroke-width:1.4}
+.ch-hit{fill:transparent;cursor:crosshair}
+.ch-cross{stroke:var(--muted2);stroke-width:1;pointer-events:none}
+.ch-now{font-family:var(--mono);font-weight:700;font-size:13px}
+.tip{position:absolute;pointer-events:none;background:#060d1c;border:1px solid var(--line2);
+  border-radius:9px;padding:9px 12px;font-size:12.5px;line-height:1.55;
+  box-shadow:0 10px 30px -12px #000;opacity:0;transition:opacity .12s;z-index:5;
+  min-width:180px}
+.tip.on{opacity:1}
+.tip .tt{font-family:var(--mono);color:var(--muted);font-size:11.5px;margin-bottom:5px}
+.tip .tr{display:flex;justify-content:space-between;gap:14px}
+.tip .tr i{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:6px}
+.tip .tr b{font-family:var(--mono)}
+.tip .tg{border-top:1px solid var(--line);margin-top:5px;padding-top:5px}
+.chartnote{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:12px;
+  font-size:12.5px;color:var(--muted)}
+.chartnote .key{display:inline-flex;align-items:center;gap:7px}
+.chartnote .key i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.chartnote .key i.hollow{border:1.5px solid var(--muted);border-radius:50%;background:none}
+.chartnote .key i.solid{border-radius:50%;background:var(--muted)}
+.empty{color:var(--muted);font-size:14px;padding:26px 0;text-align:center}
+
 /* tables */
 .tbl-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:12px}
 table.data{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
@@ -210,6 +244,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
     <nav>
       <a href="index.html">Explorer</a>
       <a href="#board">Scoreboard</a>
+      <a href="#lead">The lead</a>
       <a href="#books">The books</a>
       <a href="#costs">Costs</a>
       <a href="#log">Move log</a>
@@ -249,6 +284,27 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
         That is the contest the data actually supports. It is not a battle of trading
         genius, and this page will not pretend it is.</p>
     </div>
+  </div>
+</section>
+
+<section id="lead">
+  <div class="wrap">
+    <div class="eyebrow">The lead over time</div>
+    <h2 class="sec-h">Who has been ahead, and by how much</h2>
+    <p class="sec-lede">Every snapshot since the start was levelled, marked on the chart. Above
+      the line BEACN is ahead; below it grokbot is. The zero line is a dead heat — and because
+      both books are so close, this whole chart lives inside a few ADA.</p>
+    <div class="filters" id="chartrange">
+      <button data-r="all" aria-pressed="true">Whole match</button>
+      <button data-r="21600" aria-pressed="false">Last 6 h</button>
+      <button data-r="3600" aria-pressed="false">Last hour</button>
+    </div>
+    <div class="chartwrap" id="chartwrap">
+      <div id="leadchart"></div>
+      <div class="tip" id="charttip"></div>
+    </div>
+    <div class="chartnote" id="chartnote"></div>
+    <div class="tbl-wrap"><table class="data" id="leadtable"></table></div>
   </div>
 </section>
 
@@ -470,7 +526,12 @@ function renderBooks() {
       ["USDM held", fmt(ag.usdm, 6) + " USDM"],
     ];
     if (price) rows.push(["USDM marked to ADA", fmt(ag.usdm_in_ada, 6) + " ADA"]);
-    if (ag.open_orders) rows.push(["In an unfilled DEX order", fmt(ag.in_flight_ada, 6) + " ADA"]);
+    if (ag.open_orders) {
+      const bits = [fmt(ag.in_flight_ada, 6) + " ADA"];
+      if (ag.in_flight_usdm > 1e-9) bits.push(fmt(ag.in_flight_usdm, 6) + " USDM");
+      rows.push([`In ${ag.open_orders} unfilled DEX order${ag.open_orders > 1 ? "s" : ""}`,
+                 bits.join(" + ")]);
+    }
     const hedge = ag.hedge_pct;
     return `<div class="book agent-${esc(ag.id)}">
       <h3><span class="sw"></span>${esc(ag.name)}</h3>
@@ -570,6 +631,187 @@ function renderCosts() {
   $("#costnote").innerHTML = note + "</div>";
 }
 
+/* ---- lead chart -----------------------------------------------------------
+   The gap over time, drawn to a zero baseline: the question is polarity plus
+   change, so the mark is a line with the area under it filled toward whoever
+   is ahead. It reuses the page's fixed agent identity colors rather than an
+   abstract diverging ramp -- on this page cyan already means BEACN everywhere,
+   and consistency of identity beats a textbook ramp.
+
+   Rendered at 1:1 CSS pixels and redrawn on resize, so labels stay legible
+   instead of being scaled by a viewBox.
+--------------------------------------------------------------------------- */
+let HIST = null;
+let RANGE = "all";
+
+function histPoints() {
+  if (!HIST || !HIST.points.length) return [];
+  const pts = HIST.points;
+  if (RANGE === "all") return pts;
+  const cut = pts[pts.length - 1][0] - Number(RANGE);
+  const win = pts.filter(p => p[0] >= cut);
+  return win.length >= 2 ? win : pts.slice(-2);
+}
+
+function hhmm(t, withDate) {
+  const d = new Date(t * 1000);
+  const hm = String(d.getUTCHours()).padStart(2, "0") + ":" +
+             String(d.getUTCMinutes()).padStart(2, "0");
+  if (!withDate) return hm;
+  const M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getUTCMonth()];
+  return `${d.getUTCDate()} ${M} ${hm}`;
+}
+
+function renderChart() {
+  const host = $("#leadchart");
+  if (!host) return;
+  const pts = histPoints();
+  if (pts.length < 2) {
+    host.innerHTML = `<p class="empty">${HIST
+      ? "Only one snapshot so far — the chart appears once there are two."
+      : "The lead history could not be loaded."}</p>`;
+    return;
+  }
+  const W = Math.max(320, host.clientWidth || 900);
+  const H = Math.max(240, Math.min(360, Math.round(W * 0.40)));
+  const L = 58, R = 16, T = 22, B = 52;
+  const iw = W - L - R, ih = H - T - B;
+
+  const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
+  const gaps = pts.map(p => p[1] - p[2]);
+  let lo = Math.min(0, ...gaps), hi = Math.max(0, ...gaps);
+  const pad = Math.max((hi - lo) * 0.12, 0.05);
+  lo -= pad; hi += pad;
+  const X = t => L + (t1 === t0 ? iw / 2 : (t - t0) / (t1 - t0) * iw);
+  const Y = v => T + (hi - v) / (hi - lo) * ih;
+  const y0 = Y(0);
+
+  // y ticks: a small number of round-ish steps that always include zero
+  const step = (hi - lo) / 4;
+  const mag = Math.pow(10, Math.floor(Math.log10(step)));
+  const nice = [1, 2, 2.5, 5, 10].map(m => m * mag).find(v => v >= step) || step;
+  const yt = [];
+  for (let v = Math.ceil(lo / nice) * nice; v <= hi; v += nice) yt.push(v);
+  if (!yt.some(v => Math.abs(v) < 1e-9)) yt.push(0);
+
+  const line = pts.map((p, i) => `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1] - p[2]).toFixed(1)}`).join("");
+  // Area to the zero baseline, clipped into an "above" half and a "below" half
+  // so each side wears the color of whoever is ahead there.
+  const area = `${line}L${X(t1).toFixed(1)},${y0.toFixed(1)}L${X(t0).toFixed(1)},${y0.toFixed(1)}Z`;
+
+  const xt = [];
+  const multiDay = new Date(t0 * 1000).getUTCDate() !== new Date(t1 * 1000).getUTCDate();
+  const nx = Math.max(2, Math.min(multiDay ? 4 : 6, Math.floor(iw / (multiDay ? 150 : 110))));
+  for (let i = 0; i <= nx; i++) xt.push(Math.round(t0 + (t1 - t0) * i / nx));
+
+  // where reconstruction ends and live polling begins
+  const firstPoll = pts.findIndex(p => p[4] === "p");
+  const splitX = firstPoll > 0 ? X(pts[firstPoll][0]) : null;
+
+  const dots = pts.length <= 200 ? pts.map(p => {
+    const g = p[1] - p[2], recon = p[4] !== "p";
+    const c = g >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)";
+    return recon
+      ? `<circle class="ch-dot-r" cx="${X(p[0]).toFixed(1)}" cy="${Y(g).toFixed(1)}"
+           r="2.7" stroke="${c}"/>`
+      : `<circle class="ch-dot" cx="${X(p[0]).toFixed(1)}" cy="${Y(g).toFixed(1)}"
+           r="3.8" fill="${c}"/>`;
+  }).join("") : "";
+
+  const last = pts[pts.length - 1], lastGap = last[1] - last[2];
+  const lastC = lastGap >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)";
+  const endLabel = `<circle cx="${X(last[0]).toFixed(1)}" cy="${Y(lastGap).toFixed(1)}"
+      r="5" fill="${lastC}" stroke="var(--bg)" stroke-width="2"/>`;
+
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"
+      role="img" aria-label="Lead in ADA-equivalent over time. Above the line BEACN is ahead, below it grokbot is.">
+    <defs>
+      <clipPath id="clipUp"><rect x="${L}" y="${T}" width="${iw}" height="${Math.max(0, y0 - T)}"/></clipPath>
+      <clipPath id="clipDn"><rect x="${L}" y="${y0}" width="${iw}" height="${Math.max(0, T + ih - y0)}"/></clipPath>
+    </defs>
+    ${yt.map(v => `<line class="ch-grid" x1="${L}" x2="${L + iw}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}"/>`).join("")}
+    <path d="${area}" fill="var(--beacn-mark)" opacity=".16" clip-path="url(#clipUp)"/>
+    <path d="${area}" fill="var(--grok-mark)" opacity=".13" clip-path="url(#clipDn)"/>
+    <line class="ch-zero" x1="${L}" x2="${L + iw}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
+    ${splitX !== null ? `<line class="ch-split" x1="${splitX.toFixed(1)}" x2="${splitX.toFixed(1)}"
+        y1="${T}" y2="${T + ih}"/>` : ""}
+    <path class="ch-line" d="${line}" stroke="var(--beacn-mark)" clip-path="url(#clipUp)"/>
+    <path class="ch-line" d="${line}" stroke="var(--grok-mark)" clip-path="url(#clipDn)"/>
+    ${dots}
+    ${endLabel}
+    ${yt.map(v => `<text class="ch-axis" x="${L - 8}" y="${(Y(v) + 3.5).toFixed(1)}"
+        text-anchor="end">${v > 0 ? "+" : ""}${v.toFixed(Math.abs(nice) < 1 ? 2 : 1)}</text>`).join("")}
+    ${xt.map(t => `<text class="ch-axis" x="${X(t).toFixed(1)}" y="${T + ih + 18}"
+        text-anchor="middle">${hhmm(t, multiDay)}</text>`).join("")}
+    <text class="ch-side" x="${L}" y="${T - 4}" fill="var(--beacn-mark)">BEACN ahead ↑</text>
+    <text class="ch-side" x="${L + iw}" y="${T + ih + 36}" text-anchor="end"
+        fill="var(--grok-mark)">grokbot ahead ↓</text>
+    <line class="ch-cross" id="ch-cross" x1="0" x2="0" y1="${T}" y2="${T + ih}" style="opacity:0"/>
+    <rect class="ch-hit" id="ch-hit" x="${L}" y="${T}" width="${iw}" height="${ih}"/>
+  </svg>`;
+
+  const svg = host.querySelector("svg");
+  const tip = $("#charttip"), cross = svg.querySelector("#ch-cross");
+  const wrap = $("#chartwrap");
+  const nearest = clientX => {
+    const box = svg.getBoundingClientRect();
+    const px = (clientX - box.left) * (W / box.width);
+    let best = 0, bd = Infinity;
+    pts.forEach((p, i) => { const d = Math.abs(X(p[0]) - px); if (d < bd) { bd = d; best = i; } });
+    return best;
+  };
+  const show = e => {
+    const i = nearest(e.clientX ?? (e.touches && e.touches[0].clientX));
+    const p = pts[i], g = p[1] - p[2];
+    const box = svg.getBoundingClientRect(), scale = box.width / W;
+    cross.setAttribute("x1", X(p[0])); cross.setAttribute("x2", X(p[0]));
+    cross.style.opacity = ".7";
+    tip.innerHTML =
+      `<div class="tt">${esc(whenUTC(p[0]))}${p[4] === "p" ? "" : " · reconstructed"}</div>` +
+      `<div class="tr"><span><i style="background:var(--beacn-mark)"></i>BEACN</span>
+        <b>${fmt(p[1], 4)}</b></div>` +
+      `<div class="tr"><span><i style="background:var(--grok-mark)"></i>grokbot</span>
+        <b>${fmt(p[2], 4)}</b></div>` +
+      `<div class="tr tg"><span>${g >= 0 ? "BEACN" : "grokbot"} ahead by</span>
+        <b style="color:${g >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)"}">${fmt(Math.abs(g), 4)}</b></div>` +
+      `<div class="tr"><span>ADA marked at</span><b>${px(p[3])}</b></div>`;
+    tip.classList.add("on");
+    const tw = tip.offsetWidth, wl = wrap.getBoundingClientRect();
+    let left = box.left - wl.left + X(p[0]) * scale + 14;
+    if (left + tw > wl.width - 8) left = box.left - wl.left + X(p[0]) * scale - tw - 14;
+    tip.style.left = Math.max(8, left) + "px";
+    tip.style.top = Math.max(8, box.top - wl.top + Y(g) * scale - 30) + "px";
+  };
+  const hide = () => { tip.classList.remove("on"); cross.style.opacity = 0; };
+  const hit = svg.querySelector("#ch-hit");
+  hit.addEventListener("mousemove", show);
+  hit.addEventListener("mouseleave", hide);
+  hit.addEventListener("touchstart", show, {passive: true});
+  hit.addEventListener("touchmove", show, {passive: true});
+  hit.addEventListener("touchend", hide);
+
+  const nPoll = HIST.points.filter(p => p[4] === "p").length;
+  const nRec = HIST.points.length - nPoll;
+  $("#chartnote").innerHTML =
+    `<span class="key"><i class="solid"></i>${nPoll} live snapshot${nPoll === 1 ? "" : "s"}</span>` +
+    (nRec ? `<span class="key"><i class="hollow"></i>${nRec} reconstructed before polling began —
+       exact books from chain, marked at that moment's independent ADA price</span>` : "") +
+    `<span>Showing ${pts.length} of ${HIST.points.length} points.</span>`;
+
+  const rows = pts.slice(-12).reverse();
+  $("#leadtable").innerHTML =
+    `<thead><tr><th>Time (UTC)</th><th>BEACN</th><th>grokbot</th><th>Lead</th>
+      <th>Ahead</th><th>ADA</th><th>Source</th></tr></thead><tbody>` +
+    rows.map(p => {
+      const g = p[1] - p[2];
+      return `<tr><td>${esc(whenUTC(p[0]))}</td><td class="n">${fmt(p[1], 4)}</td>
+        <td class="n">${fmt(p[2], 4)}</td><td class="n">${fmt(Math.abs(g), 4)}</td>
+        <td>${g >= 0 ? "BEACN" : "grokbot"}</td><td class="n">${px(p[3])}</td>
+        <td>${p[4] === "p" ? "polled" : "reconstructed"}</td></tr>`;
+    }).join("") + "</tbody>";
+}
+
 /* ---- move log ---- */
 function renderLog() {
   const moves = DATA.moves.filter(m =>
@@ -626,10 +868,26 @@ function renderMethod() {
     ` · built by ${DATA.source.script}`;
 }
 
-function boot(d) {
+function boot(d, hist) {
   DATA = d;
-  renderFresh(); renderBoard(); renderBooks(); renderCosts(); renderLog(); renderMethod();
+  HIST = hist;
+  renderFresh(); renderBoard(); renderChart(); renderBooks();
+  renderCosts(); renderLog(); renderMethod();
   setInterval(renderFresh, 30000);
+  $("#chartrange").addEventListener("click", e => {
+    const btn = e.target.closest("button[data-r]");
+    if (!btn) return;
+    RANGE = btn.dataset.r;
+    [...$("#chartrange").querySelectorAll("button")].forEach(b =>
+      b.setAttribute("aria-pressed", String(b === btn)));
+    renderChart();
+  });
+  // The chart is drawn at real pixel sizes, so it has to be redrawn when the
+  // box changes rather than scaled by a viewBox.
+  let t;
+  const redraw = () => { clearTimeout(t); t = setTimeout(renderChart, 120); };
+  if (window.ResizeObserver) new ResizeObserver(redraw).observe($("#leadchart"));
+  else window.addEventListener("resize", redraw);
   $("#filters").addEventListener("click", e => {
     const btn = e.target.closest("button[data-f]");
     if (!btn) return;
@@ -640,9 +898,13 @@ function boot(d) {
   });
 }
 
-fetch("data/match.json", {cache: "no-store"})
-  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-  .then(boot)
+const getJSON = u => fetch(u, {cache: "no-store"})
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); });
+
+Promise.all([
+  getJSON("data/match.json"),
+  getJSON("data/match_history.json").catch(() => null),
+]).then(([d, h]) => boot(d, h))
   .catch(err => {
     $("#boarderr").innerHTML = `<div class="err"><b>The snapshot could not be loaded.</b>
       <p class="muted" style="margin:8px 0 0">${esc(err.message)}. This page renders a

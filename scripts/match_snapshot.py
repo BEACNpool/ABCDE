@@ -53,10 +53,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "web" / "dist" / "data" / "match.json"
+DEFAULT_HISTORY = ROOT / "web" / "dist" / "data" / "match_history.json"
 
 KOIOS = "https://api.koios.rest/api/v1"
 COINGECKO = ("https://api.coingecko.com/api/v3/simple/price"
              "?ids=cardano&vs_currencies=usd")
+# 5-minute ADA/USD samples for the last 24h. Used only to BACKFILL the lead
+# history before live polling started -- an independent market feed, never a
+# rate implied by either agent's own trades.
+COINGECKO_CHART = ("https://api.coingecko.com/api/v3/coins/cardano/market_chart"
+                   "?vs_currency=usd&days=1")
 
 # Moneta USDM. Trap 3: the name is ambiguous, the policy is not.
 USDM_POLICY = "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad"
@@ -290,11 +296,17 @@ def describe(tx, agent, other, order_addrs, d_ada, d_usdm, paid_fee, fee):
 
     if abs(d_usdm) > 1e-9 or to_order or from_order:
         if to_order and abs(d_usdm) < 1e-9:
-            parked = sum(lovelace(o["value"]) for o in (tx.get("outputs") or [])
-                         if o["payment_addr"]["bech32"] in order_addrs)
+            outs = [o for o in (tx.get("outputs") or [])
+                    if o["payment_addr"]["bech32"] in order_addrs]
+            parked_ada = sum(lovelace(o["value"]) for o in outs)
+            parked_usdm = sum(usdm_of(o) for o in outs)
+            what = f"{parked_ada:.6f} ADA"
+            if parked_usdm > 1e-9:
+                what += f" and {parked_usdm:.6f} USDM"
+            clips = (f" Split across {len(outs)} orders." if len(outs) > 1 else "")
             return ("order", "Placed a DEX swap order",
-                    f"Parked {parked:.6f} ADA at a Minswap order address built from "
-                    f"its own stake key, to be filled by a batcher. Not a trade yet "
+                    f"Parked {what} at a Minswap order address built from its own "
+                    f"stake key, to be filled by a batcher.{clips} Not a trade yet "
                     f"— the funds are still the agent's until the fill, and this "
                     f"scoreboard still counts them. Network fee {fee:.6f} ADA.")
         direction = "ADA into USDM" if d_usdm > 0 else "USDM into ADA"
@@ -466,9 +478,121 @@ def t0_state(agents, moves):
 
 
 # --------------------------------------------------------------------------
+# lead history
+# --------------------------------------------------------------------------
+HISTORY_FIELDS = ["t", "beacn", "grokbot", "usd_per_ada", "src"]
+
+
+def load_history(path: Path) -> dict:
+    try:
+        h = json.loads(path.read_text())
+        if h.get("fields") == HISTORY_FIELDS and isinstance(h.get("points"), list):
+            return h
+    except Exception:  # noqa: BLE001 - a missing or unreadable file just starts one
+        pass
+    return {"fields": HISTORY_FIELDS, "points": []}
+
+
+def merge_points(history: dict, new_points: list, tolerance: int = 60) -> int:
+    """Insert points, keeping the file sorted and never duplicating a moment.
+
+    An existing point always wins over a new one at the same time: a live poll
+    is a measurement, a backfilled point is a reconstruction, and a later
+    backfill must not overwrite what was actually observed.
+    """
+    seen = {int(p[0]) for p in history["points"]}
+    added = 0
+    for pt in new_points:
+        t = int(pt[0])
+        if any(abs(t - s) <= tolerance for s in seen):
+            continue
+        history["points"].append([t, round(pt[1], 6), round(pt[2], 6),
+                                  round(pt[3], 8), pt[4]])
+        seen.add(t)
+        added += 1
+    history["points"].sort(key=lambda p: p[0])
+    return added
+
+
+def running_books(moves: list) -> dict:
+    """Each agent's book after every move, as (time, ada_incl_deposit, usdm).
+
+    ada_delta already treats a DEX order address as the agent's own, and the
+    stake registration contributes -2.174433 ADA with a +2 deposit, so summing
+    delta + deposit conserves the book across both.
+    """
+    out: dict[str, list] = {}
+    for m in moves:
+        cur = out.setdefault(m["agent"], [(0, 0.0, 0.0)])
+        _, ada, usdm = cur[-1]
+        cur.append((m["time"], ada + m["ada_delta"] + m["deposit"],
+                    usdm + m["usdm_delta"]))
+    return out
+
+
+def book_at(series: list, t: int):
+    ada = usdm = 0.0
+    for ts, a, u in series:
+        if ts > t:
+            break
+        ada, usdm = a, u
+    return ada, usdm
+
+
+def price_series() -> list:
+    """[(unix_seconds, usd_per_ada)] from CoinGecko, oldest first, or []."""
+    out = _curl([COINGECKO_CHART], timeout=25)
+    try:
+        rows = json.loads(out)["prices"]
+    except Exception:  # noqa: BLE001
+        return []
+    return [(int(ms // 1000), float(px)) for ms, px in rows if px > 0]
+
+
+def backfill(moves: list, history: dict) -> tuple[int, str]:
+    """Reconstruct the lead at every historical price sample since the levelling.
+
+    The books are exact at any timestamp -- they come from the chain. The mark
+    is a real, independent market price at that timestamp. Points are labelled
+    "b" so the page can show that they were reconstructed, not observed.
+
+    It starts at the levelling transaction because before it the two books were
+    still being set up: the setup swing dwarfs the match and would flatten it.
+    """
+    prices = price_series()
+    if not prices:
+        return 0, "price history unavailable"
+    start = next((m["time"] for m in moves if m["tx_hash"] == LEVEL_TX), None)
+    if start is None:
+        return 0, "levelling transaction not in the move log"
+    series = running_books(moves)
+    pts = []
+    # Stop short of now: the live poll point is added a moment later, and a
+    # reconstruction landing seconds away from a real measurement would show as
+    # two points at the same instant.
+    cutoff = time.time() - 120
+    for t, usd in prices:
+        if t < start or t > cutoff or usd <= 0:
+            continue
+        rate = 1.0 / usd
+        a_ada, a_usdm = book_at(series.get("beacn", []), t)
+        b_ada, b_usdm = book_at(series.get("grokbot", []), t)
+        pts.append([t, a_ada + a_usdm * rate, b_ada + b_usdm * rate, usd, "b"])
+    added = merge_points(history, pts)
+    return added, f"{len(prices)} price samples, {added} new points"
+
+
+# --------------------------------------------------------------------------
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", default=str(DEFAULT_OUT))
+    ap.add_argument("--history", default=str(DEFAULT_HISTORY),
+                    help="lead-history file to append this poll to")
+    ap.add_argument("--no-history", action="store_true",
+                    help="compute the snapshot without recording a history point")
+    ap.add_argument("--backfill", action="store_true",
+                    help="also reconstruct history back to the levelling tx "
+                         "from chain plus an independent price series")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args()
 
@@ -538,6 +662,7 @@ def main() -> int:
             "rewards": round(b["rewards"], 6),
             "rewards_lifetime": round(b["rewards_lifetime"], 6),
             "in_flight_ada": round(b["in_flight_ada"], 6),
+            "in_flight_usdm": round(b["in_flight_usdm"], 6),
             "open_orders": b["open_orders"],
             "ada_total": round(ada_total, 6),
             "costs": c,
@@ -645,6 +770,36 @@ def main() -> int:
             "script": "scripts/match_snapshot.py",
         },
     }
+
+    # ---- lead history -------------------------------------------------
+    hist_note = None
+    if not args.no_history:
+        hpath = Path(args.history)
+        history = load_history(hpath)
+        if args.backfill:
+            n, why = backfill(moves, history)
+            say(f"    backfill: {why}")
+        if price["available"]:
+            # Same instant the snapshot is stamped with, so the chart's last
+            # point and the headline can never disagree about "now".
+            merge_points(history, [[payload["generated_at_unix"],
+                                    out_agents[0]["score_ada_eq"],
+                                    out_agents[1]["score_ada_eq"],
+                                    price["usd_per_ada"], "p"]], tolerance=0)
+        hpath.parent.mkdir(parents=True, exist_ok=True)
+        hpath.write_text(json.dumps(history, separators=(",", ":")) + "\n")
+        pts = history["points"]
+        hist_note = {
+            "points": len(pts),
+            "first": pts[0][0] if pts else None,
+            "last": pts[-1][0] if pts else None,
+            "polled": sum(1 for x in pts if x[4] == "p"),
+            "reconstructed": sum(1 for x in pts if x[4] == "b"),
+            "file": hpath.name,
+        }
+        say(f"    history: {len(pts)} points "
+            f"({hist_note['polled']} polled, {hist_note['reconstructed']} reconstructed)")
+    payload["history"] = hist_note
 
     bad = [c for c in checks if not c["agree"]]
     if bad:
