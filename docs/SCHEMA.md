@@ -1646,7 +1646,7 @@ Source: `data/small/pool_operator_kes_members.csv`
 | `ticker_name` | VARCHAR |
 | `stake_ada` | DOUBLE |
 
-## `relay_asn_concentration`  (242 rows)
+## `relay_asn_concentration`  (245 rows)
 
 Source: `data/small/relay_asn_concentration.csv`
 
@@ -1662,7 +1662,7 @@ Source: `data/small/relay_asn_concentration.csv`
 | `stake_single_asn` | BIGINT |
 | `delegators_single_asn` | BIGINT |
 
-## `relay_endpoint_status`  (4,593 rows)
+## `relay_endpoint_status`  (4,586 rows)
 
 Source: `data/small/relay_endpoint_status.csv`
 
@@ -1701,7 +1701,7 @@ Source: `data/small/relay_foreign_infrastructure.csv`
 | `endpoints_registered` | BIGINT |
 | `endpoints_foreign` | BIGINT |
 
-## `relay_pool_endpoints`  (6,251 rows)
+## `relay_pool_endpoints`  (6,223 rows)
 
 Source: `data/small/relay_pool_endpoints.csv`
 
@@ -1737,8 +1737,6 @@ Source: `data/small/relay_pool_health.csv`
 | `relay_entries` | BIGINT |
 | `distinct_endpoints` | BIGINT |
 | `registration_class` | VARCHAR |
-| `endpoints_foreign_infra` | BIGINT |
-| `registers_foreign_infrastructure` | BOOLEAN |
 | `relay_additions` | BIGINT |
 | `relay_reductions` | BIGINT |
 | `ever_removed_all_relays` | BOOLEAN |
@@ -1752,7 +1750,7 @@ Source: `data/small/relay_pool_health.csv`
 | `reachability_class` | VARCHAR |
 | `last_checked` | TIMESTAMP WITH TIME ZONE |
 
-## `relay_registration_changes`  (4,186 rows)
+## `relay_registration_changes`  (4,190 rows)
 
 Source: `data/small/relay_registration_changes.csv`
 
@@ -1798,7 +1796,7 @@ Source: `data/small/relay_shared_domains.csv`
 | `delegators` | BIGINT |
 | `tickers` | VARCHAR |
 
-## `relay_shared_endpoints`  (300 rows)
+## `relay_shared_endpoints`  (301 rows)
 
 Source: `data/small/relay_shared_endpoints.csv`
 
@@ -1821,9 +1819,9 @@ Source: `data/small/relay_shared_hosts.csv`
 | `resolved_ip` | VARCHAR |
 | `target_port` | BIGINT |
 | `pools` | BIGINT |
-| `distinct_registered_names` | BIGINT |
 | `stake_ada` | BIGINT |
 | `delegators` | BIGINT |
+| `distinct_registered_names` | BIGINT |
 | `tickers` | VARCHAR |
 | `pool_bech32s` | VARCHAR |
 
