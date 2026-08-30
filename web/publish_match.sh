@@ -48,11 +48,90 @@ LOCK="${MATCH_LOCK:-$REPO/.worktrees/publish_match.lock}"
 PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
 
 # Cron is 5 min. A hung Koios call must not start a second git worktree reset.
+# The lock is for overlapping RUNS, not a parking brake. Disable with
+# MATCH_PUBLISH_DISABLED=1. A dummy `flock … read _` held this overnight on
+# 2026-08-30 and the public page went stale for 8 hours.
+LOCK_STALE_SEC="${MATCH_LOCK_STALE_SEC:-600}"
+PUBLISH_TIMEOUT="${MATCH_PUBLISH_TIMEOUT:-240}"
+
+lock_holders() {
+  local p
+  for p in $(/usr/bin/fuser "$LOCK" 2>/dev/null); do
+    [[ "$p" == "$$" ]] && continue
+    printf '%s\n' "$p"
+  done
+}
+
+holder_cmd() {
+  local f="/proc/$1/cmdline"
+  [[ -r "$f" ]] || { printf ''; return 0; }
+  tr '\0' ' ' < "$f" 2>/dev/null || true
+}
+
+holder_age() {
+  local n
+  n=$(ps -o etimes= -p "$1" 2>/dev/null | tr -d ' ')
+  printf '%s' "${n:-0}"
+}
+
+# A live publish is this script, still younger than LOCK_STALE_SEC.
+# Anything else holding the file (a parked `flock … read _`, a leftover
+# watchdog sleep that inherited fd 9) is stale and gets stolen.
+holder_is_live_publish() {
+  local cmd age
+  cmd=$(holder_cmd "$1")
+  age=$(holder_age "$1")
+  [[ "$cmd" == *publish_match.sh* && "$age" -lt "$LOCK_STALE_SEC" ]]
+}
+
 mkdir -p "$(dirname "$LOCK")"
 exec 9>"$LOCK"
 if ! /usr/bin/flock -n 9; then
-  echo "$(date -u +%FT%TZ) publish_match: previous run still holds the lock, skipping"
-  exit 0
+  stale=()
+  live=0
+  while read -r p; do
+    [[ -z "$p" ]] && continue
+    echo "$(date -u +%FT%TZ) publish_match: lock held by pid $p age=$(holder_age "$p")s cmd=$(holder_cmd "$p")"
+    if holder_is_live_publish "$p"; then
+      live=1
+    else
+      stale+=("$p")
+    fi
+  done < <(lock_holders)
+  if [[ "$live" -eq 1 ]]; then
+    echo "$(date -u +%FT%TZ) publish_match: previous run still holds the lock, skipping"
+    exit 0
+  fi
+  if [[ ${#stale[@]} -eq 0 ]]; then
+    echo "$(date -u +%FT%TZ) publish_match: previous run still holds the lock, skipping"
+    exit 0
+  fi
+  echo "$(date -u +%FT%TZ) publish_match: stealing stale lock from ${stale[*]}"
+  kill -TERM "${stale[@]}" 2>/dev/null || true
+  sleep 1
+  kill -KILL "${stale[@]}" 2>/dev/null || true
+  if ! /usr/bin/flock -n 9; then
+    echo "$(date -u +%FT%TZ) publish_match: lock still held after steal, skipping"
+    exit 0
+  fi
+fi
+
+# A publish that has not finished in PUBLISH_TIMEOUT seconds is stuck. TERM
+# this process so the flock fd closes and the next cron can run. The kill
+# switch remains MATCH_PUBLISH_DISABLED=1, not parking the lock.
+# setsid: a background sleep in this process group would hold cron/ssh open
+# until the timer fired (measured 2026-08-30: a finished publish sat 4 min).
+watchdog_pid=""
+if [[ -z "${MATCH_PUBLISH_WATCHED:-}" ]]; then
+  parent=$$
+  # Close inherited lock fd 9. A watchdog that keeps it open holds the
+  # flock after this script exits, and cron then skips until the timer dies.
+  watchdog_pid=$(setsid /bin/sh -c '
+    exec 9<&- 9>&-
+    sleep "$1"
+    kill -TERM '"$parent"' 2>/dev/null || true
+  ' sh "$PUBLISH_TIMEOUT" </dev/null >/dev/null 2>&1 & echo $!)
+  trap 'if [[ -n "$watchdog_pid" ]]; then kill -TERM -"$watchdog_pid" 2>/dev/null || kill -TERM "$watchdog_pid" 2>/dev/null || true; fi' EXIT
 fi
 
 FORCE=0; DRY=0
