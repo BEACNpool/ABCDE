@@ -237,13 +237,23 @@ html{background:var(--bg)}
 .ch-axis{fill:var(--muted2);font-size:11px;font-family:var(--mono)}
 .ch-side{fill:var(--muted);font-size:11px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase}
-.ch-line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ch-line{fill:none;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+.ch-line.beacn{stroke:var(--beacn-mark)}
+.ch-line.grok{stroke:var(--grok-mark)}
+.ch-band-beacn{fill:var(--beacn-mark);opacity:.16}
+.ch-band-grok{fill:var(--grok-mark);opacity:.14}
 .ch-split{stroke:var(--muted2);stroke-width:1;stroke-dasharray:3 4}
+.ch-start{stroke:var(--muted2);stroke-width:1.2;stroke-dasharray:5 4}
 .ch-dot{stroke:var(--bg);stroke-width:1.5}
 .ch-dot-r{fill:none;stroke-width:1.4}
+.ch-trade{fill:var(--panel);stroke-width:1.7}
+.ch-end{font-size:11px;font-weight:800;font-family:var(--mono)}
 .ch-hit{fill:transparent;cursor:crosshair}
 .ch-cross{stroke:var(--muted2);stroke-width:1;pointer-events:none}
+.ch-hover{stroke:var(--bg);stroke-width:2;pointer-events:none}
 .ch-now{font-family:var(--mono);font-weight:700;font-size:13px}
+.chartnote .key i.line{width:16px;height:0;border-radius:0;border-top:2.4px solid currentColor;background:none}
+.chartnote .key i.dia{width:8px;height:8px;border:1.6px solid var(--muted);background:none;border-radius:0;transform:rotate(45deg)}
 .tip{position:absolute;pointer-events:none;background:#060d1c;border:1px solid var(--line2);
   border-radius:9px;padding:9px 12px;font-size:12.5px;line-height:1.55;
   box-shadow:0 10px 30px -12px #000;opacity:0;transition:opacity .12s;z-index:5;
@@ -256,7 +266,7 @@ html{background:var(--bg)}
 .tip .tg{border-top:1px solid var(--line);margin-top:5px;padding-top:5px}
 .chartnote{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:12px;
   font-size:12.5px;color:var(--muted)}
-.chartnote .key{display:inline-flex;align-items:center;gap:7px}
+.chartnote .key{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
 .chartnote .key i{width:11px;height:11px;border-radius:3px;display:inline-block}
 .chartnote .key i.hollow{border:1.5px solid var(--muted);border-radius:50%;background:none}
 .chartnote .key i.solid{border-radius:50%;background:var(--muted)}
@@ -272,6 +282,11 @@ table.data thead th{background:#0a1526;color:var(--muted);font-weight:700;font-s
 table.data tbody tr:last-child td{border-bottom:none}
 table.data td.n{font-family:var(--mono)}
 table.data tr.total td{font-weight:700;background:rgba(255,255,255,.02)}
+@media(max-width:620px){
+  table.data{min-width:0}
+  table.data th:nth-child(n+4),
+  table.data td:nth-child(n+4){display:none}
+}
 
 /* move log */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
@@ -577,10 +592,11 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 
 <section id="lead">
   <div class="wrap">
-    <div class="eyebrow">Lead tracker</div>
+    <div class="eyebrow">The race</div>
     <h2 class="sec-h">Who owned the board—and when.</h2>
-    <p class="sec-lede">Every snapshot since the equalized start. Above zero BEACNbot leads;
-      below it grokbot does. Every dot is a real mark, not a smoothed story.</p>
+    <p class="sec-lede">Each bot is its own line. Overlay them and the one on top is
+      winning; a line climbing toward the other is catching up. Diamonds are trades.
+      Everything else is the mark moving.</p>
     <div class="filters" id="chartrange">
       <button data-r="all" aria-pressed="true">Whole match</button>
       <button data-r="21600" aria-pressed="false">Last 6 h</button>
@@ -1011,44 +1027,83 @@ function leadStats() {
   return {changes, best, from: pts[0][0], to: pts[pts.length - 1][0], n: pts.length};
 }
 
+const TRADE_KINDS = new Set(["swap", "fill", "order"]);
+
+function seriesPath(pts, idx, X, Y) {
+  return pts.map((p, i) =>
+    `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[idx]).toFixed(1)}`).join("");
+}
+
+function leadBands(pts, X, Y) {
+  // The band between the two books, split at every crossing so the fill
+  // always wears the colour of whoever is actually ahead on that stretch.
+  const beacn = [], grok = [];
+  const seg = (arr, t0, a0, b0, t1, a1, b1) => {
+    arr.push(`M${X(t0).toFixed(1)},${Y(a0).toFixed(1)}L${X(t1).toFixed(1)},${Y(a1).toFixed(1)}L${X(t1).toFixed(1)},${Y(b1).toFixed(1)}L${X(t0).toFixed(1)},${Y(b0).toFixed(1)}Z`);
+  };
+  for (let i = 0; i < pts.length - 1; i++) {
+    const t0 = pts[i][0], t1 = pts[i + 1][0];
+    const a0 = pts[i][1], a1 = pts[i + 1][1];
+    const b0 = pts[i][2], b1 = pts[i + 1][2];
+    const d0 = a0 - b0, d1 = a1 - b1;
+    if (Math.abs(d0) < 1e-9 && Math.abs(d1) < 1e-9) continue;
+    if (d0 * d1 >= 0) {
+      seg((d0 + d1) >= 0 ? beacn : grok, t0, a0, b0, t1, a1, b1);
+    } else {
+      const u = d0 / (d0 - d1);
+      const tc = t0 + u * (t1 - t0);
+      const ac = a0 + u * (a1 - a0);
+      seg(d0 > 0 ? beacn : grok, t0, a0, b0, tc, ac, ac);
+      seg(d0 > 0 ? grok : beacn, tc, ac, ac, t1, a1, b1);
+    }
+  }
+  return {beacn: beacn.join(""), grok: grok.join("")};
+}
+
+function matchTrades(t0, t1) {
+  const start = (DATA && DATA.start && DATA.start.at_time) || 0;
+  return ((DATA && DATA.moves) || []).filter(m =>
+    TRADE_KINDS.has(m.kind) && m.time >= Math.max(start, t0) && m.time <= t1);
+}
+
+function valueAt(pts, t, idx) {
+  if (!pts.length) return 0;
+  if (t <= pts[0][0]) return pts[0][idx];
+  const last = pts[pts.length - 1];
+  if (t >= last[0]) return last[idx];
+  for (let i = 1; i < pts.length; i++) {
+    if (pts[i][0] >= t) {
+      const a = pts[i - 1], b = pts[i];
+      const u = (t - a[0]) / (b[0] - a[0] || 1);
+      return a[idx] + (b[idx] - a[idx]) * u;
+    }
+  }
+  return last[idx];
+}
+
 function sparkline(w, h) {
   const pts = (HIST && HIST.points) || [];
   if (pts.length < 2) return "";
   const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
-  const gs = pts.map(p => p[1] - p[2]);
-  let lo = Math.min(0, ...gs), hi = Math.max(0, ...gs);
+  const vals = pts.flatMap(p => [p[1], p[2]]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
   const pad = Math.max((hi - lo) * 0.16, 0.04); lo -= pad; hi += pad;
   const X = t => (t1 === t0 ? w / 2 : (t - t0) / (t1 - t0) * w);
   const Y = v => (hi - v) / (hi - lo) * h;
-  const d = pts.map((p, i) => `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1] - p[2]).toFixed(1)}`).join("");
-  const y0 = Y(0);
-  const area = `${d}L${X(t1).toFixed(1)},${y0.toFixed(1)}L${X(t0).toFixed(1)},${y0.toFixed(1)}Z`;
-  const last = pts[pts.length - 1], lg = last[1] - last[2];
+  const bands = leadBands(pts, X, Y);
+  const last = pts[pts.length - 1];
   return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" preserveAspectRatio="none"
-      role="img" aria-label="The lead over the whole match so far.">
-    <defs>
-      <clipPath id="scUp"><rect x="0" y="0" width="${w}" height="${Math.max(0, y0)}"/></clipPath>
-      <clipPath id="scDn"><rect x="0" y="${y0}" width="${w}" height="${Math.max(0, h - y0)}"/></clipPath>
-      <linearGradient id="scGu" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="var(--beacn-mark)" stop-opacity=".34"/>
-        <stop offset="1" stop-color="var(--beacn-mark)" stop-opacity=".04"/>
-      </linearGradient>
-      <linearGradient id="scGd" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="var(--grok-mark)" stop-opacity=".04"/>
-        <stop offset="1" stop-color="var(--grok-mark)" stop-opacity=".30"/>
-      </linearGradient>
-    </defs>
-    <path d="${area}" fill="url(#scGu)" clip-path="url(#scUp)"/>
-    <path d="${area}" fill="url(#scGd)" clip-path="url(#scDn)"/>
-    <line x1="0" x2="${w}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"
-      stroke="var(--line2)" stroke-width="1" stroke-dasharray="4 4"/>
-    <path d="${d}" fill="none" stroke="var(--beacn-mark)" stroke-width="2"
-      stroke-linejoin="round" clip-path="url(#scUp)"/>
-    <path d="${d}" fill="none" stroke="var(--grok-mark)" stroke-width="2"
-      stroke-linejoin="round" clip-path="url(#scDn)"/>
-    <circle cx="${X(last[0]).toFixed(1)}" cy="${Y(lg).toFixed(1)}" r="4"
-      fill="${lg >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)"}"
-      stroke="#081326" stroke-width="2"/>
+      role="img" aria-label="Both books over the whole match, overlaid.">
+    <path d="${bands.beacn}" fill="var(--beacn-mark)" opacity=".18"/>
+    <path d="${bands.grok}" fill="var(--grok-mark)" opacity=".16"/>
+    <path d="${seriesPath(pts, 1, X, Y)}" fill="none" stroke="var(--beacn-mark)"
+      stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="${seriesPath(pts, 2, X, Y)}" fill="none" stroke="var(--grok-mark)"
+      stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${X(last[0]).toFixed(1)}" cy="${Y(last[1]).toFixed(1)}" r="3.4"
+      fill="var(--beacn-mark)" stroke="#081326" stroke-width="1.5"/>
+    <circle cx="${X(last[0]).toFixed(1)}" cy="${Y(last[2]).toFixed(1)}" r="3.4"
+      fill="var(--grok-mark)" stroke="#081326" stroke-width="1.5"/>
   </svg>`;
 }
 
@@ -1123,11 +1178,10 @@ function renderCard() {
 }
 
 /* ---- lead chart -----------------------------------------------------------
-   The gap over time, drawn to a zero baseline: the question is polarity plus
-   change, so the mark is a line with the area under it filled toward whoever
-   is ahead. It reuses the page's fixed agent identity colors rather than an
-   abstract diverging ramp -- on this page cyan already means BEACN everywhere,
-   and consistency of identity beats a textbook ramp.
+   Two independent books on one axis. The line on top is winning; the fill
+   between them wears that agent's colour. Identity colours stay fixed (cyan
+   is BEACN everywhere on this page). The y-axis zooms to the data — a 0-based
+   scale would flatten a dinner-sized race into two overlapping flatlines.
 
    Rendered at 1:1 CSS pixels and redrawn on resize, so labels stay legible
    instead of being scaled by a viewBox.
@@ -1164,92 +1218,95 @@ function renderChart() {
       : "The lead history could not be loaded."}</p>`;
     return;
   }
-  const W = Math.max(320, host.clientWidth || 900);
-  const H = Math.max(240, Math.min(360, Math.round(W * 0.40)));
-  const L = 58, R = 16, T = 22, B = 52;
+  const W = Math.max(260, host.clientWidth || 900);
+  const H = Math.max(260, Math.min(400, Math.round(W * 0.42)));
+  const L = W < 500 ? 40 : 54, R = W < 500 ? 52 : 78, T = 28, B = 36;
   const iw = W - L - R, ih = H - T - B;
 
   const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
-  const gaps = pts.map(p => p[1] - p[2]);
-  let lo = Math.min(0, ...gaps), hi = Math.max(0, ...gaps);
-  const pad = Math.max((hi - lo) * 0.12, 0.05);
+  const vals = pts.flatMap(p => [p[1], p[2]]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  const even = DATA && DATA.start && DATA.start.equalized_score_ada_eq;
+  const pad = Math.max((hi - lo) * 0.12, 0.15);
   lo -= pad; hi += pad;
   const X = t => L + (t1 === t0 ? iw / 2 : (t - t0) / (t1 - t0) * iw);
   const Y = v => T + (hi - v) / (hi - lo) * ih;
-  const y0 = Y(0);
 
-  // y ticks: a small number of round-ish steps that always include zero
   const step = (hi - lo) / 4;
   const mag = Math.pow(10, Math.floor(Math.log10(step)));
-  const nice = [1, 2, 2.5, 5, 10].map(m => m * mag).find(v => v >= step) || step;
+  const nice = [1, 2, 5, 10].map(m => m * mag).find(v => v >= step * 0.8) || step;
   const yt = [];
-  for (let v = Math.ceil(lo / nice) * nice; v <= hi; v += nice) yt.push(v);
-  if (!yt.some(v => Math.abs(v) < 1e-9)) yt.push(0);
-
-  const line = pts.map((p, i) => `${i ? "L" : "M"}${X(p[0]).toFixed(1)},${Y(p[1] - p[2]).toFixed(1)}`).join("");
-  // Area to the zero baseline, clipped into an "above" half and a "below" half
-  // so each side wears the color of whoever is ahead there.
-  const area = `${line}L${X(t1).toFixed(1)},${y0.toFixed(1)}L${X(t0).toFixed(1)},${y0.toFixed(1)}Z`;
+  for (let v = Math.ceil(lo / nice) * nice; v <= hi + nice * 1e-9; v += nice) yt.push(v);
+  const yDec = Math.abs(nice - Math.round(nice)) > 1e-9 ? 1
+    : (Math.abs(nice) >= 1 ? 0 : (Math.abs(nice) >= 0.1 ? 1 : 2));
 
   const xt = [];
   const multiDay = new Date(t0 * 1000).getUTCDate() !== new Date(t1 * 1000).getUTCDate();
   const nx = Math.max(2, Math.min(multiDay ? 4 : 6, Math.floor(iw / (multiDay ? 150 : 110))));
   for (let i = 0; i <= nx; i++) xt.push(Math.round(t0 + (t1 - t0) * i / nx));
 
-  // where reconstruction ends and live polling begins
   const firstPoll = pts.findIndex(p => p[4] === "p");
   const splitX = firstPoll > 0 ? X(pts[firstPoll][0]) : null;
+  const bands = leadBands(pts, X, Y);
+  const last = pts[pts.length - 1];
+  let ya = Y(last[1]), yb = Y(last[2]);
+  if (Math.abs(ya - yb) < 14) {
+    const bump = 8;
+    if (ya < yb) { ya -= bump; yb += bump; } else { yb -= bump; ya += bump; }
+  }
+  const trades = matchTrades(t0, t1);
+  const tradeMarks = trades.map(m => {
+    const idx = m.agent === "beacn" ? 1 : 2;
+    const color = m.agent === "beacn" ? "var(--beacn-mark)" : "var(--grok-mark)";
+    const x = X(m.time), y = Y(valueAt(pts, m.time, idx)), r = 4.4;
+    return `<polygon class="ch-trade" stroke="${color}"
+      points="${x.toFixed(1)},${(y - r).toFixed(1)} ${(x + r).toFixed(1)},${y.toFixed(1)} ${x.toFixed(1)},${(y + r).toFixed(1)} ${(x - r).toFixed(1)},${y.toFixed(1)}"/>`;
+  }).join("");
 
-  const dots = pts.length <= 200 ? pts.map(p => {
-    const g = p[1] - p[2], recon = p[4] !== "p";
-    const c = g >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)";
-    return recon
-      ? `<circle class="ch-dot-r" cx="${X(p[0]).toFixed(1)}" cy="${Y(g).toFixed(1)}"
-           r="2.7" stroke="${c}"/>`
-      : `<circle class="ch-dot" cx="${X(p[0]).toFixed(1)}" cy="${Y(g).toFixed(1)}"
-           r="3.8" fill="${c}"/>`;
-  }).join("") : "";
-
-  const last = pts[pts.length - 1], lastGap = last[1] - last[2];
-  const lastC = lastGap >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)";
-  const endLabel = `<circle cx="${X(last[0]).toFixed(1)}" cy="${Y(lastGap).toFixed(1)}"
-      r="5" fill="${lastC}" stroke="var(--bg)" stroke-width="2"/>`;
-
+  const evenIn = even && even >= lo && even <= hi;
   host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"
-      role="img" aria-label="Lead in ADA-equivalent over time. Above the line BEACN is ahead, below it grokbot is.">
-    <defs>
-      <clipPath id="clipUp"><rect x="${L}" y="${T}" width="${iw}" height="${Math.max(0, y0 - T)}"/></clipPath>
-      <clipPath id="clipDn"><rect x="${L}" y="${y0}" width="${iw}" height="${Math.max(0, T + ih - y0)}"/></clipPath>
-    </defs>
+      role="img" aria-label="BEACNbot and grokbot books in ADA-equivalent over time. The line on top is in the lead.">
+    <defs><clipPath id="chPlot"><rect x="${L}" y="${T}" width="${iw}" height="${ih}"/></clipPath></defs>
     ${yt.map(v => `<line class="ch-grid" x1="${L}" x2="${L + iw}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}"/>`).join("")}
-    <path d="${area}" fill="var(--beacn-mark)" opacity=".16" clip-path="url(#clipUp)"/>
-    <path d="${area}" fill="var(--grok-mark)" opacity=".13" clip-path="url(#clipDn)"/>
-    <line class="ch-zero" x1="${L}" x2="${L + iw}" y1="${y0.toFixed(1)}" y2="${y0.toFixed(1)}"/>
+    ${evenIn ? `<line class="ch-start" x1="${L}" x2="${L + iw}" y1="${Y(even).toFixed(1)}" y2="${Y(even).toFixed(1)}"/>
+      <text class="ch-axis" x="${(L + Math.min(72, iw * 0.18)).toFixed(1)}" y="${(Y(even) - 6).toFixed(1)}">even</text>` : ""}
     ${splitX !== null ? `<line class="ch-split" x1="${splitX.toFixed(1)}" x2="${splitX.toFixed(1)}"
         y1="${T}" y2="${T + ih}"/>` : ""}
-    <path class="ch-line" d="${line}" stroke="var(--beacn-mark)" clip-path="url(#clipUp)"/>
-    <path class="ch-line" d="${line}" stroke="var(--grok-mark)" clip-path="url(#clipDn)"/>
-    ${dots}
-    ${endLabel}
+    <g clip-path="url(#chPlot)">
+    <path class="ch-band-beacn" d="${bands.beacn}"/>
+    <path class="ch-band-grok" d="${bands.grok}"/>
+    <path class="ch-line beacn" d="${seriesPath(pts, 1, X, Y)}"/>
+    <path class="ch-line grok" d="${seriesPath(pts, 2, X, Y)}"/>
+    </g>
+    ${tradeMarks}
+    <circle cx="${X(last[0]).toFixed(1)}" cy="${Y(last[1]).toFixed(1)}" r="4.6"
+      fill="var(--beacn-mark)" stroke="var(--bg)" stroke-width="2"/>
+    <circle cx="${X(last[0]).toFixed(1)}" cy="${Y(last[2]).toFixed(1)}" r="4.6"
+      fill="var(--grok-mark)" stroke="var(--bg)" stroke-width="2"/>
     ${yt.map(v => `<text class="ch-axis" x="${L - 8}" y="${(Y(v) + 3.5).toFixed(1)}"
-        text-anchor="end">${v > 0 ? "+" : ""}${v.toFixed(Math.abs(nice) < 1 ? 2 : 1)}</text>`).join("")}
+        text-anchor="end">${v.toFixed(yDec)}</text>`).join("")}
     ${xt.map(t => `<text class="ch-axis" x="${X(t).toFixed(1)}" y="${T + ih + 18}"
         text-anchor="middle">${hhmm(t, multiDay)}</text>`).join("")}
-    <text class="ch-side" x="${L}" y="${T - 4}" fill="var(--beacn-mark)">BEACN ahead ↑</text>
-    <text class="ch-side" x="${L + iw}" y="${T + ih + 36}" text-anchor="end"
-        fill="var(--grok-mark)">grokbot ahead ↓</text>
-    <line class="ch-cross" id="ch-cross" x1="0" x2="0" y1="${T}" y2="${T + ih}" style="opacity:0"/>
+    <text class="ch-side" x="${L}" y="${T - 8}">ADA-eq</text>
+    <text class="ch-end" x="${L + iw + 8}" y="${(ya + 4).toFixed(1)}"
+      fill="var(--beacn-mark)">BEACN</text>
+    <text class="ch-end" x="${L + iw + 8}" y="${(yb + 4).toFixed(1)}"
+      fill="var(--grok-mark)">grok</text>
     <rect class="ch-hit" id="ch-hit" x="${L}" y="${T}" width="${iw}" height="${ih}"/>
+    <line class="ch-cross" id="ch-cross" x1="0" x2="0" y1="${T}" y2="${T + ih}" style="opacity:0"/>
+    <circle class="ch-hover" id="ch-ha" r="5" fill="var(--beacn-mark)" style="opacity:0"/>
+    <circle class="ch-hover" id="ch-hb" r="5" fill="var(--grok-mark)" style="opacity:0"/>
   </svg>`;
 
   const svg = host.querySelector("svg");
   const tip = $("#charttip"), cross = svg.querySelector("#ch-cross");
+  const ha = svg.querySelector("#ch-ha"), hb = svg.querySelector("#ch-hb");
   const wrap = $("#chartwrap");
   const nearest = clientX => {
     const box = svg.getBoundingClientRect();
-    const px = (clientX - box.left) * (W / box.width);
+    const pxv = (clientX - box.left) * (W / box.width);
     let best = 0, bd = Infinity;
-    pts.forEach((p, i) => { const d = Math.abs(X(p[0]) - px); if (d < bd) { bd = d; best = i; } });
+    pts.forEach((p, i) => { const d = Math.abs(X(p[0]) - pxv); if (d < bd) { bd = d; best = i; } });
     return best;
   };
   const show = e => {
@@ -1258,23 +1315,33 @@ function renderChart() {
     const box = svg.getBoundingClientRect(), scale = box.width / W;
     cross.setAttribute("x1", X(p[0])); cross.setAttribute("x2", X(p[0]));
     cross.style.opacity = ".7";
+    ha.setAttribute("cx", X(p[0])); ha.setAttribute("cy", Y(p[1])); ha.style.opacity = 1;
+    hb.setAttribute("cx", X(p[0])); hb.setAttribute("cy", Y(p[2])); hb.style.opacity = 1;
+    const nearTrade = trades.find(m => Math.abs(m.time - p[0]) <= 180);
     tip.innerHTML =
       `<div class="tt">${esc(whenUTC(p[0]))}${p[4] === "p" ? "" : " · reconstructed"}</div>` +
-      `<div class="tr"><span><i style="background:var(--beacn-mark)"></i>BEACN</span>
+      `<div class="tr"><span><i style="background:var(--beacn-mark)"></i>BEACNbot</span>
         <b>${fmt(p[1], 4)}</b></div>` +
       `<div class="tr"><span><i style="background:var(--grok-mark)"></i>grokbot</span>
         <b>${fmt(p[2], 4)}</b></div>` +
-      `<div class="tr tg"><span>${g >= 0 ? "BEACN" : "grokbot"} ahead by</span>
+      `<div class="tr tg"><span>${g >= 0 ? "BEACNbot" : "grokbot"} ahead by</span>
         <b style="color:${g >= 0 ? "var(--beacn-mark)" : "var(--grok-mark)"}">${fmt(Math.abs(g), 4)}</b></div>` +
-      `<div class="tr"><span>ADA marked at</span><b>${px(p[3])}</b></div>`;
+      `<div class="tr"><span>ADA marked at</span><b>${px(p[3])}</b></div>` +
+      (nearTrade ? `<div class="tr"><span>${esc(fighterName({id: nearTrade.agent}))} ${esc(nearTrade.kind)}</span>
+        <b>${esc(nearTrade.title)}</b></div>` : "");
     tip.classList.add("on");
     const tw = tip.offsetWidth, wl = wrap.getBoundingClientRect();
     let left = box.left - wl.left + X(p[0]) * scale + 14;
     if (left + tw > wl.width - 8) left = box.left - wl.left + X(p[0]) * scale - tw - 14;
+    const midY = (Y(p[1]) + Y(p[2])) / 2;
     tip.style.left = Math.max(8, left) + "px";
-    tip.style.top = Math.max(8, box.top - wl.top + Y(g) * scale - 30) + "px";
+    tip.style.top = Math.max(8, box.top - wl.top + midY * scale - 30) + "px";
   };
-  const hide = () => { tip.classList.remove("on"); cross.style.opacity = 0; };
+  const hide = () => {
+    tip.classList.remove("on");
+    cross.style.opacity = 0;
+    ha.style.opacity = 0; hb.style.opacity = 0;
+  };
   const hit = svg.querySelector("#ch-hit");
   hit.addEventListener("mousemove", show);
   hit.addEventListener("mouseleave", hide);
@@ -1285,18 +1352,20 @@ function renderChart() {
   const nPoll = HIST.points.filter(p => p[4] === "p").length;
   const nRec = HIST.points.length - nPoll;
   $("#chartnote").innerHTML =
+    `<span class="key" style="color:var(--beacn-mark)"><i class="line"></i>BEACNbot</span>` +
+    `<span class="key" style="color:var(--grok-mark)"><i class="line"></i>grokbot</span>` +
+    `<span class="key"><i class="dia"></i>${trades.length} trade${trades.length === 1 ? "" : "s"} in view</span>` +
     `<span class="key"><i class="solid"></i>${nPoll} live snapshot${nPoll === 1 ? "" : "s"}</span>` +
-    (nRec ? `<span class="key"><i class="hollow"></i>${nRec} reconstructed before polling began —
-       exact books from chain, marked at that moment's independent ADA price</span>` : "") +
-    `<span>Showing ${pts.length} of ${HIST.points.length} points.</span>`;
+    (nRec ? `<span class="key"><i class="hollow"></i>${nRec} reconstructed</span>` : "") +
+    `<span>Showing ${pts.length} of ${HIST.points.length}. Band = whoever is ahead.</span>`;
 
   const rows = pts.slice(-12).reverse();
   $("#leadtable").innerHTML =
-    `<caption class="sr-only">The twelve most recent lead snapshots</caption><thead><tr><th scope="col">Time (UTC)</th><th scope="col">BEACN</th><th scope="col">grokbot</th><th scope="col">Lead</th>
+    `<caption class="sr-only">The twelve most recent book snapshots</caption><thead><tr><th scope="col">Time (UTC)</th><th scope="col">BEACN</th><th scope="col">grokbot</th><th scope="col">Lead</th>
       <th scope="col">Ahead</th><th scope="col">ADA</th><th scope="col">Source</th></tr></thead><tbody>` +
     rows.map(p => {
       const g = p[1] - p[2];
-      return `<tr><td>${esc(whenUTC(p[0]))}</td><td class="n">${fmt(p[1], 4)}</td>
+      return `<tr><td>${esc(hhmm(p[0], true))}</td><td class="n">${fmt(p[1], 4)}</td>
         <td class="n">${fmt(p[2], 4)}</td><td class="n">${fmt(Math.abs(g), 4)}</td>
         <td>${g >= 0 ? "BEACN" : "grokbot"}</td><td class="n">${px(p[3])}</td>
         <td>${p[4] === "p" ? "polled" : "reconstructed"}</td></tr>`;
@@ -1445,25 +1514,58 @@ function buildShareCanvas() {
   text(stats ? `${elapsed(stats.from, stats.to).toUpperCase()} IN · ${stats.changes} LEAD CHANGE${stats.changes === 1 ? "" : "S"}` : "MATCH LIVE",
     800, 528, 14, muted, "center", 700, mono);
 
-  // Zero-baseline lead trace.
+  // Two independent books, overlaid. The line on top is winning.
   const pts = (HIST && HIST.points) || [];
-  const x0 = 100, x1 = 1500, y0 = 740, plotH = 74;
-  c.strokeStyle = line; c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y0); c.stroke();
+  const x0 = 100, x1 = 1500, top = 668, plotH = 118;
   if (pts.length > 1) {
-    const gaps = pts.map(p => p[1] - p[2]);
-    const maxAbs = Math.max(.05, ...gaps.map(Math.abs));
-    const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
-    c.lineWidth = 4; c.lineJoin = "round"; c.beginPath();
-    pts.forEach((p, i) => {
-      const x = x0 + (p[0] - t0) / Math.max(1, t1 - t0) * (x1 - x0);
-      const y = y0 - (p[1] - p[2]) / maxAbs * plotH;
-      if (i) c.lineTo(x, y); else c.moveTo(x, y);
-    });
-    const grad = c.createLinearGradient(x0, 0, x1, 0); grad.addColorStop(0, cyan); grad.addColorStop(.5, "#728196"); grad.addColorStop(1, amber);
-    c.strokeStyle = grad; c.stroke();
+    const vals = pts.flatMap(p => [p[1], p[2]]);
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    const pad = Math.max((hi - lo) * 0.16, 0.05); lo -= pad; hi += pad;
+    const tS = pts[0][0], tE = pts[pts.length - 1][0];
+    const XX = t => x0 + (t - tS) / Math.max(1, tE - tS) * (x1 - x0);
+    const YY = v => top + (hi - v) / (hi - lo) * plotH;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const a0 = pts[i][1], a1 = pts[i + 1][1];
+      const b0 = pts[i][2], b1 = pts[i + 1][2];
+      const d0 = a0 - b0, d1 = a1 - b1;
+      const segs = [];
+      if (Math.abs(d0) < 1e-9 && Math.abs(d1) < 1e-9) continue;
+      if (d0 * d1 >= 0) {
+        segs.push({lead: (d0 + d1) >= 0, t0: pts[i][0], a0, b0, t1: pts[i + 1][0], a1, b1});
+      } else {
+        const u = d0 / (d0 - d1);
+        const tc = pts[i][0] + u * (pts[i + 1][0] - pts[i][0]);
+        const ac = a0 + u * (a1 - a0);
+        segs.push({lead: d0 > 0, t0: pts[i][0], a0, b0, t1: tc, a1: ac, b1: ac});
+        segs.push({lead: d0 < 0, t0: tc, a0: ac, b0: ac, t1: pts[i + 1][0], a1, b1});
+      }
+      for (const s of segs) {
+        c.fillStyle = s.lead ? "rgba(40,216,242,.18)" : "rgba(240,163,10,.16)";
+        c.beginPath();
+        c.moveTo(XX(s.t0), YY(s.a0));
+        c.lineTo(XX(s.t1), YY(s.a1));
+        c.lineTo(XX(s.t1), YY(s.b1));
+        c.lineTo(XX(s.t0), YY(s.b0));
+        c.closePath(); c.fill();
+      }
+    }
+    const strokeSeries = (idx, color) => {
+      c.strokeStyle = color; c.lineWidth = 4; c.lineJoin = "round"; c.lineCap = "round";
+      c.beginPath();
+      pts.forEach((p, i) => {
+        const x = XX(p[0]), y = YY(p[idx]);
+        if (i) c.lineTo(x, y); else c.moveTo(x, y);
+      });
+      c.stroke();
+    };
+    strokeSeries(1, cyan);
+    strokeSeries(2, amber);
+    const lastP = pts[pts.length - 1];
+    c.fillStyle = cyan; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[1]), 6, 0, Math.PI * 2); c.fill();
+    c.fillStyle = amber; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[2]), 6, 0, Math.PI * 2); c.fill();
   }
-  text("BEACNBOT LEADS ↑", x0, 696, 13, cyan, "left", 800, mono);
-  text("GROKBOT LEADS ↓", x1, 826, 13, amber, "right", 800, mono);
+  text("BEACNBOT", x0, 656, 13, cyan, "left", 800, mono);
+  text("GROKBOT", x1, 656, 13, amber, "right", 800, mono);
   text(`${a.costs.total.toFixed(2)} / ${b.costs.total.toFixed(2)} ADA FEES`, 72, 850, 14, muted, "left", 700, mono);
   text("beacnpool.github.io/ABCDE/match.html", 800, 850, 17, cyan, "center", 800, mono);
   text("WATCH THE NEXT MOVE", 1528, 850, 14, white, "right", 800, mono);
