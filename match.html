@@ -253,13 +253,17 @@ html{background:var(--bg)}
 .book .posblock .ph{font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted2);font-weight:800;margin-bottom:8px}
 .book .posblock .vchip{margin-bottom:2px}
-.sc-open{margin-top:10px}
-.sc-open .vchip{font-size:13px;padding:5px 12px 5px 5px}
-.sc-open .vchip img{width:28px;height:28px;border-radius:7px}
+.sc-open{margin-top:8px}
+.sc-open .vrow{flex-wrap:wrap;gap:6px}
+.sc-open .vchip{font-size:11px;padding:3px 8px 3px 3px}
+.sc-open .vchip img{width:20px;height:20px;border-radius:5px}
+.sc-open .vchip small{display:none}
 .sc-fighter.right .vrow{justify-content:flex-end}
-@media(max-width:620px){
-  .sc-pos-grid{grid-template-columns:1fr}
-  .vchip small{max-width:140px}
+.sharecard:has(.sc-open) .sc-spark{height:56px;margin:6px 0 4px}
+.sharecard:has(.sc-open) .sc-spark svg{height:44px}
+.sc-pos-note{margin-top:6px}
+@media(max-width:780px){
+  .sharecard:has(.sc-open) .sc-foot .tags{display:block;width:100%;text-align:center;margin-top:4px}
   .sc-fighter.right .vrow{justify-content:center}
 }
 
@@ -1241,11 +1245,10 @@ function renderCard() {
       <div class="sc-stat">Swaps filled<b>${a.costs.swaps} / ${b.costs.swaps}</b></div>
       <div class="sc-stat">Snapshots<b>${st ? st.n : "—"}</b></div>
     </div>
-    ${(openPositions(a).length || openPositions(b).length) ? `<div class="sc-pos-note">${
-      esc(DATA.position_disclaimer || "Unofficial and unsponsored. Logos appear only when an agent has an open position with that protocol.")
-    }</div>` : ""}
     <div class="sc-foot"><span class="url">beacnpool.github.io/ABCDE/match.html</span>
-      <span class="tags">Watch the next move · #Cardano · $ADA</span></div>`;
+      <span class="tags">${(openPositions(a).length || openPositions(b).length)
+        ? "Unofficial · unsponsored"
+        : "Watch the next move · #Cardano · $ADA"}</span></div>`;
   host.setAttribute("aria-busy", "false");
 }
 
