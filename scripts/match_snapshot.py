@@ -52,6 +52,21 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from match_positions import (
+    MINSWAP_ORDER_SCRIPT,
+    POSITION_DISCLAIMER,
+    indexes,
+    load_overlay,
+    merge_catalog,
+    merge_positions,
+    overlay_positions_for,
+    position_from_orders,
+    position_from_receipts,
+    receipts_in_utxos,
+    used_venues,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "web" / "dist" / "data" / "match.json"
 DEFAULT_HISTORY = ROOT / "web" / "dist" / "data" / "match_history.json"
@@ -69,9 +84,8 @@ COINGECKO_CHART = ("https://api.coingecko.com/api/v3/coins/cardano/market_chart"
 USDM_POLICY = "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad"
 USDM_NAME_HEX = "0014df105553444d"
 
-# Minswap V2 order script. An order address is this hash + the ORDERER'S OWN
-# stake credential, so it is unique per agent and its balance is still theirs.
-MINSWAP_ORDER_SCRIPT = "c3e28c36c3447315ba5a56f33da6a6ddc1770a876a8d9f0cb3a97c4c"
+# Minswap V2 order script lives in match_positions.MINSWAP_ORDER_SCRIPT — an
+# order address is that hash + the ORDERER'S OWN stake credential.
 
 EXPLORER_ADDR = "https://cardanoscan.io/address/"
 EXPLORER_TX = "https://cardanoscan.io/transaction/"
@@ -222,25 +236,29 @@ def equalized_performance(score_ada_eq: float, baseline_ada_eq: float,
 # --------------------------------------------------------------------------
 # books
 # --------------------------------------------------------------------------
-def order_addresses(agent: dict, txs: list[dict]) -> list[str]:
-    """Script addresses holding this agent's funds mid-trade.
+def order_scripts(agent: dict, txs: list[dict]) -> dict[str, str]:
+    """Script addresses holding this agent's funds mid-trade, mapped to hash.
 
     Trap 6: a DEX order address is the order script hash + the agent's OWN
     stake credential. Funds parked there between order and fill are still the
     agent's book. A snapshot taken in that window would otherwise show ~390 ADA
-    vanishing.
+    vanishing. Known Minswap addresses are pinned because discovery from tx
+    outputs can miss a stake_addr field.
     """
-    found: set[str] = set()
+    found: dict[str, str] = {}
     for tx in txs:
         for out in tx.get("outputs") or []:
             pa = out.get("payment_addr") or {}
             if (out.get("stake_addr") == agent["stake_address"]
                     and pa.get("cred") and pa["cred"] != agent["payment_cred"]):
-                found.add(pa["bech32"])
-    return sorted(found)
+                found[pa["bech32"]] = pa["cred"]
+    for addr in agent.get("known_order_addresses") or []:
+        found.setdefault(addr, MINSWAP_ORDER_SCRIPT)
+    return found
 
 
-def read_book(agent: dict, order_addrs: list[str]) -> dict:
+def read_book(agent: dict, scripts: dict[str, str], by_script: dict[str, str],
+              by_policy: dict[str, str]) -> dict:
     """Current holdings, from chain, across every address form the agent uses."""
     utxos = koios("credential_utxos",
                   {"_payment_credentials": [agent["payment_cred"]], "_extended": True})
@@ -249,13 +267,44 @@ def read_book(agent: dict, order_addrs: list[str]) -> dict:
 
     flight_ada = flight_usdm = 0.0
     open_orders = 0
-    for addr in order_addrs:
+    by_venue: dict[str, dict[str, float]] = {}
+    for addr, script in scripts.items():
         info = koios("address_info", {"_addresses": [addr]})
+        vid = by_script.get((script or "").lower())
         for row in info:
             for u in row.get("utxo_set") or []:
                 flight_ada += lovelace(u["value"])
                 flight_usdm += usdm_of(u)
                 open_orders += 1
+                if not vid:
+                    continue
+                bucket = by_venue.setdefault(vid, {"count": 0, "ada": 0.0, "usdm": 0.0})
+                bucket["count"] += 1
+                bucket["ada"] += lovelace(u["value"])
+                bucket["usdm"] += usdm_of(u)
+
+    positions: list[dict] = []
+    for vid, agg in by_venue.items():
+        pos = position_from_orders(vid, count=int(agg["count"]),
+                                   ada=agg["ada"], usdm=agg["usdm"])
+        if pos:
+            positions.append(pos)
+
+    # Receipt tokens (Liqwid qTokens today, more later) live on the agent's
+    # own payment credential. They are NOT marked into the ADA/USDM score
+    # here — that needs a score adapter — but they are an open position and
+    # they earn a logo.
+    existing = {p["venue"]: p for p in positions}
+    for vid in sorted(set(by_policy.values())):
+        found = receipts_in_utxos(utxos, by_policy, vid)
+        pos = position_from_receipts(vid, list(found.items()))
+        if not pos:
+            continue
+        if vid in existing:
+            existing[vid]["label"] = existing[vid]["label"] + "; " + pos["label"]
+            existing[vid]["kind"] = "mixed"
+        else:
+            positions.append(pos)
 
     acct = koios("account_info", {"_stake_addresses": [agent["stake_address"]]})
     acct = acct[0] if acct else {}
@@ -265,6 +314,7 @@ def read_book(agent: dict, order_addrs: list[str]) -> dict:
         "in_flight_ada": flight_ada,
         "in_flight_usdm": flight_usdm,
         "open_orders": open_orders,
+        "positions": positions,
         # Trap 4: read per agent, so it is counted for both or neither by
         # construction rather than by remembering to.
         "deposit": lovelace(acct.get("deposit")),
@@ -662,15 +712,23 @@ def main() -> int:
     say(f"    {len(tx_by_hash)} transactions")
 
     say("2/5 resolving order addresses and reading books")
+    overlay = load_overlay()
+    catalog = merge_catalog(overlay)
+    by_script, by_policy = indexes(catalog)
     order_map, books = {}, {}
     for agent in AGENTS:
-        oaddrs = sorted(set(order_addresses(agent, list(tx_by_hash.values())))
-                        | set(agent.get("known_order_addresses") or []))
-        order_map[agent["id"]] = oaddrs
-        books[agent["id"]] = read_book(agent, oaddrs)
+        scripts = order_scripts(agent, list(tx_by_hash.values()))
+        order_map[agent["id"]] = sorted(scripts)
+        books[agent["id"]] = read_book(agent, scripts, by_script, by_policy)
+        books[agent["id"]]["positions"] = merge_positions(
+            books[agent["id"]]["positions"],
+            overlay_positions_for(overlay, agent["id"]),
+        )
         b = books[agent["id"]]
+        pos_note = ("  positions " +
+                    ",".join(p["venue"] for p in b["positions"])) if b["positions"] else ""
         say(f"    {agent['name']:<8} {b['ada']:.6f} ADA  {b['usdm']:.6f} USDM  "
-            f"deposit {b['deposit']:.2f}  in-flight {b['in_flight_ada']:.6f}")
+            f"deposit {b['deposit']:.2f}  in-flight {b['in_flight_ada']:.6f}{pos_note}")
 
     say("3/5 fetching the price")
     price = get_price()
@@ -706,6 +764,7 @@ def main() -> int:
             "in_flight_ada": round(b["in_flight_ada"], 6),
             "in_flight_usdm": round(b["in_flight_usdm"], 6),
             "open_orders": b["open_orders"],
+            "open_positions": b["positions"],
             "ada_total": round(ada_total, 6),
             "costs": c,
             "moves": sum(1 for m in moves if m["agent"] == agent["id"]),
@@ -796,7 +855,8 @@ def main() -> int:
     fingerprint = hashlib.sha256(json.dumps({
         "books": {a["id"]: {k: books[a["id"]][k] for k in
                             ("ada", "usdm", "in_flight_ada", "in_flight_usdm",
-                             "deposit", "rewards", "pool", "stake_status")}
+                             "deposit", "rewards", "pool", "stake_status",
+                             "positions")}
                   for a in AGENTS},
         "moves": [[m["tx_hash"], m["agent"], m["kind"], m["ada_delta"],
                    m["usdm_delta"], m["fee"]] for m in moves],
@@ -820,6 +880,9 @@ def main() -> int:
                      "the number up."),
         },
         "start": start,
+        "venues": used_venues(catalog, {a["id"]: a.get("open_positions") or []
+                                        for a in out_agents}),
+        "position_disclaimer": POSITION_DISCLAIMER,
         "agents": out_agents,
         "leader": leader,
         "gap_ada_eq": gap,

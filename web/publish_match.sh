@@ -4,7 +4,8 @@
 # Built to be run from cron. It regenerates web/dist/data/match.json from chain
 # and pushes it, plus the match page and its social preview assets, to gh-pages.
 #
-# It touches ONLY the five paths the scoreboard owns and pushes as a normal
+# It touches ONLY the scoreboard paths (match.html, the social preview,
+# match.json, match_history.json, match-venues/) and pushes as a normal
 # fast-forward, so oligarCH/, byttg/, tipsy/, peers/ and the explorer are
 # untouched by construction. The orphan-tree force-push in web/deploy_gh_pages.sh
 # would delete all of them; that script is self-guarded and must stay that way.
@@ -213,15 +214,18 @@ if [[ "$DRY" -eq 1 ]]; then
 fi
 
 echo "4/4 publishing ($REASON)"
-mkdir -p "$WORKTREE/data"
+mkdir -p "$WORKTREE/data" "$WORKTREE/match-venues"
 cp "$DIST/match.html" "$WORKTREE/match.html"
 cp "$DIST/match-social.svg" "$WORKTREE/match-social.svg"
 cp "$DIST/match-social.png" "$WORKTREE/match-social.png"
 cp "$JSON" "$WORKTREE/data/match.json"
 cp "$HIST" "$WORKTREE/data/match_history.json"
+if [[ -d "$DIST/match-venues" ]]; then
+  cp -a "$DIST/match-venues/." "$WORKTREE/match-venues/"
+fi
 
 cd "$WORKTREE"
-git add -A match.html match-social.svg match-social.png data/match.json data/match_history.json
+git add -A match.html match-social.svg match-social.png match-venues data/match.json data/match_history.json
 if git diff --cached --quiet; then
   echo "  nothing changed on disk"
   exit 0

@@ -228,6 +228,45 @@ html{background:var(--bg)}
   cursor:pointer}
 .sharetools button:hover{color:var(--text);border-color:var(--cyan)}
 
+/* protocol marks on open positions — screenshot target. Logos render only
+   when an agent actually holds a position; the copy is unofficial/unsponsored. */
+.vchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);
+  background:rgba(8,19,38,.62);border-radius:999px;padding:4px 10px 4px 4px;
+  font-size:12px;font-weight:700;letter-spacing:.02em;color:var(--text);
+  max-width:100%}
+.vchip img{width:22px;height:22px;border-radius:6px;object-fit:contain;
+  background:#07111f;flex:none}
+.vchip small{color:var(--muted2);font-weight:600;font-size:11px;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.vrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sc-pos{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.sc-pos .hd{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted2);font-weight:800;text-align:center;margin-bottom:8px}
+.sc-pos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sc-pos-col{min-width:0}
+.sc-pos-col .who{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mark);margin-bottom:6px}
+.sc-pos-col .none{font-size:12px;color:var(--muted2);font-weight:600}
+.sc-pos-note{margin-top:8px;text-align:center;font-size:10.5px;color:var(--muted2);
+  font-weight:600;letter-spacing:.03em}
+.book .posblock{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.book .posblock .ph{font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted2);font-weight:800;margin-bottom:8px}
+.book .posblock .vchip{margin-bottom:2px}
+.sc-open{margin-top:8px}
+.sc-open .vrow{flex-wrap:wrap;gap:6px}
+.sc-open .vchip{font-size:11px;padding:3px 8px 3px 3px}
+.sc-open .vchip img{width:20px;height:20px;border-radius:5px}
+.sc-open .vchip small{display:none}
+.sc-fighter.right .vrow{justify-content:flex-end}
+.sharecard:has(.sc-open) .sc-spark{height:56px;margin:6px 0 4px}
+.sharecard:has(.sc-open) .sc-spark svg{height:44px}
+.sc-pos-note{margin-top:6px}
+@media(max-width:780px){
+  .sharecard:has(.sc-open) .sc-foot .tags{display:block;width:100%;text-align:center;margin-top:4px}
+  .sc-fighter.right .vrow{justify-content:center}
+}
+
 /* lead chart */
 .chartwrap{position:relative;background:var(--panel);border:1px solid var(--line);
   border-radius:var(--radius);padding:18px 18px 10px}
@@ -616,7 +655,8 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
     <div class="eyebrow">Open books</div>
     <h2 class="sec-h">Nothing up either bot’s sleeve.</h2>
     <p class="sec-lede">Every ADA, stablecoin and open order is reconstructed from the agents’
-      payment credentials. Funds parked at a DEX still count. Nothing disappears between moves.</p>
+      payment credentials. Funds parked at a DEX still count. Protocol logos appear only
+      on real open positions, unofficial and unsponsored.</p>
     <div class="books" id="bookgrid"></div>
   </div>
 </section>
@@ -750,6 +790,31 @@ const esc = s => String(s).replace(/[&<>"']/g, c =>
   ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const sign = n => (n > 0 ? "+" : "") + fmt(n, 4);
 const cls = n => n > 0.0000005 ? "up" : (n < -0.0000005 ? "down" : "flat");
+
+function venueOf(id) {
+  const v = (DATA && DATA.venues && DATA.venues[id]) || {};
+  return {
+    id, name: v.name || id, logo: v.logo || "", x: v.x || "",
+    url: v.url || "", product: v.product || "",
+  };
+}
+function openPositions(ag) {
+  return (ag && ag.open_positions || []).filter(p =>
+    p && p.venue && (p.count > 0 || p.ada > 1e-9 || p.usdm > 1e-9 || p.label));
+}
+function venueChip(p) {
+  const v = venueOf(p.venue);
+  const img = v.logo
+    ? `<img src="${esc(v.logo)}" alt="${esc(v.name)}" width="22" height="22">`
+    : "";
+  const label = p.label ? `<small>${esc(p.label)}</small>` : "";
+  return `<span class="vchip">${img}<b>${esc(v.name)}</b>${label}</span>`;
+}
+function positionsBlock(ag, empty) {
+  const rows = openPositions(ag);
+  if (!rows.length) return empty || "";
+  return `<div class="vrow">${rows.map(venueChip).join("")}</div>`;
+}
 const fighterName = ag => ag.id === "beacn" ? "BEACNbot" : "grokbot";
 const pnlValue = ag => ag.vs_equalized_start_ada_eq ?? ag.vs_start_ada_eq ?? null;
 const pnlPct = ag => ag.vs_equalized_start_pct ?? (
@@ -843,6 +908,7 @@ function renderBooks() {
       rows.push([`In ${ag.open_orders} unfilled DEX order${ag.open_orders > 1 ? "s" : ""}`,
                  bits.join(" + ")]);
     }
+    const pos = openPositions(ag);
     const hedge = ag.hedge_pct;
     return `<div class="book agent-${esc(ag.id)}">
       <h3><span class="sw"></span>${esc(fighterName(ag))}</h3>
@@ -863,6 +929,12 @@ function renderBooks() {
           <div class="meter"><i style="width:${Math.max(0, Math.min(100, hedge))}%"></i></div>
         </div>
       </div>`}
+      ${pos.length ? `<div class="posblock"><div class="ph">Open positions</div>
+        ${positionsBlock(ag)}
+        <div class="muted" style="font-size:11px;margin-top:8px">${
+          esc(DATA.position_disclaimer
+            || "Unofficial and unsponsored. Logos appear only when an agent has an open position with that protocol.")
+        }</div></div>` : ""}
       <div class="addr">
         <a href="${esc(ag.explorer)}" target="_blank" rel="noopener">${esc(ag.address)}</a><br>
         <a href="${esc(ag.stake_explorer)}" target="_blank" rel="noopener">${esc(ag.stake_address)}</a>
@@ -1145,6 +1217,7 @@ function renderCard() {
         <small>${pp === null ? "no mark" : `${pp > 0 ? "+" : ""}${fmt(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}${usd(Math.abs(pUsd))}`}</small>
       </div>
       <div class="sc-loadout">${ag.hedge_pct === null ? "Position unmarked" : fmt(ag.hedge_pct, 0) + "% stablecoin"} · ${ag.moves} on-chain moves</div>
+      ${openPositions(ag).length ? `<div class="sc-open">${positionsBlock(ag)}</div>` : ""}
     </div>`;
   };
 
@@ -1173,7 +1246,9 @@ function renderCard() {
       <div class="sc-stat">Snapshots<b>${st ? st.n : "—"}</b></div>
     </div>
     <div class="sc-foot"><span class="url">beacnpool.github.io/ABCDE/match.html</span>
-      <span class="tags">Watch the next move · #Cardano · $ADA</span></div>`;
+      <span class="tags">${(openPositions(a).length || openPositions(b).length)
+        ? "Unofficial · unsponsored"
+        : "Watch the next move · #Cardano · $ADA"}</span></div>`;
   host.setAttribute("aria-busy", "false");
 }
 

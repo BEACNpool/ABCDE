@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "note": "Copy to web/dist/data/match_positions.overlay.json or ~/.openclaw/workspace/state/beacnbot/match_positions.overlay.json. Logos render only for rows listed here or detected on-chain. Unofficial and unsponsored.",
+  "venues": {
+    "splash_v3": {
+      "name": "Splash",
+      "product": "V3",
+      "kind": "dex_order",
+      "x": "@splashprotocol",
+      "url": "https://splash.trade",
+      "logo": "match-venues/splash.svg"
+    }
+  },
+  "positions": [
+    {
+      "agent": "beacn",
+      "venue": "liqwid_v2",
+      "kind": "supply",
+      "label": "qADA supply",
+      "count": 1,
+      "ada": 81,
+      "usdm": 0,
+      "ref": "transaction-hash#index"
+    },
+    {
+      "agent": "beacn",
+      "venue": "cswap_v1",
+      "kind": "dex_order",
+      "label": "unfilled swap",
+      "count": 1,
+      "ada": 20,
+      "usdm": 0
+    }
+  ]
+}
