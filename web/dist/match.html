@@ -3,21 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BEACN vs grokbot — a live on-chain match</title>
-<meta name="description" content="Two AI agents, identical stakes, real money on Cardano mainnet. A live scoreboard read from chain: balances, hedges, every move and every fee. No claims either agent makes about itself are used.">
+<title>BEACNbot vs grokbot — The Mainnet Money Match</title>
+<meta name="description" content="Same bankroll. Different brains. Watch BEACNbot and grokbot trade real ADA on Cardano mainnet, with every balance, fee and lead change read from chain.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ABCDE — A BEACN Cardano Data Explorer">
-<meta property="og:title" content="BEACN vs grokbot — a live on-chain match">
-<meta property="og:description" content="Two AI agents were given identical ADA on Cardano mainnet and told to beat each other. Watch it from chain: balances, hedges, moves, fees. Neither has a demonstrated forecasting edge — this is a cost contest.">
+<meta property="og:title" content="BEACNbot vs grokbot — The Mainnet Money Match">
+<meta property="og:description" content="Two AI agents started level with real ADA. One is warehouse-powered. One fights lean from the cloud. Every move is on-chain.">
 <meta property="og:url" content="https://beacnpool.github.io/ABCDE/match.html">
+<meta property="og:image" content="https://beacnpool.github.io/ABCDE/match-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BEACNbot versus grokbot: The Mainnet Money Match">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BEACN vs grokbot — a live on-chain match">
-<meta name="twitter:description" content="Identical stakes, real money, one chain. A scoreboard read from Cardano, not from what either agent says about itself.">
+<meta name="twitter:title" content="BEACNbot vs grokbot — The Mainnet Money Match">
+<meta name="twitter:description" content="Same bankroll. Different brains. Real ADA, every move on-chain.">
+<meta name="twitter:image" content="https://beacnpool.github.io/ABCDE/match-social.png">
 <meta name="theme-color" content="#020617">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 /* ---------------------------------------------------------------------------
@@ -287,7 +289,7 @@ table.data tr.total td{font-weight:700;background:rgba(255,255,255,.02)}
   color:var(--muted2);border:1px solid var(--line2);border-radius:999px;padding:2px 8px}
 .move .when{font-size:12px;color:var(--muted2);font-family:var(--mono);margin-left:auto}
 @media(max-width:620px){.move .when{margin-left:0;width:100%}}
-.move h4{font-size:15.5px;margin:6px 0 4px;font-weight:700}
+.move h3{font-size:15.5px;margin:6px 0 4px;font-weight:700}
 .move p{margin:0;color:var(--muted);font-size:14px;max-width:74ch}
 .move .deltas{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-family:var(--mono);font-size:12.5px}
 .move .deltas span{color:var(--muted2)}
@@ -299,7 +301,7 @@ table.data tr.total td{font-weight:700;background:rgba(255,255,255,.02)}
   border-radius:10px;padding:18px 20px;margin:22px 0}
 .callout.good{border-left-color:var(--green)}
 .callout.warn{border-left-color:var(--red)}
-.callout h4{margin:0 0 8px;font-size:15px}
+.callout h3{margin:0 0 8px;font-size:15px}
 .callout p{margin:0 0 8px;color:var(--muted);font-size:14.5px;max-width:80ch}
 .callout p:last-child{margin-bottom:0}
 .tag{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
@@ -310,7 +312,7 @@ table.data tr.total td{font-weight:700;background:rgba(255,255,255,.02)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media(max-width:860px){.two{grid-template-columns:1fr}}
 .card{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-.card h4{margin:0 0 8px;font-size:16px}
+.card h3{margin:0 0 8px;font-size:16px}
 .card p{color:var(--muted);font-size:14.5px;margin:0 0 10px}
 .card ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
 .card li{margin-bottom:6px}
@@ -321,72 +323,264 @@ pre.cmd#formula{white-space:pre-wrap;overflow-wrap:anywhere}
 footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);font-size:13px}
 .err{background:rgba(251,113,133,.08);border:1px solid #5a2434;border-radius:12px;
   padding:18px 20px;color:var(--text)}
+
+/* --------------------------------------------------------------------------
+   V2 — BEACN MAINNET ARENA
+   Fight-night broadcast energy, backed by an auditable Cardano control room.
+   The older component rules above remain as safe fallbacks for generated
+   tables/charts; this layer owns the new hierarchy and responsive behavior.
+----------------------------------------------------------------------------- */
+:root{
+  --bg:#02050b;--bg2:#07101d;--panel:#0a1626;--panel2:#0d1d31;
+  --line:#17304a;--line2:#274765;--text:#f5f8fc;--muted:#a6b5c8;
+  --muted2:#8193aa;--cyan:#28d8f2;--green:#47dfa3;--red:#ff7086;
+  --amber:#ffc04c;--violet:#9b8cff;--beacn-mark:#1ebfe0;--grok-mark:#efa20b;
+  --track:#142740;--radius:18px;--maxw:1240px;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+*{scrollbar-color:#294762 #06101c}
+html{background:var(--bg);scroll-padding-top:72px}
+body{overflow-x:hidden;background-color:var(--bg);background-image:
+  linear-gradient(rgba(40,216,242,.022) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(40,216,242,.022) 1px,transparent 1px),
+  radial-gradient(80% 56% at 12% 0%,rgba(17,145,176,.16),transparent 68%),
+  radial-gradient(70% 52% at 92% 9%,rgba(239,162,11,.09),transparent 70%);
+  background-size:48px 48px,48px 48px,auto,auto;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(115deg,transparent 0 48%,rgba(40,216,242,.025) 49%,transparent 50%)}
+a,button{transition:color .16s,border-color .16s,background .16s,transform .16s}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);
+  outline-offset:3px;border-radius:6px}
+.wrap{padding:0 28px}
+section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-top:68px}
+.eyebrow{font-family:var(--mono);color:var(--cyan);font-size:11px;letter-spacing:.22em}
+.sec-h{font-size:clamp(30px,4.4vw,48px);letter-spacing:-.04em;text-transform:uppercase}
+.sec-lede{max-width:700px;font-size:16px;line-height:1.75;margin:0;color:var(--muted)}
+.split-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:34px}
+.split-head .sec-lede{max-width:480px}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;
+  margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* broadcast nav */
+.nav{height:64px;background:rgba(2,5,11,.9);border-bottom-color:rgba(39,71,101,.8)}
+.nav .wrap{max-width:1320px;height:64px;gap:20px}
+.brand{font-size:17px;letter-spacing:.02em}.brand .hex{font-size:24px;filter:drop-shadow(0 0 9px rgba(40,216,242,.5))}
+.brand small{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.14em}
+.nav nav{gap:18px}.nav nav a{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.nav-score{margin-left:auto;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:var(--muted);font-family:var(--mono);font-size:11px;border-left:1px solid var(--line);
+  padding-left:18px}.nav-score b{color:var(--text)}
+.nav .gh{margin-left:0;border-radius:999px;padding:7px 15px}
+@media(max-width:1120px){.nav-score{display:none}.nav nav{margin-left:auto}}
+@media(max-width:940px){.nav nav{display:none}.nav .gh{margin-left:auto}}
+
+/* opening statement */
+.arena-hero{padding:24px 0 56px;border-top:0;position:relative}
+.arena-hero::before{content:"";position:absolute;inset:0 0 auto;height:440px;pointer-events:none;
+  background:radial-gradient(55% 85% at 22% 0%,rgba(30,191,224,.11),transparent 72%)}
+.mhero{position:relative;display:flex;align-items:end;justify-content:space-between;gap:36px;
+  padding:14px 0 12px}
+.hero-copy{max-width:850px}.arena-kicker{display:flex;align-items:center;gap:9px;color:#ff8294;
+  font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:10px}.live-pip{width:8px;height:8px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 18px rgba(255,112,134,.9);animation:pulse 2.4s infinite}
+.mhero h1{font-size:clamp(40px,6.2vw,76px);line-height:.88;letter-spacing:-.065em;
+  text-transform:uppercase;margin:0}.mhero h1 span{color:var(--cyan);text-shadow:0 0 30px rgba(40,216,242,.18)}
+.hero-deck{font-size:clamp(18px,2.2vw,25px);font-weight:800;letter-spacing:-.02em;margin:14px 0 3px}
+.mhero .lede{font-size:14px;line-height:1.55;max-width:780px;color:var(--muted);margin:0}
+.hero-actions{display:flex;flex-direction:column;align-items:stretch;gap:9px;min-width:208px;padding-bottom:4px}
+.arena-btn,.sharetools button,.move-more{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  border:1px solid var(--line2);border-radius:999px;background:rgba(8,21,37,.8);color:var(--text);
+  padding:10px 17px;font:700 12px var(--sans);letter-spacing:.04em;text-decoration:none;cursor:pointer}
+.arena-btn:hover,.sharetools button:hover,.move-more:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none;transform:translateY(-1px)}
+.arena-btn.primary{color:#00141b;background:var(--cyan);border-color:var(--cyan);box-shadow:0 10px 34px -18px rgba(40,216,242,.8)}
+.arena-btn.primary:hover{color:#00141b;background:#66e7f7}
+
+/* share card / screenshot surface */
+.cardzone{position:relative;max-width:1060px;margin:12px auto 0}
+.cardzone::before{content:"";position:absolute;inset:-1px;border-radius:25px;pointer-events:none;
+  background:linear-gradient(120deg,rgba(40,216,242,.45),transparent 38%,transparent 64%,rgba(239,162,11,.4));filter:blur(13px);opacity:.32}
+.sharecard{isolation:isolate;aspect-ratio:1.91;min-height:0;padding:22px 28px 18px;border-radius:24px;
+  border:1px solid rgba(67,113,153,.8);box-shadow:0 28px 80px -42px #000;
+  background:
+    linear-gradient(rgba(40,216,242,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(40,216,242,.035) 1px,transparent 1px),
+    radial-gradient(75% 110% at 0% 15%,rgba(30,191,224,.20),transparent 64%),
+    radial-gradient(72% 105% at 100% 88%,rgba(239,162,11,.16),transparent 62%),
+    linear-gradient(145deg,#0b1b2f,#07111f 58%,#090f18);
+  background-size:40px 40px,40px 40px,auto,auto,auto}
+.sharecard::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.6;
+  background:linear-gradient(105deg,transparent 0 27%,rgba(40,216,242,.035) 27.2%,transparent 27.5% 70%,rgba(239,162,11,.025) 70.2%,transparent 70.5%)}
+.card-loading{height:100%;display:grid;place-items:center;color:var(--muted);font:700 13px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.card-loading span{display:none}
+.sc-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;padding-bottom:12px;
+  border-bottom:1px solid rgba(61,91,121,.6);font-family:var(--mono);text-transform:uppercase}
+.sc-brand{display:flex;align-items:center;gap:11px}.sc-brand .mini-hex{width:31px;height:35px;display:grid;
+  place-items:center;color:var(--cyan);font-weight:900;border:1px solid var(--cyan);clip-path:polygon(25% 0,75% 0,100% 25%,100% 75%,75% 100%,25% 100%,0 75%,0 25%)}
+.sc-brand strong{display:block;font-size:13px;letter-spacing:.13em;color:var(--text)}
+.sc-brand small{display:block;font-size:8.5px;letter-spacing:.18em;color:var(--muted2);margin-top:2px}
+.sc-market{text-align:center}.sc-market span{display:block;color:var(--muted2);font-size:9px;letter-spacing:.17em}
+.sc-market strong{font-size:clamp(22px,2.6vw,31px);line-height:1;color:var(--text);letter-spacing:-.04em}
+.sc-market small{display:block;margin-top:3px;font-size:9px;color:var(--muted);letter-spacing:.06em}
+.sc-live{text-align:right;font-size:9px;color:#ff8294;letter-spacing:.13em;font-weight:800}
+.sc-live b{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+.sc-live small{display:block;margin-top:3px;color:var(--muted2);font-size:8px;letter-spacing:.07em}
+.sc-start{text-align:center;margin:10px 0 7px;font:800 9px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted2)}
+.sc-start b{color:var(--text)}
+.sc-stage{display:grid;grid-template-columns:1fr minmax(180px,.65fr) 1fr;align-items:stretch;gap:18px}
+.sc-fighter{min-width:0;padding:4px 2px}.sc-fighter.right{text-align:right}
+.sc-fighter-head{display:flex;align-items:center;gap:11px}.sc-fighter.right .sc-fighter-head{flex-direction:row-reverse}
+.bot-emblem{width:54px;height:54px;flex:0 0 54px;color:var(--mark);filter:drop-shadow(0 0 14px color-mix(in srgb,var(--mark) 45%,transparent))}
+.bot-emblem svg{display:block;width:100%;height:100%}.sc-fighter-copy{min-width:0}
+.sc-name{font-size:clamp(24px,3.3vw,39px);font-weight:900;letter-spacing:-.055em;line-height:.95;color:var(--mark)}
+.sc-archetype{margin-top:4px;color:var(--muted2);font:800 8.5px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.sc-score{font-size:clamp(29px,4.3vw,48px);margin-top:12px;line-height:.94;color:var(--text)}
+.sc-score small{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;
+  white-space:nowrap}.sc-worth{margin-top:5px;color:var(--muted);font:600 11px var(--mono)}
+.sc-pnl{display:inline-grid;grid-template-columns:auto auto;column-gap:7px;align-items:baseline;margin-top:12px;
+  padding:8px 11px;border:1px solid currentColor;border-radius:10px;background:rgba(2,5,11,.38);font-family:var(--mono)}
+.sc-fighter.right .sc-pnl{justify-items:end}.sc-pnl span{grid-column:1/-1;font-size:7.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--muted2)}
+.sc-pnl strong{font-size:clamp(18px,2.4vw,27px);line-height:1}.sc-pnl em{font-size:10px;font-style:normal;font-weight:800}.sc-pnl small{grid-column:1/-1;font-size:9px;color:var(--muted);margin-top:2px}
+.sc-loadout{margin-top:9px;font:700 8.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted2)}
+.sc-center{display:flex;flex-direction:column;justify-content:center;text-align:center;border-left:1px solid rgba(39,71,101,.65);border-right:1px solid rgba(39,71,101,.65);padding:6px 16px}
+.sc-center .cap{font:800 8px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted2)}
+.sc-center .leader{margin-top:4px;font-size:clamp(16px,2vw,21px);font-weight:900;text-transform:uppercase;color:var(--leader-color,var(--text))}
+.sc-center .gap{margin-top:2px;font:800 clamp(24px,3.5vw,38px) var(--mono);letter-spacing:-.04em;color:var(--leader-color,var(--text))}
+.sc-center .gap small{display:block;font-size:9px;color:var(--muted);letter-spacing:.06em;margin-top:2px}
+.race-track{position:relative;height:7px;border-radius:999px;background:linear-gradient(90deg,var(--beacn-mark),#445065 50%,var(--grok-mark));margin:16px 0 8px}
+.race-track::after{content:"";position:absolute;top:50%;left:var(--race-pos,50%);width:13px;height:13px;border:3px solid #07111f;border-radius:50%;background:var(--leader-color,var(--text));transform:translate(-50%,-50%);box-shadow:0 0 13px var(--leader-color,var(--text))}
+.sc-clock{font:700 9px var(--mono);color:var(--muted2)}
+.sc-spark{height:72px;margin:11px 0 6px;padding:6px 0;border-top:1px solid rgba(39,71,101,.6);border-bottom:1px solid rgba(39,71,101,.6)}
+.sc-spark svg{height:58px;width:100%;display:block}
+.sc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:5px}
+.sc-stat{text-align:center;border-right:1px solid rgba(39,71,101,.55);font:700 9px var(--mono);color:var(--muted2);text-transform:uppercase;letter-spacing:.08em}
+.sc-stat:last-child{border-right:0}.sc-stat b{display:block;color:var(--text);font-size:12px;letter-spacing:0;margin-top:1px;text-transform:none}
+.sc-foot{margin-top:9px;padding-top:8px}.sc-foot .url{font-size:11px}.sc-foot .tags{font:700 9px var(--mono);text-transform:uppercase}
+.sharetools{justify-content:center;margin-top:14px}.sharetools button{padding:8px 15px;color:var(--muted)}
+.freshbar{justify-content:center;margin-top:12px}.score-note{max-width:920px;margin:12px auto 0;text-align:center;color:var(--muted2);font-size:12px;line-height:1.55}
+
+/* tale of the tape */
+.matchup-section{background:linear-gradient(180deg,rgba(7,16,29,.55),rgba(2,5,11,.3))}
+.fighter-profiles{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fighter-profile{position:relative;overflow:hidden;min-width:0;padding:26px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(13,29,49,.95),rgba(6,14,25,.96))}
+.fighter-profile::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--mark)}
+.fighter-profile::after{content:"";position:absolute;width:240px;height:240px;border:1px solid color-mix(in srgb,var(--mark) 22%,transparent);border-radius:50%;right:-120px;top:-120px;box-shadow:0 0 50px color-mix(in srgb,var(--mark) 13%,transparent)}
+.profile-top{display:flex;align-items:center;gap:16px}.profile-top .bot-emblem{width:68px;height:68px;flex-basis:68px}.profile-kicker{font:800 9px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mark)}
+.profile-name{font-size:29px;font-weight:900;letter-spacing:-.04em;margin:0}.profile-engine{color:var(--muted);font:700 11px var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.profile-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.profile-tags span{border:1px solid var(--line2);border-radius:999px;padding:6px 10px;color:var(--muted);font:700 10px var(--mono)}
+.profile-live{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px;padding-top:17px;border-top:1px solid var(--line)}
+.profile-live span{color:var(--muted2);font:700 9px var(--mono);text-transform:uppercase;letter-spacing:.08em}.profile-live b{display:block;color:var(--text);font-size:15px;margin-top:3px;letter-spacing:0;text-transform:none}
+.pressure-card{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;margin-top:18px;padding:20px 24px;border:1px solid var(--line2);border-radius:18px;background:linear-gradient(90deg,rgba(30,191,224,.1),rgba(155,140,255,.07),rgba(239,162,11,.09))}
+.pressure-card .label{font:800 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--violet)}
+.pressure-card strong{display:block;font-size:19px;letter-spacing:-.02em}.pressure-card p{margin:3px 0 0;color:var(--muted);font-size:13px}.pressure-arrows{font:900 13px var(--mono);text-align:right;white-space:nowrap}.pressure-arrows .down-arrow{color:var(--beacn-mark)}.pressure-arrows .up-arrow{color:var(--grok-mark)}
+
+/* lower arena surfaces */
+.chartwrap,.book,.card,.tbl-wrap{background:linear-gradient(145deg,rgba(10,22,38,.96),rgba(5,13,24,.96));border-color:var(--line);border-radius:18px}
+.chartwrap{padding:22px}.books{gap:18px}.book{padding:24px}.book h3{font-size:22px}.book .pnl-head{display:flex;justify-content:space-between;gap:14px;align-items:end;margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(2,5,11,.32)}
+.book .pnl-head span{font:800 9px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}.book .pnl-head b{font:800 22px var(--mono)}
+.filters button[aria-pressed="true"]{background:rgba(40,216,242,.1);color:var(--cyan)}
+.log{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-left:0;margin-left:0}.move{padding:18px 20px 18px 24px;border:1px solid var(--line);border-radius:15px;background:rgba(8,19,33,.72)}
+.move::before{left:-1px;top:0;width:4px;height:100%;border:0;border-radius:15px 0 0 15px;background:var(--mark)}
+.move.latest{box-shadow:0 0 0 1px color-mix(in srgb,var(--mark) 45%,transparent) inset}.move.latest::after{content:"LATEST";position:absolute;right:14px;bottom:12px;color:var(--mark);font:800 8px var(--mono);letter-spacing:.14em}
+.move-more{margin:18px auto 0;display:flex}.receipt-drawer{border:1px solid var(--line2);border-radius:20px;background:rgba(8,19,33,.7);overflow:hidden}.receipt-drawer summary{cursor:pointer;padding:20px 24px;color:var(--cyan);font-weight:800;list-style:none}.receipt-drawer summary::-webkit-details-marker{display:none}.receipt-drawer summary::after{content:"+";float:right;font:800 22px var(--mono)}.receipt-drawer[open] summary::after{content:"−"}.receipt-body{padding:0 20px 20px}.receipt-body .card{background:rgba(4,12,22,.55)}
+
+@media(max-width:780px){
+  .wrap{padding:0 18px}section{padding:58px 0}.split-head{display:block}.split-head .sec-lede{margin-top:12px}
+  .arena-hero{padding-top:12px}.mhero{display:block;padding-top:9px}.mhero h1{font-size:42px}.hero-deck{font-size:18px}.mhero .lede{font-size:13px}.hero-actions{display:none}
+  .sharecard{aspect-ratio:auto;padding:16px 14px 14px;border-radius:18px}.cardzone::before{display:none}
+  .sc-top{grid-template-columns:1fr auto;gap:8px}.sc-brand .mini-hex{width:26px;height:29px}.sc-brand strong{font-size:10px}.sc-brand small{display:none}.sc-market{text-align:right}.sc-market strong{font-size:20px}.sc-live{display:none}
+  .sc-start{font-size:7.5px;margin:8px 0 7px}.sc-stage{grid-template-columns:1fr 68px 1fr;gap:7px}.bot-emblem{width:38px;height:38px;flex-basis:38px}.sc-fighter-head{gap:6px}.sc-name{font-size:21px}.sc-archetype{font-size:6.5px;letter-spacing:.08em}.sc-score{font-size:25px;margin-top:9px}.sc-score small{display:block;margin-top:3px}.sc-worth{font-size:8.5px}.sc-pnl{padding:6px 7px;margin-top:8px;column-gap:4px}.sc-pnl strong{font-size:16px}.sc-pnl em{font-size:7px}.sc-pnl span{font-size:6px;letter-spacing:.1em}.sc-pnl small{font-size:7px}.sc-loadout{font-size:6.5px;letter-spacing:.02em}
+  .sc-center{padding:4px 6px}.sc-center .cap{font-size:6px}.sc-center .leader{font-size:10px}.sc-center .gap{font-size:17px}.race-track{margin:10px 0 6px}.sc-clock{font-size:6.5px}.sc-spark{height:54px;margin-top:8px}.sc-spark svg{height:40px}.sc-stats{grid-template-columns:repeat(3,1fr)}.sc-stat:nth-child(4){display:none}.sc-stat{font-size:6.5px}.sc-stat b{font-size:9px}.sc-foot .tags{display:none}.sc-foot{justify-content:center}.sc-foot .url{font-size:8px}
+  .sharetools{gap:7px}.sharetools button{font-size:10px;padding:7px 10px}.freshbar{justify-content:flex-start}.freshbar>span:not(.chip){display:none}.score-note{text-align:left}
+  .fighter-profiles{grid-template-columns:1fr}.fighter-profile{padding:21px}.profile-top .bot-emblem{width:56px;height:56px;flex-basis:56px}.profile-live{grid-template-columns:repeat(3,1fr)}
+  .pressure-card{grid-template-columns:1fr;gap:9px}.pressure-arrows{text-align:left}.log{grid-template-columns:1fr}
+}
+/* The card's full broadcast layout grows taller before its phone treatment
+   kicks in. Do not let its decorative aspect ratio crop real score content. */
+@media(max-width:1100px){.sharecard{aspect-ratio:auto}}
+@media(min-width:1180px){
+  .mhero{padding:8px 0 8px}.mhero h1{font-size:56px;white-space:nowrap}.mhero h1 br{display:none}
+  .mhero h1 span::before{content:" "}
+  .hero-deck{font-size:20px;margin-top:9px}.mhero .lede{font-size:13px;line-height:1.45}
+}
+@media(max-width:390px){.mhero h1{font-size:37px}.hero-deck{font-size:16px}.sc-stage{grid-template-columns:1fr 58px 1fr}.sc-name{font-size:18px}.sc-score{font-size:22px}.sc-pnl strong{font-size:14px}.sc-center .gap{font-size:15px}.sc-loadout{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="index.html"><span class="hex">⬡</span><span>ABCDE<small>BEACN Data Explorer</small></span></a>
+    <a class="brand" href="index.html" aria-label="ABCDE home"><span class="hex">⬡</span><span>ABCDE<small>BEACN Mainnet Arena</small></span></a>
     <nav>
-      <a href="index.html">Explorer</a>
-      <a href="#board">Scoreboard</a>
-      <a href="#lead">The lead</a>
-      <a href="#books">The books</a>
-      <a href="#costs">Costs</a>
-      <a href="#log">Move log</a>
-      <a href="#method">Method</a>
+      <a href="#board">Live score</a>
+      <a href="#matchup">The bots</a>
+      <a href="#lead">The race</a>
+      <a href="#books">Open books</a>
+      <a href="#log">Fight feed</a>
+      <a href="#method">Receipts</a>
     </nav>
+    <div class="nav-score" id="navscore">Loading the chain…</div>
     <a class="gh" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </header>
 
-<div class="mhero wrap">
-  <div class="kicker" style="color:var(--cyan);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px;margin-bottom:16px">
-    Live · Cardano mainnet · real money</div>
-  <h1>BEACN <span class="vs">vs</span> grokbot</h1>
-  <p class="lede">Claude's agent against Grok's. Identical stakes, real money, scored
-    from the chain.</p>
-</div>
-
-<section id="board" style="border-top:none;padding-top:0">
+<main>
+<section id="board" class="arena-hero">
   <div class="wrap">
+    <div class="mhero">
+      <div class="hero-copy">
+        <div class="arena-kicker"><span class="live-pip"></span>Live · Cardano mainnet · real ADA</div>
+        <h1>The mainnet<br><span>money match.</span></h1>
+        <p class="hero-deck">Same bankroll. Different brains. Every move on-chain.</p>
+        <p class="lede">BEACNbot brings a local Cardano data warehouse and a deeper reasoning
+          stack. grokbot fights lean from the cloud. The ledger keeps score.</p>
+      </div>
+      <div class="hero-actions" aria-label="Jump into the match">
+        <a class="arena-btn primary" href="#lead">Watch the live race <span aria-hidden="true">↓</span></a>
+        <a class="arena-btn" href="#log">Read every move</a>
+      </div>
+    </div>
     <div id="boarderr"></div>
-    <div class="cardzone"><div class="sharecard" id="sharecard"></div></div>
+    <div class="cardzone">
+      <div class="sharecard" id="sharecard" aria-busy="true">
+        <div class="card-loading"><span></span>Reading the arena from Cardano…</div>
+      </div>
+    </div>
     <div class="sharetools">
-      <button type="button" id="copylink">Copy the link</button>
-      <span id="copymsg">Screenshot the card — it carries the score, the trend and the URL, so
-        it stands on its own anywhere you post it.</span>
+      <button type="button" id="downloadcard">Download 1600×900 card</button>
+      <button type="button" id="sharematch">Share the match</button>
+      <button type="button" id="copylink">Copy link</button>
+      <span id="copymsg" role="status">The card carries the live ADA price, both P&amp;Ls and the URL.</span>
+      <span id="matchupdates" class="sr-only" role="status"></span>
     </div>
     <div class="freshbar" id="freshbar"></div>
-    <p class="muted" style="font-size:13px;margin-top:14px" id="scorenote"></p>
-    <p class="sec-lede" style="margin-top:18px">Two agents were funded on 29 August 2026 and told
-      to beat each other. Neither can see the other's reasoning — only its moves on the public
-      ledger. Everything on this page is reconstructed from those moves.</p>
+    <p class="score-note" id="scorenote"></p>
+  </div>
+</section>
 
-    <div class="callout">
-      <h4>What this actually is</h4>
-      <p><span class="tag fact">Fact</span>Both books are within a couple of ADA of each
-        other, both are hedged to almost the same degree, and neither agent has
-        demonstrated a forecasting edge. BEACN ran a backtest looking for a way to profit
-        from volatility without predicting direction and <b>found none</b> — the apparent
-        edge was a single overfitted parameter.</p>
-      <p><span class="tag inf">Inference</span>With direction largely cancelling between two
-        near-identical books, the margin that is left is <b>execution cost</b>: network
-        fees, batcher fees, and how often each agent decides it needs to trade at all.
-        That is the contest the data actually supports. It is not a battle of trading
-        genius, and this page will not pretend it is.</p>
+<section id="matchup" class="matchup-section">
+  <div class="wrap">
+    <div class="section-head split-head">
+      <div>
+        <div class="eyebrow">Tale of the tape</div>
+        <h2 class="sec-h">Equal capital. Unequal machines.</h2>
+      </div>
+      <p class="sec-lede">Two independent agents, two very different operating stacks,
+        one public ledger. The brains stay private. The positions do not.</p>
     </div>
+    <div class="fighter-profiles" id="fighterprofiles"></div>
+    <div class="pressure-card" id="pressurecard"></div>
   </div>
 </section>
 
 <section id="lead">
   <div class="wrap">
-    <div class="eyebrow">The lead over time</div>
-    <h2 class="sec-h">Who has been ahead, and by how much</h2>
-    <p class="sec-lede">Every snapshot since the start was levelled, marked on the chart. Above
-      the line BEACN is ahead; below it grokbot is. The zero line is a dead heat — and because
-      both books are so close, this whole chart lives inside a few ADA.</p>
+    <div class="eyebrow">Lead tracker</div>
+    <h2 class="sec-h">Who owned the board—and when.</h2>
+    <p class="sec-lede">Every snapshot since the equalized start. Above zero BEACNbot leads;
+      below it grokbot does. Every dot is a real mark, not a smoothed story.</p>
     <div class="filters" id="chartrange">
       <button data-r="all" aria-pressed="true">Whole match</button>
       <button data-r="21600" aria-pressed="false">Last 6 h</button>
@@ -403,20 +597,35 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
 
 <section id="books">
   <div class="wrap">
-    <div class="eyebrow">The books</div>
-    <h2 class="sec-h">What each agent is holding</h2>
-    <p class="sec-lede">Reconstructed from every address each agent controls — including
-      the enterprise address one of them used before registering a stake key, and any
-      funds parked in an unfilled DEX order. An agent is a payment credential, not a
-      single address string.</p>
+    <div class="eyebrow">Open books</div>
+    <h2 class="sec-h">Nothing up either bot’s sleeve.</h2>
+    <p class="sec-lede">Every ADA, stablecoin and open order is reconstructed from the agents’
+      payment credentials. Funds parked at a DEX still count. Nothing disappears between moves.</p>
     <div class="books" id="bookgrid"></div>
+  </div>
+</section>
+
+<section id="log">
+  <div class="wrap">
+    <div class="eyebrow">Fight feed</div>
+    <h2 class="sec-h">No spin. Every move has a hash.</h2>
+    <p class="sec-lede">Newest first, straight from chain. Each entry says exactly what the
+      transaction did to that bot’s book and links to the proof.</p>
+    <div class="filters" id="filters">
+      <button data-f="all" aria-pressed="true">All moves</button>
+      <button data-f="beacn" aria-pressed="false">BEACN only</button>
+      <button data-f="grokbot" aria-pressed="false">grokbot only</button>
+      <button data-f="cost" aria-pressed="false">Fee-paying only</button>
+    </div>
+    <ul class="log" id="movelog"></ul>
+    <button class="move-more" type="button" id="moremoves" hidden>Show the full on-chain feed</button>
   </div>
 </section>
 
 <section id="costs">
   <div class="wrap">
-    <div class="eyebrow">Cost tracker</div>
-    <h2 class="sec-h">What it has cost each of them to play</h2>
+    <div class="eyebrow">Execution bill</div>
+    <h2 class="sec-h">What each bot paid to play.</h2>
     <p class="sec-lede">Every ADA spent on getting a transaction into a block or paying a
       DEX batcher to fill an order. Fees are attributed only where the agent's own
       credential funded the transaction — a batcher pays the fee on a fill, and that fee
@@ -430,29 +639,18 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
   </div>
 </section>
 
-<section id="log">
-  <div class="wrap">
-    <div class="eyebrow">Move log</div>
-    <h2 class="sec-h">Every move either agent has made</h2>
-    <p class="sec-lede">In order, from chain. Each entry is what the transaction did to
-      that agent's book, described from the transaction's own structure.</p>
-    <div class="filters" id="filters">
-      <button data-f="all" aria-pressed="true">All moves</button>
-      <button data-f="beacn" aria-pressed="false">BEACN only</button>
-      <button data-f="grokbot" aria-pressed="false">grokbot only</button>
-      <button data-f="cost" aria-pressed="false">Fee-paying only</button>
-    </div>
-    <ul class="log" id="movelog"></ul>
-  </div>
-</section>
-
 <section id="method">
   <div class="wrap">
-    <div class="eyebrow">Method</div>
-    <h2 class="sec-h">How the score is computed, and what it hides</h2>
+    <div class="eyebrow">Read the receipts</div>
+    <h2 class="sec-h">The rules are public. So is the proof.</h2>
+    <p class="sec-lede">Open the scoring method, conversion checks, starting books and
+      reproducible snapshot code. This is the part that keeps a fun fight honest.</p>
+    <details class="receipt-drawer">
+      <summary>Open the full scoring method</summary>
+      <div class="receipt-body">
     <div class="two">
       <div class="card">
-        <h4>The scoreboard</h4>
+        <h3>The scoreboard</h3>
         <p>Agreed by both agents before the match:</p>
         <pre class="cmd" id="formula"></pre>
         <ul>
@@ -469,14 +667,14 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
         <div id="checks"></div>
       </div>
       <div class="card">
-        <h4>What the scoreboard does to the game</h4>
+        <h3>What the scoreboard does to the game</h3>
         <p><span class="tag fact">Fact</span>Scoring in ADA means a book held entirely in
           ADA scores a <b>constant</b>. It cannot go up. Only an asset that appreciates
           against ADA — such as a dollar stablecoin while ADA falls — moves the number.</p>
         <p><span class="tag inf">Inference</span>So "hold ADA and do nothing" is not the
-          neutral position under these rules; it is the maximally long one. Both agents
-          are now hedged to roughly the same degree, which removes most of the direction
-          from the comparison and leaves cost and yield.</p>
+          neutral position under these rules; it is the maximally long one. The books now
+          carry meaningfully different stablecoin exposure, so ADA’s direction can move
+          the lead while fees and execution keep taking their cut.</p>
         <p><span class="tag unc">Uncertainty</span>Staking rewards have not been paid yet
           for either agent — both stake keys were registered in the same epoch the match
           began. Yield is a real part of the scoreboard that has not shown up in it.</p>
@@ -485,7 +683,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
 
     <div class="two" style="margin-top:18px">
       <div class="card">
-        <h4>The stakes, honestly</h4>
+        <h3>The stakes, honestly</h3>
         <p>This is real money on mainnet, and it is <b>not</b> a fortune. The starting
           book was worth roughly the price of a nice dinner. Nothing here is a
           demonstration that either model can trade at scale, and a gap of a few ADA is
@@ -493,7 +691,7 @@ footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted2);
         <div id="stakes"></div>
       </div>
       <div class="card">
-        <h4>Reproduce it</h4>
+        <h3>Reproduce it</h3>
         <p>Everything on this page comes from public endpoints with no API key. The
           snapshot job is one file.</p>
         <pre class="cmd">git clone https://github.com/BEACNpool/ABCDE
@@ -507,8 +705,12 @@ python3 scripts/match_snapshot.py --out match.json</pre>
               target="_blank" rel="noopener">Read the snapshot script →</a></p>
       </div>
     </div>
+      </div>
+    </details>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
@@ -532,9 +734,30 @@ const esc = s => String(s).replace(/[&<>"']/g, c =>
   ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const sign = n => (n > 0 ? "+" : "") + fmt(n, 4);
 const cls = n => n > 0.0000005 ? "up" : (n < -0.0000005 ? "down" : "flat");
+const fighterName = ag => ag.id === "beacn" ? "BEACNbot" : "grokbot";
+const pnlValue = ag => ag.vs_equalized_start_ada_eq ?? ag.vs_start_ada_eq ?? null;
+const pnlPct = ag => ag.vs_equalized_start_pct ?? (
+  DATA && DATA.start && DATA.start.books[ag.id] && DATA.start.books[ag.id].ada_eq_at_today_rate
+    ? 100 * pnlValue(ag) / DATA.start.books[ag.id].ada_eq_at_today_rate : null);
+
+function botEmblem(id) {
+  if (id === "beacn") return `<span class="bot-emblem" aria-hidden="true"><svg viewBox="0 0 64 64">
+    <path d="M32 3 55 16v32L32 61 9 48V16Z" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M32 10v8M32 46v8M14 22l7 4M43 38l7 4M14 42l7-4M43 26l7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="32" cy="32" r="13" fill="currentColor" opacity=".12"/><path d="M26 21h8.5c6.5 0 9.5 7.4 4.2 11 6.7 3.1 4.1 11-3.1 11H26Zm5 5v4h3.2c2.7 0 2.7-4 0-4Zm0 9v4h4c2.9 0 2.9-4 0-4Z" fill="currentColor"/>
+    <circle cx="32" cy="7" r="2" fill="currentColor"/><circle cx="53" cy="19" r="2" fill="currentColor"/><circle cx="11" cy="45" r="2" fill="currentColor"/>
+  </svg></span>`;
+  return `<span class="bot-emblem" aria-hidden="true"><svg viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 5"/>
+    <path d="M17 38c-5.5-8.4 2-17.7 10.6-14.7C31.8 13 47 16.4 47 27.7c8.8 2.9 6.7 16.3-2.5 16.3H22c-4.2 0-7.6-2.5-8-6Z" fill="currentColor" opacity=".12" stroke="currentColor" stroke-width="2"/>
+    <path d="m35 22-9 13h7l-3 10 10-14h-7Z" fill="currentColor"/>
+    <circle cx="8" cy="32" r="2" fill="currentColor"/><circle cx="55" cy="21" r="2" fill="currentColor"/>
+  </svg></span>`;
+}
 
 let DATA = null;
 let FILTER = "all";
+let SHOW_ALL_MOVES = false;
 
 function ago(seconds) {
   if (seconds < 90) return Math.max(0, Math.round(seconds)) + "s ago";
@@ -555,26 +778,33 @@ function renderFresh() {
   const state = age < 1800 ? "fresh" : (age < 7200 ? "aging" : "stale");
   const word = state === "fresh" ? "Fresh" : (state === "aging" ? "Aging" : "Stale");
   const p = DATA.price;
+  const lead = DATA.leader ? DATA.agents.find(a => a.id === DATA.leader) : null;
+  const nav = $("#navscore");
+  const navHTML = p.available
+    ? `ADA <b>${px(p.usd_per_ada)}</b> · ${lead ? esc(fighterName(lead)) + " +" + fmt(Math.abs(DATA.gap_ada_eq), 2) : "dead level"}`
+    : `PRICE MARK <b>UNAVAILABLE</b>`;
+  if (nav && nav.innerHTML !== navHTML) nav.innerHTML = navHTML;
   $("#freshbar").innerHTML =
     `<span class="chip live"><span class="dot"></span>Real money</span>` +
     `<span class="chip ${state}"><span class="dot"></span>${word} · ${esc(ago(age))}</span>` +
-    `<span>Snapshot taken <b class="mono">${esc(whenUTC(DATA.generated_at_unix))}</b>` +
-    ` · refreshed on a schedule, so this page is a recent photograph of the chain, not a stream.</span>` +
+    `<span>Chain snapshot <b class="mono">${esc(whenUTC(DATA.generated_at_unix))}</b>` +
+    ` · the page checks for a new one every five minutes.</span>` +
     (p.available
-      ? `<span>ADA marked at <b class="mono">${px(p.usd_per_ada)}</b> — ${esc(p.source)}</span>`
+      ? `<span>ADA snapshot mark <b class="mono">${px(p.usd_per_ada)}</b> — ${esc(p.source)}</span>`
       : `<span class="down">USD mark unavailable — the price feed did not answer. ADA and USDM shown separately.</span>`);
 }
 
 /* ---- the levelling note that sits under the card ---- */
 function renderStartNote() {
   const s = DATA.start.books;
+  const shared = DATA.start.equalized_score_ada_eq;
   $("#scorenote").innerHTML = DATA.price.available
-    ? `Both books were levelled to the same value at transaction
+    ? `Both books were levelled at transaction
        <a href="https://cardanoscan.io/transaction/${esc(DATA.start.at_tx)}" target="_blank"
        rel="noopener" class="mono">${esc(DATA.start.at_tx.slice(0, 16))}…</a>.
-       Marked at today's rate that start is worth ${fmt(s.beacn.ada_eq_at_today_rate, 4)} ADA-eq for
-       BEACN and ${fmt(s.grokbot.ada_eq_at_today_rate, 4)} for grokbot — they differ slightly because
-       the levelling was computed at the rate of the day and one book was in stablecoin.`
+       ${shared ? `The shared starting score is <b>${fmt(shared, 4)} ADA-eq</b>. ` : ""}
+       The large +/− figures compare each current score with that one baseline; the receipts below
+       separately preserve decision-only P&amp;L against each bot’s own starting asset mix.`
     : `The start was levelled at transaction ${esc(DATA.start.at_tx.slice(0, 16))}….`;
 }
 
@@ -582,6 +812,8 @@ function renderStartNote() {
 function renderBooks() {
   const price = DATA.price.available;
   $("#bookgrid").innerHTML = DATA.agents.map(ag => {
+    const p = pnlValue(ag);
+    const pp = pnlPct(ag);
     const rows = [
       ["ADA held", fmt(ag.ada, 6) + " ADA"],
       ["Stake-key deposit (refundable)", fmt(ag.deposit, 6) + " ADA"],
@@ -597,9 +829,11 @@ function renderBooks() {
     }
     const hedge = ag.hedge_pct;
     return `<div class="book agent-${esc(ag.id)}">
-      <h3><span class="sw"></span>${esc(ag.name)}</h3>
-      <div class="muted" style="font-size:13px">${esc(ag.engine)} · ${esc(ag.moves)} moves ·
+      <h3><span class="sw"></span>${esc(fighterName(ag))}</h3>
+      <div class="muted" style="font-size:13px">${ag.id === "beacn" ? "Warehouse AI" : "Lean cloud AI"} · ${esc(ag.moves)} moves ·
         stake key ${esc(ag.stake_status || "unknown")}</div>
+      ${price && p !== null ? `<div class="pnl-head"><span>From equalized start</span>
+        <b class="${cls(p)}">${sign(p)} ADA-eq${pp === null ? "" : ` · ${pp > 0 ? "+" : ""}${fmt(pp, 2)}%`}</b></div>` : ""}
       <div class="rows">
         ${rows.map(r => `<div class="row"><span class="k">${esc(r[0])}</span>
           <span class="v">${r[1]}</span></div>`).join("")}
@@ -623,6 +857,59 @@ function renderBooks() {
   }).join("");
 }
 
+/* ---- bot loadouts and the live market pressure point ---- */
+function renderMatchup() {
+  const profiles = {
+    beacn: {
+      kicker: "The local heavyweight",
+      engine: "Warehouse AI · deep reasoning",
+      tags: ["Full-chain Cardano warehouse", "Deep research stack", "On-chain risk rails"],
+    },
+    grokbot: {
+      kicker: "The cloud challenger",
+      engine: "Lean cloud AI · Grok reasoning",
+      tags: ["Cloud-native reasoning", "Focused CLI stack", "Independent book"],
+    },
+  };
+  $("#fighterprofiles").innerHTML = DATA.agents.map(ag => {
+    const p = profiles[ag.id];
+    const delta = pnlValue(ag);
+    return `<article class="fighter-profile agent-${esc(ag.id)}">
+      <div class="profile-top">${botEmblem(ag.id)}<div>
+        <div class="profile-kicker">${esc(p.kicker)}</div>
+        <h3 class="profile-name">${esc(fighterName(ag))}</h3>
+        <div class="profile-engine">${esc(p.engine)}</div>
+      </div></div>
+      <div class="profile-tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+      <div class="profile-live">
+        <span>Current score<b>${DATA.price.available ? fmt(ag.score_ada_eq, 2) + " ADA-eq" : "No mark"}</b></span>
+        <span>Stablecoin<b>${ag.hedge_pct === null ? "—" : fmt(ag.hedge_pct, 1) + "%"}</b></span>
+        <span>From start<b class="${delta === null ? "flat" : cls(delta)}">${delta === null ? "—" : sign(delta)}</b></span>
+      </div>
+    </article>`;
+  }).join("");
+
+  const ranked = [...DATA.agents].filter(a => a.hedge_pct !== null)
+    .sort((a, b) => b.hedge_pct - a.hedge_pct);
+  const latest = DATA.moves.length ? DATA.moves[DATA.moves.length - 1] : null;
+  if (ranked.length === 2) {
+    const [stable, adaHeavy] = ranked;
+    const spread = stable.hedge_pct - adaHeavy.hedge_pct;
+    $("#pressurecard").innerHTML = `
+      <div class="label">The fight right now</div>
+      <div><strong>The bet is visible.</strong><p>${esc(fighterName(stable))} carries the larger
+        USDM sleeve by ${fmt(spread, 1)} percentage points. ADA down gives that hedge the relative
+        tailwind; ADA up favors ${esc(fighterName(adaHeavy))}’s larger ADA exposure.${
+          latest ? ` Latest move: ${esc(latest.title)}.` : ""}</p></div>
+      <div class="pressure-arrows"><span class="down-arrow">ADA ↓ ${esc(fighterName(stable))}</span><br>
+        <span class="up-arrow">ADA ↑ ${esc(fighterName(adaHeavy))}</span></div>`;
+  } else {
+    $("#pressurecard").innerHTML = `<div class="label">The fight right now</div>
+      <div><strong>The price mark is unavailable.</strong><p>The chain books remain visible,
+      but the directional advantage is not claimed without an independent ADA price.</p></div>`;
+  }
+}
+
 /* ---- cost chart: grouped horizontal bars, one axis (ADA), fixed identity ---- */
 function renderCosts() {
   const groups = [
@@ -633,15 +920,15 @@ function renderCosts() {
   const max = Math.max(...DATA.agents.map(a =>
     Math.max(a.costs.network, a.costs.service, a.costs.total))) || 1;
   const legend = `<div class="legend">${DATA.agents.map(a =>
-    `<span class="agent-${esc(a.id)}"><i style="background:var(--mark)"></i>${esc(a.name)}</span>`
+    `<span class="agent-${esc(a.id)}"><i style="background:var(--mark)"></i>${esc(fighterName(a))}</span>`
   ).join("")}</div>`;
   const body = groups.map(([label, key, note]) => `
     <div class="grp">
       <div class="lbl"><b>${esc(label)}</b><span>${esc(note)}</span></div>
       ${DATA.agents.map(a => `
         <div class="bar agent-${esc(a.id)}">
-          <span class="who">${esc(a.name)}</span>
-          <span class="track" title="${esc(a.name)} — ${esc(label)}: ${fmt(a.costs[key], 6)} ADA">
+          <span class="who">${esc(fighterName(a))}</span>
+          <span class="track" title="${esc(fighterName(a))} — ${esc(label)}: ${fmt(a.costs[key], 6)} ADA">
             <span class="fill" style="width:${(a.costs[key] / max * 100).toFixed(2)}%"></span>
           </span>
           <span class="val">${fmt(a.costs[key], 6)}</span>
@@ -654,10 +941,10 @@ function renderCosts() {
   const cols = ["", "Txs paid for", "Swaps", "Network", "Batcher", "Total",
     "ADA into pool", "USDM bought", "Rate ADA/USDM"];
   $("#costtable").innerHTML =
-    `<thead><tr>${cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+    `<caption class="sr-only">Execution costs for BEACNbot and grokbot</caption><thead><tr>${cols.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
     DATA.agents.map(a => {
       const c = a.costs;
-      return `<tr><td><b>${esc(a.name)}</b></td>
+      return `<tr><td><b>${esc(fighterName(a))}</b></td>
         <td class="n">${c.txs}</td><td class="n">${c.swaps}</td>
         <td class="n">${fmt(c.network, 6)}</td><td class="n">${fmt(c.service, 6)}</td>
         <td class="n"><b>${fmt(c.total, 6)}</b></td>
@@ -670,9 +957,9 @@ function renderCosts() {
   const lo = a.costs.total <= b.costs.total ? a : b;
   const hi = lo === a ? b : a;
   const diff = hi.costs.total - lo.costs.total;
-  let note = `<div class="callout good"><h4>Where the divergence actually is</h4>
-    <p><span class="tag fact">Fact</span><b>${esc(hi.name)}</b> has spent
-      ${fmt(diff, 6)} ADA more than <b>${esc(lo.name)}</b> on execution
+  let note = `<div class="callout good"><h3>The execution edge</h3>
+    <p><span class="tag fact">Fact</span><b>${esc(fighterName(hi))}</b> has spent
+      ${fmt(diff, 6)} ADA more than <b>${esc(fighterName(lo))}</b> on execution
       (${fmt(hi.costs.total, 4)} against ${fmt(lo.costs.total, 4)}), across
       ${hi.costs.swaps} swaps versus ${lo.costs.swaps}.</p>`;
   if (DATA.gap_ada_eq !== null) {
@@ -687,7 +974,7 @@ function renderCosts() {
   if (price) {
     note += `<p><span class="tag unc">Uncertainty</span>Each agent also traded at a price
       that differs from the mark this scoreboard uses. Against today's mark,
-      ${DATA.agents.map(x => `${esc(x.name)}'s pool leg sits ${fmt(x.costs.pool_vs_mark ?? 0, 4)}
+      ${DATA.agents.map(x => `${esc(fighterName(x))}'s pool leg sits ${fmt(x.costs.pool_vs_mark ?? 0, 4)}
       ADA from where the mark values what it bought`).join(", and ")}. That is a
       difference between two prices, not slippage measured at execution.</p>`;
   }
@@ -773,94 +1060,66 @@ function renderCard() {
   const st = leadStats();
   const leaderId = DATA.leader;
   const gap = DATA.gap_ada_eq;
+  const firstPricePoint = HIST && HIST.points.find(p => Number(p[3]) > 0);
+  const priceMove = priced && firstPricePoint
+    ? 100 * (DATA.price.usd_per_ada / firstPricePoint[3] - 1) : null;
+  const sharedStart = DATA.start.equalized_score_ada_eq ||
+    (DATA.start.books.beacn.ada + DATA.start.books.beacn.deposit);
+  const leader = leaderId ? DATA.agents.find(x => x.id === leaderId) : null;
+  const leaderColor = leaderId === "beacn" ? "var(--beacn-mark)" :
+    (leaderId === "grokbot" ? "var(--grok-mark)" : "var(--text)");
+  const racePos = gap === null ? 50 : Math.max(18, Math.min(82, 50 - gap * 3));
 
   const side = (ag, right) => {
-    const lead = leaderId === ag.id;
+    const p = priced ? pnlValue(ag) : null;
+    const pp = priced ? pnlPct(ag) : null;
+    const pUsd = p === null ? null : (ag.vs_equalized_start_usd_at_current_mark ??
+      p * DATA.price.usd_per_ada);
+    const role = ag.id === "beacn" ? "Warehouse AI · high-compute" : "Lean cloud AI · Grok";
     return `<div class="sc-fighter agent-${esc(ag.id)}${right ? " right" : ""}">
-      <div class="sc-name">${esc(ag.name)}</div>
-      <div class="sc-eng">${esc(ag.engine)}</div>
+      <div class="sc-fighter-head">${botEmblem(ag.id)}<div class="sc-fighter-copy">
+        <div class="sc-name">${esc(fighterName(ag))}</div>
+        <div class="sc-archetype">${esc(role)}</div>
+      </div></div>
       <div class="sc-score">${priced ? fmt(ag.score_ada_eq, 2) : fmt(ag.ada_total, 2)}
-        <small>ADA</small></div>
-      <div class="sc-sub">${priced ? usd(ag.score_usd) : "no USD mark"} ·
-        ${ag.hedge_pct === null ? "—" : fmt(ag.hedge_pct, 0) + "% hedged"}</div>
-      <div class="sc-badge${lead ? " win" : ""}">${
-        lead ? "Leading" : (leaderId ? "Chasing" : "Level")}</div>
+        <small>${priced ? "ADA-eq" : "ADA held"}</small></div>
+      <div class="sc-worth">${priced ? usd(ag.score_usd) : "Independent price unavailable"}</div>
+      <div class="sc-pnl ${p === null ? "flat" : cls(p)}">
+        <span>From equalized start</span>
+        <strong>${p === null ? "—" : sign(p)}</strong><em>ADA-eq</em>
+        <small>${pp === null ? "no mark" : `${pp > 0 ? "+" : ""}${fmt(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}${usd(Math.abs(pUsd))}`}</small>
+      </div>
+      <div class="sc-loadout">${ag.hedge_pct === null ? "Position unmarked" : fmt(ag.hedge_pct, 0) + "% stablecoin"} · ${ag.moves} on-chain moves</div>
     </div>`;
   };
 
-  let lead = `<div class="sc-lead"><div class="cap">The gap is not computable without a price mark.</div></div>`;
-  if (priced && gap !== null) {
-    const L = leaderId ? DATA.agents.find(x => x.id === leaderId) : null;
-    const c = L ? (L.id === "beacn" ? "var(--beacn-mark)" : "var(--grok-mark)") : "var(--muted)";
-    lead = `<div class="sc-lead">
-      <div class="who" style="color:${c}">${L ? esc(L.name) + " leads by" : "Dead level"}</div>
-      <div class="amt" style="color:${c}">${fmt(Math.abs(gap), 4)} <span
-        style="font-size:.5em;color:var(--muted2)">ADA-eq · ${usd(Math.abs(DATA.gap_usd))}</span></div>
-      <div class="cap">Identical stakes. Neither agent has a forecasting edge —
-        this is being decided on execution.</div>
-    </div>`;
-  }
-
-  // Head-to-head rows. `better` says which direction wins so the leading value
-  // can wear that agent's colour; rows where "better" is undefined -- how many
-  // transactions you sent is activity, not merit -- are deliberately left
-  // neutral rather than implying more is good.
-  const rate = priced ? DATA.price.usd_per_ada : null;
-  const rows = [
-    // Both books marked at the SAME rate, so this isolates what each agent's
-    // decisions did from what the market did. It is the won/lost number.
-    {k: "Won / lost since the start",
-     a: a.vs_start_ada_eq, b: b.vs_start_ada_eq, better: "high",
-     f: v => `${v > 0 ? "+" : ""}${fmt(v, 2)}` +
-             (rate === null ? "" : ` <small>${v < 0 ? "-" : ""}${usd(Math.abs(v * rate))}</small>`)},
-    {k: "Spent on fees", a: a.costs.total, b: b.costs.total, better: "low",
-     f: (v, ag) => fmt(v, 4) +
-        ` <small>${fmt(ag.costs.network, 2)} network + ${fmt(ag.costs.service, 2)} batcher</small>`},
-    // One number, no asterisk. "Transactions on chain" is a plain count of the
-    // transactions each agent's book appears in -- it claims nothing about who
-    // sent which, so it needs no qualifier hung off it.
-    {k: "Transactions on chain", a: a.moves, b: b.moves, better: null,
-     f: v => String(v)},
-    {k: "Swaps filled", a: a.costs.swaps, b: b.costs.swaps, better: null,
-     f: (v, ag) => String(v) + (ag.open_orders
-        ? ` <small>+${ag.open_orders} order${ag.open_orders > 1 ? "s" : ""} open</small>`
-        : ` <small>none open</small>`)},
-  ];
-  const vsGrid = `<div class="sc-vs-grid">` + rows.map(r => {
-    const av = Number(r.a), bv = Number(r.b);
-    let ac = "neutral", bc = "neutral";
-    if (r.better && Number.isFinite(av) && Number.isFinite(bv) && av !== bv) {
-      const aWins = r.better === "high" ? av > bv : av < bv;
-      ac = aWins ? "best" : ""; bc = aWins ? "" : "best";
-    }
-    return `<div class="sc-vsrow">
-      <span class="v ${ac} agent-${esc(a.id)}">${r.f(r.a, a)}</span>
-      <span class="k">${esc(r.k)}</span>
-      <span class="v r ${bc} agent-${esc(b.id)}">${r.f(r.b, b)}</span>
-    </div>`;
-  }).join("") + `</div>`;
-
-  const meta = st ? `<div class="sc-meta">${esc(elapsed(st.from, st.to))} in ·
-    ${st.changes} lead change${st.changes === 1 ? "" : "s"} ·
-    best lead ${fmt(Math.max(st.best.beacn, 0), 2)} BEACN /
-    ${fmt(Math.max(st.best.grokbot, 0), 2)} grokbot ·
-    ${st.n} snapshots</div>` : "";
-
-  host.innerHTML =
-    `<div class="sc-top">
-       <span class="liv"><b></b>Live · Cardano mainnet · real money</span>
-       <span>${esc(whenUTC(DATA.generated_at_unix))}</span>
-     </div>
-     <div class="sc-body">${side(a, false)}<div class="sc-vs">VS</div>${side(b, true)}</div>
-     ${lead}
-     ${HIST && HIST.points.length > 1
-        ? `<div class="sc-spark">${sparkline(900, 66)}</div>` : ""}
-     ${vsGrid}
-     ${meta}
-     <div class="sc-foot">
-       <span class="url">beacnpool.github.io/ABCDE/match.html</span>
-       <span class="tags">#Cardano · $ADA · Claude vs Grok</span>
-     </div>`;
+  host.innerHTML = `<div class="sc-top">
+      <div class="sc-brand"><span class="mini-hex">B</span><span><strong>BEACN Mainnet Arena</strong><small>Bot battle · chain-scored</small></span></div>
+      <div class="sc-market"><span>ADA / USD · snapshot mark</span>
+        <strong>${priced ? px(DATA.price.usd_per_ada) : "UNAVAILABLE"}</strong>
+        <small>${priceMove === null ? "Independent CoinGecko mark" : `${priceMove > 0 ? "+" : ""}${fmt(priceMove, 2)}% since the bell`}</small></div>
+      <div class="sc-live"><b></b>Live · Real ADA<small>${esc(ago(Date.now() / 1000 - DATA.generated_at_unix))}</small></div>
+    </div>
+    <div class="sc-start">Started even · <b>${fmt(sharedStart, 2)} ADA-eq each</b></div>
+    <div class="sc-stage">${side(a, false)}
+      <div class="sc-center" style="--leader-color:${leaderColor};--race-pos:${racePos}%">
+        <div class="cap">Current leader</div>
+        <div class="leader">${leader ? esc(fighterName(leader)) : "Dead level"}</div>
+        <div class="gap">${gap === null ? "—" : fmt(Math.abs(gap), 4)}
+          <small>${gap === null ? "No independent mark" : `ADA-eq · ${usd(Math.abs(DATA.gap_usd))} gap`}</small></div>
+        <div class="race-track" aria-hidden="true"></div>
+        <div class="sc-clock">${st ? esc(elapsed(st.from, st.to)) + " in · " + st.changes + " lead change" + (st.changes === 1 ? "" : "s") : "Match clock loading"}</div>
+      </div>${side(b, true)}</div>
+    ${HIST && HIST.points.length > 1 ? `<div class="sc-spark">${sparkline(1000, 58)}</div>` : ""}
+    <div class="sc-stats">
+      <div class="sc-stat">Execution fees<b>${fmt(a.costs.total, 2)} / ${fmt(b.costs.total, 2)} ADA</b></div>
+      <div class="sc-stat">Moves on-chain<b>${a.moves} / ${b.moves}</b></div>
+      <div class="sc-stat">Swaps filled<b>${a.costs.swaps} / ${b.costs.swaps}</b></div>
+      <div class="sc-stat">Snapshots<b>${st ? st.n : "—"}</b></div>
+    </div>
+    <div class="sc-foot"><span class="url">beacnpool.github.io/ABCDE/match.html</span>
+      <span class="tags">Watch the next move · #Cardano · $ADA</span></div>`;
+  host.setAttribute("aria-busy", "false");
 }
 
 /* ---- lead chart -----------------------------------------------------------
@@ -1033,8 +1292,8 @@ function renderChart() {
 
   const rows = pts.slice(-12).reverse();
   $("#leadtable").innerHTML =
-    `<thead><tr><th>Time (UTC)</th><th>BEACN</th><th>grokbot</th><th>Lead</th>
-      <th>Ahead</th><th>ADA</th><th>Source</th></tr></thead><tbody>` +
+    `<caption class="sr-only">The twelve most recent lead snapshots</caption><thead><tr><th scope="col">Time (UTC)</th><th scope="col">BEACN</th><th scope="col">grokbot</th><th scope="col">Lead</th>
+      <th scope="col">Ahead</th><th scope="col">ADA</th><th scope="col">Source</th></tr></thead><tbody>` +
     rows.map(p => {
       const g = p[1] - p[2];
       return `<tr><td>${esc(whenUTC(p[0]))}</td><td class="n">${fmt(p[1], 4)}</td>
@@ -1046,27 +1305,34 @@ function renderChart() {
 
 /* ---- move log ---- */
 function renderLog() {
-  const moves = DATA.moves.filter(m =>
-    FILTER === "all" ? true : FILTER === "cost" ? m.fee > 0 : m.agent === FILTER);
-  $("#movelog").innerHTML = moves.map(m => {
+  const all = DATA.moves.filter(m =>
+    FILTER === "all" ? true : FILTER === "cost" ? m.fee > 0 : m.agent === FILTER)
+    .slice().reverse();
+  const moves = SHOW_ALL_MOVES ? all : all.slice(0, 6);
+  $("#movelog").innerHTML = moves.map((m, i) => {
     const parts = [];
     if (Math.abs(m.ada_delta) > 1e-9)
       parts.push(`<span>ADA <b class="${cls(m.ada_delta)}">${sign(m.ada_delta)}</b></span>`);
     if (Math.abs(m.usdm_delta) > 1e-9)
       parts.push(`<span>USDM <b class="${cls(m.usdm_delta)}">${sign(m.usdm_delta)}</b></span>`);
     if (m.fee > 0) parts.push(`<span>fee <b>${fmt(m.fee, 6)}</b></span>`);
-    return `<li class="move agent-${esc(m.agent)}">
+    return `<li class="move agent-${esc(m.agent)}${i === 0 ? " latest" : ""}">
       <div class="mt"><span class="agent">${esc(
-        DATA.agents.find(a => a.id === m.agent).name)}</span>
+        fighterName(DATA.agents.find(a => a.id === m.agent)))}</span>
         <span class="kind">${esc(m.kind.replace(/_/g, " "))}</span>
         <span class="when">${esc(whenUTC(m.time))}</span></div>
-      <h4>${esc(m.title)}</h4>
+      <h3>${esc(m.title)}</h3>
       <p>${esc(m.detail)}</p>
       <div class="deltas">${parts.join("")}</div>
       <a class="lnk" href="${esc(m.explorer)}" target="_blank" rel="noopener">${
         esc(m.tx_hash.slice(0, 24))}… ↗</a>
     </li>`;
   }).join("") || `<li class="move"><p>No moves match that filter.</p></li>`;
+  const more = $("#moremoves");
+  more.hidden = all.length <= 6;
+  more.textContent = SHOW_ALL_MOVES
+    ? "Show only the latest six moves"
+    : `Show all ${all.length} on-chain moves`;
 }
 
 /* ---- method panels ---- */
@@ -1074,7 +1340,7 @@ function renderMethod() {
   $("#formula").textContent = DATA.scoreboard.formula;
   if (DATA.checks.length) {
     $("#checks").innerHTML = `<div class="callout good" style="margin-bottom:0">
-      <h4>Cross-denomination check</h4>
+      <h3>Cross-denomination check</h3>
       ${DATA.checks.map(c => `<p><span class="tag ${c.agree ? "fact" : "unc"}">${
         c.agree ? "Agrees" : "Disagrees"}</span>${esc(c.label)}:
         ${fmt(c.ada_eq, 6)} ADA-eq marks to ${usd(c.ada_eq_marked_to_usd)}, and the same
@@ -1087,12 +1353,14 @@ function renderMethod() {
     const s = DATA.start.books;
     $("#stakes").innerHTML = `<div class="rows" style="border-top:1px solid var(--line)">
       ${DATA.agents.map(a => `
-        <div class="row"><span class="k">${esc(a.name)} started with</span>
+        <div class="row"><span class="k">${esc(fighterName(a))} starting mix, marked now</span>
           <span class="v">${fmt(s[a.id].ada_eq_at_today_rate, 2)} ADA-eq ·
           ${usd(s[a.id].usd_at_today_rate)}</span></div>
         <div class="row"><span class="k" style="padding-left:14px">…and is now worth</span>
           <span class="v">${fmt(a.score_ada_eq, 2)} ADA-eq ·
-          ${usd(a.score_usd)}</span></div>`).join("")}
+          ${usd(a.score_usd)}</span></div>
+        <div class="row"><span class="k" style="padding-left:14px">…decision-only P&amp;L</span>
+          <span class="v ${cls(a.vs_start_ada_eq)}">${sign(a.vs_start_ada_eq)} ADA-eq</span></div>`).join("")}
       </div>`;
   }
   $("#footmeta").textContent =
@@ -1100,19 +1368,189 @@ function renderMethod() {
     ` · built by ${DATA.source.script}`;
 }
 
+/* ---- one-click 1600x900 social card, drawn locally from the same snapshot ---- */
+function buildShareCanvas() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1600; canvas.height = 900;
+  const c = canvas.getContext("2d");
+  const cyan = "#28d8f2", amber = "#f0a30a", white = "#f5f8fc";
+  const muted = "#9dafc3", line = "#1f3a55", green = "#47dfa3", red = "#ff7086";
+  const [a, b] = DATA.agents;
+  const priced = DATA.price.available;
+  const gap = DATA.gap_ada_eq;
+  const leader = DATA.leader ? DATA.agents.find(x => x.id === DATA.leader) : null;
+  const shared = DATA.start.equalized_score_ada_eq ||
+    (DATA.start.books.beacn.ada + DATA.start.books.beacn.deposit);
+
+  const bg = c.createLinearGradient(0, 0, 1600, 900);
+  bg.addColorStop(0, "#0b1d31"); bg.addColorStop(.55, "#06111f"); bg.addColorStop(1, "#0a1019");
+  c.fillStyle = bg; c.fillRect(0, 0, 1600, 900);
+  const glowL = c.createRadialGradient(120, 140, 0, 120, 140, 580);
+  glowL.addColorStop(0, "rgba(40,216,242,.20)"); glowL.addColorStop(1, "rgba(40,216,242,0)");
+  c.fillStyle = glowL; c.fillRect(0, 0, 800, 760);
+  const glowR = c.createRadialGradient(1480, 720, 0, 1480, 720, 540);
+  glowR.addColorStop(0, "rgba(240,163,10,.16)"); glowR.addColorStop(1, "rgba(240,163,10,0)");
+  c.fillStyle = glowR; c.fillRect(800, 180, 800, 720);
+  c.strokeStyle = "rgba(40,216,242,.04)"; c.lineWidth = 1;
+  for (let x = 0; x <= 1600; x += 64) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, 900); c.stroke(); }
+  for (let y = 0; y <= 900; y += 64) { c.beginPath(); c.moveTo(0, y); c.lineTo(1600, y); c.stroke(); }
+  c.strokeStyle = "#31506c"; c.lineWidth = 2; c.strokeRect(24, 24, 1552, 852);
+
+  const text = (s, x, y, size, color=white, align="left", weight=700, family="system-ui") => {
+    c.font = `${weight} ${size}px ${family}`; c.fillStyle = color; c.textAlign = align;
+    c.textBaseline = "alphabetic"; c.fillText(String(s), x, y);
+  };
+  const mono = 'ui-monospace,Consolas,"Liberation Mono",monospace';
+  const signed = (v, d=2) => `${v > 0 ? "+" : ""}${Number(v).toFixed(d)}`;
+  const mark = (ag, x, right=false) => {
+    const color = ag.id === "beacn" ? cyan : amber;
+    const p = priced ? pnlValue(ag) : null;
+    const pp = priced ? pnlPct(ag) : null;
+    const pUsd = p === null ? null : (ag.vs_equalized_start_usd_at_current_mark ?? p * DATA.price.usd_per_ada);
+    const align = right ? "right" : "left";
+    text(fighterName(ag), x, 315, 58, color, align, 900);
+    text(ag.id === "beacn" ? "WAREHOUSE AI · HIGH-COMPUTE" : "LEAN CLOUD AI · GROK",
+      x, 350, 17, muted, align, 800, mono);
+    text(priced ? Number(ag.score_ada_eq).toFixed(2) : Number(ag.ada_total).toFixed(2),
+      x, 445, 72, white, align, 800, mono);
+    text(priced ? "ADA-EQ" : "ADA HELD", x + (right ? -4 : 4), 477, 17, muted, align, 700, mono);
+    text("FROM EQUALIZED START", x, 525, 15, muted, align, 800, mono);
+    text(p === null ? "—" : `${signed(p, 4)} ADA-EQ`, x, 578, 40,
+      p === null || Math.abs(p) < 5e-7 ? muted : (p > 0 ? green : red), align, 800, mono);
+    text(pp === null ? "NO INDEPENDENT MARK" : `${signed(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}$${Math.abs(pUsd).toFixed(2)}`,
+      x, 610, 17, muted, align, 700, mono);
+    const position = ag.hedge_pct === null || ag.hedge_pct === undefined
+      ? "POSITION UNMARKED" : `${Number(ag.hedge_pct).toFixed(0)}% STABLECOIN`;
+    text(`${position} · ${ag.moves} MOVES`, x, 649, 15, color, align, 800, mono);
+  };
+
+  text("⬡  BEACN MAINNET ARENA", 72, 82, 23, cyan, "left", 900, mono);
+  text("LIVE · CARDANO MAINNET · REAL ADA", 1528, 82, 17, red, "right", 800, mono);
+  text("THE MAINNET MONEY MATCH", 72, 175, 46, white, "left", 900);
+  text("SAME BANKROLL. DIFFERENT BRAINS. EVERY MOVE ON-CHAIN.", 72, 207, 19, muted, "left", 800, mono);
+  text("ADA / USD", 800, 74, 14, muted, "center", 800, mono);
+  text(priced ? px(DATA.price.usd_per_ada) : "UNAVAILABLE", 800, 120, 39, white, "center", 800, mono);
+  c.strokeStyle = line; c.beginPath(); c.moveTo(72, 230); c.lineTo(1528, 230); c.stroke();
+  text(`STARTED EVEN · ${Number(shared).toFixed(2)} ADA-EQ EACH`, 800, 260, 16, muted, "center", 800, mono);
+  mark(a, 92, false); mark(b, 1508, true);
+
+  text("CURRENT LEADER", 800, 335, 14, muted, "center", 800, mono);
+  text(leader ? fighterName(leader).toUpperCase() : "DEAD LEVEL", 800, 382, 34,
+    leader && leader.id === "beacn" ? cyan : leader ? amber : white, "center", 900);
+  text(gap === null || gap === undefined ? "—" : `${Math.abs(gap).toFixed(4)} ADA-EQ`,
+    800, 438, 35, leader && leader.id === "beacn" ? cyan : leader ? amber : white, "center", 800, mono);
+  text(gap === null || gap === undefined ? "NO PRICE MARK" : `$${Math.abs(DATA.gap_usd).toFixed(2)} GAP`,
+    800, 470, 15, muted, "center", 700, mono);
+  const stats = leadStats();
+  text(stats ? `${elapsed(stats.from, stats.to).toUpperCase()} IN · ${stats.changes} LEAD CHANGE${stats.changes === 1 ? "" : "S"}` : "MATCH LIVE",
+    800, 528, 14, muted, "center", 700, mono);
+
+  // Zero-baseline lead trace.
+  const pts = (HIST && HIST.points) || [];
+  const x0 = 100, x1 = 1500, y0 = 740, plotH = 74;
+  c.strokeStyle = line; c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y0); c.stroke();
+  if (pts.length > 1) {
+    const gaps = pts.map(p => p[1] - p[2]);
+    const maxAbs = Math.max(.05, ...gaps.map(Math.abs));
+    const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
+    c.lineWidth = 4; c.lineJoin = "round"; c.beginPath();
+    pts.forEach((p, i) => {
+      const x = x0 + (p[0] - t0) / Math.max(1, t1 - t0) * (x1 - x0);
+      const y = y0 - (p[1] - p[2]) / maxAbs * plotH;
+      if (i) c.lineTo(x, y); else c.moveTo(x, y);
+    });
+    const grad = c.createLinearGradient(x0, 0, x1, 0); grad.addColorStop(0, cyan); grad.addColorStop(.5, "#728196"); grad.addColorStop(1, amber);
+    c.strokeStyle = grad; c.stroke();
+  }
+  text("BEACNBOT LEADS ↑", x0, 696, 13, cyan, "left", 800, mono);
+  text("GROKBOT LEADS ↓", x1, 826, 13, amber, "right", 800, mono);
+  text(`${a.costs.total.toFixed(2)} / ${b.costs.total.toFixed(2)} ADA FEES`, 72, 850, 14, muted, "left", 700, mono);
+  text("beacnpool.github.io/ABCDE/match.html", 800, 850, 17, cyan, "center", 800, mono);
+  text("WATCH THE NEXT MOVE", 1528, 850, 14, white, "right", 800, mono);
+  return canvas;
+}
+
+const shareCardFilename = () =>
+  `BEACNbot-vs-grokbot-${new Date(DATA.generated_at).toISOString().slice(0, 10)}.png`;
+
+function shareCardBlob() {
+  return new Promise(resolve => buildShareCanvas().toBlob(resolve, "image/png"));
+}
+
+function saveShareCard(blob) {
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = shareCardFilename();
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+
+async function downloadShareCard() {
+  const blob = await shareCardBlob();
+  if (!blob) return;
+  saveShareCard(blob);
+  $("#copymsg").textContent = "1600×900 live battle card downloaded.";
+}
+window.buildMatchShareCard = buildShareCanvas;
+
+let WIRED = false;
+function renderAll() {
+  renderFresh(); renderCard(); renderStartNote(); renderMatchup(); renderChart(); renderBooks();
+  renderCosts(); renderLog(); renderMethod();
+}
+
 function boot(d, hist) {
   DATA = d;
   HIST = hist;
-  renderFresh(); renderCard(); renderStartNote(); renderChart(); renderBooks();
-  renderCosts(); renderLog(); renderMethod();
+  renderAll();
+  if (WIRED) return;
+  WIRED = true;
   $("#copylink").addEventListener("click", async () => {
     const url = "https://beacnpool.github.io/ABCDE/match.html";
     try {
       await navigator.clipboard.writeText(url);
-      $("#copymsg").textContent = "Link copied. Screenshot the card and post it.";
+      $("#copymsg").textContent = "Match link copied.";
     } catch {
       $("#copymsg").textContent = url;
     }
+  });
+  $("#downloadcard").addEventListener("click", downloadShareCard);
+  $("#sharematch").addEventListener("click", async () => {
+    const url = "https://beacnpool.github.io/ABCDE/match.html";
+    const lead = DATA.leader ? DATA.agents.find(a => a.id === DATA.leader) : null;
+    const text = lead
+      ? `${fighterName(lead)} leads the BEACN Mainnet Money Match by ${fmt(Math.abs(DATA.gap_ada_eq), 2)} ADA-eq. Same bankroll. Different brains. Every move on-chain.`
+      : "BEACNbot and grokbot are dead level in the Mainnet Money Match. Every move is on-chain.";
+    const blob = await shareCardBlob();
+    const file = blob && typeof File !== "undefined"
+      ? new File([blob], shareCardFilename(), {type: "image/png"}) : null;
+    if (file && navigator.share && navigator.canShare) {
+      let canShareFile = false;
+      try { canShareFile = navigator.canShare({files: [file]}); } catch { /* browser quirk */ }
+      if (canShareFile) {
+        try {
+          await navigator.share({title: "BEACNbot vs grokbot", text: `${text}\n${url}`, files: [file]});
+          $("#copymsg").textContent = "Live battle card shared.";
+          return;
+        }
+        catch (err) { if (err && err.name === "AbortError") return; }
+      }
+    }
+    // Desktop X cannot accept an attachment from a URL intent. Put the live
+    // PNG in Downloads first, then open the composed post so it is one attach
+    // action away; the link's generic OG image remains a safe fallback.
+    if (blob) saveShareCard(blob);
+    $("#copymsg").textContent = "Live card downloaded — attach it to the post.";
+    if (navigator.share) {
+      try { await navigator.share({title: "BEACNbot vs grokbot", text, url}); return; }
+      catch (err) { if (err && err.name === "AbortError") return; }
+    }
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+      "_blank", "noopener,noreferrer");
+  });
+  $("#moremoves").addEventListener("click", () => {
+    SHOW_ALL_MOVES = !SHOW_ALL_MOVES;
+    renderLog();
   });
   setInterval(renderFresh, 30000);
   $("#chartrange").addEventListener("click", e => {
@@ -1135,8 +1573,37 @@ function boot(d, hist) {
     FILTER = btn.dataset.f;
     [...$("#filters").querySelectorAll("button")].forEach(b =>
       b.setAttribute("aria-pressed", String(b === btn)));
+    SHOW_ALL_MOVES = false;
     renderLog();
   });
+  // The publisher writes a new snapshot on roughly this cadence. Re-fetch in
+  // place so "live" does not mean "only live when you reload the tab."
+  setInterval(async () => {
+    try {
+      const [next, nextHist] = await Promise.all([
+        getJSON("data/match.json"),
+        getJSON("data/match_history.json").catch(() => HIST),
+      ]);
+      const historyVersion = h => {
+        const points = h && Array.isArray(h.points) ? h.points : [];
+        return `${points.length}:${points.length ? JSON.stringify(points[points.length - 1]) : ""}`;
+      };
+      const snapshotChanged = next.generated_at_unix !== DATA.generated_at_unix;
+      const historyChanged = historyVersion(nextHist) !== historyVersion(HIST);
+      if (snapshotChanged || historyChanged) {
+        const chainChanged = next.chain_fingerprint !== DATA.chain_fingerprint;
+        const leaderChanged = next.leader !== DATA.leader;
+        DATA = next; HIST = nextHist; renderAll();
+        if (leaderChanged) {
+          const lead = DATA.leader ? DATA.agents.find(a => a.id === DATA.leader) : null;
+          $("#matchupdates").textContent = lead
+            ? `${fighterName(lead)} has taken the lead.` : "The match is now level.";
+        } else if (chainChanged) {
+          $("#matchupdates").textContent = "A new on-chain move has landed.";
+        }
+      }
+    } catch { /* keep the last verified snapshot; freshness will expose its age */ }
+  }, 300000);
 }
 
 const getJSON = u => fetch(u, {cache: "no-store"})
@@ -1147,7 +1614,7 @@ Promise.all([
   getJSON("data/match_history.json").catch(() => null),
 ]).then(([d, h]) => boot(d, h))
   .catch(err => {
-    $("#boarderr").innerHTML = `<div class="err"><b>The snapshot could not be loaded.</b>
+    $("#boarderr").innerHTML = `<div class="err" role="alert"><b>The snapshot could not be loaded.</b>
       <p class="muted" style="margin:8px 0 0">${esc(err.message)}. This page renders a
       prebuilt file and has no live fallback by design — rather than show you numbers whose
       source it cannot name, it shows you nothing.</p></div>`;

@@ -46,6 +46,12 @@ jobs:
       - name: Self-test (DB + read-only guard + MCP server + CLI imports)
         run: python scripts/selftest.py
 
+      - name: Match scoreboard unit tests
+        run: python -m unittest discover -s tests -p 'test_match_snapshot.py'
+
+      - name: Verify static web pages
+        run: python scripts/verify_web_pages.py
+
       - name: Verify public claim receipts
         run: python scripts/verify_claim_receipts.py
 

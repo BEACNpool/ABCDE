@@ -45,6 +45,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 import sys
 import time
@@ -176,6 +177,45 @@ def get_price() -> dict:
         "ada_per_usdm": 1.0 / usd,
         "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
         "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }
+
+
+def mark_book(ada_total: float, usdm_total: float, usd_per_ada: float) -> dict:
+    """Mark one book in both score denominations from one independent price.
+
+    USDM is already denominated in dollars. Multiplying it by ADA-per-USDM is
+    load-bearing; dividing by that rate recreates the conversion error this
+    scoreboard was built to prevent.
+    """
+    if not all(math.isfinite(v) for v in (ada_total, usdm_total, usd_per_ada)):
+        raise ValueError("book values and usd_per_ada must be finite")
+    if usd_per_ada <= 0:
+        raise ValueError("usd_per_ada must be positive")
+    ada_per_usdm = 1.0 / usd_per_ada
+    score_ada = ada_total + usdm_total * ada_per_usdm
+    score_usd = ada_total * usd_per_ada + usdm_total
+    return {
+        "ada_per_usdm": ada_per_usdm,
+        "score_ada_eq": score_ada,
+        "score_usd": score_usd,
+    }
+
+
+def equalized_performance(score_ada_eq: float, baseline_ada_eq: float,
+                          usd_per_ada: float) -> dict:
+    """Return performance from the match's one shared ADA-equivalent start."""
+    if not all(math.isfinite(v) for v in
+               (score_ada_eq, baseline_ada_eq, usd_per_ada)):
+        raise ValueError("score, baseline and usd_per_ada must be finite")
+    if baseline_ada_eq <= 0:
+        raise ValueError("baseline_ada_eq must be positive")
+    if usd_per_ada <= 0:
+        raise ValueError("usd_per_ada must be positive")
+    delta = score_ada_eq - baseline_ada_eq
+    return {
+        "ada_eq": delta,
+        "pct": 100.0 * delta / baseline_ada_eq,
+        "usd_at_current_mark": delta * usd_per_ada,
     }
 
 
@@ -453,14 +493,16 @@ def cost_rollup(agents, moves, tx_by_hash, order_map):
 def t0_state(agents, moves):
     """Both books as they stood immediately after the levelling transaction.
 
-    Reported as ADA and USDM components, not a single figure: the levelling was
-    computed at a rate that no longer holds, and marking the start at today's
-    rate is the only comparison that does not smuggle in a stale price.
+    The components support two deliberately separate comparisons: each bot's
+    decision-only P&L against its own starting mix re-marked today, and its
+    scoreboard return from the one equalized ADA-equivalent starting value.
     """
     cut = None
     for m in moves:
         if m["tx_hash"] == LEVEL_TX:
             cut = m["time"]
+    if cut is None:
+        raise RuntimeError("levelling transaction is missing from reconstructed moves")
     state = {}
     for agent in agents:
         ada = usdm = dep = 0.0
@@ -667,15 +709,21 @@ def main() -> int:
             "ada_total": round(ada_total, 6),
             "costs": c,
             "moves": sum(1 for m in moves if m["agent"] == agent["id"]),
+            # Decision-only P&L against this agent's own starting mix, re-marked
+            # at the current price. Kept as a separate public metric because it
+            # answers a different question than return from the shared start.
+            "vs_start_ada_eq": None,
+            # Actual scoreboard return from the one equalized starting value.
+            "vs_equalized_start_ada_eq": None,
+            "vs_equalized_start_pct": None,
+            "vs_equalized_start_usd_at_current_mark": None,
         }
         if price["available"]:
             rate = price["ada_per_usdm"]
             usd = price["usd_per_ada"]
-            # Trap 2: USDM is already dollars. To reach ADA you MULTIPLY.
-            score_ada = ada_total + usdm_total * rate
-            # The same total computed the other way round, in dollars. If these
-            # two disagree the conversion has been applied the wrong way.
-            score_usd = ada_total * usd + usdm_total
+            marked = mark_book(ada_total, usdm_total, usd)
+            score_ada = marked["score_ada_eq"]
+            score_usd = marked["score_usd"]
             checks.append({
                 "agent": agent["id"],
                 "label": f"{agent['name']} scored in both denominations",
@@ -712,6 +760,16 @@ def main() -> int:
         leader = a["id"] if gap > 0 else (b["id"] if gap < 0 else None)
 
     start = t0_state(AGENTS, moves)
+    # The equalisation receipt is fixed: immediately after LEVEL_TX, BEACN's
+    # side was entirely ADA. That makes its ADA + refundable deposit the one
+    # shared starting score without importing a stale historical price. Both
+    # agents agreed this was the level point; a later gap is the match score.
+    anchor = start["books"]["beacn"]
+    if abs(anchor["usdm"]) > 1e-9:
+        raise RuntimeError("equalized-start anchor unexpectedly contains USDM")
+    equalized_start = round(anchor["ada"] + anchor["deposit"], 6)
+    start["equalized_score_ada_eq"] = equalized_start
+    start["equalized_anchor"] = "BEACN all-ADA book immediately after the levelling transaction"
     if price["available"]:
         rate, usd = price["ada_per_usdm"], price["usd_per_ada"]
         for aid, s in start["books"].items():
@@ -721,6 +779,12 @@ def main() -> int:
                 if row["id"] == aid:
                     row["vs_start_ada_eq"] = round(
                         row["score_ada_eq"] - s["ada_eq_at_today_rate"], 6)
+                    perf = equalized_performance(
+                        row["score_ada_eq"], equalized_start, usd)
+                    row["vs_equalized_start_ada_eq"] = round(perf["ada_eq"], 6)
+                    row["vs_equalized_start_pct"] = round(perf["pct"], 4)
+                    row["vs_equalized_start_usd_at_current_mark"] = round(
+                        perf["usd_at_current_mark"], 6)
 
     last_block = max((t["block_height"] for t in tx_by_hash.values()), default=None)
 

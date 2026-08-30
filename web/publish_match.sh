@@ -2,9 +2,9 @@
 # publish_match.sh — refresh the BEACN vs grokbot scoreboard and publish it.
 #
 # Built to be run from cron. It regenerates web/dist/data/match.json from chain
-# and pushes it, plus match.html, to gh-pages.
+# and pushes it, plus the match page and its social preview assets, to gh-pages.
 #
-# It touches ONLY the three paths the scoreboard owns and pushes as a normal
+# It touches ONLY the five paths the scoreboard owns and pushes as a normal
 # fast-forward, so oligarCH/, byttg/, tipsy/, peers/ and the explorer are
 # untouched by construction. The orphan-tree force-push in web/deploy_gh_pages.sh
 # would delete all of them; that script is self-guarded and must stay that way.
@@ -87,7 +87,8 @@ echo "2/4 refreshing the snapshot from chain"
 "$PY" "$REPO/scripts/match_snapshot.py" --out "$JSON" --history "$HIST" \
       ${MATCH_BACKFILL:+--backfill} --quiet
 
-echo "3/4 syntax-checking the page"
+echo "3/4 verifying the snapshot and page"
+"$PY" "$REPO/scripts/verify_match_snapshot.py" "$JSON" >/dev/null
 "$PY" "$REPO/scripts/verify_web_pages.py" >/dev/null
 
 PUBLISHED="$WORKTREE/data/match.json"
@@ -135,11 +136,13 @@ fi
 echo "4/4 publishing ($REASON)"
 mkdir -p "$WORKTREE/data"
 cp "$DIST/match.html" "$WORKTREE/match.html"
+cp "$DIST/match-social.svg" "$WORKTREE/match-social.svg"
+cp "$DIST/match-social.png" "$WORKTREE/match-social.png"
 cp "$JSON" "$WORKTREE/data/match.json"
 cp "$HIST" "$WORKTREE/data/match_history.json"
 
 cd "$WORKTREE"
-git add -A match.html data/match.json data/match_history.json
+git add -A match.html match-social.svg match-social.png data/match.json data/match_history.json
 if git diff --cached --quiet; then
   echo "  nothing changed on disk"
   exit 0

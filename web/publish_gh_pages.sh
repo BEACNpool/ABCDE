@@ -22,7 +22,7 @@ WORKTREE="${GHPAGES_WORKTREE:-$REPO/.worktrees/gh-pages}"
 PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
 
 # Only these are ours. Everything else on gh-pages is left alone.
-OWNED_FILES=(index.html relays.html match.html app.js style.css)
+OWNED_FILES=(index.html relays.html match.html match-social.svg match-social.png app.js style.css)
 OWNED_DIRS=(data media og r)
 
 echo "1/5 rebuild the data layer"
@@ -31,6 +31,9 @@ python3 "$REPO/scripts/build_og_cards.py" >/dev/null 2>&1 || echo "  (og cards s
 
 echo "2/5 syntax-check the pages"
 python3 "$REPO/scripts/verify_web_pages.py"
+if [[ -f "$DIST/data/match.json" ]]; then
+  python3 "$REPO/scripts/verify_match_snapshot.py" "$DIST/data/match.json"
+fi
 
 echo "3/5 sync the worktree to origin/gh-pages"
 if [[ ! -d "$WORKTREE" ]]; then
