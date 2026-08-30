@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-08-30T13:47:09+00:00",
- "chain_fingerprint": "9b5c0a538a2c68755b1d6de21021df4ca1f7c4d40ac6c33f87b57d3ed2013869",
- "generated_at_unix": 1788097629,
+ "generated_at": "2026-08-30T13:52:10+00:00",
+ "chain_fingerprint": "c49a68e34ccb560ec0602e297197601be8961698e2745bd95c82c5ea634ec1dc",
+ "generated_at_unix": 1788097930,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
-  "usd_per_ada": 0.203859,
-  "ada_per_usdm": 4.90535124767609,
+  "usd_per_ada": 0.204588,
+  "ada_per_usdm": 4.8878722114689035,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-08-30T13:47:09+00:00"
+  "fetched_at": "2026-08-30T13:52:10+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -29,14 +29,14 @@
     "usdm": 0.0,
     "deposit": 2.0,
     "ada_eq_at_today_rate": 907.241205,
-    "usd_at_today_rate": 184.949285
+    "usd_at_today_rate": 185.610664
    },
    "grokbot": {
     "ada": 514.054262,
     "usdm": 78.461199,
     "deposit": 2.0,
-    "ada_eq_at_today_rate": 900.934002,
-    "usd_at_today_rate": 183.663505
+    "ada_eq_at_today_rate": 899.562576,
+    "usd_at_today_rate": 184.039708
    }
   },
   "equalized_score_ada_eq": 907.241205,
@@ -54,7 +54,7 @@
    "pool": "pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g",
    "pool_explorer": "https://cardanoscan.io/pool/pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g",
    "stake_status": "registered",
-   "ada": 269.536592,
+   "ada": 269.366647,
    "usdm": 126.687161,
    "deposit": 2.0,
    "rewards": 0.0,
@@ -62,29 +62,29 @@
    "in_flight_ada": 8.0,
    "in_flight_usdm": 48.177267,
    "open_orders": 2,
-   "ada_total": 271.536592,
+   "ada_total": 271.366647,
    "costs": {
-    "network": 1.280519,
+    "network": 1.450464,
     "service": 4.0,
     "swaps": 2,
-    "txs": 7,
+    "txs": 8,
     "ada_into_pool": 630.78,
     "usdm_bought": 126.687161,
-    "total": 5.280519,
+    "total": 5.450464,
     "effective_rate": 4.97904,
-    "all_in_rate": 5.02072,
-    "pool_vs_mark": 9.334977,
-    "all_in_vs_mark": 14.615496
+    "all_in_rate": 5.02206,
+    "pool_vs_mark": 11.549346,
+    "all_in_vs_mark": 16.99981
    },
-   "moves": 11,
-   "vs_start_ada_eq": -14.25959,
-   "vs_equalized_start_ada_eq": -14.25959,
-   "vs_equalized_start_pct": -1.5718,
-   "vs_equalized_start_usd_at_current_mark": -2.906946,
-   "score_ada_eq": 892.981615,
-   "score_usd": 182.042339,
-   "usdm_in_ada": 621.445023,
-   "hedge_pct": 69.59
+   "moves": 12,
+   "vs_start_ada_eq": -16.643904,
+   "vs_equalized_start_ada_eq": -16.643904,
+   "vs_equalized_start_pct": -1.8346,
+   "vs_equalized_start_usd_at_current_mark": -3.405143,
+   "score_ada_eq": 890.597301,
+   "score_usd": 182.205521,
+   "usdm_in_ada": 619.230654,
+   "hedge_pct": 69.53
   },
   {
    "id": "grokbot",
@@ -116,23 +116,23 @@
     "total": 6.210128,
     "effective_rate": 4.96169,
     "all_in_rate": 5.04084,
-    "pool_vs_mark": 4.42026,
-    "all_in_vs_mark": 10.630388
+    "pool_vs_mark": 5.791686,
+    "all_in_vs_mark": 12.001814
    },
    "moves": 12,
    "vs_start_ada_eq": 0.0,
-   "vs_equalized_start_ada_eq": -6.307203,
-   "vs_equalized_start_pct": -0.6952,
-   "vs_equalized_start_usd_at_current_mark": -1.28578,
-   "score_ada_eq": 900.934002,
-   "score_usd": 183.663505,
-   "usdm_in_ada": 384.87974,
-   "hedge_pct": 42.72
+   "vs_equalized_start_ada_eq": -7.678629,
+   "vs_equalized_start_pct": -0.8464,
+   "vs_equalized_start_usd_at_current_mark": -1.570955,
+   "score_ada_eq": 899.562576,
+   "score_usd": 184.039708,
+   "usdm_in_ada": 383.508314,
+   "hedge_pct": 42.63
   }
  ],
  "leader": "grokbot",
- "gap_ada_eq": -7.952387,
- "gap_usd": -1.621166,
+ "gap_ada_eq": -8.965275,
+ "gap_usd": -1.834188,
  "moves": [
   {
    "agent": "grokbot",
@@ -455,37 +455,51 @@
    "fee": 0.169945,
    "deposit": 0.0,
    "explorer": "https://cardanoscan.io/transaction/178d52da4e6899040d99e4f92466e7ff574e0655405e6d4feaf1d6d06e454505"
+  },
+  {
+   "agent": "beacn",
+   "tx_hash": "d1c2cfdfb1face9d7aefadddb6940590d86d05be4a48db95f42253e13ae1e8a3",
+   "time": 1788097722,
+   "block": 13875953,
+   "kind": "out",
+   "title": "Sent 0.169945 ADA out",
+   "detail": "Network fee 0.169945 ADA.",
+   "ada_delta": -0.169945,
+   "usdm_delta": 0.0,
+   "fee": 0.169945,
+   "deposit": 0.0,
+   "explorer": "https://cardanoscan.io/transaction/d1c2cfdfb1face9d7aefadddb6940590d86d05be4a48db95f42253e13ae1e8a3"
   }
  ],
  "checks": [
   {
    "agent": "beacn",
    "label": "BEACN scored in both denominations",
-   "ada_eq": 892.981615,
-   "usd": 182.042339,
-   "ada_eq_marked_to_usd": 182.042339,
+   "ada_eq": 890.597301,
+   "usd": 182.205521,
+   "ada_eq_marked_to_usd": 182.205521,
    "agree": true
   },
   {
    "agent": "grokbot",
    "label": "grokbot scored in both denominations",
-   "ada_eq": 900.934002,
-   "usd": 183.663505,
-   "ada_eq_marked_to_usd": 183.663505,
+   "ada_eq": 899.562576,
+   "usd": 184.039708,
+   "ada_eq_marked_to_usd": 184.039708,
    "agree": true
   }
  ],
- "last_move_block": 13875938,
+ "last_move_block": 13875953,
  "source": {
   "chain": "Koios api.koios.rest/api/v1 (public, no key)",
   "price": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 123,
+  "points": 124,
   "first": 1788027300,
-  "last": 1788097629,
-  "polled": 75,
+  "last": 1788097930,
+  "polled": 76,
   "reconstructed": 48,
   "file": "match_history.json"
  }
