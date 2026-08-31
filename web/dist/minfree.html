@@ -137,7 +137,7 @@
   .nums .v{font-family:var(--mono);font-size:20px;font-weight:800;margin-top:6px;color:var(--text);line-height:1.2;min-height:1.2em}
   .bar .op,.bar .mg,.bar .dl{min-width:0}
   .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel),#0a1730);margin-top:18px}
-  .cmp{width:100%;border-collapse:collapse;min-width:520px;font-size:14px}
+  .cmp{width:100%;border-collapse:collapse;min-width:640px;font-size:14px}
   .cmp th,.cmp td{padding:11px 16px;border-bottom:1px solid var(--line);text-align:right}
   .cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--muted);font-weight:700}
   .cmp thead th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:var(--panel2)}
@@ -225,9 +225,10 @@
     charge taken from every pool’s rewards <em>before</em> delegators see a lovelace. One number.
     Every pool. Every epoch. Raise it, and the smallest pools get worse. Saturated pools barely
     notice.</p>
-  <p class="sub">Small operators hear “lower the floor” and reach for their paycheck. Delegators
-    hear a 1.4% yield next to a 2.1% yield, and they walk. Large operators know which of those
-    two stories moves stake.</p>
+  <p class="sub">A 1M ₳ pool mints about one block an epoch. A saturated pool mints about
+    forty-three. Zero min does not change that. It only stops the floor from eating most of
+    the one-block pool’s reward. Delegators in the big pool still receive far more ₳ — because
+    that pool still minted far more blocks.</p>
 </div>
 
 <div class="sticky-tool">
@@ -256,19 +257,19 @@
       <div class="ticks"><span>0</span><span>75</span><span>170</span><span>340</span></div>
       <div class="gap3">
         <div class="stat">
-          <div class="l">1M ₳ blocks / epoch</div>
+          <div class="l">1M ₳ pool</div>
           <div class="n n-del" id="tinyBlk">—</div>
-          <div class="s" id="tinyNote">delegator ROA <span id="tinyRoa">—</span> · 0% margin</div>
+          <div class="s" id="tinyNote">—</div>
         </div>
         <div class="stat">
-          <div class="l">Saturated blocks / epoch</div>
+          <div class="l">Saturated pool</div>
           <div class="n n-op" id="satBlk">—</div>
-          <div class="s" id="satNote">delegator ROA <span id="satRoa">—</span> · 43.0M ₳ cap</div>
+          <div class="s" id="satNote">—</div>
         </div>
         <div class="stat">
-          <div class="l">Mint gap</div>
+          <div class="l">Large pool still</div>
           <div class="n n-op" id="blkX">—</div>
-          <div class="s">same floor tax · yield <span id="gapX">—</span></div>
+          <div class="s" id="gapX">—</div>
         </div>
       </div>
     </div>
@@ -278,9 +279,10 @@
 <section class="block wrap" id="formula">
   <div class="eyebrow">The formula</div>
   <h2 class="sec-h">Same epoch. Far fewer blocks.</h2>
-  <p class="sec-lede">Slots, total active stake, and k are the same for everyone. Stake is the
-    only input that changes how many blocks you expect. The floor is a flat ₳ charge on
-    whatever did mint — it does not scale.</p>
+  <p class="sec-lede">Blocks scale with stake. A 1M ₳ pool is not going to mint like a 43M ₳
+    pool, at any floor. Zero min does not equalize them — it only stops a flat 170 ₳ tax from
+    eating most of the small pool’s one block. The large pool still mints ~43× more and still
+    pays ~43× more ₳ to delegators. The floor makes that ADA gap <em>wider</em> than the mint gap.</p>
   <div class="consts" id="constRow"></div>
   <pre class="eq" id="eqMaster"></pre>
   <div class="meter-row">
@@ -296,15 +298,12 @@
   <div class="cmp-wrap">
     <table class="cmp" id="cmpTbl">
       <thead>
-        <tr><th>Parameter</th><th>1M ₳ pool</th><th>Saturated pool</th></tr>
+        <tr><th>Parameter</th><th>1M ₳ pool</th><th>Saturated pool</th><th>Sat / 1M</th></tr>
       </thead>
       <tbody id="cmpBody"></tbody>
     </table>
   </div>
-  <p class="caveat" style="margin-top:12px">Expected over many epochs. The 170 ₳ floor is charged
-    once per epoch, not per block — so a 1M pool that sometimes hits two blocks pays 170 ₳ on
-    ~590 ₳ gross, which is why operator take here is below 170 ₳. The one-block split is in the
-    next section.</p>
+  <p class="caveat" style="margin-top:12px" id="rateNote"></p>
 </section>
 
 <section class="block wrap" id="lucky">
@@ -348,15 +347,16 @@
 <section class="block wrap" id="curve">
   <div class="eyebrow">Delegator yield vs pool size</div>
   <h2 class="sec-h">The floor is a size tax</h2>
-  <p class="sec-lede">Same 0% margin, cost set to the floor. At 0 ₳ the line is flat — every
-    honest pool pays delegators the same. Drag the floor up and the left side falls off a cliff
-    while the right side barely twitches.</p>
+  <p class="sec-lede">This chart is <b>yield per ₳ you delegated</b>, not total ₳ the pool paid
+    out. At a 0 ₳ floor that <em>rate</em> is flat for unsaturated pools — 43× the blocks on
+    43× the stake is the same ₳ per ₳. Drag the floor up and the 1M rate falls off a cliff
+    while the saturated rate barely moves. The mint gap stays 43× the whole time.</p>
   <div class="chart">
     <svg id="roaChart" viewBox="0 0 720 300" role="img" aria-label="Delegator ROA versus pool stake"></svg>
     <div class="chart-key">
       <span><i style="display:inline-block;width:18px;height:3px;background:var(--cyan);margin-right:6px;vertical-align:middle"></i>This floor</span>
       <span><i style="display:inline-block;width:18px;height:0;border-top:2px dashed var(--op);margin-right:6px;vertical-align:middle"></i>170 ₳ now</span>
-      <span><i style="display:inline-block;width:18px;height:0;border-top:2px dotted var(--green);margin-right:6px;vertical-align:middle"></i>0 ₳ (flat)</span>
+      <span><i style="display:inline-block;width:18px;height:0;border-top:2px dotted var(--green);margin-right:6px;vertical-align:middle"></i>0 ₳ rate per ₳</span>
     </div>
   </div>
 </section>
@@ -514,18 +514,18 @@
     // Hero isolates the size tax: both pools sit on the floor at 0% margin.
     const t = M.expected(M.SMALL_STAKE, 10000, 0, state.floor, state.floor);
     const s = M.expected(M.SATURATION, M.SATURATION * 0.02, 0, state.floor, state.floor);
-    $("tinyRoa").textContent = M.fmtPct(t.roa);
-    $("satRoa").textContent = M.fmtPct(s.roa);
     $("tinyBlk").textContent = M.fmtBlk(t.lambda);
     $("satBlk").textContent = M.fmtBlk(s.lambda);
-    const gap = t.roa > 0 ? s.roa / t.roa : Infinity;
+    $("tinyNote").textContent = M.fmtAda(t.delPot, 0) + " to delegators · rate " + M.fmtPct(t.roa);
+    $("satNote").textContent = M.fmtAda(s.delPot, 0) + " to delegators · rate " + M.fmtPct(s.roa);
     const blkGap = t.lambda > 0 ? s.lambda / t.lambda : Infinity;
-    $("blkX").textContent = M.fmtX(blkGap) + " more";
-    $("gapX").textContent = gap <= 1.02 ? "even" : M.fmtX(gap) + " worse";
+    const adaGap = t.delPot > 0 ? s.delPot / t.delPot : Infinity;
+    $("blkX").textContent = M.fmtX(blkGap) + " the blocks";
+    $("gapX").textContent = M.fmtX(adaGap) + " the ₳ to their delegators";
     $("tinyBlk").className = "n n-del";
     $("satBlk").className = "n n-op";
     $("blkX").className = "n n-op";
-    renderFormula(t, s);
+    renderFormula(t, s, blkGap, adaGap);
 
     const tag = { 0: "none", 75: "proposed", 170: "current", 340: "old" }[state.floor];
     $("floorRead").innerHTML = M.fmtAda(state.floor, 0) + (tag ? " <small>" + tag + "</small>" : "");
@@ -551,7 +551,7 @@
     $("satDel").textContent = M.fmtAda(satE.delPot) + "  " + M.fmtPct(satE.delPot / Math.max(satE.gross, 1), 1);
   }
 
-  function renderFormula(t, s) {
+  function renderFormula(t, s, blkGap, adaGap) {
     const n = M.SLOTS, S = M.ACTIVE_STAKE, k = M.K, z = M.SATURATION, R = M.ADA_PER_BLOCK;
     $("constRow").innerHTML = [
       ["n slots", n.toLocaleString("en-US")],
@@ -577,20 +577,31 @@
     $("mSmallVal").textContent = M.fmtBlk(t.lambda) + " blk/epoch";
     $("mSatVal").textContent = M.fmtBlk(s.lambda) + " blk/epoch";
     const pct = (part, e) => M.fmtPct(part / Math.max(e.gross, 1), 1);
+    const ratio = (a, b) => (b > 0 ? M.fmtX(a / b) : "—");
+    const yours = (e) => M.fmtAda(10000 * e.roa, 1) + " / yr";
+    const bg = blkGap != null ? blkGap : (s.lambda / t.lambda);
+    const ag = adaGap != null ? adaGap : (s.delPot / t.delPot);
     const rows = [
-      ["Stake", M.fmtAda(M.SMALL_STAKE, 0), M.fmtAda(z, 0)],
-      ["Apparent stake  min(stake, z₀)", M.fmtAda(t.apparent, 0), M.fmtAda(s.apparent, 0)],
-      ["Expected blocks λ", M.fmtBlk(t.lambda), M.fmtBlk(s.lambda)],
-      ["Expected gross  λ × R", M.fmtAda(t.gross), M.fmtAda(s.gross)],
-      ["Floor tax (once / epoch)", M.fmtAda(t.cost, 0), M.fmtAda(s.cost, 0)],
-      ["Operator take", M.fmtAda(t.opFixed) + "  " + pct(t.opFixed, t), M.fmtAda(s.opFixed) + "  " + pct(s.opFixed, s)],
-      ["Delegators", M.fmtAda(t.delPot) + "  " + pct(t.delPot, t), M.fmtAda(s.delPot) + "  " + pct(s.delPot, s)],
-      ["Delegator ROA", M.fmtPct(t.roa), M.fmtPct(s.roa)],
+      ["Stake", M.fmtAda(M.SMALL_STAKE, 0), M.fmtAda(z, 0), ratio(z, M.SMALL_STAKE)],
+      ["Apparent stake  min(stake, z₀)", M.fmtAda(t.apparent, 0), M.fmtAda(s.apparent, 0), ratio(s.apparent, t.apparent)],
+      ["Expected blocks λ", M.fmtBlk(t.lambda), M.fmtBlk(s.lambda), ratio(s.lambda, t.lambda)],
+      ["Expected gross  λ × R", M.fmtAda(t.gross), M.fmtAda(s.gross), ratio(s.gross, t.gross)],
+      ["Floor tax (once / epoch)", M.fmtAda(t.cost, 0), M.fmtAda(s.cost, 0), "same ₳"],
+      ["Operator take", M.fmtAda(t.opFixed) + "  " + pct(t.opFixed, t), M.fmtAda(s.opFixed) + "  " + pct(s.opFixed, s), ratio(s.opFixed, t.opFixed)],
+      ["₳ to delegators / epoch", M.fmtAda(t.delPot), M.fmtAda(s.delPot), ratio(s.delPot, t.delPot)],
+      ["Your 10k ₳ earns (annual)", yours(t), yours(s), t.roa > 0 ? M.fmtX(s.roa / t.roa) : "—"],
     ];
     $("cmpBody").innerHTML = rows.map((r, i) => {
-      const cls = i === 2 ? ' class="hi"' : (i === 7 ? ' class="ok"' : "");
-      return `<tr><td>${r[0]}</td><td${cls}>${r[1]}</td><td${cls}>${r[2]}</td></tr>`;
+      const cls = (i === 2 || i === 6) ? ' class="hi"' : "";
+      return `<tr><td>${r[0]}</td><td${cls}>${r[1]}</td><td${cls}>${r[2]}</td><td class="hi">${r[3]}</td></tr>`;
     }).join("");
+    $("rateNote").textContent =
+      "Zero floor does not make the 1M pool mint 43 blocks. It still mints ~1, they still mint ~" +
+      M.fmtBlk(s.lambda) + ". Delegators in the large pool still receive " + M.fmtX(ag) +
+      " the ₳ this epoch because that pool still produced " + M.fmtX(bg) +
+      " the blocks. Per ₳ of YOUR stake the annual rate is " +
+      (t.roa > 0 ? M.fmtX(s.roa / t.roa) : "—") +
+      " — that rate is what a 0 ₳ floor equalizes. The mint gap never equalizes. Floor tax is the same ₳ from both, so it hurts the 1-block pot more and the ₳-to-delegators gap gets wider than 43×.";
   }
 
   function renderChart() {
