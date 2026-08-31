@@ -658,8 +658,9 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
     <div class="eyebrow">Open books</div>
     <h2 class="sec-h">Nothing up either bot’s sleeve.</h2>
     <p class="sec-lede">Every ADA, stablecoin and open order is reconstructed from the agents’
-      payment credentials. A stablecoin sleeve is one economic short-ADA position even when
-      several fills built it; unfilled orders and protocol commitments are reported separately.</p>
+      payment credentials. A stablecoin sleeve is one unlevered spot position—long USDM and
+      underweight ADA—even when several fills built it; unfilled orders and protocol commitments
+      are reported separately.</p>
     <div class="books" id="bookgrid"></div>
   </div>
 </section>
@@ -726,9 +727,10 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
             its batcher fill count as one trade, not two. Unfilled orders, funding, transfers,
             staking, metadata and operational canaries do not count as trades.</li>
           <li><b>An open position</b> is current economic exposure, not a transaction count.
-            Multiple USDM entry fills roll into one open short-ADA/USD position. Open exit
-            orders do not create extra positions. Both books are unlevered spot holdings with
-            no borrowed asset and no liquidation price.</li>
+            Multiple USDM entry fills roll into one spot position: long USDM and underweight
+            ADA. That is an ADA-bearish market view, but it is <b>not</b> a borrowed or
+            derivative short. Open exit orders do not create extra positions. Both books have
+            no debt, no leverage and no liquidation price.</li>
         </ul>
         <div id="checks"></div>
       </div>
@@ -821,10 +823,12 @@ function chainEvents(ag) {
 function marketPositions(ag) {
   if (ag && Array.isArray(ag.market_positions)) return ag.market_positions;
   // Compatibility with snapshots published before the explicit position
-  // schema: nonzero USDM is one unlevered short-ADA/USD economic position.
+  // schema: nonzero USDM is one unlevered spot position, long USDM and
+  // underweight ADA. It is not a borrowed or derivative short.
   return ag && Number(ag.usdm) > 1e-9 ? [{
-    status: "open", economic_side: "short ADA/USD",
-    mechanism: "USDM spot allocation", quantity_usdm: Number(ag.usdm),
+    status: "open", economic_side: "long USDM / underweight ADA",
+    market_view: "ADA-bearish vs USD", mechanism: "USDM spot holding",
+    quantity_usdm: Number(ag.usdm),
     share_of_book_pct: ag.hedge_pct,
     leverage: {type: "unlevered spot", borrowed: false, liquidation_price: null},
   }] : [];
@@ -844,7 +848,7 @@ function marketPositionLine(ag) {
   const p = marketPositions(ag)[0];
   if (!p) return "Flat · no open market position";
   const share = p.share_of_book_pct ?? ag.hedge_pct;
-  return `1 open position · ${p.economic_side || "market position"} · ${fmt(p.quantity_usdm ?? ag.usdm, 2)} USDM${
+  return `1 spot position · ${p.economic_side || "market position"} · ${fmt(p.quantity_usdm ?? ag.usdm, 2)} USDM${
     share === null || share === undefined ? "" : ` · ${fmt(share, 0)}% of book`} · ${leverageLabel(ag)}`;
 }
 function venueChip(p) {
@@ -965,12 +969,12 @@ function renderBooks() {
       <div class="rows">
         <div class="row"><span class="k">Open market positions</span>
           <span class="v">${market ? "1" : "0 · flat"}</span></div>
-        ${market ? `<div class="row"><span class="k">Direction / vehicle</span>
-          <span class="v">${esc(market.economic_side)} via ${esc(market.mechanism)}</span></div>
+        ${market ? `<div class="row"><span class="k">Holding / market view</span>
+          <span class="v">${esc(market.economic_side)} · ${esc(market.market_view || "spot exposure")}</span></div>
         <div class="row"><span class="k">Position size</span>
           <span class="v">${fmt(market.quantity_usdm, 6)} USDM${hedge === null || hedge === undefined ? "" : ` · ${fmt(hedge, 2)}% of book`}</span></div>` : ""}
-        <div class="row"><span class="k">Leverage / liquidation price</span>
-          <span class="v">${esc(leverageLabel(ag))} / ${esc(liquidationLabel(ag))}</span></div>
+        <div class="row"><span class="k">Borrowing / leverage / liquidation</span>
+          <span class="v">None / ${esc(leverageLabel(ag))} / ${esc(liquidationLabel(ag))}</span></div>
         ${rows.map(r => `<div class="row"><span class="k">${esc(r[0])}</span>
           <span class="v">${r[1]}</span></div>`).join("")}
         <div class="row sum"><span class="k">Score</span><span class="v">${
@@ -978,7 +982,7 @@ function renderBooks() {
       </div>
       ${hedge === null || hedge === undefined ? "" : `
       <div style="margin-top:16px">
-        <div class="grp"><div class="lbl"><span>Book in USDM · short ADA/USD</span>
+        <div class="grp"><div class="lbl"><span>Book held in USDM · ADA-bearish spot view</span>
           <b>${fmt(hedge, 2)}%</b></div>
           <div class="meter"><i style="width:${Math.max(0, Math.min(100, hedge))}%"></i></div>
         </div>
@@ -1623,7 +1627,7 @@ function buildShareCanvas() {
     const share = ag.hedge_pct === null || ag.hedge_pct === undefined
       ? "UNMARKED" : `${Number(ag.hedge_pct).toFixed(0)}% BOOK`;
     const position = marketPositions(ag).length
-      ? `1 OPEN POSITION · SHORT ADA/USD · ${Number(ag.usdm).toFixed(2)} USDM · ${share}`
+      ? `1 SPOT POSITION · ${Number(ag.usdm).toFixed(2)} USDM · ${share} · NO BORROWING`
       : "FLAT · NO OPEN POSITION";
     text(position, x, 640, 15, color, align, 800, mono);
     text(`${completedTrades(ag)} COMPLETED TRADES · ${ag.open_orders} OPEN ORDERS · ${leverageLabel(ag).toUpperCase()}`,
