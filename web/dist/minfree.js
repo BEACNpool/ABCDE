@@ -116,6 +116,7 @@
     if (!isFinite(n)) return "—";
     const abs = Math.abs(n);
     const sign = n < 0 ? "−" : "";
+    if (abs >= 1e9) return sign + (abs / 1e9).toFixed(2) + "B ₳";
     if (abs >= 1e6) return sign + (abs / 1e6).toFixed(2) + "M ₳";
     if (abs >= 10000) return sign + Math.round(abs).toLocaleString("en-US") + " ₳";
     if (abs >= 100) return sign + abs.toFixed(d) + " ₳";
@@ -134,10 +135,17 @@
     return x.toFixed(2) + "×";
   }
 
+  function fmtBlk(l) {
+    if (!isFinite(l)) return "—";
+    if (l < 1) return l.toFixed(3);
+    if (l < 10) return l.toFixed(2);
+    return l.toFixed(1);
+  }
+
   const api = {
     ADA_PER_BLOCK, ACTIVE_STAKE, K, SLOTS, EPOCHS_YEAR, SATURATION,
     CURRENT_FLOOR, PROPOSED_FLOOR, OLD_FLOOR, SMALL_STAKE, SAMPLES,
-    expected, splitEpoch, costFor, fmtAda, fmtPct, fmtX,
+    expected, splitEpoch, costFor, fmtAda, fmtPct, fmtX, fmtBlk,
   };
   root.MINFREE = api;
   if (typeof module !== "undefined") module.exports = api;

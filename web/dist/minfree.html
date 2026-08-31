@@ -88,6 +88,28 @@
 
   .gap3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
   @media(max-width:760px){.gap3{grid-template-columns:1fr}.race{margin-left:0;width:100%}}
+  .eq{
+    margin:0 0 18px;padding:14px 16px;background:#071224;border:1px solid var(--line);
+    border-radius:12px;overflow-x:auto;color:#a5f3fc;font-size:13.5px;line-height:1.7;
+    font-family:var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;
+  }
+  .consts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .const{
+    border:1px solid var(--line2);border-radius:999px;padding:5px 11px;
+    font-family:var(--mono);font-size:12px;color:var(--muted);background:#071224;
+  }
+  .const b{color:var(--text);font-weight:700}
+  .meter-row{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;margin:8px 0}
+  .meter-row .mlab{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .meter{height:16px;background:#071224;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+  .meter i{display:block;height:100%;background:var(--del);border-radius:99px}
+  .meter.sat i{background:var(--op)}
+  .meter-row .mval{font-family:var(--mono);font-size:14px;font-weight:700;white-space:nowrap}
+  .ptbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+  .ptbl th,.ptbl td{padding:6px 0;border-bottom:1px solid var(--line);text-align:left}
+  .ptbl th{color:var(--muted2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .ptbl td:last-child,.ptbl th:last-child{text-align:right;font-family:var(--mono);font-weight:700;white-space:normal}
+  .ptbl tr:last-child td{border-bottom:0}
   .stat{background:#071224;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .stat .n{font-family:var(--mono);font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.03em}
   .stat .l{color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
@@ -97,7 +119,8 @@
   .n-bad,.stat .n.n-bad{color:var(--red)}
   .n-ok,.stat .n.n-ok{color:var(--green)}
 
-  section.block{padding:48px 0;border-top:1px solid var(--line);scroll-margin-top:150px}
+  section.block{padding:48px 0;border-top:1px solid var(--line);scroll-margin-top:280px}
+  @media(max-width:760px){section.block{scroll-margin-top:24px}}
   .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:800px){.pair{grid-template-columns:1fr}}
   .poolbox{
@@ -231,31 +254,65 @@
       <div class="ticks"><span>0</span><span>75</span><span>170</span><span>340</span></div>
       <div class="gap3">
         <div class="stat">
-          <div class="l">1M ₳ pool ROA</div>
-          <div class="n n-bad" id="tinyRoa">—</div>
-          <div class="s" id="tinyNote">1.0M ₳ · 0% margin · ~1 block / epoch</div>
+          <div class="l">1M ₳ blocks / epoch</div>
+          <div class="n n-del" id="tinyBlk">—</div>
+          <div class="s" id="tinyNote">delegator ROA <span id="tinyRoa">—</span> · 0% margin</div>
         </div>
         <div class="stat">
-          <div class="l">Saturated ROA</div>
-          <div class="n n-del" id="satRoa">—</div>
-          <div class="s" id="satNote">43.0M ₳ cap · 0% margin</div>
+          <div class="l">Saturated blocks / epoch</div>
+          <div class="n n-op" id="satBlk">—</div>
+          <div class="s" id="satNote">delegator ROA <span id="satRoa">—</span> · 43.0M ₳ cap</div>
         </div>
         <div class="stat">
-          <div class="l">How much worse</div>
-          <div class="n n-op" id="gapX">—</div>
-          <div class="s">Saturated yield vs a 1M ₳ pool, same floor, same 0% margin</div>
+          <div class="l">Mint gap</div>
+          <div class="n n-op" id="blkX">—</div>
+          <div class="s">same floor tax · yield <span id="gapX">—</span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<section class="block wrap" id="formula">
+  <div class="eyebrow">The formula</div>
+  <h2 class="sec-h">Same epoch. Far fewer blocks.</h2>
+  <p class="sec-lede">Slots, total active stake, and k are the same for everyone. Stake is the
+    only input that changes how many blocks you expect. The floor is a flat ₳ charge on
+    whatever did mint — it does not scale.</p>
+  <div class="consts" id="constRow"></div>
+  <pre class="eq" id="eqMaster"></pre>
+  <div class="meter-row">
+    <span class="mlab">1M</span>
+    <div class="meter" aria-hidden="true"><i id="mSmall"></i></div>
+    <span class="mval" id="mSmallVal">—</span>
+  </div>
+  <div class="meter-row">
+    <span class="mlab">Sat</span>
+    <div class="meter sat" aria-hidden="true"><i id="mSat"></i></div>
+    <span class="mval" id="mSatVal">—</span>
+  </div>
+  <div class="pair" style="margin-top:18px">
+    <div class="poolbox">
+      <h3>1M ₳ pool · worked</h3>
+      <div class="who" id="fSmallWho">—</div>
+      <pre class="eq" id="fSmallEq" style="margin:0"></pre>
+      <table class="ptbl" id="fSmallTbl"></table>
+    </div>
+    <div class="poolbox">
+      <h3>Saturated pool · worked</h3>
+      <div class="who" id="fSatWho">—</div>
+      <pre class="eq" id="fSatEq" style="margin:0"></pre>
+      <table class="ptbl" id="fSatTbl"></table>
+    </div>
+  </div>
+</section>
+
 <section class="block wrap" id="lucky">
   <div class="eyebrow">The one-block epoch</div>
   <h2 class="sec-h">When a small pool actually mints</h2>
-  <p class="sec-lede">A 1M ₳ pool expects about one block per epoch. The floor is charged
+  <p class="sec-lede">The 1M ₳ pool’s typical epoch is one block. The floor is charged
     <b>once per epoch that has rewards</b>, not per block. Mint one block, and 170 ₳ is more
-    than half the reward. A saturated pool mints ~43 in that same epoch. Same ₳ tax.</p>
+    than half the reward. The saturated pool’s typical epoch is forty-three blocks. Same ₳ tax.</p>
   <div class="pair">
     <div class="poolbox">
       <h3>Lucky epoch · 1 block</h3>
@@ -456,10 +513,16 @@
     const s = M.expected(M.SATURATION, M.SATURATION * 0.02, 0, state.floor, state.floor);
     $("tinyRoa").textContent = M.fmtPct(t.roa);
     $("satRoa").textContent = M.fmtPct(s.roa);
+    $("tinyBlk").textContent = M.fmtBlk(t.lambda);
+    $("satBlk").textContent = M.fmtBlk(s.lambda);
     const gap = t.roa > 0 ? s.roa / t.roa : Infinity;
+    const blkGap = t.lambda > 0 ? s.lambda / t.lambda : Infinity;
+    $("blkX").textContent = M.fmtX(blkGap) + " more";
     $("gapX").textContent = gap <= 1.02 ? "even" : M.fmtX(gap) + " worse";
-    $("tinyRoa").className = "n " + (t.roa < s.roa * 0.85 ? "n-bad" : "n-ok");
-    $("gapX").className = "n " + (gap > 1.15 ? "n-op" : "n-ok");
+    $("tinyBlk").className = "n n-del";
+    $("satBlk").className = "n n-op";
+    $("blkX").className = "n n-op";
+    renderFormula(t, s);
 
     const tag = { 0: "none", 75: "proposed", 170: "current", 340: "old" }[state.floor];
     $("floorRead").innerHTML = M.fmtAda(state.floor, 0) + (tag ? " <small>" + tag + "</small>" : "");
@@ -483,6 +546,80 @@
     applyBar($("satBar"), satE);
     $("satOp").textContent = M.fmtAda(satE.opFixed) + "  " + M.fmtPct(satE.opFixed / Math.max(satE.gross, 1), 1);
     $("satDel").textContent = M.fmtAda(satE.delPot) + "  " + M.fmtPct(satE.delPot / Math.max(satE.gross, 1), 1);
+  }
+
+  function paramTable(rows) {
+    return "<thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>" +
+      rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("") +
+      "</tbody>";
+  }
+
+  function worked(stake, e) {
+    const n = M.SLOTS;
+    const S = M.ACTIVE_STAKE;
+    const apparent = e.apparent;
+    return (
+      "λ = n × min(stake, z₀) / Σ\n" +
+      "  = " + n.toLocaleString("en-US") + " × " + M.fmtAda(apparent, 0) + " / " + M.fmtAda(S, 0) + "\n" +
+      "  = " + M.fmtBlk(e.lambda) + " blocks / epoch\n\n" +
+      "gross = λ × " + M.ADA_PER_BLOCK.toFixed(2) + "\n" +
+      "      = " + M.fmtAda(e.gross) + " expected\n\n" +
+      "cost  = max(floor, declared) = " + M.fmtAda(e.cost, 0) + "  (once / epoch)\n" +
+      "op    = " + M.fmtAda(e.opFixed) + "  (" + M.fmtPct(e.opFixed / Math.max(e.gross, 1), 1) + " of gross)\n" +
+      "del   = " + M.fmtAda(e.delPot) + "\n" +
+      "ROA   = del / stake × 73 = " + M.fmtPct(e.roa)
+    );
+  }
+
+  function renderFormula(t, s) {
+    const n = M.SLOTS, S = M.ACTIVE_STAKE, k = M.K, z = M.SATURATION, R = M.ADA_PER_BLOCK;
+    $("constRow").innerHTML = [
+      ["n slots", n.toLocaleString("en-US")],
+      ["Σ active stake", M.fmtAda(S, 0)],
+      ["k", String(k)],
+      ["z₀ = Σ / k", M.fmtAda(z, 0)],
+      ["R ₳ / block", R.toFixed(2)],
+      ["epochs / year", String(M.EPOCHS_YEAR)],
+      ["floor", M.fmtAda(state.floor, 0)],
+      ["margin", "0%"],
+    ].map((c) => `<span class="const">${c[0]}  <b>${c[1]}</b></span>`).join("");
+    $("eqMaster").textContent =
+      "λ = n × min(stake, z₀) / Σ\n" +
+      "1M:   λ = " + n.toLocaleString("en-US") + " × " + M.fmtAda(M.SMALL_STAKE, 0) + " / " + M.fmtAda(S, 0) +
+      "  =  " + M.fmtBlk(t.lambda) + " blocks / epoch\n" +
+      "sat:  λ = " + n.toLocaleString("en-US") + " × " + M.fmtAda(z, 0) + " / " + M.fmtAda(S, 0) +
+      "  =  " + M.fmtBlk(s.lambda) + " blocks / epoch\n" +
+      "mint gap:  " + M.fmtBlk(s.lambda) + " / " + M.fmtBlk(t.lambda) + "  =  " +
+      M.fmtX(s.lambda / t.lambda) + " more blocks on the saturated pool";
+    const maxLam = Math.max(s.lambda, t.lambda, 1);
+    $("mSmall").style.width = (t.lambda / maxLam * 100) + "%";
+    $("mSat").style.width = (s.lambda / maxLam * 100) + "%";
+    $("mSmallVal").textContent = M.fmtBlk(t.lambda) + " blk/epoch";
+    $("mSatVal").textContent = M.fmtBlk(s.lambda) + " blk/epoch";
+    $("fSmallWho").textContent = M.fmtBlk(t.lambda) + " blocks · " + M.fmtAda(t.gross);
+    $("fSatWho").textContent = M.fmtBlk(s.lambda) + " blocks · " + M.fmtAda(s.gross);
+    $("fSmallEq").textContent = worked(M.SMALL_STAKE, t);
+    $("fSatEq").textContent = worked(z, s);
+    $("fSmallTbl").innerHTML = paramTable([
+      ["stake", M.fmtAda(M.SMALL_STAKE, 0)],
+      ["apparent min(stake, z₀)", M.fmtAda(t.apparent, 0)],
+      ["expected blocks λ", M.fmtBlk(t.lambda)],
+      ["gross λ × R", M.fmtAda(t.gross)],
+      ["floor / declared", M.fmtAda(t.cost, 0)],
+      ["operator (fixed)", M.fmtAda(t.opFixed) + "  " + M.fmtPct(t.opFixed / Math.max(t.gross, 1), 1)],
+      ["delegators", M.fmtAda(t.delPot)],
+      ["delegator ROA", M.fmtPct(t.roa)],
+    ]);
+    $("fSatTbl").innerHTML = paramTable([
+      ["stake", M.fmtAda(z, 0)],
+      ["apparent min(stake, z₀)", M.fmtAda(s.apparent, 0)],
+      ["expected blocks λ", M.fmtBlk(s.lambda)],
+      ["gross λ × R", M.fmtAda(s.gross)],
+      ["floor / declared", M.fmtAda(s.cost, 0)],
+      ["operator (fixed)", M.fmtAda(s.opFixed) + "  " + M.fmtPct(s.opFixed / Math.max(s.gross, 1), 1)],
+      ["delegators", M.fmtAda(s.delPot)],
+      ["delegator ROA", M.fmtPct(s.roa)],
+    ]);
   }
 
   function renderChart() {
@@ -549,8 +686,8 @@
         <h3>${p.label}</h3>
         <p>${p.blurb}</p>
         <div class="mini" aria-hidden="true"><span class="op" style="width:${w.op}%;background:var(--op)"></span><span class="mg" style="width:${w.mg}%;background:var(--mar)"></span><span class="dl" style="width:${w.dl}%;background:var(--del)"></span></div>
-        <div class="roa">${M.fmtPct(e.roa)}</div>
-        <div class="hint">delegator ROA · cost ${M.fmtAda(e.cost, 0)} · λ ${e.lambda < 1 ? e.lambda.toFixed(3) : e.lambda.toFixed(1)} blk/epoch</div>
+        <div class="roa">${M.fmtBlk(e.lambda)} <small style="font-size:12px;color:var(--muted);font-weight:700">blk/epoch</small></div>
+        <div class="hint">delegator ROA ${M.fmtPct(e.roa)} · cost ${M.fmtAda(e.cost, 0)}</div>
       `;
       b.addEventListener("click", () => {
         state.selected = p.id;
