@@ -32,14 +32,7 @@
   .mark{color:var(--op);font-weight:700}
   .mark2{color:var(--del);font-weight:700}
 
-  .sticky-tool{
-    position:sticky;top:60px;z-index:40;padding:14px 0 16px;
-    background:linear-gradient(180deg,rgba(2,6,23,.94),rgba(2,6,23,.88) 70%,transparent);
-    backdrop-filter:blur(10px);
-  }
-  @media(max-width:760px){
-    .sticky-tool{position:static;background:transparent;backdrop-filter:none;padding:8px 0 0}
-  }
+  .sticky-tool{padding:8px 0 8px}
   .floor-card{
     background:linear-gradient(180deg,var(--panel),#0a1730);
     border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px 16px;
@@ -119,8 +112,7 @@
   .n-bad,.stat .n.n-bad{color:var(--red)}
   .n-ok,.stat .n.n-ok{color:var(--green)}
 
-  section.block{padding:48px 0;border-top:1px solid var(--line);scroll-margin-top:280px}
-  @media(max-width:760px){section.block{scroll-margin-top:24px}}
+  section.block{padding:48px 0;border-top:1px solid var(--line);scroll-margin-top:80px}
   .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:800px){.pair{grid-template-columns:1fr}}
   .poolbox{
@@ -142,7 +134,17 @@
   .nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
   .nums div{background:#071224;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
   .nums .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:700}
-  .nums .v{font-family:var(--mono);font-size:16px;font-weight:700;margin-top:2px}
+  .nums .v{font-family:var(--mono);font-size:20px;font-weight:800;margin-top:6px;color:var(--text);line-height:1.2;min-height:1.2em}
+  .bar .op,.bar .mg,.bar .dl{min-width:0}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--panel),#0a1730);margin-top:18px}
+  .cmp{width:100%;border-collapse:collapse;min-width:520px;font-size:14px}
+  .cmp th,.cmp td{padding:11px 16px;border-bottom:1px solid var(--line);text-align:right}
+  .cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--muted);font-weight:700}
+  .cmp thead th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:var(--panel2)}
+  .cmp tbody tr:last-child td{border-bottom:0}
+  .cmp td{font-family:var(--mono);font-weight:700;color:var(--text)}
+  .cmp .hi{color:var(--op)}
+  .cmp .ok{color:var(--del)}
 
   .chart{
     background:linear-gradient(180deg,var(--panel),#0a1730);
@@ -291,20 +293,18 @@
     <div class="meter sat" aria-hidden="true"><i id="mSat"></i></div>
     <span class="mval" id="mSatVal">—</span>
   </div>
-  <div class="pair" style="margin-top:18px">
-    <div class="poolbox">
-      <h3>1M ₳ pool · worked</h3>
-      <div class="who" id="fSmallWho">—</div>
-      <pre class="eq" id="fSmallEq" style="margin:0"></pre>
-      <table class="ptbl" id="fSmallTbl"></table>
-    </div>
-    <div class="poolbox">
-      <h3>Saturated pool · worked</h3>
-      <div class="who" id="fSatWho">—</div>
-      <pre class="eq" id="fSatEq" style="margin:0"></pre>
-      <table class="ptbl" id="fSatTbl"></table>
-    </div>
+  <div class="cmp-wrap">
+    <table class="cmp" id="cmpTbl">
+      <thead>
+        <tr><th>Parameter</th><th>1M ₳ pool</th><th>Saturated pool</th></tr>
+      </thead>
+      <tbody id="cmpBody"></tbody>
+    </table>
   </div>
+  <p class="caveat" style="margin-top:12px">Expected over many epochs. The 170 ₳ floor is charged
+    once per epoch, not per block — so a 1M pool that sometimes hits two blocks pays 170 ₳ on
+    ~590 ₳ gross, which is why operator take here is below 170 ₳. The one-block split is in the
+    next section.</p>
 </section>
 
 <section class="block wrap" id="lucky">
@@ -352,7 +352,7 @@
     honest pool pays delegators the same. Drag the floor up and the left side falls off a cliff
     while the right side barely twitches.</p>
   <div class="chart">
-    <svg id="roaChart" viewBox="0 0 720 280" role="img" aria-label="Delegator ROA versus pool stake"></svg>
+    <svg id="roaChart" viewBox="0 0 720 300" role="img" aria-label="Delegator ROA versus pool stake"></svg>
     <div class="chart-key">
       <span><i style="display:inline-block;width:18px;height:3px;background:var(--cyan);margin-right:6px;vertical-align:middle"></i>This floor</span>
       <span><i style="display:inline-block;width:18px;height:0;border-top:2px dashed var(--op);margin-right:6px;vertical-align:middle"></i>170 ₳ now</span>
@@ -502,9 +502,12 @@
   }
   function applyBar(el, s) {
     const w = barWidths(s);
-    el.querySelector(".op").style.width = w.op + "%";
-    el.querySelector(".mg").style.width = w.mg + "%";
-    el.querySelector(".dl").style.width = w.dl + "%";
+    const set = (sel, pct) => {
+      const n = el.querySelector(sel);
+      n.style.width = pct + "%";
+      n.style.minWidth = pct > 0.15 ? "10px" : "0";
+    };
+    set(".op", w.op); set(".mg", w.mg); set(".dl", w.dl);
   }
 
   function renderHero() {
@@ -548,29 +551,6 @@
     $("satDel").textContent = M.fmtAda(satE.delPot) + "  " + M.fmtPct(satE.delPot / Math.max(satE.gross, 1), 1);
   }
 
-  function paramTable(rows) {
-    return "<thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>" +
-      rows.map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("") +
-      "</tbody>";
-  }
-
-  function worked(stake, e) {
-    const n = M.SLOTS;
-    const S = M.ACTIVE_STAKE;
-    const apparent = e.apparent;
-    return (
-      "λ = n × min(stake, z₀) / Σ\n" +
-      "  = " + n.toLocaleString("en-US") + " × " + M.fmtAda(apparent, 0) + " / " + M.fmtAda(S, 0) + "\n" +
-      "  = " + M.fmtBlk(e.lambda) + " blocks / epoch\n\n" +
-      "gross = λ × " + M.ADA_PER_BLOCK.toFixed(2) + "\n" +
-      "      = " + M.fmtAda(e.gross) + " expected\n\n" +
-      "cost  = max(floor, declared) = " + M.fmtAda(e.cost, 0) + "  (once / epoch)\n" +
-      "op    = " + M.fmtAda(e.opFixed) + "  (" + M.fmtPct(e.opFixed / Math.max(e.gross, 1), 1) + " of gross)\n" +
-      "del   = " + M.fmtAda(e.delPot) + "\n" +
-      "ROA   = del / stake × 73 = " + M.fmtPct(e.roa)
-    );
-  }
-
   function renderFormula(t, s) {
     const n = M.SLOTS, S = M.ACTIVE_STAKE, k = M.K, z = M.SATURATION, R = M.ADA_PER_BLOCK;
     $("constRow").innerHTML = [
@@ -592,39 +572,30 @@
       "mint gap:  " + M.fmtBlk(s.lambda) + " / " + M.fmtBlk(t.lambda) + "  =  " +
       M.fmtX(s.lambda / t.lambda) + " more blocks on the saturated pool";
     const maxLam = Math.max(s.lambda, t.lambda, 1);
-    $("mSmall").style.width = (t.lambda / maxLam * 100) + "%";
+    $("mSmall").style.width = Math.max(t.lambda / maxLam * 100, 1.2) + "%";
     $("mSat").style.width = (s.lambda / maxLam * 100) + "%";
     $("mSmallVal").textContent = M.fmtBlk(t.lambda) + " blk/epoch";
     $("mSatVal").textContent = M.fmtBlk(s.lambda) + " blk/epoch";
-    $("fSmallWho").textContent = M.fmtBlk(t.lambda) + " blocks · " + M.fmtAda(t.gross);
-    $("fSatWho").textContent = M.fmtBlk(s.lambda) + " blocks · " + M.fmtAda(s.gross);
-    $("fSmallEq").textContent = worked(M.SMALL_STAKE, t);
-    $("fSatEq").textContent = worked(z, s);
-    $("fSmallTbl").innerHTML = paramTable([
-      ["stake", M.fmtAda(M.SMALL_STAKE, 0)],
-      ["apparent min(stake, z₀)", M.fmtAda(t.apparent, 0)],
-      ["expected blocks λ", M.fmtBlk(t.lambda)],
-      ["gross λ × R", M.fmtAda(t.gross)],
-      ["floor / declared", M.fmtAda(t.cost, 0)],
-      ["operator (fixed)", M.fmtAda(t.opFixed) + "  " + M.fmtPct(t.opFixed / Math.max(t.gross, 1), 1)],
-      ["delegators", M.fmtAda(t.delPot)],
-      ["delegator ROA", M.fmtPct(t.roa)],
-    ]);
-    $("fSatTbl").innerHTML = paramTable([
-      ["stake", M.fmtAda(z, 0)],
-      ["apparent min(stake, z₀)", M.fmtAda(s.apparent, 0)],
-      ["expected blocks λ", M.fmtBlk(s.lambda)],
-      ["gross λ × R", M.fmtAda(s.gross)],
-      ["floor / declared", M.fmtAda(s.cost, 0)],
-      ["operator (fixed)", M.fmtAda(s.opFixed) + "  " + M.fmtPct(s.opFixed / Math.max(s.gross, 1), 1)],
-      ["delegators", M.fmtAda(s.delPot)],
-      ["delegator ROA", M.fmtPct(s.roa)],
-    ]);
+    const pct = (part, e) => M.fmtPct(part / Math.max(e.gross, 1), 1);
+    const rows = [
+      ["Stake", M.fmtAda(M.SMALL_STAKE, 0), M.fmtAda(z, 0)],
+      ["Apparent stake  min(stake, z₀)", M.fmtAda(t.apparent, 0), M.fmtAda(s.apparent, 0)],
+      ["Expected blocks λ", M.fmtBlk(t.lambda), M.fmtBlk(s.lambda)],
+      ["Expected gross  λ × R", M.fmtAda(t.gross), M.fmtAda(s.gross)],
+      ["Floor tax (once / epoch)", M.fmtAda(t.cost, 0), M.fmtAda(s.cost, 0)],
+      ["Operator take", M.fmtAda(t.opFixed) + "  " + pct(t.opFixed, t), M.fmtAda(s.opFixed) + "  " + pct(s.opFixed, s)],
+      ["Delegators", M.fmtAda(t.delPot) + "  " + pct(t.delPot, t), M.fmtAda(s.delPot) + "  " + pct(s.delPot, s)],
+      ["Delegator ROA", M.fmtPct(t.roa), M.fmtPct(s.roa)],
+    ];
+    $("cmpBody").innerHTML = rows.map((r, i) => {
+      const cls = i === 2 ? ' class="hi"' : (i === 7 ? ' class="ok"' : "");
+      return `<tr><td>${r[0]}</td><td${cls}>${r[1]}</td><td${cls}>${r[2]}</td></tr>`;
+    }).join("");
   }
 
   function renderChart() {
     const svg = $("roaChart");
-    const W = 720, H = 280, L = 52, R = 16, T = 16, B = 36;
+    const W = 720, H = 300, L = 58, R = 20, T = 20, B = 52;
     const stakes = [];
     const xMin = 100000;
     for (let i = 0; i <= 24; i++) stakes.push(xMin * Math.pow(M.SATURATION * 1.6 / xMin, i / 24));
@@ -661,12 +632,19 @@
       grid += `<text x="${L - 8}" y="${y + 4}" text-anchor="end" fill="#64748b" font-size="11" font-family="ui-monospace,monospace">${pct}%</text>`;
     }
     const satX = xOf(M.SATURATION);
+    const oneMX = xOf(M.SMALL_STAKE);
+    const nowPath = state.floor === 170 ? "" :
+      `<path d="${path(now)}" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="6 5"/>`;
     svg.innerHTML = `
       ${grid}
-      <line x1="${satX}" x2="${satX}" y1="${T}" y2="${H - B}" stroke="#22d3ee" stroke-dasharray="2 3" opacity="0.35"/>
+      <line x1="${satX}" x2="${satX}" y1="${T}" y2="${H - B}" stroke="#fbbf24" stroke-dasharray="2 3" opacity="0.45"/>
+      <line x1="${oneMX}" x2="${oneMX}" y1="${T}" y2="${H - B}" stroke="#22d3ee" stroke-dasharray="2 3" opacity="0.35"/>
+      <text x="${oneMX + 4}" y="${T + 12}" fill="#22d3ee" font-size="11" font-family="ui-monospace,monospace">1M</text>
+      <text x="${satX - 4}" y="${T + 12}" text-anchor="end" fill="#fbbf24" font-size="11" font-family="ui-monospace,monospace">sat</text>
       <path d="${path(zero)}" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="3 4"/>
-      <path d="${path(now)}" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="6 5"/>
+      ${nowPath}
       <path d="${path(live)}" fill="none" stroke="#22d3ee" stroke-width="2.8"/>
+      <text x="${(L + W - R) / 2}" y="${H - 8}" text-anchor="middle" fill="#64748b" font-size="11" font-family="ui-sans-serif,sans-serif">pool stake</text>
     `;
   }
 
