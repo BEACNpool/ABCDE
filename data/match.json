@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-08-31T16:01:45+00:00",
+ "generated_at": "2026-08-31T16:02:08+00:00",
  "chain_fingerprint": "1da43476e7e646232e78ae8783cb58b110c164f2463ce1d29269ba6c868c71d7",
- "generated_at_unix": 1788192105,
+ "generated_at_unix": 1788192128,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
   "usd_per_ada": 0.195764,
   "ada_per_usdm": 5.108191495882798,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-08-31T16:01:45+00:00"
+  "fetched_at": "2026-08-31T16:02:08+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -85,23 +85,6 @@
      "source": "chain"
     }
    ],
-   "market_positions": [
-    {
-     "id": "ada-usd-short-via-usdm",
-     "status": "open",
-     "economic_side": "short ADA/USD",
-     "mechanism": "USDM spot allocation",
-     "quantity_usdm": 126.687161,
-     "notional_ada_eq": 647.142278,
-     "share_of_book_pct": 70.46,
-     "leverage": {
-      "type": "unlevered spot",
-      "borrowed": false,
-      "liquidation_price": null
-     }
-    }
-   ],
-   "open_position_count": 1,
    "ada_total": 271.366647,
    "costs": {
     "network": 1.450464,
@@ -116,8 +99,6 @@
     "pool_vs_mark": -16.362278,
     "all_in_vs_mark": -10.911814
    },
-   "completed_trades": 2,
-   "chain_events": 12,
    "moves": 12,
    "vs_start_ada_eq": 11.26772,
    "vs_equalized_start_ada_eq": 11.26772,
@@ -148,23 +129,6 @@
    "in_flight_usdm": 0.0,
    "open_orders": 0,
    "open_positions": [],
-   "market_positions": [
-    {
-     "id": "ada-usd-short-via-usdm",
-     "status": "open",
-     "economic_side": "short ADA/USD",
-     "mechanism": "USDM spot allocation",
-     "quantity_usdm": 78.461199,
-     "notional_ada_eq": 400.794829,
-     "share_of_book_pct": 43.71,
-     "leverage": {
-      "type": "unlevered spot",
-      "borrowed": false,
-      "liquidation_price": null
-     }
-    }
-   ],
-   "open_position_count": 1,
    "ada_total": 516.054262,
    "costs": {
     "network": 2.810128,
@@ -179,8 +143,6 @@
     "pool_vs_mark": -11.494829,
     "all_in_vs_mark": -5.284701
    },
-   "completed_trades": 4,
-   "chain_events": 12,
    "moves": 12,
    "vs_start_ada_eq": 0.0,
    "vs_equalized_start_ada_eq": 9.607886,
@@ -558,10 +520,10 @@
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 438,
+  "points": 439,
   "first": 1788027300,
-  "last": 1788192105,
-  "polled": 390,
+  "last": 1788192128,
+  "polled": 391,
   "reconstructed": 48,
   "file": "match_history.json"
  }
