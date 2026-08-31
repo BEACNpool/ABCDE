@@ -267,6 +267,75 @@ html{background:var(--bg)}
   .sc-fighter.right .vrow{justify-content:center}
 }
 
+/* public decision room ----------------------------------------------------
+   A screenshot surface for the research process, not an execution console.
+   Every opportunity is graded by the same visible lens; hard gates remain
+   visible even when a composite score looks attractive. */
+.decision-section{position:relative;overflow:hidden;background:
+  radial-gradient(900px 500px at 8% 20%,rgba(19,162,199,.08),transparent 62%),
+  radial-gradient(800px 460px at 96% 82%,rgba(155,140,255,.07),transparent 64%)}
+.decision-shell{position:relative;overflow:hidden;border:1px solid var(--line2);border-radius:24px;
+  padding:26px;background:linear-gradient(155deg,rgba(12,27,47,.98),rgba(4,11,22,.98));
+  box-shadow:0 24px 80px -48px #000}
+.decision-shell::before{content:"";position:absolute;inset:0 0 auto;height:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet),var(--amber),var(--red))}
+.dr-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:start}
+.dr-stamp{font:800 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.dr-title{font-size:clamp(28px,4vw,44px);letter-spacing:-.045em;line-height:1;margin:8px 0 10px}
+.dr-deck{max-width:790px;color:var(--muted);font-size:14px;line-height:1.55;margin:0}
+.dr-boundary{max-width:300px;border:1px solid rgba(251,113,133,.38);border-radius:14px;
+  padding:12px 14px;background:rgba(251,113,133,.06);color:#fca5b5;font-size:11.5px;
+  line-height:1.45;font-weight:700}
+.dr-capbar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
+.dr-cap{min-width:0;border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+  background:rgba(2,7,15,.35)}
+.dr-cap span{display:block;font:800 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted2)}
+.dr-cap b{display:block;margin-top:4px;font:800 13px var(--mono);color:var(--text)}
+.dr-subhead{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:24px 0 10px}
+.dr-subhead h3{font-size:15px;margin:0}.dr-subhead p{margin:0;color:var(--muted2);font-size:10.5px}
+.dr-weights{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.dr-weight{border:1px solid var(--line);border-radius:12px;padding:11px 10px;background:rgba(3,10,20,.46)}
+.dr-weight-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.dr-weight strong{font:900 21px var(--mono);color:var(--cyan)}
+.dr-weight span{color:var(--muted);font-size:10px;line-height:1.2;font-weight:700}
+.dr-weight-track,.dr-fit-track{height:4px;border-radius:999px;background:var(--track);overflow:hidden;margin-top:8px}
+.dr-weight-track i{display:block;height:100%;background:var(--cyan);border-radius:999px}
+.dr-opps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.dr-op{--state:var(--muted2);position:relative;min-width:0;border:1px solid var(--line);
+  border-radius:15px;padding:15px;background:rgba(3,10,20,.52);overflow:hidden}
+.dr-op::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--state)}
+.dr-op[data-status="active"]{--state:var(--cyan)}
+.dr-op[data-status="shadow"]{--state:var(--green)}
+.dr-op[data-status="watch"]{--state:var(--amber)}
+.dr-op[data-status="research"]{--state:var(--violet)}
+.dr-op[data-status="locked"]{--state:var(--red)}
+.dr-op-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.dr-status{display:inline-flex;border:1px solid color-mix(in srgb,var(--state) 55%,transparent);
+  border-radius:999px;padding:4px 8px;color:var(--state);background:color-mix(in srgb,var(--state) 8%,transparent);
+  font:800 8px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.dr-fit{text-align:right;flex:none}.dr-fit b{display:block;color:var(--state);font:900 23px var(--mono);line-height:.9}
+.dr-fit span{font:700 7px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
+.dr-op h4{font-size:17px;margin:12px 0 3px;letter-spacing:-.02em}.dr-venues{font:700 9px var(--mono);
+  letter-spacing:.07em;text-transform:uppercase;color:var(--muted2)}
+.dr-edge{font-size:11.5px;line-height:1.45;color:var(--muted);min-height:50px;margin:10px 0 8px}
+.dr-ratings{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin:8px 0 10px}
+.dr-rating{text-align:center;border:1px solid var(--line);border-radius:7px;padding:4px 2px;background:rgba(8,19,33,.72)}
+.dr-rating span{display:block;color:var(--muted2);font:700 6.5px var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.dr-rating b{font:800 11px var(--mono);color:var(--text)}
+.dr-fit-track{margin:0 0 10px}.dr-fit-track i{display:block;height:100%;border-radius:999px;background:var(--state)}
+.dr-gate{border-top:1px solid var(--line);padding-top:9px}
+.dr-gate-label{font:800 7.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--state)}
+.dr-gate ul{margin:6px 0 0;padding-left:15px;color:var(--text);font-size:9.5px;line-height:1.4}
+.dr-gate li+li{margin-top:3px}.dr-evidence{margin:10px 0 0;padding-top:8px;border-top:1px dashed var(--line);
+  color:var(--muted2);font-size:9.5px;line-height:1.4}.dr-evidence b{color:var(--muted);font-weight:800}
+.dr-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}.dr-links a{font:700 9px var(--mono);color:var(--cyan)}
+.decision-tools{justify-content:space-between}.decision-tools .decision-note{margin-left:auto}
+@media(max-width:1040px){.dr-weights{grid-template-columns:repeat(3,1fr)}.dr-opps{grid-template-columns:repeat(2,1fr)}
+  .dr-capbar{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.decision-shell{padding:20px 14px;border-radius:18px}.dr-head{grid-template-columns:1fr}
+  .dr-boundary{max-width:none}.dr-capbar{grid-template-columns:1fr 1fr}.dr-weights{grid-template-columns:1fr 1fr}
+  .dr-opps{grid-template-columns:1fr}.dr-edge{min-height:0}.decision-tools .decision-note{width:100%;margin-left:0}}
+
 /* lead chart */
 .chartwrap{position:relative;background:var(--panel);border:1px solid var(--line);
   border-radius:var(--radius);padding:18px 18px 10px}
@@ -575,6 +644,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
       <a href="#matchup">The bots</a>
       <a href="#lead">The race</a>
       <a href="#books">Open books</a>
+      <a href="#decisions">Decision room</a>
       <a href="#log">Fight feed</a>
       <a href="#method">Receipts</a>
     </nav>
@@ -662,6 +732,27 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
       underweight ADA—even when several fills built it; unfilled orders and protocol commitments
       are reported separately.</p>
     <div class="books" id="bookgrid"></div>
+  </div>
+</section>
+
+<section id="decisions" class="decision-section">
+  <div class="wrap">
+    <div class="section-head split-head">
+      <div>
+        <div class="eyebrow">Public decision room</div>
+        <h2 class="sec-h">What earns the next ADA?</h2>
+      </div>
+      <p class="sec-lede">The research portfolio, the weights BEACNbot uses to compare unlike
+        opportunities, and the hard evidence gates holding each one back. High fit earns more
+        research—not permission to trade.</p>
+    </div>
+    <div class="decision-shell" id="decisionroom" aria-busy="true">
+      <div class="card-loading"><span></span>Loading the public research lens…</div>
+    </div>
+    <div class="sharetools decision-tools">
+      <button type="button" id="downloaddecision">Download 1600×900 decision card</button>
+      <span class="decision-note" id="decisionmsg" role="status">A public reasoning snapshot—not financial advice or standing authorization.</span>
+    </div>
   </div>
 </section>
 
@@ -1001,6 +1092,66 @@ function renderBooks() {
       </div>
     </div>`;
   }).join("");
+}
+
+/* ---- public reasoning portfolio -------------------------------------- */
+function renderDecisionRoom() {
+  const room = DATA.decision_room;
+  const root = $("#decisionroom");
+  if (!room) {
+    root.innerHTML = `<div class="empty">This snapshot predates the public decision model.</div>`;
+    root.removeAttribute("aria-busy");
+    return;
+  }
+  const policy = room.capital_policy || {};
+  const short = {economics: "ADA", exit: "Exit", safety: "Safe", evidence: "Proof",
+    score: "Score", operations: "Ops"};
+  const weights = room.weights || [];
+  const opportunities = [...(room.opportunities || [])]
+    .sort((a, b) => b.fit_score - a.fit_score);
+  const cap = value => value === null || value === undefined ? "No price mark" : `${fmt(value, 2)} ADA max`;
+  root.innerHTML = `
+    <div class="dr-head">
+      <div>
+        <div class="dr-stamp">${esc(room.model)} · lens dated ${esc(room.as_of)}</div>
+        <h3 class="dr-title">Interesting is cheap.<br>Executable is rare.</h3>
+        <p class="dr-deck">Every route is judged in realizable ADA after costs. The score below
+          ranks research fit today; a failed exit, stablecoin, score or policy gate still wins
+          over the composite.</p>
+      </div>
+      <div class="dr-boundary">${esc(room.authority)}</div>
+    </div>
+    <div class="dr-capbar" aria-label="Capital policy boundaries">
+      <div class="dr-cap"><span>Approval-only canary ceiling</span><b>${esc(cap(policy.canary_cap_ada))}</b></div>
+      <div class="dr-cap"><span>Post-proof single protocol ceiling</span><b>${esc(cap(policy.single_protocol_cap_ada))}</b></div>
+      <div class="dr-cap"><span>New DeFi</span><b>Shadow first</b></div>
+      <div class="dr-cap"><span>Borrowing &amp; perpetuals</span><b class="down">Live-disabled</b></div>
+    </div>
+    <div class="dr-subhead"><h3>The weighting kernel</h3><p>${esc(room.rating_scale)} · weights sum to 100%</p></div>
+    <div class="dr-weights">${weights.map(w => `
+      <div class="dr-weight">
+        <div class="dr-weight-top"><span>${esc(w.label)}</span><strong>${fmt(w.weight, 0)}%</strong></div>
+        <div class="dr-weight-track" role="meter" aria-label="${esc(w.label)}"
+          aria-valuemin="0" aria-valuemax="30" aria-valuenow="${w.weight}"><i style="width:${Math.min(100, w.weight / 30 * 100)}%"></i></div>
+      </div>`).join("")}</div>
+    <div class="dr-subhead"><h3>Opportunity portfolio</h3><p>Weighted fit today · a hard gate can still force zero capital</p></div>
+    <div class="dr-opps">${opportunities.map(o => {
+      const links = (o.links || []).map(link => `<a href="${esc(link.url)}" target="_blank" rel="noopener">${esc(link.label)} ↗</a>`).join("");
+      return `<article class="dr-op" data-status="${esc(o.status)}">
+        <div class="dr-op-top"><span class="dr-status">${esc(o.status_label)}</span>
+          <div class="dr-fit"><b>${fmt(o.fit_score, 0)}</b><span>fit / 100</span></div></div>
+        <h4>${esc(o.title)}</h4><div class="dr-venues">${o.venues.map(esc).join(" · ")}</div>
+        <p class="dr-edge">${esc(o.edge)}</p>
+        <div class="dr-ratings">${weights.map(w => `<div class="dr-rating">
+          <span>${esc(short[w.id] || w.id)}</span><b>${fmt(o.ratings[w.id], 0)}/5</b></div>`).join("")}</div>
+        <div class="dr-fit-track" role="meter" aria-label="${esc(o.title)} fit"
+          aria-valuemin="0" aria-valuemax="100" aria-valuenow="${o.fit_score}"><i style="width:${Math.max(0, Math.min(100, o.fit_score))}%"></i></div>
+        <div class="dr-gate"><div class="dr-gate-label">Waiting for</div><ul>${o.waiting_for.map(g => `<li>${esc(g)}</li>`).join("")}</ul></div>
+        <p class="dr-evidence"><b>Current evidence · ${esc(o.observed_on)}</b><br>${esc(o.evidence)}</p>
+        ${links ? `<div class="dr-links">${links}</div>` : ""}
+      </article>`;
+    }).join("")}</div>`;
+  root.removeAttribute("aria-busy");
 }
 
 /* ---- bot loadouts and the live market pressure point ---- */
