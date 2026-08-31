@@ -267,7 +267,7 @@
           <div class="s" id="satNote">—</div>
         </div>
         <div class="stat">
-          <div class="l">Large pool still</div>
+          <div class="l">If YOU delegate 10k ₳</div>
           <div class="n n-op" id="blkX">—</div>
           <div class="s" id="gapX">—</div>
         </div>
@@ -279,10 +279,11 @@
 <section class="block wrap" id="formula">
   <div class="eyebrow">The formula</div>
   <h2 class="sec-h">Same epoch. Far fewer blocks.</h2>
-  <p class="sec-lede">Blocks scale with stake. A 1M ₳ pool is not going to mint like a 43M ₳
-    pool, at any floor. Zero min does not equalize them — it only stops a flat 170 ₳ tax from
-    eating most of the small pool’s one block. The large pool still mints ~43× more and still
-    pays ~43× more ₳ to delegators. The floor makes that ADA gap <em>wider</em> than the mint gap.</p>
+  <p class="sec-lede">If <b>you</b> put the same 10k ₳ in either pool, you do not earn 43× more
+    on the big one. The big pool mints 43× the blocks because it has 43× the stake — your 10k
+    is 43× smaller a slice, so at a 0 ₳ floor your personal rate matches. The floor is a flat
+    170 ₳ taken off the whole pot. That barely nicks 12,674 ₳. It takes most of a 295 ₳ pot.
+    That is what makes <em>your</em> 10k earn less on the 1M pool.</p>
   <div class="consts" id="constRow"></div>
   <pre class="eq" id="eqMaster"></pre>
   <div class="meter-row">
@@ -516,15 +517,18 @@
     const s = M.expected(M.SATURATION, M.SATURATION * 0.02, 0, state.floor, state.floor);
     $("tinyBlk").textContent = M.fmtBlk(t.lambda);
     $("satBlk").textContent = M.fmtBlk(s.lambda);
-    $("tinyNote").textContent = M.fmtAda(t.delPot, 0) + " to delegators · rate " + M.fmtPct(t.roa);
-    $("satNote").textContent = M.fmtAda(s.delPot, 0) + " to delegators · rate " + M.fmtPct(s.roa);
+    const yoursT = 10000 * t.roa;
+    const yoursS = 10000 * s.roa;
+    $("tinyNote").textContent = "your 10k ₳ → " + M.fmtAda(yoursT, 0) + "/yr · whole pool pays " + M.fmtAda(t.delPot, 0);
+    $("satNote").textContent = "your 10k ₳ → " + M.fmtAda(yoursS, 0) + "/yr · whole pool pays " + M.fmtAda(s.delPot, 0);
     const blkGap = t.lambda > 0 ? s.lambda / t.lambda : Infinity;
     const adaGap = t.delPot > 0 ? s.delPot / t.delPot : Infinity;
-    $("blkX").textContent = M.fmtX(blkGap) + " the blocks";
-    $("gapX").textContent = M.fmtX(adaGap) + " the ₳ to their delegators";
+    const rateGap = t.roa > 0 ? s.roa / t.roa : Infinity;
+    $("blkX").textContent = rateGap <= 1.03 ? "same ₳ on YOUR 10k" : M.fmtX(rateGap) + " more on YOUR 10k";
+    $("gapX").textContent = "whole pool still " + M.fmtX(blkGap) + " the blocks, " + M.fmtX(adaGap) + " the ₳ paid out in total";
+    $("blkX").className = "n " + (rateGap <= 1.03 ? "n-ok" : "n-op");
     $("tinyBlk").className = "n n-del";
     $("satBlk").className = "n n-op";
-    $("blkX").className = "n n-op";
     renderFormula(t, s, blkGap, adaGap);
 
     const tag = { 0: "none", 75: "proposed", 170: "current", 340: "old" }[state.floor];
@@ -596,12 +600,12 @@
       return `<tr><td>${r[0]}</td><td${cls}>${r[1]}</td><td${cls}>${r[2]}</td><td class="hi">${r[3]}</td></tr>`;
     }).join("");
     $("rateNote").textContent =
-      "Zero floor does not make the 1M pool mint 43 blocks. It still mints ~1, they still mint ~" +
-      M.fmtBlk(s.lambda) + ". Delegators in the large pool still receive " + M.fmtX(ag) +
-      " the ₳ this epoch because that pool still produced " + M.fmtX(bg) +
-      " the blocks. Per ₳ of YOUR stake the annual rate is " +
-      (t.roa > 0 ? M.fmtX(s.roa / t.roa) : "—") +
-      " — that rate is what a 0 ₳ floor equalizes. The mint gap never equalizes. Floor tax is the same ₳ from both, so it hurts the 1-block pot more and the ₳-to-delegators gap gets wider than 43×.";
+      "A person with 10k ₳ does not earn 43× more on the saturated pool. At a 0 ₳ floor they earn the same (~" +
+      M.fmtAda(10000 * t.roa, 0) + "/yr either place). The whole saturated pool still pays " +
+      M.fmtX(ag) + " more ₳ to all of its delegators combined, because it still minted " +
+      M.fmtX(bg) + " the blocks on 43× the stake. The floor is a flat " +
+      M.fmtAda(state.floor, 0) +
+      " off both pots. Same ₳ tax, tiny pot — that is what moves YOUR rate, not the extra blocks.";
   }
 
   function renderChart() {
