@@ -123,7 +123,7 @@ Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
 | 🌙 **NIGHT token** | Companion module: the entire 24B-NIGHT supply traced from its single genesis mint to every current holder, plus a receipt-backed investigation of the July 2026 Wanchain bridge drain and attacker flow. |
 | 🧾 **Freshness catalog** | Row count, hash, age, and snapshot-sensitivity of *every* table, so any answer can state exactly how fresh its evidence is. |
 | 📡 **Relay health** | Every current pool's on-chain relay registration, which pools share infrastructure or advertise relays they don't run, the full history of relay-registration changes with transaction hashes, and how much stake sits behind a single hosting provider. Live page: **[relays.html](https://beacnpool.github.io/ABCDE/relays.html)** · [F21](findings/F21_relay_registration_and_reachability.md) · [method](docs/27_RELAY_HEALTH_METHOD.md). |
-| 🧮 **MINFREE** | A slider for `minPoolCost`. The floor is a flat ₳ tax taken before delegators see a lovelace — raise it and tiny pools get worse, saturated pools barely notice. Live: **[minfree.html](https://beacnpool.github.io/ABCDE/minfree.html)**. |
+| 🧮 **MINFREE** | A slider for `minPoolCost`. The floor is a flat ₳ tax taken before delegators see a lovelace — raise it and a 1M ₳ pool gets worse, saturated pools barely notice. Live: **[minfree.html](https://beacnpool.github.io/ABCDE/minfree.html)**. |
 | 📡 **Exchange tracers** | A community exchange-tracer dataset (`tracer_*`); crowd-sourced attribution, kept for reference and graded accordingly. |
 
 Ground your queries on the generated schema — [`docs/SCHEMA.md`](docs/SCHEMA.md)

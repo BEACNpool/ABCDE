@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MINFREE — who the min pool cost actually pays</title>
-<meta name="description" content="minPoolCost is a flat ADA tax on every Cardano stake pool. Raise it and tiny pools get worse for delegators. Saturated pools barely notice. A slider, real-sized pools, and the math.">
+<meta name="description" content="minPoolCost is a flat ADA tax on every Cardano stake pool. Raise it and a 1M ₳ pool gets worse for delegators. Saturated pools barely notice. A slider, real-sized pools, and the math.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ABCDE — A BEACN Cardano Data Explorer">
 <meta property="og:title" content="MINFREE — who the min pool cost actually pays">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://beacnpool.github.io/ABCDE/minfree.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MINFREE — who the min pool cost actually pays">
-<meta name="twitter:description" content="Raise the min pool cost and tiny pools get worse. Saturated pools barely notice. Drag the slider.">
+<meta name="twitter:description" content="Raise the min pool cost and a 1M ₳ pool gets worse. Saturated pools barely notice. Drag the slider.">
 <meta name="theme-color" content="#020617">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -201,7 +201,7 @@
     Every pool. Every epoch. Raise it, and the smallest pools get worse. Saturated pools barely
     notice.</p>
   <p class="sub">Small operators hear “lower the floor” and reach for their paycheck. Delegators
-    hear a 0.9% yield next to a 2.1% yield, and they walk. Large operators know which of those
+    hear a 1.4% yield next to a 2.1% yield, and they walk. Large operators know which of those
     two stories moves stake.</p>
 </div>
 
@@ -231,9 +231,9 @@
       <div class="ticks"><span>0</span><span>75</span><span>170</span><span>340</span></div>
       <div class="gap3">
         <div class="stat">
-          <div class="l">Tiny pool ROA</div>
+          <div class="l">1M ₳ pool ROA</div>
           <div class="n n-bad" id="tinyRoa">—</div>
-          <div class="s" id="tinyNote">23k ₳ · 0% margin · like BEACN</div>
+          <div class="s" id="tinyNote">1.0M ₳ · 0% margin · ~1 block / epoch</div>
         </div>
         <div class="stat">
           <div class="l">Saturated ROA</div>
@@ -243,7 +243,7 @@
         <div class="stat">
           <div class="l">How much worse</div>
           <div class="n n-op" id="gapX">—</div>
-          <div class="s">Saturated yield vs the tiny pool, same floor, same 0% margin</div>
+          <div class="s">Saturated yield vs a 1M ₳ pool, same floor, same 0% margin</div>
         </div>
       </div>
     </div>
@@ -253,14 +253,13 @@
 <section class="block wrap" id="lucky">
   <div class="eyebrow">The one-block epoch</div>
   <h2 class="sec-h">When a small pool actually mints</h2>
-  <p class="sec-lede">A 23k ₳ pool expects a block maybe twice a year. The floor is charged
-    <b>once per epoch that has rewards</b>, not per block. So the lucky epoch is where a tiny
-    operator feels rich — and where their delegators get mugged. A saturated pool mints ~43
-    blocks in that same epoch. Same ₳ tax.</p>
+  <p class="sec-lede">A 1M ₳ pool expects about one block per epoch. The floor is charged
+    <b>once per epoch that has rewards</b>, not per block. Mint one block, and 170 ₳ is more
+    than half the reward. A saturated pool mints ~43 in that same epoch. Same ₳ tax.</p>
   <div class="pair">
     <div class="poolbox">
       <h3>Lucky epoch · 1 block</h3>
-      <div class="who" id="luckyWho">Tiny pool · 293 ₳ gross</div>
+      <div class="who" id="luckyWho">1M ₳ pool · 293 ₳ gross</div>
       <div class="bar" id="luckyBar" aria-hidden="true"><span class="op"></span><span class="mg"></span><span class="dl"></span></div>
       <div class="legend">
         <span><i style="background:var(--op)"></i>Operator floor</span>
@@ -323,11 +322,11 @@
   <div class="custom">
     <div class="fields">
       <label class="fld">
-        <div class="row"><span>Stake</span><input id="stakeNum" type="number" min="10000" max="90000000" step="1000" value="23111" aria-label="Stake in ADA"></div>
+        <div class="row"><span>Stake</span><input id="stakeNum" type="number" min="10000" max="90000000" step="1000" value="1000000" aria-label="Stake in ADA"></div>
         <input id="stakeRange" type="range" min="0" max="1000" value="80">
       </label>
       <label class="fld">
-        <div class="row"><span>Pledge</span><input id="pledgeNum" type="number" min="0" max="90000000" step="1000" value="15000" aria-label="Pledge in ADA"></div>
+        <div class="row"><span>Pledge</span><input id="pledgeNum" type="number" min="0" max="90000000" step="1000" value="10000" aria-label="Pledge in ADA"></div>
         <input id="pledgeRange" type="range" min="0" max="1000" value="400">
       </label>
       <label class="fld">
@@ -377,9 +376,9 @@
       vote No, and keep the only protocol parameter that does not scale. They can already
       declare 340. Many do. Lowering the floor does not force them to earn less. It only
       lets the pools stuck on 170 become competitive.</p>
-    <p>BEACN already runs 0% margin at the floor. We want the floor at zero. Not because
-      we hate operator income — because a flat tax on a 23k ₳ pool is how you keep the
-      network looking like a few saturated machines and a graveyard of honest small ones.</p>
+    <p>We want the floor at zero. Not because operator income is a sin — because a flat
+      170 ₳ tax on a 1M ₳ pool is how you keep the network looking like a few saturated
+      machines and a long tail that cannot compete on yield.</p>
   </div>
 </section>
 
@@ -390,9 +389,9 @@
     Gross ₳ = blocks × <code>293.38</code> (epoch 650 average block reward). Then
     <code>cost = max(floor, declared)</code> unless race-to-floor is on, in which case
     <code>cost = floor</code>. Operator takes <code>min(cost, gross)</code>, then margin of the
-    remainder; delegators share what is left, including the owner’s pledge. Tiny pools use a
-    Poisson over block count so empty epochs are empty — the floor cannot tax a pool that
-    minted nothing. Saturation cap is <code>active_stake / k</code> = 43.02M ₳ with
+    remainder; delegators share what is left, including the owner’s pledge. Sub-saturated
+    pools use a Poisson over block count so empty epochs are empty — the floor cannot tax a
+    pool that minted nothing. Saturation cap is <code>active_stake / k</code> = 43.02M ₳ with
     k = 500 and epoch-650 active stake 21.51B ₳. Pledge influence <code>a0 = 0.3</code> is
     omitted so the slider isolates the floor. Real rewards also move with fees, reserves, and
     luck. This is a model, not a wallet forecast.</p>
@@ -420,11 +419,11 @@
   const state = {
     floor: M.CURRENT_FLOOR,
     race: true,
-    stake: 23111,
-    pledge: 15000,
+    stake: 1000000,
+    pledge: 10000,
     margin: 0,
     declared: 170,
-    selected: "beacn",
+    selected: "hive",
   };
 
   const STAKE_MIN = 10000, STAKE_MAX = 80000000;
@@ -453,7 +452,7 @@
 
   function renderHero() {
     // Hero isolates the size tax: both pools sit on the floor at 0% margin.
-    const t = M.expected(23111, 15000, 0, state.floor, state.floor);
+    const t = M.expected(M.SMALL_STAKE, 10000, 0, state.floor, state.floor);
     const s = M.expected(M.SATURATION, M.SATURATION * 0.02, 0, state.floor, state.floor);
     $("tinyRoa").textContent = M.fmtPct(t.roa);
     $("satRoa").textContent = M.fmtPct(s.roa);
@@ -474,7 +473,7 @@
       : "Keep each pool’s declared cost (floor is only a minimum)";
 
     const lucky = t.lucky;
-    $("luckyWho").textContent = "Tiny pool · " + M.fmtAda(M.ADA_PER_BLOCK) + " gross · 0% margin";
+    $("luckyWho").textContent = "1M ₳ pool · " + M.fmtAda(M.ADA_PER_BLOCK) + " gross · 0% margin";
     applyBar($("luckyBar"), lucky);
     $("luckyOp").textContent = M.fmtAda(lucky.opFixed, 0) + "  " + M.fmtPct(lucky.opFixed / Math.max(lucky.gross, 1), 0);
     $("luckyDel").textContent = M.fmtAda(lucky.delPot, 0) + "  " + M.fmtPct(lucky.delPot / Math.max(lucky.gross, 1), 0);
@@ -490,7 +489,8 @@
     const svg = $("roaChart");
     const W = 720, H = 280, L = 52, R = 16, T = 16, B = 36;
     const stakes = [];
-    for (let i = 0; i <= 24; i++) stakes.push(20000 * Math.pow(M.SATURATION * 1.6 / 20000, i / 24));
+    const xMin = 100000;
+    for (let i = 0; i <= 24; i++) stakes.push(xMin * Math.pow(M.SATURATION * 1.6 / xMin, i / 24));
     function series(floor) {
       return stakes.map((st) => {
         const e = M.expected(st, 0, 0, floor, floor);
@@ -502,7 +502,7 @@
     const live = series(state.floor);
     const yMax = 0.028;
     function xOf(st) {
-      return L + (Math.log(st / 20000) / Math.log((M.SATURATION * 1.6) / 20000)) * (W - L - R);
+      return L + (Math.log(st / xMin) / Math.log((M.SATURATION * 1.6) / xMin)) * (W - L - R);
     }
     function yOf(roa) {
       return T + (1 - Math.min(roa, yMax) / yMax) * (H - T - B);
@@ -510,8 +510,8 @@
     function path(arr) {
       return arr.map((p, i) => (i ? "L" : "M") + xOf(p.st).toFixed(1) + " " + yOf(p.roa).toFixed(1)).join(" ");
     }
-    const ticks = [20000, 100000, 1000000, 10000000, M.SATURATION];
-    const labels = ["20k", "100k", "1M", "10M", "sat"];
+    const ticks = [100000, 1000000, 10000000, M.SATURATION];
+    const labels = ["100k", "1M", "10M", "sat"];
     let grid = "";
     for (let i = 0; i < ticks.length; i++) {
       const x = xOf(ticks[i]);
