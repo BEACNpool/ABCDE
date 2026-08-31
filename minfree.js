@@ -15,17 +15,18 @@
   const CURRENT_FLOOR = 170;
   const PROPOSED_FLOOR = 75;
   const OLD_FLOOR = 340;
+  const SMALL_STAKE = 1000000; // featured comparison: a ~1M ₳ independent, not a dust pool
 
   const SAMPLES = [
     {
-      id: "beacn", ticker: "BEACN", label: "Tiny · family",
-      blurb: "23k ₳, 0% margin, parked on the floor. One block in the pool’s life.",
-      stake: 23111, pledge: 15000, margin: 0, declared: 170,
+      id: "hive", ticker: "HIVE", label: "Hobby · 1.4M",
+      blurb: "1.41M ₳, 1% margin, sitting on the 170 floor. About one block an epoch.",
+      stake: 1410303, pledge: 10000, margin: 0.01, declared: 170,
     },
     {
-      id: "hive", ticker: "HIVE", label: "Hobby · 1.4M",
-      blurb: "1.41M ₳, 1% margin, also sitting on the 170 floor.",
-      stake: 1410303, pledge: 10000, margin: 0.01, declared: 170,
+      id: "bio", ticker: "BIO", label: "Hobby · 1.4M · 340",
+      blurb: "1.41M ₳, 3% margin, declared 340. Race-off, the floor drop does not move them.",
+      stake: 1414300, pledge: 1000, margin: 0.03, declared: 340,
     },
     {
       id: "frog2", ticker: "FROG2", label: "Community · 5.8M",
@@ -135,7 +136,7 @@
 
   const api = {
     ADA_PER_BLOCK, ACTIVE_STAKE, K, SLOTS, EPOCHS_YEAR, SATURATION,
-    CURRENT_FLOOR, PROPOSED_FLOOR, OLD_FLOOR, SAMPLES,
+    CURRENT_FLOOR, PROPOSED_FLOOR, OLD_FLOOR, SMALL_STAKE, SAMPLES,
     expected, splitEpoch, costFor, fmtAda, fmtPct, fmtX,
   };
   root.MINFREE = api;
