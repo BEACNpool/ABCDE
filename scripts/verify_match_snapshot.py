@@ -26,6 +26,8 @@ def verify(path: Path) -> None:
     require([a.get("id") for a in agents] == ["beacn", "grokbot"],
             "agent order/identities changed")
     require(finite(data.get("generated_at_unix")), "missing generation timestamp")
+    moves = data.get("moves") or []
+    require(isinstance(moves, list), "moves must be a list")
 
     price = data.get("price") or {}
     require(isinstance(price.get("available"), bool), "price.available must be boolean")
@@ -43,6 +45,38 @@ def verify(path: Path) -> None:
     require(abs(baseline - anchor["ada"] - anchor["deposit"]) < 2e-6,
             "shared baseline does not reconcile to the levelling receipt")
 
+    for agent in agents:
+        aid = agent["id"]
+        agent_events = [m for m in moves if m.get("agent") == aid]
+        completed = sum(1 for m in agent_events
+                        if m.get("kind") in ("swap", "fill"))
+        require(agent.get("chain_events") == len(agent_events),
+                f"{aid}.chain_events does not reconcile to the event log")
+        require(agent.get("moves") == len(agent_events),
+                f"{aid}.moves compatibility alias does not reconcile")
+        require(agent.get("completed_trades") == completed,
+                f"{aid}.completed_trades does not reconcile to fills")
+        require((agent.get("costs") or {}).get("swaps") == completed,
+                f"{aid}.costs.swaps does not reconcile to completed trades")
+        require(isinstance(agent.get("open_orders"), int) and
+                agent["open_orders"] >= 0, f"{aid}.open_orders is invalid")
+        positions = agent.get("market_positions") or []
+        expected_positions = 1 if agent.get("usdm", 0) > 1e-9 else 0
+        require(agent.get("open_position_count") == expected_positions == len(positions),
+                f"{aid} open-position count does not reconcile to holdings")
+        if positions:
+            position = positions[0]
+            require(position.get("status") == "open" and
+                    position.get("economic_side") == "short ADA/USD",
+                    f"{aid} market position is not explicitly classified")
+            require(abs(position.get("quantity_usdm", 0) - agent["usdm"]) < 1e-6,
+                    f"{aid} position quantity does not reconcile to USDM")
+            leverage = position.get("leverage") or {}
+            require(leverage.get("type") == "unlevered spot" and
+                    leverage.get("borrowed") is False and
+                    leverage.get("liquidation_price") is None,
+                    f"{aid} leverage classification is not fail-closed")
+
     if price["available"]:
         usd = price.get("usd_per_ada")
         require(finite(usd) and usd > 0, "invalid ADA/USD mark")
@@ -53,6 +87,7 @@ def verify(path: Path) -> None:
                 "reciprocal price marks do not reconcile")
         for agent in agents:
             aid = agent["id"]
+            positions = agent.get("market_positions") or []
             for key in ("score_ada_eq", "score_usd", "vs_start_ada_eq",
                         "vs_equalized_start_ada_eq", "vs_equalized_start_pct",
                         "vs_equalized_start_usd_at_current_mark"):
@@ -77,6 +112,12 @@ def verify(path: Path) -> None:
                     f"{aid} USD score does not reconcile to holdings")
             require(abs(agent["score_ada_eq"] * usd - agent["score_usd"]) < 2e-5,
                     f"{aid} ADA/USD marks do not reconcile")
+            if positions:
+                position = positions[0]
+                require(abs(position.get("notional_ada_eq", 0) - agent["usdm"] / usd) < 1e-5,
+                        f"{aid} position notional does not reconcile")
+                require(abs(position.get("share_of_book_pct", 0) - agent["hedge_pct"]) < 1e-6,
+                        f"{aid} position share does not reconcile")
             start_book = books.get(aid) or {}
             for key in ("ada", "usdm", "deposit", "ada_eq_at_today_rate",
                         "usd_at_today_rate"):

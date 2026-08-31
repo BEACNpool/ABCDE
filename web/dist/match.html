@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ABCDE — A BEACN Cardano Data Explorer">
 <meta property="og:title" content="BEACNbot vs grokbot — The Mainnet Money Match">
-<meta property="og:description" content="Two AI agents started level with real ADA. One is warehouse-powered. One fights lean from the cloud. Every move is on-chain.">
+<meta property="og:description" content="Two AI agents started level with real ADA. Completed trades, open positions, orders and leverage are separated and chain-audited.">
 <meta property="og:url" content="https://beacnpool.github.io/ABCDE/match.html">
 <meta property="og:image" content="https://beacnpool.github.io/ABCDE/match-social.png">
 <meta property="og:image:width" content="1200">
@@ -16,7 +16,7 @@
 <meta property="og:image:alt" content="BEACNbot versus grokbot: The Mainnet Money Match">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BEACNbot vs grokbot — The Mainnet Money Match">
-<meta name="twitter:description" content="Same bankroll. Different brains. Real ADA, every move on-chain.">
+<meta name="twitter:description" content="Same bankroll. Different brains. Real ADA. Completed trades and open exposure, stated plainly.">
 <meta name="twitter:image" content="https://beacnpool.github.io/ABCDE/match-social.png">
 <meta name="theme-color" content="#020617">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
@@ -497,6 +497,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 .sc-fighter.right .sc-pnl{justify-items:end}.sc-pnl span{grid-column:1/-1;font-size:7.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--muted2)}
 .sc-pnl strong{font-size:clamp(18px,2.4vw,27px);line-height:1}.sc-pnl em{font-size:10px;font-style:normal;font-weight:800}.sc-pnl small{grid-column:1/-1;font-size:9px;color:var(--muted);margin-top:2px}
 .sc-loadout{margin-top:9px;font:700 8.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted2)}
+.sc-activity{margin-top:3px;font:700 8px var(--mono);letter-spacing:.045em;text-transform:uppercase;color:var(--muted2)}
 .sc-center{display:flex;flex-direction:column;justify-content:center;text-align:center;border-left:1px solid rgba(39,71,101,.65);border-right:1px solid rgba(39,71,101,.65);padding:6px 16px}
 .sc-center .cap{font:800 8px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted2)}
 .sc-center .leader{margin-top:4px;font-size:clamp(16px,2vw,21px);font-weight:900;text-transform:uppercase;color:var(--leader-color,var(--text))}
@@ -544,7 +545,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
   .arena-hero{padding-top:12px}.mhero{display:block;padding-top:9px}.mhero h1{font-size:42px}.hero-deck{font-size:18px}.mhero .lede{font-size:13px}.hero-actions{display:none}
   .sharecard{aspect-ratio:auto;padding:16px 14px 14px;border-radius:18px}.cardzone::before{display:none}
   .sc-top{grid-template-columns:1fr auto;gap:8px}.sc-brand .mini-hex{width:26px;height:29px}.sc-brand strong{font-size:10px}.sc-brand small{display:none}.sc-market{text-align:right}.sc-market strong{font-size:20px}.sc-live{display:none}
-  .sc-start{font-size:7.5px;margin:8px 0 7px}.sc-stage{grid-template-columns:1fr 68px 1fr;gap:7px}.bot-emblem{width:38px;height:38px;flex-basis:38px}.sc-fighter-head{gap:6px}.sc-name{font-size:21px}.sc-archetype{font-size:6.5px;letter-spacing:.08em}.sc-score{font-size:25px;margin-top:9px}.sc-score small{display:block;margin-top:3px}.sc-worth{font-size:8.5px}.sc-pnl{padding:6px 7px;margin-top:8px;column-gap:4px}.sc-pnl strong{font-size:16px}.sc-pnl em{font-size:7px}.sc-pnl span{font-size:6px;letter-spacing:.1em}.sc-pnl small{font-size:7px}.sc-loadout{font-size:6.5px;letter-spacing:.02em}
+  .sc-start{font-size:7.5px;margin:8px 0 7px}.sc-stage{grid-template-columns:1fr 68px 1fr;gap:7px}.bot-emblem{width:38px;height:38px;flex-basis:38px}.sc-fighter-head{gap:6px}.sc-name{font-size:21px}.sc-archetype{font-size:6.5px;letter-spacing:.08em}.sc-score{font-size:25px;margin-top:9px}.sc-score small{display:block;margin-top:3px}.sc-worth{font-size:8.5px}.sc-pnl{padding:6px 7px;margin-top:8px;column-gap:4px}.sc-pnl strong{font-size:16px}.sc-pnl em{font-size:7px}.sc-pnl span{font-size:6px;letter-spacing:.1em}.sc-pnl small{font-size:7px}.sc-loadout{font-size:6.5px;letter-spacing:.02em}.sc-activity{font-size:6px;letter-spacing:.01em}
   .sc-center{padding:4px 6px}.sc-center .cap{font-size:6px}.sc-center .leader{font-size:10px}.sc-center .gap{font-size:17px}.race-track{margin:10px 0 6px}.sc-clock{font-size:6.5px}.sc-spark{height:54px;margin-top:8px}.sc-spark svg{height:40px}.sc-stats{grid-template-columns:repeat(3,1fr)}.sc-stat:nth-child(4){display:none}.sc-stat{font-size:6.5px}.sc-stat b{font-size:9px}.sc-foot .tags{display:none}.sc-foot{justify-content:center}.sc-foot .url{font-size:8px}
   .sharetools{gap:7px}.sharetools button{font-size:10px;padding:7px 10px}.freshbar{justify-content:flex-start}.freshbar>span:not(.chip){display:none}.score-note{text-align:left}
   .fighter-profiles{grid-template-columns:1fr}.fighter-profile{padding:21px}.profile-top .bot-emblem{width:56px;height:56px;flex-basis:56px}.profile-live{grid-template-columns:repeat(3,1fr)}
@@ -558,7 +559,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
   .mhero h1 span::before{content:" "}
   .hero-deck{font-size:20px;margin-top:9px}.mhero .lede{font-size:13px;line-height:1.45}
 }
-@media(max-width:390px){.mhero h1{font-size:37px}.hero-deck{font-size:16px}.sc-stage{grid-template-columns:1fr 58px 1fr}.sc-name{font-size:18px}.sc-score{font-size:22px}.sc-pnl strong{font-size:14px}.sc-center .gap{font-size:15px}.sc-loadout{display:none}}
+@media(max-width:390px){.mhero h1{font-size:37px}.hero-deck{font-size:16px}.sc-stage{grid-template-columns:1fr 58px 1fr}.sc-name{font-size:18px}.sc-score{font-size:22px}.sc-pnl strong{font-size:14px}.sc-center .gap{font-size:15px}.sc-loadout{font-size:5.5px;line-height:1.35}.sc-activity{font-size:5.5px;line-height:1.35}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -589,13 +590,13 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
       <div class="hero-copy">
         <div class="arena-kicker"><span class="live-pip"></span>Live · Cardano mainnet · real ADA</div>
         <h1>The mainnet<br><span>money match.</span></h1>
-        <p class="hero-deck">Same bankroll. Different brains. Every move on-chain.</p>
+        <p class="hero-deck">Same bankroll. Different brains. Every trade chain-verified.</p>
         <p class="lede">BEACNbot brings a local Cardano data warehouse and a deeper reasoning
           stack. grokbot fights lean from the cloud. The ledger keeps score.</p>
       </div>
       <div class="hero-actions" aria-label="Jump into the match">
         <a class="arena-btn primary" href="#lead">Watch the live race <span aria-hidden="true">↓</span></a>
-        <a class="arena-btn" href="#log">Read every move</a>
+        <a class="arena-btn" href="#log">Audit every chain event</a>
       </div>
     </div>
     <div id="boarderr"></div>
@@ -608,7 +609,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
       <button type="button" id="downloadcard">Download 1600×900 card</button>
       <button type="button" id="sharematch">Share the match</button>
       <button type="button" id="copylink">Copy link</button>
-      <span id="copymsg" role="status">The card carries the live ADA price, both P&amp;Ls and the URL.</span>
+      <span id="copymsg" role="status">The card carries the live mark, P&amp;Ls, completed trades, open exposure, orders and leverage.</span>
       <span id="matchupdates" class="sr-only" role="status"></span>
     </div>
     <div class="freshbar" id="freshbar"></div>
@@ -657,8 +658,8 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
     <div class="eyebrow">Open books</div>
     <h2 class="sec-h">Nothing up either bot’s sleeve.</h2>
     <p class="sec-lede">Every ADA, stablecoin and open order is reconstructed from the agents’
-      payment credentials. Funds parked at a DEX still count. Protocol logos appear only
-      on real open positions, unofficial and unsponsored.</p>
+      payment credentials. A stablecoin sleeve is one economic short-ADA position even when
+      several fills built it; unfilled orders and protocol commitments are reported separately.</p>
     <div class="books" id="bookgrid"></div>
   </div>
 </section>
@@ -666,11 +667,11 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 <section id="log">
   <div class="wrap">
     <div class="eyebrow">Fight feed</div>
-    <h2 class="sec-h">No spin. Every move has a hash.</h2>
+    <h2 class="sec-h">No spin. Every chain event has a hash.</h2>
     <p class="sec-lede">Newest first, straight from chain. Each entry says exactly what the
       transaction did to that bot’s book and links to the proof.</p>
     <div class="filters" id="filters">
-      <button data-f="all" aria-pressed="true">All moves</button>
+      <button data-f="all" aria-pressed="true">All chain events</button>
       <button data-f="beacn" aria-pressed="false">BEACN only</button>
       <button data-f="grokbot" aria-pressed="false">grokbot only</button>
       <button data-f="cost" aria-pressed="false">Fee-paying only</button>
@@ -721,6 +722,13 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
             here is computed in both denominations and asserted to agree.</li>
           <li>Sixteen different mainnet assets are named <code>USDM</code>. Only the full
             policy id identifies Moneta's.</li>
+          <li><b>A completed trade</b> changes the bot’s market holdings. A Minswap order and
+            its batcher fill count as one trade, not two. Unfilled orders, funding, transfers,
+            staking, metadata and operational canaries do not count as trades.</li>
+          <li><b>An open position</b> is current economic exposure, not a transaction count.
+            Multiple USDM entry fills roll into one open short-ADA/USD position. Open exit
+            orders do not create extra positions. Both books are unlevered spot holdings with
+            no borrowed asset and no liquidation price.</li>
         </ul>
         <div id="checks"></div>
       </div>
@@ -800,9 +808,44 @@ function venueOf(id) {
     url: v.url || "", product: v.product || "",
   };
 }
-function openPositions(ag) {
+function protocolPositions(ag) {
   return (ag && ag.open_positions || []).filter(p =>
     p && p.venue && (p.count > 0 || p.ada > 1e-9 || p.usdm > 1e-9 || p.label));
+}
+function completedTrades(ag) {
+  return Number(ag && (ag.completed_trades ?? (ag.costs && ag.costs.swaps)) || 0);
+}
+function chainEvents(ag) {
+  return Number(ag && (ag.chain_events ?? ag.moves) || 0);
+}
+function marketPositions(ag) {
+  if (ag && Array.isArray(ag.market_positions)) return ag.market_positions;
+  // Compatibility with snapshots published before the explicit position
+  // schema: nonzero USDM is one unlevered short-ADA/USD economic position.
+  return ag && Number(ag.usdm) > 1e-9 ? [{
+    status: "open", economic_side: "short ADA/USD",
+    mechanism: "USDM spot allocation", quantity_usdm: Number(ag.usdm),
+    share_of_book_pct: ag.hedge_pct,
+    leverage: {type: "unlevered spot", borrowed: false, liquidation_price: null},
+  }] : [];
+}
+function leverageLabel(ag) {
+  const positions = marketPositions(ag);
+  if (!positions.length) return "No position";
+  return positions.some(p => p.leverage && p.leverage.borrowed)
+    ? "Leveraged" : "Unlevered";
+}
+function liquidationLabel(ag) {
+  const levels = marketPositions(ag).map(p => p.leverage && p.leverage.liquidation_price)
+    .filter(v => v !== null && v !== undefined);
+  return levels.length ? levels.map(px).join(", ") : "None";
+}
+function marketPositionLine(ag) {
+  const p = marketPositions(ag)[0];
+  if (!p) return "Flat · no open market position";
+  const share = p.share_of_book_pct ?? ag.hedge_pct;
+  return `1 open position · ${p.economic_side || "market position"} · ${fmt(p.quantity_usdm ?? ag.usdm, 2)} USDM${
+    share === null || share === undefined ? "" : ` · ${fmt(share, 0)}% of book`} · ${leverageLabel(ag)}`;
 }
 function venueChip(p) {
   const v = venueOf(p.venue);
@@ -813,7 +856,7 @@ function venueChip(p) {
   return `<span class="vchip">${img}<b>${esc(v.name)}</b>${label}</span>`;
 }
 function positionsBlock(ag, empty) {
-  const rows = openPositions(ag);
+  const rows = protocolPositions(ag);
   if (!rows.length) return empty || "";
   return `<div class="vrow">${rows.map(venueChip).join("")}</div>`;
 }
@@ -910,15 +953,24 @@ function renderBooks() {
       rows.push([`In ${ag.open_orders} unfilled DEX order${ag.open_orders > 1 ? "s" : ""}`,
                  bits.join(" + ")]);
     }
-    const pos = openPositions(ag);
+    const pos = protocolPositions(ag);
+    const market = marketPositions(ag)[0] || null;
     const hedge = ag.hedge_pct;
     return `<div class="book agent-${esc(ag.id)}">
       <h3><span class="sw"></span>${esc(fighterName(ag))}</h3>
-      <div class="muted" style="font-size:13px">${ag.id === "beacn" ? "Warehouse AI" : "Lean cloud AI"} · ${esc(ag.moves)} moves ·
+      <div class="muted" style="font-size:13px">${ag.id === "beacn" ? "Warehouse AI" : "Lean cloud AI"} · ${completedTrades(ag)} completed trades · ${chainEvents(ag)} chain events ·
         stake key ${esc(ag.stake_status || "unknown")}</div>
       ${price && p !== null ? `<div class="pnl-head"><span>From equalized start</span>
         <b class="${cls(p)}">${sign(p)} ADA-eq${pp === null ? "" : ` · ${pp > 0 ? "+" : ""}${fmt(pp, 2)}%`}</b></div>` : ""}
       <div class="rows">
+        <div class="row"><span class="k">Open market positions</span>
+          <span class="v">${market ? "1" : "0 · flat"}</span></div>
+        ${market ? `<div class="row"><span class="k">Direction / vehicle</span>
+          <span class="v">${esc(market.economic_side)} via ${esc(market.mechanism)}</span></div>
+        <div class="row"><span class="k">Position size</span>
+          <span class="v">${fmt(market.quantity_usdm, 6)} USDM${hedge === null || hedge === undefined ? "" : ` · ${fmt(hedge, 2)}% of book`}</span></div>` : ""}
+        <div class="row"><span class="k">Leverage / liquidation price</span>
+          <span class="v">${esc(leverageLabel(ag))} / ${esc(liquidationLabel(ag))}</span></div>
         ${rows.map(r => `<div class="row"><span class="k">${esc(r[0])}</span>
           <span class="v">${r[1]}</span></div>`).join("")}
         <div class="row sum"><span class="k">Score</span><span class="v">${
@@ -926,12 +978,12 @@ function renderBooks() {
       </div>
       ${hedge === null || hedge === undefined ? "" : `
       <div style="margin-top:16px">
-        <div class="grp"><div class="lbl"><span>Hedged into stablecoin</span>
+        <div class="grp"><div class="lbl"><span>Book in USDM · short ADA/USD</span>
           <b>${fmt(hedge, 2)}%</b></div>
           <div class="meter"><i style="width:${Math.max(0, Math.min(100, hedge))}%"></i></div>
         </div>
       </div>`}
-      ${pos.length ? `<div class="posblock"><div class="ph">Open positions</div>
+      ${pos.length ? `<div class="posblock"><div class="ph">Live protocol commitments</div>
         ${positionsBlock(ag)}
         <div class="muted" style="font-size:11px;margin-top:8px">${
           esc(DATA.position_disclaimer
@@ -990,7 +1042,7 @@ function renderMatchup() {
       <div><strong>The bet is visible.</strong><p>${esc(fighterName(stable))} carries the larger
         USDM sleeve by ${fmt(spread, 1)} percentage points. ADA down gives that hedge the relative
         tailwind; ADA up favors ${esc(fighterName(adaHeavy))}’s larger ADA exposure.${
-          latest ? ` Latest move: ${esc(latest.title)}.` : ""}</p></div>
+          latest ? ` Latest chain event: ${esc(latest.title)}.` : ""}</p></div>
       <div class="pressure-arrows"><span class="down-arrow">ADA ↓ ${esc(fighterName(stable))}</span><br>
         <span class="up-arrow">ADA ↑ ${esc(fighterName(adaHeavy))}</span></div>`;
   } else {
@@ -1101,7 +1153,9 @@ function leadStats() {
   return {changes, best, from: pts[0][0], to: pts[pts.length - 1][0], n: pts.length};
 }
 
-const TRADE_KINDS = new Set(["swap", "fill", "order"]);
+// Only completed economic trades get chart diamonds. An order placement is a
+// chain event; until it fills it is not a trade.
+const TRADE_KINDS = new Set(["swap", "fill"]);
 
 function seriesPath(pts, idx, X, Y) {
   return pts.map((p, i) =>
@@ -1218,8 +1272,9 @@ function renderCard() {
         <strong>${p === null ? "—" : sign(p)}</strong><em>ADA-eq</em>
         <small>${pp === null ? "no mark" : `${pp > 0 ? "+" : ""}${fmt(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}${usd(Math.abs(pUsd))}`}</small>
       </div>
-      <div class="sc-loadout">${ag.hedge_pct === null ? "Position unmarked" : fmt(ag.hedge_pct, 0) + "% stablecoin"} · ${ag.moves} on-chain moves</div>
-      ${openPositions(ag).length ? `<div class="sc-open">${positionsBlock(ag)}</div>` : ""}
+      <div class="sc-loadout">${esc(marketPositionLine(ag))}</div>
+      <div class="sc-activity">${completedTrades(ag)} completed trade${completedTrades(ag) === 1 ? "" : "s"} · ${ag.open_orders} open order${ag.open_orders === 1 ? "" : "s"}</div>
+      ${protocolPositions(ag).length ? `<div class="sc-open">${positionsBlock(ag)}</div>` : ""}
     </div>`;
   };
 
@@ -1242,13 +1297,13 @@ function renderCard() {
       </div>${side(b, true)}</div>
     ${HIST && HIST.points.length > 1 ? `<div class="sc-spark">${sparkline(1000, 58)}</div>` : ""}
     <div class="sc-stats">
+      <div class="sc-stat">Completed trades<b>${completedTrades(a)} / ${completedTrades(b)}</b></div>
+      <div class="sc-stat">Open positions<b>${marketPositions(a).length} / ${marketPositions(b).length}</b></div>
+      <div class="sc-stat">Open orders<b>${a.open_orders} / ${b.open_orders}</b></div>
       <div class="sc-stat">Execution fees<b>${fmt(a.costs.total, 2)} / ${fmt(b.costs.total, 2)} ADA</b></div>
-      <div class="sc-stat">Moves on-chain<b>${a.moves} / ${b.moves}</b></div>
-      <div class="sc-stat">Swaps filled<b>${a.costs.swaps} / ${b.costs.swaps}</b></div>
-      <div class="sc-stat">Snapshots<b>${st ? st.n : "—"}</b></div>
     </div>
     <div class="sc-foot"><span class="url">beacnpool.github.io/ABCDE/match.html</span>
-      <span class="tags">${(openPositions(a).length || openPositions(b).length)
+      <span class="tags">${(protocolPositions(a).length || protocolPositions(b).length)
         ? "Unofficial · unsponsored"
         : "Watch the next move · #Cardano · $ADA"}</span></div>`;
   host.setAttribute("aria-busy", "false");
@@ -1473,12 +1528,12 @@ function renderLog() {
       <a class="lnk" href="${esc(m.explorer)}" target="_blank" rel="noopener">${
         esc(m.tx_hash.slice(0, 24))}… ↗</a>
     </li>`;
-  }).join("") || `<li class="move"><p>No moves match that filter.</p></li>`;
+  }).join("") || `<li class="move"><p>No chain events match that filter.</p></li>`;
   const more = $("#moremoves");
   more.hidden = all.length <= 6;
   more.textContent = SHOW_ALL_MOVES
-    ? "Show only the latest six moves"
-    : `Show all ${all.length} on-chain moves`;
+    ? "Show only the latest six events"
+    : `Show all ${all.length} chain events`;
 }
 
 /* ---- method panels ---- */
@@ -1565,15 +1620,20 @@ function buildShareCanvas() {
       p === null || Math.abs(p) < 5e-7 ? muted : (p > 0 ? green : red), align, 800, mono);
     text(pp === null ? "NO INDEPENDENT MARK" : `${signed(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}$${Math.abs(pUsd).toFixed(2)}`,
       x, 610, 17, muted, align, 700, mono);
-    const position = ag.hedge_pct === null || ag.hedge_pct === undefined
-      ? "POSITION UNMARKED" : `${Number(ag.hedge_pct).toFixed(0)}% STABLECOIN`;
-    text(`${position} · ${ag.moves} MOVES`, x, 649, 15, color, align, 800, mono);
+    const share = ag.hedge_pct === null || ag.hedge_pct === undefined
+      ? "UNMARKED" : `${Number(ag.hedge_pct).toFixed(0)}% BOOK`;
+    const position = marketPositions(ag).length
+      ? `1 OPEN POSITION · SHORT ADA/USD · ${Number(ag.usdm).toFixed(2)} USDM · ${share}`
+      : "FLAT · NO OPEN POSITION";
+    text(position, x, 640, 15, color, align, 800, mono);
+    text(`${completedTrades(ag)} COMPLETED TRADES · ${ag.open_orders} OPEN ORDERS · ${leverageLabel(ag).toUpperCase()}`,
+      x, 666, 14, muted, align, 800, mono);
   };
 
   text("⬡  BEACN MAINNET ARENA", 72, 82, 23, cyan, "left", 900, mono);
   text("LIVE · CARDANO MAINNET · REAL ADA", 1528, 82, 17, red, "right", 800, mono);
   text("THE MAINNET MONEY MATCH", 72, 175, 46, white, "left", 900);
-  text("SAME BANKROLL. DIFFERENT BRAINS. EVERY MOVE ON-CHAIN.", 72, 207, 19, muted, "left", 800, mono);
+  text("SAME BANKROLL. DIFFERENT BRAINS. EVERY TRADE CHAIN-VERIFIED.", 72, 207, 19, muted, "left", 800, mono);
   text("ADA / USD", 800, 74, 14, muted, "center", 800, mono);
   text(priced ? px(DATA.price.usd_per_ada) : "UNAVAILABLE", 800, 120, 39, white, "center", 800, mono);
   c.strokeStyle = line; c.beginPath(); c.moveTo(72, 230); c.lineTo(1528, 230); c.stroke();
@@ -1593,7 +1653,7 @@ function buildShareCanvas() {
 
   // Two independent books, overlaid. The line on top is winning.
   const pts = (HIST && HIST.points) || [];
-  const x0 = 100, x1 = 1500, top = 668, plotH = 118;
+  const x0 = 100, x1 = 1500, top = 704, plotH = 82;
   if (pts.length > 1) {
     const vals = pts.flatMap(p => [p[1], p[2]]);
     let lo = Math.min(...vals), hi = Math.max(...vals);
@@ -1641,11 +1701,12 @@ function buildShareCanvas() {
     c.fillStyle = cyan; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[1]), 6, 0, Math.PI * 2); c.fill();
     c.fillStyle = amber; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[2]), 6, 0, Math.PI * 2); c.fill();
   }
-  text("BEACNBOT", x0, 656, 13, cyan, "left", 800, mono);
-  text("GROKBOT", x1, 656, 13, amber, "right", 800, mono);
-  text(`${a.costs.total.toFixed(2)} / ${b.costs.total.toFixed(2)} ADA FEES`, 72, 850, 14, muted, "left", 700, mono);
+  text("BEACNBOT", x0, 696, 13, cyan, "left", 800, mono);
+  text("GROKBOT", x1, 696, 13, amber, "right", 800, mono);
+  text(`${completedTrades(a)} / ${completedTrades(b)} COMPLETED TRADES`, 72, 850, 14, muted, "left", 700, mono);
   text("beacnpool.github.io/ABCDE/match.html", 800, 850, 17, cyan, "center", 800, mono);
-  text("WATCH THE NEXT MOVE", 1528, 850, 14, white, "right", 800, mono);
+  text(`${a.open_orders} / ${b.open_orders} OPEN ORDERS · ${leverageLabel(a).toUpperCase()} / ${leverageLabel(b).toUpperCase()}`,
+    1528, 850, 14, white, "right", 800, mono);
   return canvas;
 }
 
@@ -1698,8 +1759,8 @@ function boot(d, hist) {
     const url = "https://beacnpool.github.io/ABCDE/match.html";
     const lead = DATA.leader ? DATA.agents.find(a => a.id === DATA.leader) : null;
     const text = lead
-      ? `${fighterName(lead)} leads the BEACN Mainnet Money Match by ${fmt(Math.abs(DATA.gap_ada_eq), 2)} ADA-eq. Same bankroll. Different brains. Every move on-chain.`
-      : "BEACNbot and grokbot are dead level in the Mainnet Money Match. Every move is on-chain.";
+      ? `${fighterName(lead)} leads the BEACN Mainnet Money Match by ${fmt(Math.abs(DATA.gap_ada_eq), 2)} ADA-eq. Completed trades and open positions are chain-audited.`
+      : "BEACNbot and grokbot are dead level in the Mainnet Money Match. Completed trades and open positions are chain-audited.";
     const blob = await shareCardBlob();
     const file = blob && typeof File !== "undefined"
       ? new File([blob], shareCardFilename(), {type: "image/png"}) : null;
@@ -1778,7 +1839,7 @@ function boot(d, hist) {
           $("#matchupdates").textContent = lead
             ? `${fighterName(lead)} has taken the lead.` : "The match is now level.";
         } else if (chainChanged) {
-          $("#matchupdates").textContent = "A new on-chain move has landed.";
+          $("#matchupdates").textContent = "A new on-chain event has landed.";
         }
       }
     } catch { /* keep the last verified snapshot; freshness will expose its age */ }

@@ -486,6 +486,35 @@ def build_moves(agents, tx_by_hash, order_map):
     return moves
 
 
+def market_activity(agent_id: str, moves: list[dict], usdm_total: float) -> dict:
+    """Separate completed trades, chain events and current economic exposure."""
+    agent_events = [m for m in moves if m.get("agent") == agent_id]
+    positions = []
+    if usdm_total > 1e-9:
+        positions.append({
+            "id": "ada-usd-short-via-usdm",
+            "status": "open",
+            "economic_side": "short ADA/USD",
+            "mechanism": "USDM spot allocation",
+            "quantity_usdm": round(usdm_total, 6),
+            "notional_ada_eq": None,
+            "share_of_book_pct": None,
+            "leverage": {
+                "type": "unlevered spot",
+                "borrowed": False,
+                "liquidation_price": None,
+            },
+        })
+    return {
+        "completed_trades": sum(
+            1 for m in agent_events if m.get("kind") in ("swap", "fill")
+        ),
+        "chain_events": len(agent_events),
+        "market_positions": positions,
+        "open_position_count": len(positions),
+    }
+
+
 def cost_rollup(agents, moves, tx_by_hash, order_map):
     """Cumulative trading cost per agent, split into what it actually is.
 
@@ -748,6 +777,12 @@ def main() -> int:
         c = costs[agent["id"]]
         ada_total = b["ada"] + b["in_flight_ada"] + b["deposit"] + b["rewards"]
         usdm_total = b["usdm"] + b["in_flight_usdm"]
+        # A USDM allocation is one current economic position regardless of how
+        # many entry fills created it. Under this ADA-denominated scoreboard it
+        # is economically short ADA/USD, but it is spot USDM: no asset was
+        # borrowed, there is no liquidation price, and calling it leveraged
+        # would be false. Open DEX orders are reported separately below.
+        activity = market_activity(agent["id"], moves, usdm_total)
         row = {
             "id": agent["id"], "name": agent["name"], "engine": agent["engine"],
             "address": agent["address"], "stake_address": agent["stake_address"],
@@ -765,9 +800,17 @@ def main() -> int:
             "in_flight_usdm": round(b["in_flight_usdm"], 6),
             "open_orders": b["open_orders"],
             "open_positions": b["positions"],
+            "market_positions": activity["market_positions"],
+            "open_position_count": activity["open_position_count"],
             "ada_total": round(ada_total, 6),
             "costs": c,
-            "moves": sum(1 for m in moves if m["agent"] == agent["id"]),
+            # Public activity semantics. One Minswap order plus its later
+            # batcher fill is one completed trade but two chain events.
+            "completed_trades": activity["completed_trades"],
+            "chain_events": activity["chain_events"],
+            # Backwards-compatible alias for older page builds. New UI copy
+            # must call these chain events, never trades or positions.
+            "moves": activity["chain_events"],
             # Decision-only P&L against this agent's own starting mix, re-marked
             # at the current price. Kept as a separate public metric because it
             # answers a different question than return from the shared start.
@@ -805,6 +848,9 @@ def main() -> int:
                 c["all_in_vs_mark"] = round(c["pool_vs_mark"] + c["total"], 6)
             row["hedge_pct"] = round(100.0 * usdm_total * rate / score_ada, 2) \
                 if score_ada else None
+            for position in row["market_positions"]:
+                position["notional_ada_eq"] = round(usdm_total * rate, 6)
+                position["share_of_book_pct"] = row["hedge_pct"]
         else:
             row["score_ada_eq"] = None
             row["score_usd"] = None
