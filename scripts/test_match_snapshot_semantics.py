@@ -31,7 +31,9 @@ class MatchSnapshotSemanticsTest(unittest.TestCase):
         self.assertEqual(summary["completed_trades"], 2)
         self.assertEqual(summary["open_position_count"], 1)
         position = summary["market_positions"][0]
-        self.assertEqual(position["economic_side"], "short ADA/USD")
+        self.assertEqual(position["economic_side"], "long USDM / underweight ADA")
+        self.assertEqual(position["market_view"], "ADA-bearish vs USD")
+        self.assertEqual(position["mechanism"], "USDM spot holding")
         self.assertEqual(position["quantity_usdm"], 126.687161)
         self.assertEqual(position["leverage"], {
             "type": "unlevered spot",

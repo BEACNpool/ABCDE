@@ -67,7 +67,9 @@ def verify(path: Path) -> None:
         if positions:
             position = positions[0]
             require(position.get("status") == "open" and
-                    position.get("economic_side") == "short ADA/USD",
+                    position.get("economic_side") == "long USDM / underweight ADA" and
+                    position.get("market_view") == "ADA-bearish vs USD" and
+                    position.get("mechanism") == "USDM spot holding",
                     f"{aid} market position is not explicitly classified")
             require(abs(position.get("quantity_usdm", 0) - agent["usdm"]) < 1e-6,
                     f"{aid} position quantity does not reconcile to USDM")

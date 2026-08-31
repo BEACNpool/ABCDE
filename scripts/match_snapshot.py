@@ -494,8 +494,9 @@ def market_activity(agent_id: str, moves: list[dict], usdm_total: float) -> dict
         positions.append({
             "id": "ada-usd-short-via-usdm",
             "status": "open",
-            "economic_side": "short ADA/USD",
-            "mechanism": "USDM spot allocation",
+            "economic_side": "long USDM / underweight ADA",
+            "market_view": "ADA-bearish vs USD",
+            "mechanism": "USDM spot holding",
             "quantity_usdm": round(usdm_total, 6),
             "notional_ada_eq": None,
             "share_of_book_pct": None,
@@ -779,9 +780,9 @@ def main() -> int:
         usdm_total = b["usdm"] + b["in_flight_usdm"]
         # A USDM allocation is one current economic position regardless of how
         # many entry fills created it. Under this ADA-denominated scoreboard it
-        # is economically short ADA/USD, but it is spot USDM: no asset was
-        # borrowed, there is no liquidation price, and calling it leveraged
-        # would be false. Open DEX orders are reported separately below.
+        # is long USDM and underweight ADA. It is spot: no asset was borrowed,
+        # there is no liquidation price, and calling it a leveraged or
+        # derivative short would be false. Open DEX orders are separate below.
         activity = market_activity(agent["id"], moves, usdm_total)
         row = {
             "id": agent["id"], "name": agent["name"], "engine": agent["engine"],
