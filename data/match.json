@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-08-31T00:32:09+00:00",
+ "generated_at": "2026-08-31T00:37:08+00:00",
  "chain_fingerprint": "1da43476e7e646232e78ae8783cb58b110c164f2463ce1d29269ba6c868c71d7",
- "generated_at_unix": 1788136329,
+ "generated_at_unix": 1788136628,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
-  "usd_per_ada": 0.193569,
-  "ada_per_usdm": 5.166116475262052,
+  "usd_per_ada": 0.194409,
+  "ada_per_usdm": 5.143794783163331,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-08-31T00:32:09+00:00"
+  "fetched_at": "2026-08-31T00:37:08+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -29,14 +29,14 @@
     "usdm": 0.0,
     "deposit": 2.0,
     "ada_eq_at_today_rate": 907.241205,
-    "usd_at_today_rate": 175.613773
+    "usd_at_today_rate": 176.375855
    },
    "grokbot": {
     "ada": 514.054262,
     "usdm": 78.461199,
     "deposit": 2.0,
-    "ada_eq_at_today_rate": 921.393955,
-    "usd_at_today_rate": 178.353306
+    "ada_eq_at_today_rate": 919.642568,
+    "usd_at_today_rate": 178.786792
    }
   },
   "equalized_score_ada_eq": 907.241205,
@@ -96,18 +96,18 @@
     "total": 5.450464,
     "effective_rate": 4.97904,
     "all_in_rate": 5.02206,
-    "pool_vs_mark": -23.70063,
-    "all_in_vs_mark": -18.250166
+    "pool_vs_mark": -20.872758,
+    "all_in_vs_mark": -15.422294
    },
    "moves": 12,
-   "vs_start_ada_eq": 18.606072,
-   "vs_equalized_start_ada_eq": 18.606072,
-   "vs_equalized_start_pct": 2.0508,
-   "vs_equalized_start_usd_at_current_mark": 3.601559,
-   "score_ada_eq": 925.847277,
-   "score_usd": 179.215331,
-   "usdm_in_ada": 654.48063,
-   "hedge_pct": 70.69
+   "vs_start_ada_eq": 15.7782,
+   "vs_equalized_start_ada_eq": 15.7782,
+   "vs_equalized_start_pct": 1.7391,
+   "vs_equalized_start_usd_at_current_mark": 3.067424,
+   "score_ada_eq": 923.019405,
+   "score_usd": 179.443279,
+   "usdm_in_ada": 651.652758,
+   "hedge_pct": 70.6
   },
   {
    "id": "grokbot",
@@ -140,23 +140,23 @@
     "total": 6.210128,
     "effective_rate": 4.96169,
     "all_in_rate": 5.04084,
-    "pool_vs_mark": -16.039693,
-    "all_in_vs_mark": -9.829565
+    "pool_vs_mark": -14.288306,
+    "all_in_vs_mark": -8.078178
    },
    "moves": 12,
    "vs_start_ada_eq": 0.0,
-   "vs_equalized_start_ada_eq": 14.15275,
-   "vs_equalized_start_pct": 1.56,
-   "vs_equalized_start_usd_at_current_mark": 2.739534,
-   "score_ada_eq": 921.393955,
-   "score_usd": 178.353306,
-   "usdm_in_ada": 405.339693,
-   "hedge_pct": 43.99
+   "vs_equalized_start_ada_eq": 12.401363,
+   "vs_equalized_start_pct": 1.3669,
+   "vs_equalized_start_usd_at_current_mark": 2.410937,
+   "score_ada_eq": 919.642568,
+   "score_usd": 178.786792,
+   "usdm_in_ada": 403.588306,
+   "hedge_pct": 43.89
   }
  ],
  "leader": "beacn",
- "gap_ada_eq": 4.453322,
- "gap_usd": 0.862025,
+ "gap_ada_eq": 3.376837,
+ "gap_usd": 0.656488,
  "moves": [
   {
    "agent": "grokbot",
@@ -499,17 +499,17 @@
   {
    "agent": "beacn",
    "label": "BEACN scored in both denominations",
-   "ada_eq": 925.847277,
-   "usd": 179.215331,
-   "ada_eq_marked_to_usd": 179.215331,
+   "ada_eq": 923.019405,
+   "usd": 179.443279,
+   "ada_eq_marked_to_usd": 179.443279,
    "agree": true
   },
   {
    "agent": "grokbot",
    "label": "grokbot scored in both denominations",
-   "ada_eq": 921.393955,
-   "usd": 178.353306,
-   "ada_eq_marked_to_usd": 178.353306,
+   "ada_eq": 919.642568,
+   "usd": 178.786792,
+   "ada_eq_marked_to_usd": 178.786792,
    "agree": true
   }
  ],
@@ -520,10 +520,10 @@
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 252,
+  "points": 253,
   "first": 1788027300,
-  "last": 1788136329,
-  "polled": 204,
+  "last": 1788136628,
+  "polled": 205,
   "reconstructed": 48,
   "file": "match_history.json"
  }
