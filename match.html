@@ -1870,16 +1870,113 @@ async function downloadShareCard() {
 }
 window.buildMatchShareCard = buildShareCanvas;
 
+function buildDecisionCanvas() {
+  if (!DATA || !DATA.decision_room) throw new Error("decision-room data is not loaded");
+  const room = DATA.decision_room;
+  const canvas = document.createElement("canvas"); canvas.width = 1600; canvas.height = 900;
+  const c = canvas.getContext("2d");
+  const bg = c.createLinearGradient(0, 0, 1600, 900);
+  bg.addColorStop(0, "#0c1b2f"); bg.addColorStop(.58, "#071323"); bg.addColorStop(1, "#030913");
+  c.fillStyle = bg; c.fillRect(0, 0, 1600, 900);
+  const glow = c.createRadialGradient(90, 90, 0, 90, 90, 650);
+  glow.addColorStop(0, "rgba(19,162,199,.17)"); glow.addColorStop(1, "rgba(19,162,199,0)");
+  c.fillStyle = glow; c.fillRect(0, 0, 900, 650);
+  const white = "#e8eef7", muted = "#8fa0b8", dim = "#60738f", line = "#1c2b42";
+  const cyan = "#28d8f2", green = "#46d69a", amber = "#f0a30a", violet = "#9b8cff", red = "#fb7185";
+  const mono = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+  const stateColor = {active: cyan, shadow: green, watch: amber, research: violet, locked: red};
+  const rr = (x, y, w, h, r) => { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); };
+  const text = (s, x, y, size, color = white, align = "left", weight = 700, family = "system-ui, sans-serif") => {
+    c.font = `${weight} ${size}px ${family}`; c.fillStyle = color; c.textAlign = align; c.textBaseline = "alphabetic"; c.fillText(String(s), x, y); };
+  const wrap = (s, x, y, maxWidth, lineHeight, maxLines, size, color, weight = 500, family = "system-ui, sans-serif") => {
+    c.font = `${weight} ${size}px ${family}`; c.fillStyle = color; c.textAlign = "left";
+    const words = String(s).split(/\s+/); let current = "", lines = [];
+    for (const word of words) { const trial = current ? `${current} ${word}` : word;
+      if (c.measureText(trial).width > maxWidth && current) { lines.push(current); current = word; } else current = trial; }
+    if (current) lines.push(current); lines = lines.slice(0, maxLines);
+    lines.forEach((ln, i) => c.fillText(ln, x, y + i * lineHeight)); };
+
+  text("BEACNBOT / PUBLIC DECISION ROOM", 52, 52, 16, cyan, "left", 900, mono);
+  text(`LENS ${room.as_of} · RESEARCH, NOT AUTHORIZATION`, 1548, 52, 14, red, "right", 800, mono);
+  text("WHAT EARNS THE NEXT ADA?", 52, 112, 48, white, "left", 900);
+  text("Interesting is cheap. Executable is rare.", 52, 148, 22, muted, "left", 700);
+  const weightW = 241, weightGap = 10;
+  room.weights.forEach((w, i) => { const x = 52 + i * (weightW + weightGap), y = 178;
+    c.fillStyle = "rgba(3,10,20,.74)"; rr(x, y, weightW, 76, 11); c.fill(); c.strokeStyle = line; c.stroke();
+    wrap(w.label.toUpperCase(), x + 13, y + 23, 164, 12, 2, 10, muted, 800, mono);
+    text(`${w.weight}%`, x + weightW - 13, y + 30, 25, cyan, "right", 900, mono);
+    c.fillStyle = "#1a2c47"; rr(x + 13, y + 56, weightW - 26, 5, 3); c.fill();
+    c.fillStyle = cyan; rr(x + 13, y + 56, (weightW - 26) * w.weight / 30, 5, 3); c.fill(); });
+  const policy = room.capital_policy || {};
+  c.fillStyle = "rgba(251,113,133,.055)"; rr(52, 272, 1496, 50, 12); c.fill();
+  c.strokeStyle = "rgba(251,113,133,.28)"; c.stroke();
+  const canary = policy.canary_cap_ada == null ? "NO PRICE MARK" : `${Number(policy.canary_cap_ada).toFixed(2)} ADA`;
+  const protocol = policy.single_protocol_cap_ada == null ? "NO PRICE MARK" : `${Number(policy.single_protocol_cap_ada).toFixed(2)} ADA`;
+  text(`CANARY CEILING  ${canary}`, 72, 303, 13, white, "left", 800, mono);
+  text(`POST-PROOF PROTOCOL CEILING  ${protocol}`, 415, 303, 13, white, "left", 800, mono);
+  text("NEW DEFI  SHADOW FIRST", 870, 303, 13, green, "left", 800, mono);
+  text("PERPETUALS  LIVE-DISABLED", 1528, 303, 13, red, "right", 800, mono);
+  const opportunities = [...room.opportunities].sort((a, b) => b.fit_score - a.fit_score);
+  const cardW = 492, cardH = 232, gap = 10;
+  opportunities.slice(0, 6).forEach((o, i) => { const col = i % 3, row = Math.floor(i / 3);
+    const x = 52 + col * (cardW + gap), y = 340 + row * (cardH + 12), color = stateColor[o.status] || muted;
+    c.fillStyle = "rgba(3,10,20,.78)"; rr(x, y, cardW, cardH, 14); c.fill(); c.strokeStyle = line; c.stroke();
+    c.fillStyle = color; rr(x, y, 4, cardH, 2); c.fill();
+    text(o.status_label, x + 18, y + 27, 10, color, "left", 900, mono);
+    text(`${o.fit_score}`, x + cardW - 18, y + 35, 30, color, "right", 900, mono);
+    text("FIT / 100", x + cardW - 18, y + 52, 8, dim, "right", 800, mono);
+    text(o.title, x + 18, y + 67, 22, white, "left", 850);
+    text(o.venues.join(" · ").toUpperCase(), x + 18, y + 88, 10, dim, "left", 800, mono);
+    wrap(o.edge, x + 18, y + 113, cardW - 36, 16, 2, 12, muted, 550);
+    c.fillStyle = "#1a2c47"; rr(x + 18, y + 143, cardW - 36, 5, 3); c.fill();
+    c.fillStyle = color; rr(x + 18, y + 143, (cardW - 36) * o.fit_score / 100, 5, 3); c.fill();
+    text("NEXT HARD GATES", x + 18, y + 169, 9, color, "left", 900, mono);
+    wrap(o.waiting_for.slice(0, 2).map(g => `• ${g}`).join("  "), x + 18, y + 188,
+      cardW - 36, 14, 3, 10.5, white, 600); });
+  c.strokeStyle = line; c.beginPath(); c.moveTo(52, 840); c.lineTo(1548, 840); c.stroke();
+  text("A high fit score earns research priority—not capital. Any failed hard gate forces zero new exposure.",
+    52, 870, 13, muted, "left", 700);
+  text("beacnpool.github.io/ABCDE/match.html#decisions", 1548, 870, 14, cyan, "right", 800, mono);
+  return canvas;
+}
+
+async function downloadDecisionCard() {
+  const blob = await new Promise(resolve => buildDecisionCanvas().toBlob(resolve, "image/png"));
+  if (!blob) return;
+  const link = document.createElement("a"); link.href = URL.createObjectURL(blob);
+  link.download = `BEACNbot-decision-room-${new Date(DATA.generated_at).toISOString().slice(0, 10)}.png`;
+  link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  $("#decisionmsg").textContent = "1600×900 public decision card downloaded.";
+}
+window.buildDecisionCard = buildDecisionCanvas;
+
 let WIRED = false;
+let HASH_ALIGNED = false;
 function renderAll() {
   renderFresh(); renderCard(); renderStartNote(); renderMatchup(); renderChart(); renderBooks();
-  renderCosts(); renderLog(); renderMethod();
+  renderDecisionRoom(); renderCosts(); renderLog(); renderMethod();
 }
 
 function boot(d, hist) {
   DATA = d;
   HIST = hist;
   renderAll();
+  // The live cards above this section grow after the first JSON render. A
+  // direct shared URL such as #decisions would otherwise retain the browser's
+  // pre-render scroll offset and land several sections early.
+  if (!HASH_ALIGNED && location.hash) {
+    HASH_ALIGNED = true;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (!target) return;
+      const prior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      const nav = document.querySelector("header.nav");
+      window.scrollTo(0, Math.max(0, target.offsetTop - (nav ? nav.offsetHeight : 0)));
+      document.documentElement.style.scrollBehavior = prior;
+    }));
+  }
   if (WIRED) return;
   WIRED = true;
   $("#copylink").addEventListener("click", async () => {
@@ -1892,6 +1989,7 @@ function boot(d, hist) {
     }
   });
   $("#downloadcard").addEventListener("click", downloadShareCard);
+  $("#downloaddecision").addEventListener("click", downloadDecisionCard);
   $("#sharematch").addEventListener("click", async () => {
     const url = "https://beacnpool.github.io/ABCDE/match.html";
     const lead = DATA.leader ? DATA.agents.find(a => a.id === DATA.leader) : null;
