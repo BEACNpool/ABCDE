@@ -857,7 +857,8 @@ function venueChip(p) {
     ? `<img src="${esc(v.logo)}" alt="${esc(v.name)}" width="22" height="22">`
     : "";
   const label = p.label ? `<small>${esc(p.label)}</small>` : "";
-  return `<span class="vchip">${img}<b>${esc(v.name)}</b>${label}</span>`;
+  const title = p.valuation_note ? ` title="${esc(p.valuation_note)}"` : "";
+  return `<span class="vchip"${title}>${img}<b>${esc(v.name)}</b>${label}</span>`;
 }
 function positionsBlock(ag, empty) {
   const rows = protocolPositions(ag);
