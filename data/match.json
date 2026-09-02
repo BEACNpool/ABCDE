@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-09-02T02:37:09+00:00",
+ "generated_at": "2026-09-02T02:42:09+00:00",
  "chain_fingerprint": "1da43476e7e646232e78ae8783cb58b110c164f2463ce1d29269ba6c868c71d7",
- "generated_at_unix": 1788316629,
+ "generated_at_unix": 1788316929,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
-  "usd_per_ada": 0.197063,
-  "ada_per_usdm": 5.074519316157777,
+  "usd_per_ada": 0.197216,
+  "ada_per_usdm": 5.070582508518578,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-09-02T02:37:09+00:00"
+  "fetched_at": "2026-09-02T02:42:09+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -29,14 +29,14 @@
     "usdm": 0.0,
     "deposit": 2.0,
     "ada_eq_at_today_rate": 907.241205,
-    "usd_at_today_rate": 178.783674
+    "usd_at_today_rate": 178.922481
    },
    "grokbot": {
     "ada": 514.054262,
     "usdm": 78.461199,
     "deposit": 2.0,
-    "ada_eq_at_today_rate": 914.207132,
-    "usd_at_today_rate": 180.1564
+    "ada_eq_at_today_rate": 913.898245,
+    "usd_at_today_rate": 180.235356
    }
   },
   "equalized_score_ada_eq": 907.241205,
@@ -93,8 +93,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 126.687161,
-     "notional_ada_eq": 642.876446,
-     "share_of_book_pct": 70.32,
+     "notional_ada_eq": 642.377703,
+     "share_of_book_pct": 70.3,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -114,20 +114,20 @@
     "total": 5.450464,
     "effective_rate": 4.97904,
     "all_in_rate": 5.02206,
-    "pool_vs_mark": -12.096446,
-    "all_in_vs_mark": -6.645982
+    "pool_vs_mark": -11.597703,
+    "all_in_vs_mark": -6.147239
    },
    "completed_trades": 2,
    "chain_events": 12,
    "moves": 12,
-   "vs_start_ada_eq": 7.001888,
-   "vs_equalized_start_ada_eq": 7.001888,
-   "vs_equalized_start_pct": 0.7718,
-   "vs_equalized_start_usd_at_current_mark": 1.379813,
-   "score_ada_eq": 914.243093,
-   "score_usd": 180.163487,
-   "usdm_in_ada": 642.876446,
-   "hedge_pct": 70.32
+   "vs_start_ada_eq": 6.503145,
+   "vs_equalized_start_ada_eq": 6.503145,
+   "vs_equalized_start_pct": 0.7168,
+   "vs_equalized_start_usd_at_current_mark": 1.282524,
+   "score_ada_eq": 913.74435,
+   "score_usd": 180.205006,
+   "usdm_in_ada": 642.377703,
+   "hedge_pct": 70.3
   },
   {
    "id": "grokbot",
@@ -157,8 +157,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 78.461199,
-     "notional_ada_eq": 398.15287,
-     "share_of_book_pct": 43.55,
+     "notional_ada_eq": 397.843983,
+     "share_of_book_pct": 43.53,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -178,247 +178,25 @@
     "total": 6.210128,
     "effective_rate": 4.96169,
     "all_in_rate": 5.04084,
-    "pool_vs_mark": -8.85287,
-    "all_in_vs_mark": -2.642742
+    "pool_vs_mark": -8.543983,
+    "all_in_vs_mark": -2.333855
    },
    "completed_trades": 4,
    "chain_events": 12,
    "moves": 12,
    "vs_start_ada_eq": 0.0,
-   "vs_equalized_start_ada_eq": 6.965927,
-   "vs_equalized_start_pct": 0.7678,
-   "vs_equalized_start_usd_at_current_mark": 1.372726,
-   "score_ada_eq": 914.207132,
-   "score_usd": 180.1564,
-   "usdm_in_ada": 398.15287,
-   "hedge_pct": 43.55
+   "vs_equalized_start_ada_eq": 6.65704,
+   "vs_equalized_start_pct": 0.7338,
+   "vs_equalized_start_usd_at_current_mark": 1.312875,
+   "score_ada_eq": 913.898245,
+   "score_usd": 180.235356,
+   "usdm_in_ada": 397.843983,
+   "hedge_pct": 43.53
   }
  ],
- "decision_room": {
-  "model": "BEACNbot public research lens v1",
-  "as_of": "2026-08-31",
-  "authority": "Editorial research ranking only. A score, status or threshold never authorizes capital, signing or submission.",
-  "rating_scale": "0 = blocked or unknown; 5 = strongest current fit",
-  "weights": [
-   {
-    "id": "economics",
-    "label": "Net ADA after costs",
-    "weight": 28
-   },
-   {
-    "id": "exit",
-    "label": "Complete exit",
-    "weight": 22
-   },
-   {
-    "id": "safety",
-    "label": "Capital safety",
-    "weight": 18
-   },
-   {
-    "id": "evidence",
-    "label": "Evidence quality",
-    "weight": 14
-   },
-   {
-    "id": "score",
-    "label": "Score visibility",
-    "weight": 10
-   },
-   {
-    "id": "operations",
-    "label": "Operational fit",
-    "weight": 8
-   }
-  ],
-  "capital_policy": {
-   "canary_cap_ada": 9.1424,
-   "single_protocol_cap_ada": 45.7122,
-   "new_defi": "shadow first; explicit approval required for any canary",
-   "leverage": "live-disabled; gross exposure cap remains 1.0x and borrowed ADA is zero",
-   "score_adapter": "required before match capital enters a contract or receipt token"
-  },
-  "opportunities": [
-   {
-    "id": "spot-usdm",
-    "title": "Spot short-ADA sleeve",
-    "venues": [
-     "Minswap",
-     "USDM"
-    ],
-    "status": "active",
-    "status_label": "LIVE \u00b7 GUARDED",
-    "ratings": {
-     "economics": 4,
-     "exit": 4,
-     "safety": 3,
-     "evidence": 5,
-     "score": 5,
-     "operations": 4
-    },
-    "edge": "Long USDM and underweight ADA: the sleeve gains ADA-equivalent only if ADA weakness beats its full entry and exit bill.",
-    "waiting_for": [
-     "Manage the existing sleeve only; this board cannot add capital.",
-     "Any new USDM action needs a current issuer, peg and liquidity PASS.",
-     "Exit only through a freshly verified STOP, LIMIT or manual unwind."
-    ],
-    "evidence": "70.3% of BEACNbot's marked book; unlevered spot; no borrowed asset and no liquidation price.",
-    "observed_on": "live snapshot",
-    "fit_score": 81
-   },
-   {
-    "id": "permissionless-keepers",
-    "title": "Permissionless keeper fees",
-    "venues": [
-     "Splash",
-     "Liqwid",
-     "reed"
-    ],
-    "status": "shadow",
-    "status_label": "SHADOW \u00b7 NO SIGNER",
-    "ratings": {
-     "economics": 3,
-     "exit": 5,
-     "safety": 5,
-     "evidence": 3,
-     "score": 5,
-     "operations": 3
-    },
-    "edge": "Earn maker-encoded, execution or liquidation fees for a valid state transition, with little inventory if settlement returns clean ADA.",
-    "waiting_for": [
-     "At least 1 ADA of conservative net income per eligible event.",
-     "Matched final CBOR, independent decode and a complete clean-ADA exit.",
-     "30 independent decision-eligible prospective events, not repeated polls."
-    ],
-    "evidence": "The Splash collector and keeper shadow loop are live; an idle or rejected observation does not count as evidence.",
-    "observed_on": "2026-08-31 research state",
-    "fit_score": 80
-   },
-   {
-    "id": "atomic-arbitrage",
-    "title": "Atomic cross-DEX arbitrage",
-    "venues": [
-     "Minswap",
-     "Splash",
-     "WingRiders"
-    ],
-    "status": "shadow",
-    "status_label": "SCANNER \u00b7 NO TRADE",
-    "ratings": {
-     "economics": 2,
-     "exit": 5,
-     "safety": 4,
-     "evidence": 3,
-     "score": 5,
-     "operations": 3
-    },
-    "edge": "Capture one-block pool mispricing only when both legs can consume fresh states in the same transaction.",
-    "waiting_for": [
-     "Both legs in one transaction under the deployed validator authority.",
-     "Positive exact final-CBOR proceeds after every fee and failed-race cost.",
-     "No stale-state, same-pool or pool-constraint rejection."
-    ],
-    "evidence": "Exact decoders and an hourly scanner exist; no compatible, liquid, positive two-leg route has been proven.",
-    "observed_on": "2026-08-31 research state",
-    "fit_score": 71
-   },
-   {
-    "id": "fee-only-lp",
-    "title": "Fee-only liquidity",
-    "venues": [
-     "Minswap",
-     "WingRiders"
-    ],
-    "status": "watch",
-    "status_label": "WATCH \u00b7 BELOW GATE",
-    "ratings": {
-     "economics": 2,
-     "exit": 2,
-     "safety": 2,
-     "evidence": 4,
-     "score": 0,
-     "operations": 1
-    },
-    "edge": "Trader fees and owned staking can pay, but IL, LVR and terminal inventory must beat clean ADA staking.",
-    "waiting_for": [
-     "More than 5.32 ADA gross benefit at policy size: two full round trips.",
-     "LP-receipt entry, valuation, full withdrawal and match-score adapter.",
-     "A current stablecoin gate PASS for every stable-dependent pair."
-    ],
-    "evidence": "Aug 31 model: best observed 90-day fee projection was 3.91 ADA at the then-current 5% cap\u2014below the 5.32 ADA gate.",
-    "observed_on": "2026-08-31 model",
-    "fit_score": 40
-   },
-   {
-    "id": "lending-receipts",
-    "title": "Lending & receipt yield",
-    "venues": [
-     "Liqwid",
-     "Surf",
-     "FluidTokens"
-    ],
-    "status": "research",
-    "status_label": "RESEARCH \u00b7 EXIT OPEN",
-    "ratings": {
-     "economics": 2,
-     "exit": 2,
-     "safety": 2,
-     "evidence": 3,
-     "score": 0,
-     "operations": 2
-    },
-    "edge": "Borrower interest can beat staking only after bad debt, oracle, withdrawal utilization and receipt conversion are charged.",
-    "waiting_for": [
-     "Net ADA yield above BEACN staking plus two complete round trips.",
-     "Full-size cash withdrawal under utilization and oracle stress.",
-     "qToken/receipt value and match-score adapters with no double counting."
-    ],
-    "evidence": "The latest Liqwid policy-size observation failed minimum-size and incremental-yield economics.",
-    "observed_on": "2026-08-31 research state",
-    "fit_score": 39
-   },
-   {
-    "id": "perpetual-shorts",
-    "title": "Perpetual shorts",
-    "venues": [
-     "Strike",
-     "Ascend"
-    ],
-    "status": "locked",
-    "status_label": "LOCKED \u00b7 POLICY",
-    "ratings": {
-     "economics": 3,
-     "exit": 1,
-     "safety": 0,
-     "evidence": 2,
-     "score": 0,
-     "operations": 0
-    },
-    "edge": "Direct ADA downside exposure is clean in theory; funding, mark price, liquidation, collateral and bridge rails create a new failure stack.",
-    "waiting_for": [
-     "An explicit derivatives-policy amendment; current live cap is no perps.",
-     "Exact liquidation math beyond a +50% ADA pump with an added safety buffer.",
-     "Proven USDC round trip, oracle/mark/funding/insurance and score adapter."
-    ],
-    "evidence": "Ascend is a closed mainnet beta with a $25 cap; its docs say parameters and P&L may reset and currently conflict on launch markets.",
-    "observed_on": "official docs checked 2026-08-31",
-    "links": [
-     {
-      "label": "Ascend app",
-      "url": "https://perps.ascend.market/"
-     },
-     {
-      "label": "Ascend beta terms",
-      "url": "https://docs.ascend.market/ascend-mainnet/private-mainnet-beta"
-     }
-    ],
-    "fit_score": 27
-   }
-  ]
- },
- "leader": "beacn",
- "gap_ada_eq": 0.035961,
- "gap_usd": 0.007087,
+ "leader": "grokbot",
+ "gap_ada_eq": -0.153895,
+ "gap_usd": -0.030351,
  "moves": [
   {
    "agent": "grokbot",
@@ -761,17 +539,17 @@
   {
    "agent": "beacn",
    "label": "BEACN scored in both denominations",
-   "ada_eq": 914.243093,
-   "usd": 180.163487,
-   "ada_eq_marked_to_usd": 180.163487,
+   "ada_eq": 913.74435,
+   "usd": 180.205006,
+   "ada_eq_marked_to_usd": 180.205006,
    "agree": true
   },
   {
    "agent": "grokbot",
    "label": "grokbot scored in both denominations",
-   "ada_eq": 914.207132,
-   "usd": 180.1564,
-   "ada_eq_marked_to_usd": 180.1564,
+   "ada_eq": 913.898245,
+   "usd": 180.235356,
+   "ada_eq_marked_to_usd": 180.235356,
    "agree": true
   }
  ],
@@ -782,10 +560,10 @@
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 852,
+  "points": 853,
   "first": 1788027300,
-  "last": 1788316629,
-  "polled": 804,
+  "last": 1788316929,
+  "polled": 805,
   "reconstructed": 48,
   "file": "match_history.json"
  }
