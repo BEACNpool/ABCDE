@@ -3,9 +3,11 @@
 
 from __future__ import annotations
 
+import json
 import unittest
+from unittest.mock import patch
 
-from match_snapshot import market_activity
+from match_snapshot import fetch_liqwid_rates, market_activity
 
 
 class MatchSnapshotSemanticsTest(unittest.TestCase):
@@ -45,6 +47,48 @@ class MatchSnapshotSemanticsTest(unittest.TestCase):
         summary = market_activity("beacn", [{"agent": "beacn", "kind": "fund"}], 0.0)
         self.assertEqual(summary["open_position_count"], 0)
         self.assertEqual(summary["market_positions"], [])
+
+
+class LiqwidRateFetchTests(unittest.TestCase):
+    """Trap 5 still applies to this feed: never fabricate a rate."""
+
+    def _payload(self, results):
+        return json.dumps({"data": {"liqwid": {"data": {"markets": {
+            "results": results}}}}})
+
+    @patch("match_snapshot._curl")
+    def test_parses_displayname_rate_and_price(self, curl):
+        curl.return_value = self._payload([
+            {"displayName": "USDM", "exchangeRate": 0.025051388,
+             "asset": {"price": 1.0}},
+            {"displayName": "ADA", "exchangeRate": 0.021145346,
+             "asset": {"price": 0.19592}},
+        ])
+        rates = fetch_liqwid_rates()
+        self.assertEqual(rates["USDM"], {"exchange_rate": 0.025051388,
+                                         "price_usd": 1.0})
+        self.assertAlmostEqual(rates["ADA"]["price_usd"], 0.19592)
+
+    @patch("match_snapshot._curl")
+    def test_unreachable_feed_returns_none_not_a_guess(self, curl):
+        curl.return_value = ""
+        self.assertIsNone(fetch_liqwid_rates())
+
+    @patch("match_snapshot._curl")
+    def test_graphql_errors_return_none(self, curl):
+        curl.return_value = json.dumps({"errors": [{"message": "boom"}]})
+        self.assertIsNone(fetch_liqwid_rates())
+
+    @patch("match_snapshot._curl")
+    def test_market_missing_a_field_is_skipped_not_fabricated(self, curl):
+        curl.return_value = self._payload([
+            {"displayName": "USDM", "exchangeRate": None, "asset": {"price": 1.0}},
+            {"displayName": "ADA", "exchangeRate": 0.021145346,
+             "asset": {"price": 0.19592}},
+        ])
+        rates = fetch_liqwid_rates()
+        self.assertNotIn("USDM", rates)
+        self.assertIn("ADA", rates)
 
 
 if __name__ == "__main__":

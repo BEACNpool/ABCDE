@@ -245,22 +245,77 @@ def position_from_orders(venue_id: str, *, count: int, ada: float, usdm: float,
     }
 
 
+LIQWID_VALUATION_CAVEAT = (
+    "Valued at Liqwid's own posted exchangeRate and oracle price. This is a "
+    "live protocol mark, not an independently executed exit -- a real "
+    "redemption still pays network/batcher fees and can be delayed by "
+    "batching or thin market liquidity."
+)
+
+
+def price_receipt_holdings(
+    holdings: list[tuple[str, float]],
+    rates: dict[str, dict[str, float]] | None,
+) -> tuple[float, float, bool]:
+    """(ada, usdm_eq, fully_priced) for qToken holdings, from each market's
+    live exchangeRate and underlying asset price (both reported by the
+    protocol itself -- never a guess). ADA-market receipts convert to ADA;
+    every other market converts to a USD amount, folded into usdm_eq because
+    the scoreboard already treats USDM as USD marked 1:1. A market missing
+    from ``rates`` (feed down, or a market this catalog does not yet map)
+    stays unpriced rather than assumed to be worth zero -- callers must
+    surface that, not report it as a real zero.
+    """
+    if not rates:
+        return 0.0, 0.0, False
+    ada = usdm_eq = 0.0
+    fully_priced = True
+    for market, qty in holdings:
+        rate = rates.get(market)
+        if not rate:
+            fully_priced = False
+            continue
+        underlying = qty * rate["exchange_rate"]
+        if market == "ADA":
+            ada += underlying
+        else:
+            usdm_eq += underlying * rate["price_usd"]
+    return ada, usdm_eq, fully_priced
+
+
 def position_from_receipts(venue_id: str, holdings: list[tuple[str, float]],
-                           source: str = "chain") -> dict[str, Any] | None:
+                           source: str = "chain",
+                           rates: dict[str, dict[str, float]] | None = None,
+                           ) -> dict[str, Any] | None:
     holdings = [(m, q) for m, q in holdings if q > 0]
     if not holdings:
         return None
-    bits = [f"{q:.4f}".rstrip("0").rstrip(".") + f" q{m}" for m, q in holdings]
-    return {
+    ada, usdm_eq, fully_priced = price_receipt_holdings(holdings, rates)
+    priced = bool(rates)
+    bits = []
+    for m, q in holdings:
+        qty_str = f"{q:.4f}".rstrip("0").rstrip(".")
+        entry = f"{qty_str} q{m}"
+        rate = (rates or {}).get(m)
+        if rate:
+            underlying = q * rate["exchange_rate"]
+            entry += f" (~{underlying:.2f} {m}, live rate)"
+        bits.append(entry)
+    pos: dict[str, Any] = {
         "venue": venue_id,
         "kind": "supply",
         "label": ", ".join(bits),
         "count": len(holdings),
-        "ada": 0.0,
-        "usdm": 0.0,
+        "ada": round(ada, 6),
+        "usdm": round(usdm_eq, 6),
         "source": source,
         "markets": [m for m, _ in holdings],
+        "priced": priced,
     }
+    if priced:
+        pos["fully_priced"] = fully_priced
+        pos["valuation_note"] = LIQWID_VALUATION_CAVEAT
+    return pos
 
 
 def receipts_in_utxos(utxos: list[dict[str, Any]], by_policy: dict[str, str],

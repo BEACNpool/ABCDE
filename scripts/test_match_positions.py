@@ -11,7 +11,7 @@ from match_positions import (
     BASE_VENUES, LIQWID_RECEIPT_POLICIES, MINSWAP_ORDER_SCRIPT,
     indexes, load_overlay, merge_catalog, merge_positions,
     overlay_positions_for, position_from_orders, position_from_receipts,
-    receipts_in_utxos, used_venues, venue_public,
+    price_receipt_holdings, receipts_in_utxos, used_venues, venue_public,
 )
 
 
@@ -142,6 +142,59 @@ class MergeTests(unittest.TestCase):
         other = [{"asset_list": [{"policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
                                   "quantity": "1000000"}]}]
         self.assertEqual(receipts_in_utxos(other, by_policy, "liqwid_v2"), {})
+
+
+class ReceiptValuationTests(unittest.TestCase):
+    """Regression coverage for 2026-09-02: grokbot supplied its whole USDM
+    sleeve to Liqwid and the published score dropped ~402 ADA-eq to zero
+    because the qUSDM receipt was never marked. These lock the fix in.
+    (Reapplied 2026-09-03 after an uncommitted first fix was silently wiped
+    by a `reset: moving to origin/main` and the bug ran live for ~8 hours.)"""
+
+    RATES = {
+        "USDM": {"exchange_rate": 0.02505138844821454, "price_usd": 1.0},
+        "ADA": {"exchange_rate": 0.02114534619306316, "price_usd": 0.19592},
+    }
+
+    def test_no_rates_stays_zero_like_before_the_fix(self):
+        ada, usdm_eq, fully_priced = price_receipt_holdings(
+            [("USDM", 3132.01)], None)
+        self.assertEqual((ada, usdm_eq, fully_priced), (0.0, 0.0, False))
+
+    def test_usdm_receipt_prices_back_to_the_supplied_amount(self):
+        ada, usdm_eq, fully_priced = price_receipt_holdings(
+            [("USDM", 3132.01)], self.RATES)
+        self.assertAlmostEqual(usdm_eq, 78.461199, places=5)
+        self.assertEqual(ada, 0.0)
+        self.assertTrue(fully_priced)
+
+    def test_ada_receipt_prices_to_ada_not_usdm(self):
+        ada, usdm_eq, fully_priced = price_receipt_holdings(
+            [("ADA", 81.0 / 0.02114534619306316)], self.RATES)
+        self.assertAlmostEqual(ada, 81.0, places=4)
+        self.assertEqual(usdm_eq, 0.0)
+
+    def test_unknown_market_in_holdings_is_flagged_not_zeroed_silently(self):
+        ada, usdm_eq, fully_priced = price_receipt_holdings(
+            [("USDM", 3132.01), ("SNEK", 500.0)], self.RATES)
+        self.assertAlmostEqual(usdm_eq, 78.461199, places=5)
+        self.assertFalse(fully_priced)
+
+    def test_position_from_receipts_without_rates_matches_old_behavior(self):
+        pos = position_from_receipts("liqwid_v2", [("USDM", 3132.01)])
+        self.assertEqual(pos["ada"], 0.0)
+        self.assertEqual(pos["usdm"], 0.0)
+        self.assertFalse(pos["priced"])
+        self.assertNotIn("valuation_note", pos)
+
+    def test_position_from_receipts_with_rates_is_priced_and_captioned(self):
+        pos = position_from_receipts("liqwid_v2", [("USDM", 3132.01)],
+                                     rates=self.RATES)
+        self.assertAlmostEqual(pos["usdm"], 78.461199, places=5)
+        self.assertTrue(pos["priced"])
+        self.assertTrue(pos["fully_priced"])
+        self.assertIn("not an independently executed exit", pos["valuation_note"])
+        self.assertIn("live rate", pos["label"])
 
 
 if __name__ == "__main__":

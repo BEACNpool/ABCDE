@@ -39,6 +39,20 @@ The traps this script exists to not fall into. Each one was hit for real.
 7. Fees are attributed only where the agent's own payment credential funded
    the transaction. A DEX batcher pays the fee on the fill transaction; that
    fee is the batcher's, not the agent's.
+8. Moving USDM into a Liqwid supply is not a loss. It swaps wallet USDM for a
+   qUSDM receipt, and that receipt is priced back into the score via Liqwid's
+   own live exchangeRate + oracle price (fetch_liqwid_rates). This was
+   discovered 2026-09-02: grokbot supplied its whole starting USDM sleeve to
+   Liqwid and the published score dropped ~402 ADA-eq to zero because the
+   receipt was (by design, at the time) never marked. If the Liqwid feed is
+   unreachable, the receipt stays unpriced exactly as before this fix -- never
+   fabricate a rate, and never let a feed outage look like a real zero.
+   ⚠️ 2026-09-03: this exact fix was applied uncommitted on 2026-09-02, then
+   silently wiped by a routine `reset: moving to origin/main` on this working
+   tree, and the bug ran live on the public page for ~8 hours before being
+   caught and reapplied+committed. NEVER leave a fix to this file (or
+   match_positions.py) as an uncommitted working-tree edit -- commit and push
+   to origin/main in the same sitting, or the next reset erases it silently.
 """
 from __future__ import annotations
 
@@ -79,6 +93,14 @@ COINGECKO = ("https://api.coingecko.com/api/v3/simple/price"
 # rate implied by either agent's own trades.
 COINGECKO_CHART = ("https://api.coingecko.com/api/v3/coins/cardano/market_chart"
                    "?vs_currency=usd&days=1")
+LIQWID_GRAPHQL = "https://v2.api.liqwid.finance/graphql"
+LIQWID_RATES_QUERY = json.dumps({"query": """
+query Markets {
+  liqwid { data { markets(input: {perPage: 100}) { results {
+    displayName exchangeRate asset { price }
+  } } } }
+}
+"""})
 
 # Moneta USDM. Trap 3: the name is ambiguous, the policy is not.
 USDM_POLICY = "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad"
@@ -194,6 +216,37 @@ def get_price() -> dict:
     }
 
 
+def fetch_liqwid_rates(timeout: int = 12) -> dict[str, dict[str, float]] | None:
+    """Live {market displayName: {exchange_rate, price_usd}} from Liqwid's own
+    GraphQL API, or None if the feed is unreachable/empty.
+
+    Trap 5 applies here too: never fabricate a rate. An unreachable feed means
+    every qToken holding stays unpriced (as it always was before this
+    adapter) -- callers must say so, never silently show it as a real zero.
+    """
+    out = _curl(["-X", "POST", LIQWID_GRAPHQL,
+                "-H", "Content-Type: application/json",
+                "-d", LIQWID_RATES_QUERY], timeout=timeout)
+    try:
+        payload = json.loads(out)
+        if payload.get("errors"):
+            raise RuntimeError(str(payload["errors"])[:200])
+        results = payload["data"]["liqwid"]["data"]["markets"]["results"]
+        rates: dict[str, dict[str, float]] = {}
+        for m in results:
+            name = m.get("displayName")
+            rate = m.get("exchangeRate")
+            price = (m.get("asset") or {}).get("price")
+            if not name or rate is None or price is None:
+                continue
+            rates[name] = {"exchange_rate": float(rate), "price_usd": float(price)}
+        if not rates:
+            raise ValueError("empty market list")
+        return rates
+    except Exception:  # noqa: BLE001 - any failure means "no rates", never a guess
+        return None
+
+
 def mark_book(ada_total: float, usdm_total: float, usd_per_ada: float) -> dict:
     """Mark one book in both score denominations from one independent price.
 
@@ -258,7 +311,8 @@ def order_scripts(agent: dict, txs: list[dict]) -> dict[str, str]:
 
 
 def read_book(agent: dict, scripts: dict[str, str], by_script: dict[str, str],
-              by_policy: dict[str, str]) -> dict:
+              by_policy: dict[str, str],
+              liqwid_rates: dict[str, dict[str, float]] | None = None) -> dict:
     """Current holdings, from chain, across every address form the agent uses."""
     utxos = koios("credential_utxos",
                   {"_payment_credentials": [agent["payment_cred"]], "_extended": True})
@@ -291,15 +345,23 @@ def read_book(agent: dict, scripts: dict[str, str], by_script: dict[str, str],
             positions.append(pos)
 
     # Receipt tokens (Liqwid qTokens today, more later) live on the agent's
-    # own payment credential. They are NOT marked into the ADA/USDM score
-    # here — that needs a score adapter — but they are an open position and
-    # they earn a logo.
+    # own payment credential. Liqwid receipts ARE marked into the score below,
+    # using Liqwid's own live exchangeRate + oracle price (never a guess) --
+    # see position_from_receipts/price_receipt_holdings. Any other receipt
+    # venue without a rate source stays unpriced, same as before this adapter.
     existing = {p["venue"]: p for p in positions}
+    receipt_ada = receipt_usdm_eq = 0.0
+    receipts_fully_priced = True
     for vid in sorted(set(by_policy.values())):
         found = receipts_in_utxos(utxos, by_policy, vid)
-        pos = position_from_receipts(vid, list(found.items()))
+        rates = liqwid_rates if vid == "liqwid_v2" else None
+        pos = position_from_receipts(vid, list(found.items()), rates=rates)
         if not pos:
             continue
+        receipt_ada += pos["ada"]
+        receipt_usdm_eq += pos["usdm"]
+        if pos.get("priced") and not pos.get("fully_priced", True):
+            receipts_fully_priced = False
         if vid in existing:
             existing[vid]["label"] = existing[vid]["label"] + "; " + pos["label"]
             existing[vid]["kind"] = "mixed"
@@ -313,6 +375,9 @@ def read_book(agent: dict, scripts: dict[str, str], by_script: dict[str, str],
         "usdm": usdm,
         "in_flight_ada": flight_ada,
         "in_flight_usdm": flight_usdm,
+        "receipt_ada": receipt_ada,
+        "receipt_usdm_eq": receipt_usdm_eq,
+        "receipts_fully_priced": receipts_fully_priced,
         "open_orders": open_orders,
         "positions": positions,
         # Trap 4: read per agent, so it is counted for both or neither by
@@ -745,11 +810,14 @@ def main() -> int:
     overlay = load_overlay()
     catalog = merge_catalog(overlay)
     by_script, by_policy = indexes(catalog)
+    liqwid_rates = fetch_liqwid_rates()
+    say("    Liqwid rates " + ("ok" if liqwid_rates else "UNAVAILABLE (receipts stay unpriced)"))
     order_map, books = {}, {}
     for agent in AGENTS:
         scripts = order_scripts(agent, list(tx_by_hash.values()))
         order_map[agent["id"]] = sorted(scripts)
-        books[agent["id"]] = read_book(agent, scripts, by_script, by_policy)
+        books[agent["id"]] = read_book(agent, scripts, by_script, by_policy,
+                                       liqwid_rates=liqwid_rates)
         books[agent["id"]]["positions"] = merge_positions(
             books[agent["id"]]["positions"],
             overlay_positions_for(overlay, agent["id"]),
@@ -776,8 +844,9 @@ def main() -> int:
     for agent in AGENTS:
         b = books[agent["id"]]
         c = costs[agent["id"]]
-        ada_total = b["ada"] + b["in_flight_ada"] + b["deposit"] + b["rewards"]
-        usdm_total = b["usdm"] + b["in_flight_usdm"]
+        ada_total = (b["ada"] + b["in_flight_ada"] + b["deposit"] + b["rewards"]
+                    + b["receipt_ada"])
+        usdm_total = b["usdm"] + b["in_flight_usdm"] + b["receipt_usdm_eq"]
         # A USDM allocation is one current economic position regardless of how
         # many entry fills created it. Under this ADA-denominated scoreboard it
         # is long USDM and underweight ADA. It is spot: no asset was borrowed,
@@ -799,6 +868,9 @@ def main() -> int:
             "rewards_lifetime": round(b["rewards_lifetime"], 6),
             "in_flight_ada": round(b["in_flight_ada"], 6),
             "in_flight_usdm": round(b["in_flight_usdm"], 6),
+            "receipt_ada": round(b["receipt_ada"], 6),
+            "receipt_usdm_eq": round(b["receipt_usdm_eq"], 6),
+            "receipts_fully_priced": b["receipts_fully_priced"],
             "open_orders": b["open_orders"],
             "open_positions": b["positions"],
             "market_positions": activity["market_positions"],
