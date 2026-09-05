@@ -757,6 +757,16 @@ body.motion-paused .corner-standing{animation:none!important}
 .fight-toast strong{font:800 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#83dbea}.fight-toast p{font-size:13px;line-height:1.5;color:#f0f6fa;margin:5px 0 0}.fight-toast button{border:1px solid var(--line2);border-radius:50%;background:#172a3b;color:var(--text);font-size:20px;width:40px;height:40px;flex:0 0 40px;cursor:pointer}.fight-toast button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 @media(max-width:700px){.fight-toast{bottom:10px;padding:12px;gap:10px}.fight-toast p{font-size:12px}.fight-toast button{width:36px;height:36px;flex-basis:36px}}
 
+.sharetools #sharegif,.fight-controls #fight-share{border-color:#278fa7;background:#102f40;color:#c4f6ff}
+.gif-dialog{width:min(860px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:auto;padding:24px;border:1px solid #36566d;border-radius:20px;background:#081320;color:#e8f1fa;box-shadow:0 24px 100px #0009;overflow:auto}
+.gif-dialog::backdrop{background:#02060bdb;backdrop-filter:blur(5px)}
+.gif-head{display:flex;justify-content:space-between;gap:16px;align-items:start}.gif-head h2{font-size:26px;letter-spacing:-.7px;margin:0 0 8px}.gif-head p{font-size:14px;color:#a8bacd;margin:0 0 20px;max-width:580px;line-height:1.55}
+.gif-dialog button,.gif-dialog select{font:inherit;color:inherit;border:1px solid #345168;background:#102336;border-radius:9px;padding:11px 15px;cursor:pointer;min-height:44px}.gif-dialog button:hover:not(:disabled){background:#18384a;border-color:#5aa4c4}.gif-dialog button:disabled{opacity:.45;cursor:default}.gif-dialog :focus-visible{outline:2px solid #6ee9ff;outline-offset:3px}
+.gif-dialog #gif-close{font-size:22px;padding:4px 12px;flex:none}.gif-dialog label{display:block;font-size:12px;font-weight:800;color:#b9cfe1;margin-bottom:8px}.gif-dialog select{display:block;width:100%;min-width:0;font-size:13px;padding-right:24px}.gif-dialog option{background:#0b1927}
+.gif-captured,.gif-preview-note{font-size:12px;color:#a8bacd;line-height:1.5;margin:10px 0 14px}.gif-preview{width:min(100%,57.33dvh,573px);margin-inline:auto;height:auto;aspect-ratio:4/3;object-fit:contain;display:block;background:#060d17;border:1px solid #294559;border-radius:12px}.gif-preview[hidden]{display:none}.gif-preview-row{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-top:12px}.gif-preview-row p{margin:0;max-width:460px}.gif-preview-row button{font-size:12px;flex:none}
+.gif-status{font-size:14px;line-height:1.6;color:#dcf4ff;min-height:24px;margin:18px 0 12px}.gif-dialog progress{display:block;width:100%;height:8px;accent-color:#35c9e5;margin:12px 0}.gif-dialog progress[hidden]{display:none}.gif-actions{display:flex;gap:10px;flex-wrap:wrap}.gif-actions #gif-share{background:#1b7188;border-color:#5ccbe0;color:#fff;font-weight:800}.gif-secondary{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.gif-secondary button{font-size:12px;padding:7px 12px;min-height:36px;background:transparent}
+@media(max-width:540px){.gif-dialog{padding:16px;border-radius:14px}.gif-head h2{font-size:23px}.gif-head p{font-size:13px}.gif-actions button{flex:1}.gif-preview-row{align-items:start}.gif-preview-row p{font-size:11px}.gif-dialog select{font-size:12px}.gif-captured{font-size:11px}}
+
 </style>
 </head>
 <body>
@@ -805,6 +815,7 @@ body.motion-paused .corner-standing{animation:none!important}
       </div>
     </div>
     <div class="sharetools">
+      <button type="button" id="sharegif" disabled>Share latest move GIF</button>
       <button type="button" id="downloadcard" disabled>Save scorecard PNG</button>
       <button type="button" id="sharematch" disabled>Share the match</button>
       <button type="button" id="copylink" disabled>Copy link</button>
@@ -983,6 +994,18 @@ python3 scripts/match_snapshot.py --out match.json</pre>
   </div>
 </footer>
 
+<dialog id="gif-dialog" class="gif-dialog" aria-labelledby="gif-title" aria-describedby="gif-intro">
+  <div class="gif-head"><div><h2 id="gif-title">Share the last exchange.</h2><p id="gif-intro">A small animated scorecard, ready for your chat or feed. The scores stay fixed to this snapshot.</p></div><button type="button" id="gif-close" aria-label="Close GIF sharing">×</button></div>
+  <label for="gif-move">Move to replay</label><select id="gif-move"></select>
+  <p class="gif-captured" id="gif-captured"></p><p id="gif-empty" hidden>No recorded move is available yet.</p>
+  <img id="gif-preview" class="gif-preview" alt="Animated match scorecard preview" hidden>
+  <div class="gif-preview-row"><p id="gif-preview-note" class="gif-preview-note"></p><button type="button" id="gif-preview-toggle" aria-pressed="false" hidden>Play preview</button></div>
+  <p class="gif-status" id="gif-status" role="status" aria-live="polite"></p>
+  <progress id="gif-progress" max="100" value="0" aria-label="GIF creation progress" hidden></progress>
+  <div class="gif-actions"><button type="button" id="gif-share" disabled>Share GIF</button><button type="button" id="gif-download" disabled>Download GIF</button></div>
+  <div class="gif-secondary"><button type="button" id="gif-create">Create GIF</button><button type="button" id="gif-cancel">Cancel creation</button></div>
+</dialog>
+<script src="match-share/fight-export.js"></script>
 <script>
 const $ = (s, r = document) => r.querySelector(s);
 const fmt = (n, d = 4) => (n === null || n === undefined || Number.isNaN(n))
@@ -1637,7 +1660,7 @@ function fightBoard() {
   const events=fightEvents();
   return `<section class="fight-ringside" aria-label="Recent moves and fight replay">
     <div class="fight-ringside-head"><div><span class="fight-kicker">Ringside</span><h3>The last exchange.</h3></div>
-      <div class="fight-controls"><button type="button" id="fight-exchange" ${events.length?'':'disabled'}>↻ Replay exchange</button><button type="button" id="fight-practice">Practice punch</button><button type="button" id="fight-stop" hidden>Stop replay</button></div></div>
+      <div class="fight-controls"><button type="button" id="fight-exchange" ${events.length?'':'disabled'}>↻ Replay exchange</button><button type="button" id="fight-practice">Practice punch</button><button type="button" id="fight-share">Share GIF</button><button type="button" id="fight-stop" hidden>Stop replay</button></div></div>
     <p class="fight-caption">The latest two moves in each corner. Replay a trade to see how it landed.</p>
     <div class="fight-now" id="fight-now" role="status" aria-live="polite"><span class="fight-mode">Replay desk</span><span class="fight-description">Choose a move below. Current scores stay live.</span></div>
     <div class="fight-move-columns">${['beacn','grokbot'].map(id=>`<div class="fight-move-column agent-${id}"><h4><i></i>${esc(fighterName(fightAgent(id)))}</h4>${events.filter(m=>m.agent===id).slice(-2).reverse().map(fightCard).join('') || '<p class="fight-empty">No recorded trading moves yet.</p>'}</div>`).join('')}</div>
@@ -1802,6 +1825,7 @@ function wireFightBoard() {
     const replay=e.target.closest('button[data-replay]');
     if(replay){playFight(replay.dataset.replay);return;}
     if(e.target.closest('#fight-practice'))playFight(null,{demo:true});
+    if(e.target.closest('#fight-share'))openGif();
     if(e.target.closest('#fight-stop'))cancelFight('Stopped. Current scores are unchanged.');
     if(e.target.closest('#fight-exchange')){
       const events=fightEvents();const selected=['beacn','grokbot'].flatMap(id=>events.filter(m=>m.agent===id).slice(-2)).sort((a,b)=>a.time-b.time);
@@ -2314,6 +2338,156 @@ async function downloadShareCard() {
 }
 window.buildMatchShareCard = buildShareCanvas;
 
+/* A GIF owns one captured snapshot; five-minute page refreshes cannot change it. */
+let gifJob=0,gifWorker=null,gifFile=null,gifURL=null,gifPoster='',gifModel=null,gifEvents=[],gifData=null,gifPreviewPlaying=false,gifBusy=false,gifLastFocus=null,gifAbort=null,gifSnapshotState=null,gifCapturedAt=null;
+const gifDialog=()=>$('#gif-dialog');
+function gifStatus(message){$('#gif-status').textContent=message;}
+function resetGifJob(){
+  gifJob++;gifAbort?.();gifAbort=null;gifWorker?.terminate();gifWorker=null;gifBusy=false;gifFile=null;
+  if(gifURL)URL.revokeObjectURL(gifURL);gifURL=null;gifPoster='';gifPreviewPlaying=false;
+  $('#gif-preview').removeAttribute('src');$('#gif-preview').hidden=true;
+  $('#gif-preview-toggle').hidden=true;$('#gif-download').disabled=true;$('#gif-share').disabled=true;
+  $('#gif-create').disabled=false;$('#gif-cancel').disabled=true;$('#gif-progress').hidden=true;
+}
+function closeGif(){
+  resetGifJob();gifData=null;gifModel=null;gifEvents=[];
+  if(gifDialog().open)gifDialog().close();
+  const trigger=gifLastFocus?.isConnected?gifLastFocus:document.getElementById(gifLastFocus?.id)||$('#sharegif');trigger?.focus();
+}
+function setGifPreview(playing){
+  if(!gifURL)return;
+  gifPreviewPlaying=!!playing;
+  $('#gif-preview').src=gifPreviewPlaying?gifURL:gifPoster;
+  $('#gif-preview-toggle').textContent=gifPreviewPlaying?'Pause preview':'Play preview';
+  $('#gif-preview-toggle').setAttribute('aria-pressed',String(gifPreviewPlaying));
+  $('#gif-preview-note').textContent=gifPreviewPlaying?'Preview playing · the downloaded GIF loops.':'Preview paused · the downloaded GIF is still animated.';
+}
+function openGif(){
+  if(!DATA)return;
+  gifLastFocus=document.activeElement;resetGifJob();cancelFight();
+  gifData=typeof structuredClone==='function'?structuredClone(DATA):JSON.parse(JSON.stringify(DATA));
+  gifCapturedAt=Date.now()/1000;
+  const states=gifData.agents.map(a=>cornerState(a.id));gifSnapshotState=states.includes('unavailable')?'unavailable':states.includes('stale')?'stale':null;
+  const events=fightEvents();gifEvents=['beacn','grokbot'].flatMap(id=>events.filter(m=>m.agent===id).slice(-2)).sort((a,b)=>b.time-a.time || fightId(a).localeCompare(fightId(b)));
+  const select=$('#gif-move');select.replaceChildren();
+  for(const m of gifEvents){const option=document.createElement('option');option.value=fightId(m);option.textContent=`${fighterName(fightAgent(m.agent))} · ${fightTitle(m)} · ${fightTime(m)}`;select.append(option);}
+  $('#gif-captured').textContent=`Scoreboard captured ${whenUTC(gifData.generated_at_unix)}. The move keeps its own transaction date.`;
+  $('#gif-empty').hidden=gifEvents.length>0;select.disabled=!gifEvents.length;$('#gif-create').disabled=!gifEvents.length;
+  $('#gif-preview-note').textContent='The GIF includes both scores, the move and its result.';
+  gifStatus(gifEvents.length?'Preparing your latest move…':'No recorded move is available to export yet.');
+  if(!gifDialog().open)gifDialog().showModal();
+  if(gifEvents.length)createMatchGif();
+}
+async function createMatchGif(){
+  if(!gifData)return;
+  const selected=gifEvents.find(m=>fightId(m)===$('#gif-move').value);
+  if(!selected)return;
+  resetGifJob();const token=gifJob;gifBusy=true;$('#gif-create').disabled=true;$('#gif-cancel').disabled=false;
+  $('#gif-progress').hidden=false;$('#gif-progress').value=0;gifStatus('Drawing the move and scoreboard…');
+  let timer=null;
+  try{
+    if(!window.MatchFightExport || !window.Worker)throw new Error('This browser cannot create the GIF. The scorecard PNG is still available.');
+    const event=gifData.moves.find(m=>m && typeof m==='object' && fightId(m)===fightId(selected));
+    const result=fightResult(event),kind=fightAction(event);
+    // Resolve copy now, before any asynchronous work or page refresh.
+    const names=Object.fromEntries(gifData.agents.map(a=>[a.id,fighterName(a)]));
+    const outcome=fightOutcomeCaption(event,kind,result);
+    const model={data:gifData,event,meta:{kind,result,title:fightTitle(event),outcomeCaption:outcome,
+      capturedAt:gifCapturedAt,names},snapshotState:gifSnapshotState,logo:null};
+    gifModel=model;
+    const logo=new Image();logo.src=new URL('brand/beacn-corner-20260905.png',location.href).href;
+    try{await logo.decode();model.logo=logo;}catch{/* The renderer has a labeled fallback. */}
+    if(token!==gifJob)return;
+    const render=MatchFightExport.createRenderer(model);
+    render.render(0);gifPoster=render.canvas.toDataURL('image/png');
+    const worker=new Worker(new URL('match-share/gif-encoder-worker.js',location.href),{type:'module'});gifWorker=worker;
+    const jobId=String(token),count=MatchFightExport.frameCount;
+    const blob=await new Promise((resolve,reject)=>{
+      gifAbort=()=>reject(new DOMException('GIF creation cancelled.','AbortError'));
+      let next=0,waitingIndex=-1,finishing=false;
+      const sendFrame=()=>{
+        if(token!==gifJob)return;
+        try{
+        if(next===count){if(!finishing){finishing=true;worker.postMessage({type:'finish',jobId});}return;}
+        const index=next++;waitingIndex=index;
+        render.render(index/(count-1));
+        const rgba=render.canvas.getContext('2d').getImageData(0,0,render.canvas.width,render.canvas.height).data.buffer;
+        worker.postMessage({type:'frame',jobId,index,rgba,delay:[80,90,80][index%3]},[rgba]);
+        }catch(error){reject(error);}
+      };
+      timer=setTimeout(()=>reject(new Error('GIF creation took too long. Please try again.')),60000);
+      worker.onerror=()=>reject(new Error('The GIF encoder could not load. Please try again.'));
+      worker.onmessage=({data:m})=>{
+        if(token!==gifJob || m.jobId!==jobId)return;
+        if(m.type==='error'){reject(new Error(m.message||'GIF creation failed.'));return;}
+        if(m.type==='ready')sendFrame();
+        if(m.type==='ack' && m.index===waitingIndex){
+          $('#gif-progress').value=(m.received/count)*35;gifStatus(`Drawing frames · ${m.received} of ${count}`);
+          setTimeout(sendFrame,0);
+        }
+        if(m.type==='progress'){
+          $('#gif-progress').value=35+Math.min(1,Math.max(0,m.progress))*65;
+          gifStatus(m.phase==='palette'?'Choosing colors for a small GIF…':`Encoding GIF · ${Math.round(m.progress*100)}%`);
+        }
+        if(m.type==='done'){
+          if(!(m.buffer instanceof ArrayBuffer) || m.buffer.byteLength===0 || m.buffer.byteLength>5*1024*1024){reject(new Error('This GIF is too large to share comfortably. Try another recent move.'));return;}
+          resolve(new Blob([m.buffer],{type:'image/gif'}));
+        }
+      };
+      worker.postMessage({type:'init',jobId,width:MatchFightExport.width,height:MatchFightExport.height,frameCount:count,repeat:0});
+    });
+    if(token!==gifJob)return;
+    const filename=`BEACNbot-match-${new Date(gifData.generated_at).toISOString().slice(0,10)}-${event.agent}-${event.tx_hash.slice(0,8)}.gif`;
+    gifFile=new File([blob],filename,{type:'image/gif'});gifURL=URL.createObjectURL(gifFile);
+    $('#gif-preview').hidden=false;$('#gif-preview-toggle').hidden=false;
+    $('#gif-preview').alt=`Animated match scorecard: ${names[event.agent]}, ${model.meta.title}. ${model.meta.outcomeCaption}`;
+    setGifPreview(fightMotionAllowed());
+    $('#gif-download').disabled=false;$('#gif-share').disabled=false;
+    $('#gif-create').textContent='Create again';
+    gifStatus(`Ready · 800 × 600 · 3 seconds · ${gifFile.size<1024*1024?Math.ceil(gifFile.size/1024)+' KB':(gifFile.size/1024/1024).toFixed(2)+' MB'}. Download it or choose where to share.`);
+    render.canvas.width=render.canvas.height=1;
+  }catch(error){
+    if(token===gifJob)gifStatus(error?.message||'The GIF could not be created. Please try again.');
+  }finally{
+    clearTimeout(timer);
+    if(token===gifJob){gifAbort=null;gifWorker?.terminate();gifWorker=null;gifBusy=false;$('#gif-progress').hidden=true;$('#gif-create').disabled=false;$('#gif-cancel').disabled=true;}
+  }
+}
+function downloadMatchGif(){
+  if(!gifFile||!gifURL)return;
+  const a=document.createElement('a');a.href=gifURL;a.download=gifFile.name;document.body.append(a);a.click();a.remove();
+  gifStatus('GIF downloaded. Attach it to your chat or post.');
+}
+async function shareMatchGif(){
+  if(!gifFile)return;
+  const file=gifFile;
+  let supported=false;
+  try{supported=!!navigator.share && !!navigator.canShare && navigator.canShare({files:[file]});}catch{}
+  if(!supported){downloadMatchGif();return;}
+  try{
+    // The file is already prepared, so this call keeps the click's user activation.
+    await navigator.share({files:[file],title:'BEACNbot vs grokbot',text:`${gifModel.meta.outcomeCaption}\nScoreboard snapshot ${whenUTC(gifData.generated_at_unix)}.\nhttps://beacnpool.github.io/ABCDE/match.html`});
+    if(gifFile===file)gifStatus('GIF handed to your device’s share sheet.');
+  }catch(error){
+    if(gifFile!==file)return;
+    if(error?.name==='AbortError')gifStatus('Sharing cancelled. Your GIF is still ready.');
+    else{downloadMatchGif();gifStatus('File sharing is unavailable here. GIF downloaded; attach it to your chat or post.');}
+  }
+}
+function wireGif(){
+  $('#sharegif').addEventListener('click',openGif);
+  $('#gif-close').addEventListener('click',closeGif);
+  gifDialog().addEventListener('cancel',e=>{e.preventDefault();closeGif();});
+  $('#gif-create').addEventListener('click',createMatchGif);
+  $('#gif-move').addEventListener('change',createMatchGif);
+  $('#gif-download').addEventListener('click',downloadMatchGif);
+  $('#gif-share').addEventListener('click',shareMatchGif);
+  $('#gif-preview-toggle').addEventListener('click',()=>setGifPreview(!gifPreviewPlaying));
+  $('#gif-cancel').addEventListener('click',()=>{resetGifJob();gifStatus('GIF creation cancelled. Choose Create GIF to try again.');$('#gif-create').textContent='Create GIF';});
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',e=>{if(e.matches)setGifPreview(false);});
+}
+window.matchGif={open:openGif,close:closeGif,getBlob:()=>gifFile,snapshot:()=>({busy:gifBusy,job:gifJob,eventId:gifModel?fightId(gifModel.event):null,capturedAt:gifData?.generated_at_unix,fileName:gifFile?.name,fileSize:gifFile?.size,previewPlaying:gifPreviewPlaying,workerActive:!!gifWorker,open:gifDialog().open})};
+
 let WIRED = false;
 function renderAll() {
   renderFresh(); renderCard(); renderStartNote(); renderMatchup(); renderChart(); renderBooks();
@@ -2325,14 +2499,16 @@ function boot(d, hist) {
   DATA = d;
   HIST = hist;
   renderAll();
-  for (const id of ["downloadcard", "sharematch", "copylink", "cornermotion"]) $("#" + id).disabled = false;
+  for (const id of ["sharegif", "downloadcard", "sharematch", "copylink", "cornermotion"]) $("#" + id).disabled = false;
   if (WIRED) return;
   WIRED = true;
   wireFightBoard();
+  wireGif();
   renderCornerMotion();
   $("#cornermotion").addEventListener("click", () => {
     cancelFight();
     cornerMotionPaused = !cornerMotionPaused;
+    if(cornerMotionPaused)setGifPreview(false);
     try { localStorage.setItem("match-corner-motion", cornerMotionPaused ? "paused" : "playing"); } catch {}
     renderCornerMotion();
   });
