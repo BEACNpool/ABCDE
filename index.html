@@ -6,21 +6,25 @@
 <title>BEACNpool — A lighthouse for the ledger</title>
 <meta name="description" content="BEACN — an independent Cardano stake pool at the absolute protocol minimums: 0% margin, 170 ₳ fixed. Home of the BEACN DRep, Ledger Scrolls, and ABCDE.">
 <link rel="canonical" href="https://beacnpool.org/">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-20260904.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon-20260904.png">
 <meta name="theme-color" content="#04070f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BEACNpool">
 <meta property="og:title" content="BEACNpool — A lighthouse for the ledger">
 <meta property="og:description" content="Independent Cardano stake pool. 0% margin · 170 ₳ fixed. Home of the BEACN DRep, Ledger Scrolls, and ABCDE.">
 <meta property="og:url" content="https://beacnpool.org/">
-<meta property="og:image" content="https://beacnpool.org/pfp.png">
-<meta property="og:image:alt" content="BEACN beacon badge">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://beacnpool.org/og-20260904.png">
+<meta property="og:image:alt" content="BEACN beacon badge — a steel lighthouse with amber and cyan light">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image:alt" content="BEACN beacon badge — a steel lighthouse with amber and cyan light">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@BEACNpool">
 <meta name="twitter:title" content="BEACNpool — A lighthouse for the ledger">
 <meta name="twitter:description" content="Independent Cardano stake pool. 0% margin · 170 ₳ fixed. BEACN DRep · Ledger Scrolls · ABCDE.">
-<meta name="twitter:image" content="https://beacnpool.org/pfp.png">
+<meta name="twitter:image" content="https://beacnpool.org/og-20260904.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,8 +38,8 @@
 /* ════════════════════════════════════════════════════════════════════
    BEACNpool — NIGHT LEDGER, pool edition. The same night the Scrolls
    live in: deep-navy field, blueprint grid, serif for the archive,
-   sans for the interface, mono for the chain. The brand marks on this
-   page are the pool's own on-chain NFTs. Zero dependencies, one file.
+   sans for the interface, mono for the chain. The current beacon sits beside
+   the pool's preserved on-chain originals. Local assets, one page.
    ════════════════════════════════════════════════════════════════════ */
 :root{
   color-scheme:dark;
@@ -123,7 +127,7 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
 .header-row{display:flex;align-items:center;gap:16px;min-height:60px}
 .brand{display:inline-flex;align-items:center;gap:10px;margin-right:auto;color:var(--ink)}
 .brand:hover{color:var(--ink)}
-.brand svg{display:block;flex:none}
+.brand img{display:block;flex:none}
 .brand-name{font:700 17px/1 var(--sans);letter-spacing:.14em}
 .brand-name span{color:var(--cyan-ink)}
 .nav-links{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -252,7 +256,7 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
 .beacon-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;margin:0}
 #beacon .sec-head{text-align:center}
 #beacon .section-sub{margin-left:auto;margin-right:auto}
-.beacon-cta{display:flex;justify-content:center;margin-top:22px}
+.beacon-cta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:22px}
 .beacon-stage{
   position:relative;width:min(100%,620px);aspect-ratio:1/1;border:1px solid var(--line-2);border-radius:24px;
   background:radial-gradient(120% 100% at 50% 30%,#0a1222,#05070c);box-shadow:var(--sh-lg);overflow:hidden;
@@ -391,12 +395,7 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
 <header class="site-header">
   <div class="container header-row">
     <a class="brand" href="#top" aria-label="BEACNpool — home">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <path d="M12 1.6l9 5.2v10.4l-9 5.2-9-5.2V6.8z" fill="none" stroke="#8ba3cf" stroke-width="1.5"/>
-        <circle cx="12" cy="10.4" r="3.1" fill="#f6b45a"/>
-        <path d="M9.4 9.1 3.6 6.4M14.6 9.1l5.8-2.7" stroke="#35d5ea" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
-        <path d="M9.6 15.2h4.8v3.4H9.6z" fill="none" stroke="#8ba3cf" stroke-width="1.2"/>
-      </svg>
+      <img src="/pfp-20260904.png" width="40" height="40" alt="" style="border-radius:8px;object-fit:contain">
       <span class="brand-name">BEACN<span>POOL</span></span>
     </a>
     <nav class="nav-links" aria-label="Main">
@@ -447,15 +446,15 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
 
       <div class="sigil-side">
         <figure class="sigil-frame">
-          <img src="/sigil.svg" alt="BEACN_SIGIL — the pool's animated on-chain identity mark: a lighthouse in a steel hexagon, its lamp sweeping amber and cyan, over an ethernet port" width="1024" height="1024" loading="eager">
+          <img src="/pfp-20260904.png" alt="The BEACN beacon — a lighthouse in a steel hexagon, shining amber and cyan above an ethernet port" width="1024" height="1024" loading="eager">
           <figcaption class="sigil-plaque">
             <div class="t">
-              <span class="name">BEACN_SIGIL</span>
-              <span class="live">minted on-chain</span>
+              <span class="name">THE BEACN BEACON</span>
+              <span class="live">2026 edition</span>
             </div>
-            <p>The mark itself is an NFT — an animated SVG that lives inside Cardano transaction
-               metadata, forever. The chain holds the canonical copy.
-               <a href="https://pool.pm/asset1t0hms536krzq87cjken2d820ak98kamtmlm54d" target="_blank" rel="noopener">Verify it ↗</a></p>
+            <p>The current BEACN identity, rendered in steel and light. Its original animated
+               sigil remains preserved in Cardano transaction metadata.
+               <a href="https://pool.pm/asset1t0hms536krzq87cjken2d820ak98kamtmlm54d" target="_blank" rel="noopener">View the original sigil ↗</a></p>
           </figcaption>
         </figure>
       </div>
@@ -466,7 +465,7 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
         <li><span class="v">0% margin</span><span>The protocol's absolute floor. It can't go lower, and it won't go higher.</span></li>
         <li><span class="v">170 ₳ fixed</span><span>The minimum fixed fee Cardano allows an operator to set.</span></li>
         <li><span class="v">Bare metal</span><span>One operator, own hardware, Chicago. No cloud, no committee.</span></li>
-        <li><span class="v">Verified by you</span><span>The pool ID, the votes, even the logo — everything here checks out on-chain.</span></li>
+        <li><span class="v">Verified by you</span><span>The pool ID, the votes and the original sigil — each has an on-chain record.</span></li>
       </ul>
     </div>
   </section>
@@ -639,13 +638,15 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
 
       <figure class="beacon-wrap">
         <div class="beacon-stage" id="beacon-stage">
-          <img src="/beacon-poster.webp" alt="The BEACN badge in three dimensions — a lighthouse and an ethernet port set in a steel hexagon" id="beacon-fallback" width="760" height="760">
+          <img src="/beacon-poster-20260904.webp" alt="The BEACN badge in three dimensions — a lighthouse and an ethernet port set in a steel hexagon" id="beacon-fallback" width="760" height="760">
         </div>
-        <figcaption class="beacon-hint" id="beacon-hint" aria-live="polite">a 20 MB model — it loads only when you ask for it</figcaption>
+        <figcaption class="beacon-hint" id="beacon-hint" aria-live="polite">7.5 MB interactive model — drag to turn once loaded</figcaption>
       </figure>
 
       <div class="beacon-cta">
         <a class="btn primary" href="#stake">Stake with BEACN</a>
+        <a class="btn" href="/pfp-20260904.png" download>Download the PFP</a>
+        <a class="btn" href="/beacn-20260904.glb" download>Download the 3D badge</a>
       </div>
     </div>
   </section>
@@ -656,16 +657,11 @@ button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
   <div class="foot-inner">
     <div class="foot-brand">
       <span class="foot-mark">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path d="M12 1.6l9 5.2v10.4l-9 5.2-9-5.2V6.8z" fill="none" stroke="#8ba3cf" stroke-width="1.5"/>
-          <circle cx="12" cy="10.4" r="3.1" fill="#f6b45a"/>
-          <path d="M9.4 9.1 3.6 6.4M14.6 9.1l5.8-2.7" stroke="#35d5ea" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
-          <path d="M9.6 15.2h4.8v3.4H9.6z" fill="none" stroke="#8ba3cf" stroke-width="1.2"/>
-        </svg>
+        <img src="/pfp-20260904.png" width="32" height="32" alt="" style="display:block;border-radius:8px;object-fit:contain">
         <span class="foot-name">BEACN<span>POOL</span></span>
       </span>
       <p class="foot-tag">A lighthouse for the ledger. Independent Cardano stake pool — 0% margin,
-         170 ₳ fixed, bare metal in Chicago. Everything it publishes can be verified on-chain.</p>
+         170 ₳ fixed, bare metal in Chicago. Explore the pool, the governance record and the work built here.</p>
     </div>
     <div class="foot-cols">
       <div class="foot-col">
@@ -710,13 +706,13 @@ document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('cl
   setTimeout(() => { btn.textContent = old; btn.classList.remove('ok'); }, 1600);
 }));
 
-/* ---------- the beacon: a 20 MB GLB + a 900 KB viewer.
+/* ---------- the beacon: a 7.5 MB GLB + a 900 KB viewer.
    Gates before a single byte of that moves:
      1. WebGL must exist, or the poster simply stays.
      2. On a phone, a narrow screen, or a connection that reports metered/slow, we ASK first —
-        nobody should pay 20 MB of cell data for a lighthouse they didn't request.
+        nobody should pay 7.5 MB of cell data for a lighthouse they didn't request.
      3. Otherwise it loads when (and only when) you actually scroll down here.
-   The poster is a still of the real model, so the load is a fade-in, not a swap. ---------- */
+   The supplied front portrait stays visible while the interactive model loads. ---------- */
 function webglOK(){
   try {
     const c = document.createElement('canvas');
@@ -746,24 +742,25 @@ function fallBackTo(msg){          /* the poster is HIDDEN, never destroyed — 
 function loadBeacon(){
   hint.textContent = 'waking the beacon…';
   let settled = false;
-  const watchdog = setTimeout(() => {   /* a stalled 20 MB fetch must not leave the caption lying */
+  const watchdog = setTimeout(() => {   /* a stalled 7.5 MB fetch must not leave the caption lying */
     if (!settled) hint.textContent = 'the beacon is taking its time — the still will do for now';
   }, 30000);
 
+  window.ModelViewerElement = {dracoDecoderLocation: '/draco/'};
   const s = document.createElement('script');
   s.type = 'module';
   s.src = '/model-viewer.min.js';
   s.onerror = () => { settled = true; clearTimeout(watchdog); fallBackTo('the 3D viewer failed to load — showing a still of the mark'); };
   s.onload = () => {
     const mv = document.createElement('model-viewer');
-    mv.setAttribute('src', '/beacn.glb');
-    mv.setAttribute('poster', '/beacon-poster.webp');
+    mv.setAttribute('src', '/beacn-20260904.glb');
+    mv.setAttribute('poster', '/beacon-poster-20260904.webp');
     mv.setAttribute('alt', 'Interactive 3D BEACN badge — drag to orbit');
     mv.setAttribute('camera-controls', '');
     /* zoom is OFF on purpose: model-viewer's wheel handler calls preventDefault(), so a zoomable
        stage in the last section eats the page scroll and traps you above the footer. */
     mv.setAttribute('disable-zoom', '');
-    /* no auto-rotate either: the badge's back is a featureless slab, so a spin parks on nothing. */
+    /* Keep the front visible until dragged; the back retains the beacnpool.org engraving. */
     mv.setAttribute('environment-image', 'neutral');  /* without this the model renders near-black */
     mv.setAttribute('tone-mapping', 'neutral');
     mv.setAttribute('exposure', '1.2');
@@ -771,7 +768,7 @@ function loadBeacon(){
     mv.setAttribute('shadow-softness', '0.9');
     mv.setAttribute('touch-action', 'pan-y');
     mv.setAttribute('interaction-prompt', 'none');
-    mv.setAttribute('camera-orbit', '0deg 75deg 118%');
+    mv.setAttribute('camera-orbit', '0deg 90deg 118%');
 
     mv.addEventListener('progress', e => {
       const pct = Math.round((e.detail.totalProgress || 0) * 100);
@@ -798,7 +795,7 @@ if (stage && !webglOK()) {
 } else if (stage && shouldAsk()) {
   const ask = document.createElement('button');
   ask.className = 'beacon-ask';
-  ask.innerHTML = '<span class="pill">Wake the beacon · 20 MB</span>';
+  ask.innerHTML = '<span class="pill">Wake the beacon · 7.5 MB</span>';
   ask.addEventListener('click', () => { ask.remove(); loadBeacon(); });
   stage.appendChild(ask);
 } else if (stage && 'IntersectionObserver' in window) {
