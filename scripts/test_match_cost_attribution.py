@@ -62,7 +62,8 @@ class CostAttributionTest(unittest.TestCase):
     def test_supply_is_not_spot_trade_or_batcher_cost(self):
         policy=next(k for k,v in LIQWID_MARKET_BY_POLICY.items() if v=='USDM')
         q=node('owner',99.6);q['asset_list']=[{'policy_id':policy,'quantity':'3131243117'}]
-        tx={'inputs':[node('owner',100,78.5)],'outputs':[q],'fee':'400000'}
+        tx={'inputs':[node('owner',100,78.5)],'outputs':[q],'fee':'400000',
+            'assets_minted':[{'policy_id':policy,'quantity':'3131243117'}]}
         kind,_,_=describe(tx,AGENT,OTHER,set(),-.4,-78.5,True,.4)
         self.assertEqual(kind,'supply')
         move={'agent':'beacn','tx_hash':'supply','kind':kind,'fee':.4,
@@ -71,7 +72,10 @@ class CostAttributionTest(unittest.TestCase):
         self.assertEqual(costs['service'],0)
         self.assertEqual(costs['total'],.4)
         self.assertEqual(market_activity('beacn',[move],78.5)['completed_trades'],0)
+        transfer=copy.deepcopy(tx);transfer['assets_minted']=[]
+        self.assertEqual(describe(transfer,AGENT,OTHER,set(),-.4,-78.5,True,.4)[0],'receipt')
         tx['inputs'],tx['outputs']=tx['outputs'],tx['inputs']
+        tx['assets_minted'][0]['quantity']='-3131243117'
         self.assertEqual(describe(tx,AGENT,OTHER,set(),-.4,78.5,True,.4)[0],'redeem')
 
 if __name__=='__main__':unittest.main()

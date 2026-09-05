@@ -512,12 +512,16 @@ def describe(tx, agent, other, order_addrs, d_ada, d_usdm, paid_fee, fee):
 
     qdelta = receipt_move(tx, agent)
     if qdelta:
-        if qdelta > 0 and d_usdm < 0:
+        minted = sum(int(a["quantity"]) for a in tx.get("assets_minted") or []
+                     if LIQWID_MARKET_BY_POLICY.get(a.get("policy_id")) == "USDM")
+        # An OTC receipt transfer is not evidence of protocol supply. Require
+        # the matching mint/burn before naming the economic operation.
+        if qdelta > 0 and d_usdm < 0 and minted == qdelta:
             return ("supply", "Supplied USDM to Liqwid",
                     f"Exchanged {abs(d_usdm):.6f} USDM for a Liqwid supply receipt. "
                     f"The receipt remains in the book; this is not a sale into ADA. "
                     f"Network fee {fee:.6f} ADA.")
-        if qdelta < 0 and d_usdm > 0:
+        if qdelta < 0 and d_usdm > 0 and minted == qdelta:
             return ("redeem", "Redeemed Liqwid USDM supply",
                     f"Returned a Liqwid supply receipt for {d_usdm:.6f} USDM. "
                     f"This is not an ADA/USDM spot trade. Network fee {fee:.6f} ADA.")

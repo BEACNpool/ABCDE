@@ -25,6 +25,10 @@ attribution is independently supported. They are never guessed as zero.
 That reconstruction gives BEACN 6 ADA of batcher fees and 1.889215 ADA of network
 fees through the observed transaction set, for 7.889215 ADA in total. These are a
 historical correction receipt; use the current snapshot for subsequent costs.
+The combined fee figure includes network and batcher fees only. Pool trading fees
+and price impact are embedded in the executed fills and are excluded from this
+fee breakdown; they still affect the actual holdings and score.
+
 Network fees belong to the credential that funds the transaction. A batcher's own
 network fee is not an additional fee paid directly by the orderer.
 
@@ -59,3 +63,13 @@ python3 scripts/verify_match_snapshot.py match.json
 shared-batch failure, a discounted fee, missing datum, changed receiver and receipt
 supply/redemption. The verifier checks paid fees, nonnegative fee components,
 component totals, trade/event counts, marked holdings and the equalized baseline.
+
+## Supported current book schema
+
+The current position schema supports ADA, Moneta USDM, its recognized Liqwid supply
+receipt and the recognized unfilled orders. Its market-activity validator requires
+an unlevered position. Borrowing, LP positions and new receipt types require new
+valuation, debt and liquidation accounting plus verifier fixtures before entering
+the live book; a UI label is not sufficient support. Unknown fee shapes stop the
+snapshot publisher, and the public page exposes the age of the last verified
+snapshot.
