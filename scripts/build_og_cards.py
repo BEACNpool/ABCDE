@@ -75,9 +75,11 @@ def card(slug, kicker, grade, headline, sub):
     d.rectangle([0, 0, W, 6], fill=CYAN)  # top accent
     pad = 64
     # brand
-    hexagon(d, pad + 16, 74, 18, CYAN, 4)
-    d.text((pad + 42, 58), "ABCDE", font=font(30), fill=TEXT)
-    d.text((pad + 44, 92), "BEACN DATA EXPLORER", font=font(13), fill=CYAN)
+    with Image.open(DIST / "brand/beacn-20260904.png") as source:
+        badge = source.convert("RGBA").resize((64, 64), Image.Resampling.LANCZOS)
+        img.paste(badge, (pad - 8, 50), badge)
+    d.text((pad + 70, 58), "ABCDE", font=font(30), fill=TEXT)
+    d.text((pad + 72, 92), "BEACN DATA EXPLORER", font=font(13), fill=CYAN)
     # grade chip (top-right)
     gc = grade_color(grade)
     gf = font(17)

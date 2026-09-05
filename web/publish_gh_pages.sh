@@ -23,7 +23,7 @@ PY="$REPO/.venv/bin/python3"; [[ -x "$PY" ]] || PY=python3
 
 # Only these are ours. Everything else on gh-pages is left alone.
 OWNED_FILES=(index.html relays.html match.html match-social.svg match-social.png minfree.html minfree.js app.js style.css)
-OWNED_DIRS=(data media og r)
+OWNED_DIRS=(data media og r brand)
 
 echo "1/5 rebuild the data layer"
 "$PY" "$REPO/web/build_web_data.py" >/dev/null
