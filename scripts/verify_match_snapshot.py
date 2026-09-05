@@ -58,6 +58,14 @@ def verify(path: Path) -> None:
                 f"{aid}.completed_trades does not reconcile to fills")
         require((agent.get("costs") or {}).get("swaps") == completed,
                 f"{aid}.costs.swaps does not reconcile to completed trades")
+        costs = agent.get("costs") or {}
+        for field in ("network", "service", "total"):
+            require(finite(costs.get(field)) and costs[field] >= 0,
+                    f"{aid}.costs.{field} is missing, negative or non-finite")
+        require(abs(costs["network"] - sum(m.get("fee", 0) for m in agent_events)) < 2e-6,
+                f"{aid}.costs.network does not reconcile to paid transaction fees")
+        require(abs(costs["total"] - costs["network"] - costs["service"]) < 2e-6,
+                f"{aid}.costs.total does not reconcile")
         require(isinstance(agent.get("open_orders"), int) and
                 agent["open_orders"] >= 0, f"{aid}.open_orders is invalid")
         positions = agent.get("market_positions") or []

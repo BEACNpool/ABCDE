@@ -9,6 +9,7 @@ from scripts.match_snapshot import (
     LEVEL_TX,
     equalized_performance,
     mark_book,
+    market_activity,
     t0_state,
 )
 from scripts.verify_match_snapshot import verify
@@ -87,33 +88,17 @@ class SnapshotVerifierTests(unittest.TestCase):
             score_ada = ada + usdm / usd
             score_usd = ada * usd + usdm
             delta = score_ada - baseline
-            hedge_pct = 100.0 * usdm / score_usd
-            # The fixture has no event log or pending orders. Its stablecoin
-            # holding is still an open, unlevered spot position.
-            positions = [{
-                "status": "open",
-                "economic_side": "long USDM / underweight ADA",
-                "market_view": "ADA-bearish vs USD",
-                "mechanism": "USDM spot holding",
-                "quantity_usdm": usdm,
-                "notional_ada_eq": usdm / usd,
-                "share_of_book_pct": hedge_pct,
-                "leverage": {
-                    "type": "unlevered spot",
-                    "borrowed": False,
-                    "liquidation_price": None,
-                },
-            }] if usdm > 1e-9 else []
+            activity = market_activity(aid, [], usdm)
+            for position in activity["market_positions"]:
+                position["notional_ada_eq"] = usdm / usd
+                position["share_of_book_pct"] = 100 * (usdm / usd) / score_ada
             return {
+                **activity,
                 "id": aid,
-                "chain_events": 0,
                 "moves": 0,
-                "completed_trades": 0,
-                "costs": {"swaps": 0},
                 "open_orders": 0,
-                "open_position_count": len(positions),
-                "market_positions": positions,
-                "hedge_pct": hedge_pct,
+                "costs": {"swaps": 0, "network": 0, "service": 0, "total": 0},
+                "hedge_pct": 100 * (usdm / usd) / score_ada,
                 "ada_total": ada,
                 "usdm": usdm,
                 "score_ada_eq": score_ada,
@@ -127,7 +112,6 @@ class SnapshotVerifierTests(unittest.TestCase):
         return {
             "network": "Cardano mainnet",
             "generated_at_unix": 1_788_000_000,
-            "moves": [],
             "price": {"available": True, "usd_per_ada": usd,
                       "ada_per_usdm": 1.0 / usd},
             "start": {
@@ -166,6 +150,14 @@ class SnapshotVerifierTests(unittest.TestCase):
         data["start"]["equalized_score_ada_eq"] = 1.0
         with self.assertRaisesRegex(ValueError, "baseline"):
             self.verify_snapshot(data)
+
+    def test_negative_or_inconsistent_fees_fail(self):
+        for fields in ({"service": -1, "total": -1}, {"network": 1, "total": 1},
+                       {"total": 9845}):
+            data = self.valid_snapshot()
+            data["agents"][0]["costs"].update(fields)
+            with self.assertRaisesRegex(ValueError, "costs"):
+                self.verify_snapshot(data)
 
     def test_corrupt_shared_start_derivatives_fail(self):
         for field in ("vs_equalized_start_pct",

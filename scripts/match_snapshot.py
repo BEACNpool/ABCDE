@@ -68,6 +68,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from match_positions import (
+    LIQWID_MARKET_BY_POLICY,
     MINSWAP_ORDER_SCRIPT,
     POSITION_DISCLAIMER,
     indexes,
@@ -117,7 +118,7 @@ AGENTS = [
     {
         "id": "beacn",
         "name": "BEACN",
-        "engine": "Claude",
+        "engine": "Codex",
         "payment_cred": "570d2bf8e4f649a70d38ce0a50693ec4d0e2946341c0e452f495cf67",
         "address": ("addr1q9ts62lcunmynfcd8r8q55rf8mzdpc55vdqupezj7j2u7e69ujeu9gg"
                     "e3h9ffh8r95lsqfyzejra4sd43njhvsymsemsdergt3"),
@@ -420,11 +421,79 @@ def find_pool(tx: dict, agent_usdm_delta: float):
         d_usdm = outs[addr][1] - ins[addr][1]
         if abs(d_usdm) < 1e-9:
             continue
-        if agent_usdm_delta * d_usdm < 0:          # moved opposite the agent
+        # A shared batch moves the whole pool for several orderers. Only an
+        # exact opposite USDM delta can identify this agent's single swap.
+        if abs(agent_usdm_delta + d_usdm) < 1e-6:
             d_ada = outs[addr][0] - ins[addr][0]
             if best is None or abs(d_usdm) > abs(best[2]):
                 best = (addr, d_ada, d_usdm)
     return best
+
+
+MINSWAP_POOL_SCRIPT = "ea07b733d932129c378af627436e7cbc2ef0bf96e0036bb51b3bde6b"
+
+
+def minswap_fill_cost(tx, agent, order_addrs):
+    """Attribute an executed V2 batch to its own orderer, never to all takers.
+
+    Field 7 is the SDK's maxBatcherFee, not automatically the actual fee.
+    Only accept it when conservation proves the whole batch paid the SUM of
+    every order's cap: each capped nonnegative fee must then equal its cap.
+    Missing datums, partial orders, discounts and unknown shapes fail closed.
+    """
+    ins, outs = tx.get("inputs") or [], tx.get("outputs") or []
+    cred = lambda n: (n.get("payment_addr") or {}).get("cred")
+    orders = [n for n in ins if cred(n) == MINSWAP_ORDER_SCRIPT]
+    own = [n for n in orders if owned(n, agent, order_addrs)]
+    if not own:
+        return None
+    if any(cred(n) == MINSWAP_ORDER_SCRIPT for n in outs):
+        raise ValueError("cannot attribute a partial Minswap batch")
+    pool_in = [n for n in ins if cred(n) == MINSWAP_POOL_SCRIPT]
+    pool_out = [n for n in outs if cred(n) == MINSWAP_POOL_SCRIPT]
+    if len(pool_in) != 1 or len(pool_out) != 1:
+        raise ValueError("cannot attribute an unknown Minswap pool shape")
+    receivers, caps, own_caps = set(), [], []
+    for order in orders:
+        try:
+            datum = order["inline_datum"]["value"]
+            fields = datum["fields"]
+            assert datum["constructor"] == 0 and len(fields) == 9
+            receiver = fields[1]["fields"][0]
+            assert receiver["constructor"] == 0
+            receiver = receiver["fields"][0]["bytes"]
+            cap = fields[7]["int"]
+            assert isinstance(cap, int) and not isinstance(cap, bool) and cap >= 0
+        except (KeyError, TypeError, IndexError, AssertionError) as exc:
+            raise ValueError("missing or unsupported Minswap order fee datum") from exc
+        receivers.add(receiver)
+        caps.append(cap)
+        if order in own:
+            if receiver != agent["payment_cred"]:
+                raise ValueError("Minswap success receiver differs from order owner")
+            own_caps.append(cap)
+    if any(cred(n) in receivers for n in ins):
+        raise ValueError("mixed wallet/order inputs need independent fee attribution")
+    pool_delta = int(pool_out[0]["value"]) - int(pool_in[0]["value"])
+    recipients_delta = (sum(int(n["value"]) for n in outs if cred(n) in receivers)
+                        - sum(int(n["value"]) for n in orders))
+    actual = -recipients_delta - pool_delta
+    if actual != sum(caps):
+        raise ValueError("Minswap batch fees differ from order caps; attribution unknown")
+    return sum(own_caps) / 1e6
+
+
+def receipt_move(tx, agent):
+    """A pinned Liqwid receipt changing hands is not an ADA/USDM spot swap."""
+    delta = 0
+    for side, direction in (("inputs", -1), ("outputs", 1)):
+        for node in tx.get(side) or []:
+            if (node.get("payment_addr") or {}).get("cred") != agent["payment_cred"]:
+                continue
+            for asset in node.get("asset_list") or []:
+                if LIQWID_MARKET_BY_POLICY.get(asset.get("policy_id")) == "USDM":
+                    delta += direction * int(asset["quantity"])
+    return delta
 
 
 def describe(tx, agent, other, order_addrs, d_ada, d_usdm, paid_fee, fee):
@@ -440,6 +509,21 @@ def describe(tx, agent, other, order_addrs, d_ada, d_usdm, paid_fee, fee):
                     for o in (tx.get("outputs") or []))
     to_order = bool(outs_addrs & order_addrs)
     from_order = bool(ins_addrs & order_addrs)
+
+    qdelta = receipt_move(tx, agent)
+    if qdelta:
+        if qdelta > 0 and d_usdm < 0:
+            return ("supply", "Supplied USDM to Liqwid",
+                    f"Exchanged {abs(d_usdm):.6f} USDM for a Liqwid supply receipt. "
+                    f"The receipt remains in the book; this is not a sale into ADA. "
+                    f"Network fee {fee:.6f} ADA.")
+        if qdelta < 0 and d_usdm > 0:
+            return ("redeem", "Redeemed Liqwid USDM supply",
+                    f"Returned a Liqwid supply receipt for {d_usdm:.6f} USDM. "
+                    f"This is not an ADA/USDM spot trade. Network fee {fee:.6f} ADA.")
+        return ("receipt", "Moved a Liqwid USDM receipt",
+                f"The wallet's qUSDM receipt balance changed by {qdelta / 1e6:.6f}. "
+                f"Not classified as a spot swap. Network fee {fee:.6f} ADA.")
 
     if certs and deposit > 0:
         kinds = ", ".join(sorted({c.get("type", "cert") for c in certs}))
@@ -473,9 +557,14 @@ def describe(tx, agent, other, order_addrs, d_ada, d_usdm, paid_fee, fee):
                         f"{abs(d_usdm):.6f} USDM — an execution rate of "
                         f"{rate:.5f} ADA per USDM, before fees.")
         if from_order:
+            service = minswap_fill_cost(tx, agent, order_addrs)
+            pool_ada = -d_ada - fee - service
+            received = (f"{d_usdm:.6f} USDM received" if d_usdm > 0 else
+                        f"{abs(d_usdm):.6f} USDM sold for {-pool_ada:.6f} ADA before the batcher fee")
             return ("fill", f"Swap filled — {direction}",
-                    f"A batcher filled the order: {abs(d_usdm):.6f} USDM landed in "
-                    f"the wallet.{rate_txt} The network fee on this transaction was "
+                    f"A batcher filled this agent's order: {received}. "
+                    f"This order paid {service:.6f} ADA to the batcher. "
+                    f"The network fee on this transaction was "
                     f"paid by the batcher, not by the agent.")
         return ("swap", f"Swapped {direction}",
                 f"Moved {abs(d_ada):.6f} ADA and {abs(d_usdm):.6f} USDM in one "
@@ -615,14 +704,21 @@ def cost_rollup(agents, moves, tx_by_hash, order_map):
             tx = tx_by_hash[m["tx_hash"]]
             if abs(m["usdm_delta"]) < 1e-9:
                 continue
-            pool = find_pool(tx, m["usdm_delta"])
-            if pool:
+            if m["kind"] == "fill":
+                service = minswap_fill_cost(tx, agent, oset)
+                pool_ada += -m["ada_delta"] - m["fee"] - service
+            else:
+                pool = find_pool(tx, m["usdm_delta"])
+                if not pool:
+                    raise ValueError("spot swap lacks attributable pool delta")
                 pool_ada += pool[1]
             c["swaps"] += 1
         c["ada_into_pool"] = pool_ada
         c["usdm_bought"] = usdm_got
         # Conservation: given up = pool + network + service.
         c["service"] = round(ada_given - net_fee - pool_ada, 6)
+        if c["service"] < -1e-6:
+            raise ValueError("negative service cost: fee attribution does not reconcile")
     for c in costs.values():
         c["network"] = round(c["network"], 6)
         c["total"] = round(c["network"] + c["service"], 6)
@@ -801,7 +897,7 @@ def main() -> int:
     # assets -- silently, as empty lists.
     for i in range(0, len(hashes), 40):
         for tx in koios("tx_info", {"_tx_hashes": hashes[i:i + 40], "_inputs": True,
-                                    "_metadata": True, "_assets": True,
+                                    "_metadata": True, "_assets": True, "_scripts": True,
                                     "_certs": True, "_withdrawals": True}):
             tx_by_hash[tx["tx_hash"]] = tx
     say(f"    {len(tx_by_hash)} transactions")
