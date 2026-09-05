@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BEACNpool — A lighthouse for the ledger</title>
+<meta name="description" content="BEACN — an independent Cardano stake pool at the absolute protocol minimums: 0% margin, 170 ₳ fixed. Home of the BEACN DRep, Ledger Scrolls, and ABCDE.">
+<link rel="canonical" href="https://beacnpool.org/">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#04070f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BEACNpool">
+<meta property="og:title" content="BEACNpool — A lighthouse for the ledger">
+<meta property="og:description" content="Independent Cardano stake pool. 0% margin · 170 ₳ fixed. Home of the BEACN DRep, Ledger Scrolls, and ABCDE.">
+<meta property="og:url" content="https://beacnpool.org/">
+<meta property="og:image" content="https://beacnpool.org/pfp.png">
+<meta property="og:image:alt" content="BEACN beacon badge">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@BEACNpool">
+<meta name="twitter:title" content="BEACNpool — A lighthouse for the ledger">
+<meta name="twitter:description" content="Independent Cardano stake pool. 0% margin · 170 ₳ fixed. BEACN DRep · Ledger Scrolls · ABCDE.">
+<meta name="twitter:image" content="https://beacnpool.org/pfp.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "BEACNpool",
+  "url": "https://beacnpool.org/",
+  "description": "Independent Cardano stake pool at the absolute protocol minimums. Home of the BEACN DRep, Ledger Scrolls, and ABCDE."
+}
+</script>
+<style>
+/* ════════════════════════════════════════════════════════════════════
+   BEACNpool — NIGHT LEDGER, pool edition. The same night the Scrolls
+   live in: deep-navy field, blueprint grid, serif for the archive,
+   sans for the interface, mono for the chain. The brand marks on this
+   page are the pool's own on-chain NFTs. Zero dependencies, one file.
+   ════════════════════════════════════════════════════════════════════ */
+:root{
+  color-scheme:dark;
+  --bg:#04070f; --bg-2:#0a1122;
+  --surface:#0c1526; --surface-2:#101b33;
+  --ink:#eef4ff; --ink-2:#c6d4ef; --muted:#8ba3cf; --faint:#7b8cb0;
+  --line:#1a2745; --line-2:#263760;
+  --cyan:#35d5ea; --cyan-ink:#9fe8f5; --cyan-soft:rgba(53,213,234,.12);
+  --amber:#f6b45a; --amber-ink:#ffd9a0; --amber-soft:rgba(246,180,90,.12);
+  --blue:#2f6bff; --blue-ink:#9ec3ff; --blue-soft:rgba(47,107,255,.13);
+  --ok:#3fd68f; --ok-ink:#8fe9c3; --ok-soft:rgba(63,214,143,.11);
+  --radius:16px; --radius-sm:10px; --pill:999px;
+  --sh-sm:0 1px 2px rgba(2,6,18,.55),0 1px 3px rgba(2,6,18,.4);
+  --sh:0 12px 34px -10px rgba(2,6,18,.8),0 0 0 1px rgba(158,195,255,.05);
+  --sh-lg:0 28px 60px -18px rgba(2,6,18,.85),0 8px 24px -10px rgba(2,6,18,.6),0 0 0 1px rgba(158,195,255,.06);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 16px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+/* the night field: blueprint grid under a beacon glow — cyan overhead,
+   one amber answer low on the horizon. The grid runs the full scroll. */
+.bg-field{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(1000px 620px at 72% -8%,rgba(53,213,234,.11),transparent 62%),
+    radial-gradient(760px 480px at 4% 96%,rgba(246,180,90,.05),transparent 60%),
+    linear-gradient(to right,rgba(158,195,255,.03) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(158,195,255,.03) 1px,transparent 1px),
+    radial-gradient(130% 90% at 50% 0%,#0e1930 0%,#080d1a 52%,#04060c 100%);
+  background-size:100% 100%,100% 100%,46px 46px,46px 46px,100% 100%;
+}
+.container{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.section{padding:clamp(40px,6vw,72px) 0}
+.section.band{background:rgba(10,17,34,.55);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+a{color:var(--cyan-ink);text-decoration:none;transition:color .15s}
+a:hover{color:#d3f5fb}
+.mono,code{font-family:var(--mono)}
+:focus-visible{outline:2.5px solid var(--cyan-ink);outline-offset:2px;border-radius:6px}
+::selection{background:rgba(53,213,234,.32)}
+img{max-width:100%}
+section[id]{scroll-margin-top:76px}
+
+/* ── buttons ──
+   One filled primary (beacon cyan) for the page's two conversion moments.
+   Everything else is a ghost pill; project cards color their lead ghost. */
+button{font-family:var(--sans);cursor:pointer;border:0;font-size:15px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:46px;padding:0 24px;border-radius:var(--pill);
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line-2);
+  font-weight:600;font-size:14.5px;letter-spacing:.01em;box-shadow:var(--sh-sm);
+  transition:transform .15s var(--ease),box-shadow .2s,border-color .15s,color .15s,background .15s;
+}
+.btn:hover{border-color:var(--cyan-ink);color:var(--cyan-ink);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn.primary{
+  background:linear-gradient(180deg,#49dcef,#1caac6);color:#04252b;border-color:transparent;
+  box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 8px 22px -8px rgba(53,213,234,.55);font-weight:700;
+}
+.btn.primary:hover{background:linear-gradient(180deg,#5fe3f4,#25b5d1);color:#04252b;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 12px 28px -8px rgba(53,213,234,.6)}
+.btn.lead-cyan{border-color:rgba(53,213,234,.5);color:var(--cyan-ink)}
+.btn.lead-cyan:hover{border-color:var(--cyan);color:#d3f5fb}
+.btn.lead-blue{border-color:rgba(47,107,255,.55);color:var(--blue-ink)}
+.btn.lead-blue:hover{border-color:#5c8aff;color:#c4d7ff}
+.btn.lead-amber{border-color:rgba(246,180,90,.5);color:var(--amber-ink)}
+.btn.lead-amber:hover{border-color:var(--amber);color:#ffe7c2}
+.btn.sm{min-height:38px;padding:0 16px;font-size:13.5px}
+
+/* ── header ── */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(4,7,15,.78);
+  backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.header-row{display:flex;align-items:center;gap:16px;min-height:60px}
+.brand{display:inline-flex;align-items:center;gap:10px;margin-right:auto;color:var(--ink)}
+.brand:hover{color:var(--ink)}
+.brand svg{display:block;flex:none}
+.brand-name{font:700 17px/1 var(--sans);letter-spacing:.14em}
+.brand-name span{color:var(--cyan-ink)}
+.nav-links{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  flex:0 0 auto;display:inline-flex;align-items:center;min-height:34px;padding:0 12px;
+  border-radius:var(--pill);white-space:nowrap;color:var(--muted);
+  font-size:13.5px;font-weight:500;border:1px solid transparent;
+}
+.nav-links a:hover{color:var(--ink);background:rgba(158,195,255,.1)}
+
+/* ── trustline ── */
+.trustbar{padding:14px 0 0}
+.trustline{
+  font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:var(--pill);padding:6px 14px;background:var(--surface-2);
+  display:inline-flex;gap:7px;align-items:center;max-width:100%;
+}
+.trustline::before{content:"";width:7px;height:7px;border-radius:50%;flex:none;background:var(--ok);box-shadow:0 0 0 3px rgba(63,214,143,.18)}
+.trustline b{color:var(--ink-2);font-weight:600}
+
+/* ── hero ── */
+.hero{padding:clamp(36px,6vw,72px) 0 clamp(24px,4vw,40px)}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(24px,4vw,56px);align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font:600 12.5px/1 var(--sans);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-ink);
+  background:var(--cyan-soft);border:1px solid rgba(53,213,234,.35);
+  padding:7px 14px;border-radius:var(--pill);
+}
+.hero-title{
+  font:400 clamp(40px,6.4vw,68px)/1.04 var(--serif);letter-spacing:-.02em;color:var(--ink);
+  margin:20px 0 0;max-width:14ch;
+}
+.hero-title em,.section-title em{font-style:italic;background:linear-gradient(95deg,var(--cyan-ink) 10%,var(--amber) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-lede{font-size:clamp(16px,2vw,18.5px);color:var(--ink-2);max-width:52ch;margin-top:20px;line-height:1.7}
+.hero-lede b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+/* epoch panel */
+.epoch{margin-top:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--sh-sm);padding:16px 18px;max-width:34rem}
+.epoch-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.epoch-top .label{font:600 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.16em;color:var(--faint)}
+.epoch-top .num{font:600 15px var(--mono);color:var(--cyan-ink)}
+.epoch-bar{margin:12px 0 10px;height:5px;border-radius:var(--pill);background:rgba(158,195,255,.12);overflow:hidden}
+.epoch-bar i{display:block;height:100%;width:0%;border-radius:var(--pill);background:linear-gradient(90deg,rgba(53,213,234,.5),var(--cyan));box-shadow:0 0 12px rgba(53,213,234,.55);transition:width 1s linear}
+.epoch-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:12px var(--mono);color:var(--faint)}
+.epoch-bottom .count{color:var(--ink-2)}
+
+/* sigil panel */
+.sigil-side{display:flex;flex-direction:column;align-items:flex-end;min-width:0}
+.sigil-frame{
+  position:relative;width:min(100%,440px);border:1px solid var(--line-2);border-radius:20px;
+  background:linear-gradient(180deg,rgba(158,195,255,.04),transparent 120px),var(--surface);
+  box-shadow:var(--sh-lg);padding:clamp(14px,2.4vw,26px);overflow:hidden;
+}
+.sigil-frame::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--amber));opacity:.85}
+.sigil-frame img{display:block;width:100%;height:auto}
+.sigil-plaque{
+  display:flex;flex-direction:column;gap:4px;margin-top:6px;
+  border-top:1px dashed var(--line-2);padding-top:14px;
+}
+.sigil-plaque .t{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.sigil-plaque .name{font:600 12.5px var(--mono);letter-spacing:.08em;color:var(--ink-2)}
+.sigil-plaque .live{font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--amber-ink);background:var(--amber-soft);border:1px solid rgba(246,180,90,.35);border-radius:var(--pill);padding:5px 10px}
+.sigil-plaque p{font-size:12.5px;color:var(--muted);line-height:1.6}
+.sigil-plaque a{font-weight:600}
+
+/* ── trust strip ── */
+.trust-strip{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:clamp(28px,4vw,44px)}
+.trust-strip li{display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--sh-sm)}
+.trust-strip .v{font:600 22px/1.2 var(--serif);color:var(--ink);letter-spacing:-.01em}
+.trust-strip span{font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* ── section headings ── */
+.section-title{font:400 clamp(28px,4vw,38px)/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.section-sub{color:var(--muted);font-size:15px;margin-top:8px;max-width:60ch}
+.sec-head{margin-bottom:clamp(22px,3vw,34px)}
+.sec-head .eyebrow{margin-bottom:14px}
+
+/* ── work cards ── */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;
+  background:linear-gradient(180deg,rgba(158,195,255,.03),transparent 90px),var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px 20px;box-shadow:var(--sh-sm);overflow:hidden;
+  transition:transform .2s var(--ease),box-shadow .2s,border-color .2s;
+}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;opacity:.6;transition:opacity .2s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+.card:hover::before{opacity:1}
+.card[data-c="cyan"]::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.card[data-c="cyan"]:hover{border-color:rgba(53,213,234,.45);box-shadow:var(--sh-lg),0 0 30px -8px rgba(53,213,234,.3)}
+.card[data-c="blue"]::before{background:linear-gradient(90deg,#5b8cff,transparent)}
+.card[data-c="blue"]:hover{border-color:rgba(47,107,255,.5);box-shadow:var(--sh-lg),0 0 30px -8px rgba(47,107,255,.35)}
+.card[data-c="amber"]::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.card[data-c="amber"]:hover{border-color:rgba(246,180,90,.45);box-shadow:var(--sh-lg),0 0 30px -8px rgba(246,180,90,.3)}
+.card .tagk{font:600 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;align-self:flex-start;border-radius:var(--pill);padding:5px 10px;border:1px solid}
+.card[data-c="cyan"] .tagk{color:var(--cyan-ink);border-color:rgba(53,213,234,.35);background:var(--cyan-soft)}
+.card[data-c="blue"] .tagk{color:var(--blue-ink);border-color:rgba(47,107,255,.4);background:var(--blue-soft)}
+.card[data-c="amber"] .tagk{color:var(--amber-ink);border-color:rgba(246,180,90,.35);background:var(--amber-soft)}
+.card h3{color:var(--ink);font:400 24px/1.2 var(--serif);letter-spacing:-.01em;margin-top:4px}
+.card .tag{font-size:13.5px;color:var(--muted);font-style:italic;min-height:2.6em}
+.card p{font-size:14px;color:var(--ink-2);line-height:1.65}
+.card p b{color:var(--ink)}
+.card .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:14px}
+
+/* id rows */
+.idrow{
+  display:flex;align-items:center;gap:10px;border:1px solid var(--line-2);border-radius:var(--radius-sm);
+  background:#0a1224;padding:9px 12px;margin-top:4px;
+}
+.idrow .lbl{font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--faint);flex-shrink:0}
+.idrow code{font:12px var(--mono);color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.copy{
+  flex-shrink:0;cursor:pointer;border:1px solid var(--line-2);border-radius:var(--pill);background:var(--surface-2);
+  padding:6px 12px;font:600 10.5px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);
+  transition:color .15s,border-color .15s;min-height:28px;
+}
+.copy:hover{color:var(--cyan-ink);border-color:rgba(53,213,234,.5)}
+.copy.ok{color:var(--ok);border-color:rgba(63,214,143,.6)}
+.btn.primary.ok{background:linear-gradient(180deg,#55dfa0,#22b878);color:#032015}
+
+/* ── the beacon (3D) ── */
+.beacon-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;margin:0}
+#beacon .sec-head{text-align:center}
+#beacon .section-sub{margin-left:auto;margin-right:auto}
+.beacon-cta{display:flex;justify-content:center;margin-top:22px}
+.beacon-stage{
+  position:relative;width:min(100%,620px);aspect-ratio:1/1;border:1px solid var(--line-2);border-radius:24px;
+  background:radial-gradient(120% 100% at 50% 30%,#0a1222,#05070c);box-shadow:var(--sh-lg);overflow:hidden;
+}
+.beacon-stage::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 45% at 50% 38%,rgba(53,213,234,.10),transparent 70%);
+}
+.beacon-stage model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent}
+.beacon-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.beacon-stage img[hidden]{display:none}
+.beacon-hint{font:11.5px var(--mono);color:var(--faint);text-align:center;max-width:34ch}
+.beacon-ask{
+  position:absolute;inset:0;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:24px;background:linear-gradient(180deg,rgba(2,6,18,0),rgba(2,6,18,.55));border:0;cursor:pointer;
+}
+.beacon-ask .pill{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:var(--pill);
+  background:rgba(4,7,15,.78);border:1px solid var(--line-2);color:var(--ink);
+  font:600 13.5px var(--sans);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  transition:border-color .15s,color .15s,transform .15s var(--ease);
+}
+.beacon-ask:hover .pill{border-color:var(--cyan-ink);color:var(--cyan-ink);transform:translateY(-1px)}
+
+/* ── minted brand ── */
+.mint-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.mint{
+  display:flex;flex-direction:column;min-width:0;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--surface);box-shadow:var(--sh-sm);overflow:hidden;
+  transition:transform .2s var(--ease),border-color .2s,box-shadow .2s;
+}
+.mint:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--sh-lg)}
+.mint .art{background:radial-gradient(120% 100% at 50% 30%,#0a0f18,#05070c);border-bottom:1px solid var(--line);padding:18px;display:flex;align-items:center;justify-content:center}
+.mint .art img{display:block;width:auto;max-width:100%;height:auto;max-height:300px;object-fit:contain}
+.mint .meta{display:flex;flex-direction:column;gap:6px;padding:14px 16px 16px;flex:1}
+.mint .meta .n{font:600 12.5px var(--mono);letter-spacing:.06em;color:var(--ink-2)}
+.mint .meta p{font-size:13px;color:var(--muted);line-height:1.55}
+.mint .meta .fp{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:8px}
+.mint .meta .fp code{font:11px var(--mono);color:var(--faint);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.mint .meta .fp a{flex-shrink:0;font:600 11.5px var(--sans);white-space:nowrap;padding:8px 6px;margin:-8px -6px}
+
+/* ── stake ── */
+.stake-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(24px,4vw,48px);align-items:center}
+.stake-grid>*{min-width:0}
+.fees{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fee{
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--sh-sm);
+  padding:16px 16px 14px;min-width:0;
+}
+.fee .v{font:600 22px/1.3 var(--mono);color:var(--ink);letter-spacing:-.01em}
+.fee .v em{font-style:normal;color:var(--cyan-ink)}
+.fee .l{font:600 10.5px var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-top:4px}
+.stake-note{margin-top:18px;font-size:15px;color:var(--ink-2);max-width:32rem;line-height:1.7}
+.stake-note b{color:var(--ink)}
+.stake-note.dim{font-size:13.5px;color:var(--muted)}
+.stake-note.dim b{color:var(--ink-2)}
+.stake-box{
+  border:1px solid var(--line-2);border-radius:20px;box-shadow:var(--sh-lg);overflow:hidden;position:relative;
+  background:linear-gradient(180deg,rgba(158,195,255,.04),transparent 120px),var(--surface);
+  padding:24px 22px 22px;
+}
+.stake-box::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--amber))}
+.stake-box h3{font:400 24px/1.2 var(--serif);color:var(--ink);letter-spacing:-.01em}
+.stake-box .sub{font-size:13.5px;color:var(--muted);margin:6px 0 14px}
+.stake-box .idrow{margin-top:10px}
+.stake-actions{display:flex;gap:10px 8px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.stake-actions .btn.primary{flex:1 1 100%}
+.drep-box{margin-top:18px;padding-top:20px;border-top:1px dashed var(--line-2)}
+.drep-box h3{font:400 20px/1.2 var(--serif);color:var(--ink);letter-spacing:-.01em}
+.drep-box .sub{font-size:13px;color:var(--muted);margin:6px 0 12px}
+.drep-box .stake-actions{margin-top:14px}
+
+/* ── footer ── */
+.site-footer{border-top:1px solid var(--line);background:var(--bg-2);margin-top:clamp(40px,6vw,72px)}
+.foot-inner{max-width:1120px;margin:0 auto;padding:44px clamp(16px,4vw,32px) 12px;display:flex;flex-wrap:wrap;gap:36px}
+.foot-brand{flex:1 1 250px;min-width:230px}
+.foot-mark{display:inline-flex;align-items:center;gap:9px;color:var(--ink)}
+.foot-mark .foot-name{font:700 15px/1 var(--sans);letter-spacing:.14em}
+.foot-mark .foot-name span{color:var(--cyan-ink)}
+.foot-tag{margin-top:12px;font-size:13.5px;line-height:1.65;max-width:40ch;color:var(--muted)}
+.foot-cols{display:flex;flex-wrap:wrap;gap:26px 44px;flex:2 1 470px}
+.foot-col{display:flex;flex-direction:column;gap:12px;min-width:118px}
+.foot-col h4{color:var(--faint);font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;margin:0 0 1px;font-weight:600}
+.foot-col a{font-size:14px;line-height:1.3;color:var(--ink-2);font-weight:500;padding:3px 0}
+.foot-col a:hover{color:var(--cyan-ink)}
+.foot-legal{
+  position:relative;max-width:1120px;margin:8px auto 0;padding:15px clamp(16px,4vw,32px) 32px;
+  font:12px var(--mono);color:var(--faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.foot-legal::before{content:"";position:absolute;top:0;left:clamp(16px,4vw,32px);right:clamp(16px,4vw,32px);height:1px;background:#131f3f}
+
+/* ── responsive ── */
+@media (max-width:1000px){
+  /* one full-width card each, with the copy held to a readable measure — a 700px line of 14px
+     text is ~105 characters, which is unreadable, and a 2+1 grid orphans one of the three */
+  .cards{grid-template-columns:1fr}
+  .card p,.card .tag{max-width:70ch}
+  .card .tag{min-height:0}
+}
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr}
+  .sigil-side{align-items:center}
+  .trust-strip{grid-template-columns:1fr 1fr}
+  .mint .art img{max-height:240px}
+  .stake-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .trustbar{display:none}
+  .nav-links .ext{display:none}
+  .nav-links{mask-image:linear-gradient(90deg,#000 calc(100% - 14px),transparent)}
+  .nav-links a{padding:0 8px;font-size:12.5px}
+  .header-row{gap:10px}
+  .mint-grid{grid-template-columns:1fr}
+  .trust-strip{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .fees{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .fee{padding:12px 10px 10px}
+  .fee .v{font-size:17px}
+  .fee .l{font-size:10px;letter-spacing:.06em}
+  .brand-name{font-size:15px}
+  .copy{min-height:42px;padding:10px 16px}
+}
+@media (max-width:430px){
+  .brand-name{display:none}          /* mark only — buy the four nav links their room back */
+  .nav-links{mask-image:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-field" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="#top" aria-label="BEACNpool — home">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M12 1.6l9 5.2v10.4l-9 5.2-9-5.2V6.8z" fill="none" stroke="#8ba3cf" stroke-width="1.5"/>
+        <circle cx="12" cy="10.4" r="3.1" fill="#f6b45a"/>
+        <path d="M9.4 9.1 3.6 6.4M14.6 9.1l5.8-2.7" stroke="#35d5ea" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
+        <path d="M9.6 15.2h4.8v3.4H9.6z" fill="none" stroke="#8ba3cf" stroke-width="1.2"/>
+      </svg>
+      <span class="brand-name">BEACN<span>POOL</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#light">Light</a>
+      <a href="#brand">Brand</a>
+      <a href="#stake">Stake</a>
+      <a href="#beacon">Beacon</a>
+      <a class="ext" href="https://x.com/BEACNpool" target="_blank" rel="noopener">X ↗</a>
+      <a class="ext" href="https://github.com/BEACNpool" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="trustbar">
+  <div class="container">
+    <div class="trustline">cardano mainnet · epoch <b id="tl-epoch">—</b> · <b>0% margin</b> · <b>170 ₳</b> fixed · bare metal, Chicago</div>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Independent Cardano Stake Pool</span>
+        <h1 class="hero-title">A lighthouse for <em>the ledger.</em></h1>
+        <p class="hero-lede"><b>Zero margin. Signal only.</b> BEACN runs at the lowest fees the
+           protocol allows — and it's the home of the BEACN DRep, Ledger Scrolls, and ABCDE —
+           built to outlive this website.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#stake">Stake with BEACN</a>
+          <a class="btn" href="#light">See the light</a>
+        </div>
+
+        <div class="epoch" aria-live="off">
+          <div class="epoch-top">
+            <span class="label">Cardano mainnet · epoch</span>
+            <span class="num" id="ep-num">—</span>
+          </div>
+          <div class="epoch-bar"><i id="ep-bar"></i></div>
+          <div class="epoch-bottom">
+            <span>next epoch in <span class="count" id="ep-count">—</span></span>
+            <span id="ep-pct">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sigil-side">
+        <figure class="sigil-frame">
+          <img src="/sigil.svg" alt="BEACN_SIGIL — the pool's animated on-chain identity mark: a lighthouse in a steel hexagon, its lamp sweeping amber and cyan, over an ethernet port" width="1024" height="1024" loading="eager">
+          <figcaption class="sigil-plaque">
+            <div class="t">
+              <span class="name">BEACN_SIGIL</span>
+              <span class="live">minted on-chain</span>
+            </div>
+            <p>The mark itself is an NFT — an animated SVG that lives inside Cardano transaction
+               metadata, forever. The chain holds the canonical copy.
+               <a href="https://pool.pm/asset1t0hms536krzq87cjken2d820ak98kamtmlm54d" target="_blank" rel="noopener">Verify it ↗</a></p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="container">
+      <ul class="trust-strip">
+        <li><span class="v">0% margin</span><span>The protocol's absolute floor. It can't go lower, and it won't go higher.</span></li>
+        <li><span class="v">170 ₳ fixed</span><span>The minimum fixed fee Cardano allows an operator to set.</span></li>
+        <li><span class="v">Bare metal</span><span>One operator, own hardware, Chicago. No cloud, no committee.</span></li>
+        <li><span class="v">Verified by you</span><span>The pool ID, the votes, even the logo — everything here checks out on-chain.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════ THE LIGHT ════════ -->
+  <section class="section" id="light">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">The light</span>
+        <h2 class="section-title">One tower. <em>Three lights.</em></h2>
+        <p class="section-sub">Signing blocks is what the hardware does. The light is what it's for —
+           pointed at the parts of Cardano that stay dark: what nobody traces, what nobody keeps,
+           and what nobody shows their work on.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card" data-c="amber">
+          <span class="tagk">The beam</span>
+          <h3>ABCDE</h3>
+          <p class="tag">“Every founder coin, followed to today.”</p>
+          <p><b>Light on what the chain keeps but nobody looks at.</b> A best-effort trace of every
+             founder coin — where the genesis ADA moved, who it delegated to, how it behaves in
+             governance today. Clone the repo, point your AI at it, and ask. Forensics graded by
+             evidence, not vibes — no node, no API key, no permission needed.</p>
+          <div class="links">
+            <a class="btn lead-amber sm" href="https://beacnpool.github.io/ABCDE/" target="_blank" rel="noopener">Open the Explorer ↗</a>
+            <a class="btn sm" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">Source</a>
+          </div>
+        </article>
+
+        <article class="card" data-c="blue">
+          <span class="tagk">The log</span>
+          <h3>Ledger Scrolls</h3>
+          <p class="tag">“Verifiable by anyone. Deletable by no one.”</p>
+          <p><b>Read and write media directly onto the chain.</b> No server, no host, nothing to take
+             down — your browser raises the bytes back out of Cardano and verifies every hash before
+             a word renders. The Constitution, the Bitcoin whitepaper, and the first video written
+             into Cardano all live here. A library that cannot burn.</p>
+          <div class="links">
+            <a class="btn lead-blue sm" href="https://beacnpool.github.io/ledger-scrolls/" target="_blank" rel="noopener">Open the Library ↗</a>
+            <a class="btn sm" href="https://github.com/BEACNpool/ledger-scrolls" target="_blank" rel="noopener">Source</a>
+          </div>
+        </article>
+
+        <article class="card" data-c="cyan">
+          <span class="tagk">The signal</span>
+          <h3>BEACN DRep</h3>
+          <p class="tag">“Agentic governance with the lights on.”</p>
+          <p><b>Every vote is cast by an open-source pipeline anyone can read, run, and check.</b>
+             The reasoning is published with the vote; weak or stale evidence gets an abstain, not a
+             guess. Delegate your voting power in any governance-enabled wallet — it's separate from
+             staking, your ADA never moves, and you can do both.</p>
+          <div class="links">
+            <a class="btn lead-cyan sm" href="https://beacnpool.github.io/beacn-drep-web/" target="_blank" rel="noopener">See the votes ↗</a>
+            <a class="btn sm" href="https://github.com/BEACNpool/beacn-drep-core" target="_blank" rel="noopener">Source</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ ON-CHAIN BRAND ════════ -->
+  <section class="section band" id="brand">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">On-chain identity</span>
+        <h2 class="section-title">The brand is <em>minted.</em></h2>
+        <p class="section-sub">The originals don't live on a server. Each mark is an animated SVG minted
+           into Cardano transaction metadata under BEACN's publisher policy — what this page shows is a
+           copy; the chain holds the canonical bytes. Verify any of them.</p>
+      </div>
+
+      <div class="mint-grid">
+        <article class="mint">
+          <div class="art"><img src="/epoch-clock.svg" alt="BEACN_EPOCH_CLOCK — an animated chronograph whose yellow hand completes one revolution per Cardano epoch" width="1024" height="1024"></div>
+          <div class="meta">
+            <span class="n">BEACN_EPOCH_CLOCK</span>
+            <p>An on-chain chronograph. The yellow hand turns once per epoch — 432,000 slots, one second each — the same countdown running at the top of this page.</p>
+            <div class="fp">
+              <code>asset1cz62n0d0eknaazux7dd38pajgywk8z2gxzhhkx</code>
+              <a href="https://pool.pm/asset1cz62n0d0eknaazux7dd38pajgywk8z2gxzhhkx" target="_blank" rel="noopener">pool.pm ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="mint">
+          <div class="art"><img src="/neon-sign.svg" alt="BEACN_NEON_SIGN — a neon motel-style sign reading DELEGATE HERE, beacnpool.org, ADA accepted here" width="1024" height="1024"></div>
+          <div class="meta">
+            <span class="n">BEACN_NEON_SIGN</span>
+            <p>The signage. A neon motel sign for the open ledger — vacancy forever, delegation welcome.</p>
+            <div class="fp">
+              <code>asset18jum36sf7vd2n9gdphmmt069j9zfgnkkg4lg84</code>
+              <a href="https://pool.pm/asset18jum36sf7vd2n9gdphmmt069j9zfgnkkg4lg84" target="_blank" rel="noopener">pool.pm ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ STAKE ════════ -->
+  <section class="section" id="stake">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Delegate</span>
+        <h2 class="section-title">Stake with BEACN.</h2>
+      </div>
+
+      <div class="stake-grid">
+        <div>
+          <div class="fees">
+            <div class="fee"><div class="v"><em>0%</em></div><div class="l">Margin</div></div>
+            <div class="fee"><div class="v">170 <em>₳</em></div><div class="l">Fixed fee</div></div>
+            <div class="fee"><div class="v">BEACN</div><div class="l">Ticker</div></div>
+          </div>
+          <p class="stake-note"><b>The lowest fees Cardano permits</b> — and the 170 ₳ isn't margin,
+             it's the budget: it keeps the block producer running and funds the DRep, the Library,
+             and ABCDE. BEACN is a small pool, so blocks come in bursts — over time rewards average
+             out to the standard rate.</p>
+          <p class="stake-note dim">Search <b>BEACN</b> in any wallet, or paste the pool ID to verify
+             you've found the right one.</p>
+        </div>
+
+        <div class="stake-box">
+          <h3>Pool ID</h3>
+          <p class="sub">Verify before you delegate — the ticker can be imitated, the ID can't.</p>
+          <div class="idrow">
+            <span class="lbl">bech32</span>
+            <code>pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g</code>
+            <button class="copy" data-copy="pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g" aria-label="Copy pool ID (bech32)">Copy</button>
+          </div>
+          <div class="idrow">
+            <span class="lbl">hex</span>
+            <code>38672ec447626ce8c254f1cd95ca3c95c815337f9645245330515fd7</code>
+            <button class="copy" data-copy="38672ec447626ce8c254f1cd95ca3c95c815337f9645245330515fd7" aria-label="Copy pool ID (hex)">Copy</button>
+          </div>
+          <div class="stake-actions">
+            <button class="btn primary" data-copy="pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g" aria-label="Copy pool ID (bech32)">Copy pool ID</button>
+            <a class="btn sm" href="https://cexplorer.io/pool/pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g" target="_blank" rel="noopener">Cexplorer ↗</a>
+            <a class="btn sm" href="https://pooltool.io/pool/38672ec447626ce8c254f1cd95ca3c95c815337f9645245330515fd7" target="_blank" rel="noopener">Pooltool ↗</a>
+            <a class="btn sm" href="https://adastat.net/pools/38672ec447626ce8c254f1cd95ca3c95c815337f9645245330515fd7" target="_blank" rel="noopener">AdaStat ↗</a>
+          </div>
+
+          <div class="drep-box">
+            <h3>DRep ID</h3>
+            <p class="sub">A second, separate delegation: your voting power. Your ADA never moves, and you can do both.</p>
+            <div class="idrow">
+              <span class="lbl">bech32</span>
+              <code>drep1yg3fzjm63hjg37k3rtdt7wx0mgmn303lwv2s50xxkjzsv5qfhynxg</code>
+              <button class="copy" data-copy="drep1yg3fzjm63hjg37k3rtdt7wx0mgmn303lwv2s50xxkjzsv5qfhynxg" aria-label="Copy DRep ID">Copy</button>
+            </div>
+            <div class="stake-actions">
+              <a class="btn sm" href="https://beacnpool.github.io/beacn-drep-web/" target="_blank" rel="noopener">See the votes ↗</a>
+              <a class="btn sm" href="https://github.com/BEACNpool/beacn-drep-core" target="_blank" rel="noopener">Read the pipeline ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ THE BEACON (3D) ════════ -->
+  <section class="section band" id="beacon">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">The beacon</span>
+        <h2 class="section-title">The mark, <em>in the round.</em></h2>
+        <p class="section-sub">The BEACN badge as an object — the lighthouse and the ethernet port it
+           actually runs on, cast in three dimensions. Drag to turn it.</p>
+      </div>
+
+      <figure class="beacon-wrap">
+        <div class="beacon-stage" id="beacon-stage">
+          <img src="/beacon-poster.webp" alt="The BEACN badge in three dimensions — a lighthouse and an ethernet port set in a steel hexagon" id="beacon-fallback" width="760" height="760">
+        </div>
+        <figcaption class="beacon-hint" id="beacon-hint" aria-live="polite">a 20 MB model — it loads only when you ask for it</figcaption>
+      </figure>
+
+      <div class="beacon-cta">
+        <a class="btn primary" href="#stake">Stake with BEACN</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <span class="foot-mark">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path d="M12 1.6l9 5.2v10.4l-9 5.2-9-5.2V6.8z" fill="none" stroke="#8ba3cf" stroke-width="1.5"/>
+          <circle cx="12" cy="10.4" r="3.1" fill="#f6b45a"/>
+          <path d="M9.4 9.1 3.6 6.4M14.6 9.1l5.8-2.7" stroke="#35d5ea" stroke-width="1.1" stroke-linecap="round" opacity=".7"/>
+          <path d="M9.6 15.2h4.8v3.4H9.6z" fill="none" stroke="#8ba3cf" stroke-width="1.2"/>
+        </svg>
+        <span class="foot-name">BEACN<span>POOL</span></span>
+      </span>
+      <p class="foot-tag">A lighthouse for the ledger. Independent Cardano stake pool — 0% margin,
+         170 ₳ fixed, bare metal in Chicago. Everything it publishes can be verified on-chain.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Delegate</h4>
+        <a href="#stake">Stake with BEACN</a>
+        <a href="https://beacnpool.github.io/beacn-drep-web/" target="_blank" rel="noopener">BEACN DRep</a>
+        <a href="https://cexplorer.io/pool/pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g" target="_blank" rel="noopener">Pool on Cexplorer</a>
+      </div>
+      <div class="foot-col">
+        <h4>Built here</h4>
+        <a href="https://beacnpool.github.io/ledger-scrolls/" target="_blank" rel="noopener">Ledger Scrolls</a>
+        <a href="https://beacnpool.github.io/ledger-scrolls/calculator.html" target="_blank" rel="noopener">Mint a scroll</a>
+        <a href="https://beacnpool.github.io/ledger-scrolls/leaks.html" target="_blank" rel="noopener">BEACN Leaks — publisher channel</a>
+        <a href="https://beacnpool.github.io/ABCDE/" target="_blank" rel="noopener">ABCDE</a>
+      </div>
+      <div class="foot-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/BEACNpool" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/BEACNpool" target="_blank" rel="noopener">@BEACNpool</a>
+        <a href="https://pool.pm/asset1t0hms536krzq87cjken2d820ak98kamtmlm54d" target="_blank" rel="noopener">BEACN_SIGIL</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-legal">
+    <span>© 2026 BEACNpool · independent stake pool · Chicago</span>
+    <span>this page hosts its own brand — the chain hosts the originals</span>
+  </div>
+</footer>
+
+<script>
+/* ---------- copy buttons ---------- */
+document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+  const text = btn.getAttribute('data-copy');
+  try { await navigator.clipboard.writeText(text); }
+  catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); ta.remove();
+  }
+  const old = btn.textContent;
+  btn.textContent = 'Copied'; btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = old; btn.classList.remove('ok'); }, 1600);
+}));
+
+/* ---------- the beacon: a 20 MB GLB + a 900 KB viewer.
+   Gates before a single byte of that moves:
+     1. WebGL must exist, or the poster simply stays.
+     2. On a phone, a narrow screen, or a connection that reports metered/slow, we ASK first —
+        nobody should pay 20 MB of cell data for a lighthouse they didn't request.
+     3. Otherwise it loads when (and only when) you actually scroll down here.
+   The poster is a still of the real model, so the load is a fade-in, not a swap. ---------- */
+function webglOK(){
+  try {
+    const c = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+  } catch (e) { return false; }
+}
+function shouldAsk(){
+  const c = navigator.connection || {};
+  if (c.saveData) return true;
+  if (/2g|3g/.test(c.effectiveType || '')) return true;
+  return window.matchMedia('(max-width: 760px)').matches;
+}
+const stage = document.getElementById('beacon-stage');
+const hint  = document.getElementById('beacon-hint');
+const poster = document.getElementById('beacon-fallback');
+const coarse = window.matchMedia('(pointer: coarse)').matches;
+const READY = coarse ? 'drag to turn the beacon' : 'drag to orbit · the mark, in the round';
+
+function fallBackTo(msg){          /* the poster is HIDDEN, never destroyed — a context loss after a
+                                      successful load must be able to put it back on screen */
+  if (poster) poster.hidden = false;
+  const mv = stage.querySelector('model-viewer');
+  if (mv) mv.remove();
+  hint.textContent = msg;
+}
+
+function loadBeacon(){
+  hint.textContent = 'waking the beacon…';
+  let settled = false;
+  const watchdog = setTimeout(() => {   /* a stalled 20 MB fetch must not leave the caption lying */
+    if (!settled) hint.textContent = 'the beacon is taking its time — the still will do for now';
+  }, 30000);
+
+  const s = document.createElement('script');
+  s.type = 'module';
+  s.src = '/model-viewer.min.js';
+  s.onerror = () => { settled = true; clearTimeout(watchdog); fallBackTo('the 3D viewer failed to load — showing a still of the mark'); };
+  s.onload = () => {
+    const mv = document.createElement('model-viewer');
+    mv.setAttribute('src', '/beacn.glb');
+    mv.setAttribute('poster', '/beacon-poster.webp');
+    mv.setAttribute('alt', 'Interactive 3D BEACN badge — drag to orbit');
+    mv.setAttribute('camera-controls', '');
+    /* zoom is OFF on purpose: model-viewer's wheel handler calls preventDefault(), so a zoomable
+       stage in the last section eats the page scroll and traps you above the footer. */
+    mv.setAttribute('disable-zoom', '');
+    /* no auto-rotate either: the badge's back is a featureless slab, so a spin parks on nothing. */
+    mv.setAttribute('environment-image', 'neutral');  /* without this the model renders near-black */
+    mv.setAttribute('tone-mapping', 'neutral');
+    mv.setAttribute('exposure', '1.2');
+    mv.setAttribute('shadow-intensity', '1');
+    mv.setAttribute('shadow-softness', '0.9');
+    mv.setAttribute('touch-action', 'pan-y');
+    mv.setAttribute('interaction-prompt', 'none');
+    mv.setAttribute('camera-orbit', '0deg 75deg 118%');
+
+    mv.addEventListener('progress', e => {
+      const pct = Math.round((e.detail.totalProgress || 0) * 100);
+      if (!settled && pct < 100) hint.textContent = `waking the beacon… ${pct}%`;
+    });
+    mv.addEventListener('load', () => {
+      settled = true; clearTimeout(watchdog);
+      if (poster) poster.hidden = true;
+      hint.textContent = READY;
+    });
+    mv.addEventListener('error', e => {
+      settled = true; clearTimeout(watchdog);
+      const lost = e.detail && e.detail.type === 'webglcontextlost';
+      fallBackTo(lost ? '3D stopped — showing a still of the mark'
+                      : 'the beacon model failed to load — showing a still of the mark');
+    });
+    stage.appendChild(mv);
+  };
+  document.head.appendChild(s);
+}
+
+if (stage && !webglOK()) {
+  hint.textContent = 'your browser can\'t render 3D — showing a still of the mark';
+} else if (stage && shouldAsk()) {
+  const ask = document.createElement('button');
+  ask.className = 'beacon-ask';
+  ask.innerHTML = '<span class="pill">Wake the beacon · 20 MB</span>';
+  ask.addEventListener('click', () => { ask.remove(); loadBeacon(); });
+  stage.appendChild(ask);
+} else if (stage && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries, obs) => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    obs.disconnect();
+    loadBeacon();
+  }, { rootMargin: '200px' });
+  io.observe(stage);
+} else if (stage) {
+  loadBeacon();                     /* no IntersectionObserver: don't leave it dead on the page */
+}
+
+/* ---------- epoch countdown ----------
+   Cardano mainnet epochs are deterministic since Shelley:
+   epoch 208 began 2020-07-29 21:44:51 UTC (unix 1596059091); each epoch is 432000 s (5 days). */
+const SHELLEY_START = 1596059091, EPOCH_LEN = 432000, SHELLEY_EPOCH = 208;
+const pad = n => String(n).padStart(2, '0');
+function tickEpoch() {
+  const now = Date.now() / 1000;
+  const since = now - SHELLEY_START;
+  const epoch = SHELLEY_EPOCH + Math.floor(since / EPOCH_LEN);
+  const into = since % EPOCH_LEN;
+  const left = EPOCH_LEN - into;
+  const d = Math.floor(left / 86400), h = Math.floor(left % 86400 / 3600),
+        m = Math.floor(left % 3600 / 60), s = Math.floor(left % 60);
+  document.getElementById('ep-num').textContent = epoch;
+  document.getElementById('tl-epoch').textContent = epoch;
+  document.getElementById('ep-count').textContent = `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+  document.getElementById('ep-pct').textContent = (into / EPOCH_LEN * 100).toFixed(1) + '%';
+  document.getElementById('ep-bar').style.width = (into / EPOCH_LEN * 100) + '%';
+}
+tickEpoch();
+setInterval(tickEpoch, 1000);
+</script>
+
+</body>
+</html>
