@@ -189,3 +189,25 @@ accrual change those marks without a trade. In particular legacy reconstructed
 history (`src="b"`) omits receipt principal after supply. A chain fingerprint
 is not an event ID because receipt-valued positions can change without a new
 transaction. Neither source supports per-trade profit attribution.
+
+## Sharing an animated scorecard
+
+The board’s **Share GIF** button prepares the newest meaningful recorded move
+(including lending/setup), with an optional choice among the last two moves per
+fighter. It produces a local 800×600, three-second, 36-frame looping GIF. It
+never substitutes a profitable trade for a newer neutral move. The export
+labels the move as a historical replay, includes its date and result, and keeps
+both books fixed to the captured snapshot while the live page can refresh.
+
+The preview can be paused, and reduced-motion preferences start it paused.
+The saved file remains animated. Download works without a sharing API. On
+supporting browsers, **Share GIF** invokes the device’s file share sheet from a
+fresh button click after encoding; elsewhere it downloads the file for manual
+attachment. Cancelling the share sheet keeps the prepared file. No social post
+is automatically sent, and no rendering/upload service receives the snapshot.
+
+Rendering and GIF encoding run from locally served files in `match-share/`.
+A module worker bounds memory and output size, reports progress, and terminates
+on cancellation. Object URLs are released when replaced or the dialog closes.
+The existing PNG export is retained. Encoder source/version/license, resource
+limits and message contract are in [MATCH_GIF_ENCODER.md](MATCH_GIF_ENCODER.md).

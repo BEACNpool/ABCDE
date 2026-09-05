@@ -214,8 +214,9 @@ if [[ "$DRY" -eq 1 ]]; then
 fi
 
 echo "4/4 publishing ($REASON)"
-mkdir -p "$WORKTREE/data" "$WORKTREE/match-venues" "$WORKTREE/brand"
+mkdir -p "$WORKTREE/data" "$WORKTREE/match-venues" "$WORKTREE/match-share" "$WORKTREE/brand"
 cp -a "$DIST/brand/." "$WORKTREE/brand/"
+cp -a "$DIST/match-share/." "$WORKTREE/match-share/"
 cp "$DIST/match.html" "$WORKTREE/match.html"
 cp "$DIST/match-social.svg" "$WORKTREE/match-social.svg"
 cp "$DIST/match-social.png" "$WORKTREE/match-social.png"
@@ -226,7 +227,7 @@ if [[ -d "$DIST/match-venues" ]]; then
 fi
 
 cd "$WORKTREE"
-git add -A match.html match-social.svg match-social.png match-venues brand data/match.json data/match_history.json
+git add -A match.html match-social.svg match-social.png match-venues match-share brand data/match.json data/match_history.json
 if git diff --cached --quiet; then
   echo "  nothing changed on disk"
   exit 0
