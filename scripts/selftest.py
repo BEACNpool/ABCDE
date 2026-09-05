@@ -100,7 +100,7 @@ try:
     check("ask.py imports", True)
     cat = (REPO / "data" / "schema_catalog.json")
     check("schema catalog present", cat.exists(), f"{cat.stat().st_size} bytes" if cat.exists() else "missing")
-    check("anthropic SDK installed", _try_import("anthropic"))
+    check("Codex transport installed", _try_import("codex_inference"))
     check("mcp SDK installed", _try_import("mcp"))
 except Exception as e:
     check("ask.py checks", False, repr(e))

@@ -1,7 +1,7 @@
 # Starter Questions
 
 Grounded example questions for the genesis ADA database. Ask them through the
-MCP server (in Claude Desktop / Claude Code) or with `python ask.py "..."`.
+MCP server (in Codex) or with `python ask.py "..."`.
 Every answer should carry an evidence grade (FACT / STRONG_INFERENCE /
 WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.md`.
 

@@ -73,11 +73,10 @@ python -m pip install -r requirements/base.txt
 
 *(The venv matters: modern Ubuntu/Debian pythons refuse bare `pip install` — PEP 668.)*
 
-Then wire it into the AI you already use — **no API key if you have Claude Code,
-Claude Desktop, or Codex:**
+Then wire it into Codex using your existing ChatGPT login:
 
 ```bash
-claude mcp add abcde-genesis -- python -m mcp_server.server
+codex mcp add abcde-genesis -- python -m mcp_server.server
 ```
 
 …and just ask:
@@ -96,15 +95,16 @@ statement that isn't a single read-only `SELECT`**, so the AI can explore freely
 without ever mutating the data.
 
 <details>
-<summary><b>No subscription? Use the API-key CLI instead</b></summary>
+<summary><b>Codex subscription: use the bounded SQL CLI</b></summary>
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+codex login  # existing ChatGPT subscription login
 python ask.py "where did IOG's genesis ADA flow, by trace depth?"   # one-shot
 python ask.py                                                        # interactive
 ```
 
-Full setup for Codex `config.toml`, Claude Desktop JSON, and Windows paths is in
+The fleet CLI uses the shared `~/.openclaw/workspace/tools/codex_inference.py` helper.
+MCP client setup and Windows paths are in
 [`docs/AI_QUERY_GUIDE.md`](docs/AI_QUERY_GUIDE.md).
 
 </details>

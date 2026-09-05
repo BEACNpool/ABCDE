@@ -37,60 +37,8 @@ The server is `mcp_server/server.py` (server name `abcde-genesis`). It exposes
 `list_tables`, `describe_table`, `run_sql`, and `starter_questions`, all
 read-only.
 
-If you already use **Claude Code** or **OpenAI Codex** with a subscription, this
-is the entire setup — **no API key required**. Queries run through your existing
-login. (The `ask.py` CLI in section 3 is only for people who prefer a raw API key.)
-
-### Claude Desktop
-
-Add to your `claude_desktop_config.json` (Settings → Developer → Edit Config):
-
-```json
-{
-  "mcpServers": {
-    "abcde-genesis": {
-      "command": "python",
-      "args": ["-m", "mcp_server.server"],
-      "cwd": "/absolute/path/to/ABCDE"
-    }
-  }
-}
-```
-
-On Windows, use `py` as the command and a Windows path for `cwd` (note the
-doubled backslashes required by JSON):
-
-```json
-{
-  "mcpServers": {
-    "abcde-genesis": {
-      "command": "py",
-      "args": ["-3", "-m", "mcp_server.server"],
-      "cwd": "C:\\Users\\you\\ABCDE"
-    }
-  }
-}
-```
-
-If you installed into a venv, point `command` at that venv's Python
-(`/path/to/ABCDE/.venv/bin/python` or `C:\\Users\\you\\ABCDE\\.venv\\Scripts\\python.exe`)
-so the dependencies resolve.
-
-### Claude Code
-
-```bash
-# Linux / macOS
-claude mcp add abcde-genesis -- python -m mcp_server.server
-```
-
-```powershell
-# Windows
-claude mcp add abcde-genesis -- py -3 -m mcp_server.server
-```
-
-Run the command from the repo root (or pass the working directory) so `cwd`
-resolves to the clone. Then ask, e.g. *"Using abcde-genesis, where did EMURGO's
-genesis ADA end up, and which DReps hold the most genesis-traced stake?"*
+OpenAI Codex uses your existing subscription login. The MCP server requires no
+provider API key. The local `ask.py` fallback uses that same Codex login.
 
 ### OpenAI Codex (uses your Codex subscription)
 
@@ -111,23 +59,19 @@ The server also works when launched directly by file path
 (`.../mcp_server/server.py`) — it adds its own repo root to `sys.path`, so the
 `cwd` form above and the file-path form are both fine.
 
-## 3. `ask.py` CLI (API-key fallback)
+## 3. `ask.py` CLI (Codex fallback)
 
-A text-to-SQL loop using the Anthropic SDK. It hands Claude a read-only
-`run_sql` tool and prints a plain-English answer.
+The local CLI uses saved Codex authentication and the shared fleet inference helper
+at `~/.openclaw/workspace/tools/codex_inference.py`. It asks for bounded JSON SQL
+actions, runs them through the existing read-only SQL guard, then returns an answer
+based on successful queries. It does not need an Anthropic key or Python SDK.
+For a standalone clone outside this fleet, use the MCP server above.
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...     # or put it in .env
-# optional: export ABCDE_MODEL=claude-sonnet-4-6   (default)
-
-python ask.py "where did EMURGO's genesis ADA end up?"   # one-shot
-python ask.py                                            # interactive
-```
-
-```powershell
-# Windows
-$env:ANTHROPIC_API_KEY = "sk-ant-..."
-py -3 ask.py "which DReps hold the most genesis-traced stake?"
+codex login
+# optional: export ABCDE_MODEL=gpt-5.6-sol
+python ask.py "where did EMURGO's genesis ADA end up?"
+python ask.py
 ```
 
 ## 4. Full / large dataset
@@ -158,5 +102,5 @@ receipts. Requires the GitHub CLI (`gh`) authenticated.
 - Use `prompts/temporal_anomaly_review.md` when you want the AI to include
   epoch/block timing and to say which rollups need deeper db-sync extraction.
 - Never assert off-chain ownership, intent, or wallet control beyond what the
-  on-chain flows and delegations show (see `CLAUDE.md`).
+  on-chain flows and delegations show (see `docs/02_GRADING.md`).
 - See `docs/STARTER_QUESTIONS.md` for grounded example questions.

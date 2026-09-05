@@ -28,7 +28,7 @@ def R(v):
     return math.floor(v + 0.5)
 
 HERE = pathlib.Path(__file__).parent
-REF = pathlib.Path.home() / '.claude/skills/oligarch/reference'
+REF = pathlib.Path.home() / '.openclaw/workspace/skills/nfts/reference'
 _b = re.findall(r'```xml\n(.*?)\n```', (REF / 'character.md').read_text(), re.S)
 HEAD_DEFS, HEAD = _b[0], _b[1]
 _ALPHA_SRC = (REF / 'alphabet.md').read_text()
