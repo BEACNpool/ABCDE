@@ -19,7 +19,8 @@
 <meta name="twitter:description" content="Same bankroll. Different brains. Real ADA. Completed trades and open exposure, stated plainly.">
 <meta name="twitter:image" content="https://beacnpool.github.io/ABCDE/match-social.png">
 <meta name="theme-color" content="#020617">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l9 5v10l-9 5-9-5V7z' fill='%230b1830' stroke='%2322d3ee' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-20260904.png">
+<link rel="apple-touch-icon" href="brand/apple-touch-20260904.png">
 <link rel="stylesheet" href="style.css">
 <style>
 /* ---------------------------------------------------------------------------
@@ -486,7 +487,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 .sc-fighter{min-width:0;padding:4px 2px}.sc-fighter.right{text-align:right}
 .sc-fighter-head{display:flex;align-items:center;gap:11px}.sc-fighter.right .sc-fighter-head{flex-direction:row-reverse}
 .bot-emblem{width:54px;height:54px;flex:0 0 54px;color:var(--mark);filter:drop-shadow(0 0 14px color-mix(in srgb,var(--mark) 45%,transparent))}
-.bot-emblem svg{display:block;width:100%;height:100%}.sc-fighter-copy{min-width:0}
+.bot-emblem svg,.bot-emblem img{display:block;width:100%;height:100%;object-fit:contain}.sc-fighter-copy{min-width:0}
 .sc-name{font-size:clamp(24px,3.3vw,39px);font-weight:900;letter-spacing:-.055em;line-height:.95;color:var(--mark)}
 .sc-archetype{margin-top:4px;color:var(--muted2);font:800 8.5px var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .sc-score{font-size:clamp(29px,4.3vw,48px);margin-top:12px;line-height:.94;color:var(--text)}
@@ -567,7 +568,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="ABCDE home"><span class="hex">⬡</span><span>ABCDE<small>BEACN Mainnet Arena</small></span></a>
+    <a class="brand" href="index.html" aria-label="ABCDE home"><img class="brand-logo" src="brand/beacn-20260904.png" width="40" height="40" alt="" decoding="async"><span>ABCDE<small>BEACN Mainnet Arena</small></span></a>
     <nav>
       <a href="index.html">Explorer</a>
       <a href="minfree.html">Minfree</a>
@@ -872,12 +873,7 @@ const pnlPct = ag => ag.vs_equalized_start_pct ?? (
     ? 100 * pnlValue(ag) / DATA.start.books[ag.id].ada_eq_at_today_rate : null);
 
 function botEmblem(id) {
-  if (id === "beacn") return `<span class="bot-emblem" aria-hidden="true"><svg viewBox="0 0 64 64">
-    <path d="M32 3 55 16v32L32 61 9 48V16Z" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M32 10v8M32 46v8M14 22l7 4M43 38l7 4M14 42l7-4M43 26l7-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="32" cy="32" r="13" fill="currentColor" opacity=".12"/><path d="M26 21h8.5c6.5 0 9.5 7.4 4.2 11 6.7 3.1 4.1 11-3.1 11H26Zm5 5v4h3.2c2.7 0 2.7-4 0-4Zm0 9v4h4c2.9 0 2.9-4 0-4Z" fill="currentColor"/>
-    <circle cx="32" cy="7" r="2" fill="currentColor"/><circle cx="53" cy="19" r="2" fill="currentColor"/><circle cx="11" cy="45" r="2" fill="currentColor"/>
-  </svg></span>`;
+  if (id === "beacn") return `<span class="bot-emblem" aria-hidden="true"><img src="brand/beacn-20260904.png" width="64" height="64" alt="" decoding="async"></span>`;
   return `<span class="bot-emblem" aria-hidden="true"><svg viewBox="0 0 64 64">
     <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 5"/>
     <path d="M17 38c-5.5-8.4 2-17.7 10.6-14.7C31.8 13 47 16.4 47 27.7c8.8 2.9 6.7 16.3-2.5 16.3H22c-4.2 0-7.6-2.5-8-6Z" fill="currentColor" opacity=".12" stroke="currentColor" stroke-width="2"/>
@@ -1284,7 +1280,7 @@ function renderCard() {
   };
 
   host.innerHTML = `<div class="sc-top">
-      <div class="sc-brand"><span class="mini-hex">B</span><span><strong>BEACN Mainnet Arena</strong><small>Bot battle · chain-scored</small></span></div>
+      <div class="sc-brand"><img src="brand/beacn-20260904.png" width="40" height="40" alt="" decoding="async"><span><strong>BEACN Mainnet Arena</strong><small>Bot battle · chain-scored</small></span></div>
       <div class="sc-market"><span>ADA / USD · snapshot mark</span>
         <strong>${priced ? px(DATA.price.usd_per_ada) : "UNAVAILABLE"}</strong>
         <small>${priceMove === null ? "Independent CoinGecko mark" : `${priceMove > 0 ? "+" : ""}${fmt(priceMove, 2)}% since the bell`}</small></div>
@@ -1635,7 +1631,9 @@ function buildShareCanvas() {
       x, 666, 14, muted, align, 800, mono);
   };
 
-  text("⬡  BEACN MAINNET ARENA", 72, 82, 23, cyan, "left", 900, mono);
+  const brandLogo = document.querySelector(".brand-logo");
+  if (brandLogo?.complete && brandLogo.naturalWidth) c.drawImage(brandLogo, 68, 47, 48, 48);
+  text("BEACN MAINNET ARENA", 126, 82, 23, cyan, "left", 900, mono);
   text("LIVE · CARDANO MAINNET · REAL ADA", 1528, 82, 17, red, "right", 800, mono);
   text("THE MAINNET MONEY MATCH", 72, 175, 46, white, "left", 900);
   text("SAME BANKROLL. DIFFERENT BRAINS. EVERY TRADE CHAIN-VERIFIED.", 72, 207, 19, muted, "left", 800, mono);
