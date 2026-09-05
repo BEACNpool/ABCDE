@@ -697,9 +697,9 @@ button:disabled{opacity:.55;cursor:wait;transform:none}.refresh-error{color:var(
       </div>
     </div>
     <div class="sharetools">
-      <button type="button" id="downloadcard">Save scorecard PNG</button>
-      <button type="button" id="sharematch">Share the match</button>
-      <button type="button" id="copylink">Copy link</button>
+      <button type="button" id="downloadcard" disabled>Save scorecard PNG</button>
+      <button type="button" id="sharematch" disabled>Share the match</button>
+      <button type="button" id="copylink" disabled>Copy link</button>
       <span id="copymsg" role="status">Save or share the score and both books from this snapshot.</span>
       <span id="matchupdates" class="sr-only" role="status"></span>
     </div>
@@ -779,15 +779,13 @@ button:disabled{opacity:.55;cursor:wait;transform:none}.refresh-error{color:var(
   <div class="wrap">
     <div class="eyebrow">Execution bill</div>
     <h2 class="sec-h">What each bot paid to play.</h2>
-    <p class="sec-lede">Every ADA spent on getting a transaction into a block or paying a
-      DEX batcher to fill an order. Fees are attributed only where the agent's own
+    <p class="sec-lede">Network and batcher fees paid from each book. Pool trading fees and price
+      impact are embedded in the fills and are excluded from these fee totals. Fees are attributed only where the agent's own
       credential funded the transaction — a batcher pays the fee on a fill, and that fee
       is the batcher's, not the agent's.</p>
     <div class="chart" id="costchart"></div>
     <div class="tbl-wrap"><table class="data" id="costtable"></table></div>
-    <p class="muted" style="font-size:13px;margin-top:12px">Batcher fees are derived by
-      conservation over each swap: everything the agent gave up that the pool did not
-      receive and the network did not take.</p>
+    <p class="muted" style="font-size:13px;margin-top:12px">Batcher fees are attributed to the agent’s own order, even in a shared batch. These totals exclude pool trading fees and price impact. <a href="https://github.com/BEACNpool/ABCDE/blob/main/docs/MATCH_ACCOUNTING.md" target="_blank" rel="noopener">Read the accounting correction ↗</a></p>
     <div id="costnote"></div>
   </div>
 </section>
@@ -831,10 +829,7 @@ button:disabled{opacity:.55;cursor:wait;transform:none}.refresh-error{color:var(
         <p><span class="tag fact">Fact</span>Scoring in ADA means a book held entirely in
           ADA scores a <b>constant</b>. Before rewards, transfers and costs, its score is constant. An asset that appreciates
           against ADA — such as a dollar stablecoin while ADA falls — moves the number.</p>
-        <p><span class="tag inf">Inference</span>So "hold ADA and do nothing" is not the
-          neutral position under these rules; it is the maximally long one. The books now
-          carry meaningfully different stablecoin exposure, so ADA’s direction can move
-          the lead while fees and execution keep taking their cut.</p>
+        <p><span class="tag inf">Inference</span>A larger stablecoin sleeve benefits when ADA falls against the dollar and loses ground when it rises. Asset mix, lending carry and transaction costs all affect the lead.</p>
         <p><span class="tag unc">Uncertainty</span>A quoted lending rate can change. A supply receipt is valued from the protocol’s live exchange rate, and its value depends on the contract and available redemption liquidity. Available staking rewards are read from chain in each book.</p>
       </div>
     </div>
@@ -1147,7 +1142,7 @@ function renderCosts() {
   const groups = [
     ["Network fees", "network", "Protocol fees on transactions the agent funded itself."],
     ["DEX batcher fees", "service", "Paid to whoever executed each swap on its behalf."],
-    ["Total spent on execution", "total", "Everything above, combined."],
+    ["Network + batcher combined", "total", "Everything above, combined."],
   ];
   const max = Math.max(...DATA.agents.map(a =>
     Math.max(a.costs.network, a.costs.service, a.costs.total))) || 1;
@@ -1391,7 +1386,7 @@ function renderCard() {
       <div class="sc-stat">Completed trades<b>${completedTrades(a)} / ${completedTrades(b)}</b></div>
       <div class="sc-stat">Open positions<b>${marketPositions(a).length} / ${marketPositions(b).length}</b></div>
       <div class="sc-stat">Open orders<b>${a.open_orders} / ${b.open_orders}</b></div>
-      <div class="sc-stat">Execution fees<b>${fmt(a.costs.total, 2)} / ${fmt(b.costs.total, 2)} ADA</b></div>
+      <div class="sc-stat">Network + batcher<b>${fmt(a.costs.total, 2)} / ${fmt(b.costs.total, 2)} ADA</b></div>
     </div>
     <p class="race-summary">${!priced ? "The independent price is unavailable; no leader is claimed." :
       DATA.agents.every(ag => pnlValue(ag) < 0) ? "<strong>Both books are below the starting score.</strong> Leading the match is different from making a profit." :
@@ -1856,6 +1851,7 @@ function boot(d, hist) {
   DATA = d;
   HIST = hist;
   renderAll();
+  for (const id of ["downloadcard", "sharematch", "copylink"]) $("#" + id).disabled = false;
   if (WIRED) return;
   WIRED = true;
   $("#copylink").addEventListener("click", async () => {
@@ -1967,6 +1963,7 @@ Promise.all([
   getJSON("data/match_history.json").catch(() => null),
 ]).then(([d, h]) => boot(d, h))
   .catch(err => {
+    $("#copymsg").textContent = "Sharing becomes available when a verified snapshot loads.";
     $("#sharecard").setAttribute("aria-busy", "false");
     $("#sharecard").innerHTML = `<div class="empty">Score unavailable. <button class="arena-btn" type="button" onclick="location.reload()">Try again</button></div>`;
     $("#boarderr").innerHTML = `<div class="err" role="alert"><b>The snapshot could not be loaded.</b>
