@@ -4,5 +4,6 @@
 duckdb>=1.5.0,<2
 pyyaml>=6,<7
 pandas>=2,<3
-mcp>=1.2.0
+# This server uses the v1 FastMCP API; v2 renamed and changed that API.
+mcp>=1.2.0,<2
 anthropic>=0.40.0
