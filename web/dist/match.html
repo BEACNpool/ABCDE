@@ -649,6 +649,80 @@ button:disabled{opacity:.55;cursor:wait;transform:none}.refresh-error{color:var(
 
 .sc-status{font-size:12px;color:var(--red);margin-top:12px;line-height:1.45}
 @media(max-width:620px){.mhero h1{font-size:29px}.mhero .lede{display:none}.hero-deck{font-size:14px;margin-top:8px}.mhero{padding:0}.arena-kicker{font-size:9px;margin-bottom:6px}.freshbar{margin:8px 0 12px}.sc-status{grid-column:1/-1;margin-top:8px;font-size:11px}.sc-score{font-size:30px}}
+
+/* Boxing corners: fixed identities, poses driven by the current scored snapshot. */
+.sharecard{background:radial-gradient(ellipse at 10% 28%,#11334b 0,transparent 48%),radial-gradient(ellipse at 95% 28%,#382912 0,transparent 45%),#070e18;padding:24px 28px}
+.sc-top .sc-brand strong{letter-spacing:.06em}.sc-start{margin:16px 0 4px}
+.sc-stage{position:relative;isolation:isolate;grid-template-columns:minmax(0,1fr) minmax(170px,.65fr) minmax(0,1fr);gap:24px;align-items:stretch}
+.sc-stage::before{content:"";position:absolute;z-index:-1;top:112px;left:0;right:0;height:80px;border-top:3px solid #647286;border-bottom:3px solid #647286;background:linear-gradient(transparent 37px,#647286 37px,#647286 40px,transparent 40px);opacity:.2;transform:perspective(500px) rotateX(-8deg);pointer-events:none}
+.sc-fighter{position:relative;padding:16px 12px 0;--corner-bright:#5cddf4;--corner-shadow:#084957;--inward:1}
+.sc-fighter.right{--corner-bright:#ffc166;--corner-shadow:#694308;--inward:-1}
+.corner-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;font:800 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--corner-bright)}
+.sc-fighter.right .corner-meta{flex-direction:row-reverse}
+.corner-label{color:var(--muted);font-size:9px;letter-spacing:.12em}
+.corner-standing{padding:5px 8px;border-radius:4px;border:1px solid color-mix(in srgb,var(--mark) 35%,transparent);background:#09121bd9}
+.corner-portrait{position:relative;height:196px;display:grid;place-items:center;isolation:isolate;margin:4px -4px 8px}
+.corner-portrait::before{content:"";position:absolute;width:220px;height:220px;max-width:100%;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--mark) 24%,transparent),transparent 68%);opacity:.5;transition:opacity .7s}
+.corner-portrait::after{content:"";position:absolute;bottom:8px;width:65%;height:18px;border:1px solid color-mix(in srgb,var(--mark) 42%,transparent);border-radius:50%;background:#03080c;box-shadow:0 8px 20px #0008;transform:perspective(140px) rotateX(30deg);z-index:-1}
+.corner-avatar{position:relative;width:172px;height:172px;display:grid;place-items:center;transform:translateY(4px) rotate(calc(var(--inward)*-4deg));transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s;animation:corner-breathe 4s ease-in-out infinite}
+.corner-avatar .bot-emblem{width:148px;height:148px;flex:none;border-radius:50%;background:#030609;border:2px solid color-mix(in srgb,var(--mark) 60%,#172332);box-shadow:0 14px 30px #0009,0 0 0 7px #081320;filter:none;overflow:hidden}
+.corner-avatar .bot-emblem img{border-radius:50%}.corner-avatar .bot-emblem svg{padding:6px;color:var(--corner-bright)}
+.corner-body{position:absolute;z-index:-1;bottom:-8px;width:116px;height:54px;border-radius:45% 45% 18% 18%;background:linear-gradient(120deg,var(--corner-shadow),#08131f);border:2px solid color-mix(in srgb,var(--mark) 55%,#172332);box-shadow:inset 0 -12px 0 #03080c}
+.corner-body::after{content:"";position:absolute;left:calc(50% - 12px);bottom:0;width:24px;height:13px;background:var(--corner-bright);border:3px solid #8c713e;border-radius:3px;opacity:.8}
+.boxing-glove{position:absolute;z-index:2;width:76px;height:82px;color:var(--corner-bright);filter:drop-shadow(0 7px 5px #0008);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.boxing-glove svg{width:100%;height:100%;display:block;overflow:visible}
+.glove-outer{left:calc(50% - 122px);top:126px;transform:rotate(-18deg)}
+.glove-inner{right:calc(50% - 121px);top:100px;transform:rotate(22deg)}
+.right .glove-outer{left:auto;right:calc(50% - 122px);transform:rotate(18deg) scaleX(-1)}
+.right .glove-inner{right:auto;left:calc(50% - 121px);transform:rotate(-22deg) scaleX(-1)}
+.ring-post{position:absolute;left:-4px;top:80px;width:12px;height:130px;border-radius:4px 4px 0 0;background:linear-gradient(90deg,#182b3d,var(--mark),#07111a);box-shadow:0 5px 10px #0008;z-index:-1}
+.ring-post::after{content:"";position:absolute;top:12px;left:-3px;width:20px;height:13px;border-radius:4px;background:var(--corner-shadow);border:1px solid var(--mark);box-shadow:0 36px 0 var(--corner-shadow),0 72px 0 var(--corner-shadow)}
+.right .ring-post{left:auto;right:-4px}
+.corner-leading .corner-portrait::before{opacity:1;background:radial-gradient(circle,color-mix(in srgb,var(--mark) 42%,transparent),transparent 68%)}
+.corner-leading .corner-standing{background:var(--corner-bright);border-color:var(--corner-bright);color:#051019}
+.corner-leading .corner-avatar{transform:translateY(-7px) rotate(calc(var(--inward)*3deg));filter:drop-shadow(0 0 14px color-mix(in srgb,var(--mark) 50%,transparent))}
+.corner-leading .glove-outer{transform:translate(-7px,-68px) rotate(-30deg)}
+.right.corner-leading .glove-outer{transform:translate(7px,-68px) rotate(30deg) scaleX(-1)}
+.corner-trailing .corner-avatar{filter:saturate(.72)}
+.corner-trailing .glove-inner{transform:translateY(12px) rotate(8deg)}
+.right.corner-trailing .glove-inner{transform:translateY(12px) rotate(-8deg) scaleX(-1)}
+.corner-level .corner-avatar,.corner-unavailable .corner-avatar,.corner-stale .corner-avatar{transform:translateY(4px);animation:none}
+.sc-fighter.corner-unavailable,.sc-fighter.corner-stale{--corner-bright:#aab6c5}
+.corner-unavailable .boxing-glove,.corner-stale .boxing-glove{filter:saturate(.25) drop-shadow(0 7px 5px #0008)}
+.sc-fighter-head{justify-content:center;text-align:center}.sc-fighter.right .sc-fighter-head{flex-direction:row}.sc-fighter-head>.bot-emblem{display:none}
+.sc-fighter,.sc-fighter.right{text-align:center}.sc-name{font-size:34px;color:var(--corner-bright);letter-spacing:-.04em}.sc-archetype{font-size:10px;margin-top:6px}
+.sc-score{font-size:43px;margin-top:18px}.sc-score small{display:block;margin-top:6px}.sc-pnl,.sc-fighter.right .sc-pnl{justify-items:center}
+.sc-loadout{margin-top:12px}.sc-fighter .vrow,.sc-fighter.right .vrow{justify-content:center}
+.sc-center{border:0;padding:0 4px;justify-content:center;position:relative;background:none}
+.ring-vs{font:950 italic 68px/.9 system-ui;letter-spacing:-.08em;color:#e8edf4;text-shadow:3px 3px 0 #294052;transform:rotate(-7deg);margin:0 0 20px}
+.ring-vs small{display:block;font:700 9px var(--mono);letter-spacing:.3em;color:var(--muted);transform:rotate(7deg);margin-top:12px}
+.sc-center .cap{font-size:10px}.sc-center .leader{font-size:22px;color:var(--text)}.sc-center .gap{font-size:35px;color:var(--text);margin-top:8px}.sc-center .gap small{font-size:10px;line-height:1.6}
+.sc-center .sc-status{font-size:11px;line-height:1.5;color:var(--muted);margin-top:14px}.sc-clock{font-size:10px;line-height:1.5;margin-top:14px}
+.sc-stats{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+#cornermotion[aria-pressed="true"]{border-color:var(--cyan);color:var(--text)}
+body.motion-paused .corner-avatar{animation:none}body.motion-paused .boxing-glove,body.motion-paused .corner-avatar{transition:none}
+.lead-change .corner-leading .corner-standing{animation:lead-takeover 1.2s ease-out 1}
+@keyframes lead-takeover{0%{box-shadow:0 0 0 0 var(--corner-bright)}100%{box-shadow:0 0 0 18px transparent}}
+body.motion-paused .corner-standing{animation:none!important}
+@keyframes corner-breathe{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media(min-width:1000px){.mhero h1{font-size:48px}.mhero{padding:0 0 4px}.arena-hero{padding-top:16px}.freshbar{margin-top:10px}.sc-top{padding-bottom:12px}.sc-start{margin-top:12px}}
+@media(max-width:940px){.sc-stage{gap:12px;grid-template-columns:minmax(0,1fr) 154px minmax(0,1fr)}.sc-fighter{padding:12px 4px 0}.corner-portrait{height:210px}.corner-meta{gap:4px;font-size:9px}.corner-label{font-size:8px}.corner-standing{padding:5px}.sc-name{font-size:26px}.sc-score{font-size:34px}.ring-vs{font-size:58px}.sc-center .gap{font-size:29px}.sc-center .leader{font-size:20px}}
+@media(max-width:700px){
+ .sharecard{padding:16px}.sc-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 20px}.sc-stage::before{top:78px;height:58px;background:linear-gradient(transparent 26px,#647286 26px,#647286 29px,transparent 29px)}
+ .sc-fighter,.sc-fighter.right{grid-row:1;padding:8px 0 0}.sc-fighter.right{grid-column:2}.corner-meta,.sc-fighter.right .corner-meta{flex-direction:column;gap:6px}.corner-label{font-size:9px}.corner-standing{font-size:9px;padding:5px 6px;letter-spacing:.02em}
+ .corner-portrait{height:154px;margin:0 -4px 8px}.corner-portrait::before{width:160px;height:160px}.corner-avatar{width:116px;height:116px}.corner-avatar .bot-emblem{width:104px;height:104px;box-shadow:0 10px 20px #0009,0 0 0 4px #081320}.corner-body{width:84px;height:38px;bottom:-5px}.corner-body::after{width:20px;height:11px;left:calc(50% - 10px)}
+ .boxing-glove{width:50px;height:56px}.glove-outer{left:calc(50% - 81px);top:92px}.glove-inner{right:calc(50% - 82px);top:76px}.right .glove-outer{right:calc(50% - 81px)}.right .glove-inner{left:calc(50% - 82px)}
+ .corner-leading .glove-outer{transform:translate(-2px,-48px) rotate(-30deg)}.right.corner-leading .glove-outer{transform:translate(2px,-48px) rotate(30deg) scaleX(-1)}
+ .ring-post{top:60px;height:87px;width:8px;left:0}.right .ring-post{right:0}.ring-post::after{width:14px;height:9px;left:-2px;box-shadow:0 26px 0 var(--corner-shadow),0 52px 0 var(--corner-shadow)}
+ .sc-fighter,.sc-fighter.right{text-align:center}.sc-fighter-head{justify-content:center}.sc-name{font-size:23px}.sc-archetype{display:none}.sc-score{font-size:31px;margin-top:12px}.sc-score small{font-size:9px}.sc-worth{font-size:11px}
+ .sc-pnl,.sc-fighter.right .sc-pnl{display:block;padding:8px 6px;margin-top:12px}.sc-pnl span{font-size:9px;letter-spacing:0}.sc-pnl strong{font-size:21px}.sc-pnl small{font-size:10px}.sc-loadout{font-size:10px;line-height:1.5}.sc-activity{display:none}
+ .sc-center{grid-row:2;grid-column:1/-1;display:grid;grid-template-columns:64px 1fr auto;gap:2px 12px;text-align:left;padding:14px 12px;border:1px solid var(--line2);border-radius:10px;background:#07101bd9}
+ .ring-vs{grid-column:1;grid-row:1/4;align-self:center;margin:0;font-size:38px}.ring-vs small{display:none}.sc-center .cap{grid-column:2;font-size:9px}.sc-center .leader{grid-column:2;font-size:18px;line-height:1.2;margin:0}.sc-center .gap{grid-column:3;grid-row:1/3;font-size:26px;text-align:right;margin:0;align-self:center}.sc-center .gap small{font-size:9px;line-height:1.4;max-width:100px}.sc-center .sc-status{grid-column:2/-1;font-size:10px;margin:5px 0 0}.sc-clock{display:none}
+ .sc-fighter .vrow,.sc-fighter.right .vrow{justify-content:center}.sc-stats{margin-top:16px}.sc-start{font-size:10px;margin:12px 0 4px}
+}
+@media(max-width:380px){.sc-stage{column-gap:16px}.sharecard{padding:12px}.corner-portrait{height:140px}.corner-avatar{width:100px;height:100px}.corner-avatar .bot-emblem{width:88px;height:88px}.boxing-glove{width:44px;height:50px}.glove-outer{left:calc(50% - 69px);top:84px}.right .glove-outer{right:calc(50% - 69px)}.glove-inner{right:calc(50% - 71px);top:70px}.right .glove-inner{left:calc(50% - 71px)}.corner-body{width:72px}.sc-name{font-size:20px}.sc-score{font-size:27px}.sc-pnl strong{font-size:18px}.sc-center{grid-template-columns:44px 1fr auto;gap:2px 8px;padding:12px 8px}.ring-vs{font-size:31px}.sc-center .leader{font-size:16px}.sc-center .gap{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.corner-avatar,.corner-standing{animation:none!important}.corner-avatar,.boxing-glove,.corner-portrait::before{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -700,6 +774,7 @@ button:disabled{opacity:.55;cursor:wait;transform:none}.refresh-error{color:var(
       <button type="button" id="downloadcard" disabled>Save scorecard PNG</button>
       <button type="button" id="sharematch" disabled>Share the match</button>
       <button type="button" id="copylink" disabled>Copy link</button>
+      <button type="button" id="cornermotion" aria-pressed="false" disabled>Pause corner motion</button>
       <span id="copymsg" role="status">Save or share the score and both books from this snapshot.</span>
       <span id="matchupdates" class="sr-only" role="status"></span>
     </div>
@@ -966,6 +1041,47 @@ function botEmblem(id) {
   </svg></span>`;
 }
 
+
+function cornerState(id) {
+  if (!DATA || !DATA.price.available || !Number.isFinite(DATA.gap_ada_eq)) return "unavailable";
+  const age = Date.now() / 1000 - DATA.generated_at_unix;
+  if (!Number.isFinite(age) || age > 1800 || age < -60) return "stale";
+  if (!DATA.leader) return "level";
+  return DATA.leader === id ? "leading" : "trailing";
+}
+function boxingGlove() {
+  return `<svg viewBox="0 0 80 90" fill="none" aria-hidden="true">
+    <path d="M23 58C12 53 9 46 10 31 10 14 19 7 36 7h10c15 0 23 10 23 23v14c0 12-7 19-15 23l-2 13H24Z" fill="currentColor" stroke="#08131d" stroke-width="3"/>
+    <path d="M22 54c-6-13-4-24 2-26 7-3 12 5 13 13l2 9" fill="currentColor" stroke="#08131d" stroke-width="3" stroke-linecap="round"/>
+    <path d="M31 15c11-3 23 0 27 9M44 54l14-4" stroke="#fff" stroke-opacity=".4" stroke-width="3" stroke-linecap="round"/>
+    <path d="m23 64 32 2-3 16-28-2Z" fill="#e5eaf0" stroke="#08131d" stroke-width="3"/>
+    <path d="m29 72 17 1" stroke="#344656" stroke-width="3" stroke-linecap="round"/>
+  </svg>`;
+}
+function cornerPortrait(id) {
+  const emblem = botEmblem(id).replace("brand/beacn-20260904.png", "brand/beacn-corner-20260905.png");
+  return `<div class="corner-portrait" aria-hidden="true"><i class="ring-post"></i>
+    <div class="corner-avatar"><span class="corner-body"></span>${emblem}</div>
+    <span class="boxing-glove glove-outer">${boxingGlove()}</span>
+    <span class="boxing-glove glove-inner">${boxingGlove()}</span></div>`;
+}
+function refreshCornerStates() {
+  document.querySelectorAll(".sc-fighter[data-agent]").forEach(el => {
+    const state = cornerState(el.dataset.agent);
+    for (const name of ["leading", "trailing", "level", "unavailable", "stale"]) el.classList.toggle("corner-" + name, state === name);
+    const label = {leading:"Leading", trailing:"Challenging", level:"Even match", unavailable:"No score", stale:"Awaiting update"}[state];
+    el.querySelector(".corner-standing").textContent = label;
+  });
+}
+let cornerMotionPaused = matchMedia("(prefers-reduced-motion: reduce)").matches;
+try { cornerMotionPaused = cornerMotionPaused || localStorage.getItem("match-corner-motion") === "paused"; } catch {}
+function renderCornerMotion() {
+  document.body.classList.toggle("motion-paused", cornerMotionPaused);
+  const button = $("#cornermotion");
+  button.setAttribute("aria-pressed", String(cornerMotionPaused));
+  button.textContent = cornerMotionPaused ? "Resume corner motion" : "Pause corner motion";
+}
+
 let DATA = null;
 let FILTER = "all";
 let SHOW_ALL_MOVES = false;
@@ -985,6 +1101,7 @@ function whenUTC(unixOrIso) {
 /* ---- freshness: the snapshot age is the first thing a viewer needs ---- */
 function renderFresh() {
   if (!DATA) return;
+  refreshCornerStates();
   const age = (Date.now() / 1000) - DATA.generated_at_unix;
   const state = age < 1800 ? "fresh" : (age < 7200 ? "aging" : "stale");
   const word = state === "fresh" ? "Fresh" : (state === "aging" ? "Aging" : "Stale");
@@ -1323,11 +1440,12 @@ function sparkline(w, h) {
 function renderCard() {
   const host = $("#sharecard");
   if (!host) return;
-  const [a, b] = DATA.agents;
+  const a = DATA.agents.find(ag => ag.id === "beacn");
+  const b = DATA.agents.find(ag => ag.id === "grokbot");
   const priced = DATA.price.available;
   const st = leadStats();
-  const leaderId = DATA.leader;
-  const gap = DATA.gap_ada_eq;
+  const leaderId = priced ? DATA.leader : null;
+  const gap = priced ? DATA.gap_ada_eq : null;
   const firstPricePoint = HIST && HIST.points.find(p => Number(p[3]) > 0);
   const priceMove = priced && firstPricePoint
     ? 100 * (DATA.price.usd_per_ada / firstPricePoint[3] - 1) : null;
@@ -1344,7 +1462,9 @@ function renderCard() {
     const pUsd = p === null ? null : (ag.vs_equalized_start_usd_at_current_mark ??
       p * DATA.price.usd_per_ada);
     const role = ag.id === "beacn" ? "Cardano research · Codex" : "Independent challenger";
-    return `<div class="sc-fighter agent-${esc(ag.id)}${right ? " right" : ""}">
+    return `<div class="sc-fighter agent-${esc(ag.id)}${right ? " right" : ""}" data-agent="${esc(ag.id)}">
+      <div class="corner-meta"><span class="corner-label">${right ? "Amber" : "Cyan"} corner</span><span class="corner-standing"></span></div>
+      ${cornerPortrait(ag.id)}
       <div class="sc-fighter-head">${botEmblem(ag.id)}<div class="sc-fighter-copy">
         <div class="sc-name">${esc(fighterName(ag))}</div>
         <div class="sc-archetype">${esc(role)}</div>
@@ -1373,7 +1493,8 @@ function renderCard() {
     <div class="sc-start">Started even · <b>${fmt(sharedStart, 2)} ADA-eq each</b></div>
     <div class="sc-stage">${side(a, false)}
       <div class="sc-center" style="--leader-color:${leaderColor};--race-pos:${racePos}%">
-        <div class="cap">Current leader</div>
+        <div class="ring-vs" aria-hidden="true">VS<small>MAINNET BOUT</small></div>
+        <div class="cap">Snapshot leader</div>
         <div class="leader">${!priced ? "No price mark" : leader ? esc(fighterName(leader)) : "Dead level"}</div>
         <div class="gap">${gap === null ? "—" : fmt(Math.abs(gap), 2)}
           <small>${gap === null ? "No independent mark" : `ADA-eq · ${usd(Math.abs(DATA.gap_usd))} gap`}</small></div>
@@ -1396,6 +1517,11 @@ function renderCard() {
       <span class="tags">${(protocolPositions(a).length || protocolPositions(b).length)
         ? "Unofficial · unsponsored"
         : "Watch the next move · #Cardano · $ADA"}</span></div>`;
+  refreshCornerStates();
+  const nextCornerLeader = ["leading", "trailing", "level"].includes(cornerState("beacn")) ? (leaderId || "level") : "unknown";
+  const changed = host.dataset.cornerLeader && host.dataset.cornerLeader !== "unknown" && nextCornerLeader !== "unknown" && host.dataset.cornerLeader !== nextCornerLeader;
+  host.classList.toggle("lead-change", Boolean(changed));
+  host.dataset.cornerLeader = nextCornerLeader;
   host.setAttribute("aria-busy", "false");
 }
 
@@ -1678,150 +1804,208 @@ function buildShareCanvas() {
   const canvas = document.createElement("canvas");
   canvas.width = 1600; canvas.height = 900;
   const c = canvas.getContext("2d");
-  const cyan = "#28d8f2", amber = "#f0a30a", white = "#f5f8fc";
-  const muted = "#9dafc3", line = "#1f3a55", green = "#47dfa3", red = "#ff7086";
-  const [a, b] = DATA.agents;
-  const priced = DATA.price.available;
-  const gap = DATA.gap_ada_eq;
-  const leader = DATA.leader ? DATA.agents.find(x => x.id === DATA.leader) : null;
-  const shared = DATA.start.equalized_score_ada_eq ||
-    (DATA.start.books.beacn.ada + DATA.start.books.beacn.deposit);
-
-  const bg = c.createLinearGradient(0, 0, 1600, 900);
-  bg.addColorStop(0, "#0b1d31"); bg.addColorStop(.55, "#06111f"); bg.addColorStop(1, "#0a1019");
-  c.fillStyle = bg; c.fillRect(0, 0, 1600, 900);
-  const glowL = c.createRadialGradient(120, 140, 0, 120, 140, 580);
-  glowL.addColorStop(0, "rgba(40,216,242,.20)"); glowL.addColorStop(1, "rgba(40,216,242,0)");
-  c.fillStyle = glowL; c.fillRect(0, 0, 800, 760);
-  const glowR = c.createRadialGradient(1480, 720, 0, 1480, 720, 540);
-  glowR.addColorStop(0, "rgba(240,163,10,.16)"); glowR.addColorStop(1, "rgba(240,163,10,0)");
-  c.fillStyle = glowR; c.fillRect(800, 180, 800, 720);
-  c.strokeStyle = "rgba(40,216,242,.04)"; c.lineWidth = 1;
-  for (let x = 0; x <= 1600; x += 64) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, 900); c.stroke(); }
-  for (let y = 0; y <= 900; y += 64) { c.beginPath(); c.moveTo(0, y); c.lineTo(1600, y); c.stroke(); }
-  c.strokeStyle = "#31506c"; c.lineWidth = 2; c.strokeRect(24, 24, 1552, 852);
-
-  const text = (s, x, y, size, color=white, align="left", weight=700, family="system-ui") => {
-    c.font = `${weight} ${size}px ${family}`; c.fillStyle = color; c.textAlign = align;
-    c.textBaseline = "alphabetic"; c.fillText(String(s), x, y);
-  };
+  const cyan = "#28c1df", amber = "#f6b744", white = "#eff6fc";
+  const muted = "#a6b9cc", red = "#ff8193", green = "#66dfb0";
   const mono = 'ui-monospace,Consolas,"Liberation Mono",monospace';
-  const signed = (v, d=2) => `${v > 0 ? "+" : ""}${Number(v).toFixed(d)}`;
-  const mark = (ag, x, right=false) => {
-    const color = ag.id === "beacn" ? cyan : amber;
-    const p = priced ? pnlValue(ag) : null;
-    const pp = priced ? pnlPct(ag) : null;
-    const pUsd = p === null ? null : (ag.vs_equalized_start_usd_at_current_mark ?? p * DATA.price.usd_per_ada);
-    const align = right ? "right" : "left";
-    text(fighterName(ag), x, 315, 58, color, align, 900);
-    text(ag.id === "beacn" ? "CARDANO RESEARCH · CODEX" : "INDEPENDENT CHALLENGER",
-      x, 350, 17, muted, align, 800, mono);
-    text(priced ? Number(ag.score_ada_eq).toFixed(2) : Number(ag.ada_total).toFixed(2),
-      x, 445, 72, white, align, 800, mono);
-    text(priced ? "ADA-EQ" : "ADA HELD", x + (right ? -4 : 4), 477, 17, muted, align, 700, mono);
-    text("FROM EQUALIZED START", x, 525, 15, muted, align, 800, mono);
-    text(p === null ? "—" : `${signed(p, 4)} ADA-EQ`, x, 578, 40,
-      p === null || Math.abs(p) < 5e-7 ? muted : (p > 0 ? green : red), align, 800, mono);
-    text(pp === null ? "NO INDEPENDENT MARK" : `${signed(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}$${Math.abs(pUsd).toFixed(2)}`,
-      x, 610, 17, muted, align, 700, mono);
-    const share = ag.hedge_pct === null || ag.hedge_pct === undefined
-      ? "UNMARKED" : `${Number(ag.hedge_pct).toFixed(0)}% BOOK`;
-    const position = marketPositions(ag).length
-      ? `1 SPOT POSITION · ${Number(ag.usdm).toFixed(2)} USDM · ${share} · NO BORROWING`
-      : "FLAT · NO OPEN POSITION";
-    text(position, x, 640, 15, color, align, 800, mono);
-    text(`${completedTrades(ag)} COMPLETED TRADES · ${ag.open_orders} OPEN ORDERS · ${leverageLabel(ag).toUpperCase()}`,
-      x, 666, 14, muted, align, 800, mono);
+  const agents = DATA.agents;
+  const a = agents.find(ag => ag.id === "beacn");
+  const b = agents.find(ag => ag.id === "grokbot");
+  const marked = !!DATA.price.available && agents.every(ag => Number.isFinite(ag.score_ada_eq));
+  const states = Object.fromEntries(agents.map(ag => [ag.id, cornerState(ag.id)]));
+  const stale = Object.values(states).includes("stale");
+  const unavailable = !marked || Object.values(states).includes("unavailable");
+  const leader = !unavailable && !stale ? agents.find(ag => ag.id === DATA.leader) : null;
+  const gap = !unavailable && Number.isFinite(DATA.gap_ada_eq) ? Math.abs(DATA.gap_ada_eq) : null;
+  const activeColor = leader ? (leader.id === "beacn" ? cyan : amber) : muted;
+  const sharedStart = DATA.start.equalized_score_ada_eq ||
+    (DATA.start.books.beacn.ada + DATA.start.books.beacn.deposit);
+  const signed = (value, digits = 2) => `${value > 0 ? "+" : ""}${fmt(value, digits)}`;
+  const text = (value, x, y, size, color = white, align = "left", weight = 700,
+                family = "system-ui", maxWidth = 1400) => {
+    c.save();
+    c.fillStyle = color; c.textAlign = align; c.textBaseline = "alphabetic";
+    let chosen = size;
+    c.font = `${weight} ${chosen}px ${family}`;
+    while (c.measureText(String(value)).width > maxWidth && chosen > 10) {
+      chosen--; c.font = `${weight} ${chosen}px ${family}`;
+    }
+    c.fillText(String(value), x, y);
+    c.restore();
+  };
+  const rect = (x, y, w, h, r, fill, stroke = null, lineWidth = 1) => {
+    c.beginPath(); c.roundRect(x, y, w, h, r);
+    if (fill) { c.fillStyle = fill; c.fill(); }
+    if (stroke) { c.strokeStyle = stroke; c.lineWidth = lineWidth; c.stroke(); }
   };
 
-  const brandLogo = document.querySelector(".brand-logo");
-  if (brandLogo?.complete && brandLogo.naturalWidth) c.drawImage(brandLogo, 68, 47, 48, 48);
-  text("BEACN MAINNET ARENA", 126, 82, 23, cyan, "left", 900, mono);
-  text("CARDANO MAINNET · REAL ADA", 1528, 82, 17, red, "right", 800, mono);
-  text("THE MAINNET MONEY MATCH", 72, 175, 46, white, "left", 900);
-  text("TWO AI AGENTS. ONE GOAL: FINISH WITH MORE ADA.", 72, 207, 19, muted, "left", 800, mono);
-  text("ADA / USD", 800, 74, 14, muted, "center", 800, mono);
-  text(priced ? px(DATA.price.usd_per_ada) : "UNAVAILABLE", 800, 120, 39, white, "center", 800, mono);
-  c.strokeStyle = line; c.beginPath(); c.moveTo(72, 230); c.lineTo(1528, 230); c.stroke();
-  text(`STARTED EVEN · ${Number(shared).toFixed(2)} ADA-EQ EACH`, 800, 260, 16, muted, "center", 800, mono);
-  mark(a, 92, false); mark(b, 1508, true);
-
-  text("CURRENT LEADER", 800, 335, 14, muted, "center", 800, mono);
-  text(!priced ? "NO PRICE MARK" : leader ? fighterName(leader).toUpperCase() : "DEAD LEVEL", 800, 382, 34,
-    leader && leader.id === "beacn" ? cyan : leader ? amber : white, "center", 900);
-  text(gap === null || gap === undefined ? "—" : `${Math.abs(gap).toFixed(4)} ADA-EQ`,
-    800, 438, 35, leader && leader.id === "beacn" ? cyan : leader ? amber : white, "center", 800, mono);
-  text(gap === null || gap === undefined ? "NO PRICE MARK" : `$${Math.abs(DATA.gap_usd).toFixed(2)} GAP`,
-    800, 470, 15, muted, "center", 700, mono);
-  const stats = leadStats();
-  text(priced && DATA.agents.every(ag => pnlValue(ag) < 0) ? "BOTH BOOKS BELOW START" : "MARKED VALUE BEFORE EXIT FEES",
-    800, 528, 14, muted, "center", 700, mono);
-
-  // Two independent books, overlaid. The line on top is winning.
-  const pts = (HIST && HIST.points) || [];
-  const x0 = 100, x1 = 1500, top = 704, plotH = 82;
-  if (pts.length > 1) {
-    const vals = pts.flatMap(p => [p[1], p[2]]);
-    let lo = Math.min(...vals), hi = Math.max(...vals);
-    const pad = Math.max((hi - lo) * 0.16, 0.05); lo -= pad; hi += pad;
-    const tS = pts[0][0], tE = pts[pts.length - 1][0];
-    const XX = t => x0 + (t - tS) / Math.max(1, tE - tS) * (x1 - x0);
-    const YY = v => top + (hi - v) / (hi - lo) * plotH;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const a0 = pts[i][1], a1 = pts[i + 1][1];
-      const b0 = pts[i][2], b1 = pts[i + 1][2];
-      const d0 = a0 - b0, d1 = a1 - b1;
-      const segs = [];
-      if (Math.abs(d0) < 1e-9 && Math.abs(d1) < 1e-9) continue;
-      if (d0 * d1 >= 0) {
-        segs.push({lead: (d0 + d1) >= 0, t0: pts[i][0], a0, b0, t1: pts[i + 1][0], a1, b1});
-      } else {
-        const u = d0 / (d0 - d1);
-        const tc = pts[i][0] + u * (pts[i + 1][0] - pts[i][0]);
-        const ac = a0 + u * (a1 - a0);
-        segs.push({lead: d0 > 0, t0: pts[i][0], a0, b0, t1: tc, a1: ac, b1: ac});
-        segs.push({lead: d0 < 0, t0: tc, a0: ac, b0: ac, t1: pts[i + 1][0], a1, b1});
-      }
-      for (const s of segs) {
-        c.fillStyle = s.lead ? "rgba(40,216,242,.18)" : "rgba(240,163,10,.16)";
-        c.beginPath();
-        c.moveTo(XX(s.t0), YY(s.a0));
-        c.lineTo(XX(s.t1), YY(s.a1));
-        c.lineTo(XX(s.t1), YY(s.b1));
-        c.lineTo(XX(s.t0), YY(s.b0));
-        c.closePath(); c.fill();
-      }
-    }
-    const strokeSeries = (idx, color) => {
-      c.strokeStyle = color; c.lineWidth = 4; c.lineJoin = "round"; c.lineCap = "round";
-      c.beginPath();
-      pts.forEach((p, i) => {
-        const x = XX(p[0]), y = YY(p[idx]);
-        if (i) c.lineTo(x, y); else c.moveTo(x, y);
-      });
-      c.stroke();
-    };
-    strokeSeries(1, cyan);
-    strokeSeries(2, amber);
-    const lastP = pts[pts.length - 1];
-    c.fillStyle = cyan; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[1]), 6, 0, Math.PI * 2); c.fill();
-    c.fillStyle = amber; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[2]), 6, 0, Math.PI * 2); c.fill();
+  // Ring lighting keeps identities fixed. Only the leading corner gets the
+  // extra spotlight and raised glove; missing/stale marks stay neutral.
+  const bg = c.createLinearGradient(0, 0, 1600, 900);
+  bg.addColorStop(0, "#0a1828"); bg.addColorStop(.5, "#060d18"); bg.addColorStop(1, "#18170f");
+  c.fillStyle = bg; c.fillRect(0, 0, 1600, 900);
+  for (const [x, color, id] of [[220, "40,193,223", "beacn"], [1380, "246,183,68", "grokbot"]]) {
+    const glow = c.createRadialGradient(x, 325, 20, x, 325, 480);
+    glow.addColorStop(0, `rgba(${color},${states[id] === "leading" ? ".24" : ".10"})`);
+    glow.addColorStop(1, `rgba(${color},0)`);
+    c.fillStyle = glow; c.fillRect(0, 190, 1600, 390);
   }
-  text("PUBLISHED HISTORY · INCLUDES EARLIER VALUATION GAPS", 800, 809, 12, muted, "center", 700, mono);
-  text(whenUTC(DATA.generated_at_unix), 800, 875, 12, muted, "center", 700, mono);
-  text("BEACNBOT", x0, 696, 13, cyan, "left", 800, mono);
-  text("GROKBOT", x1, 696, 13, amber, "right", 800, mono);
-  text(`${completedTrades(a)} / ${completedTrades(b)} COMPLETED TRADES`, 72, 850, 14, muted, "left", 700, mono);
-  text("beacnpool.github.io/ABCDE/match.html", 800, 850, 17, cyan, "center", 800, mono);
-  text(`${a.open_orders} / ${b.open_orders} OPEN ORDERS · ${leverageLabel(a).toUpperCase()} / ${leverageLabel(b).toUpperCase()}`,
-    1528, 850, 14, white, "right", 800, mono);
+  c.strokeStyle = "#294157"; c.lineWidth = 1;
+  c.strokeRect(24.5, 24.5, 1551, 851);
+  for (const y of [323, 397, 469]) {
+    const rope = c.createLinearGradient(80, 0, 1520, 0);
+    rope.addColorStop(0, "#236578"); rope.addColorStop(.46, "#243246");
+    rope.addColorStop(.54, "#243246"); rope.addColorStop(1, "#765e29");
+    c.strokeStyle = rope; c.lineWidth = 4;
+    c.beginPath(); c.moveTo(90, y); c.lineTo(1510, y); c.stroke();
+  }
+  for (const [x, color] of [[87, cyan], [1513, amber]]) {
+    rect(x - 8, 277, 16, 257, 8, "#101c2a", color, 2);
+    for (const y of [309, 383, 455]) rect(x - 17, y, 34, 30, 6, "#0a111c", color, 2);
+  }
+  c.fillStyle = "rgba(29,44,60,.40)";
+  c.beginPath(); c.moveTo(60, 538); c.lineTo(1540, 538);
+  c.lineTo(1460, 501); c.lineTo(140, 501); c.closePath(); c.fill();
+
+  // Header and current snapshot provenance.
+  const beacnImage = [...document.querySelectorAll(".corner-portrait .bot-emblem img")]
+    .find(img => img.complete && img.naturalWidth > 0)
+    || document.querySelector('.bot-emblem img[src*="beacn-corner-"]')
+    || document.querySelector(".brand-logo");
+  if (beacnImage?.complete && beacnImage.naturalWidth) c.drawImage(beacnImage, 61, 48, 44, 44);
+  text("BEACN MAINNET ARENA", 118, 77, 21, cyan, "left", 900, mono, 435);
+  text(unavailable ? "PRICE MARK UNAVAILABLE" : stale ? "STALE SNAPSHOT" : "CARDANO MAINNET · REAL ADA",
+    1536, 65, 14, unavailable || stale ? muted : white, "right", 800, mono, 465);
+  text(whenUTC(DATA.generated_at_unix), 1536, 89, 13, muted, "right", 600, mono, 465);
+  text("ADA / USD", 800, 57, 12, muted, "center", 700, mono);
+  text(marked ? px(DATA.price.usd_per_ada) : "—", 800, 97, 34, white, "center", 800, mono, 300);
+  text("BEACNbot vs grokbot", 800, 162, 51, white, "center", 900, "system-ui", 1300);
+  text("SAME START. REAL POSITIONS. THE LEDGER KEEPS SCORE.", 800, 194, 17, muted, "center", 700, mono);
+
+  const grokBadge = (x, y, color) => {
+    c.save(); c.translate(x - 64, y - 64); c.scale(2, 2);
+    c.strokeStyle = color; c.lineWidth = 1.5; c.setLineDash([3, 5]);
+    c.beginPath(); c.arc(32, 32, 25, 0, Math.PI * 2); c.stroke(); c.setLineDash([]);
+    const cloud = new Path2D("M17 38c-5.5-8.4 2-17.7 10.6-14.7C31.8 13 47 16.4 47 27.7c8.8 2.9 6.7 16.3-2.5 16.3H22c-4.2 0-7.6-2.5-8-6Z");
+    c.fillStyle = "rgba(246,183,68,.15)"; c.fill(cloud);
+    c.strokeStyle = color; c.lineWidth = 2; c.stroke(cloud);
+    c.fillStyle = color; c.fill(new Path2D("m35 22-9 13h7l-3 10 10-14h-7Z"));
+    c.beginPath(); c.arc(8, 32, 2, 0, Math.PI * 2); c.arc(55, 21, 2, 0, Math.PI * 2); c.fill();
+    c.restore();
+  };
+  const glove = (x, y, color, direction, raised) => {
+    // Same paths as the main page's boxingGlove(), drawn without image loads.
+    c.save(); c.translate(x, y); c.rotate(direction * (raised ? -.12 : .22));
+    c.scale(direction * .86, .86); c.translate(-40, -45);
+    c.shadowColor = color; c.shadowBlur = raised ? 18 : 0;
+    c.fillStyle = color; c.strokeStyle = "#08131d"; c.lineWidth = 3;
+    const shell = new Path2D("M23 58C12 53 9 46 10 31 10 14 19 7 36 7h10c15 0 23 10 23 23v14c0 12-7 19-15 23l-2 13H24Z");
+    c.fill(shell); c.stroke(shell); c.shadowBlur = 0;
+    const thumb = new Path2D("M22 54c-6-13-4-24 2-26 7-3 12 5 13 13l2 9");
+    c.fill(thumb); c.stroke(thumb); c.lineCap = "round";
+    c.strokeStyle = "rgba(255,255,255,.4)";
+    c.stroke(new Path2D("M31 15c11-3 23 0 27 9M44 54l14-4"));
+    c.fillStyle = "#e5eaf0"; c.strokeStyle = "#08131d";
+    const cuff = new Path2D("m23 64 32 2-3 16-28-2Z");c.fill(cuff);c.stroke(cuff);
+    c.strokeStyle = "#344656"; c.stroke(new Path2D("m29 72 17 1"));
+    c.restore();
+  };
+  const fighter = (ag, x, direction, color) => {
+    const state = states[ag.id];
+    if (["unavailable", "stale"].includes(state)) color = muted;
+    const leading = state === "leading";
+    const trailing = state === "trailing";
+    const headY = 337, shoulderY = 418;
+    text(fighterName(ag), x, 250, 28, color, "center", 900, "system-ui", 390);
+    // Feet, trunks and shoulders form an original, simple boxing silhouette.
+    c.save(); c.fillStyle = "rgba(0,0,0,.42)";
+    c.beginPath(); c.ellipse(x, 520, 108, 15, 0, 0, Math.PI * 2); c.fill();
+    rect(x - 43, 463, 25, 49, 10, "#22374b", color, 1);
+    rect(x + 18, 463, 25, 49, 10, "#22374b", color, 1);
+    rect(x - 54, 500, 42, 18, 7, "#101a28", color, 2);
+    rect(x + 12, 500, 42, 18, 7, "#101a28", color, 2);
+    rect(x - 47, 430, 94, 48, 14, "#132a3d", color, 2);
+    rect(x - 47, 448, 94, 14, 3, color);
+    rect(x - 55, 398, 110, 52, 23, "#172d40", color, 2);
+    const innerX = x + direction * 115;
+    const innerY = trailing ? 383 : 405;
+    const outerX = x - direction * 100;
+    const outerY = leading ? 312 : trailing ? 389 : 412;
+    c.strokeStyle = color; c.lineWidth = 18; c.lineCap = "round";
+    c.beginPath(); c.moveTo(x + direction * 43, shoulderY);
+    c.quadraticCurveTo(x + direction * 88, shoulderY + 22, innerX, innerY + 22); c.stroke();
+    c.beginPath(); c.moveTo(x - direction * 43, shoulderY);
+    c.quadraticCurveTo(x - direction * 87, shoulderY + 24, outerX, outerY + 22); c.stroke();
+    glove(innerX, innerY, color, direction, false);
+    glove(outerX, outerY, color, -direction, leading);
+    c.beginPath(); c.arc(x, headY, 72, 0, Math.PI * 2);
+    c.fillStyle = "#03080c"; c.fill(); c.strokeStyle = leading ? color : "#375064";
+    c.lineWidth = leading ? 4 : 2; c.stroke();
+    if (ag.id === "beacn" && beacnImage?.complete && beacnImage.naturalWidth) {
+      c.save(); c.beginPath(); c.arc(x, headY, 67, 0, Math.PI * 2); c.clip();
+      c.drawImage(beacnImage, x - 73, headY - 73, 146, 146); c.restore();
+    } else if (ag.id === "grokbot") grokBadge(x, headY, color);
+    else text("BEACN", x, headY + 6, 17, color, "center", 900, mono, 122);
+    const stateText = {leading:"LEADING CORNER", trailing:"CHASING", level:"LEVEL MATCH",
+      unavailable:"NO PRICE MARK", stale:"STALE SNAPSHOT"}[state] || "SNAPSHOT";
+    text(stateText, x, 545, 13, leading ? color : muted, "center", 800, mono, 355);
+    c.restore();
+  };
+  const figureColor = (id, color) => ["stale", "unavailable"].includes(states[id]) ? "#8294a6" : color;
+  fighter(a, 312, 1, figureColor(a.id, cyan)); fighter(b, 1288, -1, figureColor(b.id, amber));
+
+  // Center board explains who leads; stale or unavailable state never raises
+  // a glove or announces a current winner, while the last values stay visible.
+  rect(568, 231, 464, 309, 24, "rgba(5,12,22,.95)", "#31485d", 1.5);
+  text(unavailable ? "NO INDEPENDENT MARK" : stale ? "WAITING FOR A FRESH SNAPSHOT" : "CURRENT LEADER",
+    800, 266, 13, muted, "center", 800, mono, 420);
+  text(unavailable ? "Price unavailable" : stale ? "Snapshot stale" : leader ? fighterName(leader) : "Dead level",
+    800, 316, 36, activeColor, "center", 900, "system-ui", 415);
+  text(gap === null ? "—" : fmt(gap, 2), 800, 382, 64, activeColor, "center", 800, mono, 390);
+  text(gap === null ? "Scores cannot be compared" : stale ? "ADA-eq · last published gap" : "ADA-equivalent gap",
+    800, 410, 15, muted, "center", 700, mono, 420);
+  if (marked && agents.every(ag => pnlValue(ag) < 0)) {
+    text("BOTH BOOKS BELOW START", 800, 447, 16, red, "center", 800, mono, 420);
+  } else text(unavailable ? "ADA BALANCES EXCLUDE TOKEN VALUE" : "MARKED VALUE · EXIT FEES APPLY", 800, 447, 14, muted, "center", 700, mono, 420);
+  c.strokeStyle = "#283e52"; c.lineWidth = 1; c.beginPath(); c.moveTo(608, 469); c.lineTo(992, 469); c.stroke();
+  text("EQUAL START", 800, 494, 12, muted, "center", 800, mono);
+  text(`${fmt(sharedStart, 2)} ADA-eq each`, 800, 522, 23, white, "center", 800, mono, 400);
+
+  const scorePanel = (ag, x, color) => {
+    const p = marked ? pnlValue(ag) : null;
+    const pp = marked ? pnlPct(ag) : null;
+    rect(x, 568, 712, 206, 17, "rgba(5,13,24,.95)", "#294156", 1.5);
+    text(`${fighterName(ag)} · ${marked ? stale ? "LAST PUBLISHED BOOK" : "CURRENT BOOK" : "ADA HELD"}`, x + 23, 598, 14, color, "left", 800, mono, 630);
+    text(marked ? fmt(ag.score_ada_eq, 2) : fmt(ag.ada_total, 2), x + 23, 658, 58, white, "left", 800, mono, 480);
+    text(marked ? "ADA-eq" : "ADA", x + 687, 650, 18, muted, "right", 700, mono);
+    text(marked ? usd(ag.score_usd) : "Independent price unavailable", x + 23, 681, 14, muted, "left", 600, mono, 620);
+    c.strokeStyle = "#23394e"; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(x + 23, 696); c.lineTo(x + 689, 696); c.stroke();
+    text("FROM EQUALIZED START", x + 23, 718, 11, muted, "left", 800, mono);
+    text(p === null ? "—" : `${signed(p)} ADA-eq`, x + 23, 754, 31,
+      p === null ? muted : p < 0 ? red : p > 0 ? green : white, "left", 800, mono, 500);
+    text(pp === null ? "No mark" : `${signed(pp)}%`, x + 687, 752, 19, muted, "right", 800, mono, 155);
+  };
+  scorePanel(a, 72, cyan); scorePanel(b, 816, amber);
+  for (const [ag, x, color] of [[a, 72, cyan], [b, 816, amber]]) {
+    const stableShare = marked && Number.isFinite(ag.hedge_pct) ? `${fmt(ag.hedge_pct, 1)}% USDM` : "USDM share unmarked";
+    text(`${completedTrades(ag)} trades · ${ag.open_orders} open orders · ${stableShare} · ${leverageLabel(ag)}`,
+      x, 802, 14, color, "left", 700, mono, 712);
+    text(`Network + batcher fees: ${fmt(ag.costs.total, 4)} ADA`, x, 825, 14, muted, "left", 700, mono, 712);
+  }
+  text("Fee totals exclude pool trading fees and price impact. Marked gains are not an executable exit quote.",
+    800, 852, 12, muted, "center", 500, mono, 1460);
+  text("beacnpool.github.io/ABCDE/match.html", 800, 874, 13, cyan, "center", 800, mono, 1420);
   return canvas;
 }
 
 const shareCardFilename = () =>
   `BEACNbot-vs-grokbot-${new Date(DATA.generated_at).toISOString().slice(0, 10)}.png`;
 
-function shareCardBlob() {
+async function shareCardBlob() {
+  const logo = document.querySelector('.corner-portrait .bot-emblem img');
+  if (logo && !logo.complete) {
+    try { await logo.decode(); } catch { /* the canvas retains its labeled fallback */ }
+  }
   return new Promise(resolve => buildShareCanvas().toBlob(resolve, "image/png"));
 }
 
@@ -1851,9 +2035,15 @@ function boot(d, hist) {
   DATA = d;
   HIST = hist;
   renderAll();
-  for (const id of ["downloadcard", "sharematch", "copylink"]) $("#" + id).disabled = false;
+  for (const id of ["downloadcard", "sharematch", "copylink", "cornermotion"]) $("#" + id).disabled = false;
   if (WIRED) return;
   WIRED = true;
+  renderCornerMotion();
+  $("#cornermotion").addEventListener("click", () => {
+    cornerMotionPaused = !cornerMotionPaused;
+    try { localStorage.setItem("match-corner-motion", cornerMotionPaused ? "paused" : "playing"); } catch {}
+    renderCornerMotion();
+  });
   $("#copylink").addEventListener("click", async () => {
     const url = "https://beacnpool.github.io/ABCDE/match.html";
     try {
