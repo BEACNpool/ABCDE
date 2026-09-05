@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-09-05T15:17:10+00:00",
+ "generated_at": "2026-09-05T15:20:28+00:00",
  "chain_fingerprint": "b73fdba9dba18984fcd939b13eed11a3889e1f2e2449176332d959d3bc234499",
- "generated_at_unix": 1788621430,
+ "generated_at_unix": 1788621628,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
-  "usd_per_ada": 0.217452,
-  "ada_per_usdm": 4.598716038482055,
+  "usd_per_ada": 0.217012,
+  "ada_per_usdm": 4.608040108381103,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-09-05T15:17:10+00:00"
+  "fetched_at": "2026-09-05T15:20:28+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -29,14 +29,14 @@
     "usdm": 0.0,
     "deposit": 2.0,
     "ada_eq_at_today_rate": 907.241205,
-    "usd_at_today_rate": 197.281415
+    "usd_at_today_rate": 196.882228
    },
    "grokbot": {
     "ada": 514.054262,
     "usdm": 78.461199,
     "deposit": 2.0,
-    "ada_eq_at_today_rate": 876.875036,
-    "usd_at_today_rate": 190.67823
+    "ada_eq_at_today_rate": 877.606614,
+    "usd_at_today_rate": 190.451167
    }
   },
   "equalized_score_ada_eq": 907.241205,
@@ -120,8 +120,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 102.633682,
-     "notional_ada_eq": 471.98316,
-     "share_of_book_pct": 55.72,
+     "notional_ada_eq": 472.940123,
+     "share_of_book_pct": 55.77,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -141,20 +141,20 @@
     "total": 7.889215,
     "effective_rate": 5.11336,
     "all_in_rate": 5.19025,
-    "pool_vs_mark": 52.801367,
-    "all_in_vs_mark": 60.690582
+    "pool_vs_mark": 51.844731,
+    "all_in_vs_mark": 59.733946
    },
    "completed_trades": 3,
    "chain_events": 14,
    "moves": 14,
-   "vs_start_ada_eq": -60.173012,
-   "vs_equalized_start_ada_eq": -60.173012,
-   "vs_equalized_start_pct": -6.6325,
-   "vs_equalized_start_usd_at_current_mark": -13.084742,
-   "score_ada_eq": 847.068193,
-   "score_usd": 184.196673,
-   "usdm_in_ada": 471.98316,
-   "hedge_pct": 55.72
+   "vs_start_ada_eq": -59.216049,
+   "vs_equalized_start_ada_eq": -59.216049,
+   "vs_equalized_start_pct": -6.527,
+   "vs_equalized_start_usd_at_current_mark": -12.850593,
+   "score_ada_eq": 848.025156,
+   "score_usd": 184.031635,
+   "usdm_in_ada": 472.940123,
+   "hedge_pct": 55.77
   },
   {
    "id": "grokbot",
@@ -203,8 +203,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 78.564284,
-     "notional_ada_eq": 361.294833,
-     "share_of_book_pct": 41.2,
+     "notional_ada_eq": 362.027372,
+     "share_of_book_pct": 41.25,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -224,25 +224,25 @@
     "total": 6.644102,
     "effective_rate": 4.96169,
     "all_in_rate": 5.04637,
-    "pool_vs_mark": 28.479226,
-    "all_in_vs_mark": 35.123328
+    "pool_vs_mark": 27.747648,
+    "all_in_vs_mark": 34.39175
    },
    "completed_trades": 4,
    "chain_events": 13,
    "moves": 13,
-   "vs_start_ada_eq": 0.040085,
-   "vs_equalized_start_ada_eq": -30.326084,
-   "vs_equalized_start_pct": -3.3427,
-   "vs_equalized_start_usd_at_current_mark": -6.594468,
-   "score_ada_eq": 876.915121,
-   "score_usd": 190.686947,
-   "usdm_in_ada": 361.294833,
-   "hedge_pct": 41.2
+   "vs_start_ada_eq": 0.041046,
+   "vs_equalized_start_ada_eq": -29.593545,
+   "vs_equalized_start_pct": -3.2619,
+   "vs_equalized_start_usd_at_current_mark": -6.422154,
+   "score_ada_eq": 877.64766,
+   "score_usd": 190.460074,
+   "usdm_in_ada": 362.027372,
+   "hedge_pct": 41.25
   }
  ],
  "leader": "grokbot",
- "gap_ada_eq": -29.846928,
- "gap_usd": -6.490274,
+ "gap_ada_eq": -29.622504,
+ "gap_usd": -6.428439,
  "moves": [
   {
    "agent": "grokbot",
@@ -256,7 +256,37 @@
    "usdm_delta": 0.0,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/b4be12b34b2a88cb8ec3f92ffd2c112dfd92fa39a33e7f96ff0a5bdf25b9799d"
+   "explorer": "https://cardanoscan.io/transaction/b4be12b34b2a88cb8ec3f92ffd2c112dfd92fa39a33e7f96ff0a5bdf25b9799d",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": true,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 5,
+    "ada_delta_raw": "607382966",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "grokbot:b4be12b34b2a88cb8ec3f92ffd2c112dfd92fa39a33e7f96ff0a5bdf25b9799d",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -270,7 +300,37 @@
    "usdm_delta": 0.0,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/05ab9ccb15dd9e73c42c902058d02fe2c9b97593b13de72b29ad4f3e6801ba99"
+   "explorer": "https://cardanoscan.io/transaction/05ab9ccb15dd9e73c42c902058d02fe2c9b97593b13de72b29ad4f3e6801ba99",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": true,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 4,
+    "ada_delta_raw": "241617441",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "grokbot:05ab9ccb15dd9e73c42c902058d02fe2c9b97593b13de72b29ad4f3e6801ba99",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -284,7 +344,37 @@
    "usdm_delta": 16.149156,
    "fee": 0.479432,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/80f58672a47f54d365f6d55721d96fce044736e7b05abe2b8fe40c28b43fd92a"
+   "explorer": "https://cardanoscan.io/transaction/80f58672a47f54d365f6d55721d96fce044736e7b05abe2b8fe40c28b43fd92a",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 13,
+    "ada_delta_raw": "-81429432",
+    "usdm_delta_raw": "16149156",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "479432"
+   },
+   "event_id": "grokbot:80f58672a47f54d365f6d55721d96fce044736e7b05abe2b8fe40c28b43fd92a",
+   "effect": {
+    "type": "trade_activity",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Opened/increased a spot position; cash spent is not realized profit."
+   }
   },
   {
    "agent": "grokbot",
@@ -298,7 +388,37 @@
    "usdm_delta": 16.148487,
    "fee": 0.478653,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/279185a1e2e9ba045866649c9586e74287bc9adba83360da9158a9967c8b6553"
+   "explorer": "https://cardanoscan.io/transaction/279185a1e2e9ba045866649c9586e74287bc9adba83360da9158a9967c8b6553",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 6,
+    "ada_delta_raw": "-81428653",
+    "usdm_delta_raw": "16148487",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "16149156",
+    "network_fee_raw": "478653"
+   },
+   "event_id": "grokbot:279185a1e2e9ba045866649c9586e74287bc9adba83360da9158a9967c8b6553",
+   "effect": {
+    "type": "trade_activity",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Opened/increased a spot position; cash spent is not realized profit."
+   }
   },
   {
    "agent": "grokbot",
@@ -312,7 +432,37 @@
    "usdm_delta": 14.91657,
    "fee": 0.478653,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/fdd4b858caeca904d4d87d22b5e48b8b8630a5943f3799531cc8016e8e910783"
+   "explorer": "https://cardanoscan.io/transaction/fdd4b858caeca904d4d87d22b5e48b8b8630a5943f3799531cc8016e8e910783",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 6,
+    "ada_delta_raw": "-75328653",
+    "usdm_delta_raw": "14916570",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "32297643",
+    "network_fee_raw": "478653"
+   },
+   "event_id": "grokbot:fdd4b858caeca904d4d87d22b5e48b8b8630a5943f3799531cc8016e8e910783",
+   "effect": {
+    "type": "trade_activity",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Opened/increased a spot position; cash spent is not realized profit."
+   }
   },
   {
    "agent": "grokbot",
@@ -326,7 +476,37 @@
    "usdm_delta": 0.0,
    "fee": 0.181913,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/c09041a315f0acadd13b5f994ae809cab3bdef1eb9de4796acdfa2998d45cff7"
+   "explorer": "https://cardanoscan.io/transaction/c09041a315f0acadd13b5f994ae809cab3bdef1eb9de4796acdfa2998d45cff7",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 3,
+    "ada_delta_raw": "-1381913",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "47214213",
+    "network_fee_raw": "181913"
+   },
+   "event_id": "grokbot:c09041a315f0acadd13b5f994ae809cab3bdef1eb9de4796acdfa2998d45cff7",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -340,7 +520,37 @@
    "usdm_delta": 0.0,
    "fee": 0.180901,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/7da52857c02e509bbbaa6600260492e853ca265b86c9da1d8fcd6f45c4e44c3b"
+   "explorer": "https://cardanoscan.io/transaction/7da52857c02e509bbbaa6600260492e853ca265b86c9da1d8fcd6f45c4e44c3b",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 10,
+    "ada_delta_raw": "-180901",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "47214213",
+    "network_fee_raw": "180901"
+   },
+   "event_id": "grokbot:7da52857c02e509bbbaa6600260492e853ca265b86c9da1d8fcd6f45c4e44c3b",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -354,7 +564,37 @@
    "usdm_delta": 0.0,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/e1a61ca598b3a4177702a5569db09fe45eb86dc3ad55333a54f371937e43a281"
+   "explorer": "https://cardanoscan.io/transaction/e1a61ca598b3a4177702a5569db09fe45eb86dc3ad55333a54f371937e43a281",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": true,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 7,
+    "ada_delta_raw": "971361094",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "beacn:e1a61ca598b3a4177702a5569db09fe45eb86dc3ad55333a54f371937e43a281",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -368,7 +608,37 @@
    "usdm_delta": 0.0,
    "fee": 0.181473,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/dd6044785447a37ad79df29993ce12805810fcd40ec3338a75a76dd058e60be7"
+   "explorer": "https://cardanoscan.io/transaction/dd6044785447a37ad79df29993ce12805810fcd40ec3338a75a76dd058e60be7",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 2,
+    "ada_delta_raw": "-181145856",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "181473"
+   },
+   "event_id": "beacn:dd6044785447a37ad79df29993ce12805810fcd40ec3338a75a76dd058e60be7",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -382,7 +652,37 @@
    "usdm_delta": 0.0,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/dd6044785447a37ad79df29993ce12805810fcd40ec3338a75a76dd058e60be7"
+   "explorer": "https://cardanoscan.io/transaction/dd6044785447a37ad79df29993ce12805810fcd40ec3338a75a76dd058e60be7",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": true,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 2,
+    "ada_delta_raw": "180964383",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "grokbot:dd6044785447a37ad79df29993ce12805810fcd40ec3338a75a76dd058e60be7",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -396,7 +696,37 @@
    "usdm_delta": 0.0,
    "fee": 0.174433,
    "deposit": 2.0,
-   "explorer": "https://cardanoscan.io/transaction/f680805e3930493e198dd26bb69901ba47f236f92e216da1fc574f041c1a50a3"
+   "explorer": "https://cardanoscan.io/transaction/f680805e3930493e198dd26bb69901ba47f236f92e216da1fc574f041c1a50a3",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": false,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 4,
+    "ada_delta_raw": "-2174433",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "174433"
+   },
+   "event_id": "beacn:f680805e3930493e198dd26bb69901ba47f236f92e216da1fc574f041c1a50a3",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -410,7 +740,37 @@
    "usdm_delta": 31.246986,
    "fee": 0.478653,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/2d0d1bd42fac3fcd4414ed24a3a15f6e0179ce2e879dbeedfe137700bf52ba3b"
+   "explorer": "https://cardanoscan.io/transaction/2d0d1bd42fac3fcd4414ed24a3a15f6e0179ce2e879dbeedfe137700bf52ba3b",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 0,
+    "ada_delta_raw": "-156428653",
+    "usdm_delta_raw": "31246986",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "478653"
+   },
+   "event_id": "grokbot:2d0d1bd42fac3fcd4414ed24a3a15f6e0179ce2e879dbeedfe137700bf52ba3b",
+   "effect": {
+    "type": "trade_activity",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Opened/increased a spot position; cash spent is not realized profit."
+   }
   },
   {
    "agent": "grokbot",
@@ -424,7 +784,37 @@
    "usdm_delta": 0.0,
    "fee": 0.181341,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/34721853715d04637730c6b5dd7605b4c3dac367c26a736502f53dff9fba4bec"
+   "explorer": "https://cardanoscan.io/transaction/34721853715d04637730c6b5dd7605b4c3dac367c26a736502f53dff9fba4bec",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 9,
+    "ada_delta_raw": "-181341",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "47214213",
+    "network_fee_raw": "181341"
+   },
+   "event_id": "grokbot:34721853715d04637730c6b5dd7605b4c3dac367c26a736502f53dff9fba4bec",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -438,7 +828,37 @@
    "usdm_delta": 0.0,
    "fee": 0.174741,
    "deposit": 2.0,
-   "explorer": "https://cardanoscan.io/transaction/10d1710f875cdecf12ae9b089e5d8a079e48cb287b7f0326cf80462c5d61ba84"
+   "explorer": "https://cardanoscan.io/transaction/10d1710f875cdecf12ae9b089e5d8a079e48cb287b7f0326cf80462c5d61ba84",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": false,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 6,
+    "ada_delta_raw": "-2174741",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "174741"
+   },
+   "event_id": "grokbot:10d1710f875cdecf12ae9b089e5d8a079e48cb287b7f0326cf80462c5d61ba84",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -452,7 +872,37 @@
    "usdm_delta": 0.0,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/91bc070637b33c2fb392bf3ea1defca8dd52d595792ae30c0721bef29e5c7acd"
+   "explorer": "https://cardanoscan.io/transaction/91bc070637b33c2fb392bf3ea1defca8dd52d595792ae30c0721bef29e5c7acd",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": true,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 0,
+    "ada_delta_raw": "117200400",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "beacn:91bc070637b33c2fb392bf3ea1defca8dd52d595792ae30c0721bef29e5c7acd",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -466,7 +916,37 @@
    "usdm_delta": 0.0,
    "fee": 0.175841,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/91bc070637b33c2fb392bf3ea1defca8dd52d595792ae30c0721bef29e5c7acd"
+   "explorer": "https://cardanoscan.io/transaction/91bc070637b33c2fb392bf3ea1defca8dd52d595792ae30c0721bef29e5c7acd",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 0,
+    "ada_delta_raw": "-117376241",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "175841"
+   },
+   "event_id": "grokbot:91bc070637b33c2fb392bf3ea1defca8dd52d595792ae30c0721bef29e5c7acd",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -480,7 +960,37 @@
    "usdm_delta": 0.0,
    "fee": 0.185697,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/d74687cadccc9fb60ed20db19632e318b63210c18e7dc8fa1bab42b55497b974"
+   "explorer": "https://cardanoscan.io/transaction/d74687cadccc9fb60ed20db19632e318b63210c18e7dc8fa1bab42b55497b974",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "verified",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 5,
+    "ada_delta_raw": "-185697",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "185697"
+   },
+   "event_id": "beacn:d74687cadccc9fb60ed20db19632e318b63210c18e7dc8fa1bab42b55497b974",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Order fee added to spot basis; no trade has completed."
+   }
   },
   {
    "agent": "beacn",
@@ -494,7 +1004,37 @@
    "usdm_delta": 78.509894,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/328f3fcbea51b41ee33a2bb5fe6e8c5c6f4b1cf0e4846a4d1d436e0cd4bbbc0a"
+   "explorer": "https://cardanoscan.io/transaction/328f3fcbea51b41ee33a2bb5fe6e8c5c6f4b1cf0e4846a4d1d436e0cd4bbbc0a",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 2,
+    "ada_delta_raw": "-392780000",
+    "usdm_delta_raw": "78509894",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "beacn:328f3fcbea51b41ee33a2bb5fe6e8c5c6f4b1cf0e4846a4d1d436e0cd4bbbc0a",
+   "effect": {
+    "type": "trade_activity",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Opened/increased a spot position; cash spent is not realized profit."
+   }
   },
   {
    "agent": "beacn",
@@ -508,7 +1048,37 @@
    "usdm_delta": 0.0,
    "fee": 0.185697,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/9323a1afcc4dce386ec99b0a70b4028fc71a9a8ee0caa88518d3e61025264e57"
+   "explorer": "https://cardanoscan.io/transaction/9323a1afcc4dce386ec99b0a70b4028fc71a9a8ee0caa88518d3e61025264e57",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "verified",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 2,
+    "ada_delta_raw": "-185697",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "185697"
+   },
+   "event_id": "beacn:9323a1afcc4dce386ec99b0a70b4028fc71a9a8ee0caa88518d3e61025264e57",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Order fee added to spot basis; no trade has completed."
+   }
   },
   {
    "agent": "beacn",
@@ -522,7 +1092,37 @@
    "usdm_delta": 48.177267,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/dc63f0fa4719fbd5d1d0061cf253decc1b88e512d40415128d73d97455e85813"
+   "explorer": "https://cardanoscan.io/transaction/dc63f0fa4719fbd5d1d0061cf253decc1b88e512d40415128d73d97455e85813",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 1,
+    "ada_delta_raw": "-242000000",
+    "usdm_delta_raw": "48177267",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "0"
+   },
+   "event_id": "beacn:dc63f0fa4719fbd5d1d0061cf253decc1b88e512d40415128d73d97455e85813",
+   "effect": {
+    "type": "trade_activity",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Opened/increased a spot position; cash spent is not realized profit."
+   }
   },
   {
    "agent": "beacn",
@@ -536,7 +1136,37 @@
    "usdm_delta": 0.0,
    "fee": 0.213329,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/b26de6a7f8e32d52be78eb1d62a90e9e09d80bf8998dae76db78bad238df103f"
+   "explorer": "https://cardanoscan.io/transaction/b26de6a7f8e32d52be78eb1d62a90e9e09d80bf8998dae76db78bad238df103f",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "verified",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 1,
+    "ada_delta_raw": "-213329",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "78509894",
+    "network_fee_raw": "213329"
+   },
+   "event_id": "beacn:b26de6a7f8e32d52be78eb1d62a90e9e09d80bf8998dae76db78bad238df103f",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "Order fee added to spot basis; no trade has completed."
+   }
   },
   {
    "agent": "beacn",
@@ -550,7 +1180,37 @@
    "usdm_delta": 0.0,
    "fee": 0.169945,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/7d2c5307d7ddbea7063de59975d3ae072d63bad29c51b4137d95b344229cb4d7"
+   "explorer": "https://cardanoscan.io/transaction/7d2c5307d7ddbea7063de59975d3ae072d63bad29c51b4137d95b344229cb4d7",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 2,
+    "ada_delta_raw": "-169945",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "169945"
+   },
+   "event_id": "beacn:7d2c5307d7ddbea7063de59975d3ae072d63bad29c51b4137d95b344229cb4d7",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -564,7 +1224,37 @@
    "usdm_delta": 0.0,
    "fee": 0.169945,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/178d52da4e6899040d99e4f92466e7ff574e0655405e6d4feaf1d6d06e454505"
+   "explorer": "https://cardanoscan.io/transaction/178d52da4e6899040d99e4f92466e7ff574e0655405e6d4feaf1d6d06e454505",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 3,
+    "ada_delta_raw": "-169945",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "169945"
+   },
+   "event_id": "beacn:178d52da4e6899040d99e4f92466e7ff574e0655405e6d4feaf1d6d06e454505",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "beacn",
@@ -578,7 +1268,37 @@
    "usdm_delta": 0.0,
    "fee": 0.169945,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/d1c2cfdfb1face9d7aefadddb6940590d86d05be4a48db95f42253e13ae1e8a3"
+   "explorer": "https://cardanoscan.io/transaction/d1c2cfdfb1face9d7aefadddb6940590d86d05be4a48db95f42253e13ae1e8a3",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 7,
+    "ada_delta_raw": "-169945",
+    "usdm_delta_raw": "0",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "0",
+    "network_fee_raw": "169945"
+   },
+   "event_id": "beacn:d1c2cfdfb1face9d7aefadddb6940590d86d05be4a48db95f42253e13ae1e8a3",
+   "effect": {
+    "type": "none",
+    "status": "not_applicable",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [],
+    "reason": "No realized spot disposal."
+   }
   },
   {
    "agent": "grokbot",
@@ -592,7 +1312,58 @@
    "usdm_delta": -78.461199,
    "fee": 0.433974,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/055bce042ff9c162f1065ccad00c6005906a54d1147a76f3ca8ec0270618429d"
+   "explorer": "https://cardanoscan.io/transaction/055bce042ff9c162f1065ccad00c6005906a54d1147a76f3ca8ec0270618429d",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": false,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": false,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "verified",
+     "action": "supply",
+     "market_address": "addr1wxd35v2m3fff5ah6rqq4stamqpp6n4fd7d2v5mq2fcrcl3s3kkuk7",
+     "qtoken_policy": "9e00df0615de0a7b121a7f961d43e23165b8e81b64786c6eb708d370",
+     "qtoken_name": "",
+     "market_usdm_delta_raw": "78461199",
+     "minted_qtoken_raw": "3132009994",
+     "market_datum_conserved": true
+    },
+    "tx_block_index": 7,
+    "ada_delta_raw": "-433974",
+    "usdm_delta_raw": "-78461199",
+    "qtoken_delta_raw": "3132009994",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "78461199",
+    "network_fee_raw": "433974"
+   },
+   "event_id": "grokbot:055bce042ff9c162f1065ccad00c6005906a54d1147a76f3ca8ec0270618429d",
+   "effect": {
+    "type": "position_conversion",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [
+     "80f58672a47f54d365f6d55721d96fce044736e7b05abe2b8fe40c28b43fd92a",
+     "279185a1e2e9ba045866649c9586e74287bc9adba83360da9158a9967c8b6553",
+     "fdd4b858caeca904d4d87d22b5e48b8b8630a5943f3799531cc8016e8e910783",
+     "2d0d1bd42fac3fcd4414ed24a3a15f6e0179ce2e879dbeedfe137700bf52ba3b",
+     "055bce042ff9c162f1065ccad00c6005906a54d1147a76f3ca8ec0270618429d"
+    ],
+    "reason": "Proved plain USDM/qUSDM conversion; basis transfers between positions, not realized ADA profit.",
+    "conversion_accounting": {
+     "basis_transferred_ada": "394.615391",
+     "protocol_fee_ada": "0.433974",
+     "liquid_usdm_after": "0.000000",
+     "liquid_basis_ada_after": "0.000000",
+     "qtoken_raw_after": "3132009994",
+     "qtoken_basis_ada_after": "395.049365"
+    }
+   }
   },
   {
    "agent": "beacn",
@@ -606,7 +1377,44 @@
    "usdm_delta": -24.088633,
    "fee": 0.0,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/f968263ce596b664211d495cc17940d1205e98cc4f717c4ac2855ee3dda58c54"
+   "explorer": "https://cardanoscan.io/transaction/f968263ce596b664211d495cc17940d1205e98cc4f717c4ac2855ee3dda58c54",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": true,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": true,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "not_applicable"
+    },
+    "tx_block_index": 6,
+    "ada_delta_raw": "104157137",
+    "usdm_delta_raw": "-24088633",
+    "qtoken_delta_raw": "0",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "24088633",
+    "network_fee_raw": "0"
+   },
+   "event_id": "beacn:f968263ce596b664211d495cc17940d1205e98cc4f717c4ac2855ee3dda58c54",
+   "effect": {
+    "type": "realized_spot_pnl",
+    "status": "verified",
+    "ada": "-16.6527975875598159469371959",
+    "cost_basis_ada": "120.8099345875598159469371959",
+    "net_proceeds_ada": "104.157137",
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [
+     "d74687cadccc9fb60ed20db19632e318b63210c18e7dc8fa1bab42b55497b974",
+     "328f3fcbea51b41ee33a2bb5fe6e8c5c6f4b1cf0e4846a4d1d436e0cd4bbbc0a",
+     "9323a1afcc4dce386ec99b0a70b4028fc71a9a8ee0caa88518d3e61025264e57",
+     "dc63f0fa4719fbd5d1d0061cf253decc1b88e512d40415128d73d97455e85813",
+     "b26de6a7f8e32d52be78eb1d62a90e9e09d80bf8998dae76db78bad238df103f",
+     "f968263ce596b664211d495cc17940d1205e98cc4f717c4ac2855ee3dda58c54"
+    ],
+    "reason": "Net ADA proceeds minus allocated average spot basis; not match points."
+   }
   },
   {
    "agent": "beacn",
@@ -620,24 +1428,77 @@
    "usdm_delta": -78.509894,
    "fee": 0.438751,
    "deposit": 0.0,
-   "explorer": "https://cardanoscan.io/transaction/800b51c445964954bec4aa4044a1ef5844bd0407ec1785967a183fec29be98c3"
+   "explorer": "https://cardanoscan.io/transaction/800b51c445964954bec4aa4044a1ef5844bd0407ec1785967a183fec29be98c3",
+   "fight_evidence": {
+    "version": 2,
+    "spot_assets_only": false,
+    "accounting_assets_only": true,
+    "spot_trade_eligible": false,
+    "zero_usdm_origin": false,
+    "order_fee_status": "not_applicable",
+    "receipt_conversion": {
+     "status": "verified",
+     "action": "supply",
+     "market_address": "addr1wxd35v2m3fff5ah6rqq4stamqpp6n4fd7d2v5mq2fcrcl3s3kkuk7",
+     "qtoken_policy": "9e00df0615de0a7b121a7f961d43e23165b8e81b64786c6eb708d370",
+     "qtoken_name": "",
+     "market_usdm_delta_raw": "78509894",
+     "minted_qtoken_raw": "3131243117",
+     "market_datum_conserved": true
+    },
+    "tx_block_index": 9,
+    "ada_delta_raw": "-438751",
+    "usdm_delta_raw": "-78509894",
+    "qtoken_delta_raw": "3131243117",
+    "input_qtoken_raw": "0",
+    "input_usdm_raw": "78509894",
+    "network_fee_raw": "438751"
+   },
+   "event_id": "beacn:800b51c445964954bec4aa4044a1ef5844bd0407ec1785967a183fec29be98c3",
+   "effect": {
+    "type": "position_conversion",
+    "status": "verified",
+    "ada": null,
+    "cost_basis_ada": null,
+    "net_proceeds_ada": null,
+    "basis_method": "separate_liquid_and_qUSDM_average_cost_including_fees",
+    "claim_scope": "realized spot P&L; includes entry, order and allocated protocol fees, not total-book P&L",
+    "source_tx_hashes": [
+     "d74687cadccc9fb60ed20db19632e318b63210c18e7dc8fa1bab42b55497b974",
+     "328f3fcbea51b41ee33a2bb5fe6e8c5c6f4b1cf0e4846a4d1d436e0cd4bbbc0a",
+     "9323a1afcc4dce386ec99b0a70b4028fc71a9a8ee0caa88518d3e61025264e57",
+     "dc63f0fa4719fbd5d1d0061cf253decc1b88e512d40415128d73d97455e85813",
+     "b26de6a7f8e32d52be78eb1d62a90e9e09d80bf8998dae76db78bad238df103f",
+     "f968263ce596b664211d495cc17940d1205e98cc4f717c4ac2855ee3dda58c54",
+     "800b51c445964954bec4aa4044a1ef5844bd0407ec1785967a183fec29be98c3"
+    ],
+    "reason": "Proved plain USDM/qUSDM conversion; basis transfers between positions, not realized ADA profit.",
+    "conversion_accounting": {
+     "basis_transferred_ada": "393.7448488096545316064032724",
+     "protocol_fee_ada": "0.438751",
+     "liquid_usdm_after": "24.088634",
+     "liquid_basis_ada_after": "120.8099396027856524466595317",
+     "qtoken_raw_after": "3131243117",
+     "qtoken_basis_ada_after": "394.1835998096545316064032724"
+    }
+   }
   }
  ],
  "checks": [
   {
    "agent": "beacn",
    "label": "BEACN scored in both denominations",
-   "ada_eq": 847.068193,
-   "usd": 184.196673,
-   "ada_eq_marked_to_usd": 184.196673,
+   "ada_eq": 848.025156,
+   "usd": 184.031635,
+   "ada_eq_marked_to_usd": 184.031635,
    "agree": true
   },
   {
    "agent": "grokbot",
    "label": "grokbot scored in both denominations",
-   "ada_eq": 876.915121,
-   "usd": 190.686947,
-   "ada_eq_marked_to_usd": 190.686947,
+   "ada_eq": 877.64766,
+   "usd": 190.460074,
+   "ada_eq_marked_to_usd": 190.460074,
    "agree": true
   }
  ],
@@ -648,10 +1509,10 @@
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 1864,
+  "points": 1865,
   "first": 1788027300,
-  "last": 1788621430,
-  "polled": 1816,
+  "last": 1788621628,
+  "polled": 1817,
   "reconstructed": 48,
   "file": "match_history.json"
  }
