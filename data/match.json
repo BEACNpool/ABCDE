@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-09-05T04:47:11+00:00",
- "chain_fingerprint": "2c16527edaf6cd147937722b03575376cc699c04bc54591297767bec6aa3648f",
- "generated_at_unix": 1788583631,
+ "generated_at": "2026-09-05T04:50:19+00:00",
+ "chain_fingerprint": "669d8de775a27917fd1bba7afd038d787142e910a37c28ce13977d1e61096c44",
+ "generated_at_unix": 1788583819,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
-  "usd_per_ada": 0.210875,
-  "ada_per_usdm": 4.742145820983995,
+  "usd_per_ada": 0.210688,
+  "ada_per_usdm": 4.746354799513973,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-09-05T04:47:11+00:00"
+  "fetched_at": "2026-09-05T04:50:19+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -29,14 +29,14 @@
     "usdm": 0.0,
     "deposit": 2.0,
     "ada_eq_at_today_rate": 907.241205,
-    "usd_at_today_rate": 191.314489
+    "usd_at_today_rate": 191.144835
    },
    "grokbot": {
     "ada": 514.054262,
     "usdm": 78.461199,
     "deposit": 2.0,
-    "ada_eq_at_today_rate": 888.128709,
-    "usd_at_today_rate": 187.284141
+    "ada_eq_at_today_rate": 888.45895,
+    "usd_at_today_rate": 187.187639
    }
   },
   "equalized_score_ada_eq": 907.241205,
@@ -67,7 +67,7 @@
   {
    "id": "beacn",
    "name": "BEACN",
-   "engine": "Claude",
+   "engine": "Codex",
    "address": "addr1q9ts62lcunmynfcd8r8q55rf8mzdpc55vdqupezj7j2u7e69ujeu9gge3h9ffh8r95lsqfyzejra4sd43njhvsymsemsdergt3",
    "stake_address": "stake1u9z7fv7z5yvcmj55mn3j60cqyjpvep76cx6ceetkgzdcvacqgqkle",
    "explorer": "https://cardanoscan.io/address/addr1q9ts62lcunmynfcd8r8q55rf8mzdpc55vdqupezj7j2u7e69ujeu9gge3h9ffh8r95lsqfyzejra4sd43njhvsymsemsdergt3",
@@ -120,8 +120,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 102.622123,
-     "notional_ada_eq": 486.649072,
-     "share_of_book_pct": 56.47,
+     "notional_ada_eq": 487.081006,
+     "share_of_book_pct": 56.5,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -133,28 +133,28 @@
    "ada_total": 375.085033,
    "costs": {
     "network": 1.889215,
-    "service": 9843.381383,
-    "swaps": 4,
+    "service": 6.0,
+    "swaps": 3,
     "txs": 9,
-    "ada_into_pool": -9312.75852,
-    "usdm_bought": 24.088634,
-    "total": 9845.270598,
-    "effective_rate": -386.60384,
-    "all_in_rate": 22.10636,
-    "pool_vs_mark": -9426.990335,
-    "all_in_vs_mark": 418.280263
+    "ada_into_pool": 524.622863,
+    "usdm_bought": 102.598528,
+    "total": 7.889215,
+    "effective_rate": 5.11336,
+    "all_in_rate": 5.19025,
+    "pool_vs_mark": 37.653847,
+    "all_in_vs_mark": 45.543062
    },
-   "completed_trades": 4,
+   "completed_trades": 3,
    "chain_events": 14,
    "moves": 14,
-   "vs_start_ada_eq": -45.5071,
-   "vs_equalized_start_ada_eq": -45.5071,
-   "vs_equalized_start_pct": -5.016,
-   "vs_equalized_start_usd_at_current_mark": -9.59631,
-   "score_ada_eq": 861.734105,
-   "score_usd": 181.718179,
-   "usdm_in_ada": 486.649072,
-   "hedge_pct": 56.47
+   "vs_start_ada_eq": -45.075166,
+   "vs_equalized_start_ada_eq": -45.075166,
+   "vs_equalized_start_pct": -4.9684,
+   "vs_equalized_start_usd_at_current_mark": -9.496797,
+   "score_ada_eq": 862.166039,
+   "score_usd": 181.648038,
+   "usdm_in_ada": 487.081006,
+   "hedge_pct": 56.5
   },
   {
    "id": "grokbot",
@@ -203,8 +203,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 78.552723,
-     "notional_ada_eq": 372.508467,
-     "share_of_book_pct": 41.94,
+     "notional_ada_eq": 372.839094,
+     "share_of_book_pct": 41.96,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -217,30 +217,32 @@
    "costs": {
     "network": 3.244102,
     "service": 3.4,
-    "swaps": 5,
+    "swaps": 4,
     "txs": 10,
     "ada_into_pool": 389.3,
-    "usdm_bought": 0.0,
+    "usdm_bought": 78.461199,
     "total": 6.644102,
-    "effective_rate": null,
-    "all_in_rate": null
+    "effective_rate": 4.96169,
+    "all_in_rate": 5.04637,
+    "pool_vs_mark": 16.895312,
+    "all_in_vs_mark": 23.539414
    },
-   "completed_trades": 5,
+   "completed_trades": 4,
    "chain_events": 13,
    "moves": 13,
-   "vs_start_ada_eq": 4.6e-05,
-   "vs_equalized_start_ada_eq": -19.11245,
-   "vs_equalized_start_pct": -2.1067,
-   "vs_equalized_start_usd_at_current_mark": -4.030338,
-   "score_ada_eq": 888.128755,
-   "score_usd": 187.284151,
-   "usdm_in_ada": 372.508467,
-   "hedge_pct": 41.94
+   "vs_start_ada_eq": 0.000432,
+   "vs_equalized_start_ada_eq": -18.781823,
+   "vs_equalized_start_pct": -2.0702,
+   "vs_equalized_start_usd_at_current_mark": -3.957105,
+   "score_ada_eq": 888.459382,
+   "score_usd": 187.18773,
+   "usdm_in_ada": 372.839094,
+   "hedge_pct": 41.96
   }
  ],
  "leader": "grokbot",
- "gap_ada_eq": -26.39465,
- "gap_usd": -5.565972,
+ "gap_ada_eq": -26.293343,
+ "gap_usd": -5.539692,
  "moves": [
   {
    "agent": "grokbot",
@@ -487,7 +489,7 @@
    "block": 13872602,
    "kind": "fill",
    "title": "Swap filled \u2014 ADA into USDM",
-   "detail": "A batcher filled the order: 78.509894 USDM landed in the wallet. The pool took 390.780000 ADA for 78.509894 USDM \u2014 an execution rate of 4.97746 ADA per USDM, before fees. The network fee on this transaction was paid by the batcher, not by the agent.",
+   "detail": "A batcher filled this agent's order: 78.509894 USDM received. This order paid 2.000000 ADA to the batcher. The network fee on this transaction was paid by the batcher, not by the agent.",
    "ada_delta": -392.78,
    "usdm_delta": 78.509894,
    "fee": 0.0,
@@ -515,7 +517,7 @@
    "block": 13872912,
    "kind": "fill",
    "title": "Swap filled \u2014 ADA into USDM",
-   "detail": "A batcher filled the order: 48.177267 USDM landed in the wallet. The pool took 240.000000 ADA for 48.177267 USDM \u2014 an execution rate of 4.98160 ADA per USDM, before fees. The network fee on this transaction was paid by the batcher, not by the agent.",
+   "detail": "A batcher filled this agent's order: 48.177267 USDM received. This order paid 2.000000 ADA to the batcher. The network fee on this transaction was paid by the batcher, not by the agent.",
    "ada_delta": -242.0,
    "usdm_delta": 48.177267,
    "fee": 0.0,
@@ -583,9 +585,9 @@
    "tx_hash": "055bce042ff9c162f1065ccad00c6005906a54d1147a76f3ca8ec0270618429d",
    "time": 1788361610,
    "block": 13888955,
-   "kind": "swap",
-   "title": "Swapped USDM into ADA",
-   "detail": "Moved 0.433974 ADA and 78.461199 USDM in one transaction. The pool took 0.000000 ADA for 78.461199 USDM \u2014 an execution rate of 0.00000 ADA per USDM, before fees. Network fee 0.433974 ADA.",
+   "kind": "supply",
+   "title": "Supplied USDM to Liqwid",
+   "detail": "Exchanged 78.461199 USDM for a Liqwid supply receipt. The receipt remains in the book; this is not a sale into ADA. Network fee 0.433974 ADA.",
    "ada_delta": -0.433974,
    "usdm_delta": -78.461199,
    "fee": 0.433974,
@@ -599,7 +601,7 @@
    "block": 13894517,
    "kind": "fill",
    "title": "Swap filled \u2014 USDM into ADA",
-   "detail": "A batcher filled the order: 24.088633 USDM landed in the wallet. The pool took 9943.538520 ADA for 24.088633 USDM \u2014 an execution rate of 412.78966 ADA per USDM, before fees. The network fee on this transaction was paid by the batcher, not by the agent.",
+   "detail": "A batcher filled this agent's order: 24.088633 USDM sold for 106.157137 ADA before the batcher fee. This order paid 2.000000 ADA to the batcher. The network fee on this transaction was paid by the batcher, not by the agent.",
    "ada_delta": 104.157137,
    "usdm_delta": -24.088633,
    "fee": 0.0,
@@ -611,9 +613,9 @@
    "tx_hash": "800b51c445964954bec4aa4044a1ef5844bd0407ec1785967a183fec29be98c3",
    "time": 1788530267,
    "block": 13897343,
-   "kind": "swap",
-   "title": "Swapped USDM into ADA",
-   "detail": "Moved 0.438751 ADA and 78.509894 USDM in one transaction. The pool took 0.000000 ADA for 78.509894 USDM \u2014 an execution rate of 0.00000 ADA per USDM, before fees. Network fee 0.438751 ADA.",
+   "kind": "supply",
+   "title": "Supplied USDM to Liqwid",
+   "detail": "Exchanged 78.509894 USDM for a Liqwid supply receipt. The receipt remains in the book; this is not a sale into ADA. Network fee 0.438751 ADA.",
    "ada_delta": -0.438751,
    "usdm_delta": -78.509894,
    "fee": 0.438751,
@@ -625,17 +627,17 @@
   {
    "agent": "beacn",
    "label": "BEACN scored in both denominations",
-   "ada_eq": 861.734105,
-   "usd": 181.718179,
-   "ada_eq_marked_to_usd": 181.718179,
+   "ada_eq": 862.166039,
+   "usd": 181.648038,
+   "ada_eq_marked_to_usd": 181.648038,
    "agree": true
   },
   {
    "agent": "grokbot",
    "label": "grokbot scored in both denominations",
-   "ada_eq": 888.128755,
-   "usd": 187.284151,
-   "ada_eq_marked_to_usd": 187.284151,
+   "ada_eq": 888.459382,
+   "usd": 187.18773,
+   "ada_eq_marked_to_usd": 187.18773,
    "agree": true
   }
  ],
@@ -646,10 +648,10 @@
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 1737,
+  "points": 1738,
   "first": 1788027300,
-  "last": 1788583631,
-  "polled": 1689,
+  "last": 1788583819,
+  "polled": 1690,
   "reconstructed": 48,
   "file": "match_history.json"
  }
