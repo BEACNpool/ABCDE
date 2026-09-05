@@ -36,6 +36,10 @@ SNAPSHOT_HINTS = (
     # tracer method tables: every one is keyed on where a tracer sits NOW
     "terminus", "asset_path", "valid_deposits", "name_votes",
 )
+FOUNDING_HISTORICAL = {
+    "founding_cohort_keys", "founding_early_merge_inputs",
+    "founding_early_merge_outputs", "founding_reserve_credits",
+}
 
 
 def refresh_tip_receipt() -> None:
@@ -51,7 +55,7 @@ def refresh_tip_receipt() -> None:
         check=True, capture_output=True, text=True).stdout.strip()
     block, tip_time, epoch = out.split("|")
     with TIP.open("w", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator='\n')
         w.writerow(["generated_utc", "db_tip_block", "db_tip_time",
                     "db_tip_epoch", "source", "staleness_note"])
         w.writerow([
@@ -80,7 +84,8 @@ def main() -> None:
         if p.name == OUT.name or p.stem in SKIP_TABLE_STEMS:
             continue
         data = p.read_bytes()
-        n_rows = max(data.count(b"\n") - 1, 0)
+        with p.open(newline='', encoding='utf-8') as f:
+            n_rows = sum(1 for _ in csv.DictReader(f))
         commit_iso = git_commit_utc(p)
         if commit_iso:
             age_days = (now - datetime.fromisoformat(commit_iso)).days
@@ -90,10 +95,11 @@ def main() -> None:
             p.stem, n_rows, len(data),
             hashlib.sha256(data).hexdigest(),
             commit_iso, age_days,
-            any(h in p.stem for h in SNAPSHOT_HINTS),
+            (p.stem not in FOUNDING_HISTORICAL if p.stem.startswith('founding_')
+             else any(h in p.stem for h in SNAPSHOT_HINTS)),
         ])
     with OUT.open("w", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator='\n')
         w.writerow(["table_name", "data_rows", "bytes", "sha256",
                     "last_commit_utc", "age_days_at_refresh",
                     "snapshot_sensitive"])

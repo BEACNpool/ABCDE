@@ -29,7 +29,7 @@ SELECT
   spend_input_count,
   spend_output_count,
   spend_output_lovelace
-FROM seed_first_spends
+FROM seed_first_spends_db
 WHERE seed_id IN ('emurgo', 'fourth_entry_781m')
 ORDER BY first_spend_time_utc;
 ```

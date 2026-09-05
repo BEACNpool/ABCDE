@@ -45,6 +45,17 @@ def load_source_block():
 def main():
     files=[]
     source=load_source_block()
+    receipt_path=ROOT/'data/small/founding_query_receipts.csv'
+    founding_sources={}
+    if receipt_path.exists():
+        with receipt_path.open(newline='', encoding='utf-8') as f:
+            for row in csv.DictReader(f):
+                founding_sources['data/small/'+row['table_name']+'.csv']={
+                    'receipt':receipt_path.relative_to(ROOT).as_posix(),
+                    **{key:row[key] for key in ('source_kind','collection_started_utc',
+                        'collection_finished_utc','db_tip_block','db_tip_epoch',
+                        'db_tip_time','db_tip_hash','query_path') if row.get(key)},
+                }
     import sys as _sys
     _sys.path.insert(0, str(ROOT / 'scripts'))
     from build_genesis_db import SKIP_TABLE_STEMS  # don't hash unshipped build inputs
@@ -61,9 +72,20 @@ def main():
                 if p.name in skip_names and p.parent.name=='small':
                     continue
                 item={'path':p.relative_to(ROOT).as_posix(),'bytes':p.stat().st_size,'sha256':sha256_file(p)}
-                if source:
+                if item['path'] in founding_sources:
+                    item['source']=founding_sources[item['path']]
+                elif (p.stem.startswith('founding_') or p.parent.name=='35_founding_entities'
+                      or p.name=='28_FOUNDER_ACCOUNTABILITY_EVIDENCE.md'
+                      or p.name.startswith('F22_')):
+                    item['source']={'manifest':'data/manifests/founding-evidence-manifest.json',
+                                    'note':'Consult per-table receipts; chain, disclosure and historical-selection boundaries differ.'}
+                elif source:
                     item['source']=source
                 files.append(item)
+    evidence_manifest=ROOT/'data/manifests/founding-evidence-manifest.json'
+    if evidence_manifest.exists():
+        files.append({'path':evidence_manifest.relative_to(ROOT).as_posix(),
+                      'bytes':evidence_manifest.stat().st_size,'sha256':sha256_file(evidence_manifest)})
     payload={'schema_version':2,'file_count':len(files),'files':files}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, indent=2)+'\n')

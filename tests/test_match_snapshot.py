@@ -87,8 +87,33 @@ class SnapshotVerifierTests(unittest.TestCase):
             score_ada = ada + usdm / usd
             score_usd = ada * usd + usdm
             delta = score_ada - baseline
+            hedge_pct = 100.0 * usdm / score_usd
+            # The fixture has no event log or pending orders. Its stablecoin
+            # holding is still an open, unlevered spot position.
+            positions = [{
+                "status": "open",
+                "economic_side": "long USDM / underweight ADA",
+                "market_view": "ADA-bearish vs USD",
+                "mechanism": "USDM spot holding",
+                "quantity_usdm": usdm,
+                "notional_ada_eq": usdm / usd,
+                "share_of_book_pct": hedge_pct,
+                "leverage": {
+                    "type": "unlevered spot",
+                    "borrowed": False,
+                    "liquidation_price": None,
+                },
+            }] if usdm > 1e-9 else []
             return {
                 "id": aid,
+                "chain_events": 0,
+                "moves": 0,
+                "completed_trades": 0,
+                "costs": {"swaps": 0},
+                "open_orders": 0,
+                "open_position_count": len(positions),
+                "market_positions": positions,
+                "hedge_pct": hedge_pct,
                 "ada_total": ada,
                 "usdm": usdm,
                 "score_ada_eq": score_ada,
@@ -102,6 +127,7 @@ class SnapshotVerifierTests(unittest.TestCase):
         return {
             "network": "Cardano mainnet",
             "generated_at_unix": 1_788_000_000,
+            "moves": [],
             "price": {"available": True, "usd_per_ada": usd,
                       "ada_per_usdm": 1.0 / usd},
             "start": {

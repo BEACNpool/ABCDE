@@ -34,6 +34,7 @@ OUT_MD = ROOT / "docs/TABLE_CATALOG.md"
 
 # table-name prefix -> family label (longest prefix wins)
 FAMILY = [
+    ("founding_", "Founding-entity accountability"),
     ("seed", "Genesis seeds"),
     ("seeds", "Genesis seeds"),
     ("fourth_entry", "Fourth entry"),
@@ -128,6 +129,8 @@ def main() -> None:
             "family": family_of(name),
             "row_count": info.get("row_count"),
             "source": info.get("source"),
+            "source_receipt": ("data/small/founding_query_receipts.csv"
+                               if name.startswith("founding_") else None),
             "snapshot_sensitive": snapshot.get(name, False),
             "findings": sorted({f["finding"] for f in fk}),
             "grade": (fk[0]["grade_hint"] if fk else ""),
@@ -149,9 +152,11 @@ def main() -> None:
         "whether it is snapshot-sensitive, and which finding(s) it backs at what "
         "grade. Per-column detail is in [`SCHEMA.md`](SCHEMA.md).",
         "",
-        "> **Snapshot-sensitive** tables describe *current* chain state and are "
-        "only accurate as of the `build_info` tip. Non-sensitive tables are "
-        "historical facts that do not decay. See "
+        "> **Snapshot-sensitive** tables describe state at a recorded source boundary. "
+        "Read the module's own receipt: `founding_*` uses "
+        "[`founding_query_receipts.csv`](../data/small/founding_query_receipts.csv), "
+        "not the older global `build_info` tip. A build timestamp does not refresh "
+        "underlying data. Historical records still require attribution and method checks. See "
         "[`22_DATA_TOPOLOGY_AND_FRESHNESS.md`](22_DATA_TOPOLOGY_AND_FRESHNESS.md).",
         "",
     ]

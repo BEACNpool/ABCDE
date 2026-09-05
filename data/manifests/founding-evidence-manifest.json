@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "boundary_kind": "repeatable_read_snapshot",
+  "chain_tip": {
+    "block_no": 13899964,
+    "epoch_no": 653,
+    "time": "2026-09-05T04:39:55",
+    "hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de"
+  },
+  "collection_scope": "One read-only PostgreSQL snapshot for chain tables; public disclosures and historical cohort selection carry separate receipts.",
+  "files": [
+    {
+      "path": "data/small/founding_chain_tip.csv",
+      "bytes": 172,
+      "sha256": "f522196de7eeb3e0b24442e7e8bb6f22d7b8cae7438e9a60dd486a5aa37cf9ec",
+      "row_count": 1
+    },
+    {
+      "path": "data/small/founding_cohort_keys.csv",
+      "bytes": 4912,
+      "sha256": "940183de00b36cf99ed75d48a3eced1a220643cbc6de41e3550e83d89e459b06",
+      "row_count": 14
+    },
+    {
+      "path": "data/small/founding_cohort_stake.csv",
+      "bytes": 3457,
+      "sha256": "271d7a9d2d4bb363d9b04062d6975194108fc56baca3db4c43a85fdbe1281cca",
+      "row_count": 14
+    },
+    {
+      "path": "data/small/founding_drep_distribution.csv",
+      "bytes": 84453,
+      "sha256": "de9e13d36534f96418189e7a19068b25b76928962580f3812bc97415e9a96166",
+      "row_count": 948
+    },
+    {
+      "path": "data/small/founding_drep_identity.csv",
+      "bytes": 748,
+      "sha256": "8a33af2b7c275e1e531ae6aa9a7641d01040b86d1b56903959e2ef8d017a18ec",
+      "row_count": 3
+    },
+    {
+      "path": "data/small/founding_early_merge_inputs.csv",
+      "bytes": 615,
+      "sha256": "a63e8349aadc22c7be9c4bc403c566a4b4c68feacc8b0b082dafaa68641d0e05",
+      "row_count": 2
+    },
+    {
+      "path": "data/small/founding_early_merge_outputs.csv",
+      "bytes": 436,
+      "sha256": "111a92d1b29c5959210325ea67059a9956efae68e39a64e5598fcb04af87a11c",
+      "row_count": 2
+    },
+    {
+      "path": "data/small/founding_epoch_parameters.csv",
+      "bytes": 108,
+      "sha256": "72602033f0945164aba0e37f93211ab134a4414b52e451a2dbf47221e3bc06d8",
+      "row_count": 1
+    },
+    {
+      "path": "data/small/founding_proposals.csv",
+      "bytes": 36016,
+      "sha256": "d1a8a454d39f90f9b9a8a4b1530cecd09003bd32a07a5ac3073e39132ad23e41",
+      "row_count": 155
+    },
+    {
+      "path": "data/small/founding_public_sources.csv",
+      "bytes": 15741,
+      "sha256": "5e26c5c6e76205b45d7d9b1b387e5979e9d2a83726bc2119fab135a84dbc23f9",
+      "row_count": 27
+    },
+    {
+      "path": "data/small/founding_query_receipts.csv",
+      "bytes": 4180,
+      "sha256": "bf32b733f3f2157d96e314dde265b3966bb9196372f80ec7c04a5c97742774c8",
+      "row_count": 13
+    },
+    {
+      "path": "data/small/founding_reserve_credits.csv",
+      "bytes": 1064,
+      "sha256": "31d1e3644e1c3cf6527013b88ffbeb1dd57eec7f4118a5437393de3a01ccaa93",
+      "row_count": 6
+    },
+    {
+      "path": "data/small/founding_vote_pairs.csv",
+      "bytes": 415,
+      "sha256": "3fc497b40f90af214633bfdb73678dcb478898ecaa2c0dfb7577e488d44d753f",
+      "row_count": 3
+    },
+    {
+      "path": "data/small/founding_votes.csv",
+      "bytes": 155423,
+      "sha256": "8cec12f38f612ade291e0770fe141c857368dd9e5dd79d0c2facfcaa5f2ccaa1",
+      "row_count": 453
+    },
+    {
+      "path": "sql/35_founding_entities/founding_chain_tip.remote.sql",
+      "bytes": 136,
+      "sha256": "0287d48604230e9c370398c063e2178cc0d0e0f4f03ecfbda2c8662c0f3dda83"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_cohort_stake.remote.sql",
+      "bytes": 1683,
+      "sha256": "d938b057ac620b27864e7889350179a543c016801b8f8acb2aa258176b52d44e"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_drep_distribution.remote.sql",
+      "bytes": 645,
+      "sha256": "5679365d922f8387fa3c48b9149492a4f60dd30eb4d0e8c4624ce61f9beae757"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_drep_identity.remote.sql",
+      "bytes": 1080,
+      "sha256": "511dfd802d3e82cfea152f7b3aff9a826e21032838a8e0b59079b122ea5965c3"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_early_merge_inputs.remote.sql",
+      "bytes": 542,
+      "sha256": "8e56980633028e2d2efb9507ff4b3af85e2e8ae53d9744a89f266ddf182f51a7"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_early_merge_outputs.remote.sql",
+      "bytes": 324,
+      "sha256": "9fe75d06a26515cc8d16de88c73ab60153b9f75747d0b78caa5fc143e1af9147"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_epoch_parameters.remote.sql",
+      "bytes": 230,
+      "sha256": "796e57a2a3da51ab5b38f0eb1bb21484f56a8960ce77f47ee431b5b8c24ba430"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_proposals.remote.sql",
+      "bytes": 708,
+      "sha256": "4c4fd7fe32b49ae52bf44a8c58cbfc44fa16a180c31860a8a9e51066f9ba52b1"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_reserve_credits.remote.sql",
+      "bytes": 442,
+      "sha256": "c66c0d4bab9065fe4871f440e0cdde70497a6014e21d94270403fe7bd1fa217e"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_vote_pairs.remote.sql",
+      "bytes": 1034,
+      "sha256": "a6b8a3af032ceec27b1bd12e32f5bff714ec4824db15575a650103b84d12d1e3"
+    },
+    {
+      "path": "sql/35_founding_entities/founding_votes.remote.sql",
+      "bytes": 1022,
+      "sha256": "6df2ab8ea1159cc2e08e6509b9d372d7fe110c3f72502aa0fbc755c6f3f051bf"
+    }
+  ],
+  "expected_claims": {
+    "vote_pairs": [
+      {
+        "a": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+        "b": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+        "joint_actions": 142,
+        "same_votes": 87,
+        "opposing_yes_no": 9
+      },
+      {
+        "a": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+        "b": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+        "joint_actions": 142,
+        "same_votes": 89,
+        "opposing_yes_no": 9
+      },
+      {
+        "a": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+        "b": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+        "joint_actions": 142,
+        "same_votes": 140,
+        "opposing_yes_no": 0
+      }
+    ],
+    "latest_voting_power_by_drep": {
+      "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e": 164748353912119,
+      "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez": 301958521565201,
+      "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt": 469671268300191
+    },
+    "early_merge_transaction_hash": "c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76",
+    "reserve_credit_lovelace": 318199980000000
+  }
+}

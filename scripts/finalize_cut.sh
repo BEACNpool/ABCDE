@@ -20,6 +20,7 @@ PY="$REPO_ROOT/.venv/bin/python3"
 "$PY" scripts/build_findings_json.py              # joins hashes from the manifest
 
 "$PY" scripts/verify_claim_receipts.py
+"$PY" scripts/verify_founding_evidence.py --db data/abcde_genesis.duckdb
 "$PY" scripts/build_findings_json.py --check
 "$PY" scripts/selftest.py
 "$PY" scripts/check_file_sizes.py

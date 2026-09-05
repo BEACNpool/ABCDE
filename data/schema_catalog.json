@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "0330444194d2",
+          "git_commit": "686112156714",
           "source_generated_utc": "2026-07-04 04:10:04+00:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -530,7 +530,7 @@
     },
     "data_freshness_catalog": {
       "source": "data/small/data_freshness_catalog.csv",
-      "row_count": 146,
+      "row_count": 170,
       "columns": [
         {
           "name": "table_name",
@@ -568,7 +568,7 @@
           "bytes": 24651,
           "sha256": "76350f75229564cd35698b9da55fa8c32665baf14817fcc7c2fd5f8bb095946a",
           "last_commit_utc": "2026-05-29T09:26:39-05:00",
-          "age_days_at_refresh": 77,
+          "age_days_at_refresh": 98,
           "snapshot_sensitive": false
         },
         {
@@ -577,7 +577,7 @@
           "bytes": 90,
           "sha256": "1d103f2c8569584561556e4b5103a10a743368dbae7a918f47e70c3d0ea61b26",
           "last_commit_utc": "2026-05-29T09:26:39-05:00",
-          "age_days_at_refresh": 77,
+          "age_days_at_refresh": 98,
           "snapshot_sensitive": false
         },
         {
@@ -586,7 +586,7 @@
           "bytes": 48593,
           "sha256": "c644a52a714567186589f0e50d7cd40f84f2e9a4e89ab9b872435e987ceafa6a",
           "last_commit_utc": "2026-07-03T13:17:25-05:00",
-          "age_days_at_refresh": 41,
+          "age_days_at_refresh": 63,
           "snapshot_sensitive": true
         }
       ]
@@ -1901,6 +1901,859 @@
           "custody_pattern": "ACTIVE_MANAGED",
           "stake_addresses": 10,
           "current_ada": 293922191.51048
+        }
+      ]
+    },
+    "founding_chain_tip": {
+      "source": "data/small/founding_chain_tip.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "observed_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "block_no": 13899964,
+          "epoch_no": 653,
+          "time": "2026-09-05 04:39:55",
+          "hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+          "observed_utc": "2026-09-05 04:40:51.682546+00:00"
+        }
+      ]
+    },
+    "founding_cohort_keys": {
+      "source": "data/small/founding_cohort_keys.csv",
+      "row_count": 14,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "selection_source",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "selection_snapshot_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u84u9k7yjnujla4stf25q23r0tcxyj0stmzadwam4k98g3s0euwyc",
+          "selection_source": "data/small/genesis_control_indicators.csv + data/small/iog_current_bag_depth14_current_utxos.csv; fourteen approximately 35-million-ADA credentials with IOG-root graph reach and February 9-10 2025 auto-abstain certificates; selection is not owner attribution",
+          "selection_snapshot_utc": "2026-07-03 15:12:42.348269+00:00"
+        },
+        {
+          "stake_address": "stake1u88zeazj5xy8uamz47rqswpjvn9zmsyg78ahklfmku2k35g2qlaaj",
+          "selection_source": "data/small/genesis_control_indicators.csv + data/small/iog_current_bag_depth14_current_utxos.csv; fourteen approximately 35-million-ADA credentials with IOG-root graph reach and February 9-10 2025 auto-abstain certificates; selection is not owner attribution",
+          "selection_snapshot_utc": "2026-07-03 15:12:42.348269+00:00"
+        },
+        {
+          "stake_address": "stake1u8yr90g09a2znm4ylaspctgyteuslnrfn6flnntxkka2ysgy2750z",
+          "selection_source": "data/small/genesis_control_indicators.csv + data/small/iog_current_bag_depth14_current_utxos.csv; fourteen approximately 35-million-ADA credentials with IOG-root graph reach and February 9-10 2025 auto-abstain certificates; selection is not owner attribution",
+          "selection_snapshot_utc": "2026-07-03 15:12:42.348269+00:00"
+        }
+      ]
+    },
+    "founding_cohort_stake": {
+      "source": "data/small/founding_cohort_stake.csv",
+      "row_count": 14,
+      "columns": [
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "amount_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "pool_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "drep_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "drep_cert_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "drep_cert_tx",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "stake_address": "stake1u84u9k7yjnujla4stf25q23r0tcxyj0stmzadwam4k98g3s0euwyc",
+          "epoch_no": 653,
+          "amount_lovelace": 35011090784850,
+          "pool_id": "pool1vcwsfldh4gkzga4mc6p86y0vytkqfm9e2dy44hs00v34yeqnfaf",
+          "drep_id": "drep_always_abstain",
+          "drep_cert_time": "2025-02-09 19:57:02",
+          "drep_cert_tx": "aa6ad4ea3773d13ee55e85f3c6356f2705ed9e1faf43aa5d7b9b41f52ec76a0c"
+        },
+        {
+          "stake_address": "stake1u88zeazj5xy8uamz47rqswpjvn9zmsyg78ahklfmku2k35g2qlaaj",
+          "epoch_no": 653,
+          "amount_lovelace": 35009847989746,
+          "pool_id": "pool16e43yxx4djcvnsunwgrm8tnph0ljrt3p9tnezu3qvtcwzh4zwwa",
+          "drep_id": "drep_always_abstain",
+          "drep_cert_time": "2025-02-10 02:00:16",
+          "drep_cert_tx": "7b663b7f9406bff4be5deddda624f023946fbb69583f41a87a4d53abe4bdd03a"
+        },
+        {
+          "stake_address": "stake1u8yr90g09a2znm4ylaspctgyteuslnrfn6flnntxkka2ysgy2750z",
+          "epoch_no": 653,
+          "amount_lovelace": 34413406467110,
+          "pool_id": "pool1xed948ze4guhrkt9zxjmecjvgkvgf8gd8skkzgtacz6gsyk9m5c",
+          "drep_id": "drep_always_abstain",
+          "drep_cert_time": "2025-02-10 03:27:40",
+          "drep_cert_tx": "f62904109fffcc8a45edf6a1901e8e3399bc39614ea9070100a32cbc63b20c1f"
+        }
+      ]
+    },
+    "founding_drep_distribution": {
+      "source": "data/small/founding_drep_distribution.csv",
+      "row_count": 948,
+      "columns": [
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "drep_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "amount_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "active_until",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "epoch_no": 630,
+          "drep_id": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "drep_hash_id": 20808,
+          "has_script": true,
+          "amount_lovelace": 134926610986471,
+          "active_until": 649
+        },
+        {
+          "epoch_no": 630,
+          "drep_id": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+          "drep_hash_id": 53942,
+          "has_script": false,
+          "amount_lovelace": 297658317221860,
+          "active_until": 649
+        },
+        {
+          "epoch_no": 630,
+          "drep_id": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+          "drep_hash_id": 60721,
+          "has_script": false,
+          "amount_lovelace": 694230466730450,
+          "active_until": 649
+        }
+      ]
+    },
+    "founding_drep_identity": {
+      "source": "data/small/founding_drep_identity.csv",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "drep_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "entity",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "group_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "given_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "identity_anchor_url",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "drep_id": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "entity": "Cardano Foundation",
+          "group_name": "Cardano Foundation",
+          "drep_hash_id": 20808,
+          "has_script": true,
+          "given_name": "Cardano Foundation",
+          "identity_anchor_url": "https://raw.githubusercontent.com/cardano-foundation/Governance/refs/heads/main/DRep-Activities/cf-drep.jsonld"
+        },
+        {
+          "drep_id": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+          "entity": "EMURGO",
+          "group_name": "EMURGO",
+          "drep_hash_id": 53942,
+          "has_script": false,
+          "given_name": "EMURGO",
+          "identity_anchor_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/a0301c0547e8a4eb7566829ae387396761a34b42/EMURGO.jsonld"
+        },
+        {
+          "drep_id": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+          "entity": "Yoroi Wallet",
+          "group_name": "EMURGO",
+          "drep_hash_id": 60721,
+          "has_script": false,
+          "given_name": "Yoroi W\u20b3llet",
+          "identity_anchor_url": "https://raw.githubusercontent.com/Emurgo/constitution-committee/11af02e3b66daa7106941a1b3000d9721862bc3c/YOROI.jsonld"
+        }
+      ]
+    },
+    "founding_early_merge_inputs": {
+      "source": "data/small/founding_early_merge_inputs.csv",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "input_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "input_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "value_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "tx_hash": "c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76",
+          "block_time": "2017-10-18 05:15:51",
+          "input_tx_hash": "5ec95a53fa3bb7dc56864bb6e75f369f00aa20e8d8cdc3b66b2fb88ec1b225ef",
+          "input_index": 0,
+          "value_lovelace": 781381495000000,
+          "address": "DdzFFzCqrhspiThx6UaeJASmHTbwbXp2FtdCkF9AU9QXPF9D8sUC7Fqrv9bmYkxradBbqMrSxukTTsqCPNPwRh5PHazdiwWTuJYVMMaf"
+        },
+        {
+          "tx_hash": "c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76",
+          "block_time": "2017-10-18 05:15:51",
+          "input_tx_hash": "743fd0510c4527b4031504b9f3c1703606bfd5e63bed4d1bf857ceeefc4bac1b",
+          "input_index": 0,
+          "value_lovelace": 1074165542657684,
+          "address": "DdzFFzCqrht6ppB1sTzhf1dR76ex9YkTyfcWSK5Jr1XCmoTEQjXbGGGaBq47zX1VSkWaRiPaZnxEUbb9huDMVEdwFvDRjZP91scLZGNW"
+        }
+      ]
+    },
+    "founding_early_merge_outputs": {
+      "source": "data/small/founding_early_merge_outputs.csv",
+      "row_count": 2,
+      "columns": [
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "output_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "value_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "fee_lovelace",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "tx_hash": "c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76",
+          "output_index": 0,
+          "value_lovelace": 131,
+          "address": "DdzFFzCqrhsfeFUGoiMC3EBXYhY9ZaG9DxaFfJoR9DpD4R2bYZ4hDTDZUEHfqbyWkdpFS7kgKioAZBjuSb3wM9g5C6uDjT4CQqyrUuUe",
+          "fee_lovelace": 178893
+        },
+        {
+          "tx_hash": "c8596b9cd81f734f8129604ff86f23bd4a910465acb84ad9e9d1ac223ccb4a76",
+          "output_index": 1,
+          "value_lovelace": 1855547037478660,
+          "address": "DdzFFzCqrhsu3iF6JfUTaapdWq2mXVRFukkS28WFYVDEqkgaaYttH8cT32credS99L5GaoUsEquqEPNH7ae88eKuDL6XsK5ZL56jkfLi",
+          "fee_lovelace": 178893
+        }
+      ]
+    },
+    "founding_epoch_parameters": {
+      "source": "data/small/founding_epoch_parameters.csv",
+      "row_count": 1,
+      "columns": [
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "treasury_threshold",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "constitution_threshold",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "committee_threshold",
+          "type": "DOUBLE"
+        },
+        {
+          "name": "protocol_major",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "epoch_no": 653,
+          "treasury_threshold": 0.67,
+          "constitution_threshold": 0.75,
+          "committee_threshold": 0.67,
+          "protocol_major": 11
+        }
+      ]
+    },
+    "founding_proposals": {
+      "source": "data/small/founding_proposals.csv",
+      "row_count": 155,
+      "columns": [
+        {
+          "name": "gov_action_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "gov_action_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "submitted_at",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "ratified_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "enacted_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "expired_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "dropped_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "anchor_url",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "title",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "requested_lovelace",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "gov_action_tx_hash": "15f82a365bdee483a4b03873a40d3829cc88c048ff3703e11bd01dd9e035c916",
+          "gov_action_index": 0,
+          "type": "InfoAction",
+          "submitted_at": "2024-09-03 19:45:50",
+          "ratified_epoch": null,
+          "enacted_epoch": null,
+          "expired_epoch": 514,
+          "dropped_epoch": 515,
+          "anchor_url": "ipfs://QmWjcHsrq9kKHZZ7aPPFjqN6wLuxH9d8bcqssmrE7H4cvb",
+          "title": null,
+          "requested_lovelace": null
+        },
+        {
+          "gov_action_tx_hash": "59fd353253eb177e2104e8f23ea4c63e3d32ef95c7865d03e90d3884424dc1db",
+          "gov_action_index": 0,
+          "type": "InfoAction",
+          "submitted_at": "2024-09-18 15:24:42",
+          "ratified_epoch": null,
+          "enacted_epoch": null,
+          "expired_epoch": 517,
+          "dropped_epoch": 518,
+          "anchor_url": "https://c-ipfs-gw.nmkr.io/ipfs/QmXdfDSSkR8TYBntMT4nuTL9sE9E44FJnpWVpaY8ZTfwjj",
+          "title": "Cardano\u306e\u751f\u304d\u304c\u3044 - Ikigai -",
+          "requested_lovelace": null
+        },
+        {
+          "gov_action_tx_hash": "7fd6429add8f2611ad8d48c0cc49101463093aec285faea402e8cfde78ea58d7",
+          "gov_action_index": 0,
+          "type": "InfoAction",
+          "submitted_at": "2024-10-11 16:29:28",
+          "ratified_epoch": null,
+          "enacted_epoch": null,
+          "expired_epoch": 521,
+          "dropped_epoch": 522,
+          "anchor_url": "https://raw.githubusercontent.com/bigpey/CardanoGovernance/refs/heads/main/infoAction3.jsonld",
+          "title": "Should K increased?",
+          "requested_lovelace": null
+        }
+      ]
+    },
+    "founding_public_sources": {
+      "source": "data/small/founding_public_sources.csv",
+      "row_count": 27,
+      "columns": [
+        {
+          "name": "source_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "entity",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "topic",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "url",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "document_date",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "accessed_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "source_kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "observation",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "limits",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "source_id": "GENESIS_ALLOCATION",
+          "entity": "IOHK; EMURGO; Cardano Foundation",
+          "topic": "historical founding allocations",
+          "url": "https://cardano.org/genesis/",
+          "document_date": null,
+          "accessed_utc": "2026-09-05 04:26:20+00:00",
+          "source_kind": "direct_official_page",
+          "observation": "The official genesis page assigns 2,463,071,701 ADA to IOHK, 2,074,165,644 ADA to EMURGO, and 648,176,761 ADA to Cardano Foundation Switzerland. It reports 31,112,484,646 ADA available at launch.",
+          "limits": "Published historical integer allocations; not present balances or continuing ownership. The stated 20% compares founding allocations with public-sale allocation, not total launch supply."
+        },
+        {
+          "source_id": "GENESIS_SALE_REVIEW",
+          "entity": "Cardano Foundation",
+          "topic": "published sale review and limitations",
+          "url": "https://cardano.org/genesis/",
+          "document_date": null,
+          "accessed_utc": "2026-09-05 04:26:20+00:00",
+          "source_kind": "direct_official_page",
+          "observation": "CF reports sales reconciliation within 0.01%, early distributor purchasing and KYC onboarding failures, subsequent suspensions and remediation, and improved later-tranche KYC adherence.",
+          "limits": "This summarizes CF's published review, not an independent re-audit of underlying sale records. KYC findings alone do not identify present beneficiaries."
+        },
+        {
+          "source_id": "YOROI_DELEGATION",
+          "entity": "EMURGO; Yoroi",
+          "topic": "wallet interface and DRep delegation",
+          "url": "https://www.emurgo.io/press-news/delegating-your-vote-just-got-easier-one-click-yoroi-drep-delegation-is-here/",
+          "document_date": "2025-04-17",
+          "accessed_utc": "2026-09-05 04:26:20+00:00",
+          "source_kind": "direct_official_page",
+          "observation": "EMURGO's instructions place delegation to Yoroi as the top governance button in desktop and mobile wallets. Users sign to confirm; voting power is delegated while funds remain in their wallets.",
+          "limits": "Documents the interface and consent mechanism at publication. Does not measure how much voting power the interface caused or establish ownership of delegated ADA."
+        }
+      ]
+    },
+    "founding_query_receipts": {
+      "source": "data/small/founding_query_receipts.csv",
+      "row_count": 13,
+      "columns": [
+        {
+          "name": "table_name",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "source_kind",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "collection_started_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "collection_finished_utc",
+          "type": "TIMESTAMP WITH TIME ZONE"
+        },
+        {
+          "name": "db_tip_block",
+          "type": "BIGINT"
+        },
+        {
+          "name": "db_tip_epoch",
+          "type": "BIGINT"
+        },
+        {
+          "name": "db_tip_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "db_tip_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "query_path",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "row_count",
+          "type": "BIGINT"
+        },
+        {
+          "name": "csv_sha256",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "table_name": "founding_chain_tip",
+          "source_kind": "dbsync_atomic_snapshot",
+          "collection_started_utc": "2026-09-05 04:40:51.401561+00:00",
+          "collection_finished_utc": "2026-09-05 04:40:52.324411+00:00",
+          "db_tip_block": 13899964,
+          "db_tip_epoch": 653,
+          "db_tip_time": "2026-09-05 04:39:55",
+          "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+          "query_path": "sql/35_founding_entities/founding_chain_tip.remote.sql",
+          "row_count": 1,
+          "csv_sha256": "f522196de7eeb3e0b24442e7e8bb6f22d7b8cae7438e9a60dd486a5aa37cf9ec"
+        },
+        {
+          "table_name": "founding_cohort_keys",
+          "source_kind": "historical_selection",
+          "collection_started_utc": "2026-07-03 15:12:42.348269+00:00",
+          "collection_finished_utc": "2026-07-03 15:12:42.348269+00:00",
+          "db_tip_block": null,
+          "db_tip_epoch": null,
+          "db_tip_time": null,
+          "db_tip_hash": null,
+          "query_path": null,
+          "row_count": 14,
+          "csv_sha256": "940183de00b36cf99ed75d48a3eced1a220643cbc6de41e3550e83d89e459b06"
+        },
+        {
+          "table_name": "founding_cohort_stake",
+          "source_kind": "dbsync_atomic_snapshot",
+          "collection_started_utc": "2026-09-05 04:40:51.401561+00:00",
+          "collection_finished_utc": "2026-09-05 04:40:52.324411+00:00",
+          "db_tip_block": 13899964,
+          "db_tip_epoch": 653,
+          "db_tip_time": "2026-09-05 04:39:55",
+          "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+          "query_path": "sql/35_founding_entities/founding_cohort_stake.remote.sql",
+          "row_count": 14,
+          "csv_sha256": "271d7a9d2d4bb363d9b04062d6975194108fc56baca3db4c43a85fdbe1281cca"
+        }
+      ]
+    },
+    "founding_reserve_credits": {
+      "source": "data/small/founding_reserve_credits.csv",
+      "row_count": 6,
+      "columns": [
+        {
+          "name": "tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "cert_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "stake_address",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "value_lovelace",
+          "type": "BIGINT"
+        },
+        {
+          "name": "epoch_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        }
+      ],
+      "sample_rows": [
+        {
+          "tx_hash": "03b02cff29a5f2dfc827e00345eaab8b29a3d740e9878aa6e5dd2b52da0763c5",
+          "cert_index": 0,
+          "stake_address": "stake1u80y77jjfcdymt38amg3na9w4p4d89ffw66xqsspdwsa2sqt8epdn",
+          "value_lovelace": 66000000000000,
+          "epoch_no": 298,
+          "block_time": "2021-10-23 14:33:03"
+        },
+        {
+          "tx_hash": "03b02cff29a5f2dfc827e00345eaab8b29a3d740e9878aa6e5dd2b52da0763c5",
+          "cert_index": 0,
+          "stake_address": "stake1u887jrylddch0vh4d2kx72h2ax8t7aeq49zvmry4g9wcj4g3gty8j",
+          "value_lovelace": 27099990000000,
+          "epoch_no": 298,
+          "block_time": "2021-10-23 14:33:03"
+        },
+        {
+          "tx_hash": "03b02cff29a5f2dfc827e00345eaab8b29a3d740e9878aa6e5dd2b52da0763c5",
+          "cert_index": 0,
+          "stake_address": "stake1u8kgcfdpefrnf5570v47manyyg85jshlrg4p2hrsx3wdspccdda8v",
+          "value_lovelace": 66000000000000,
+          "epoch_no": 298,
+          "block_time": "2021-10-23 14:33:03"
+        }
+      ]
+    },
+    "founding_vote_pairs": {
+      "source": "data/small/founding_vote_pairs.csv",
+      "row_count": 3,
+      "columns": [
+        {
+          "name": "a",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "b",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "joint_actions",
+          "type": "BIGINT"
+        },
+        {
+          "name": "same_votes",
+          "type": "BIGINT"
+        },
+        {
+          "name": "opposing_yes_no",
+          "type": "BIGINT"
+        }
+      ],
+      "sample_rows": [
+        {
+          "a": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "b": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+          "joint_actions": 142,
+          "same_votes": 87,
+          "opposing_yes_no": 9
+        },
+        {
+          "a": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "b": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+          "joint_actions": 142,
+          "same_votes": 89,
+          "opposing_yes_no": 9
+        },
+        {
+          "a": "drep1m8mnpykcjfyax5mcs42whu3dt347u8aq43x45ucs6dv3ztw0lez",
+          "b": "drep1qe2l8gw8v7ydswfp9twytxcc3wzwdq8npt55f3vnlgv2u8sx3nt",
+          "joint_actions": 142,
+          "same_votes": 140,
+          "opposing_yes_no": 0
+        }
+      ]
+    },
+    "founding_votes": {
+      "source": "data/small/founding_votes.csv",
+      "row_count": 453,
+      "columns": [
+        {
+          "name": "drep_id",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "drep_hash_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "has_script",
+          "type": "BOOLEAN"
+        },
+        {
+          "name": "gov_action_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "gov_action_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "gov_action_type",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "vote",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ballot_tx_hash",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "ballot_tx_id",
+          "type": "BIGINT"
+        },
+        {
+          "name": "ballot_index",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_no",
+          "type": "BIGINT"
+        },
+        {
+          "name": "block_time",
+          "type": "TIMESTAMP"
+        },
+        {
+          "name": "invalid",
+          "type": "VARCHAR"
+        },
+        {
+          "name": "rationale_url",
+          "type": "VARCHAR"
+        }
+      ],
+      "sample_rows": [
+        {
+          "drep_id": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "drep_hash_id": 20808,
+          "has_script": true,
+          "gov_action_tx_hash": "8c653ee5c9800e6d31e79b5a7f7d4400c81d44717ad4db633dc18d4c07e4a4fd",
+          "gov_action_index": 0,
+          "gov_action_type": "NewConstitution",
+          "vote": "Yes",
+          "ballot_tx_hash": "ab9bce78cc20394f9ffffa471c50dcf91beb1432281e35d4aa0ce08b63634939",
+          "ballot_tx_id": 106247798,
+          "ballot_index": 0,
+          "block_no": 11483440,
+          "block_time": "2025-02-14 13:35:52",
+          "invalid": null,
+          "rationale_url": "ipfs://QmXo9gs9sbp9pJGsb42tLHhKSn8qcYGVafhF3hLoaLz3ey"
+        },
+        {
+          "drep_id": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "drep_hash_id": 20808,
+          "has_script": true,
+          "gov_action_tx_hash": "941502b0aa104c850d197923259444d2b57cab7af18b63143775465aaacc84f5",
+          "gov_action_index": 0,
+          "gov_action_type": "ParameterChange",
+          "vote": "No",
+          "ballot_tx_hash": "961c6ee8483e01588ded46789c5c42c079ec966a4a919e204a3622c2b1d79f1d",
+          "ballot_tx_id": 107268796,
+          "ballot_index": 0,
+          "block_no": 11572326,
+          "block_time": "2025-03-07 12:05:02",
+          "invalid": null,
+          "rationale_url": "ipfs://QmYBfjggZAGB8frHgsxbvycZNWCCx6d4MDnxN4Z1oche37"
+        },
+        {
+          "drep_id": "drep1g2d3y3skgr806wj2ryhhc5ca3akx6vmppde87jq7kgknjmv589e",
+          "drep_hash_id": 20808,
+          "has_script": true,
+          "gov_action_tx_hash": "56f39054758f1a3cedc1de9225d66bf270b62dfdbfbc5399f1d6d43aceffc636",
+          "gov_action_index": 0,
+          "gov_action_type": "InfoAction",
+          "vote": "Yes",
+          "ballot_tx_hash": "441154667148e3c27cd3ba33038197c47c0f43428141efe2a9b4ac1523b0593b",
+          "ballot_tx_id": 107887026,
+          "ballot_index": 0,
+          "block_no": 11654296,
+          "block_time": "2025-03-26 15:34:28",
+          "invalid": null,
+          "rationale_url": "ipfs://QmbvRbKukDfP5DzNBfJ3KNxiB328ehipEiX9bEmLBMpFiX"
         }
       ]
     },
@@ -7733,7 +8586,7 @@
     },
     "relay_asn_concentration": {
       "source": "data/small/relay_asn_concentration.csv",
-      "row_count": 245,
+      "row_count": 247,
       "columns": [
         {
           "name": "asn",
@@ -7777,40 +8630,40 @@
           "asn": 16509,
           "as_name": "AMAZON-02 - Amazon.com, Inc., US",
           "country": "US",
-          "pools": 115,
-          "stake_ada": 3156662072,
-          "delegators": 39919,
-          "pools_single_asn": 103,
-          "stake_single_asn": 2943213632,
-          "delegators_single_asn": 29590
+          "pools": 112,
+          "stake_ada": 3016687945,
+          "delegators": 30556,
+          "pools_single_asn": 100,
+          "stake_single_asn": 2816653320,
+          "delegators_single_asn": 20246
         },
         {
           "asn": 396982,
           "as_name": "GOOGLE-CLOUD-PLATFORM - Google LLC, US",
           "country": "US",
           "pools": 58,
-          "stake_ada": 2066943406,
-          "delegators": 19677,
+          "stake_ada": 2065241262,
+          "delegators": 19661,
           "pools_single_asn": 53,
-          "stake_single_asn": 1911899465,
-          "delegators_single_asn": 16501
+          "stake_single_asn": 1915082337,
+          "delegators_single_asn": 16494
         },
         {
           "asn": 16276,
           "as_name": "OVH - OVH SAS, FR",
           "country": "CA",
-          "pools": 196,
-          "stake_ada": 5434297048,
-          "delegators": 681954,
-          "pools_single_asn": 105,
-          "stake_single_asn": 1303758443,
-          "delegators_single_asn": 275318
+          "pools": 177,
+          "stake_ada": 5302075482,
+          "delegators": 665640,
+          "pools_single_asn": 86,
+          "stake_single_asn": 1163238910,
+          "delegators_single_asn": 259253
         }
       ]
     },
     "relay_endpoint_status": {
       "source": "data/small/relay_endpoint_status.csv",
-      "row_count": 4586,
+      "row_count": 4585,
       "columns": [
         {
           "name": "endpoint",
@@ -7875,11 +8728,11 @@
           "handshake_ok": true,
           "failure": null,
           "error_detail": null,
-          "rtt_ms": 222.55,
-          "block_no": 13874019,
+          "rtt_ms": 216.69,
+          "block_no": 13899596,
           "slots_behind_tip": 0,
           "at_tip": true,
-          "checked_at": "2026-08-30 02:40:07+00:00"
+          "checked_at": "2026-09-05 02:40:06+00:00"
         },
         {
           "endpoint": "dns:010011.dyndns.org",
@@ -7890,11 +8743,11 @@
           "handshake_ok": true,
           "failure": null,
           "error_detail": null,
-          "rtt_ms": 242.66,
-          "block_no": 13874019,
+          "rtt_ms": 215.3,
+          "block_no": 13899596,
           "slots_behind_tip": 0,
           "at_tip": true,
-          "checked_at": "2026-08-30 02:40:07+00:00"
+          "checked_at": "2026-09-05 02:40:06+00:00"
         },
         {
           "endpoint": "dns:01-cardano-ada.dlinodes.com",
@@ -7909,7 +8762,7 @@
           "block_no": null,
           "slots_behind_tip": null,
           "at_tip": false,
-          "checked_at": "2026-08-30 02:57:38+00:00"
+          "checked_at": "2026-09-05 02:57:45+00:00"
         }
       ]
     },
@@ -8013,7 +8866,7 @@
     },
     "relay_pool_endpoints": {
       "source": "data/small/relay_pool_endpoints.csv",
-      "row_count": 6223,
+      "row_count": 6225,
       "columns": [
         {
           "name": "pool_bech32",
@@ -8087,7 +8940,7 @@
           "failure": "timeout",
           "rtt_ms": null,
           "at_tip": false,
-          "checked_at": "2026-08-30 03:18:22+00:00"
+          "checked_at": "2026-09-05 03:18:45+00:00"
         },
         {
           "pool_bech32": "pool1030as3pp5684ghgf4kzcpv4p2jnmkmme7j363t95690zwxp7wa0",
@@ -8101,9 +8954,9 @@
           "resolved_ip": "62.171.185.139",
           "handshake_ok": true,
           "failure": null,
-          "rtt_ms": 183.92,
+          "rtt_ms": 1365.47,
           "at_tip": true,
-          "checked_at": "2026-08-30 02:43:38+00:00"
+          "checked_at": "2026-09-05 02:43:37+00:00"
         },
         {
           "pool_bech32": "pool1030as3pp5684ghgf4kzcpv4p2jnmkmme7j363t95690zwxp7wa0",
@@ -8117,15 +8970,15 @@
           "resolved_ip": "194.156.151.163",
           "handshake_ok": true,
           "failure": null,
-          "rtt_ms": 124.39,
+          "rtt_ms": 134.22,
           "at_tip": true,
-          "checked_at": "2026-08-30 02:44:26+00:00"
+          "checked_at": "2026-09-05 02:44:25+00:00"
         }
       ]
     },
     "relay_pool_health": {
       "source": "data/small/relay_pool_health.csv",
-      "row_count": 2896,
+      "row_count": 2897,
       "columns": [
         {
           "name": "pool_bech32",
@@ -8216,9 +9069,9 @@
         {
           "pool_bech32": "pool1gaztx97t53k47fr7282d70tje8323vvzx8pshgts30t9krw62tm",
           "ticker": "TW001",
-          "stake_ada": 113422439,
-          "delegators": 35740,
-          "blocks_last_30_epochs": 3535,
+          "stake_ada": 113314118,
+          "delegators": 35771,
+          "blocks_last_30_epochs": 3545,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 3,
@@ -8228,20 +9081,20 @@
           "ever_removed_all_relays": false,
           "removed_all_relays_on": null,
           "endpoints_probed": 3,
-          "reachable_hosts": 2,
-          "at_tip_hosts": 2,
+          "reachable_hosts": 3,
+          "at_tip_hosts": 3,
           "endpoints_untested": 0,
-          "best_rtt_ms": 108.07,
+          "best_rtt_ms": 107.18,
           "shares_endpoint_with_other_pool": false,
           "reachability_class": "MULTI_REACHABLE_HOSTS",
-          "last_checked": "2026-08-30 03:09:48+00:00"
+          "last_checked": "2026-09-05 03:10:19+00:00"
         },
         {
           "pool_bech32": "pool1lu2luhmkyayq9njh848kfknn6evwzmn3gzsxar7z3sttg7grxcm",
           "ticker": "PPTG1",
-          "stake_ada": 110999509,
-          "delegators": 5749,
-          "blocks_last_30_epochs": 2469,
+          "stake_ada": 112586037,
+          "delegators": 5808,
+          "blocks_last_30_epochs": 2525,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 1,
@@ -8254,39 +9107,39 @@
           "reachable_hosts": 1,
           "at_tip_hosts": 1,
           "endpoints_untested": 0,
-          "best_rtt_ms": 115.06,
+          "best_rtt_ms": 107.92,
           "shares_endpoint_with_other_pool": true,
           "reachability_class": "ONE_REACHABLE_HOST",
-          "last_checked": "2026-08-30 02:40:18+00:00"
+          "last_checked": "2026-09-05 02:40:17+00:00"
         },
         {
-          "pool_bech32": "pool1cyq3v3v43hu7spwlfxdm6vq9djpsjjueerhlu5qr2rvd57vqk84",
-          "ticker": "SKY4",
-          "stake_ada": 93060585,
-          "delegators": 895,
-          "blocks_last_30_epochs": 1576,
+          "pool_bech32": "pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v",
+          "ticker": "gjp7a",
+          "stake_ada": 87707140,
+          "delegators": 86,
+          "blocks_last_30_epochs": 2505,
           "minted_last_30_epochs": true,
           "relay_entries": 1,
           "distinct_endpoints": 1,
-          "registration_class": "SINGLE_ENDPOINT",
+          "registration_class": "SRV_MULTIHOST_POSSIBLE",
           "relay_additions": 0,
-          "relay_reductions": 0,
+          "relay_reductions": 1,
           "ever_removed_all_relays": false,
           "removed_all_relays_on": null,
           "endpoints_probed": 1,
-          "reachable_hosts": 3,
-          "at_tip_hosts": 3,
+          "reachable_hosts": 9,
+          "at_tip_hosts": 9,
           "endpoints_untested": 0,
-          "best_rtt_ms": 22.91,
-          "shares_endpoint_with_other_pool": true,
+          "best_rtt_ms": 27.78,
+          "shares_endpoint_with_other_pool": false,
           "reachability_class": "MULTI_REACHABLE_HOSTS",
-          "last_checked": "2026-08-30 02:46:15+00:00"
+          "last_checked": "2026-09-05 02:56:38+00:00"
         }
       ]
     },
     "relay_registration_changes": {
       "source": "data/small/relay_registration_changes.csv",
-      "row_count": 4190,
+      "row_count": 4197,
       "columns": [
         {
           "name": "pool_bech32",
@@ -8327,36 +9180,36 @@
       ],
       "sample_rows": [
         {
-          "pool_bech32": "pool1ahazpr2yz5gljk2m4q8g7wnmq7m2sr9unhdfmr5arhqrjnntwdz",
-          "ticker": "ADV3",
-          "cert_number": 6,
-          "changed_at": "2026-08-29 15:26:22",
-          "tx_hash": "29f8a161c6cd1fbb25818e12b3fd49ecf841fbfe590ad9903cb1bc9ff6e7f275",
+          "pool_bech32": "pool14fjmlppz76667ws3jl5luejf2wgztuhpsftulvh3ucc65anqgve",
+          "ticker": "XSP2",
+          "cert_number": 5,
+          "changed_at": "2026-09-04 01:57:33",
+          "tx_hash": "fb0b07f3524c81cdfb09979ff48f908cf8272ccaac8e3dcb730544b0c3aa0eb7",
           "relays_before": 4,
-          "relays_after": 6,
-          "delta": 2,
-          "direction": "added"
+          "relays_after": 3,
+          "delta": -1,
+          "direction": "reduced"
         },
         {
-          "pool_bech32": "pool18vej0s9gska8c847aj95g9v24duuxg2g63d5cuqngnxew643jw9",
-          "ticker": "ADV2",
-          "cert_number": 12,
-          "changed_at": "2026-08-29 15:18:53",
-          "tx_hash": "ad6bf18880134f2890fd3329e63d7d864583e52c8b9e0aebe79f09a53b93af14",
+          "pool_bech32": "pool10zyf32q3w3n9x940j6yqgkwuegzn77p94wcmpku6gvmrqw8a97d",
+          "ticker": "XSP",
+          "cert_number": 13,
+          "changed_at": "2026-09-04 01:46:38",
+          "tx_hash": "dd9f91789ecefa9b8b8667e340b7ecbf1dc4dd4bb1e86a776e0812f5758298a3",
           "relays_before": 4,
-          "relays_after": 6,
-          "delta": 2,
-          "direction": "added"
+          "relays_after": 3,
+          "delta": -1,
+          "direction": "reduced"
         },
         {
-          "pool_bech32": "pool1xytvsd9qnvqxpthh9p8k85e823trvn3npxeur8kr9zhkqz5uls9",
-          "ticker": "ADV",
-          "cert_number": 26,
-          "changed_at": "2026-08-29 15:11:54",
-          "tx_hash": "48118c000b1d594f99cb1f117d0c8632775fbeb122dd960a74c00887931d687b",
-          "relays_before": 4,
-          "relays_after": 6,
-          "delta": 2,
+          "pool_bech32": "pool1spus7k8cy5qcs82xhw60dwwk2d4vrfs0m5vr2zst04gtq700gjn",
+          "ticker": "ZZZ4",
+          "cert_number": 5,
+          "changed_at": "2026-09-02 07:50:00",
+          "tx_hash": "f3da7588ebca581ab027a462c720b40445c186db902caa9cdccca1fe3e31c749",
+          "relays_before": 1,
+          "relays_after": 2,
+          "delta": 1,
           "direction": "added"
         }
       ]
@@ -8414,40 +9267,40 @@
         {
           "pool_bech32": "pool138s0uwydwtrhkaqj4uwkh37yqw098v9v6nf5q08k9nugumlf8mw",
           "ticker": "AURA",
-          "stake_ada": 10504085,
+          "stake_ada": 10502599,
           "delegators": 29,
           "endpoint_kind": "dns",
           "endpoint_host": "http://a1.aurapool.online/",
           "port": 3000,
           "defect": "url_not_hostname",
           "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
-          "blocks_all_time": 2889,
+          "blocks_all_time": 2898,
           "endpoints_registered": 2
         },
         {
           "pool_bech32": "pool138s0uwydwtrhkaqj4uwkh37yqw098v9v6nf5q08k9nugumlf8mw",
           "ticker": "AURA",
-          "stake_ada": 10504085,
+          "stake_ada": 10502599,
           "delegators": 29,
           "endpoint_kind": "dns",
           "endpoint_host": "http://a2.aurapool.online/",
           "port": 3000,
           "defect": "url_not_hostname",
           "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
-          "blocks_all_time": 2889,
+          "blocks_all_time": 2898,
           "endpoints_registered": 2
         },
         {
           "pool_bech32": "pool1gnnwyf9vwcgtm3us0w0duuy43r9k7yhnchvyx0xqv9766ysw2a9",
           "ticker": "A2A",
-          "stake_ada": 4241290,
+          "stake_ada": 4244219,
           "delegators": 20,
           "endpoint_kind": "dns",
           "endpoint_host": "https://ada2a.ddns.net",
           "port": 3000,
           "defect": "url_not_hostname",
           "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
-          "blocks_all_time": 760,
+          "blocks_all_time": 766,
           "endpoints_registered": 1
         }
       ]
@@ -8481,29 +9334,29 @@
         {
           "domain": "aeq5f.com",
           "pools": 41,
-          "stake_ada": 1098762224,
-          "delegators": 34313,
+          "stake_ada": 1105000460,
+          "delegators": 34397,
           "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1"
         },
         {
           "domain": "staked.cloud",
           "pools": 34,
-          "stake_ada": 1104385500,
+          "stake_ada": 1115869890,
           "delegators": 141,
           "tickers": "FKAI STKD"
         },
         {
           "domain": "ddns.net",
           "pools": 33,
-          "stake_ada": 79230238,
-          "delegators": 10555,
+          "stake_ada": 77936744,
+          "delegators": 10508,
           "tickers": "7SEAS A2A AVOC BEADA BHMT BIDA BROCK DC5 DEV ECHO GRANA HKB JSY MAYA MEOW MONTY NIXE PREEB RELAY ROCKY ROS SRN STKCH TGEM VITAL"
         }
       ]
     },
     "relay_shared_endpoints": {
       "source": "data/small/relay_shared_endpoints.csv",
-      "row_count": 301,
+      "row_count": 300,
       "columns": [
         {
           "name": "endpoint",
@@ -8539,34 +9392,34 @@
           "endpoint": "dns:relays-new.cardano-mainnet.iohk.io",
           "endpoint_kind": "dns",
           "pools": 33,
-          "stake_ada": 35202,
-          "delegators": 60,
+          "stake_ada": 36377,
+          "delegators": 61,
           "tickers": "REIT IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP",
-          "pool_bech32s": "pool1vp5fev56urx924nyxj5qjvzcsh76e47c4lc8xruh0rdlv0n2kvt pool1h5uycju7n5puxn2ckfkpza550rf6jk4twr6ef0hsmxft78ajt6q pool1n3agd6rep8jw3gff684mja56ns6wqmshayu0av7hxcgx7f4pnwy pool148ajvsw7z9mhgw43tqvgmfrv22azvm638knkqghqv497xvdl2tk pool12jqfrwhuv2jn0uymwmud2d63gp5drj08fjfart9dxgpu2tmj8a0 pool1646vlaras0deljthqtfl9dpdw2xsna799l0kayyu9v44cql4ky0 pool12ql6www8aa8usn98azlkz76d2htxtm9swalvyac27rlq6mdkxc7 pool1ha70qvqwnmnwpa7e575y9tgyx47aw29rvkz73mnf42z5wet5dr3 pool1q4l2wpswlanqszppj4tcvgw4j9wdjmadqky57dq0wqhg5tmhsxn pool1pmknsy9yqh06fpmduf8vzcvkzpllygjj8uzkjccgvewtq9uc53k pool1tjaz8a62743k5tzdd8lyd0sgf2lcvtk09jsz9etvas82zdamc2q pool19r4ef6n0xkw3pvztuwd44ymrzrkylyralnf5rudnc7hnvvddyqz pool1sr82s7yvwwsy6q0geveawrglt8ss39jhsfz7d0p4a5y6kk30mdd pool10pktmr26fpvrt77j7m5mchqlt0mjmmfvt7ruvdewkcpasp0nzkl pool1y9xftc4cq0svcv0gjdtusnvllrg5v5rn0d24g8r4m7tnsem6ve8 pool1ge06eu8lvdj6jakxw8zuwj3yxtpmeek8j8rgwqfshj7vg390fj0 pool172fsazvg6zrpkj7c8wklsp7lrn5yxjvhru4enddvvfnyx343dyc pool1v9gqa6n4em4aly7ew2trvhgrath4mrsp9tyc290l638nvqs5aej pool1szgruqm2dlhkh5qh7rft28xz9gkxj6rzfncsuquf3vm37k63kqv pool18w4dzpe8wtkx29scf74qmshrf58xg760mcxu5p7s0azxufwwgec pool1e827fy8efd7n9zacdknhtr2n5rqmry5up05mqgqsjkmmzjmzrf3 pool1j0j39t2dfmkflfnvresds8vlfhwg75qwufa95u55nw376ky29r8 pool1cx8njhvw34weqykla5fz38ngt3dr4d0ltv0srqjqa8ugzap937l pool1hfxjswx4wnpfmdad660hvzx4knjhf32uwgg6wgsnqp98x9zz927 pool1q3snnww4ggayr8hd6gd83ypx982yhwlhywlcew7yxq46jzyst2g pool1gctelcfktanxhqfjw88vjp9v0ayumd6lr3re38pjw3kvvc8tanq pool1867sv2tgcq2cjmyhqgsfveekmsy5zksld69zhgrlkluukfydq29 pool1x5ge78ks6jc0j8nsfwyqqhk2ukxlkvz7zxlm9utgk6405hh490n pool1t5zgwakxfmqxgu7l65fk45u33frlqrvgsvzn7demdy0ejgrhq9a pool1ygamv2t9lw03khcxpe75rjd4p8lnn36hux3deeg3hrc3jwrx43z pool1v8lgn85mfvj0hhslfjz2u0nut43ahkhuzhfcm5aexjkewn8krle pool1kp0wl7kxn0zt5xtmld72s98rv6ejpufvl39qk26h99nqshmkmge pool1kcw2kqj27qe7ntsz9fhvyvyvpf7prclwc5jq4cw0qydh7cygcek"
+          "pool_bech32s": "pool1vp5fev56urx924nyxj5qjvzcsh76e47c4lc8xruh0rdlv0n2kvt pool1h5uycju7n5puxn2ckfkpza550rf6jk4twr6ef0hsmxft78ajt6q pool1n3agd6rep8jw3gff684mja56ns6wqmshayu0av7hxcgx7f4pnwy pool1cx8njhvw34weqykla5fz38ngt3dr4d0ltv0srqjqa8ugzap937l pool148ajvsw7z9mhgw43tqvgmfrv22azvm638knkqghqv497xvdl2tk pool1646vlaras0deljthqtfl9dpdw2xsna799l0kayyu9v44cql4ky0 pool12jqfrwhuv2jn0uymwmud2d63gp5drj08fjfart9dxgpu2tmj8a0 pool12ql6www8aa8usn98azlkz76d2htxtm9swalvyac27rlq6mdkxc7 pool1ha70qvqwnmnwpa7e575y9tgyx47aw29rvkz73mnf42z5wet5dr3 pool1y9xftc4cq0svcv0gjdtusnvllrg5v5rn0d24g8r4m7tnsem6ve8 pool1867sv2tgcq2cjmyhqgsfveekmsy5zksld69zhgrlkluukfydq29 pool1szgruqm2dlhkh5qh7rft28xz9gkxj6rzfncsuquf3vm37k63kqv pool1ge06eu8lvdj6jakxw8zuwj3yxtpmeek8j8rgwqfshj7vg390fj0 pool1j0j39t2dfmkflfnvresds8vlfhwg75qwufa95u55nw376ky29r8 pool1kcw2kqj27qe7ntsz9fhvyvyvpf7prclwc5jq4cw0qydh7cygcek pool1gctelcfktanxhqfjw88vjp9v0ayumd6lr3re38pjw3kvvc8tanq pool172fsazvg6zrpkj7c8wklsp7lrn5yxjvhru4enddvvfnyx343dyc pool1v9gqa6n4em4aly7ew2trvhgrath4mrsp9tyc290l638nvqs5aej pool18w4dzpe8wtkx29scf74qmshrf58xg760mcxu5p7s0azxufwwgec pool1q4l2wpswlanqszppj4tcvgw4j9wdjmadqky57dq0wqhg5tmhsxn pool1hfxjswx4wnpfmdad660hvzx4knjhf32uwgg6wgsnqp98x9zz927 pool19r4ef6n0xkw3pvztuwd44ymrzrkylyralnf5rudnc7hnvvddyqz pool1ygamv2t9lw03khcxpe75rjd4p8lnn36hux3deeg3hrc3jwrx43z pool1e827fy8efd7n9zacdknhtr2n5rqmry5up05mqgqsjkmmzjmzrf3 pool1q3snnww4ggayr8hd6gd83ypx982yhwlhywlcew7yxq46jzyst2g pool1v8lgn85mfvj0hhslfjz2u0nut43ahkhuzhfcm5aexjkewn8krle pool1kp0wl7kxn0zt5xtmld72s98rv6ejpufvl39qk26h99nqshmkmge pool1x5ge78ks6jc0j8nsfwyqqhk2ukxlkvz7zxlm9utgk6405hh490n pool1pmknsy9yqh06fpmduf8vzcvkzpllygjj8uzkjccgvewtq9uc53k pool1sr82s7yvwwsy6q0geveawrglt8ss39jhsfz7d0p4a5y6kk30mdd pool1t5zgwakxfmqxgu7l65fk45u33frlqrvgsvzn7demdy0ejgrhq9a pool1tjaz8a62743k5tzdd8lyd0sgf2lcvtk09jsz9etvas82zdamc2q pool10pktmr26fpvrt77j7m5mchqlt0mjmmfvt7ruvdewkcpasp0nzkl"
         },
         {
           "endpoint": "dns:r1.1percentpool.eu",
           "endpoint_kind": "dns",
           "pools": 28,
-          "stake_ada": 244814704,
-          "delegators": 10872,
-          "tickers": "1PCT0 1PCT2 1PCT7 1PCT9 1PCT3 1PCT3 1PCT8 1PCT1 1PCT4 1PCT0 1PCT5 1PCT1 1PCT4 1PCT 1PCT6 1PCT6 1PCT8 1PCT3 1PCT6 1PCT2 1PCT5 1PCT2 1PCT7 1PCT9 1PCT 1PCT5 1PCT1 1PCT4",
-          "pool_bech32s": "pool1gclysx2h7fndj0jdajlmwvqr8q9tzu3rurjknacu0ff954fsg9a pool1z7n2ruhmxmv77f6cqhd3wsy6774h2wuay77agxuf2y9mj8q55vw pool1w8ham64lthvzzxzn5hknq4yrj8xt2nark409s2xmntlwvt4ag3r pool1kkfkdces5mdcyc9dn2hgg3463jggjvw3h89nejjarkz25uavaqu pool1g0nq3m3fnvd245k4favcvutn09vce0yshg535f68d2xa54vy0cc pool12mmcc4rc2fzfv7gyv8h06nvnsrm3m7erzdv8x6gzvjxlu2lf09n pool1ddgcpgjcyawxw95se9x8qnc8gxgwjr4fqrk4vk6v9x47s0ggpjp pool1uzla0r73fvpnvxr07m98nfzlxcv3q26mkjz00cqjfh7uqsyjkju pool1vnsfv2qpt5gxte9prupjey8kw7ap7t6c8lc02ks4s3gtqplhgd3 pool1g8y2gz4sk7xhyaj469jlj3njyu5dlvqa7t7v9c2gk0yc69879z8 pool1rkyc3ss904h066sffergss99r9p2kqa4k6ds0g4u5ud4x7yaajd pool1s3z5qsg75dar26ykyzcz2u8wc2swgq7pyp7f9sdh5n06qh3jhq2 pool17qvfg2g843gw6lurru282kkex6vp3pyj6zwj99j4u6k7zvmva5a pool1supp67ypelmgzuzqqvarc6czgmg3ggwpnrnfr90xpfcqqf8h05t pool1nyf8x2xrlmfqwy9shqrlx2csentnzyjmxr0r3w0ljuaqz5ek7qz pool1ua0lx5ap5tj9f5l7tyjflp766ca5yu93djh5hqvm4e0kjgw5k7v pool1e4tjrl3ve7dcqwa70pexds6f8llk0txx09gm3r4m472ej4p6473 pool1dww6s8stvm7dl2n8740s3v5rnxmsuqcl8jcnu64g7cds5w29pft pool18mege8wvzzdvh8cxx6ncnqyvacl4lxukw495c87xmz8qcdl6lj8 pool1258yqnsegc3k7raqcdkxu4893aqexxljflmg9g96yfha2qytayv pool1ayfjmnrv5vg6tfducvysn360re6qfwuv2rhc4ph6jk33ztuxlhq pool1w4am4s9w4gkt8r0245km62vtnnv9hhq6j68exzh2pyaxxfaq0gc pool18zn7wa345uytjgds9hypn3jugnzqtfm4cny7anskkcmgwwxtwca pool1yl76e0fhq0kcfy2jqs2mt6hl9xeyrnesehqp0p4s896lwv7hrta pool1qdjx5xeeu6288ftmhmdr0c6mazkua7m07cydmr78ymfhz7jj7g4 pool15xgej4c7ns20y5pt7dc5vq6yj87ss5sl2ffucmh5j766j90ppur pool1zmtm8yef7725p9n7x433m50kvv9xpzjujnny9m5t960g5qm30ua pool15a04yc72q4tfkwaweu86l0764urswee8c3zxperyrdq4kx8nvua"
+          "stake_ada": 241980503,
+          "delegators": 10856,
+          "tickers": "1PCT2 1PCT0 1PCT7 1PCT9 1PCT3 1PCT3 1PCT8 1PCT1 1PCT4 1PCT0 1PCT5 1PCT1 1PCT4 1PCT 1PCT6 1PCT6 1PCT8 1PCT3 1PCT6 1PCT2 1PCT5 1PCT2 1PCT7 1PCT9 1PCT 1PCT5 1PCT1 1PCT4",
+          "pool_bech32s": "pool1z7n2ruhmxmv77f6cqhd3wsy6774h2wuay77agxuf2y9mj8q55vw pool1gclysx2h7fndj0jdajlmwvqr8q9tzu3rurjknacu0ff954fsg9a pool1w8ham64lthvzzxzn5hknq4yrj8xt2nark409s2xmntlwvt4ag3r pool1kkfkdces5mdcyc9dn2hgg3463jggjvw3h89nejjarkz25uavaqu pool1g0nq3m3fnvd245k4favcvutn09vce0yshg535f68d2xa54vy0cc pool12mmcc4rc2fzfv7gyv8h06nvnsrm3m7erzdv8x6gzvjxlu2lf09n pool1ddgcpgjcyawxw95se9x8qnc8gxgwjr4fqrk4vk6v9x47s0ggpjp pool1uzla0r73fvpnvxr07m98nfzlxcv3q26mkjz00cqjfh7uqsyjkju pool1vnsfv2qpt5gxte9prupjey8kw7ap7t6c8lc02ks4s3gtqplhgd3 pool1g8y2gz4sk7xhyaj469jlj3njyu5dlvqa7t7v9c2gk0yc69879z8 pool1rkyc3ss904h066sffergss99r9p2kqa4k6ds0g4u5ud4x7yaajd pool1s3z5qsg75dar26ykyzcz2u8wc2swgq7pyp7f9sdh5n06qh3jhq2 pool17qvfg2g843gw6lurru282kkex6vp3pyj6zwj99j4u6k7zvmva5a pool1supp67ypelmgzuzqqvarc6czgmg3ggwpnrnfr90xpfcqqf8h05t pool1nyf8x2xrlmfqwy9shqrlx2csentnzyjmxr0r3w0ljuaqz5ek7qz pool1ua0lx5ap5tj9f5l7tyjflp766ca5yu93djh5hqvm4e0kjgw5k7v pool1e4tjrl3ve7dcqwa70pexds6f8llk0txx09gm3r4m472ej4p6473 pool1dww6s8stvm7dl2n8740s3v5rnxmsuqcl8jcnu64g7cds5w29pft pool18mege8wvzzdvh8cxx6ncnqyvacl4lxukw495c87xmz8qcdl6lj8 pool1258yqnsegc3k7raqcdkxu4893aqexxljflmg9g96yfha2qytayv pool1ayfjmnrv5vg6tfducvysn360re6qfwuv2rhc4ph6jk33ztuxlhq pool1w4am4s9w4gkt8r0245km62vtnnv9hhq6j68exzh2pyaxxfaq0gc pool18zn7wa345uytjgds9hypn3jugnzqtfm4cny7anskkcmgwwxtwca pool1yl76e0fhq0kcfy2jqs2mt6hl9xeyrnesehqp0p4s896lwv7hrta pool1qdjx5xeeu6288ftmhmdr0c6mazkua7m07cydmr78ymfhz7jj7g4 pool15xgej4c7ns20y5pt7dc5vq6yj87ss5sl2ffucmh5j766j90ppur pool1zmtm8yef7725p9n7x433m50kvv9xpzjujnny9m5t960g5qm30ua pool15a04yc72q4tfkwaweu86l0764urswee8c3zxperyrdq4kx8nvua"
         },
         {
           "endpoint": "dns:r2.1percentpool.eu",
           "endpoint_kind": "dns",
           "pools": 28,
-          "stake_ada": 244814704,
-          "delegators": 10872,
-          "tickers": "1PCT0 1PCT2 1PCT7 1PCT9 1PCT3 1PCT3 1PCT8 1PCT1 1PCT4 1PCT0 1PCT5 1PCT1 1PCT4 1PCT 1PCT6 1PCT6 1PCT8 1PCT3 1PCT6 1PCT2 1PCT5 1PCT2 1PCT7 1PCT9 1PCT 1PCT5 1PCT1 1PCT4",
-          "pool_bech32s": "pool1gclysx2h7fndj0jdajlmwvqr8q9tzu3rurjknacu0ff954fsg9a pool1z7n2ruhmxmv77f6cqhd3wsy6774h2wuay77agxuf2y9mj8q55vw pool1w8ham64lthvzzxzn5hknq4yrj8xt2nark409s2xmntlwvt4ag3r pool1kkfkdces5mdcyc9dn2hgg3463jggjvw3h89nejjarkz25uavaqu pool1g0nq3m3fnvd245k4favcvutn09vce0yshg535f68d2xa54vy0cc pool12mmcc4rc2fzfv7gyv8h06nvnsrm3m7erzdv8x6gzvjxlu2lf09n pool1ddgcpgjcyawxw95se9x8qnc8gxgwjr4fqrk4vk6v9x47s0ggpjp pool1uzla0r73fvpnvxr07m98nfzlxcv3q26mkjz00cqjfh7uqsyjkju pool1vnsfv2qpt5gxte9prupjey8kw7ap7t6c8lc02ks4s3gtqplhgd3 pool1g8y2gz4sk7xhyaj469jlj3njyu5dlvqa7t7v9c2gk0yc69879z8 pool1rkyc3ss904h066sffergss99r9p2kqa4k6ds0g4u5ud4x7yaajd pool1s3z5qsg75dar26ykyzcz2u8wc2swgq7pyp7f9sdh5n06qh3jhq2 pool17qvfg2g843gw6lurru282kkex6vp3pyj6zwj99j4u6k7zvmva5a pool1supp67ypelmgzuzqqvarc6czgmg3ggwpnrnfr90xpfcqqf8h05t pool1nyf8x2xrlmfqwy9shqrlx2csentnzyjmxr0r3w0ljuaqz5ek7qz pool1ua0lx5ap5tj9f5l7tyjflp766ca5yu93djh5hqvm4e0kjgw5k7v pool1e4tjrl3ve7dcqwa70pexds6f8llk0txx09gm3r4m472ej4p6473 pool1dww6s8stvm7dl2n8740s3v5rnxmsuqcl8jcnu64g7cds5w29pft pool18mege8wvzzdvh8cxx6ncnqyvacl4lxukw495c87xmz8qcdl6lj8 pool1258yqnsegc3k7raqcdkxu4893aqexxljflmg9g96yfha2qytayv pool1ayfjmnrv5vg6tfducvysn360re6qfwuv2rhc4ph6jk33ztuxlhq pool1w4am4s9w4gkt8r0245km62vtnnv9hhq6j68exzh2pyaxxfaq0gc pool18zn7wa345uytjgds9hypn3jugnzqtfm4cny7anskkcmgwwxtwca pool1yl76e0fhq0kcfy2jqs2mt6hl9xeyrnesehqp0p4s896lwv7hrta pool1qdjx5xeeu6288ftmhmdr0c6mazkua7m07cydmr78ymfhz7jj7g4 pool15xgej4c7ns20y5pt7dc5vq6yj87ss5sl2ffucmh5j766j90ppur pool1zmtm8yef7725p9n7x433m50kvv9xpzjujnny9m5t960g5qm30ua pool15a04yc72q4tfkwaweu86l0764urswee8c3zxperyrdq4kx8nvua"
+          "stake_ada": 241980503,
+          "delegators": 10856,
+          "tickers": "1PCT2 1PCT0 1PCT7 1PCT9 1PCT3 1PCT3 1PCT8 1PCT1 1PCT4 1PCT0 1PCT5 1PCT1 1PCT4 1PCT 1PCT6 1PCT6 1PCT8 1PCT3 1PCT6 1PCT2 1PCT5 1PCT2 1PCT7 1PCT9 1PCT 1PCT5 1PCT1 1PCT4",
+          "pool_bech32s": "pool1z7n2ruhmxmv77f6cqhd3wsy6774h2wuay77agxuf2y9mj8q55vw pool1gclysx2h7fndj0jdajlmwvqr8q9tzu3rurjknacu0ff954fsg9a pool1w8ham64lthvzzxzn5hknq4yrj8xt2nark409s2xmntlwvt4ag3r pool1kkfkdces5mdcyc9dn2hgg3463jggjvw3h89nejjarkz25uavaqu pool1g0nq3m3fnvd245k4favcvutn09vce0yshg535f68d2xa54vy0cc pool12mmcc4rc2fzfv7gyv8h06nvnsrm3m7erzdv8x6gzvjxlu2lf09n pool1ddgcpgjcyawxw95se9x8qnc8gxgwjr4fqrk4vk6v9x47s0ggpjp pool1uzla0r73fvpnvxr07m98nfzlxcv3q26mkjz00cqjfh7uqsyjkju pool1vnsfv2qpt5gxte9prupjey8kw7ap7t6c8lc02ks4s3gtqplhgd3 pool1g8y2gz4sk7xhyaj469jlj3njyu5dlvqa7t7v9c2gk0yc69879z8 pool1rkyc3ss904h066sffergss99r9p2kqa4k6ds0g4u5ud4x7yaajd pool1s3z5qsg75dar26ykyzcz2u8wc2swgq7pyp7f9sdh5n06qh3jhq2 pool17qvfg2g843gw6lurru282kkex6vp3pyj6zwj99j4u6k7zvmva5a pool1supp67ypelmgzuzqqvarc6czgmg3ggwpnrnfr90xpfcqqf8h05t pool1nyf8x2xrlmfqwy9shqrlx2csentnzyjmxr0r3w0ljuaqz5ek7qz pool1ua0lx5ap5tj9f5l7tyjflp766ca5yu93djh5hqvm4e0kjgw5k7v pool1e4tjrl3ve7dcqwa70pexds6f8llk0txx09gm3r4m472ej4p6473 pool1dww6s8stvm7dl2n8740s3v5rnxmsuqcl8jcnu64g7cds5w29pft pool18mege8wvzzdvh8cxx6ncnqyvacl4lxukw495c87xmz8qcdl6lj8 pool1258yqnsegc3k7raqcdkxu4893aqexxljflmg9g96yfha2qytayv pool1ayfjmnrv5vg6tfducvysn360re6qfwuv2rhc4ph6jk33ztuxlhq pool1w4am4s9w4gkt8r0245km62vtnnv9hhq6j68exzh2pyaxxfaq0gc pool18zn7wa345uytjgds9hypn3jugnzqtfm4cny7anskkcmgwwxtwca pool1yl76e0fhq0kcfy2jqs2mt6hl9xeyrnesehqp0p4s896lwv7hrta pool1qdjx5xeeu6288ftmhmdr0c6mazkua7m07cydmr78ymfhz7jj7g4 pool15xgej4c7ns20y5pt7dc5vq6yj87ss5sl2ffucmh5j766j90ppur pool1zmtm8yef7725p9n7x433m50kvv9xpzjujnny9m5t960g5qm30ua pool15a04yc72q4tfkwaweu86l0764urswee8c3zxperyrdq4kx8nvua"
         }
       ]
     },
     "relay_shared_hosts": {
       "source": "data/small/relay_shared_hosts.csv",
-      "row_count": 248,
+      "row_count": 245,
       "columns": [
         {
           "name": "resolved_ip",
@@ -8606,8 +9459,8 @@
           "resolved_ip": "142.93.157.5",
           "target_port": 6000,
           "pools": 38,
-          "stake_ada": 1098761915,
-          "delegators": 34307,
+          "stake_ada": 1105000151,
+          "delegators": 34391,
           "distinct_registered_names": 38,
           "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1",
           "pool_bech32s": "pool12582dmkl7xanxlmfnwd4fepmx4tt5kkw327mmklcjdxngwaxvh2 pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv pool13z5t8wlhtf7ccc0hud8pnvpjeekjdsyn7sq69fcxf3k6kpnlm74 pool159s558a4ffhp9nqjp9dx048lphdlxjc8xmy5pcmfe4jhuxe4a2u pool15v22rpfg6qx9l0gx0m955gfv7tes0jpa9sy0gjs3a04lv6x9jdr pool17uux76nu89sauwvzuy99lnk50war63uye826sqc20a4ysekegd6 pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v pool1ah6f5h5xss3qcc5wv5smvkwsqrqz2v2v4u0pvmrrttzs6z52kx8 pool1anxttanf5g4cjgagns6cf084wq6x9k2pfygjdjyk3swf77wj2ax pool1cauj94scz5wp58defdxqqgnujaalvxe388peyv2gx79y6suzl55 pool1cpwymxe2fjr20u34f874e2q6za3razk0rttslrxqhc4tu3zxau8 pool1cunvnkjkzh2lna593sjmkylcr3r5rmxdpr8r9u6pfuer72p24x4 pool1da9msyhpfmt58vrdkk7lpzgwldvc0t7q46kvpcyvvpff7347lsp pool1dadfsnjauzhgcvz5hkrulwevpe9mk2a9rsxt24pawcy7zndhll3 pool1dzdglfergm9km74055n6c9xsp8n78ec8ztsklgxg5c5gyrfz9zc pool1enve22w67h6nm4y80cl0svc4edlm26h7ce226u5xlxq7ucawt07 pool1f2wfjqkf2wx6jq93pdck6hgmy9zgw32lmvrq9zejl7scqxjqfze pool1fuge4duc9hfgm9xvu33llsntmnfcumsyw2d0away49v8gmphfzs pool1g59d82m8c84f2ds6l50mng863h9cxfm88khxyhna2l9rzgv6030 pool1h5a30zxga37fphw3tjkp8anu3xm69a28kytceppz2prysfzfcjv pool1j4vmgapf520ul8tvwz95xsmne4alpymxpmcnf0zu5v4vz2pej34 pool1kf0c6a38vy9t7muc2jpfefdc0y6ey8386ujtn6rtly25y5yxwqf pool1l92vxagssugcsu4wyhvnjd0t6dlqjjfrxkt8v4qaucgmq8t3j3s pool1l93nkg4n5jzdsd7k33g8vsavq4ne6ka82eddt9ysnu35vy6883j pool1lfxjjg2fmaea3dnvu6wpxylrtrzq0pkgjutjesuzwem4xymtqaj pool1lvl6pfge9lgjuanu3556x29zglf6s3fw2lf2m823x9duj9gz6tu pool1m4awll97kncxpantx2cvswt3yfh0sqkhzzg7m2rstyy36udnt29 pool1mdzxt5rl2sgnehedgnl0jwk8vumsglequrap26qgg0uwg4cuq52 pool1mvtxupzcgdtslv2sw0l3f4zlhd3a69fue6gu0vhqz47w7j5zryx pool1p70svj9zrg7lgzkdn8udlslry0t27qs8r9tz9lr955v2yfna2rl pool1ra2su7cvnmr83pu9nvvz4a9carsgc9egc3e5fuk7h9pycyp5ela pool1u8f87frd3k6cy9lp4uk5faj53wfzh8smxjdpt8ua45f0x8s5v58 pool1umukx8qjyjuatw0zznvhc7ma06wl6pdc2ly50d7uv3svkkefjml pool1v96277f457qtwhuq3ma9yjlacq4mjw9h4j3jfy5rjgjru5lyxea pool1vn0mxlvhm4l8pcft3jp5pxh4nhh89qevdg2xu6s6sdqvvs4ft28 pool1w9u6rtvuzke9cq5q4x2r7g8xlt6lqmcd2tugzpjpj5w5xv0eyws pool1wm5pnu72efdcvjm34r7ykkxx2h549swddjrn6r2aqy3tvjc4l57 pool1wr79nyuty7wjgkey5vlfx9rn0x5ecxgge5mq45fpftqhye2shc0"
@@ -8616,8 +9469,8 @@
           "resolved_ip": "143.110.218.20",
           "target_port": 6000,
           "pools": 38,
-          "stake_ada": 1098761915,
-          "delegators": 34307,
+          "stake_ada": 1105000151,
+          "delegators": 34391,
           "distinct_registered_names": 38,
           "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1",
           "pool_bech32s": "pool12582dmkl7xanxlmfnwd4fepmx4tt5kkw327mmklcjdxngwaxvh2 pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv pool13z5t8wlhtf7ccc0hud8pnvpjeekjdsyn7sq69fcxf3k6kpnlm74 pool159s558a4ffhp9nqjp9dx048lphdlxjc8xmy5pcmfe4jhuxe4a2u pool15v22rpfg6qx9l0gx0m955gfv7tes0jpa9sy0gjs3a04lv6x9jdr pool17uux76nu89sauwvzuy99lnk50war63uye826sqc20a4ysekegd6 pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v pool1ah6f5h5xss3qcc5wv5smvkwsqrqz2v2v4u0pvmrrttzs6z52kx8 pool1anxttanf5g4cjgagns6cf084wq6x9k2pfygjdjyk3swf77wj2ax pool1cauj94scz5wp58defdxqqgnujaalvxe388peyv2gx79y6suzl55 pool1cpwymxe2fjr20u34f874e2q6za3razk0rttslrxqhc4tu3zxau8 pool1cunvnkjkzh2lna593sjmkylcr3r5rmxdpr8r9u6pfuer72p24x4 pool1da9msyhpfmt58vrdkk7lpzgwldvc0t7q46kvpcyvvpff7347lsp pool1dadfsnjauzhgcvz5hkrulwevpe9mk2a9rsxt24pawcy7zndhll3 pool1dzdglfergm9km74055n6c9xsp8n78ec8ztsklgxg5c5gyrfz9zc pool1enve22w67h6nm4y80cl0svc4edlm26h7ce226u5xlxq7ucawt07 pool1f2wfjqkf2wx6jq93pdck6hgmy9zgw32lmvrq9zejl7scqxjqfze pool1fuge4duc9hfgm9xvu33llsntmnfcumsyw2d0away49v8gmphfzs pool1g59d82m8c84f2ds6l50mng863h9cxfm88khxyhna2l9rzgv6030 pool1h5a30zxga37fphw3tjkp8anu3xm69a28kytceppz2prysfzfcjv pool1j4vmgapf520ul8tvwz95xsmne4alpymxpmcnf0zu5v4vz2pej34 pool1kf0c6a38vy9t7muc2jpfefdc0y6ey8386ujtn6rtly25y5yxwqf pool1l92vxagssugcsu4wyhvnjd0t6dlqjjfrxkt8v4qaucgmq8t3j3s pool1l93nkg4n5jzdsd7k33g8vsavq4ne6ka82eddt9ysnu35vy6883j pool1lfxjjg2fmaea3dnvu6wpxylrtrzq0pkgjutjesuzwem4xymtqaj pool1lvl6pfge9lgjuanu3556x29zglf6s3fw2lf2m823x9duj9gz6tu pool1m4awll97kncxpantx2cvswt3yfh0sqkhzzg7m2rstyy36udnt29 pool1mdzxt5rl2sgnehedgnl0jwk8vumsglequrap26qgg0uwg4cuq52 pool1mvtxupzcgdtslv2sw0l3f4zlhd3a69fue6gu0vhqz47w7j5zryx pool1p70svj9zrg7lgzkdn8udlslry0t27qs8r9tz9lr955v2yfna2rl pool1ra2su7cvnmr83pu9nvvz4a9carsgc9egc3e5fuk7h9pycyp5ela pool1u8f87frd3k6cy9lp4uk5faj53wfzh8smxjdpt8ua45f0x8s5v58 pool1umukx8qjyjuatw0zznvhc7ma06wl6pdc2ly50d7uv3svkkefjml pool1v96277f457qtwhuq3ma9yjlacq4mjw9h4j3jfy5rjgjru5lyxea pool1vn0mxlvhm4l8pcft3jp5pxh4nhh89qevdg2xu6s6sdqvvs4ft28 pool1w9u6rtvuzke9cq5q4x2r7g8xlt6lqmcd2tugzpjpj5w5xv0eyws pool1wm5pnu72efdcvjm34r7ykkxx2h549swddjrn6r2aqy3tvjc4l57 pool1wr79nyuty7wjgkey5vlfx9rn0x5ecxgge5mq45fpftqhye2shc0"
@@ -8626,8 +9479,8 @@
           "resolved_ip": "148.113.208.65",
           "target_port": 6000,
           "pools": 38,
-          "stake_ada": 1098761915,
-          "delegators": 34307,
+          "stake_ada": 1105000151,
+          "delegators": 34391,
           "distinct_registered_names": 38,
           "tickers": "BTV1 BTV2 BTV3 BTV4 FGMT4 FGMT5 FGMT6 FGMT7 FGMT8 FGMT9 FGMTA FGMTB FGMTC FGMTD FGMTE FGMTF FGMTG FGMTH FGMTI FGMTJ FGMTK FGMTL FGMTM FGMTN FGMTO FGMTP FGMTQ FGMTR gjp7a LBF1 LBF2 LBF3 LBF4 LBF5 LBF6 qzsbu zzcf1",
           "pool_bech32s": "pool12582dmkl7xanxlmfnwd4fepmx4tt5kkw327mmklcjdxngwaxvh2 pool13h08lf24fjmxxg0mmuattjv8dvy0r6fc4hrqg4qmj38xsweexrv pool13z5t8wlhtf7ccc0hud8pnvpjeekjdsyn7sq69fcxf3k6kpnlm74 pool159s558a4ffhp9nqjp9dx048lphdlxjc8xmy5pcmfe4jhuxe4a2u pool15v22rpfg6qx9l0gx0m955gfv7tes0jpa9sy0gjs3a04lv6x9jdr pool17uux76nu89sauwvzuy99lnk50war63uye826sqc20a4ysekegd6 pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v pool1ah6f5h5xss3qcc5wv5smvkwsqrqz2v2v4u0pvmrrttzs6z52kx8 pool1anxttanf5g4cjgagns6cf084wq6x9k2pfygjdjyk3swf77wj2ax pool1cauj94scz5wp58defdxqqgnujaalvxe388peyv2gx79y6suzl55 pool1cpwymxe2fjr20u34f874e2q6za3razk0rttslrxqhc4tu3zxau8 pool1cunvnkjkzh2lna593sjmkylcr3r5rmxdpr8r9u6pfuer72p24x4 pool1da9msyhpfmt58vrdkk7lpzgwldvc0t7q46kvpcyvvpff7347lsp pool1dadfsnjauzhgcvz5hkrulwevpe9mk2a9rsxt24pawcy7zndhll3 pool1dzdglfergm9km74055n6c9xsp8n78ec8ztsklgxg5c5gyrfz9zc pool1enve22w67h6nm4y80cl0svc4edlm26h7ce226u5xlxq7ucawt07 pool1f2wfjqkf2wx6jq93pdck6hgmy9zgw32lmvrq9zejl7scqxjqfze pool1fuge4duc9hfgm9xvu33llsntmnfcumsyw2d0away49v8gmphfzs pool1g59d82m8c84f2ds6l50mng863h9cxfm88khxyhna2l9rzgv6030 pool1h5a30zxga37fphw3tjkp8anu3xm69a28kytceppz2prysfzfcjv pool1j4vmgapf520ul8tvwz95xsmne4alpymxpmcnf0zu5v4vz2pej34 pool1kf0c6a38vy9t7muc2jpfefdc0y6ey8386ujtn6rtly25y5yxwqf pool1l92vxagssugcsu4wyhvnjd0t6dlqjjfrxkt8v4qaucgmq8t3j3s pool1l93nkg4n5jzdsd7k33g8vsavq4ne6ka82eddt9ysnu35vy6883j pool1lfxjjg2fmaea3dnvu6wpxylrtrzq0pkgjutjesuzwem4xymtqaj pool1lvl6pfge9lgjuanu3556x29zglf6s3fw2lf2m823x9duj9gz6tu pool1m4awll97kncxpantx2cvswt3yfh0sqkhzzg7m2rstyy36udnt29 pool1mdzxt5rl2sgnehedgnl0jwk8vumsglequrap26qgg0uwg4cuq52 pool1mvtxupzcgdtslv2sw0l3f4zlhd3a69fue6gu0vhqz47w7j5zryx pool1p70svj9zrg7lgzkdn8udlslry0t27qs8r9tz9lr955v2yfna2rl pool1ra2su7cvnmr83pu9nvvz4a9carsgc9egc3e5fuk7h9pycyp5ela pool1u8f87frd3k6cy9lp4uk5faj53wfzh8smxjdpt8ua45f0x8s5v58 pool1umukx8qjyjuatw0zznvhc7ma06wl6pdc2ly50d7uv3svkkefjml pool1v96277f457qtwhuq3ma9yjlacq4mjw9h4j3jfy5rjgjru5lyxea pool1vn0mxlvhm4l8pcft3jp5pxh4nhh89qevdg2xu6s6sdqvvs4ft28 pool1w9u6rtvuzke9cq5q4x2r7g8xlt6lqmcd2tugzpjpj5w5xv0eyws pool1wm5pnu72efdcvjm34r7ykkxx2h549swddjrn6r2aqy3tvjc4l57 pool1wr79nyuty7wjgkey5vlfx9rn0x5ecxgge5mq45fpftqhye2shc0"

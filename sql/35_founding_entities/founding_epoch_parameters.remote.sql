@@ -1,0 +1,1 @@
+SELECT epoch_no,dvt_treasury_withdrawal AS treasury_threshold,dvt_update_to_constitution AS constitution_threshold,dvt_committee_normal AS committee_threshold,protocol_major FROM public.epoch_param ORDER BY epoch_no DESC LIMIT 1;

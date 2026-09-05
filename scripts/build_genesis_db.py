@@ -212,7 +212,10 @@ def main() -> None:
         DB_PATH.unlink()
 
     print(f"Building {DB_PATH.relative_to(REPO)} ...")
-    con = duckdb.connect(str(DB_PATH))
+    # The compact cut has many small tables. DuckDB's 256 KiB default leaves
+    # substantial unused space; 16 KiB blocks retain every row with less padding.
+    # https://duckdb.org/docs/lts/configuration/pragmas#block-sizes
+    con = duckdb.connect(str(DB_PATH), config={"default_block_size": "16384"})
     try:
         load_seeds(con)
         sources = load_csvs(con)

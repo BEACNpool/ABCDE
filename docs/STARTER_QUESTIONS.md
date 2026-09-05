@@ -1,9 +1,51 @@
 # Starter Questions
 
-Grounded example questions for the genesis ADA database. Ask them through the
-MCP server (in Claude Desktop / Claude Code) or with `python ask.py "..."`.
+Grounded example questions for the compact Cardano evidence database. Ask
+them through the MCP server in Codex or another compatible client, or inspect
+the same rows with direct SQL.
 Every answer should carry an evidence grade (FACT / STRONG_INFERENCE /
 WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.md`.
+
+## Founder accountability: start here
+
+Read [the evidence guide](28_FOUNDER_ACCOUNTABILITY_EVIDENCE.md), then inspect
+`founding_query_receipts` and the relevant tables. Reproduction queries live in
+[`sql/35_founding_entities/`](../sql/35_founding_entities/).
+
+- Which DRep identities have explicit published affiliation evidence, and
+  what does each source actually establish (`founding_drep_identity`)? Can a
+  legacy display string refer to both a script and key credential, and are
+  `drep_hash_id` and `has_script` preserved in the join?
+- At the latest **complete recorded distribution epoch**, how much voting
+  power is delegated to those DReps (`founding_drep_distribution`)? Does that
+  measure funds they own, or influence delegated by other holders?
+- On actions where both EMURGO and Yoroi voted, how often do their latest
+  valid ballots match? How often are they opposing Yes/No votes? Show the
+  denominator, Abstain votes and any missing ballots (`founding_votes`).
+- How does that compare with CF and EMURGO, and which proposals show material
+  disagreement? Do the records support a single uniform founder bloc?
+- Which selected ballots concern the voting organization's own management
+  role or funding request, and what was the proposal's eventual recorded
+  outcome (`founding_proposals`)? What independent approval or procurement
+  records would be needed to assess a conflict?
+- Which selected parameters are published for the extraction's latest epoch
+  (`founding_epoch_parameters`), and what historical rules and eligible
+  denominators are still needed to reproduce an older action's ratification?
+- What are the exact inputs and outputs of the separate 781M entry's early
+  co-spend (`founding_early_merge_inputs`, `founding_early_merge_outputs`)?
+  Which facts survive the alternative of shared administration or custody?
+- What does the voucher-related reserve credit transaction establish
+  (`founding_reserve_credits`), and which later claims require a report or
+  contract rather than a chain-only inference?
+- How much epoch stake is assigned to the selected historical cohort keys
+  (`founding_cohort_keys`, `founding_cohort_stake`)? Is this a refresh of
+  those keys' stake, or a fresh discovery of the entire custody graph?
+- What do the original public financial statements, investment announcements,
+  contracts and incident updates say (`founding_public_sources`)? Which were
+  retrieved in full, which only through indexed excerpts, and which questions
+  remain unanswered?
+- Keep SecondFi's reported theft, reported rescue, snapshot vault balance and
+  verified user repayments separate. What evidence exists for each?
 
 ## Seeds and named founders
 
@@ -17,12 +59,12 @@ WORKING_HYPOTHESIS / UNKNOWN) and cite the tables used — see `docs/02_GRADING.
 - Where did IOG's genesis ADA flow, by trace depth?
 - Which cross-entity merges appear between founder seeds in the staged trace?
 
-## IOG current bag
+## IOG trace snapshot
 
-- How much IOG-descended ADA is still unspent, and what are the confidence bands?
-- Which IOG depth-14 current UTxOs are largest, and what are their exact creation epochs/blocks/times?
-- What are the top stake holders in the IOG depth-14 current bag, and how are they classified?
-- Is there a coordinated-abstain cluster in the IOG current bag around epoch 329?
+- At the IOG trace cut's recorded tip, how much trace-reached ADA is unspent, and which assumptions drive its heuristic bands?
+- Which UTxOs in the IOG depth-14 snapshot are largest, and what are their exact creation epochs/blocks/times?
+- Which stake credentials have the most value in the IOG depth-14 snapshot, and how are they classified?
+- Which historical IOG-trace clusters later delegated to always-abstain, and do their timestamps and custody alternatives support coordination?
 
 ## Relay health and pool infrastructure
 
@@ -53,7 +95,7 @@ pool. `unreachable` is not `offline`.
 
 ## Freshness and accuracy
 
-- How fresh is each table I am about to cite (`data_freshness_catalog`, `db_tip_receipt`), and which of them are snapshot-sensitive?
+- What is the source boundary of each table I am about to cite (module receipts/manifests, `data_freshness_catalog`, `build_info`), and which quantities are snapshot-sensitive?
 
 ## IOGP and voucher-address follow-up
 
@@ -63,7 +105,7 @@ pool. `unreachable` is not `offline`.
 
 ## Governance: DReps and SPOs
 
-- Did EMURGO actually remove genesis ADA from its DRep, and how much is left there?
+- What did the dated EMURGO DRep-removal finding establish about trace-reached stake at its snapshot, and how does that differ from the newer total DRep distribution?
 - Which DReps hold the most genesis-traced stake?
 - Which stake pools (SPOs) received the most genesis-descended delegation?
 - For the top DReps, what is their genesis trace exposure by root seed, and how sticky is it?
@@ -95,7 +137,8 @@ pool. `unreachable` is not `offline`.
 - Behavior-score rollups live in `governance_genesis_behavior_*`; the committed
   signal table is a top cut, with the full table intended for release assets.
 - The fourth seed's internal legacy label was "EMURGO_2" — this is **not** an
-  ownership attribution; treat it as a STRONG_INFERENCE sale-ticket signal.
+  ownership attribution. Its separate sale-ticket hypothesis has its own
+  evidence and grade; the legacy label adds no evidence.
 - For the IOGP/voucher follow-up, start with `iogp_pool_registration`,
   `iogp_pool_epoch_stake`, `voucher_wallet_profile`, and
   `voucher_wallet_counterparty_summary`; use the report for method limits.

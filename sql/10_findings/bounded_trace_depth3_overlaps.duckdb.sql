@@ -1,4 +1,4 @@
--- Runs against data/abcde_genesis_seed_registry.duckdb.
+-- Runs against data/abcde_genesis.duckdb.
 -- UTxOs reachable from more than one seed within the bounded depth-3 pilot trace.
 SELECT
   tx_hash,
@@ -8,7 +8,7 @@ SELECT
   max(value_lovelace) AS value_lovelace,
   min(depth) AS min_depth,
   max(depth) AS max_depth
-FROM bounded_trace_depth3
+FROM bounded_trace_depth3_db
 GROUP BY tx_hash, tx_out_index
 HAVING count(DISTINCT seed_id) > 1
 ORDER BY seed_count DESC, value_lovelace DESC;

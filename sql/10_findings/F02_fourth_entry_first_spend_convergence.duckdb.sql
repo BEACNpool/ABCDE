@@ -1,4 +1,4 @@
--- Runs against data/abcde_genesis_seed_registry.duckdb.
+-- Runs against data/abcde_genesis.duckdb.
 -- Shows the first-spend timing/input pattern for EMURGO and the fourth entry.
 SELECT
   seed_id,
@@ -8,6 +8,6 @@ SELECT
   spend_input_count,
   spend_output_count,
   spend_output_lovelace
-FROM seed_first_spends
+FROM seed_first_spends_db
 WHERE seed_id IN ('emurgo', 'fourth_entry_781m')
 ORDER BY first_spend_time_utc;

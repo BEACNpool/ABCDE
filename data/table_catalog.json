@@ -1,12 +1,13 @@
 {
   "generated_from": "schema_catalog.json + findings/F*.md + data_freshness_catalog.csv",
-  "table_count": 159,
+  "table_count": 173,
   "tables": [
     {
       "table": "bounded_trace_depth3_db",
       "family": "Traces",
       "row_count": 53,
       "source": "data/small/bounded_trace_depth3_db.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F04",
@@ -19,6 +20,7 @@
       "family": "Traces",
       "row_count": 10,
       "source": "data/small/bounded_trace_growth_probe.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -28,6 +30,7 @@
       "family": "Meta",
       "row_count": 1,
       "source": "data/small/db_tip_receipt.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -37,6 +40,7 @@
       "family": "Control indicators",
       "row_count": 115,
       "source": "data/small/component_control_indicators.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F15"
@@ -48,6 +52,7 @@
       "family": "Control indicators",
       "row_count": 8,
       "source": "data/small/component_control_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F15"
@@ -59,6 +64,7 @@
       "family": "Traces",
       "row_count": 3,
       "source": "data/small/cross_merge_depth10_probe.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -66,8 +72,9 @@
     {
       "table": "data_freshness_catalog",
       "family": "Meta",
-      "row_count": 146,
+      "row_count": 170,
       "source": "data/small/data_freshness_catalog.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -77,6 +84,7 @@
       "family": "Meta",
       "row_count": 1,
       "source": "data/small/db_tip_receipt.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -86,6 +94,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 17,
       "source": "data/small/emurgo_drep_epoch_deltas.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F20"
@@ -97,6 +106,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 5,
       "source": "data/small/emurgo_drep_public_events.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F20"
@@ -108,6 +118,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 1156,
       "source": "data/small/emurgo_drep_voting_power_history.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F20"
@@ -119,6 +130,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 1,
       "source": "data/small/emurgo_f20_receipt.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F20"
@@ -130,6 +142,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 7,
       "source": "data/small/emurgo_genesis_leftover_by_drep_bucket.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F20"
@@ -141,6 +154,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 63,
       "source": "data/small/emurgo_genesis_leftover_on_named_dreps.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F20"
@@ -152,6 +166,7 @@
       "family": "EMURGO DRep genesis",
       "row_count": 9,
       "source": "data/small/emurgo_named_dreps.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F20"
@@ -163,6 +178,7 @@
       "family": "Meta",
       "row_count": 641,
       "source": "data/small/epoch_context.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -172,6 +188,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 24,
       "source": "data/small/f11_cohort_cert_timeline.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F11"
@@ -183,6 +200,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 16,
       "source": "data/small/f11_cohort_funding_origin.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F11"
@@ -194,6 +212,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 1,
       "source": "data/small/f11_cohort_reward_destinations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F11"
@@ -205,6 +224,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 8,
       "source": "data/small/f11_cohort_withdrawal_funding.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F11"
@@ -216,6 +236,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 81,
       "source": "data/small/f11_downstream_fleet.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F13",
@@ -228,6 +249,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 600,
       "source": "data/small/f11_downstream_hop_destinations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F13"
@@ -239,6 +261,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 3,
       "source": "data/small/f11_downstream_hop_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F13"
@@ -250,6 +273,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 4,
       "source": "data/small/f11_hub_classification.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F13"
@@ -261,6 +285,7 @@
       "family": "Reward-plumbing receipts",
       "row_count": 115,
       "source": "data/small/f15_cowithdrawal_component.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F15"
@@ -272,6 +297,7 @@
       "family": "Control indicators",
       "row_count": 81,
       "source": "data/small/fleet_control_indicators.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F14"
@@ -283,6 +309,7 @@
       "family": "Control indicators",
       "row_count": 8,
       "source": "data/small/fleet_control_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F14"
@@ -290,10 +317,167 @@
       "grade": "FACT: the parcel sizes, the 34 exact35M holders and their 1.19B ADA sum,"
     },
     {
+      "table": "founding_chain_tip",
+      "family": "Founding-entity accountability",
+      "row_count": 1,
+      "source": "data/small/founding_chain_tip.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_cohort_keys",
+      "family": "Founding-entity accountability",
+      "row_count": 14,
+      "source": "data/small/founding_cohort_keys.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "founding_cohort_stake",
+      "family": "Founding-entity accountability",
+      "row_count": 14,
+      "source": "data/small/founding_cohort_stake.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "founding_drep_distribution",
+      "family": "Founding-entity accountability",
+      "row_count": 948,
+      "source": "data/small/founding_drep_distribution.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_drep_identity",
+      "family": "Founding-entity accountability",
+      "row_count": 3,
+      "source": "data/small/founding_drep_identity.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_early_merge_inputs",
+      "family": "Founding-entity accountability",
+      "row_count": 2,
+      "source": "data/small/founding_early_merge_inputs.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "founding_early_merge_outputs",
+      "family": "Founding-entity accountability",
+      "row_count": 2,
+      "source": "data/small/founding_early_merge_outputs.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "founding_epoch_parameters",
+      "family": "Founding-entity accountability",
+      "row_count": 1,
+      "source": "data/small/founding_epoch_parameters.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "founding_proposals",
+      "family": "Founding-entity accountability",
+      "row_count": 155,
+      "source": "data/small/founding_proposals.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_public_sources",
+      "family": "Founding-entity accountability",
+      "row_count": 27,
+      "source": "data/small/founding_public_sources.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_query_receipts",
+      "family": "Founding-entity accountability",
+      "row_count": 13,
+      "source": "data/small/founding_query_receipts.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_reserve_credits",
+      "family": "Founding-entity accountability",
+      "row_count": 6,
+      "source": "data/small/founding_reserve_credits.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": false,
+      "findings": [],
+      "grade": ""
+    },
+    {
+      "table": "founding_vote_pairs",
+      "family": "Founding-entity accountability",
+      "row_count": 3,
+      "source": "data/small/founding_vote_pairs.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
+      "table": "founding_votes",
+      "family": "Founding-entity accountability",
+      "row_count": 453,
+      "source": "data/small/founding_votes.csv",
+      "source_receipt": "data/small/founding_query_receipts.csv",
+      "snapshot_sensitive": true,
+      "findings": [
+        "F22"
+      ],
+      "grade": "FACT: credential identifiers and types, epoch distributions, ballot"
+    },
+    {
       "table": "fourth_entry_direct_cospend_db",
       "family": "Fourth entry",
       "row_count": 2,
       "source": "data/small/fourth_entry_direct_cospend_db.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F02b"
@@ -305,6 +489,7 @@
       "family": "Fourth entry",
       "row_count": 6,
       "source": "data/small/fourth_entry_sale_ticket_signal.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F03"
@@ -316,6 +501,7 @@
       "family": "Control indicators",
       "row_count": 1048,
       "source": "data/small/genesis_control_indicators.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F11",
@@ -328,6 +514,7 @@
       "family": "Control indicators",
       "row_count": 13,
       "source": "data/small/genesis_control_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -337,6 +524,7 @@
       "family": "Genesis Trail",
       "row_count": 1,
       "source": "data/small/genesis_trail_hub_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F10"
@@ -348,6 +536,7 @@
       "family": "Genesis Trail",
       "row_count": 254,
       "source": "data/small/genesis_trail_payment_dominant_traces.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F10"
@@ -359,6 +548,7 @@
       "family": "Genesis Trail",
       "row_count": 9,
       "source": "data/small/genesis_trail_payment_inputs.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F10"
@@ -370,6 +560,7 @@
       "family": "Genesis Trail",
       "row_count": 10,
       "source": "data/small/genesis_trail_recipient_forwarding.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F10"
@@ -381,6 +572,7 @@
       "family": "Genesis Trail",
       "row_count": 11,
       "source": "data/small/genesis_trail_recipient_outputs.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F10"
@@ -392,6 +584,7 @@
       "family": "Genesis Trail",
       "row_count": 5,
       "source": "data/small/genesis_trail_stream_bridges.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F10"
@@ -403,6 +596,7 @@
       "family": "Governance rollups",
       "row_count": 147,
       "source": "data/small/governance_actions_catalog.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -412,6 +606,7 @@
       "family": "Governance rollups",
       "row_count": 390,
       "source": "data/small/governance_drep_delegation_targets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F06"
@@ -423,6 +618,7 @@
       "family": "Governance rollups",
       "row_count": 337,
       "source": "data/small/governance_drep_latest_targets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -432,6 +628,7 @@
       "family": "Governance rollups",
       "row_count": 335,
       "source": "data/small/governance_drep_latest_value_targets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -441,6 +638,7 @@
       "family": "Governance rollups",
       "row_count": 184,
       "source": "data/small/governance_drep_metadata.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -450,6 +648,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 270,
       "source": "data/small/governance_genesis_behavior_by_drep.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -459,6 +658,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 18824,
       "source": "data/small/governance_genesis_behavior_by_proposal.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -468,6 +668,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 343,
       "source": "data/small/governance_genesis_behavior_by_root_drep.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -477,6 +678,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 1000,
       "source": "data/small/governance_genesis_behavior_clusters.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -486,6 +688,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 3101,
       "source": "data/small/governance_genesis_behavior_signals_top.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -495,6 +698,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 2303,
       "source": "data/small/governance_genesis_delegation_timeline.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -504,6 +708,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 500,
       "source": "data/small/governance_genesis_pool_drep_matrix.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -513,6 +718,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 1598,
       "source": "data/small/governance_genesis_pool_operator_links.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -522,6 +728,7 @@
       "family": "Genesis\u2192DRep behavior",
       "row_count": 1876,
       "source": "data/small/governance_genesis_spo_by_pool.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -531,6 +738,7 @@
       "family": "Governance rollups",
       "row_count": 1857,
       "source": "data/small/governance_pool_metadata.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -540,6 +748,7 @@
       "family": "Governance rollups",
       "row_count": 5175,
       "source": "data/small/governance_spo_delegation_targets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F06"
@@ -551,6 +760,7 @@
       "family": "Governance rollups",
       "row_count": 2868,
       "source": "data/small/governance_spo_latest_targets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -560,6 +770,7 @@
       "family": "Governance rollups",
       "row_count": 2852,
       "source": "data/small/governance_spo_latest_value_targets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -569,6 +780,7 @@
       "family": "Governance rollups",
       "row_count": 63,
       "source": "data/small/governance_top_drep_delegation_age_buckets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -578,6 +790,7 @@
       "family": "Governance rollups",
       "row_count": 10,
       "source": "data/small/governance_top_drep_genesis_trace_exposure.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -587,6 +800,7 @@
       "family": "Governance rollups",
       "row_count": 40,
       "source": "data/small/governance_top_drep_genesis_trace_exposure_by_root.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -596,6 +810,7 @@
       "family": "Governance rollups",
       "row_count": 40,
       "source": "data/small/governance_top_drep_genesis_trace_stickiness.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -605,6 +820,7 @@
       "family": "Governance rollups",
       "row_count": 10,
       "source": "data/small/governance_top_drep_koios_crosscheck.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -614,6 +830,7 @@
       "family": "Governance rollups",
       "row_count": 100,
       "source": "data/small/governance_top_drep_pool_affiliations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -623,6 +840,7 @@
       "family": "Governance rollups",
       "row_count": 10,
       "source": "data/small/governance_top_drep_profiles_current.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -632,6 +850,7 @@
       "family": "Governance rollups",
       "row_count": 72,
       "source": "data/small/governance_top_drep_stake_buckets.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -641,6 +860,7 @@
       "family": "IOG current bag",
       "row_count": 10,
       "source": "data/small/iog_current_bag_depth14_by_depth.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -650,6 +870,7 @@
       "family": "IOG current bag",
       "row_count": 200,
       "source": "data/small/iog_current_bag_depth14_cluster_classification_top200.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -659,6 +880,7 @@
       "family": "IOG current bag",
       "row_count": 200,
       "source": "data/small/iog_current_bag_depth14_cluster_profile_top200.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -668,6 +890,7 @@
       "family": "IOG current bag",
       "row_count": 5,
       "source": "data/small/iog_current_bag_depth14_confidence_bands.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -677,6 +900,7 @@
       "family": "IOG current bag",
       "row_count": 16,
       "source": "data/small/iog_current_bag_depth14_coordinated_abstain_e329_clusters.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -686,6 +910,7 @@
       "family": "IOG current bag",
       "row_count": 15000,
       "source": "data/small/iog_current_bag_depth14_current_utxos.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -695,6 +920,7 @@
       "family": "IOG current bag",
       "row_count": 7,
       "source": "data/small/iog_current_bag_depth14_heuristic_class_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -704,6 +930,7 @@
       "family": "IOG current bag",
       "row_count": 1,
       "source": "data/small/iog_current_bag_depth14_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -713,6 +940,7 @@
       "family": "IOG current bag",
       "row_count": 50,
       "source": "data/small/iog_current_bag_depth14_top_stake.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F11",
@@ -725,6 +953,7 @@
       "family": "IOG current bag",
       "row_count": 2,
       "source": "data/small/iog_pool_state_validation.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -734,6 +963,7 @@
       "family": "IOGP / voucher",
       "row_count": 144,
       "source": "data/small/iog_voucher_dominant_traces.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -745,6 +975,7 @@
       "family": "IOGP / voucher",
       "row_count": 16,
       "source": "data/small/iogp_pool_epoch_stake.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -756,6 +987,7 @@
       "family": "IOGP / voucher",
       "row_count": 1,
       "source": "data/small/iogp_pool_registration.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -767,6 +999,7 @@
       "family": "IOGP / voucher",
       "row_count": 20,
       "source": "data/small/iogp_reward_wallet_destinations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -778,6 +1011,7 @@
       "family": "Traces",
       "row_count": 10,
       "source": "data/small/legacy_cross_merge_baseline_counts.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -787,6 +1021,7 @@
       "family": "NIGHT token",
       "row_count": 13,
       "source": "data/small/night_concentration_curve.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -798,6 +1033,7 @@
       "family": "NIGHT token",
       "row_count": 10000,
       "source": "data/small/night_current_leaves_top.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [
         "F16"
@@ -809,6 +1045,7 @@
       "family": "NIGHT token",
       "row_count": 1143,
       "source": "data/small/night_flow_level_dist.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -820,6 +1057,7 @@
       "family": "NIGHT token",
       "row_count": 2000,
       "source": "data/small/night_holder_top.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -831,6 +1069,7 @@
       "family": "NIGHT token",
       "row_count": 2,
       "source": "data/small/night_holder_type_split.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -842,6 +1081,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 11,
       "source": "data/small/night_incident_actors.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -851,6 +1091,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 6450,
       "source": "data/small/night_incident_ada_fanout.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -860,6 +1101,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 2,
       "source": "data/small/night_incident_binance_240m.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -869,6 +1111,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 3,
       "source": "data/small/night_incident_bridge_balance.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -878,6 +1121,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 8,
       "source": "data/small/night_incident_bridge_supply.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -887,6 +1131,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 3,
       "source": "data/small/night_incident_cluster_balance.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -896,6 +1141,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 4,
       "source": "data/small/night_incident_drain_txs.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -905,6 +1151,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 6,
       "source": "data/small/night_incident_label_balances.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -914,6 +1161,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 5,
       "source": "data/small/night_incident_liqwid_collateral.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -923,6 +1171,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 20,
       "source": "data/small/night_incident_settlement_provenance.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -932,6 +1181,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 41,
       "source": "data/small/night_incident_staged_deposits.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -941,6 +1191,7 @@
       "family": "NIGHT bridge incident",
       "row_count": 24,
       "source": "data/small/night_incident_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -950,6 +1201,7 @@
       "family": "NIGHT token",
       "row_count": 5,
       "source": "data/small/night_leaves_by_month.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -961,6 +1213,7 @@
       "family": "NIGHT token",
       "row_count": 1,
       "source": "data/small/night_mint_event.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -972,6 +1225,7 @@
       "family": "NIGHT token",
       "row_count": 1,
       "source": "data/small/night_root_utxo.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -983,6 +1237,7 @@
       "family": "NIGHT token",
       "row_count": 15,
       "source": "data/small/night_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F16"
@@ -994,6 +1249,7 @@
       "family": "Other",
       "row_count": 96,
       "source": "data/small/pool_operator_kes_clusters.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1003,6 +1259,7 @@
       "family": "Other",
       "row_count": 480,
       "source": "data/small/pool_operator_kes_members.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1010,8 +1267,9 @@
     {
       "table": "relay_asn_concentration",
       "family": "Other",
-      "row_count": 245,
+      "row_count": 247,
       "source": "data/small/relay_asn_concentration.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1019,8 +1277,9 @@
     {
       "table": "relay_endpoint_status",
       "family": "Other",
-      "row_count": 4586,
+      "row_count": 4585,
       "source": "data/small/relay_endpoint_status.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1030,6 +1289,7 @@
       "family": "Other",
       "row_count": 36,
       "source": "data/small/relay_foreign_infrastructure.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1037,8 +1297,9 @@
     {
       "table": "relay_pool_endpoints",
       "family": "Other",
-      "row_count": 6223,
+      "row_count": 6225,
       "source": "data/small/relay_pool_endpoints.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1046,8 +1307,9 @@
     {
       "table": "relay_pool_health",
       "family": "Other",
-      "row_count": 2896,
+      "row_count": 2897,
       "source": "data/small/relay_pool_health.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1055,8 +1317,9 @@
     {
       "table": "relay_registration_changes",
       "family": "Other",
-      "row_count": 4190,
+      "row_count": 4197,
       "source": "data/small/relay_registration_changes.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1066,6 +1329,7 @@
       "family": "Other",
       "row_count": 47,
       "source": "data/small/relay_registration_defects.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1075,6 +1339,7 @@
       "family": "Other",
       "row_count": 134,
       "source": "data/small/relay_shared_domains.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1082,8 +1347,9 @@
     {
       "table": "relay_shared_endpoints",
       "family": "Other",
-      "row_count": 301,
+      "row_count": 300,
       "source": "data/small/relay_shared_endpoints.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1091,8 +1357,9 @@
     {
       "table": "relay_shared_hosts",
       "family": "Other",
-      "row_count": 248,
+      "row_count": 245,
       "source": "data/small/relay_shared_hosts.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1102,6 +1369,7 @@
       "family": "SecondFi incident",
       "row_count": 8,
       "source": "data/small/secondfi_incident_actors.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1111,6 +1379,7 @@
       "family": "SecondFi incident",
       "row_count": 4,
       "source": "data/small/secondfi_incident_balances.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1120,6 +1389,7 @@
       "family": "SecondFi incident",
       "row_count": 2,
       "source": "data/small/secondfi_incident_clusters.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1129,6 +1399,7 @@
       "family": "SecondFi incident",
       "row_count": 2,
       "source": "data/small/secondfi_incident_funding.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1138,6 +1409,7 @@
       "family": "SecondFi incident",
       "row_count": 6,
       "source": "data/small/secondfi_incident_key_exposure_census.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1147,6 +1419,7 @@
       "family": "SecondFi incident",
       "row_count": 21,
       "source": "data/small/secondfi_incident_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1156,6 +1429,7 @@
       "family": "SecondFi incident",
       "row_count": 3,
       "source": "data/small/secondfi_incident_theft_destinations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1165,6 +1439,7 @@
       "family": "Genesis seeds",
       "row_count": 4,
       "source": "data/small/seed_anchor_db_verification.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1174,6 +1449,7 @@
       "family": "Genesis seeds",
       "row_count": 5,
       "source": "data/small/seed_first_spend_inputs_db.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F05"
@@ -1185,6 +1461,7 @@
       "family": "Genesis seeds",
       "row_count": 4,
       "source": "data/small/seed_first_spends_db.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F02"
@@ -1196,6 +1473,7 @@
       "family": "Genesis seeds",
       "row_count": 4,
       "source": "data/small/seed_outputs_db.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1205,6 +1483,7 @@
       "family": "Genesis seeds",
       "row_count": 4,
       "source": "data/small/seed_registry.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1214,6 +1493,7 @@
       "family": "Genesis seeds",
       "row_count": 4,
       "source": "anchors.yaml",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1223,6 +1503,7 @@
       "family": "Traces",
       "row_count": 402,
       "source": "data/small/staged_cross_entity_merges_depth10.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1232,6 +1513,7 @@
       "family": "Traces",
       "row_count": 1,
       "source": "data/small/staged_cross_entity_merges_founders_depth10.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1241,6 +1523,7 @@
       "family": "Traces",
       "row_count": 3,
       "source": "data/small/staged_cross_merge_comparison.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1250,6 +1533,7 @@
       "family": "Traces",
       "row_count": 13,
       "source": "data/small/staged_trace_depth10_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1259,6 +1543,7 @@
       "family": "Traces",
       "row_count": 68,
       "source": "data/small/staged_trace_depth16_profile.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1268,6 +1553,7 @@
       "family": "Traces",
       "row_count": 22,
       "source": "data/small/staged_trace_depth16_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1277,6 +1563,7 @@
       "family": "Traces",
       "row_count": 5,
       "source": "data/small/staged_trace_depth3_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1286,6 +1573,7 @@
       "family": "Traces",
       "row_count": 12,
       "source": "data/small/staged_trace_founders_depth10_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1295,6 +1583,7 @@
       "family": "Traces",
       "row_count": 16,
       "source": "data/small/staged_trace_founders_depth12_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1304,6 +1593,7 @@
       "family": "Traces",
       "row_count": 18,
       "source": "data/small/staged_trace_founders_depth13_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1313,6 +1603,7 @@
       "family": "Traces",
       "row_count": 19,
       "source": "data/small/staged_trace_founders_depth14_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1322,6 +1613,7 @@
       "family": "Traces",
       "row_count": 35,
       "source": "data/small/trace_stake_credentials_db.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1331,6 +1623,7 @@
       "family": "Exchange tracers",
       "row_count": 72,
       "source": "data/small/tracer_address_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F12",
@@ -1343,6 +1636,7 @@
       "family": "Exchange tracers",
       "row_count": 4383,
       "source": "data/small/tracer_all_outputs.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1352,6 +1646,7 @@
       "family": "Exchange tracers",
       "row_count": 505,
       "source": "data/small/tracer_asset_current_location.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1361,6 +1656,7 @@
       "family": "Exchange tracers",
       "row_count": 4383,
       "source": "data/small/tracer_asset_path.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1370,6 +1666,7 @@
       "family": "Exchange tracers",
       "row_count": 505,
       "source": "data/small/tracer_current_utxos.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1379,6 +1676,7 @@
       "family": "Exchange tracers",
       "row_count": 103,
       "source": "data/small/tracer_deposit_claims.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F13"
@@ -1390,6 +1688,7 @@
       "family": "Exchange tracers",
       "row_count": 1,
       "source": "data/small/tracer_export_tip_receipt.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1399,6 +1698,7 @@
       "family": "Exchange tracers",
       "row_count": 1,
       "source": "data/small/tracer_method_receipt.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1408,6 +1708,7 @@
       "family": "Exchange tracers",
       "row_count": 505,
       "source": "data/small/tracer_mint_events.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1417,6 +1718,7 @@
       "family": "Exchange tracers",
       "row_count": 17,
       "source": "data/small/tracer_mint_funding_inputs.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1426,6 +1728,7 @@
       "family": "Exchange tracers",
       "row_count": 17,
       "source": "data/small/tracer_mint_tx_metadata.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1435,6 +1738,7 @@
       "family": "Exchange tracers",
       "row_count": 38,
       "source": "data/small/tracer_movement_timeline.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1444,6 +1748,7 @@
       "family": "Exchange tracers",
       "row_count": 13,
       "source": "data/small/tracer_name_votes.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1453,6 +1758,7 @@
       "family": "Exchange tracers",
       "row_count": 21,
       "source": "data/small/tracer_stake_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1462,6 +1768,7 @@
       "family": "Exchange tracers",
       "row_count": 23,
       "source": "data/small/tracer_terminus_census.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1471,6 +1778,7 @@
       "family": "Exchange tracers",
       "row_count": 11,
       "source": "data/small/tracer_terminus_clusters.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1480,6 +1788,7 @@
       "family": "Exchange tracers",
       "row_count": 3878,
       "source": "data/small/tracer_transfer_edges.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [],
       "grade": ""
@@ -1489,6 +1798,7 @@
       "family": "Exchange tracers",
       "row_count": 62,
       "source": "data/small/tracer_valid_deposits.csv",
+      "source_receipt": null,
       "snapshot_sensitive": true,
       "findings": [],
       "grade": ""
@@ -1498,6 +1808,7 @@
       "family": "IOGP / voucher",
       "row_count": 7,
       "source": "data/small/voucher_funder_delegations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -1509,6 +1820,7 @@
       "family": "IOGP / voucher",
       "row_count": 108,
       "source": "data/small/voucher_funder_source_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -1520,6 +1832,7 @@
       "family": "IOGP / voucher",
       "row_count": 699,
       "source": "data/small/voucher_wallet_counterparty_summary.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -1531,6 +1844,7 @@
       "family": "IOGP / voucher",
       "row_count": 1,
       "source": "data/small/voucher_wallet_delegations.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"
@@ -1542,6 +1856,7 @@
       "family": "IOGP / voucher",
       "row_count": 1,
       "source": "data/small/voucher_wallet_profile.csv",
+      "source_receipt": null,
       "snapshot_sensitive": false,
       "findings": [
         "F09"

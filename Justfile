@@ -37,6 +37,8 @@ test:
     python3 scripts/selftest.py
     python3 scripts/verify_claim_receipts.py
     python3 scripts/verify_iogp_voucher_followup.py
+    python3 scripts/verify_founding_evidence.py --db data/abcde_genesis.duckdb
+    python3 scripts/verify_finding_queries.py
     python3 scripts/verify_genesis_trail_case.py
     python3 scripts/verify_public_artifacts.py
     python3 scripts/verify_web_pages.py
@@ -56,6 +58,10 @@ verify-public-artifacts:
 # Verify IOGP pledge and voucher-address follow-up receipts
 verify-iogp-voucher:
     python3 scripts/verify_iogp_voucher_followup.py
+
+# Verify founding-entity snapshot receipts, ballots and exact lovelace totals
+verify-founding-evidence:
+    python3 scripts/verify_founding_evidence.py --db data/abcde_genesis.duckdb
 
 # Verify Genesis Trail monthly-stream and consolidation-hub receipts
 verify-genesis-trail:

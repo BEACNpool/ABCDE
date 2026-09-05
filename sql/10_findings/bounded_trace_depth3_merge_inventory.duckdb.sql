@@ -1,12 +1,12 @@
--- Runs against data/abcde_genesis_seed_registry.duckdb.
--- Pilot cross-seed merge inventory from bounded_trace_depth3.
+-- Runs against data/abcde_genesis.duckdb.
+-- Pilot cross-seed merge inventory from bounded_trace_depth3_db.
 WITH input_membership AS (
   SELECT
     tx_hash,
     tx_out_index,
     count(DISTINCT seed_id) AS input_seed_membership_count,
     string_agg(DISTINCT seed_id, '+' ORDER BY seed_id) AS input_seed_ids
-  FROM bounded_trace_depth3
+  FROM bounded_trace_depth3_db
   GROUP BY tx_hash, tx_out_index
 ), traced_inputs AS (
   SELECT
@@ -16,10 +16,10 @@ WITH input_membership AS (
     i.input_value_lovelace,
     bt.seed_id,
     im.input_seed_membership_count
-  FROM seed_first_spend_inputs i
-  JOIN seed_first_spends fs
+  FROM seed_first_spend_inputs_db i
+  JOIN seed_first_spends_db fs
     ON fs.first_spend_tx_hash = i.first_spend_tx_hash
-  JOIN bounded_trace_depth3 bt
+  JOIN bounded_trace_depth3_db bt
     ON bt.tx_hash = i.input_source_tx_hash
    AND bt.tx_out_index = i.input_source_tx_out_index
   JOIN input_membership im

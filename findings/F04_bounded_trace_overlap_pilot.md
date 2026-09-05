@@ -28,7 +28,7 @@ SELECT
   max(value_lovelace) AS value_lovelace,
   min(depth) AS min_depth,
   max(depth) AS max_depth
-FROM bounded_trace_depth3
+FROM bounded_trace_depth3_db
 GROUP BY tx_hash, tx_out_index
 HAVING count(DISTINCT seed_id) > 1
 ORDER BY seed_count DESC, value_lovelace DESC;

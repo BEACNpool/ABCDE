@@ -61,6 +61,12 @@ jobs:
       - name: Verify public artifact manifest
         run: python scripts/verify_public_artifacts.py
 
+      - name: Verify founding-entity evidence and exact monetary arithmetic
+        run: python scripts/verify_founding_evidence.py --db data/abcde_genesis.duckdb
+
+      - name: Verify historical finding queries against the compact database
+        run: python scripts/verify_finding_queries.py
+
       - name: Build release bundle
         run: python scripts/build_release_bundle.py
 

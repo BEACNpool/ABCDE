@@ -2,7 +2,7 @@
   "schema_version": 1,
   "generated_by": "scripts/build_findings_json.py",
   "grading_reference": "docs/02_GRADING.md",
-  "finding_count": 23,
+  "finding_count": 24,
   "findings": [
     {
       "id": "F01",
@@ -609,6 +609,69 @@
       "evidence": [],
       "has_reproduce_sql": false,
       "index_label": "VERIFIED, FACT (registration + per-sweep observations) + STRONG_INFERENCE (shared infrastructure)"
+    },
+    {
+      "id": "F22",
+      "file": "findings/F22_founding_entity_voting_and_evidence.md",
+      "title": "Founder-related voting alignment and accountability evidence",
+      "claim": "The three explicitly identified DReps have the following **delegated voting\npower at epoch 653**, measured in the committed distribution rows:\n\n| DRep | Delegated voting power, ADA |\n|---|---:|\n| EMURGO | 301,958,521.565201 |\n| Yoroi Wallet | 469,671,268.300191 |\n| Cardano Foundation | 164,748,353.912119 |\n\nEMURGO and Yoroi together represent **771,629,789.865392 ADA**. These are\nrepresented voting amounts, including delegation by other holders; they are\nnot a calculation of assets owned by the organizations.\n\nSelecting the latest valid ballot per DRep and governance action from\n**453 raw ballots** yields **432 choices**. Pairing only shared actions gives:\n\n| Pair | Shared actions | Same choice | Different choice | Opposing Yes/No |\n|---|---:|---:|---:|---:|\n| EMURGO / Yoroi | 142 | 140 | 2 | 0 |\n| CF / EMURGO | 142 | 87 | 55 | 9 |\n| CF / Yoroi | 142 | 89 | 53 | 9 |\n\nEMURGO and Yoroi each have 142 qualifying actions, all shared. CF has 148,\nincluding **six actions without a qualifying ballot from either of the other\ntwo**. Explicit Abstain is a recorded choice; an absent ballot is not Abstain.\nThe nine directly opposing CF votes are observable counter-evidence to a\nclaim that these three representatives always vote as a uniform bloc.",
+      "grade": "- **FACT:** credential identifiers and types, epoch distributions, ballot\n  history, latest-choice counts, and pairwise agreement within this cut.\n- **EXTERNAL_CORROBORATION:** the identity anchors and EMURGO's own\n  [Yoroi delegation instructions](https://www.emurgo.io/press-news/delegating-your-vote-just-got-easier-one-click-yoroi-drep-delegation-is-here/)\n  document affiliation and the top-button, user-confirmed delegation flow.\n- **WORKING_HYPOTHESIS:** wallet interface placement contributes to concentrated\n  voting influence. The interface and represented power are observable; the\n  causal contribution is not measured here.\n- **UNKNOWN:** a binding voting agreement, concealed coordination, beneficial\n  ownership of delegated ADA, motives, decisive control over proposal outcomes,\n  or fraud. Matching choices alone establish none of these.",
+      "evidence": [
+        {
+          "path": "data/manifests/founding-evidence-manifest.json",
+          "sha256": "537bffa27360ef716fcae84207c2c0b4c5f735eebb784198310959034324dc12"
+        },
+        {
+          "path": "data/small/founding_chain_tip.csv",
+          "sha256": "f522196de7eeb3e0b24442e7e8bb6f22d7b8cae7438e9a60dd486a5aa37cf9ec"
+        },
+        {
+          "path": "data/small/founding_drep_distribution.csv",
+          "sha256": "de9e13d36534f96418189e7a19068b25b76928962580f3812bc97415e9a96166"
+        },
+        {
+          "path": "data/small/founding_drep_identity.csv",
+          "sha256": "8a33af2b7c275e1e531ae6aa9a7641d01040b86d1b56903959e2ef8d017a18ec"
+        },
+        {
+          "path": "data/small/founding_proposals.csv",
+          "sha256": "d1a8a454d39f90f9b9a8a4b1530cecd09003bd32a07a5ac3073e39132ad23e41"
+        },
+        {
+          "path": "data/small/founding_public_sources.csv",
+          "sha256": "5e26c5c6e76205b45d7d9b1b387e5979e9d2a83726bc2119fab135a84dbc23f9"
+        },
+        {
+          "path": "data/small/founding_query_receipts.csv",
+          "sha256": "bf32b733f3f2157d96e314dde265b3966bb9196372f80ec7c04a5c97742774c8"
+        },
+        {
+          "path": "data/small/founding_vote_pairs.csv",
+          "sha256": "3fc497b40f90af214633bfdb73678dcb478898ecaa2c0dfb7577e488d44d753f"
+        },
+        {
+          "path": "data/small/founding_votes.csv",
+          "sha256": "8cec12f38f612ade291e0770fe141c857368dd9e5dd79d0c2facfcaa5f2ccaa1"
+        },
+        {
+          "path": "docs/28_FOUNDER_ACCOUNTABILITY_EVIDENCE.md",
+          "sha256": "06b26edbf322df330776969fee356044bc0a7fa30c6a91153989151e9311ae14"
+        },
+        {
+          "path": "sql/35_founding_entities/02_vote_pair_agreement.duckdb.sql",
+          "sha256": "e9113d5b98ffccb169cb0b4204ba692577c9690dbe085349f73ce3950612ea20"
+        },
+        {
+          "path": "sql/35_founding_entities/03_vote_disagreements.duckdb.sql",
+          "sha256": "5cbfaecfaa5b74cac422d576cf16dd25553c918bb43a685b9dc0a6c8a2c78a6e"
+        },
+        {
+          "path": "sql/35_founding_entities/04_delegated_voting_power.duckdb.sql",
+          "sha256": "6e91fa10ef6907a95abe6cc7e9e0542c2b1711f42463b658fb8e4bb778655e39"
+        }
+      ],
+      "has_reproduce_sql": true,
+      "index_label": "VERIFIED, FACT + EXTERNAL_CORROBORATION (published identity and disclosures); WORKING_HYPOTHESIS (interface contribution)"
     }
   ]
 }

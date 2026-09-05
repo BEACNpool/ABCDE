@@ -27,6 +27,7 @@ Labels are defined in `docs/02_GRADING.md`.
 16. [F19 — Exchange tracer convergence under the study's canonical method](F19_exchange_tracer_convergence.md) — `VERIFIED`, `FACT + STRONG_INFERENCE (3 clusters) + WORKING_HYPOTHESIS (single-wallet claims)`
 17. [F20 — EMURGO genesis ADA was removed from its DReps](F20_emurgo_genesis_drep_removal.md) — `VERIFIED`, `FACT + EXTERNAL_CORROBORATION + STRONG_INFERENCE`
 18. [F21 — Relay registration, shared infrastructure, and observed reachability](F21_relay_registration_and_reachability.md) — `VERIFIED`, `FACT (registration + per-sweep observations) + STRONG_INFERENCE (shared infrastructure)`
+19. [F22 — Founder-related voting alignment and accountability evidence](F22_founding_entity_voting_and_evidence.md) — `VERIFIED`, `FACT + EXTERNAL_CORROBORATION (published identity and disclosures); WORKING_HYPOTHESIS (interface contribution)`
 
 ## Review cuts / candidate sets
 

@@ -9,21 +9,17 @@ described as interchangeable.
 It is a compact, read-only database built from `anchors.yaml` and the committed
 `data/small/*.csv` receipts.
 
-Verified on 2026-07-03:
-
-| Property | Value |
-|---|---:|
-| DuckDB size | 47,722,496 bytes (45.51 MiB) |
-| Tables | 99 |
-| Aggregate rows across all tables | 131,764 |
-| Committed source CSVs | 97 |
-| Source CSV size | 48,798,264 bytes (46.54 MiB) |
+The current schema inventory is generated in `data/schema_catalog.json` and
+`docs/SCHEMA.md`; table and row counts change when modules are added. Query
+`information_schema.tables` or the MCP `list_tables()` tool instead of relying
+on a dated count in prose.
 
 The aggregate row count is a dataset inventory number, not a count of unique
 transactions, addresses, people, or entities. Several tables are rollups or
 different views over related source records.
 
-For freshness-sensitive work, query `build_info` first:
+For freshness-sensitive work, inspect `build_info` alongside the **module
+receipt**. These build/global fields alone do not date every table:
 
 ```sql
 SELECT
@@ -77,49 +73,42 @@ distributions are exact; only the per-UTxO long tail of dust is release-tier.
 The full ABCDE PostgreSQL warehouse is the maintainer extraction source. It is
 not shipped in this repository and is not required for public querying.
 
-Read-only verification on 2026-06-12 found:
-
-| Property | Value |
-|---|---:|
-| Database | `cexplorer_replica` |
-| PostgreSQL size | 606,383,021,079 bytes (`565 GB` from PostgreSQL) |
-| Replicated relations | 75 ready |
-| Subscription | enabled |
+Its size and operational configuration are not part of the portable public
+interface. Public reproducibility means reproducing a claim from committed
+rows or an identified, checksummed release; it does not imply public access to
+the maintainer's full database.
 
 Extraction scripts should treat replicated `public.*` tables as read-only.
 Project-derived tables and files must retain the source tip and generation time
 needed to reproduce their snapshot boundary.
 
-## Current snapshot boundary
+## Per-module snapshot boundaries
 
-The warehouse recovered to live mainnet replication on 2026-06-23 (the earlier
-2026-06-07 stall is over). The authoritative refresh boundary is whatever
-`data/small/db_tip_receipt.csv` records — as of the 2026-07-03 cut:
+**Tables are not all refreshed at once.** The committed `db_tip_receipt` and
+`build_info` supply global/build context, while individual extraction receipts
+and manifests define the relevant table boundary. `data_freshness_catalog`
+records inventory and file age; a commit timestamp is not a substitute for an
+extraction's chain tip.
 
-| Property | Value |
-|---|---:|
-| Block | 13,628,717 |
-| Epoch | 639 |
-| Block time | 2026-07-03 05:50:34 UTC |
-
-**Tables are not all refreshed at once.** Per-table freshness is quantified in
-`data/small/data_freshness_catalog.csv` (row counts, hashes, last commit time,
-age, snapshot sensitivity). The 2026-07-03 cut refreshed all major surfaces at
-the live boundary: seed-cut receipts, governance metadata and rollups,
-top-DRep profiles, the founders depth-14 staged trace, the genesis-behavior
-surface, the IOG current-bag audit, control indicators, and tracers. The
-delegation-history rollups (`governance_*_delegation_targets`) derive from the
-frozen pre-v2 legacy import and carry their own recorded boundary.
+For example, the founding-accountability module uses
+`data/manifests/founding-evidence-manifest.json` and
+`data/small/founding_query_receipts.csv`. Its governance cut does not refresh
+the older genesis traces, monthly-stream receipts, custody graph, incident
+records, NIGHT holder cut, or relay sweeps. Those retain their own boundaries.
+See [the founder evidence guide](28_FOUNDER_ACCOUNTABILITY_EVIDENCE.md) for how
+to join the new and historical evidence without treating them as one snapshot.
 
 Therefore:
 
-- historical facts at or before the recorded tip remain queryable;
-- live-unspent, current delegation, DRep distribution, governance lifecycle,
-  and proposal-vote answers are snapshots as of that tip;
+- historical facts at or before their recorded tips remain queryable;
+- unspent outputs, stake snapshots, DRep distributions, governance lifecycle
+  and proposal votes must name their appropriate tip or epoch;
+- the epoch-stake snapshot and DRep distribution epoch are distinct from the
+  latest extracted block; neither is a live wallet balance;
 - a matching local and warehouse tip proves consistency between those two
-  surfaces, not freshness against the Cardano chain;
-- every refresh must update `data/small/db_tip_receipt.csv`, rebuild DuckDB and
-  the schema catalog, and rerun the verifiers before publication.
+  surfaces, not independent freshness against mainnet;
+- a module refresh must preserve source tips, generation times, exact SQL and
+  artifact hashes, rebuild DuckDB/schema, and rerun the relevant verifiers.
 
 Machine-local clone paths and host addressing are operator details, not
 portable project interfaces. Public documentation and scripts should use

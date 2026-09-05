@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "file_count": 333,
+  "file_count": 368,
   "files": [
     {
       "path": "claims/README.md",
@@ -277,8 +277,8 @@
     },
     {
       "path": "data/small/data_freshness_catalog.csv",
-      "bytes": 20059,
-      "sha256": "42acd950dc238812c82c0d9b00fbca396fa805db44d73aec890e3a81701e7eef",
+      "bytes": 23098,
+      "sha256": "1641904621e672cdd2739208eaba3160699061331b3837a88aec69dd7fa15164",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -546,6 +546,213 @@
         "db_tip_epoch": "641",
         "source": "abcde:cexplorer_replica",
         "staleness_note": "live_replication_current_at_refresh"
+      }
+    },
+    {
+      "path": "data/small/founding_chain_tip.csv",
+      "bytes": 172,
+      "sha256": "f522196de7eeb3e0b24442e7e8bb6f22d7b8cae7438e9a60dd486a5aa37cf9ec",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_chain_tip.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_cohort_keys.csv",
+      "bytes": 4912,
+      "sha256": "940183de00b36cf99ed75d48a3eced1a220643cbc6de41e3550e83d89e459b06",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "historical_selection",
+        "collection_started_utc": "2026-07-03T15:12:42.348269Z",
+        "collection_finished_utc": "2026-07-03T15:12:42.348269Z"
+      }
+    },
+    {
+      "path": "data/small/founding_cohort_stake.csv",
+      "bytes": 3457,
+      "sha256": "271d7a9d2d4bb363d9b04062d6975194108fc56baca3db4c43a85fdbe1281cca",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_cohort_stake.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_drep_distribution.csv",
+      "bytes": 84453,
+      "sha256": "de9e13d36534f96418189e7a19068b25b76928962580f3812bc97415e9a96166",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_drep_distribution.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_drep_identity.csv",
+      "bytes": 748,
+      "sha256": "8a33af2b7c275e1e531ae6aa9a7641d01040b86d1b56903959e2ef8d017a18ec",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_drep_identity.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_early_merge_inputs.csv",
+      "bytes": 615,
+      "sha256": "a63e8349aadc22c7be9c4bc403c566a4b4c68feacc8b0b082dafaa68641d0e05",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_early_merge_inputs.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_early_merge_outputs.csv",
+      "bytes": 436,
+      "sha256": "111a92d1b29c5959210325ea67059a9956efae68e39a64e5598fcb04af87a11c",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_early_merge_outputs.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_epoch_parameters.csv",
+      "bytes": 108,
+      "sha256": "72602033f0945164aba0e37f93211ab134a4414b52e451a2dbf47221e3bc06d8",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_epoch_parameters.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_proposals.csv",
+      "bytes": 36016,
+      "sha256": "d1a8a454d39f90f9b9a8a4b1530cecd09003bd32a07a5ac3073e39132ad23e41",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_proposals.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_public_sources.csv",
+      "bytes": 15741,
+      "sha256": "5e26c5c6e76205b45d7d9b1b387e5979e9d2a83726bc2119fab135a84dbc23f9",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "public_sources",
+        "collection_started_utc": "2026-09-05T04:26:20Z",
+        "collection_finished_utc": "2026-09-05T04:26:20Z"
+      }
+    },
+    {
+      "path": "data/small/founding_query_receipts.csv",
+      "bytes": 4180,
+      "sha256": "bf32b733f3f2157d96e314dde265b3966bb9196372f80ec7c04a5c97742774c8",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "data/small/founding_reserve_credits.csv",
+      "bytes": 1064,
+      "sha256": "31d1e3644e1c3cf6527013b88ffbeb1dd57eec7f4118a5437393de3a01ccaa93",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_reserve_credits.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_vote_pairs.csv",
+      "bytes": 415,
+      "sha256": "3fc497b40f90af214633bfdb73678dcb478898ecaa2c0dfb7577e488d44d753f",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_vote_pairs.remote.sql"
+      }
+    },
+    {
+      "path": "data/small/founding_votes.csv",
+      "bytes": 155423,
+      "sha256": "8cec12f38f612ade291e0770fe141c857368dd9e5dd79d0c2facfcaa5f2ccaa1",
+      "source": {
+        "receipt": "data/small/founding_query_receipts.csv",
+        "source_kind": "dbsync_atomic_snapshot",
+        "collection_started_utc": "2026-09-05T04:40:51.401561+00:00",
+        "collection_finished_utc": "2026-09-05T04:40:52.324411+00:00",
+        "db_tip_block": "13899964",
+        "db_tip_epoch": "653",
+        "db_tip_time": "2026-09-05T04:39:55",
+        "db_tip_hash": "177cd6da7aa0463fcfffb745f1230032585c2416d2c9a07c9fc943f4179538de",
+        "query_path": "sql/35_founding_entities/founding_votes.remote.sql"
       }
     },
     {
@@ -1525,8 +1732,8 @@
     },
     {
       "path": "data/small/relay_asn_concentration.csv",
-      "bytes": 18020,
-      "sha256": "07ffebf92f7a356b0bc907cf346e75590248a3a21a025cb675971f69e0e081f8",
+      "bytes": 18236,
+      "sha256": "6a3f34204ce3cb5ac35383ad492e476f829931c2f78a56ab604dd1cf7822fdd2",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1538,8 +1745,8 @@
     },
     {
       "path": "data/small/relay_endpoint_status.csv",
-      "bytes": 552753,
-      "sha256": "845de880d5faa8cd4fedc33f824f7471a1ae684030ea445498f2b596f7b55a48",
+      "bytes": 552868,
+      "sha256": "c99e7a1a8f7cd2af8c4c45b8930f6398bfa00b2748d8753975fd17dfb54ee3eb",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1564,8 +1771,8 @@
     },
     {
       "path": "data/small/relay_pool_endpoints.csv",
-      "bytes": 1142522,
-      "sha256": "6d596b7e56f86e6a44572b4d722285af27c8e02ab90bd5b3664a459b5fb10967",
+      "bytes": 1142300,
+      "sha256": "c1467f29697094bba51c311e61ff9aa8962ae2e5a0c3d2d319ed49dfe9004df0",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1577,8 +1784,8 @@
     },
     {
       "path": "data/small/relay_pool_health.csv",
-      "bytes": 453773,
-      "sha256": "952bb58c405f9322dcf91d9d6da654c577cdfe7574a9f5f711fdbbd72aae5fce",
+      "bytes": 453692,
+      "sha256": "2eadf6b12991950c40872ba00598ec8f227b9fd3cc28e3f432b4acce96e3870d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1590,8 +1797,8 @@
     },
     {
       "path": "data/small/relay_registration_changes.csv",
-      "bytes": 677647,
-      "sha256": "0d02ce10e41172fd8614ebe7143681fa393a53eb76163a205821c972a713207c",
+      "bytes": 678793,
+      "sha256": "88910bc42194b206ab5034547d5d9f933a6845079c7393fea361435b780d0ff6",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1604,7 +1811,7 @@
     {
       "path": "data/small/relay_registration_defects.csv",
       "bytes": 9160,
-      "sha256": "233191137b4857ad9c16ecc984cc331555d76fff1085f9efc3d2f3fe40acaf36",
+      "sha256": "963c771f90d53eaf093de7bdffccce1c58160ad1085a1038ad6f51edd875ae66",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1616,8 +1823,8 @@
     },
     {
       "path": "data/small/relay_shared_domains.csv",
-      "bytes": 6241,
-      "sha256": "24b3124ece2a65a148280205902bda86c1f287a3f01021323ddd616a8d5f98cb",
+      "bytes": 6253,
+      "sha256": "b4159530eea79da190c6f3c405cea8ac6dc04aa3594a283b083987c85ce8340d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1629,8 +1836,8 @@
     },
     {
       "path": "data/small/relay_shared_endpoints.csv",
-      "bytes": 83662,
-      "sha256": "0ee2676efc208b82421894ebd05e876bc774058b7951ef1d1cb6c89ace90e54f",
+      "bytes": 83553,
+      "sha256": "fa6ac813473862dfeaa7cb3be87918d6aaa618c939d9d4524ec92d0512f91e38",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -1642,8 +1849,8 @@
     },
     {
       "path": "data/small/relay_shared_hosts.csv",
-      "bytes": 93563,
-      "sha256": "441a95ddb65fb274b527e11a59f13021f5e3cccd4eafd48e8ff4b4e5f864774e",
+      "bytes": 93379,
+      "sha256": "9749ad1384ba1ca9bff9548260c04c9aa678d838e14d33ccfea5c97e584a5b78",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2344,8 +2551,8 @@
     },
     {
       "path": "docs/06_LIMITATIONS.md",
-      "bytes": 1643,
-      "sha256": "fbc65817a00e3645f80f7964aeda1aabe14590f8ba900bcffbf503c987938070",
+      "bytes": 3165,
+      "sha256": "9c2d0ce2d55654930f2ed5d298700c49f0ddf1e6db2f4c1337024aa27df76833",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2474,8 +2681,8 @@
     },
     {
       "path": "docs/22_DATA_TOPOLOGY_AND_FRESHNESS.md",
-      "bytes": 4946,
-      "sha256": "13f7143ed868f14eb75b35800d7fbd79b13910a158f2310f67fbb74738ae75bc",
+      "bytes": 5107,
+      "sha256": "c836c7697cd7e0dfdaaeed50da3bbc74564a42abba4983747d5d3e41db9abb3d",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2551,6 +2758,15 @@
       }
     },
     {
+      "path": "docs/28_FOUNDER_ACCOUNTABILITY_EVIDENCE.md",
+      "bytes": 18346,
+      "sha256": "06b26edbf322df330776969fee356044bc0a7fa30c6a91153989151e9311ae14",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
       "path": "docs/AI_QUERY_GUIDE.md",
       "bytes": 5101,
       "sha256": "c813afd3de0df5ab43c76139b2ebd316f0326c5a5736b941eb68a786c338c92b",
@@ -2565,8 +2781,8 @@
     },
     {
       "path": "docs/SCHEMA.md",
-      "bytes": 65668,
-      "sha256": "ee700b62f8bcf748dfdab8677b9acdb447102f4d07ab37efc40c3a12c28483e0",
+      "bytes": 70241,
+      "sha256": "8e93a70e7116c31ad8f79d9a46a060e03a62e5819825a1223a7ea57387d479e0",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2578,8 +2794,8 @@
     },
     {
       "path": "docs/STARTER_QUESTIONS.md",
-      "bytes": 5822,
-      "sha256": "183315b361d55bc25f94a5f3b36eb9e954d8fd3e8d4d962b2f3f3a5428d2ec6b",
+      "bytes": 8823,
+      "sha256": "4c24a81bad62803c3a46469b5788c143415df41472de7790ae82d8386b2ecff0",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2591,8 +2807,8 @@
     },
     {
       "path": "docs/TABLE_CATALOG.md",
-      "bytes": 9975,
-      "sha256": "fd4ebb98f0c1895c6d621c63f21651401824b444d31a9c6714dec95464e25c0a",
+      "bytes": 10890,
+      "sha256": "f7d4b033d550f1879486e1714461ab521cdd8a325e726ac2a2ed7bf24808d82c",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2708,8 +2924,8 @@
     },
     {
       "path": "findings/F02_fourth_entry_first_spend_convergence.md",
-      "bytes": 1264,
-      "sha256": "48838379ed20423a52418d113976824ae148de5529eabc939e23c0ec93a1e550",
+      "bytes": 1267,
+      "sha256": "4dca885e888655439be30e421bd18fad5d8ab5e917870b5575c2c35a09992a4e",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2721,8 +2937,8 @@
     },
     {
       "path": "findings/F02b_fourth_entry_direct_cospend.md",
-      "bytes": 1010,
-      "sha256": "8211edd6b05b38d85c8e78c7312e6d90f34e4b93b51f376b1e5135d8d857041a",
+      "bytes": 1013,
+      "sha256": "fa08addaa855d842bfadbe38210c22d3fe5278b8f6cdd7ebae08ebb002c801a8",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2747,8 +2963,8 @@
     },
     {
       "path": "findings/F04_bounded_trace_overlap_pilot.md",
-      "bytes": 1118,
-      "sha256": "602e17ef601c5d1b365596c6bef1648dc406325cda7b027f1b2f793a8369cbdd",
+      "bytes": 1121,
+      "sha256": "55e070033de29ed53349503b6be62dc3bd06eb8d09d16f3f9f4d9bf871321e9c",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -2993,9 +3209,18 @@
       }
     },
     {
+      "path": "findings/F22_founding_entity_voting_and_evidence.md",
+      "bytes": 5473,
+      "sha256": "a8de9a741b7a4e00565d208c0e0a31ae23c27245908827bfa6f84fb7bd2c66ce",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
       "path": "findings/INDEX.md",
-      "bytes": 3871,
-      "sha256": "06a710b4e3e24d4eae43474f3dd8b4e912bdb69666113248d0f673b294c7aa83",
+      "bytes": 4120,
+      "sha256": "44de038834c70251d4fa0df5e3096507b982f058dca02b630bd3b0278cab5b04",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3280,8 +3505,8 @@
     },
     {
       "path": "sql/10_findings/F02_fourth_entry_first_spend_convergence.duckdb.sql",
-      "bytes": 400,
-      "sha256": "e630daecd04e581e2a17236200b6d0e82968c954b32aeedba355c09383762756",
+      "bytes": 389,
+      "sha256": "ef10a19451bd5639501391aa36a12764c008737d76e3bd610bdf575584fdfa7f",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3293,8 +3518,8 @@
     },
     {
       "path": "sql/10_findings/F02b_fourth_entry_direct_cospend.duckdb.sql",
-      "bytes": 272,
-      "sha256": "51b296fe110122171e93c158fddcea2309f0408cc6b22df04e335279dad37d71",
+      "bytes": 261,
+      "sha256": "ef7e1277fcd8334a36e8a828e5457ad1a76a7e53cdd39797afe4721752916384",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3345,8 +3570,8 @@
     },
     {
       "path": "sql/10_findings/bounded_trace_depth3_merge_inventory.duckdb.sql",
-      "bytes": 2183,
-      "sha256": "7cf002c72b953a843138ba5898afbdddc9fdd4ad8c0558680611db12476ea7cd",
+      "bytes": 2184,
+      "sha256": "caddee2992111a80b8166aadab67d212f176322f6a6c953d1144719a476e7eda",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3358,8 +3583,8 @@
     },
     {
       "path": "sql/10_findings/bounded_trace_depth3_overlaps.duckdb.sql",
-      "bytes": 515,
-      "sha256": "b25ce0d58a2495516b8ff90c8df79d41472790b3955a91e0168ea3ac70259eff",
+      "bytes": 504,
+      "sha256": "bacd84fa51d97265f3097a49827b8204f0d0c9beaa29b897d3546e8f93eb4269",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3371,8 +3596,8 @@
     },
     {
       "path": "sql/10_findings/bounded_trace_depth3_summary.duckdb.sql",
-      "bytes": 224,
-      "sha256": "a30c350073ec0bef066704ab75a21b36e591477d1e6e8bb261df55b8793794cb",
+      "bytes": 213,
+      "sha256": "75e7ea457acf5aa08af1cabf8e5336a6c0daabbff885a7ef3aa5c60e417627de",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -3877,6 +4102,168 @@
       }
     },
     {
+      "path": "sql/35_founding_entities/01_collection_receipts.duckdb.sql",
+      "bytes": 394,
+      "sha256": "9919caf765a7b4903b1392b21e93561a53c116495209c79e95c0607d0e128707",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/02_vote_pair_agreement.duckdb.sql",
+      "bytes": 1385,
+      "sha256": "e9113d5b98ffccb169cb0b4204ba692577c9690dbe085349f73ce3950612ea20",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/03_vote_disagreements.duckdb.sql",
+      "bytes": 1212,
+      "sha256": "5cbfaecfaa5b74cac422d576cf16dd25553c918bb43a685b9dc0a6c8a2c78a6e",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/04_delegated_voting_power.duckdb.sql",
+      "bytes": 1084,
+      "sha256": "6e91fa10ef6907a95abe6cc7e9e0542c2b1711f42463b658fb8e4bb778655e39",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/05_early_transaction_conservation.duckdb.sql",
+      "bytes": 1017,
+      "sha256": "da9c1744bd8972d5ed81af303874b7b1d88f0e632d4ee1c25f739862e929044a",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/06_cohort_current_delegation.duckdb.sql",
+      "bytes": 824,
+      "sha256": "95cee9266adc861f122ce5f5c863f6afa2318d060eff8b748655dab035ca6780",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/07_reserve_credit_receipt.duckdb.sql",
+      "bytes": 462,
+      "sha256": "207b6dfa5baed391e047a251e9b9432a167cec108876ff740ed49bad434b85c7",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_chain_tip.remote.sql",
+      "bytes": 136,
+      "sha256": "0287d48604230e9c370398c063e2178cc0d0e0f4f03ecfbda2c8662c0f3dda83",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_cohort_stake.remote.sql",
+      "bytes": 1683,
+      "sha256": "d938b057ac620b27864e7889350179a543c016801b8f8acb2aa258176b52d44e",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_drep_distribution.remote.sql",
+      "bytes": 645,
+      "sha256": "5679365d922f8387fa3c48b9149492a4f60dd30eb4d0e8c4624ce61f9beae757",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_drep_identity.remote.sql",
+      "bytes": 1080,
+      "sha256": "511dfd802d3e82cfea152f7b3aff9a826e21032838a8e0b59079b122ea5965c3",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_early_merge_inputs.remote.sql",
+      "bytes": 542,
+      "sha256": "8e56980633028e2d2efb9507ff4b3af85e2e8ae53d9744a89f266ddf182f51a7",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_early_merge_outputs.remote.sql",
+      "bytes": 324,
+      "sha256": "9fe75d06a26515cc8d16de88c73ab60153b9f75747d0b78caa5fc143e1af9147",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_epoch_parameters.remote.sql",
+      "bytes": 230,
+      "sha256": "796e57a2a3da51ab5b38f0eb1bb21484f56a8960ce77f47ee431b5b8c24ba430",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_proposals.remote.sql",
+      "bytes": 708,
+      "sha256": "4c4fd7fe32b49ae52bf44a8c58cbfc44fa16a180c31860a8a9e51066f9ba52b1",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_reserve_credits.remote.sql",
+      "bytes": 442,
+      "sha256": "c66c0d4bab9065fe4871f440e0cdde70497a6014e21d94270403fe7bd1fa217e",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_vote_pairs.remote.sql",
+      "bytes": 1034,
+      "sha256": "a6b8a3af032ceec27b1bd12e32f5bff714ec4824db15575a650103b84d12d1e3",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
+      "path": "sql/35_founding_entities/founding_votes.remote.sql",
+      "bytes": 1022,
+      "sha256": "6df2ab8ea1159cc2e08e6509b9d372d7fe110c3f72502aa0fbc755c6f3f051bf",
+      "source": {
+        "manifest": "data/manifests/founding-evidence-manifest.json",
+        "note": "Consult per-table receipts; chain, disclosure and historical-selection boundaries differ."
+      }
+    },
+    {
       "path": "sql/40_night/night_full_spend_flow_export.remote.sql",
       "bytes": 13076,
       "sha256": "4f37f1944412c3820d13c7d9aa889fade820b28bd9ff159ea8d4214c2e95267d",
@@ -4282,7 +4669,7 @@
     {
       "path": "sql/56_relay_health/data/SHA256SUMS",
       "bytes": 92,
-      "sha256": "653a56087a4d3ee04ac27a8e6f8090204e2ec2d7fa03fde9bc1e861912973518",
+      "sha256": "d60069b68b8cc249239dfd5af99f49128c0f50b8f6ea5915f46bf3ecd222bf29",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4294,8 +4681,8 @@
     },
     {
       "path": "sql/56_relay_health/data/relay_build_receipt.csv",
-      "bytes": 3156,
-      "sha256": "1d0c3907c296f6668595fb162fd51ba5667ed580cb067376c16e1b7d779008fa",
+      "bytes": 3166,
+      "sha256": "60416e0bdb8f0e7dac30b2d2655f51648a603e8d817597d4a2ae633e31b903cd",
       "source": {
         "generated_by": "scripts/build_public_artifact_manifest.py",
         "db_tip_block": "13632752",
@@ -4330,6 +4717,11 @@
         "source": "abcde:cexplorer_replica",
         "staleness_note": "live_replication_current_at_refresh"
       }
+    },
+    {
+      "path": "data/manifests/founding-evidence-manifest.json",
+      "bytes": 6509,
+      "sha256": "537bffa27360ef716fcae84207c2c0b4c5f735eebb784198310959034324dc12"
     }
   ]
 }

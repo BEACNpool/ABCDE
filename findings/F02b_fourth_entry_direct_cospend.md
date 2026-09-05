@@ -28,7 +28,7 @@ SELECT
   descendant_of_seed_id,
   emurgo_trace_depth,
   emurgo_path
-FROM fourth_entry_direct_cospend
+FROM fourth_entry_direct_cospend_db
 ORDER BY input_value_lovelace DESC;
 ```
 
