@@ -723,6 +723,40 @@ body.motion-paused .corner-standing{animation:none!important}
 @media(max-width:380px){.sc-stage{column-gap:16px}.sharecard{padding:12px}.corner-portrait{height:140px}.corner-avatar{width:100px;height:100px}.corner-avatar .bot-emblem{width:88px;height:88px}.boxing-glove{width:44px;height:50px}.glove-outer{left:calc(50% - 69px);top:84px}.right .glove-outer{right:calc(50% - 69px)}.glove-inner{right:calc(50% - 71px);top:70px}.right .glove-inner{left:calc(50% - 71px)}.corner-body{width:72px}.sc-name{font-size:20px}.sc-score{font-size:27px}.sc-pnl strong{font-size:18px}.sc-center{grid-template-columns:44px 1fr auto;gap:2px 8px;padding:12px 8px}.ring-vs{font-size:31px}.sc-center .leader{font-size:16px}.sc-center .gap{font-size:22px}}
 @media(prefers-reduced-motion:reduce){.corner-avatar,.corner-standing{animation:none!important}.corner-avatar,.boxing-glove,.corner-portrait::before{transition:none!important}}
 
+/* Latest moves are a replay desk; scores never become animation counters. */
+.fight-ringside{margin-top:24px;padding:24px 0 0;border-top:1px solid var(--line);scroll-margin-top:120px}
+.fight-ringside-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fight-kicker{font:800 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.fight-ringside h3{font:850 27px/1.1 var(--sans);letter-spacing:-.03em;margin:6px 0 0;color:var(--text)}
+.fight-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.fight-controls button,.fight-move-actions button{min-height:40px;background:#0b1d2b;border:1px solid var(--line2);color:var(--text);border-radius:8px;padding:8px 12px;font:700 11px var(--sans);cursor:pointer}
+.fight-controls button:hover,.fight-move-actions button:hover{border-color:var(--cyan);color:var(--cyan)}
+.fight-controls button:focus-visible,.fight-move-actions button:focus-visible,.fight-detail summary:focus-visible,.fight-method summary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.fight-controls #fight-stop{border-color:#884655;color:#ff9aad}.fight-caption{font-size:12px;color:var(--muted);line-height:1.6;margin:10px 0 12px}
+.fight-now{display:flex;align-items:baseline;gap:12px;padding:12px 14px;background:#050c15;border:1px solid var(--line);border-radius:10px;font-size:12px;line-height:1.5;min-height:48px}
+.fight-mode{color:#b7dcf3;font:800 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}.fight-description{color:var(--text)}
+.fight-move-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:18px}
+.fight-move-column>h4{font-size:14px;margin:0 0 10px;display:flex;gap:7px;align-items:center}.fight-move-column>h4 i{display:block;width:8px;height:8px;background:var(--mark);border-radius:50%}
+.fight-move{padding:14px;margin-top:8px;background:#091420;border:1px solid var(--line);border-left:3px solid var(--mark);border-radius:10px;transition:border-color .2s}
+.fight-move.is-replaying{border-color:var(--mark);box-shadow:0 0 0 1px color-mix(in srgb,var(--mark) 25%,transparent)}
+.fight-move-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--muted);font:600 10px var(--mono);line-height:1.4}.fight-move-meta>span{color:var(--text);font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.fight-move h4{font-size:15px;line-height:1.4;letter-spacing:-.02em;margin:10px 0 4px}.fight-outcome{font-size:12px;font-weight:700;line-height:1.5;margin:0;color:var(--muted)}.fight-outcome.up{color:var(--green)}.fight-outcome.down{color:var(--red)}
+.fight-before{font-size:10px;display:block;margin-top:4px;color:var(--muted)}
+.fight-move-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.fight-move-actions a{font-size:11px;color:var(--muted)}.fight-move-actions button{min-height:36px;border-radius:6px;background:#122335;font-size:11px;padding:6px 10px}.fight-move-actions button span{font-size:16px}
+.fight-detail{font-size:11px;color:var(--muted)}.fight-detail summary{cursor:pointer;padding:10px 0}.fight-detail[open]{flex-basis:100%;border-top:1px solid var(--line)}.fight-detail p{line-height:1.65;margin:4px 0 8px;overflow-wrap:anywhere}.fight-detail b{color:var(--text)}
+.fight-method{font-size:11px;color:var(--muted);margin-top:16px}.fight-method summary{cursor:pointer;min-height:36px;display:flex;align-items:center;gap:8px}.fight-method summary::before{content:'+';font-family:var(--mono)}.fight-method[open] summary::before{content:'−'}.fight-method p{max-width:900px;line-height:1.65;margin:6px 0 10px}
+.fight-empty{font-size:12px;color:var(--muted)}
+.fight-overlay{position:absolute;inset:0;width:100%;height:100%;z-index:8;pointer-events:none;overflow:visible}
+.fight-active .corner-avatar{animation-play-state:paused!important}.fight-active .ring-vs{opacity:.25}.fight-glove-hidden{visibility:hidden!important}
+.fight-impact-label{font:900 18px var(--mono);paint-order:stroke;stroke:#06101b;stroke-width:6px;stroke-linejoin:round}
+@media(max-width:700px){.fight-ringside{padding-top:18px;margin-top:18px}.fight-ringside-head{display:block}.fight-ringside h3{font-size:25px}.fight-controls{margin-top:12px}.fight-controls button{min-height:44px;font-size:11px}.fight-now{display:block;padding:12px}.fight-mode{display:block;font-size:9px;margin-bottom:6px}.fight-description{font-size:12px}.fight-move-columns{gap:12px}.fight-move-column>h4{font-size:13px}.fight-move{padding:10px 9px}.fight-move-meta{font-size:9px}.fight-move-meta time{font-size:9px}.fight-move h4{font-size:13px;margin-top:8px;overflow-wrap:anywhere}.fight-outcome{font-size:11px}.fight-move-actions{gap:6px 12px;margin-top:8px}.fight-move-actions button{width:100%;min-height:44px;font-size:11px;padding:6px}.fight-move-actions a{font-size:11px;min-height:36px;display:flex;align-items:center}.fight-detail{font-size:10px}.fight-detail summary{padding:12px 0}.fight-caption{font-size:12px}.fight-impact-label{font-size:13px;stroke-width:4px}}
+@media(prefers-reduced-motion:reduce){.fight-move{transition:none}}
+
+
+.sc-stage{scroll-margin-top:128px}
+.fight-toast{position:fixed;z-index:90;bottom:20px;left:50%;transform:translateX(-50%);width:min(580px,calc(100vw - 32px));padding:14px 16px;display:flex;align-items:center;gap:16px;border:1px solid #4d7994;border-radius:12px;background:#06121df5;box-shadow:0 12px 48px #000b;backdrop-filter:blur(12px)}
+.fight-toast strong{font:800 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#83dbea}.fight-toast p{font-size:13px;line-height:1.5;color:#f0f6fa;margin:5px 0 0}.fight-toast button{border:1px solid var(--line2);border-radius:50%;background:#172a3b;color:var(--text);font-size:20px;width:40px;height:40px;flex:0 0 40px;cursor:pointer}.fight-toast button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@media(max-width:700px){.fight-toast{bottom:10px;padding:12px;gap:10px}.fight-toast p{font-size:12px}.fight-toast button{width:36px;height:36px;flex-basis:36px}}
+
 </style>
 </head>
 <body>
@@ -1440,6 +1474,7 @@ function sparkline(w, h) {
 function renderCard() {
   const host = $("#sharecard");
   if (!host) return;
+  cancelFight();
   const a = DATA.agents.find(ag => ag.id === "beacn");
   const b = DATA.agents.find(ag => ag.id === "grokbot");
   const priced = DATA.price.available;
@@ -1503,6 +1538,7 @@ function renderCard() {
         <div class="sc-clock">${st ? esc(elapsed(st.from, st.to)) + " of published history" : "Match clock loading"}</div>
       </div>${side(b, true)}</div>
     ${HIST && HIST.points.length > 1 ? `<div class="sc-spark">${sparkline(1000, 58)}</div>` : ""}
+    ${fightBoard()}
     <div class="sc-stats">
       <div class="sc-stat">Completed trades<b>${completedTrades(a)} / ${completedTrades(b)}</b></div>
       <div class="sc-stat">Open positions<b>${marketPositions(a).length} / ${marketPositions(b).length}</b></div>
@@ -1524,6 +1560,259 @@ function renderCard() {
   host.dataset.cornerLeader = nextCornerLeader;
   host.setAttribute("aria-busy", "false");
 }
+
+/* Ringside replay uses attributed realized results, never wallet inflows or price swings. */
+const FIGHT_KINDS = new Set(['swap','fill','order','cancel','supply','redeem','receipt','stake']);
+const FIGHT_BASIS_METHODS = Object.freeze({
+  average_cost_including_order_fees:'Average cost includes entry and order fees.',
+  separate_liquid_and_qUSDM_average_cost_including_fees:'Liquid USDM and lending receipts keep separate average costs, including their fees.'
+});
+const fightId = m => `${m.agent}:${m.tx_hash}`;
+const fightAgent = id => DATA.agents.find(a => a.id === id);
+const fightAmount = v => Math.abs(v)>0 && Math.abs(v)<.000001 ? v.toExponential(2) : fmt(v, Math.abs(v)>0 && Math.abs(v)<.01 ? 6 : 2);
+const fightNumber = x => {
+  if(typeof x==='number')return Number.isFinite(x)?x:null;
+  if(typeof x!=='string' || !/^-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/.test(x))return null;
+  const value=Number(x);
+  return !Number.isFinite(value) || (value===0 && /[1-9]/.test(x.split(/[eE]/)[0])) ? null : value;
+};
+function fightEvents() {
+  const seen = new Set();
+  return (Array.isArray(DATA?.moves) ? DATA.moves : []).filter(m => {
+    const valid = m && typeof m==='object' && ['beacn','grokbot'].includes(m.agent) && /^[0-9a-f]{64}$/.test(m.tx_hash || '') &&
+      Number.isSafeInteger(m.time) && m.time>0 && m.time<8640000000000 && FIGHT_KINDS.has(m.kind) && !seen.has(fightId(m));
+    if (valid) seen.add(fightId(m));
+    return valid;
+  }).sort((a,b) => a.time-b.time || (a.block || 0)-(b.block || 0) || fightId(a).localeCompare(fightId(b)));
+}
+function fightResult(m) {
+  const e = m?.effect;
+  const value = fightNumber(e?.ada), basis = fightNumber(e?.cost_basis_ada), proceeds = fightNumber(e?.net_proceeds_ada);
+  if (['swap','fill'].includes(m?.kind) && e?.type === 'realized_spot_pnl' && e.status === 'verified' &&
+      Object.hasOwn(FIGHT_BASIS_METHODS, e.basis_method) && value !== null && basis !== null && basis >= 0 &&
+      proceeds !== null && proceeds >= 0 && Math.abs(proceeds-basis-value) <= .000001 &&
+      Array.isArray(e.source_tx_hashes) && e.source_tx_hashes.includes(m.tx_hash)) return value;
+  return null;
+}
+function fightAction(m) {
+  const result = fightResult(m);
+  if (result !== null) return result > 0 ? 'profit' : result < 0 ? 'loss' : 'even';
+  if (['supply','redeem','receipt','stake','cancel'].includes(m.kind)) return 'setup';
+  if (m.kind === 'order') return 'order';
+  return 'trade';
+}
+function fightTitle(m) {
+  const u=fightNumber(m.usdm_delta), a=fightNumber(m.ada_delta);
+  if (m.kind === 'supply' && u < 0) return `Lent ${fmt(-u,2)} USDM`;
+  if (m.kind === 'redeem' && u > 0) return `Withdrew ${fmt(u,2)} USDM`;
+  if (['swap','fill'].includes(m.kind) && u !== null && a !== null) {
+    return u < 0 ? `${fmt(-u,2)} USDM → ${fmt(a,2)} ADA` : `${fmt(-a,2)} ADA → ${fmt(u,2)} USDM`;
+  }
+  return {cancel:'Cancelled a swap order',order:'Placed a swap order',receipt:'Moved a supply receipt',stake:'Delegated ADA'}[m.kind] || m.title || 'On-chain move';
+}
+function fightOutcome(m) {
+  const v=fightResult(m), a=fightAction(m);
+  if (v !== null) return `${v>0?'+':''}${fightAmount(v)} ADA realized`;
+  return {setup:m.kind==='cancel'?'Order cancelled · no trade':m.kind==='supply'?'Lending setup · position retained':'Position setup · no scored hit',
+    order:'Waiting for a fill',trade:'Trade filled · result not attributed',even:'Trade closed level'}[a];
+}
+function fightTime(m) {
+  return new Date(m.time*1000).toLocaleString('en-US',{timeZone:'UTC',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false})+' UTC';
+}
+function fightCard(m) {
+  const result=fightResult(m), mode=fightAction(m), id=fightId(m);
+  const before=m.time < (DATA.start?.at_time || 0);
+  return `<article class="fight-move" data-fight-event="${esc(id)}">
+    <div class="fight-move-meta"><span>${esc({supply:'Lending',redeem:'Withdrawal',fill:'Filled trade',swap:'Swap',order:'Order',cancel:'Cancellation',stake:'Staking',receipt:'Receipt'}[m.kind])}</span><time datetime="${new Date(m.time*1000).toISOString()}">${esc(fightTime(m))}</time></div>
+    <h4>${esc(fightTitle(m))}</h4>
+    <p class="fight-outcome ${result===null?'':result>0?'up':result<0?'down':'flat'}">${esc(fightOutcome(m))}</p>
+    ${before?'<span class="fight-before">Before the equal start</span>':''}
+    <div class="fight-move-actions"><button type="button" data-replay="${esc(id)}" aria-label="Replay ${esc(fighterName(fightAgent(m.agent)))}: ${esc(fightTitle(m))}"><span aria-hidden="true">↻</span> Replay ${mode==='setup'?'setup':mode==='order'?'order':'trade'}</button>
+      <a href="https://cardanoscan.io/transaction/${esc(m.tx_hash)}" target="_blank" rel="noopener" aria-label="View transaction for ${esc(fightTitle(m))}">Tx ↗</a>
+      <details class="fight-detail"><summary>Details</summary><p>${esc(m.detail || '')}</p>${result!==null?`<p>Net proceeds <b>${fmt(Number(m.effect.net_proceeds_ada),4)} ADA</b> minus allocated cost <b>${fmt(Number(m.effect.cost_basis_ada),4)} ADA</b>. ${esc(FIGHT_BASIS_METHODS[m.effect.basis_method])} This is this sale’s realized result, not total match profit.</p>`:`<p>${esc(m.effect?.reason || 'No independently attributed realized result is available for this move.')}</p>`}</details>
+    </div>
+  </article>`;
+}
+function fightBoard() {
+  const events=fightEvents();
+  return `<section class="fight-ringside" aria-label="Recent moves and fight replay">
+    <div class="fight-ringside-head"><div><span class="fight-kicker">Ringside</span><h3>The last exchange.</h3></div>
+      <div class="fight-controls"><button type="button" id="fight-exchange" ${events.length?'':'disabled'}>↻ Replay exchange</button><button type="button" id="fight-practice">Practice punch</button><button type="button" id="fight-stop" hidden>Stop replay</button></div></div>
+    <p class="fight-caption">The latest two moves in each corner. Replay a trade to see how it landed.</p>
+    <div class="fight-now" id="fight-now" role="status" aria-live="polite"><span class="fight-mode">Replay desk</span><span class="fight-description">Choose a move below. Current scores stay live.</span></div>
+    <div class="fight-move-columns">${['beacn','grokbot'].map(id=>`<div class="fight-move-column agent-${id}"><h4><i></i>${esc(fighterName(fightAgent(id)))}</h4>${events.filter(m=>m.agent===id).slice(-2).reverse().map(fightCard).join('') || '<p class="fight-empty">No recorded trading moves yet.</p>'}</div>`).join('')}</div>
+    <details class="fight-method"><summary>How trades become hits</summary><p>A verified profitable sale lands a hit. A realized loss makes that trader absorb the blow. An open trade meets the other bot’s guard; lending and orders are setup moves. Hits do not transfer ADA between bots, and a good trade does not necessarily take the lead.</p><p>Punch strength follows the size of an attributed realized result, never the amount received. Prices can move the scoreboard without any trade. Practice punches are demonstrations only. <a href="https://github.com/BEACNpool/ABCDE/blob/main/docs/MATCH_FIGHT.md" target="_blank" rel="noopener">Calculation and evidence ↗</a></p></details>
+  </section>`;
+}
+let fightActive=null, fightQueue=[], fightQueueTimer=null, fightSeen=null, fightDemoSide='beacn';
+let fightVisibleSince=Date.now()/1000, fightLastGeometry=null, fightLastAction=null, fightToastTimer=null;
+const fightReduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fightMotionAllowed=()=>!cornerMotionPaused && !fightReduced();
+function fightSetCaption(label,text) {
+  const host=$('#fight-now');if(!host)return;
+  host.querySelector('.fight-mode').textContent=label;
+  host.querySelector('.fight-description').textContent=text;
+}
+function fightShowToast(label,text) {
+  let toast=$('#fight-toast');
+  if(!toast){toast=document.createElement('aside');toast.id='fight-toast';toast.className='fight-toast';toast.setAttribute('aria-label','Fight replay result');
+    toast.innerHTML='<div><strong></strong><p></p></div><button type="button" aria-label="Dismiss fight replay">×</button>';
+    toast.querySelector('button').addEventListener('click',()=>{cancelFight('Replay dismissed.');toast.remove();});document.body.append(toast);}
+  toast.querySelector('strong').textContent=label;toast.querySelector('p').textContent=text;
+  clearTimeout(fightToastTimer);fightToastTimer=setTimeout(()=>toast.remove(),8000);
+}
+function cancelFight(reason='') {
+  if(fightActive){
+    cancelAnimationFrame(fightActive.raf);
+    for(const animation of fightActive.animations || []) animation.cancel();
+    fightActive.source?.classList.remove('fight-glove-hidden');
+    fightActive.stage?.classList.remove('fight-active');
+    fightActive.overlay?.remove();
+    fightActive=null;
+  }
+  clearTimeout(fightQueueTimer);fightQueueTimer=null;fightQueue=[];
+  const stop=$('#fight-stop');if(stop)stop.hidden=true;
+  document.querySelectorAll('.fight-move.is-replaying').forEach(e=>e.classList.remove('is-replaying'));
+  if(reason)fightSetCaption('Replay stopped',reason);
+}
+function finishFight() {
+  const rest=fightQueue.slice();cancelFight();fightQueue=rest;
+  if(fightQueue.length)fightQueueTimer=setTimeout(()=>{const next=fightQueue.shift();playFight(next.id,{auto:next.auto,queued:true});},550);
+}
+function fightOutcomeCaption(m,kind,result) {
+  const who=fighterName(fightAgent(m.agent));
+  if(kind==='profit')return `${who} lands a hit · +${fightAmount(result)} ADA realized on this sale.`;
+  if(kind==='loss')return `${who} takes the hit · ${fightAmount(result)} ADA realized on this sale.`;
+  if(kind==='even')return `${who} closes at break-even.`;
+  if(m.kind==='cancel')return `${who} resets the guard · order cancelled. No trade or points awarded.`;
+  if(kind==='setup')return `${who} sets up · ${fightTitle(m)}. No realized points awarded.`;
+  if(kind==='order')return `${who} winds up · order placed, awaiting a fill.`;
+  return `${who} enters the exchange · ${fightTitle(m)}. Realized result is not attributed.`;
+}
+function playFight(id,options={}) {
+  const demo=options.demo===true;
+  const m=demo?{agent:fightDemoSide,kind:'practice'}:fightEvents().find(m=>fightId(m)===id);
+  if(!m)return false;
+  const pending=options.queued?fightQueue.slice():[];cancelFight();fightQueue=pending;
+  const kind=demo?'practice':fightAction(m), result=demo?null:fightResult(m);
+  const actor=m.agent, opponent=actor==='beacn'?'grokbot':'beacn';
+  const attacker=kind==='loss'?opponent:actor, target=kind==='loss'?actor:opponent;
+  const caption=demo?`${fighterName(fightAgent(actor))} throws a practice punch. No trade; scores unchanged.`:fightOutcomeCaption(m,kind,result);
+  fightSetCaption(demo?'Practice only':options.auto?'New on-chain move':'Historical replay',caption);
+  fightShowToast(demo?'Practice · scores unchanged':options.auto?'New on-chain move':'Historical replay',caption);
+  fightLastAction={id:demo?'practice':id,kind,actor,attacker,target,auto:!!options.auto};
+  if(demo)fightDemoSide=opponent;
+  const item=[...document.querySelectorAll('[data-fight-event]')].find(el=>el.dataset.fightEvent===id);
+  item?.classList.add('is-replaying');
+  if(!fightMotionAllowed() || document.hidden){
+    fightSetCaption(demo?'Practice · motion off':'Outcome · motion off',caption);
+    if(document.hidden)fightQueue=[];
+    else if(fightQueue.length){
+      $('#fight-stop').hidden=false;
+      fightQueueTimer=setTimeout(()=>{const next=fightQueue.shift();playFight(next.id,{auto:next.auto,queued:true});},3500);
+    }
+    return true;
+  }
+  const stage=$('.sc-stage');
+  if(!options.auto){const visible=stage.querySelector('.corner-portrait').getBoundingClientRect();if(visible.top<120 || visible.bottom>innerHeight-100)stage.scrollIntoView({block:'start',behavior:'instant'});}
+  const fighter=id=>stage.querySelector(`.sc-fighter[data-agent="${id}"]`);
+  const sourceFighter=fighter(attacker), targetFighter=fighter(target);
+  if(!sourceFighter || !targetFighter)return false;
+  stage.classList.add('fight-active');
+  const active={raf:0,stage,animations:[],source:null,overlay:null};fightActive=active;
+  $('#fight-stop').hidden=false;
+  if(kind==='setup'||kind==='order'||kind==='even'){
+    const own=fighter(actor), glove=own.querySelector('.glove-inner'), avatar=own.querySelector('.corner-avatar');
+    active.animations.push(glove.animate([{translate:'0 0'},{translate:kind==='order'?'8px -14px':'0 -18px'},{translate:'0 0'}],{duration:900,easing:'ease-in-out'}));
+    active.animations.push(avatar.animate([{filter:'brightness(1)'},{filter:'brightness(1.24)'},{filter:'brightness(1)'}],{duration:900,easing:'ease-in-out'}));
+    const start=performance.now();const tick=now=>{if(fightActive!==active)return;if(now-start>=1150)finishFight();else active.raf=requestAnimationFrame(tick);};active.raf=requestAnimationFrame(tick);return true;
+  }
+  const rect=stage.getBoundingClientRect(), body=sourceFighter.querySelector('.corner-body').getBoundingClientRect();
+  const source=sourceFighter.querySelector('.glove-inner'), sr=source.getBoundingClientRect();
+  const emblem=targetFighter.querySelector('.corner-avatar .bot-emblem'), er=emblem.getBoundingClientRect();
+  const targetGlove=targetFighter.querySelector('.glove-inner'), gr=targetGlove.getBoundingClientRect();
+  const direction=attacker==='beacn'?1:-1, blocked=kind==='trade';
+  const start={x:sr.left+sr.width/2-rect.left,y:sr.top+sr.height/2-rect.top};
+  const shoulder={x:(direction>0?body.right-7:body.left+7)-rect.left,y:body.top+12-rect.top};
+  const tr=blocked?gr:er;
+  const contact={x:(direction>0?tr.left+Math.min(9,tr.width*.1):tr.right-Math.min(9,tr.width*.1))-rect.left,y:tr.top+tr.height*(blocked?.45:.52)-rect.top};
+  const gloveSize=Math.min(76,Math.max(42,sr.width*.92)), scale=gloveSize/80, reach=.42*90*scale;
+  const end={x:contact.x-direction*reach,y:contact.y};
+  const color=attacker==='beacn'?'#5cddf4':'#ffc166';
+  const baseline=Number(DATA.start?.equalized_score_ada_eq)||907;
+  const strength=result===null?.2:Math.min(1,Math.abs(result)/Math.max(1,baseline*.02));
+  fightLastGeometry={stage:{width:rect.width,height:rect.height},start,shoulder,contact,end,attacker,target,blocked,strength};
+  const ns='http://www.w3.org/2000/svg';const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('class','fight-overlay');svg.setAttribute('viewBox',`0 0 ${rect.width} ${rect.height}`);svg.setAttribute('aria-hidden','true');
+  const path=(stroke,width)=>{const el=document.createElementNS(ns,'path');el.setAttribute('fill','none');el.setAttribute('stroke',stroke);el.setAttribute('stroke-width',width);el.setAttribute('stroke-linecap','round');svg.append(el);return el;};
+  const outline=path('#06101b',gloveSize*.28+7),arm=path(color,gloveSize*.28),highlight=path('#eaf2f5',2);
+  highlight.setAttribute('opacity','.35');
+  const glove=document.createElementNS(ns,'g');glove.setAttribute('color',color);
+  const parsed=new DOMParser().parseFromString(boxingGlove().replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" '),'image/svg+xml');for(const child of [...parsed.documentElement.children])glove.append(document.importNode(child,true));svg.append(glove);
+  const burst=document.createElementNS(ns,'g');burst.setAttribute('class','fight-contact');burst.setAttribute('opacity','0');
+  for(let n=0;n<7;n++){
+    const angle=n*Math.PI*2/7;const ray=document.createElementNS(ns,'line');
+    for(const [key,value] of Object.entries({x1:Math.cos(angle)*12,y1:Math.sin(angle)*12,x2:Math.cos(angle)*(22+strength*10),y2:Math.sin(angle)*(22+strength*10)}))ray.setAttribute(key,String(value));
+    ray.setAttribute('stroke',kind==='loss'?'#ff8294':'#ffe4a8');ray.setAttribute('stroke-width',String(2+strength*1.5));ray.setAttribute('stroke-linecap','round');burst.append(ray);
+  }
+  burst.setAttribute('transform',`translate(${contact.x} ${contact.y})`);svg.append(burst);
+  const label=document.createElementNS(ns,'text');label.setAttribute('class','fight-impact-label');
+  label.setAttribute('x',String(Math.min(rect.width-66,Math.max(66,(start.x+contact.x)/2))));label.setAttribute('y',String(Math.max(18,Math.min(start.y,contact.y)-22)));
+  label.setAttribute('text-anchor','middle');label.setAttribute('fill',kind==='loss'?'#ff8294':color);label.setAttribute('opacity','0');
+  label.textContent=result!==null?`${result>0?'+':''}${fightAmount(result)} ADA`:demo?'PRACTICE':'GUARDED';svg.append(label);
+  stage.append(svg);active.overlay=svg;active.source=source;source.classList.add('fight-glove-hidden');
+  const duration=1300, began=performance.now();let reacted=false;
+  const ease=t=>1-Math.pow(1-t,3);
+  const frame=now=>{
+    if(fightActive!==active)return;
+    const t=Math.min(1,(now-began)/duration);
+    let progress=t<.12?-.07*Math.sin(t/.12*Math.PI):t<.38?ease((t-.12)/.26):t<.52?1:t<.78?1-ease((t-.52)/.26):0;
+    const x=start.x+(end.x-start.x)*progress,y=start.y+(end.y-start.y)*progress-10*Math.sin(Math.max(0,progress)*Math.PI);
+    const wristX=x-direction*gloveSize*.27;
+    const bendX=shoulder.x+(wristX-shoulder.x)*.52, bendY=Math.max(shoulder.y,y)+Math.min(24,Math.abs(wristX-shoulder.x)*.08);
+    const d=`M${shoulder.x},${shoulder.y} Q${bendX},${bendY} ${wristX},${y}`;
+    for(const armPath of [outline,arm,highlight])armPath.setAttribute('d',d);
+    glove.setAttribute('transform',`translate(${x} ${y}) rotate(${direction*90}) scale(${scale}) translate(-40 -45)`);
+    const hit=t>=.37&&t<.6;burst.setAttribute('opacity',hit?String(Math.max(0,1-(t-.4)/.2)):'0');
+    label.setAttribute('opacity',t>=.37&&t<.94?String(Math.min(1,(t-.37)*12,(.94-t)*8)):'0');
+    if(t>=.38&&!reacted){
+      reacted=true;
+      const node=blocked?targetGlove:targetFighter.querySelector('.corner-avatar');
+      active.animations.push(node.animate([{translate:'0 0',rotate:'0deg'},{translate:`${direction*(4+strength*6)}px -2px`,rotate:`${direction*(2+strength*3)}deg`},{translate:'0 0',rotate:'0deg'}],{duration:420,easing:'ease-out'}));
+    }
+    if(t>=1)finishFight();else active.raf=requestAnimationFrame(frame);
+  };
+  active.raf=requestAnimationFrame(frame);return true;
+}
+function fightBoardVisible() {
+  const r=$('.corner-portrait')?.getBoundingClientRect();
+  return !document.hidden && r && r.top<innerHeight && r.bottom>110;
+}
+function observeFightEvents() {
+  const events=fightEvents();
+  if(fightSeen===null){fightSeen=new Set(events.map(fightId));return;}
+  const fresh=events.filter(m=>!fightSeen.has(fightId(m)));for(const m of events)fightSeen.add(fightId(m));
+  if(!fresh.length || !fightMotionAllowed() || !fightBoardVisible() || !['leading','trailing','level'].includes(cornerState('beacn')))return;
+  const now=Date.now()/1000;
+  const eligible=fresh.filter(m=>m.time>=fightVisibleSince-60 && now-m.time>=-60 && now-m.time<=900).slice(-2);
+  if(eligible.length){fightQueue=eligible.slice(1).map(m=>({id:fightId(m),auto:true}));playFight(fightId(eligible[0]),{auto:true,queued:true});}
+}
+function wireFightBoard() {
+  $('#sharecard').addEventListener('click',e=>{
+    const replay=e.target.closest('button[data-replay]');
+    if(replay){playFight(replay.dataset.replay);return;}
+    if(e.target.closest('#fight-practice'))playFight(null,{demo:true});
+    if(e.target.closest('#fight-stop'))cancelFight('Stopped. Current scores are unchanged.');
+    if(e.target.closest('#fight-exchange')){
+      const events=fightEvents();const selected=['beacn','grokbot'].flatMap(id=>events.filter(m=>m.agent===id).slice(-2)).sort((a,b)=>a.time-b.time);
+      if(selected.length){cancelFight();fightQueue=selected.slice(1).map(m=>({id:fightId(m),auto:false}));playFight(fightId(selected[0]),{queued:true});}
+    }
+  });
+  document.addEventListener('visibilitychange',()=>{fightVisibleSince=Date.now()/1000;if(document.hidden){cancelFight();$('#fight-toast')?.remove();}});
+  window.addEventListener('resize',()=>cancelFight());
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>cancelFight());
+}
+window.matchFight={play:playFight,cancel:cancelFight,observe:observeFightEvents,snapshot:()=>({active:!!fightActive,queued:fightQueue.slice(),lastAction:fightLastAction,geometry:fightLastGeometry,seen:fightSeen?[...fightSeen]:[]})};
 
 /* ---- lead chart -----------------------------------------------------------
    Two independent books on one axis. The line on top is winning; the fill
@@ -2029,6 +2318,7 @@ let WIRED = false;
 function renderAll() {
   renderFresh(); renderCard(); renderStartNote(); renderMatchup(); renderChart(); renderBooks();
   renderCosts(); renderLog(); renderMethod();
+  observeFightEvents();
 }
 
 function boot(d, hist) {
@@ -2038,8 +2328,10 @@ function boot(d, hist) {
   for (const id of ["downloadcard", "sharematch", "copylink", "cornermotion"]) $("#" + id).disabled = false;
   if (WIRED) return;
   WIRED = true;
+  wireFightBoard();
   renderCornerMotion();
   $("#cornermotion").addEventListener("click", () => {
+    cancelFight();
     cornerMotionPaused = !cornerMotionPaused;
     try { localStorage.setItem("match-corner-motion", cornerMotionPaused ? "paused" : "playing"); } catch {}
     renderCornerMotion();

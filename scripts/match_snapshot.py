@@ -67,6 +67,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from match_fight import Q_USDM_NAME, Q_USDM_POLICY, annotate_moves, raw_fight_evidence
 from match_positions import (
     LIQWID_MARKET_BY_POLICY,
     MINSWAP_ORDER_SCRIPT,
@@ -319,6 +320,8 @@ def read_book(agent: dict, scripts: dict[str, str], by_script: dict[str, str],
                   {"_payment_credentials": [agent["payment_cred"]], "_extended": True})
     ada = sum(lovelace(u["value"]) for u in utxos)
     usdm = sum(usdm_of(u) for u in utxos)
+    q_usdm_raw = sum(int(a["quantity"]) for u in utxos for a in u.get("asset_list") or []
+                     if (a.get("policy_id"), a.get("asset_name")) == (Q_USDM_POLICY, Q_USDM_NAME))
 
     flight_ada = flight_usdm = 0.0
     open_orders = 0
@@ -378,6 +381,7 @@ def read_book(agent: dict, scripts: dict[str, str], by_script: dict[str, str],
         "in_flight_usdm": flight_usdm,
         "receipt_ada": receipt_ada,
         "receipt_usdm_eq": receipt_usdm_eq,
+        "q_usdm_raw": q_usdm_raw,
         "receipts_fully_priced": receipts_fully_priced,
         "open_orders": open_orders,
         "positions": positions,
@@ -624,8 +628,18 @@ def build_moves(agents, tx_by_hash, order_map):
                            for i in (tx.get("inputs") or []))
             fee = lovelace(tx["fee"]) if paid_fee else 0.0
 
-            kind, title, detail = describe(tx, agent, other, oset,
-                                           d_ada, d_usdm, paid_fee, fee)
+            fight_evidence = raw_fight_evidence(tx, agent, oset,
+                usdm_policy=USDM_POLICY, usdm_name=USDM_NAME_HEX)
+            # A fee-only order cancellation preserves both asset balances
+            # inside the book. It is not a zero-sized swap filled by a batcher.
+            from_order = any(i["payment_addr"]["bech32"] in oset for i in a_in)
+            to_order = any(o["payment_addr"]["bech32"] in oset for o in a_out)
+            if from_order and not to_order and fight_evidence["order_fee_status"] == "verified":
+                kind, title, detail = ("cancel", "Cancelled a DEX order",
+                    f"Returned the order's funds to the wallet. Network fee {fee:.6f} ADA; no spot trade.")
+            else:
+                kind, title, detail = describe(tx, agent, other, oset,
+                                               d_ada, d_usdm, paid_fee, fee)
             moves.append({
                 "agent": agent["id"],
                 "tx_hash": tx["tx_hash"],
@@ -639,6 +653,7 @@ def build_moves(agents, tx_by_hash, order_map):
                 "fee": round(fee, 6),
                 "deposit": round(lovelace(tx.get("deposit")), 6),
                 "explorer": EXPLORER_TX + tx["tx_hash"],
+                "fight_evidence": fight_evidence,
             })
     moves.sort(key=lambda m: (m["time"], m["agent"]))
     return moves
@@ -935,6 +950,10 @@ def main() -> int:
 
     say("4/5 reconstructing moves and costs")
     moves = build_moves(AGENTS, tx_by_hash, order_map)
+    moves = annotate_moves(moves, expected_liquid_usdm={
+        a["id"]: f"{books[a['id']]['usdm'] + books[a['id']]['in_flight_usdm']:.6f}"
+        for a in AGENTS}, expected_q_usdm_raw={a["id"]: str(books[a["id"]]["q_usdm_raw"])
+                                              for a in AGENTS})
     costs = cost_rollup(AGENTS, moves, tx_by_hash, order_map)
     say(f"    {len(moves)} agent-moves")
 
