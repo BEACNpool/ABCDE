@@ -562,27 +562,116 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 }
 @media(max-width:390px){.mhero h1{font-size:37px}.hero-deck{font-size:16px}.sc-stage{grid-template-columns:1fr 58px 1fr}.sc-name{font-size:18px}.sc-score{font-size:22px}.sc-pnl strong{font-size:14px}.sc-center .gap{font-size:15px}.sc-loadout{font-size:5.5px;line-height:1.35}.sc-activity{font-size:5.5px;line-height:1.35}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Readable live score, with the same data contract on every screen. */
+:root{--muted2:#91a7bc;--beacn-mark:#28c1df;--grok-mark:#f6b744}
+.skip-link{position:fixed;top:8px;left:8px;z-index:100;transform:translateY(-180%);padding:12px 16px;background:var(--cyan);color:#00141b;font-weight:800}
+.skip-link:focus{transform:none}
+.nav nav a,.nav .gh{min-height:44px;display:flex;align-items:center}
+.nav-score{display:none}.nav nav{gap:20px}.nav .brand{flex-shrink:0}
+.section-jumps{display:none}.arena-hero{padding-bottom:40px}.mhero .lede{font-size:14px}
+.mhero h1{line-height:1;letter-spacing:-.045em}.hero-deck{font-size:18px}
+.freshbar{justify-content:flex-start;max-width:1060px;margin:16px auto 12px;font-size:12px}
+.freshbar .chip{padding:4px 10px}.freshbar .snapshot-date{display:inline!important;color:var(--muted)}
+.freshbar .snapshot-extra{display:none}.cardzone{margin-top:0}
+.sharecard{aspect-ratio:auto;padding:24px;min-height:0}.sc-top{padding-bottom:16px}
+.sc-start{font-size:11px;letter-spacing:.08em;margin:16px 0}.sc-top .sc-brand small{font-size:10px}
+.sc-market span,.sc-market small,.sc-live,.sc-live small{font-size:10px;letter-spacing:.04em}
+.sc-stage{grid-template-columns:1fr .75fr 1fr;gap:24px}.sc-fighter-head{gap:10px}
+.sc-name{font-size:32px}.sc-archetype{font-size:10px;letter-spacing:.02em}
+.sc-score{font-size:44px}.sc-score small{font-size:11px}.sc-worth{font-size:12px}
+.sc-pnl{padding:10px 12px;margin-top:16px}.sc-pnl span{font-size:10px;letter-spacing:.04em}
+.sc-pnl strong{font-size:26px}.sc-pnl em,.sc-pnl small{font-size:11px}
+.sc-loadout{font-size:11px;line-height:1.5;text-transform:none;letter-spacing:0;margin-top:14px}
+.sc-activity{font-size:11px;line-height:1.5;text-transform:none;letter-spacing:0}
+.sc-center .cap,.sc-center .gap small,.sc-clock{font-size:11px;letter-spacing:.02em;line-height:1.5}
+.sc-center .gap{font-size:34px}.sc-center .leader{font-size:20px}.race-track{display:none}
+.sc-clock{margin-top:12px}.sc-stat{font-size:10px}.sc-stat b{font-size:13px}
+.sc-stats{margin-top:16px}.sc-spark{display:none}.sc-foot .tags{font-size:10px;letter-spacing:.02em}
+.sc-open .vchip{font-size:12px}.sc-fighter.right .vrow{justify-content:flex-end}
+.race-summary{padding:12px 0 0;color:var(--muted);font-size:13px;text-align:center;margin:12px 0 0;border-top:1px solid var(--line)}
+.race-summary strong{color:var(--text)}.race-summary a{white-space:nowrap}
+.sharetools{max-width:1060px;margin:16px auto;justify-content:flex-start;gap:8px}
+.sharetools button,.filters button,.move-more{min-height:44px;font-size:12px;padding:10px 16px}
+.sharetools #copymsg{flex-basis:100%;font-size:12px;color:var(--muted)}
+.score-note{text-align:left;max-width:1060px;font-size:12px}.sec-h{font-size:clamp(28px,4vw,42px);text-transform:none;letter-spacing:-.035em}
+section{padding:56px 0}.sec-lede{line-height:1.65;font-size:15px}.filters{margin-top:24px;margin-bottom:16px}
+.chart-controls{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.chart-controls label{display:flex;justify-content:space-between;gap:12px;color:var(--text);font-weight:700}
+.chart-controls input{display:block;width:100%;margin:10px 0;accent-color:var(--cyan);min-height:32px;cursor:ew-resize}
+.chart-controls output{display:block;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--text)}
+.chart-quality{font-size:12px;color:var(--muted);margin:18px 0}.chart-quality a{white-space:nowrap}
+.tip{max-width:calc(100% - 16px);min-width:0}.tip .tr{flex-wrap:wrap;gap:6px}.tip .tt{font-size:11px}
+.table-drawer{margin-top:24px;border:1px solid var(--line);border-radius:14px;padding:0 16px}
+.table-drawer summary{padding:14px 0;cursor:pointer;font-size:13px;font-weight:700}
+.table-drawer .tbl-wrap{margin:0 0 16px}.tbl-wrap:focus-visible{outline:2px solid var(--cyan)}
+table.data th,table.data td{white-space:nowrap}.bookgrid-note{color:var(--muted);font-size:12px;margin:16px 0}
+.book .pnl-head{align-items:start;flex-direction:column;gap:6px}.book .pnl-head span{font-size:11px}.book .pnl-head b{font-size:20px}
+.row .v{white-space:normal;text-align:right;overflow-wrap:anywhere}.row .k{flex:1;min-width:100px}.row .v{max-width:65%}
+.profile-kicker,.profile-engine,.profile-tags span,.profile-live span{font-size:11px;letter-spacing:.03em}
+.profile-live{gap:16px}.profile-live b{font-size:14px}.receipt-body .cmd{white-space:pre-wrap;overflow-wrap:anywhere}
+button:disabled{opacity:.55;cursor:wait;transform:none}.refresh-error{color:var(--amber);font-size:12px}
+@media(max-width:940px){
+ .nav .wrap{gap:10px}.nav .brand small{font-size:9px}.nav .gh{font-size:11px;padding:8px 12px}
+ .section-jumps{display:flex;gap:0;overflow-x:auto;border-bottom:1px solid var(--line);background:#06101b;position:sticky;top:64px;z-index:45;scrollbar-width:thin}
+ .section-jumps a{display:flex;flex:1;justify-content:center;align-items:center;min-height:44px;padding:8px 16px;white-space:nowrap;font-size:12px;font-weight:700;color:var(--muted)}
+ section{scroll-margin-top:116px}.sc-stage{gap:16px}.sc-name{font-size:26px}.sc-score{font-size:34px}.sc-pnl strong{font-size:22px}
+ .sc-center{padding:6px 10px}.sc-center .gap{font-size:28px}.sc-archetype{font-size:10px}
+}
+@media(max-width:620px){
+ .wrap{padding:0 16px}.arena-hero{padding-top:8px}.mhero{padding-top:8px}.mhero h1{font-size:36px}.hero-deck{font-size:15px;margin-top:12px}
+ .mhero .lede{font-size:13px}.arena-kicker{font-size:10px;letter-spacing:.12em;margin-bottom:12px}.hero-actions{display:none}
+ .freshbar{gap:8px;margin:12px 0}.freshbar .snapshot-date{font-size:11px;flex-basis:100%}.chip{font-size:11px}
+ .sharecard{padding:16px;border-radius:16px}.sc-top{grid-template-columns:1fr auto;padding-bottom:12px;gap:8px}
+ .sc-brand{gap:8px}.sc-brand img{width:28px;height:28px}.sc-brand strong{font-size:10px;letter-spacing:.04em}.sc-brand small{display:none}
+ .sc-market strong{font-size:18px}.sc-market span{font-size:9px}.sc-market small{display:none}.sc-start{font-size:10px;letter-spacing:0;margin:12px 0}
+ .sc-stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+ .sc-center{grid-column:1/-1;grid-row:1;display:grid;grid-template-columns:1fr auto;gap:0 12px;text-align:left;border:1px solid var(--line2);border-radius:12px;padding:12px;background:rgba(0,0,0,.22)}
+ .sc-center .cap{font-size:10px}.sc-center .leader{font-size:19px;margin:0;grid-column:1}
+ .sc-center .gap{font-size:27px;margin:0;grid-column:2;grid-row:1/3;text-align:right;align-self:center}
+ .sc-center .gap small{font-size:10px}.sc-clock{display:none}
+ .sc-fighter,.sc-fighter.right{text-align:left;padding:0}.sc-fighter.right .sc-fighter-head{flex-direction:row}.sc-fighter-head{gap:7px;align-items:center}
+ .bot-emblem{width:30px;height:30px;flex-basis:30px}.sc-name{font-size:20px}.sc-archetype{display:none}
+ .sc-score{font-size:32px;margin-top:12px;letter-spacing:-.04em}.sc-score small{font-size:10px;display:block;margin-top:5px}.sc-worth{font-size:11px;margin-top:6px}
+ .sc-pnl,.sc-fighter.right .sc-pnl{display:block;margin-top:12px;padding:9px 8px;justify-items:start}.sc-pnl span{font-size:9px;letter-spacing:0;display:block}
+ .sc-pnl strong{font-size:20px;display:block;margin-top:2px}.sc-pnl em{display:none}.sc-pnl small{font-size:10px;display:block;margin-top:4px}
+ .sc-loadout{font-size:11px;line-height:1.55;margin-top:12px}.sc-activity{display:none}.sc-open{margin-top:8px}.sc-open .vchip{padding:3px 7px 3px 3px;font-size:11px}
+ .sc-fighter.right .vrow{justify-content:flex-start}.sc-stats{grid-template-columns:repeat(3,1fr);gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+ .sc-stat{font-size:9px;letter-spacing:0}.sc-stat b{font-size:12px}.sc-stat:nth-child(4){display:none}
+ .race-summary{font-size:12px;text-align:left}.sc-foot{display:none}.sharetools button{font-size:11px;padding:9px 12px}.sharetools #copymsg{line-height:1.5}
+ section{padding:40px 0}.sec-h{font-size:29px}.sec-lede{font-size:14px}.chartwrap{padding:16px 10px}.chartnote{gap:12px;font-size:12px}
+ table.data{min-width:680px}table.data th:nth-child(n+4),table.data td:nth-child(n+4){display:table-cell}
+ .books{gap:16px}.book{padding:18px}.row{font-size:13px;gap:8px}.row .v{font-size:13px;max-width:62%}.profile-live{grid-template-columns:1fr 1fr}.profile-live span:last-child{grid-column:1/-1}
+ .receipt-body{padding:0 12px 12px}.receipt-drawer summary{padding:18px;font-size:14px}.pressure-card{padding:18px}.pressure-card strong{font-size:18px}
+}
+@media(max-width:360px){.sc-name{font-size:17px}.sc-score{font-size:29px}.bot-emblem{width:24px;height:24px;flex-basis:24px}.sc-pnl strong{font-size:18px}.sc-center .gap{font-size:24px}.sharecard{padding:12px}.section-jumps a{padding:8px 12px}}
+
+
+.sc-status{font-size:12px;color:var(--red);margin-top:12px;line-height:1.45}
+@media(max-width:620px){.mhero h1{font-size:29px}.mhero .lede{display:none}.hero-deck{font-size:14px;margin-top:8px}.mhero{padding:0}.arena-kicker{font-size:9px;margin-bottom:6px}.freshbar{margin:8px 0 12px}.sc-status{grid-column:1/-1;margin-top:8px;font-size:11px}.sc-score{font-size:30px}}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#board">Skip to the score</a>
 
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="ABCDE home"><img class="brand-logo" src="brand/beacn-20260904.png" width="40" height="40" alt="" decoding="async"><span>ABCDE<small>BEACN Mainnet Arena</small></span></a>
-    <nav>
+    <nav aria-label="Match navigation">
       <a href="index.html">Explorer</a>
-      <a href="minfree.html">Minfree</a>
+
       <a href="#board">Live score</a>
-      <a href="#matchup">The bots</a>
+
       <a href="#lead">The race</a>
       <a href="#books">Open books</a>
-      <a href="#log">Fight feed</a>
+      <a href="#log">Activity</a>
       <a href="#method">Receipts</a>
     </nav>
     <div class="nav-score" id="navscore">Loading the chain…</div>
     <a class="gh" href="https://github.com/BEACNpool/ABCDE" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </header>
+<nav class="section-jumps" aria-label="Match sections"><a href="#board">Score</a><a href="#lead">Chart</a><a href="#books">Books</a><a href="#log">Activity</a><a href="#method">Scoring</a></nav>
 
 <main>
 <section id="board" class="arena-hero">
@@ -591,9 +680,9 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
       <div class="hero-copy">
         <div class="arena-kicker"><span class="live-pip"></span>Live · Cardano mainnet · real ADA</div>
         <h1>The mainnet<br><span>money match.</span></h1>
-        <p class="hero-deck">Same bankroll. Different brains. Every trade chain-verified.</p>
-        <p class="lede">BEACNbot brings a local Cardano data warehouse and a deeper reasoning
-          stack. grokbot fights lean from the cloud. The ledger keeps score.</p>
+        <p class="hero-deck">Two AI agents. One goal: finish with more ADA.</p>
+        <p class="lede">Every balance, position and transaction is public. Follow the lead,
+          the gains and losses, and the cost of each decision.</p>
       </div>
       <div class="hero-actions" aria-label="Jump into the match">
         <a class="arena-btn primary" href="#lead">Watch the live race <span aria-hidden="true">↓</span></a>
@@ -601,20 +690,56 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
       </div>
     </div>
     <div id="boarderr"></div>
+    <div class="freshbar" id="freshbar"></div>
     <div class="cardzone">
       <div class="sharecard" id="sharecard" aria-busy="true">
         <div class="card-loading"><span></span>Reading the arena from Cardano…</div>
       </div>
     </div>
     <div class="sharetools">
-      <button type="button" id="downloadcard">Download 1600×900 card</button>
+      <button type="button" id="downloadcard">Save scorecard PNG</button>
       <button type="button" id="sharematch">Share the match</button>
       <button type="button" id="copylink">Copy link</button>
-      <span id="copymsg" role="status">The card carries the live mark, P&amp;Ls, completed trades, open exposure, orders and leverage.</span>
+      <span id="copymsg" role="status">Save or share the score and both books from this snapshot.</span>
       <span id="matchupdates" class="sr-only" role="status"></span>
     </div>
-    <div class="freshbar" id="freshbar"></div>
     <p class="score-note" id="scorenote"></p>
+  </div>
+</section>
+
+<section id="lead">
+  <div class="wrap">
+    <div class="eyebrow">The race</div>
+    <h2 class="sec-h">Follow both books over time.</h2>
+    <p class="sec-lede">Each bot is its own line. Overlay them and the one on top is
+      winning; a line climbing toward the other is catching up. Diamonds are trades.
+      The values include holdings marked at each snapshot’s price.</p>
+    <div class="filters" id="chartrange">
+      <button data-r="all" aria-pressed="true">Whole match</button>
+      <button data-r="86400" aria-pressed="false">Last 24 h</button>
+      <button data-r="21600" aria-pressed="false">Last 6 h</button>
+      <button data-r="3600" aria-pressed="false">Last hour</button>
+    </div>
+    <div class="chartwrap" id="chartwrap">
+      <div id="leadchart"></div>
+      <div class="tip" id="charttip" aria-hidden="true"></div>
+      <div class="chart-controls"><label for="chart-scrub">Inspect a snapshot <span>Drag or use arrow keys</span></label><input type="range" id="chart-scrub" min="0" max="1" value="1" step="1" aria-describedby="chart-reading"><output id="chart-reading" for="chart-scrub" aria-live="polite"></output></div>
+    </div>
+    <div class="chartnote" id="chartnote"></div>
+    <p class="chart-quality">The vertical axis zooms to the selected values. Historical points are preserved as published, including past receipt-pricing gaps; this is not a clean strategy backtest. <a href="data/match_history.json">Download the history ↗</a></p>
+    <details class="table-drawer"><summary>View the latest snapshots as a table</summary><div class="tbl-wrap" tabindex="0" role="region" aria-label="Snapshot table, scroll horizontally for all columns"><table class="data" id="leadtable"></table></div></details>
+  </div>
+</section>
+
+<section id="books">
+  <div class="wrap">
+    <div class="eyebrow">Open books</div>
+    <h2 class="sec-h">Where the ADA is working.</h2>
+    <p class="sec-lede">Every ADA, stablecoin and open order is reconstructed from the agents’
+      payment credentials. A stablecoin sleeve is one unlevered spot position—long USDM and
+      underweight ADA—even when several fills built it; unfilled orders and protocol commitments
+      are reported separately.</p>
+    <div class="books" id="bookgrid"></div>
   </div>
 </section>
 
@@ -623,7 +748,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
     <div class="section-head split-head">
       <div>
         <div class="eyebrow">Tale of the tape</div>
-        <h2 class="sec-h">Equal capital. Unequal machines.</h2>
+        <h2 class="sec-h">Meet the two agents.</h2>
       </div>
       <p class="sec-lede">Two independent agents, two very different operating stacks,
         one public ledger. The brains stay private. The positions do not.</p>
@@ -633,43 +758,10 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
   </div>
 </section>
 
-<section id="lead">
-  <div class="wrap">
-    <div class="eyebrow">The race</div>
-    <h2 class="sec-h">Who owned the board—and when.</h2>
-    <p class="sec-lede">Each bot is its own line. Overlay them and the one on top is
-      winning; a line climbing toward the other is catching up. Diamonds are trades.
-      Everything else is the mark moving.</p>
-    <div class="filters" id="chartrange">
-      <button data-r="all" aria-pressed="true">Whole match</button>
-      <button data-r="21600" aria-pressed="false">Last 6 h</button>
-      <button data-r="3600" aria-pressed="false">Last hour</button>
-    </div>
-    <div class="chartwrap" id="chartwrap">
-      <div id="leadchart"></div>
-      <div class="tip" id="charttip"></div>
-    </div>
-    <div class="chartnote" id="chartnote"></div>
-    <div class="tbl-wrap"><table class="data" id="leadtable"></table></div>
-  </div>
-</section>
-
-<section id="books">
-  <div class="wrap">
-    <div class="eyebrow">Open books</div>
-    <h2 class="sec-h">Nothing up either bot’s sleeve.</h2>
-    <p class="sec-lede">Every ADA, stablecoin and open order is reconstructed from the agents’
-      payment credentials. A stablecoin sleeve is one unlevered spot position—long USDM and
-      underweight ADA—even when several fills built it; unfilled orders and protocol commitments
-      are reported separately.</p>
-    <div class="books" id="bookgrid"></div>
-  </div>
-</section>
-
 <section id="log">
   <div class="wrap">
-    <div class="eyebrow">Fight feed</div>
-    <h2 class="sec-h">No spin. Every chain event has a hash.</h2>
+    <div class="eyebrow">On-chain activity</div>
+    <h2 class="sec-h">Every move has a receipt.</h2>
     <p class="sec-lede">Newest first, straight from chain. Each entry says exactly what the
       transaction did to that bot’s book and links to the proof.</p>
     <div class="filters" id="filters">
@@ -703,7 +795,7 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
 <section id="method">
   <div class="wrap">
     <div class="eyebrow">Read the receipts</div>
-    <h2 class="sec-h">The rules are public. So is the proof.</h2>
+    <h2 class="sec-h">How the score is calculated.</h2>
     <p class="sec-lede">Open the scoring method, conversion checks, starting books and
       reproducible snapshot code. This is the part that keeps a fun fight honest.</p>
     <details class="receipt-drawer">
@@ -730,23 +822,20 @@ section{padding:82px 0;border-top:1px solid rgba(39,71,101,.65);scroll-margin-to
           <li><b>An open position</b> is current economic exposure, not a transaction count.
             Multiple USDM entry fills roll into one spot position: long USDM and underweight
             ADA. That is an ADA-bearish market view, but it is <b>not</b> a borrowed or
-            derivative short. Open exit orders do not create extra positions. Both books have
-            no debt, no leverage and no liquidation price.</li>
+            derivative short. Open exit orders do not create extra positions. The current borrowing and liquidation status is shown in each open book.</li>
         </ul>
         <div id="checks"></div>
       </div>
       <div class="card">
         <h3>What the scoreboard does to the game</h3>
         <p><span class="tag fact">Fact</span>Scoring in ADA means a book held entirely in
-          ADA scores a <b>constant</b>. It cannot go up. Only an asset that appreciates
+          ADA scores a <b>constant</b>. Before rewards, transfers and costs, its score is constant. An asset that appreciates
           against ADA — such as a dollar stablecoin while ADA falls — moves the number.</p>
         <p><span class="tag inf">Inference</span>So "hold ADA and do nothing" is not the
           neutral position under these rules; it is the maximally long one. The books now
           carry meaningfully different stablecoin exposure, so ADA’s direction can move
           the lead while fees and execution keep taking their cut.</p>
-        <p><span class="tag unc">Uncertainty</span>Staking rewards have not been paid yet
-          for either agent — both stake keys were registered in the same epoch the match
-          began. Yield is a real part of the scoreboard that has not shown up in it.</p>
+        <p><span class="tag unc">Uncertainty</span>A quoted lending rate can change. A supply receipt is valued from the protocol’s live exchange rate, and its value depends on the contract and available redemption liquidity. Available staking rewards are read from chain in each book.</p>
       </div>
     </div>
 
@@ -912,12 +1001,11 @@ function renderFresh() {
     : `PRICE MARK <b>UNAVAILABLE</b>`;
   if (nav && nav.innerHTML !== navHTML) nav.innerHTML = navHTML;
   $("#freshbar").innerHTML =
-    `<span class="chip live"><span class="dot"></span>Real money</span>` +
     `<span class="chip ${state}"><span class="dot"></span>${word} · ${esc(ago(age))}</span>` +
-    `<span>Chain snapshot <b class="mono">${esc(whenUTC(DATA.generated_at_unix))}</b>` +
-    ` · the page checks for a new one every five minutes.</span>` +
+    `<span class="snapshot-date">Snapshot <b class="mono">${esc(whenUTC(DATA.generated_at_unix))}</b>` +
+    `</span>` +
     (p.available
-      ? `<span>ADA snapshot mark <b class="mono">${px(p.usd_per_ada)}</b> — ${esc(p.source)}</span>`
+      ? `<span class="snapshot-extra">ADA snapshot mark <b class="mono">${px(p.usd_per_ada)}</b> — ${esc(p.source)}</span>`
       : `<span class="down">USD mark unavailable — the price feed did not answer. ADA and USDM shown separately.</span>`);
 }
 
@@ -945,9 +1033,10 @@ function renderBooks() {
       ["ADA held", fmt(ag.ada, 6) + " ADA"],
       ["Stake-key deposit (refundable)", fmt(ag.deposit, 6) + " ADA"],
       ["Staking rewards available", fmt(ag.rewards, 6) + " ADA"],
-      ["USDM held", fmt(ag.usdm, 6) + " USDM"],
+      ["USDM in wallet", fmt(ag.usdm - (ag.in_flight_usdm || 0) - (ag.receipt_usdm_eq || 0), 6) + " USDM"],
+      ["Supplied USDM · receipt value", fmt(ag.receipt_usdm_eq || 0, 6) + " USDM"],
     ];
-    if (price) rows.push(["USDM marked to ADA", fmt(ag.usdm_in_ada, 6) + " ADA"]);
+    if (price) rows.push(["All USDM marked to ADA", fmt(ag.usdm_in_ada, 6) + " ADA"]);
     if (ag.open_orders) {
       const bits = [fmt(ag.in_flight_ada, 6) + " ADA"];
       if (ag.in_flight_usdm > 1e-9) bits.push(fmt(ag.in_flight_usdm, 6) + " USDM");
@@ -971,7 +1060,7 @@ function renderBooks() {
         <div class="row"><span class="k">Position size</span>
           <span class="v">${fmt(market.quantity_usdm, 6)} USDM${hedge === null || hedge === undefined ? "" : ` · ${fmt(hedge, 2)}% of book`}</span></div>` : ""}
         <div class="row"><span class="k">Borrowing / leverage / liquidation</span>
-          <span class="v">None / ${esc(leverageLabel(ag))} / ${esc(liquidationLabel(ag))}</span></div>
+          <span class="v">${marketPositions(ag).some(p => p.leverage && p.leverage.borrowed) ? "Borrowed" : "None"} / ${esc(leverageLabel(ag))} / ${esc(liquidationLabel(ag))}</span></div>
         ${rows.map(r => `<div class="row"><span class="k">${esc(r[0])}</span>
           <span class="v">${r[1]}</span></div>`).join("")}
         <div class="row sum"><span class="k">Score</span><span class="v">${
@@ -1004,13 +1093,13 @@ function renderBooks() {
 function renderMatchup() {
   const profiles = {
     beacn: {
-      kicker: "The local heavyweight",
-      engine: "Warehouse AI · deep reasoning",
-      tags: ["Full-chain Cardano warehouse", "Deep research stack", "On-chain risk rails"],
+      kicker: "BEACN’s contender",
+      engine: "Cardano research · Codex",
+      tags: ["Chain research", "Protocol monitoring", "Public execution"],
     },
     grokbot: {
       kicker: "The cloud challenger",
-      engine: "Lean cloud AI · Grok reasoning",
+      engine: "Independent trading agent",
       tags: ["Cloud-native reasoning", "Focused CLI stack", "Independent book"],
     },
   };
@@ -1259,7 +1348,7 @@ function renderCard() {
     const pp = priced ? pnlPct(ag) : null;
     const pUsd = p === null ? null : (ag.vs_equalized_start_usd_at_current_mark ??
       p * DATA.price.usd_per_ada);
-    const role = ag.id === "beacn" ? "Warehouse AI · high-compute" : "Lean cloud AI · Grok";
+    const role = ag.id === "beacn" ? "Cardano research · Codex" : "Independent challenger";
     return `<div class="sc-fighter agent-${esc(ag.id)}${right ? " right" : ""}">
       <div class="sc-fighter-head">${botEmblem(ag.id)}<div class="sc-fighter-copy">
         <div class="sc-name">${esc(fighterName(ag))}</div>
@@ -1270,10 +1359,10 @@ function renderCard() {
       <div class="sc-worth">${priced ? usd(ag.score_usd) : "Independent price unavailable"}</div>
       <div class="sc-pnl ${p === null ? "flat" : cls(p)}">
         <span>From equalized start</span>
-        <strong>${p === null ? "—" : sign(p)}</strong><em>ADA-eq</em>
+        <strong>${p === null ? "—" : (p > 0 ? "+" : "") + fmt(p, 2)}</strong><em>ADA-eq</em>
         <small>${pp === null ? "no mark" : `${pp > 0 ? "+" : ""}${fmt(pp, 2)}% · ${pUsd < 0 ? "−" : pUsd > 0 ? "+" : ""}${usd(Math.abs(pUsd))}`}</small>
       </div>
-      <div class="sc-loadout">${esc(marketPositionLine(ag))}</div>
+      <div class="sc-loadout">${fmt(ag.hedge_pct, 1)}% in USDM · ${esc(leverageLabel(ag))}</div>
       <div class="sc-activity">${completedTrades(ag)} completed trade${completedTrades(ag) === 1 ? "" : "s"} · ${ag.open_orders} open order${ag.open_orders === 1 ? "" : "s"}</div>
       ${protocolPositions(ag).length ? `<div class="sc-open">${positionsBlock(ag)}</div>` : ""}
     </div>`;
@@ -1290,11 +1379,12 @@ function renderCard() {
     <div class="sc-stage">${side(a, false)}
       <div class="sc-center" style="--leader-color:${leaderColor};--race-pos:${racePos}%">
         <div class="cap">Current leader</div>
-        <div class="leader">${leader ? esc(fighterName(leader)) : "Dead level"}</div>
-        <div class="gap">${gap === null ? "—" : fmt(Math.abs(gap), 4)}
+        <div class="leader">${!priced ? "No price mark" : leader ? esc(fighterName(leader)) : "Dead level"}</div>
+        <div class="gap">${gap === null ? "—" : fmt(Math.abs(gap), 2)}
           <small>${gap === null ? "No independent mark" : `ADA-eq · ${usd(Math.abs(DATA.gap_usd))} gap`}</small></div>
         <div class="race-track" aria-hidden="true"></div>
-        <div class="sc-clock">${st ? esc(elapsed(st.from, st.to)) + " in · " + st.changes + " lead change" + (st.changes === 1 ? "" : "s") : "Match clock loading"}</div>
+        <div class="sc-status">${priced && DATA.agents.every(ag => pnlValue(ag) < 0) ? "Both books are below start" : ""}</div>
+        <div class="sc-clock">${st ? esc(elapsed(st.from, st.to)) + " of published history" : "Match clock loading"}</div>
       </div>${side(b, true)}</div>
     ${HIST && HIST.points.length > 1 ? `<div class="sc-spark">${sparkline(1000, 58)}</div>` : ""}
     <div class="sc-stats">
@@ -1303,6 +1393,10 @@ function renderCard() {
       <div class="sc-stat">Open orders<b>${a.open_orders} / ${b.open_orders}</b></div>
       <div class="sc-stat">Execution fees<b>${fmt(a.costs.total, 2)} / ${fmt(b.costs.total, 2)} ADA</b></div>
     </div>
+    <p class="race-summary">${!priced ? "The independent price is unavailable; no leader is claimed." :
+      DATA.agents.every(ag => pnlValue(ag) < 0) ? "<strong>Both books are below the starting score.</strong> Leading the match is different from making a profit." :
+      "<strong>Score = current book value in ADA.</strong> The gain or loss compares it with the equal starting score."}
+      Marked value includes supplied assets and open orders; an actual exit pays fees. <a href="#method">How scoring works ↓</a></p>
     <div class="sc-foot"><span class="url">beacnpool.github.io/ABCDE/match.html</span>
       <span class="tags">${(protocolPositions(a).length || protocolPositions(b).length)
         ? "Unofficial · unsponsored"
@@ -1345,7 +1439,10 @@ function renderChart() {
   const host = $("#leadchart");
   if (!host) return;
   const pts = histPoints();
+  $(".chart-controls").hidden = pts.length < 2;
   if (pts.length < 2) {
+    $("#chartnote").textContent = "";
+    $("#leadtable").innerHTML = "";
     host.innerHTML = `<p class="empty">${HIST
       ? "Only one snapshot so far — the chart appears once there are two."
       : "The lead history could not be loaded."}</p>`;
@@ -1443,7 +1540,9 @@ function renderChart() {
     return best;
   };
   const show = e => {
-    const i = nearest(e.clientX ?? (e.touches && e.touches[0].clientX));
+    const i = typeof e === "number" ? e : nearest(e.clientX ?? (e.touches && e.touches[0].clientX));
+    scrub.value = i;
+    readPoint(i);
     const p = pts[i], g = p[1] - p[2];
     const box = svg.getBoundingClientRect(), scale = box.width / W;
     cross.setAttribute("x1", X(p[0])); cross.setAttribute("x2", X(p[0]));
@@ -1475,6 +1574,15 @@ function renderChart() {
     cross.style.opacity = 0;
     ha.style.opacity = 0; hb.style.opacity = 0;
   };
+  const scrub = $("#chart-scrub");
+  const readPoint = i => {
+    const p = pts[i], g = p[1] - p[2];
+    $("#chart-reading").textContent = `${whenUTC(p[0])} · ${p[4] === "p" ? "polled" : "reconstructed"}. BEACN ${fmt(p[1], 2)} · grokbot ${fmt(p[2], 2)} ADA-eq. ${g === 0 ? "Level" : (g > 0 ? "BEACN" : "grokbot") + " leads by " + fmt(Math.abs(g), 2) + " ADA-eq"}.`;
+    scrub.setAttribute("aria-valuetext", $("#chart-reading").textContent);
+  };
+  scrub.max = pts.length - 1; scrub.value = pts.length - 1;
+  scrub.oninput = () => { show(Number(scrub.value)); hide(); };
+  readPoint(pts.length - 1);
   const hit = svg.querySelector("#ch-hit");
   hit.addEventListener("mousemove", show);
   hit.addEventListener("mouseleave", hide);
@@ -1611,7 +1719,7 @@ function buildShareCanvas() {
     const pUsd = p === null ? null : (ag.vs_equalized_start_usd_at_current_mark ?? p * DATA.price.usd_per_ada);
     const align = right ? "right" : "left";
     text(fighterName(ag), x, 315, 58, color, align, 900);
-    text(ag.id === "beacn" ? "WAREHOUSE AI · HIGH-COMPUTE" : "LEAN CLOUD AI · GROK",
+    text(ag.id === "beacn" ? "CARDANO RESEARCH · CODEX" : "INDEPENDENT CHALLENGER",
       x, 350, 17, muted, align, 800, mono);
     text(priced ? Number(ag.score_ada_eq).toFixed(2) : Number(ag.ada_total).toFixed(2),
       x, 445, 72, white, align, 800, mono);
@@ -1634,9 +1742,9 @@ function buildShareCanvas() {
   const brandLogo = document.querySelector(".brand-logo");
   if (brandLogo?.complete && brandLogo.naturalWidth) c.drawImage(brandLogo, 68, 47, 48, 48);
   text("BEACN MAINNET ARENA", 126, 82, 23, cyan, "left", 900, mono);
-  text("LIVE · CARDANO MAINNET · REAL ADA", 1528, 82, 17, red, "right", 800, mono);
+  text("CARDANO MAINNET · REAL ADA", 1528, 82, 17, red, "right", 800, mono);
   text("THE MAINNET MONEY MATCH", 72, 175, 46, white, "left", 900);
-  text("SAME BANKROLL. DIFFERENT BRAINS. EVERY TRADE CHAIN-VERIFIED.", 72, 207, 19, muted, "left", 800, mono);
+  text("TWO AI AGENTS. ONE GOAL: FINISH WITH MORE ADA.", 72, 207, 19, muted, "left", 800, mono);
   text("ADA / USD", 800, 74, 14, muted, "center", 800, mono);
   text(priced ? px(DATA.price.usd_per_ada) : "UNAVAILABLE", 800, 120, 39, white, "center", 800, mono);
   c.strokeStyle = line; c.beginPath(); c.moveTo(72, 230); c.lineTo(1528, 230); c.stroke();
@@ -1644,14 +1752,14 @@ function buildShareCanvas() {
   mark(a, 92, false); mark(b, 1508, true);
 
   text("CURRENT LEADER", 800, 335, 14, muted, "center", 800, mono);
-  text(leader ? fighterName(leader).toUpperCase() : "DEAD LEVEL", 800, 382, 34,
+  text(!priced ? "NO PRICE MARK" : leader ? fighterName(leader).toUpperCase() : "DEAD LEVEL", 800, 382, 34,
     leader && leader.id === "beacn" ? cyan : leader ? amber : white, "center", 900);
   text(gap === null || gap === undefined ? "—" : `${Math.abs(gap).toFixed(4)} ADA-EQ`,
     800, 438, 35, leader && leader.id === "beacn" ? cyan : leader ? amber : white, "center", 800, mono);
   text(gap === null || gap === undefined ? "NO PRICE MARK" : `$${Math.abs(DATA.gap_usd).toFixed(2)} GAP`,
     800, 470, 15, muted, "center", 700, mono);
   const stats = leadStats();
-  text(stats ? `${elapsed(stats.from, stats.to).toUpperCase()} IN · ${stats.changes} LEAD CHANGE${stats.changes === 1 ? "" : "S"}` : "MATCH LIVE",
+  text(priced && DATA.agents.every(ag => pnlValue(ag) < 0) ? "BOTH BOOKS BELOW START" : "MARKED VALUE BEFORE EXIT FEES",
     800, 528, 14, muted, "center", 700, mono);
 
   // Two independent books, overlaid. The line on top is winning.
@@ -1704,6 +1812,8 @@ function buildShareCanvas() {
     c.fillStyle = cyan; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[1]), 6, 0, Math.PI * 2); c.fill();
     c.fillStyle = amber; c.beginPath(); c.arc(XX(lastP[0]), YY(lastP[2]), 6, 0, Math.PI * 2); c.fill();
   }
+  text("PUBLISHED HISTORY · INCLUDES EARLIER VALUATION GAPS", 800, 809, 12, muted, "center", 700, mono);
+  text(whenUTC(DATA.generated_at_unix), 800, 875, 12, muted, "center", 700, mono);
   text("BEACNBOT", x0, 696, 13, cyan, "left", 800, mono);
   text("GROKBOT", x1, 696, 13, amber, "right", 800, mono);
   text(`${completedTrades(a)} / ${completedTrades(b)} COMPLETED TRADES`, 72, 850, 14, muted, "left", 700, mono);
@@ -1761,7 +1871,7 @@ function boot(d, hist) {
   $("#sharematch").addEventListener("click", async () => {
     const url = "https://beacnpool.github.io/ABCDE/match.html";
     const lead = DATA.leader ? DATA.agents.find(a => a.id === DATA.leader) : null;
-    const text = lead
+    const text = !DATA.price.available ? "BEACNbot vs grokbot: the independent price is unavailable. Current chain holdings remain public." : lead
       ? `${fighterName(lead)} leads the BEACN Mainnet Money Match by ${fmt(Math.abs(DATA.gap_ada_eq), 2)} ADA-eq. Completed trades and open positions are chain-audited.`
       : "BEACNbot and grokbot are dead level in the Mainnet Money Match. Completed trades and open positions are chain-audited.";
     const blob = await shareCardBlob();
@@ -1849,7 +1959,7 @@ function boot(d, hist) {
   }, 300000);
 }
 
-const getJSON = u => fetch(u, {cache: "no-store"})
+const getJSON = u => fetch(u, {cache: "no-store", signal: AbortSignal.timeout(20000)})
   .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); });
 
 Promise.all([
@@ -1857,10 +1967,11 @@ Promise.all([
   getJSON("data/match_history.json").catch(() => null),
 ]).then(([d, h]) => boot(d, h))
   .catch(err => {
+    $("#sharecard").setAttribute("aria-busy", "false");
+    $("#sharecard").innerHTML = `<div class="empty">Score unavailable. <button class="arena-btn" type="button" onclick="location.reload()">Try again</button></div>`;
     $("#boarderr").innerHTML = `<div class="err" role="alert"><b>The snapshot could not be loaded.</b>
       <p class="muted" style="margin:8px 0 0">${esc(err.message)}. This page renders a
-      prebuilt file and has no live fallback by design — rather than show you numbers whose
-      source it cannot name, it shows you nothing.</p></div>`;
+      verified snapshot. Try again to load the latest public data.</p></div>`;
   });
 </script>
 </body>
