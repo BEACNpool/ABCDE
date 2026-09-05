@@ -2400,7 +2400,7 @@ async function createMatchGif(){
     if(token!==gifJob)return;
     const render=MatchFightExport.createRenderer(model);
     render.render(0);gifPoster=render.canvas.toDataURL('image/png');
-    const worker=new Worker(new URL('match-share/gif-encoder-worker.js',location.href),{type:'module'});gifWorker=worker;
+    const worker=new Worker(new URL('match-share/gif-encoder-worker.js?v=20260905-stable-palette',location.href),{type:'module'});gifWorker=worker;
     const jobId=String(token),count=MatchFightExport.frameCount;
     const blob=await new Promise((resolve,reject)=>{
       gifAbort=()=>reject(new DOMException('GIF creation cancelled.','AbortError'));

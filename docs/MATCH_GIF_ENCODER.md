@@ -122,6 +122,17 @@ bounds the histogram to 4,096 bins, keeping work predictable for this mostly
 flat scoreboard. There is no dithering. This trades some photographic color
 detail for compact, stable text and graphic colors.
 
+The palette alone is insufficient to guarantee stable colors. Upstream
+`applyPalette` memoizes the first RGB value encountered in each RGB444 bin
+**per call**. Calling it separately on every frame allowed moving artwork
+earlier in scan order to change the mapped color of unchanged score text.
+The worker therefore constructs one 4,096-entry bin-to-palette lookup per job:
+it passes all fixed RGB444 bin centers through upstream `applyPalette` once,
+then maps every frame through that same immutable lookup. Identical source
+RGB values always get the same palette index, regardless of animation or
+scan order. This adds a 4 KiB lookup and a temporary 16 KiB center table;
+the upstream vendor files remain unchanged.
+
 The first GIF frame paints the complete opaque image. Every later frame uses
 the same palette; pixels unchanged from the previous fully rendered frame are
 replaced with a reserved transparent index. GIF disposal method 1 retains the
@@ -148,7 +159,7 @@ trusting encoder metadata alone. Local test artifacts are under
   a real high-entropy export rejected at the 5 MiB cap.
 - `synthetic-scoreboard.gif`: 800 × 600, 36 frames, exactly 3,000 ms, loop 0,
   57,375 bytes. All input buffers detached after transfer; 38 progress messages
-  were monotonic. Measured harness time was 258 ms on midnight, not a mobile
+  were monotonic. Measured harness time was about 0.26 seconds on midnight, not a mobile
   performance guarantee.
 - `pillow-decoder-receipt.json`: all 36 decoded RGB frames exactly match the
   synthetic source pixels, all composed alpha values are 255, and every
@@ -165,3 +176,18 @@ Root also independently encoded and Pillow-decoded the actual loss scene:
 140,468 bytes, 800 × 600, 36 frames, 3,000 ms, loop 0, with a successful visual
 review. This confirms the target on real rendered match artwork as well as
 the synthetic pixel-exact fixture.
+
+The stable-palette patch reran all 13 encoder checks and added an adversarial
+decoded-image regression. `test-stable-palette.mjs` places a moving gray patch
+earlier in scan order than unchanged gray text. Patch values 80/95 and text
+value 85 occupy the same RGB444 bin; neighboring palette values expose the
+old first-encounter cache behavior. `stable-palette-regression-receipt.json`
+records **144 changed static-text pixels before the fix, zero after**; the
+maximum channel change falls from 17 to zero. The before/after GIFs are
+retained beside that receipt. This test explicitly fails under the archived
+old worker and passes under the fixed worker.
+
+Independent browser download/Pillow checks then verified the actual latest
+setup GIF (95,031 bytes) and actual loss GIF (135,493 bytes). Both have
+**zero changed score or move-caption pixels across all 36 decoded frames**.
+The comparison uses exact pixel equality, with no relaxed tolerance.

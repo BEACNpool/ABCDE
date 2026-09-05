@@ -115,6 +115,31 @@ function paletteSamples() {
   return samples;
 }
 
+function stablePaletteLookup(palette) {
+  // Upstream applyPalette caches a bin's first encountered RGB value. Calling
+  // it separately per frame lets moving art change unchanged text's mapping.
+  // Visit every RGB444 bin exactly once at a fixed center, then reuse this
+  // immutable mapping for the whole animation.
+  const centers = new Uint8Array(4096 * 4);
+  for (let bin = 0; bin < 4096; bin++) {
+    const offset = bin * 4;
+    centers[offset] = ((bin >> 8) & 15) * 16 + 8;
+    centers[offset + 1] = ((bin >> 4) & 15) * 16 + 8;
+    centers[offset + 2] = (bin & 15) * 16 + 8;
+    centers[offset + 3] = 255;
+  }
+  return applyPalette(centers, palette, FORMAT);
+}
+
+function mapStablePalette(rgba, lookup) {
+  const indexed = new Uint8Array(rgba.length / 4);
+  for (let offset = 0, pixel = 0; offset < rgba.length; offset += 4, pixel++) {
+    const bin = ((rgba[offset] >> 4) << 8) | (rgba[offset + 1] & 0xf0) | (rgba[offset + 2] >> 4);
+    indexed[pixel] = lookup[bin];
+  }
+  return indexed;
+}
+
 function finish() {
   if (job.phase !== 'collect' || job.frames.length !== job.frameCount ||
       job.receivedBytes !== job.expectedRawBytes) {
@@ -128,13 +153,14 @@ function finish() {
   }
   const transparentIndex = palette.length;
   const globalPalette = [...palette, [0, 0, 0]];
+  const lookup = stablePaletteLookup(palette);
   send('progress', { phase: 'palette', completed: 1, total: 1, progress: 0.1 });
 
   const gif = GIFEncoder({ initialCapacity: 128 * 1024 });
   let previous = null;
   for (let index = 0; index < job.frames.length; index++) {
     const source = job.frames[index];
-    const current = applyPalette(source.rgba, palette, FORMAT);
+    const current = mapStablePalette(source.rgba, lookup);
     source.rgba = null; // release each retained input as encoding advances
     let encoded = current;
     if (previous) {
