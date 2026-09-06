@@ -175,7 +175,7 @@
       "sample_rows": [
         {
           "generated_by": "scripts/build_genesis_db.py",
-          "git_commit": "686112156714",
+          "git_commit": "57a7a6e7d3b6",
           "source_generated_utc": "2026-07-04 04:10:04+00:00",
           "db_tip_block": 13632752,
           "db_tip_time": "2026-07-04 04:09:53",
@@ -8586,7 +8586,7 @@
     },
     "relay_asn_concentration": {
       "source": "data/small/relay_asn_concentration.csv",
-      "row_count": 247,
+      "row_count": 246,
       "columns": [
         {
           "name": "asn",
@@ -8652,18 +8652,18 @@
           "asn": 16276,
           "as_name": "OVH - OVH SAS, FR",
           "country": "CA",
-          "pools": 177,
-          "stake_ada": 5302075482,
-          "delegators": 665640,
-          "pools_single_asn": 86,
-          "stake_single_asn": 1163238910,
-          "delegators_single_asn": 259253
+          "pools": 198,
+          "stake_ada": 5449880313,
+          "delegators": 689373,
+          "pools_single_asn": 107,
+          "stake_single_asn": 1307285670,
+          "delegators_single_asn": 282482
         }
       ]
     },
     "relay_endpoint_status": {
       "source": "data/small/relay_endpoint_status.csv",
-      "row_count": 4585,
+      "row_count": 4587,
       "columns": [
         {
           "name": "endpoint",
@@ -8728,11 +8728,11 @@
           "handshake_ok": true,
           "failure": null,
           "error_detail": null,
-          "rtt_ms": 216.69,
-          "block_no": 13899596,
+          "rtt_ms": 220.48,
+          "block_no": 13904002,
           "slots_behind_tip": 0,
           "at_tip": true,
-          "checked_at": "2026-09-05 02:40:06+00:00"
+          "checked_at": "2026-09-06 02:40:06+00:00"
         },
         {
           "endpoint": "dns:010011.dyndns.org",
@@ -8743,11 +8743,11 @@
           "handshake_ok": true,
           "failure": null,
           "error_detail": null,
-          "rtt_ms": 215.3,
-          "block_no": 13899596,
+          "rtt_ms": 219.85,
+          "block_no": 13904002,
           "slots_behind_tip": 0,
           "at_tip": true,
-          "checked_at": "2026-09-05 02:40:06+00:00"
+          "checked_at": "2026-09-06 02:40:06+00:00"
         },
         {
           "endpoint": "dns:01-cardano-ada.dlinodes.com",
@@ -8762,7 +8762,7 @@
           "block_no": null,
           "slots_behind_tip": null,
           "at_tip": false,
-          "checked_at": "2026-09-05 02:57:45+00:00"
+          "checked_at": "2026-09-06 02:57:28+00:00"
         }
       ]
     },
@@ -8866,7 +8866,7 @@
     },
     "relay_pool_endpoints": {
       "source": "data/small/relay_pool_endpoints.csv",
-      "row_count": 6225,
+      "row_count": 6228,
       "columns": [
         {
           "name": "pool_bech32",
@@ -8940,7 +8940,7 @@
           "failure": "timeout",
           "rtt_ms": null,
           "at_tip": false,
-          "checked_at": "2026-09-05 03:18:45+00:00"
+          "checked_at": "2026-09-06 03:17:22+00:00"
         },
         {
           "pool_bech32": "pool1030as3pp5684ghgf4kzcpv4p2jnmkmme7j363t95690zwxp7wa0",
@@ -8954,9 +8954,9 @@
           "resolved_ip": "62.171.185.139",
           "handshake_ok": true,
           "failure": null,
-          "rtt_ms": 1365.47,
+          "rtt_ms": 114.25,
           "at_tip": true,
-          "checked_at": "2026-09-05 02:43:37+00:00"
+          "checked_at": "2026-09-06 02:43:33+00:00"
         },
         {
           "pool_bech32": "pool1030as3pp5684ghgf4kzcpv4p2jnmkmme7j363t95690zwxp7wa0",
@@ -8970,9 +8970,9 @@
           "resolved_ip": "194.156.151.163",
           "handshake_ok": true,
           "failure": null,
-          "rtt_ms": 134.22,
+          "rtt_ms": 130.96,
           "at_tip": true,
-          "checked_at": "2026-09-05 02:44:25+00:00"
+          "checked_at": "2026-09-06 02:44:18+00:00"
         }
       ]
     },
@@ -9071,7 +9071,7 @@
           "ticker": "TW001",
           "stake_ada": 113314118,
           "delegators": 35771,
-          "blocks_last_30_epochs": 3545,
+          "blocks_last_30_epochs": 3567,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 3,
@@ -9084,17 +9084,17 @@
           "reachable_hosts": 3,
           "at_tip_hosts": 3,
           "endpoints_untested": 0,
-          "best_rtt_ms": 107.18,
+          "best_rtt_ms": 101.36,
           "shares_endpoint_with_other_pool": false,
           "reachability_class": "MULTI_REACHABLE_HOSTS",
-          "last_checked": "2026-09-05 03:10:19+00:00"
+          "last_checked": "2026-09-06 03:08:55+00:00"
         },
         {
           "pool_bech32": "pool1lu2luhmkyayq9njh848kfknn6evwzmn3gzsxar7z3sttg7grxcm",
           "ticker": "PPTG1",
           "stake_ada": 112586037,
           "delegators": 5808,
-          "blocks_last_30_epochs": 2525,
+          "blocks_last_30_epochs": 2545,
           "minted_last_30_epochs": true,
           "relay_entries": 3,
           "distinct_endpoints": 1,
@@ -9107,17 +9107,17 @@
           "reachable_hosts": 1,
           "at_tip_hosts": 1,
           "endpoints_untested": 0,
-          "best_rtt_ms": 107.92,
+          "best_rtt_ms": 108.61,
           "shares_endpoint_with_other_pool": true,
           "reachability_class": "ONE_REACHABLE_HOST",
-          "last_checked": "2026-09-05 02:40:17+00:00"
+          "last_checked": "2026-09-06 02:40:17+00:00"
         },
         {
           "pool_bech32": "pool19yzqr3meksnvzdxh5xf6aknfhldyqdj7eaquxgcjva4mzt5kg3v",
           "ticker": "gjp7a",
           "stake_ada": 87707140,
           "delegators": 86,
-          "blocks_last_30_epochs": 2505,
+          "blocks_last_30_epochs": 2523,
           "minted_last_30_epochs": true,
           "relay_entries": 1,
           "distinct_endpoints": 1,
@@ -9130,16 +9130,16 @@
           "reachable_hosts": 9,
           "at_tip_hosts": 9,
           "endpoints_untested": 0,
-          "best_rtt_ms": 27.78,
+          "best_rtt_ms": 26.64,
           "shares_endpoint_with_other_pool": false,
           "reachability_class": "MULTI_REACHABLE_HOSTS",
-          "last_checked": "2026-09-05 02:56:38+00:00"
+          "last_checked": "2026-09-06 02:56:24+00:00"
         }
       ]
     },
     "relay_registration_changes": {
       "source": "data/small/relay_registration_changes.csv",
-      "row_count": 4197,
+      "row_count": 4198,
       "columns": [
         {
           "name": "pool_bech32",
@@ -9180,6 +9180,17 @@
       ],
       "sample_rows": [
         {
+          "pool_bech32": "pool1jezf7dcx26edfpxmpuh05yen64a9cj44xm2ggsapcxrtqewfek2",
+          "ticker": "CURRY",
+          "cert_number": 12,
+          "changed_at": "2026-09-05 20:18:31",
+          "tx_hash": "621d53a3615a7c9a2f2eee69f87870311f291cbc4ee35aa84e03c0cba669881d",
+          "relays_before": 1,
+          "relays_after": 2,
+          "delta": 1,
+          "direction": "added"
+        },
+        {
           "pool_bech32": "pool14fjmlppz76667ws3jl5luejf2wgztuhpsftulvh3ucc65anqgve",
           "ticker": "XSP2",
           "cert_number": 5,
@@ -9200,17 +9211,6 @@
           "relays_after": 3,
           "delta": -1,
           "direction": "reduced"
-        },
-        {
-          "pool_bech32": "pool1spus7k8cy5qcs82xhw60dwwk2d4vrfs0m5vr2zst04gtq700gjn",
-          "ticker": "ZZZ4",
-          "cert_number": 5,
-          "changed_at": "2026-09-02 07:50:00",
-          "tx_hash": "f3da7588ebca581ab027a462c720b40445c186db902caa9cdccca1fe3e31c749",
-          "relays_before": 1,
-          "relays_after": 2,
-          "delta": 1,
-          "direction": "added"
         }
       ]
     },
@@ -9274,7 +9274,7 @@
           "port": 3000,
           "defect": "url_not_hostname",
           "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
-          "blocks_all_time": 2898,
+          "blocks_all_time": 2903,
           "endpoints_registered": 2
         },
         {
@@ -9287,7 +9287,7 @@
           "port": 3000,
           "defect": "url_not_hostname",
           "why": "the relay field takes a bare hostname; a scheme or path will not resolve",
-          "blocks_all_time": 2898,
+          "blocks_all_time": 2903,
           "endpoints_registered": 2
         },
         {
@@ -9395,7 +9395,7 @@
           "stake_ada": 36377,
           "delegators": 61,
           "tickers": "REIT IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP IOGP",
-          "pool_bech32s": "pool1vp5fev56urx924nyxj5qjvzcsh76e47c4lc8xruh0rdlv0n2kvt pool1h5uycju7n5puxn2ckfkpza550rf6jk4twr6ef0hsmxft78ajt6q pool1n3agd6rep8jw3gff684mja56ns6wqmshayu0av7hxcgx7f4pnwy pool1cx8njhvw34weqykla5fz38ngt3dr4d0ltv0srqjqa8ugzap937l pool148ajvsw7z9mhgw43tqvgmfrv22azvm638knkqghqv497xvdl2tk pool1646vlaras0deljthqtfl9dpdw2xsna799l0kayyu9v44cql4ky0 pool12jqfrwhuv2jn0uymwmud2d63gp5drj08fjfart9dxgpu2tmj8a0 pool12ql6www8aa8usn98azlkz76d2htxtm9swalvyac27rlq6mdkxc7 pool1ha70qvqwnmnwpa7e575y9tgyx47aw29rvkz73mnf42z5wet5dr3 pool1y9xftc4cq0svcv0gjdtusnvllrg5v5rn0d24g8r4m7tnsem6ve8 pool1867sv2tgcq2cjmyhqgsfveekmsy5zksld69zhgrlkluukfydq29 pool1szgruqm2dlhkh5qh7rft28xz9gkxj6rzfncsuquf3vm37k63kqv pool1ge06eu8lvdj6jakxw8zuwj3yxtpmeek8j8rgwqfshj7vg390fj0 pool1j0j39t2dfmkflfnvresds8vlfhwg75qwufa95u55nw376ky29r8 pool1kcw2kqj27qe7ntsz9fhvyvyvpf7prclwc5jq4cw0qydh7cygcek pool1gctelcfktanxhqfjw88vjp9v0ayumd6lr3re38pjw3kvvc8tanq pool172fsazvg6zrpkj7c8wklsp7lrn5yxjvhru4enddvvfnyx343dyc pool1v9gqa6n4em4aly7ew2trvhgrath4mrsp9tyc290l638nvqs5aej pool18w4dzpe8wtkx29scf74qmshrf58xg760mcxu5p7s0azxufwwgec pool1q4l2wpswlanqszppj4tcvgw4j9wdjmadqky57dq0wqhg5tmhsxn pool1hfxjswx4wnpfmdad660hvzx4knjhf32uwgg6wgsnqp98x9zz927 pool19r4ef6n0xkw3pvztuwd44ymrzrkylyralnf5rudnc7hnvvddyqz pool1ygamv2t9lw03khcxpe75rjd4p8lnn36hux3deeg3hrc3jwrx43z pool1e827fy8efd7n9zacdknhtr2n5rqmry5up05mqgqsjkmmzjmzrf3 pool1q3snnww4ggayr8hd6gd83ypx982yhwlhywlcew7yxq46jzyst2g pool1v8lgn85mfvj0hhslfjz2u0nut43ahkhuzhfcm5aexjkewn8krle pool1kp0wl7kxn0zt5xtmld72s98rv6ejpufvl39qk26h99nqshmkmge pool1x5ge78ks6jc0j8nsfwyqqhk2ukxlkvz7zxlm9utgk6405hh490n pool1pmknsy9yqh06fpmduf8vzcvkzpllygjj8uzkjccgvewtq9uc53k pool1sr82s7yvwwsy6q0geveawrglt8ss39jhsfz7d0p4a5y6kk30mdd pool1t5zgwakxfmqxgu7l65fk45u33frlqrvgsvzn7demdy0ejgrhq9a pool1tjaz8a62743k5tzdd8lyd0sgf2lcvtk09jsz9etvas82zdamc2q pool10pktmr26fpvrt77j7m5mchqlt0mjmmfvt7ruvdewkcpasp0nzkl"
+          "pool_bech32s": "pool1vp5fev56urx924nyxj5qjvzcsh76e47c4lc8xruh0rdlv0n2kvt pool1h5uycju7n5puxn2ckfkpza550rf6jk4twr6ef0hsmxft78ajt6q pool1n3agd6rep8jw3gff684mja56ns6wqmshayu0av7hxcgx7f4pnwy pool1cx8njhvw34weqykla5fz38ngt3dr4d0ltv0srqjqa8ugzap937l pool148ajvsw7z9mhgw43tqvgmfrv22azvm638knkqghqv497xvdl2tk pool1646vlaras0deljthqtfl9dpdw2xsna799l0kayyu9v44cql4ky0 pool12jqfrwhuv2jn0uymwmud2d63gp5drj08fjfart9dxgpu2tmj8a0 pool1ha70qvqwnmnwpa7e575y9tgyx47aw29rvkz73mnf42z5wet5dr3 pool12ql6www8aa8usn98azlkz76d2htxtm9swalvyac27rlq6mdkxc7 pool1x5ge78ks6jc0j8nsfwyqqhk2ukxlkvz7zxlm9utgk6405hh490n pool18w4dzpe8wtkx29scf74qmshrf58xg760mcxu5p7s0azxufwwgec pool172fsazvg6zrpkj7c8wklsp7lrn5yxjvhru4enddvvfnyx343dyc pool1kcw2kqj27qe7ntsz9fhvyvyvpf7prclwc5jq4cw0qydh7cygcek pool1tjaz8a62743k5tzdd8lyd0sgf2lcvtk09jsz9etvas82zdamc2q pool1v8lgn85mfvj0hhslfjz2u0nut43ahkhuzhfcm5aexjkewn8krle pool1j0j39t2dfmkflfnvresds8vlfhwg75qwufa95u55nw376ky29r8 pool1q4l2wpswlanqszppj4tcvgw4j9wdjmadqky57dq0wqhg5tmhsxn pool10pktmr26fpvrt77j7m5mchqlt0mjmmfvt7ruvdewkcpasp0nzkl pool1kp0wl7kxn0zt5xtmld72s98rv6ejpufvl39qk26h99nqshmkmge pool1y9xftc4cq0svcv0gjdtusnvllrg5v5rn0d24g8r4m7tnsem6ve8 pool1867sv2tgcq2cjmyhqgsfveekmsy5zksld69zhgrlkluukfydq29 pool1q3snnww4ggayr8hd6gd83ypx982yhwlhywlcew7yxq46jzyst2g pool1hfxjswx4wnpfmdad660hvzx4knjhf32uwgg6wgsnqp98x9zz927 pool19r4ef6n0xkw3pvztuwd44ymrzrkylyralnf5rudnc7hnvvddyqz pool1t5zgwakxfmqxgu7l65fk45u33frlqrvgsvzn7demdy0ejgrhq9a pool1szgruqm2dlhkh5qh7rft28xz9gkxj6rzfncsuquf3vm37k63kqv pool1pmknsy9yqh06fpmduf8vzcvkzpllygjj8uzkjccgvewtq9uc53k pool1e827fy8efd7n9zacdknhtr2n5rqmry5up05mqgqsjkmmzjmzrf3 pool1sr82s7yvwwsy6q0geveawrglt8ss39jhsfz7d0p4a5y6kk30mdd pool1v9gqa6n4em4aly7ew2trvhgrath4mrsp9tyc290l638nvqs5aej pool1ygamv2t9lw03khcxpe75rjd4p8lnn36hux3deeg3hrc3jwrx43z pool1gctelcfktanxhqfjw88vjp9v0ayumd6lr3re38pjw3kvvc8tanq pool1ge06eu8lvdj6jakxw8zuwj3yxtpmeek8j8rgwqfshj7vg390fj0"
         },
         {
           "endpoint": "dns:r1.1percentpool.eu",
@@ -9419,7 +9419,7 @@
     },
     "relay_shared_hosts": {
       "source": "data/small/relay_shared_hosts.csv",
-      "row_count": 245,
+      "row_count": 252,
       "columns": [
         {
           "name": "resolved_ip",
