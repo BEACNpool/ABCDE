@@ -1,2 +1,33 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BEACN PRISM has moved</title><link rel="canonical" href="https://beacnpool.github.io/ABCDE/BMKR/"><script>window.location.replace('/ABCDE/BMKR/' + window.location.search + window.location.hash);</script><noscript><meta http-equiv="refresh" content="0;url=/ABCDE/BMKR/"></noscript></head><body><p>BEACN PRISM has moved. <a href="/ABCDE/BMKR/">Open the studio</a>.</p></body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow"><meta name="referrer" content="strict-origin-when-cross-origin">
+<title>BMKR has moved to NFT-Studio</title>
+<link rel="canonical" href="https://beacnpool.github.io/NFT-Studio/">
+<style>:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101016;color:#f3f1fa}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px}main{width:min(100%,520px);padding:32px;border:1px solid #383240;border-radius:20px;background:#191720}p{font-size:16px;line-height:1.6;color:#c8c2d5}h1{font-size:clamp(28px,7vw,40px);letter-spacing:-.04em;line-height:1.15;margin:12px 0}a{display:inline-block;min-height:48px;padding:12px 20px;background:#b9a0ff;color:#15101f;font-weight:650;border-radius:10px;text-decoration:none}a:hover{background:#cebaff}a:focus-visible{outline:3px solid white;outline-offset:5px}.label{font-size:14px;letter-spacing:.12em;color:#b9a0ff}</style>
+<script>(() => {
+  const destination = 'https://beacnpool.github.io/NFT-Studio/';
+  const params = new URLSearchParams(location.search);
+  let mode = '';
+  if (!params.has('create')) {
+    if (params.has('game')) mode = 'game';
+    else if (params.get('utility') === 'beats' || params.get('mint') === 'kayfabe') mode = 'music';
+    else if (params.has('utility')) mode = 'utility';
+    else if (params.has('mint') || location.hash.startsWith('#remix=')) mode = 'art';
+  }
+  // Keep original query/fragment bytes. Never accept a caller-supplied host.
+  const search = location.search + (mode ? (location.search ? '&' : '?') + 'create=' + mode : '');
+  const target = destination + search + location.hash;
+  addEventListener('DOMContentLoaded', () => {
+    document.getElementById('continue').href = target;
+  }, { once: true });
+  location.replace(target);
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0;url=https://beacnpool.github.io/NFT-Studio/"></noscript>
+</head><body><main>
+<div class="label">BEACN</div>
+<h1>BMKR is now<br>NFT-Studio.</h1>
+<p>Art, games, music and documents. Continue in the new studio.</p>
+<a id="continue" href="https://beacnpool.github.io/NFT-Studio/">Open NFT-Studio →</a>
+
+</main></body></html>
