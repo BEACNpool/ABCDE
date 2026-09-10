@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-09-10T19:37:13+00:00",
+ "generated_at": "2026-09-10T19:42:12+00:00",
  "chain_fingerprint": "20f6bf4839ff006bf357aba26c4b12db3d8be4adeef901b7855e22182d5d83cb",
- "generated_at_unix": 1789069033,
+ "generated_at_unix": 1789069332,
  "network": "Cardano mainnet",
  "price": {
   "available": true,
-  "usd_per_ada": 0.209215,
-  "ada_per_usdm": 4.779772004875367,
+  "usd_per_ada": 0.209523,
+  "ada_per_usdm": 4.7727457128811634,
   "source": "CoinGecko simple/price?ids=cardano&vs_currencies=usd",
-  "fetched_at": "2026-09-10T19:37:13+00:00"
+  "fetched_at": "2026-09-10T19:42:12+00:00"
  },
  "usdm": {
   "policy_id": "c48cbb3d5e57ed56e276bc45f99ab39abe94e6cd7ac39fb402da47ad",
@@ -29,14 +29,14 @@
     "usdm": 0.0,
     "deposit": 2.0,
     "ada_eq_at_today_rate": 907.241205,
-    "usd_at_today_rate": 189.808469
+    "usd_at_today_rate": 190.087899
    },
    "grokbot": {
     "ada": 514.054262,
     "usdm": 78.461199,
     "deposit": 2.0,
-    "ada_eq_at_today_rate": 891.080904,
-    "usd_at_today_rate": 186.427491
+    "ada_eq_at_today_rate": 890.529613,
+    "usd_at_today_rate": 186.586436
    }
   },
   "equalized_score_ada_eq": 907.241205,
@@ -120,8 +120,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 102.800572,
-     "notional_ada_eq": 491.363296,
-     "share_of_book_pct": 56.71,
+     "notional_ada_eq": 490.640989,
+     "share_of_book_pct": 56.67,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -141,20 +141,20 @@
     "total": 7.889215,
     "effective_rate": 5.11336,
     "all_in_rate": 5.19025,
-    "pool_vs_mark": 34.225291,
-    "all_in_vs_mark": 42.114506
+    "pool_vs_mark": 34.946178,
+    "all_in_vs_mark": 42.835393
    },
    "completed_trades": 3,
    "chain_events": 14,
    "moves": 14,
-   "vs_start_ada_eq": -40.792876,
-   "vs_equalized_start_ada_eq": -40.792876,
-   "vs_equalized_start_pct": -4.4964,
-   "vs_equalized_start_usd_at_current_mark": -8.534482,
-   "score_ada_eq": 866.448329,
-   "score_usd": 181.273987,
-   "usdm_in_ada": 491.363296,
-   "hedge_pct": 56.71
+   "vs_start_ada_eq": -41.515183,
+   "vs_equalized_start_ada_eq": -41.515183,
+   "vs_equalized_start_pct": -4.576,
+   "vs_equalized_start_usd_at_current_mark": -8.698386,
+   "score_ada_eq": 865.726022,
+   "score_usd": 181.389513,
+   "usdm_in_ada": 490.640989,
+   "hedge_pct": 56.67
   },
   {
    "id": "grokbot",
@@ -203,8 +203,8 @@
      "market_view": "ADA-bearish vs USD",
      "mechanism": "USDM spot holding",
      "quantity_usdm": 78.731215,
-     "notional_ada_eq": 376.317257,
-     "share_of_book_pct": 42.19,
+     "notional_ada_eq": 375.764069,
+     "share_of_book_pct": 42.16,
      "leverage": {
       "type": "unlevered spot",
       "borrowed": false,
@@ -224,25 +224,25 @@
     "total": 6.644102,
     "effective_rate": 4.96169,
     "all_in_rate": 5.04637,
-    "pool_vs_mark": 14.273358,
-    "all_in_vs_mark": 20.91746
+    "pool_vs_mark": 14.824649,
+    "all_in_vs_mark": 21.468751
    },
    "completed_trades": 4,
    "chain_events": 13,
    "moves": 13,
-   "vs_start_ada_eq": 0.856641,
-   "vs_equalized_start_ada_eq": -15.30366,
-   "vs_equalized_start_pct": -1.6868,
-   "vs_equalized_start_usd_at_current_mark": -3.201755,
-   "score_ada_eq": 891.937545,
-   "score_usd": 186.606714,
-   "usdm_in_ada": 376.317257,
-   "hedge_pct": 42.19
+   "vs_start_ada_eq": 0.854744,
+   "vs_equalized_start_ada_eq": -15.856848,
+   "vs_equalized_start_pct": -1.7478,
+   "vs_equalized_start_usd_at_current_mark": -3.322374,
+   "score_ada_eq": 891.384357,
+   "score_usd": 186.765525,
+   "usdm_in_ada": 375.764069,
+   "hedge_pct": 42.16
   }
  ],
  "leader": "grokbot",
- "gap_ada_eq": -25.489216,
- "gap_usd": -5.332726,
+ "gap_ada_eq": -25.658335,
+ "gap_usd": -5.376011,
  "moves": [
   {
    "agent": "grokbot",
@@ -1488,17 +1488,17 @@
   {
    "agent": "beacn",
    "label": "BEACN scored in both denominations",
-   "ada_eq": 866.448329,
-   "usd": 181.273987,
-   "ada_eq_marked_to_usd": 181.273987,
+   "ada_eq": 865.726022,
+   "usd": 181.389513,
+   "ada_eq_marked_to_usd": 181.389513,
    "agree": true
   },
   {
    "agent": "grokbot",
    "label": "grokbot scored in both denominations",
-   "ada_eq": 891.937545,
-   "usd": 186.606714,
-   "ada_eq_marked_to_usd": 186.606714,
+   "ada_eq": 891.384357,
+   "usd": 186.765525,
+   "ada_eq_marked_to_usd": 186.765525,
    "agree": true
   }
  ],
@@ -1509,10 +1509,10 @@
   "script": "scripts/match_snapshot.py"
  },
  "history": {
-  "points": 3352,
+  "points": 3353,
   "first": 1788027300,
-  "last": 1789069033,
-  "polled": 3304,
+  "last": 1789069332,
+  "polled": 3305,
   "reconstructed": 48,
   "file": "match_history.json"
  }
