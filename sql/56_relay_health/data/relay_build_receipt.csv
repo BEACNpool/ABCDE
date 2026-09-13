@@ -1,4 +1,10 @@
 run_at,stage,tip_block_no,tip_epoch_no,tip_time,stake_epoch,rows_out,notes
+2026-09-13 03:41:54.775983+00,defects,13933925,655,2026-09-13 03:41:44+00,656,47,"registrations that cannot work, detectable from the string alone"
+2026-09-13 03:41:53.675885+00,concentration,13933925,655,2026-09-13 03:41:44+00,656,244,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
+2026-09-13 03:41:52.300795+00,concentration,13933925,655,2026-09-13 03:41:44+00,656,239,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
+2026-09-13 03:41:49.263169+00,reachability,13933925,655,2026-09-13 03:41:44+00,656,2897,single-vantage-point sweep; unreachable != offline
+2026-09-13 03:41:47.383342+00,reachability,13933925,655,2026-09-13 03:41:44+00,656,2897,single-vantage-point sweep; unreachable != offline
+2026-09-13 02:40:05.725695+00,registration,13933745,655,2026-09-13 02:39:33+00,656,2897,active pools + registered relay endpoints; pool_stat unused (empty on 13.6.0.4)
 2026-09-12 03:41:50.122786+00,defects,13929744,655,2026-09-12 03:41:36+00,655,47,"registrations that cannot work, detectable from the string alone"
 2026-09-12 03:41:48.994359+00,concentration,13929744,655,2026-09-12 03:41:36+00,655,243,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
 2026-09-12 03:41:47.991922+00,concentration,13929744,655,2026-09-12 03:41:36+00,655,238,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
@@ -13,9 +19,3 @@ run_at,stage,tip_block_no,tip_epoch_no,tip_time,stake_epoch,rows_out,notes
 2026-09-11 02:40:06.244624+00,registration,13925362,654,2026-09-11 02:39:55+00,655,2896,active pools + registered relay endpoints; pool_stat unused (empty on 13.6.0.4)
 2026-09-10 03:44:24.630777+00,defects,13921195,654,2026-09-10 03:44:09+00,655,47,"registrations that cannot work, detectable from the string alone"
 2026-09-10 03:44:23.469555+00,concentration,13921195,654,2026-09-10 03:44:09+00,655,244,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
-2026-09-10 03:44:22.451242+00,concentration,13921195,654,2026-09-10 03:44:09+00,655,240,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
-2026-09-10 03:44:19.433028+00,reachability,13921195,654,2026-09-10 03:44:09+00,655,2896,single-vantage-point sweep; unreachable != offline
-2026-09-10 03:44:17.559791+00,reachability,13921195,654,2026-09-10 03:44:09+00,655,2896,single-vantage-point sweep; unreachable != offline
-2026-09-10 02:40:06.106901+00,registration,13920989,654,2026-09-10 02:39:33+00,655,2896,active pools + registered relay endpoints; pool_stat unused (empty on 13.6.0.4)
-2026-09-09 03:42:00.627314+00,defects,13916972,654,2026-09-09 03:41:44+00,655,47,"registrations that cannot work, detectable from the string alone"
-2026-09-09 03:41:59.49782+00,concentration,13916972,654,2026-09-09 03:41:44+00,655,243,"BGP origin per reachable relay IP; ASN is a failure domain, not an operator"
