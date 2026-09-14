@@ -1844,7 +1844,7 @@ Source: `data/small/pool_operator_kes_members.csv`
 | `ticker_name` | VARCHAR |
 | `stake_ada` | DOUBLE |
 
-## `relay_asn_concentration`  (244 rows)
+## `relay_asn_concentration`  (245 rows)
 
 Source: `data/small/relay_asn_concentration.csv`
 
@@ -1860,7 +1860,7 @@ Source: `data/small/relay_asn_concentration.csv`
 | `stake_single_asn` | BIGINT |
 | `delegators_single_asn` | BIGINT |
 
-## `relay_endpoint_status`  (4,596 rows)
+## `relay_endpoint_status`  (4,601 rows)
 
 Source: `data/small/relay_endpoint_status.csv`
 
@@ -1899,7 +1899,7 @@ Source: `data/small/relay_foreign_infrastructure.csv`
 | `endpoints_registered` | BIGINT |
 | `endpoints_foreign` | BIGINT |
 
-## `relay_pool_endpoints`  (6,243 rows)
+## `relay_pool_endpoints`  (6,251 rows)
 
 Source: `data/small/relay_pool_endpoints.csv`
 
@@ -1948,7 +1948,7 @@ Source: `data/small/relay_pool_health.csv`
 | `reachability_class` | VARCHAR |
 | `last_checked` | TIMESTAMP WITH TIME ZONE |
 
-## `relay_registration_changes`  (4,202 rows)
+## `relay_registration_changes`  (4,203 rows)
 
 Source: `data/small/relay_registration_changes.csv`
 
