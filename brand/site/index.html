@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090f17">
+<meta name="description" content="Download the current BEACN profile image and 3D badge.">
+<title>BEACN · Brand assets</title>
+<link rel="icon" href="assets/icon-32.png" type="image/png">
+<style>
+:root{color-scheme:dark;--bg:#090f17;--panel:#101a26;--ink:#edf4fa;--muted:#a4b5c8;--line:#293c50;--cyan:#5cdaeb;--amber:#edc777}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,model-viewer:focus-visible{outline:3px solid var(--amber);outline-offset:5px}button{font:inherit}button:disabled{cursor:wait;opacity:.65}
+.shell{max-width:1120px;margin:auto;padding:0 32px}.top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}.wordmark{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:.17em}.wordmark img{display:block;border-radius:10px}.back{font-size:14px;text-decoration:none;color:var(--muted)}.back:hover{color:var(--ink)}main.shell{padding-top:48px}h1{font-size:clamp(32px,5vw,48px);letter-spacing:-.04em;line-height:1.12;margin:0 0 16px}p{margin:0}.intro{color:var(--muted);margin-bottom:32px}.layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.85fr);gap:40px;align-items:center}.stage-wrap{min-width:0}.stage{position:relative;aspect-ratio:1;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#070d14}.stage::after{content:"";pointer-events:none;position:absolute;bottom:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}.poster,model-viewer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:transparent}.poster[hidden]{display:none}.view-button{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;border:1px solid #77e5f0;white-space:nowrap;border-radius:999px;padding:12px 24px;background:var(--cyan);color:#06212a;font-weight:750;cursor:pointer;box-shadow:0 8px 28px #0007}.view-button:hover{background:#a0eef6}.view-button[hidden]{display:none}.view-button span{font-weight:500;opacity:.85;margin-left:8px}.status{min-height:32px;margin:12px 12px 0;color:var(--muted);font-size:14px;text-align:center}.downloads{padding:8px 0}.label{font-size:13px;text-transform:uppercase;font-weight:700;letter-spacing:.13em;color:var(--cyan);margin-bottom:16px}.asset{padding:24px 0;border-top:1px solid var(--line)}.asset:last-child{border-bottom:1px solid var(--line)}.asset-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}.asset-head img{width:64px;height:64px;object-fit:contain;border-radius:12px;background:#070d14}.asset h2{font-size:20px;line-height:1.25;letter-spacing:-.02em;margin:0 0 4px}.detail{font-size:14px;color:var(--muted)}.download{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:48px;border:1px solid #3b576e;border-radius:10px;padding:10px 16px;color:var(--ink);text-decoration:none;font-weight:650;background:#132332}.download:hover{border-color:var(--cyan);background:#183343}.arrow{color:var(--cyan);font-size:20px;font-weight:400}.model-note{color:var(--muted);font-size:15px;margin:0 0 16px}footer.shell{margin-top:48px;padding-top:24px;padding-bottom:32px;display:flex;justify-content:space-between;gap:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}footer a{text-decoration:none}footer a:hover{color:var(--cyan)}
+@media(max-width:720px){.shell{padding:0 20px}.top{padding-top:16px;padding-bottom:16px}main.shell{padding-top:32px}.layout{grid-template-columns:minmax(0,1fr);gap:24px}.intro{margin-bottom:24px}.stage{border-radius:20px}.downloads{padding:0}.label{margin-bottom:8px}.asset{padding:20px 0}footer.shell{margin-top:32px}.view-button{bottom:20px;padding:10px 20px}.back{font-size:14px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="shell"><div class="top"><div class="wordmark"><img src="assets/icon-64.png" width="40" height="40" alt="">BEACN</div><a class="back" href="../">← All pages</a></div></header>
+<main class="shell">
+<h1>Brand assets.</h1>
+<p class="intro">The current BEACN profile image and 3D badge.</p>
+<div class="layout">
+<section class="stage-wrap" aria-label="BEACN badge preview">
+<div class="stage" id="stage"><img class="poster" id="poster" src="assets/beacon-poster.webp" width="1024" height="1024" alt="BEACN badge: a metal lighthouse with amber and cyan beams above an Ethernet port."><button class="view-button" id="view" type="button" aria-describedby="status">View in 3D <span>7.5 MB</span></button></div>
+<p class="status" id="status" role="status" aria-live="polite">The 3D preview loads when you choose.</p>
+</section>
+<section class="downloads" aria-labelledby="downloads-title">
+<p class="label" id="downloads-title">Downloads</p>
+<div class="asset"><div class="asset-head"><img src="assets/icon-64.png" width="64" height="64" alt=""><div><h2>Profile image</h2><p class="detail">PNG · 1024 × 1024 · 658 KB</p></div></div><a class="download" href="assets/pfp.png" download="BEACN-pfp.png"><span>Download the PNG</span><span class="arrow" aria-hidden="true">↓</span></a></div>
+<div class="asset"><h2>3D badge</h2><p class="detail">GLB · 7.5 MB</p><p class="model-note">Lighthouse detail on the front.<br>beacnpool.org engraved on the back.</p><a class="download" href="assets/beacn.glb" download="BEACN-badge.glb"><span>Download the 3D badge</span><span class="arrow" aria-hidden="true">↓</span></a></div>
+</section>
+</div>
+</main>
+<footer class="shell"><span>BEACN</span><a href="https://beacnpool.org/">beacnpool.org ↗</a></footer>
+<script>
+(()=>{
+const button=document.getElementById('view'),poster=document.getElementById('poster'),stage=document.getElementById('stage'),status=document.getElementById('status');
+let viewerPromise;
+function fallback(message){const m=stage.querySelector('model-viewer');if(m)m.remove();poster.hidden=false;button.disabled=false;button.hidden=false;button.firstChild.textContent='Try 3D again ';status.textContent=message;}
+button.addEventListener('click',async()=>{
+button.disabled=true;status.textContent='Loading the 3D badge…';
+let settled=false;
+const timer=setTimeout(()=>fail('The 3D preview is taking too long. You can try again or download the badge.'),30000);
+function fail(message){if(settled)return;settled=true;clearTimeout(timer);fallback(message);}
+try{
+window.ModelViewerElement={dracoDecoderLocation:new URL('assets/draco/',document.baseURI).href};
+viewerPromise??=import('./assets/model-viewer.min.js');
+await viewerPromise;
+if(settled)return;
+const mv=document.createElement('model-viewer');
+mv.src=new URL('assets/beacn.glb',document.baseURI).href;mv.alt='BEACN 3D badge. Drag or use arrow keys to turn.';
+for(const [key,value] of Object.entries({'camera-controls':'','disable-zoom':'','disable-pan':'','environment-image':'neutral','tone-mapping':'neutral','exposure':'1.2','shadow-intensity':'1','shadow-softness':'.9','touch-action':'pan-y','interaction-prompt':'none','camera-orbit':'0deg 90deg 118%'}))mv.setAttribute(key,value);
+mv.addEventListener('progress',event=>{if(settled)return;status.textContent='Loading the 3D badge… '+Math.round((event.detail.totalProgress||0)*100)+'%';});
+mv.addEventListener('load',()=>{if(settled||!mv.isConnected)return;settled=true;clearTimeout(timer);poster.hidden=true;button.hidden=true;button.disabled=false;status.textContent='Drag or use arrow keys to turn the badge.';mv.setAttribute('tabindex','0');mv.focus({preventScroll:true});},{once:true});
+mv.addEventListener('error',()=>{if(!mv.isConnected)return;const message='The 3D preview is unavailable. The downloads are ready.';if(settled)fallback(message);else fail(message);});
+stage.appendChild(mv);
+}catch(error){if(!settled)viewerPromise=undefined;fail('The 3D preview is unavailable. The downloads are ready.');}
+});
+})();
+</script>
+</body>
+</html>
