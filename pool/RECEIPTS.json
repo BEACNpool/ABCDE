@@ -1,0 +1,34 @@
+{
+  "archived_utc": "2026-09-14",
+  "source": {
+    "repository": "local beacnpool-site",
+    "commit": "8ef97ddd51cb58a7e433bf2993b2c0b88aa98d43"
+  },
+  "pool": {
+    "ticker": "BEACN",
+    "bech32": "pool18pnja3z8vfkw3sj578xetj3ujhyp2vmljezjg5es290awqmzq7g",
+    "hex": "38672ec447626ce8c254f1cd95ca3c95c815337f9645245330515fd7",
+    "retirement_tx": "3792b683031b7bfdb8f522fa999070b4af3bb8d3eec3f80d6ef365b6ee15f85e",
+    "retiring_epoch": 656,
+    "retirement_effective_utc": "2026-09-16T21:44:51Z"
+  },
+  "registered_metadata": {
+    "url": "https://metadata.beacnpool.org/",
+    "file": "poolmeta.json",
+    "bytes": 157,
+    "blake2b_256": "dd0a4bb6b24c53c638d8e6daf5999532186089cb1171b1a7b8df96c6c0b004ce",
+    "verified": "bytes fetched 2026-09-14 hash to the on-chain registered metadata hash"
+  },
+  "drep": {
+    "bech32": "drep1yg3fzjm63hjg37k3rtdt7wx0mgmn303lwv2s50xxkjzsv5qfhynxg",
+    "deregistration_tx": "717044e4114dc4bcdf01c5727f6f2fe42ae28756341f4d110d0ef31785c8ebe9",
+    "deregistered": "2026-09-12"
+  },
+  "drep_jsonld_image": {
+    "anchored_url": "https://beacnpool.org/pfp.png",
+    "anchored_sha256": "2029733cacaf310ec0c6548a71a60a9bb78d5b45c600cdf759525f9aa35f60c4",
+    "archived_file": "pfp.png",
+    "archived_sha256": "e371efae74d13c5b21ad4af37487f63d86e80d4bcfd22c52164507715164a2df",
+    "note": "The last live pfp.png already differed from the hash anchored in BEACNpool.jsonld before this archive; the anchored bytes were not recovered."
+  }
+}
