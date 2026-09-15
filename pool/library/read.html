@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; media-src 'self' blob:; frame-src blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Read a scroll — BEACN Library archive</title>
+<meta name="description" content="A preserved copy of a BEACN Ledger Scroll, checked in your browser against the SHA-256 recorded on Cardano.">
+<link rel="icon" type="image/png" href="../favicon-20260904.png">
+<style>
+:root{color-scheme:dark;--bg:#04070f;--surface:#0c1526;--ink:#eef4ff;--ink-2:#c6d4ef;--muted:#8ba3cf;--line:#1a2745;--line-2:#263760;
+  --cyan:#35d5ea;--amber:#f6b45a;--ok:#3fd68f;--bad:#f87171;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,system-ui,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans)}
+a{color:var(--cyan)}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 56px}
+.back{font-size:14px;text-decoration:none}
+h1{font:400 clamp(28px,5vw,44px)/1.15 var(--serif);margin:14px 0 6px}
+.sub{color:var(--ink-2);margin:0 0 14px;max-width:70ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted);margin:0 0 14px}
+.facts b{color:var(--ink-2);font-weight:600}
+.check{border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;background:var(--surface);font-size:14.5px;margin:0 0 16px}
+.check.ok{border-color:rgba(63,214,143,.45)}.check.ok b{color:var(--ok)}
+.check.warn{border-color:rgba(246,180,90,.45)}.check.warn b{color:var(--amber)}
+.check.bad{border-color:rgba(248,113,113,.5)}.check.bad b{color:var(--bad)}
+.check code,.ptr code{font:12.5px/1.5 var(--mono);word-break:break-all;color:var(--ink-2)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.btn{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:999px;padding:8px 16px;color:var(--ink);text-decoration:none;font-size:14px;background:transparent;cursor:pointer}
+.btn:hover{border-color:var(--cyan)}
+.stage{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.stage.dark{background:#05080f}
+.stage iframe{display:block;width:100%;height:78vh;border:0;background:#fff}
+.stage pre{margin:0;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;font:14.5px/1.65 var(--mono);color:var(--ink);background:#05080f;max-height:78vh;overflow:auto}
+.stage img,.stage video{display:block;max-width:100%;margin:0 auto;background:#05080f}
+.stage.media{padding:18px;text-align:center}
+.stage table{border-collapse:collapse;width:100%;font-size:13px;color:var(--ink)}
+.stage th,.stage td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.tablewrap{overflow:auto;max-height:78vh;background:#05080f}
+.note{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+details{margin-top:18px;color:var(--ink-2);font-size:14px}summary{cursor:pointer;color:var(--muted)}
+details pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.55 var(--mono);background:#05080f;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../#library">&larr; Back to the BEACN archive</a>
+  <h1 id="title">Loading scroll…</h1>
+  <p class="sub" id="sub"></p>
+  <div class="facts" id="facts"></div>
+  <div class="check warn" id="check" role="status"><b>Checking…</b> Hashing this copy in your browser.</div>
+  <div class="actions" id="actions"></div>
+  <div class="stage dark" id="stage"></div>
+  <p class="note" id="note"></p>
+  <details>
+    <summary>Read it straight from the chain instead</summary>
+    <p>Nothing on this page needs BEACN. Anyone can rebuild this scroll from Cardano through the free public Koios API and compare the hash:</p>
+    <pre id="cli"></pre>
+  </details>
+</div>
+<script>
+(async () => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const human = n => n >= 1048576 ? (n / 1048576).toFixed(2) + " MB" : n >= 1024 ? (n / 1024).toFixed(1) + " KB" : n + " bytes";
+  const name = decodeURIComponent(location.hash.slice(1));
+  let lib;
+  try { lib = await (await fetch("library.json", {cache: "no-cache"})).json(); } catch (e) { $("title").textContent = "The library index could not be loaded."; return; }
+  const s = lib.scrolls.find(x => x.name === name);
+  if (!s) { $("title").textContent = "No scroll named “" + name + "”."; $("check").remove(); return; }
+  document.title = s.title + " — BEACN Library archive";
+  $("title").textContent = s.title;
+  $("sub").textContent = s.blurb || "";
+  $("facts").innerHTML = [
+    ["Stored as", s.kind_label], ["Content", s.type], ["Size", human(s.bytes)], ["On chain since", s.first_seen || "—"]
+  ].map(([k, v]) => `<span><b>${esc(k)}</b> ${esc(v)}</span>`).join("");
+  $("cli").textContent = s.cli;
+  const file = "files/" + s.file;
+  $("actions").innerHTML = `<a class="btn" href="${esc(file)}" download>Download the preserved file</a>` +
+    (s.pointer_url ? `<a class="btn" href="${esc(s.pointer_url)}" target="_blank" rel="noopener">See it on chain ↗</a>` : "");
+  const buf = await (await fetch(file)).arrayBuffer();
+  let shown = buf;
+  if (s.encoding === "gzip") {
+    shown = await new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
+  }
+  const hex = [...new Uint8Array(await crypto.subtle.digest("SHA-256", buf))].map(b => b.toString(16).padStart(2, "0")).join("");
+  const check = $("check");
+  if (s.chain_sha256 && hex === s.chain_sha256) {
+    check.className = "check ok";
+    check.innerHTML = `<b>✓ Verified.</b> This copy’s SHA-256 matches the hash recorded on Cardano (${esc(s.hash_source)}).<br><code>${hex}</code>`;
+  } else if (s.chain_sha256) {
+    check.className = "check bad";
+    check.innerHTML = `<b>✗ This copy does not match the chain.</b> Expected <code>${esc(s.chain_sha256)}</code>, got <code>${hex}</code>. It will not be shown.`;
+    return;
+  } else {
+    check.className = "check warn";
+    check.innerHTML = `<b>No hash is recorded on chain for this scroll.</b> This is the copy rebuilt from Cardano on ${esc(lib.read_on)}; its SHA-256 is below and matches the archive record${hex === s.sha256 ? "" : " — <b>but this copy has changed since</b>"}.<br><code>${hex}</code>`;
+  }
+  const stage = $("stage"), type = s.type;
+  const blob = new Blob([shown], {type});
+  const url = URL.createObjectURL(blob);
+  if (type === "text/html") {
+    stage.className = "stage";
+    const f = document.createElement("iframe");
+    f.setAttribute("sandbox", "allow-scripts allow-popups");
+    f.setAttribute("referrerpolicy", "no-referrer");
+    f.title = s.title; f.src = url; stage.appendChild(f);
+    $("note").textContent = s.interactive_note || "Shown in a sandbox: the scroll's own scripts run, but it cannot reach this site's storage.";
+  } else if (type.startsWith("image/")) {
+    stage.className = "stage dark media"; stage.innerHTML = `<img alt="${esc(s.title)}" src="${url}">`;
+  } else if (type.startsWith("audio/")) {
+    stage.className = "stage dark media"; stage.innerHTML = `<audio controls src="${url}" style="width:min(560px,100%)"></audio>`;
+  } else if (type.startsWith("video/")) {
+    stage.className = "stage dark media"; stage.innerHTML = `<video controls playsinline src="${url}"></video>`;
+  } else if (type === "text/csv") {
+    const rows = new TextDecoder().decode(shown).trim().split(/\r?\n/).slice(0, 501).map(r => r.split(","));
+    stage.className = "stage dark";
+    stage.innerHTML = `<div class="tablewrap"><table>${rows.map((r, i) => `<tr>${r.map(c => i ? `<td>${esc(c)}</td>` : `<th>${esc(c)}</th>`).join("")}</tr>`).join("")}</table></div>`;
+  } else if (type === "application/pdf") {
+    stage.className = "stage dark media";
+    stage.innerHTML = `<p style="color:var(--ink-2)">This scroll is a PDF.</p><a class="btn" href="${esc(file)}" target="_blank" rel="noopener">Open the PDF</a>`;
+  } else {
+    stage.className = "stage dark";
+    const pre = document.createElement("pre"); pre.textContent = new TextDecoder().decode(shown); stage.appendChild(pre);
+    if (s.encoding === "gzip") $("note").textContent = "Stored on chain gzip-compressed; your browser decompressed it after checking the hash of the original bytes.";
+  }
+})();
+</script>
+</body>
+</html>
