@@ -2,7 +2,7 @@
 
 # ⬡ ABCDE
 
-> **Archived — September 2026.** The ABCDE warehouse server has been powered off and BEACN retired as a
+> **Archived — September 2026. Development has ended.** The ABCDE warehouse server has been powered off and BEACN retired as a
 > stake pool (effective epoch 656). The code, findings and methods here stay public, and the
 > [explorer](https://beacnpool.github.io/ABCDE/) is a static final snapshot. The last export of the derived
 > warehouse data is on the [`archive/final-2026-09`](https://github.com/BEACNpool/ABCDE/tree/archive/final-2026-09)
