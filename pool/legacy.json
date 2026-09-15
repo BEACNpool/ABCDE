@@ -111,6 +111,66 @@
    "blurb": "The brand seal."
   },
   {
+   "name": "BIBLE HTML GZIP",
+   "asset_name": "BIBLE_MANIFEST",
+   "policy_id": "25095821547cc761dd5954e16eaacfc7f9bc92a2d16dca1f8af185a1",
+   "asset_name_hex": "4249424c455f4d414e4946455354",
+   "fingerprint": "asset1r0qqhxdxrzp4frc8xuwe3tta2pmskhvs33pknv",
+   "first_mint_tx": "9eb588f0249a0aa59d7acb03e550fc6e99cd6e1497f32f6d6b9686c63ef104ad",
+   "first_mint_utc": "2026-01-01T18:37:35Z",
+   "total_supply": "1",
+   "thumb_file": null,
+   "blurb": "An earlier Bible manifest, minted the day before the full set."
+  },
+  {
+   "name": null,
+   "asset_name": "Hosky",
+   "policy_id": "f4588edb91d21ee728409f0e0d33c80109f1cb55e5c7abad305b66e2",
+   "asset_name_hex": "486f736b79",
+   "fingerprint": "asset1metc3mu49jzvxgammrz08d4v8dvkc6fuheevwu",
+   "first_mint_tx": "a16e60e8ff86b8cc8ab0107f465582f11c9e1c795f9e98971568539a8dc4f884",
+   "first_mint_utc": "2026-01-10T05:17:39Z",
+   "total_supply": "0",
+   "thumb_file": null,
+   "blurb": "Hosky, minted as an NFT and later burned."
+  },
+  {
+   "name": null,
+   "asset_name": "LS_REGISTRY",
+   "policy_id": "895cbbe0e284b60660ed681e389329483d5ca94677cbb583f3124062",
+   "asset_name_hex": "4c535f5245474953545259",
+   "fingerprint": "asset1hr4prdpr4d4zuc06zcmatq6juwz8x45wc6f2jd",
+   "first_mint_tx": "4b5d13cd5293030b239ff8a41322f1f8e678957ca2d2f4cb95c56d820f400e7c",
+   "first_mint_utc": "2026-01-18T00:24:39Z",
+   "total_supply": "1",
+   "thumb_file": null,
+   "blurb": "The first Library registry token."
+  },
+  {
+   "name": null,
+   "asset_name": "CONSTITUTION_E541_MANIFEST",
+   "policy_id": "05d3f1de5b6b01e20d12036c06812758039cdeb0ea08e166f7990d1d",
+   "asset_name_hex": "434f4e535449545554494f4e5f453534315f4d414e4946455354",
+   "fingerprint": "asset13gvt9k2qnmhul3rr89jaevtvawxfn3t3p7rf9a",
+   "first_mint_tx": "c478a0d21420126a269faa09f0bcf036561c3f0ff7becb4ee221666107884e40",
+   "first_mint_utc": "2026-01-26T18:14:16Z",
+   "total_supply": "0",
+   "thumb_file": null,
+   "blurb": "An earlier epoch-541 Constitution manifest, burned."
+  },
+  {
+   "name": null,
+   "asset_name": "CONSTITUTION_E608_MANIFEST",
+   "policy_id": "c14e4f880b20cb7289d8325bffbbfeaa3cf1d4dde257a5a6e284ba67",
+   "asset_name_hex": "434f4e535449545554494f4e5f453630385f4d414e4946455354",
+   "fingerprint": "asset10jwp4cqyu2kpu3gvg74w46uas7j390gdjg6rvh",
+   "first_mint_tx": "36ba640a3193c64e4d8e485f6aa9eb7040fcb4266c22f75d269f3894995c3121",
+   "first_mint_utc": "2026-01-26T19:47:36Z",
+   "total_supply": "1",
+   "thumb_file": null,
+   "blurb": "An earlier epoch-608 Constitution manifest."
+  },
+  {
    "name": "FIRST WORDS - Manifest",
    "asset_name": "FIRST_WORDS_MANIFEST",
    "policy_id": "beec4b31f21ae4567f9c849eada2f23f4f0b76c7949a1baaef623cba",
@@ -120,7 +180,7 @@
    "first_mint_utc": "2026-01-29T11:39:03Z",
    "total_supply": "1",
    "thumb_file": null,
-   "blurb": "BEACN's first scroll: the manifest."
+   "blurb": "FIRST WORDS, the manifest."
   },
   {
    "name": "FIRST WORDS - Page 1",
@@ -771,11 +831,53 @@
    "blurb": "Created on a desktop, minted from a phone."
   }
  ],
+ "scroll_sets": [
+  {
+   "title": "The Bible",
+   "policy": "2f0c8b54ef86ffcdd95ba87360ca5b485a8da4f085ded7988afc77e0",
+   "n": 238,
+   "first": "2026-01-02",
+   "last": "2026-01-02",
+   "manifest_fingerprint": "asset1rrxaslw8mz4attfa32xdnnnxsa34ktf8jkny90"
+  },
+  {
+   "title": "The Bitcoin whitepaper",
+   "policy": "8dc3cb836ab8134c75e369391b047f5c2bf796df10d9bf44a33ef6d1",
+   "n": 4,
+   "first": "2026-01-09",
+   "last": "2026-01-09",
+   "manifest_fingerprint": "asset1a8rwcwdgcywgdajhkntesddtfw0uxvhhgnffx7"
+  },
+  {
+   "title": "Cardano Constitution (epoch 608)",
+   "policy": "ef91a425ef57d92db614085ef03718407fb293cb4b770bc6e03f9750",
+   "n": 12,
+   "first": "2026-01-26",
+   "last": "2026-01-26",
+   "manifest_fingerprint": "asset1dds6qhwcuuxk0eyx6g7llp0fpn200scpukzg20"
+  },
+  {
+   "title": "Cardano Constitution (epoch 541)",
+   "policy": "d7559bbfa87f53674570fd01f564687c2954503b510ead009148a31d",
+   "n": 8,
+   "first": "2026-01-26",
+   "last": "2026-01-26",
+   "manifest_fingerprint": "asset1mv2tjsm7gku0mwftlzwdcjwjn5kr8qy08revg7"
+  },
+  {
+   "title": "First Video",
+   "policy": "38fbd56d7de6eb9df88599b5b102304df4c817aee53e4fb9c59cbed2",
+   "n": 176,
+   "first": "2026-02-05",
+   "last": "2026-02-06",
+   "manifest_fingerprint": "asset1jshwp49q53g9a3w6kln0lrclve040w3ahxp7wh"
+  }
+ ],
  "timeline": [
   {
    "date": "2023-07",
    "title": "@BEACNpool joins X",
-   "html": "The account that carried the story from the start."
+   "html": "The account that carried the story from the start. Taken down in September 2026."
   },
   {
    "date": "2024-07-26",
@@ -793,14 +895,39 @@
    "html": "The fixed fee drops from 340 to 170 ADA, the protocol minimum, and pledge rises from 500 to 15,000 ADA, effective epoch 603."
   },
   {
+   "date": "2026-01-02",
+   "title": "The Bible, on chain",
+   "html": "The Library's first great work: 237 pages and a manifest, minted as 238 NFTs the day after a first manifest on New Year's Day."
+  },
+  {
    "date": "2026-01-03",
    "title": "Ledger Scrolls goes public",
    "html": "An open reader that rebuilds data straight from Cardano. <a href=\"https://github.com/BEACNpool/ledger-scrolls\">Source</a>"
   },
   {
+   "date": "2026-01-09",
+   "title": "The Bitcoin whitepaper, on chain",
+   "html": ""
+  },
+  {
+   "date": "2026-01-18",
+   "title": "The first Library registry token",
+   "html": ""
+  },
+  {
+   "date": "2026-01-26",
+   "title": "Cardano's Constitution, twice",
+   "html": "The epoch 541 and epoch 608 editions, 20 NFTs in all."
+  },
+  {
    "date": "2026-01-29",
-   "title": "FIRST WORDS: BEACN's first scroll",
-   "html": "A manifest and three pages, minted from the pool owner's wallet."
+   "title": "FIRST WORDS",
+   "html": "A manifest and three pages, alongside the Genesis and Architect's scrolls."
+  },
+  {
+   "date": "2026-02-05",
+   "title": "The first video",
+   "html": "175 pages and a manifest, minted over two days."
   },
   {
    "date": "2026-02-10",
